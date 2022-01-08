@@ -1,0 +1,113 @@
+<template>
+  <PageWrapper
+    title="前端权限按钮示例"
+    contentBackground
+    contentClass="p-4"
+    content="由于刷新的时候会请求用户信息接口，会根据接口重置角色信息，所以刷新后界面会恢复原样，如果不需要，可以注释 src/layout/default/index内的获取用户信息接口">
+    <CurrentPermissionMode />
+
+    <p>当前角色: <span>{{ userStore.getRoleList }}</span></p>
+    <el-alert
+      class="mt-4"
+      type="info"
+      title="点击后请查看按钮变化"
+      show-icon />
+
+    <div class="mt-4">
+      权限切换(请先切换权限模式为前端角色权限模式):
+      <el-button-group>
+        <el-button
+          @click="changeRole(RoleEnum.SUPER)"
+          :type="isSuper ? 'primary' : 'default'">
+          {{ RoleEnum.SUPER }}
+        </el-button>
+        <el-button
+          @click="changeRole(RoleEnum.TEST)"
+          :type="isTest ? 'primary' : 'default'">
+          {{ RoleEnum.TEST }}
+        </el-button>
+      </el-button-group>
+    </div>
+    <el-divider>组件方式判断权限(有需要可以自行全局注册)</el-divider>
+    <Authority :value="RoleEnum.SUPER">
+      <el-button
+        type="primary"
+        class="mx-4">拥有super角色权限可见</el-button>
+    </Authority>
+
+    <Authority :value="RoleEnum.TEST">
+      <el-button
+        type="success"
+        class="mx-4">拥有test角色权限可见</el-button>
+    </Authority>
+
+    <Authority :value="[RoleEnum.TEST, RoleEnum.SUPER]">
+      <el-button
+        type="danger"
+        class="mx-4">拥有[test,super]角色权限可见</el-button>
+    </Authority>
+
+    <el-divider>函数方式方式判断权限(适用于函数内部过滤)</el-divider>
+    <el-button
+      v-if="hasPermission(RoleEnum.SUPER)"
+      type="primary"
+      class="mx-4">拥有super角色权限可见</el-button>
+
+    <el-button
+      v-if="hasPermission(RoleEnum.TEST)"
+      type="success"
+      class="mx-4">拥有test角色权限可见</el-button>
+
+    <el-button
+      v-if="hasPermission([RoleEnum.TEST, RoleEnum.SUPER])"
+      type="danger"
+      class="mx-4">
+      拥有[test,super]角色权限可见
+    </el-button>
+
+    <el-divider>指令方式方式判断权限(该方式不能动态修改权限.)</el-divider>
+    <el-button
+      v-auth="RoleEnum.SUPER"
+      type="primary"
+      class="mx-4">拥有super角色权限可见</el-button>
+
+    <el-button
+      v-auth="RoleEnum.TEST"
+      type="success"
+      class="mx-4">拥有test角色权限可见</el-button>
+
+    <el-button
+      v-auth="[RoleEnum.TEST, RoleEnum.SUPER]"
+      type="danger"
+      class="mx-4">
+      拥有[test,super]角色权限可见
+    </el-button>
+  </PageWrapper>
+</template>
+
+<script lang="ts">
+import { computed, defineComponent } from 'vue'
+import CurrentPermissionMode from '../CurrentPermissionMode.vue'
+import { useUserStore } from '@/store/modules/user'
+import { RoleEnum } from '@/enums/roleEnum'
+import { usePermission } from '@/hooks/web/usePermission'
+import { Authority } from '@/components/Authority'
+import { PageWrapper } from '@/components/Page'
+
+export default defineComponent({
+  components: { PageWrapper, CurrentPermissionMode, Authority },
+  setup() {
+    const { changeRole, hasPermission } = usePermission()
+    const userStore = useUserStore()
+
+    return {
+      userStore,
+      RoleEnum,
+      isSuper: computed(() => userStore.getRoleList.includes(RoleEnum.SUPER)),
+      isTest: computed(() => userStore.getRoleList.includes(RoleEnum.TEST)),
+      changeRole,
+      hasPermission,
+    }
+  },
+})
+</script>

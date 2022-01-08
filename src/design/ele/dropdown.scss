@@ -1,0 +1,9 @@
+.el-dropdown {
+  &-menu {
+    &__item {
+      &--divided::before {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+$prefix-cls: '#{$namespace}-basic-modal';
+
+.#{$prefix-cls} {
+  .el-dialog {
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &.is-drag:hover {
+        background-color: var(--background-primary-color);
+      }
+    }
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+  }
+
+  &__close {
+    display: flex;
+    align-items: center;
+
+    > span {
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--primary-color);
+        background: var(--background-primary-color);
+      }
+
+      > svg {
+        width: 60%;
+        height: 60%;
+      }
+    }
+  }
+
+}

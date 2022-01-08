@@ -1,0 +1,128 @@
+{
+  "folders": [
+    {
+      "path": ".."
+    },
+    {
+      "path": "..\\..\\element-plus"
+    },
+    {
+      "path": "..\\..\\vue-vben-admin"
+    },
+    {
+      "path": "..\\..\\ant-design-vue"
+    }
+  ],
+  "settings": {
+    "editor.formatOnSave": false,
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    //===========================================
+    //============= Editor ======================
+    //===========================================
+    "explorer.openEditors.visible": 0,
+    "editor.tabSize": 2,
+    "diffEditor.ignoreTrimWhitespace": false,
+    //===========================================
+    //============= Other =======================
+    //===========================================
+    "breadcrumbs.enabled": true,
+    "open-in-browser.default": "chrome",
+    //===========================================
+    //============= files =======================
+    //===========================================
+    "files.eol": "\n",
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/*.log": true,
+      "**/*.log*": true,
+      "**/bower_components": true,
+      "**/dist": true,
+      "**/elehukouben": true,
+      "**/.git": true,
+      "**/.gitignore": true,
+      "**/.svn": true,
+      "**/.DS_Store": true,
+      "**/.idea": true,
+      "**/.vscode": false,
+      "**/yarn.lock": true,
+      "**/tmp": true,
+      "public/tinymce": true,
+      "out": true,
+      "dist": true,
+      "node_modules": true,
+      "CHANGELOG.md": true,
+      "examples": true,
+      "res": true,
+      "screenshots": true,
+      "yarn-error.log": true,
+      "**/.yarn": true,
+      "**/.svg": true,
+    },
+    "files.exclude": {
+      "**/.cache": true,
+      "**/.editorconfig": true,
+      "**/.eslintcache": true,
+      "**/bower_components": true,
+      "**/.idea": true,
+      "**/tmp": true,
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true
+    },
+    "files.watcherExclude": {
+      "**/.git/objects/**": true,
+      "**/.git/subtree-cache/**": true,
+      "**/.vscode/**": true,
+      "**/node_modules/**": true,
+      "**/tmp/**": true,
+      "**/bower_components/**": true,
+      "**/dist/**": true,
+      "**/yarn.lock": true
+    },
+    "stylelint.enable": true,
+    "stylelint.packageManager": "yarn",
+    "stylelint.validate": [
+      "css",
+      "postcss",
+      "scss",
+      "vue",
+      "sass"
+   ],
+    "workbench.settings.enableNaturalLanguageSearch": false,
+    "path-intellisense.mappings": {
+      "@/": "${workspaceRoot}/src",
+      "#/": "${workspaceRoot}/types",
+    },
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "workbench.sideBar.location": "left",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "eslint.validate": [
+      "javascript",
+      "typescript",
+      "html",
+      "vue",
+      "tsx",
+      "typescriptreact"
+    ],
+    "i18n-ally.localesPaths": ["src/locales/lang"],
+    "i18n-ally.keystyle": "nested",
+    "i18n-ally.sortKeys": true,
+    "i18n-ally.namespace": true,
+    "i18n-ally.pathMatcher": "{locale}/{namespaces}.{ext}",
+    "i18n-ally.enabledParsers": ["ts"],
+    "i18n-ally.sourceLanguage": "en",
+    "i18n-ally.displayLanguage": "zh-CN",
+    "i18n-ally.enabledFrameworks": ["vue", "react"],
+    "volar.codeLens.scriptSetupTools": true,
+    "volar.icon.preview": true,
+    "iconify.excludes": [
+      "el",
+      "eva"
+    ]
+  }
+}

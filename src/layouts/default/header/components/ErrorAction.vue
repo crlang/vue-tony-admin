@@ -1,0 +1,48 @@
+<template>
+  <el-tooltip
+    :content="t('layout.header.tooltipErrorLog')"
+    placement="bottom">
+    <el-badge
+      :value="getCount"
+      @click="handleToErrorList"
+      :max="99">
+      <Icon icon="ion:bug-outline" />
+    </el-badge>
+  </el-tooltip>
+</template>
+
+<script lang="ts">
+import { defineComponent, computed } from 'vue'
+import Icon from '@/components/Icon'
+
+import { useI18n } from '@/hooks/web/useI18n'
+import { useErrorLogStore } from '@/store/modules/errorLog'
+import { PageEnum } from '@/enums/pageEnum'
+
+import { useRouter } from 'vue-router'
+
+export default defineComponent({
+  name: 'ErrorAction',
+  components: { Icon },
+
+  setup() {
+    const { t } = useI18n()
+    const { push } = useRouter()
+    const errorLogStore = useErrorLogStore()
+
+    const getCount = computed(() => errorLogStore.getErrorLogListCount)
+
+    function handleToErrorList() {
+      push(PageEnum.ERROR_LOG_PAGE).then(() => {
+        errorLogStore.setErrorLogListCount(0)
+      })
+    }
+
+    return {
+      t,
+      getCount,
+      handleToErrorList,
+    }
+  },
+})
+</script>

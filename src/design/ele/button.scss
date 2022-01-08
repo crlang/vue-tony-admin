@@ -1,0 +1,9 @@
+.el-button {
+  svg {
+    display: inline-block;
+  }
+
+  [class*=el-icon]+span {
+    vertical-align: text-top;
+  }
+}

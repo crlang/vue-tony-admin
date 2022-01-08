@@ -1,0 +1,33 @@
+<template>
+  <PageWrapper title="工作台">
+    <template #extra><WorkbenchHeader /></template>
+    <el-row :gutter="16">
+      <el-col :lg="{span: 16}">
+        <ProjectCard class="mb-4" />
+        <DynamicInfo />
+      </el-col>
+      <el-col :lg="{span: 8}">
+        <QuickNav />
+        <ActivityTimeline class="my-4" />
+        <TaskProportion />
+      </el-col>
+    </el-row>
+  </PageWrapper>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { PageWrapper } from '@/components/Page'
+import WorkbenchHeader from './components/WorkbenchHeader.vue'
+import ProjectCard from './components/ProjectCard.vue'
+import QuickNav from './components/QuickNav.vue'
+import ActivityTimeline from './components/ActivityTimeline.vue'
+import DynamicInfo from './components/DynamicInfo.vue'
+import TaskProportion from './components/TaskProportion.vue'
+
+const loading = ref(true)
+
+setTimeout(() => {
+  loading.value = false
+}, 1500)
+</script>

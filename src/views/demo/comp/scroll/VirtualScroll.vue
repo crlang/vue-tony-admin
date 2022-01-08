@@ -1,0 +1,66 @@
+<template>
+  <PageWrapper class="virtual-scroll-demo">
+    <el-divider>基础滚动示例</el-divider>
+    <div class="virtual-scroll-demo-wrap">
+      <VScroll
+        :itemHeight="41"
+        :items="data"
+        :height="300"
+        :width="300">
+        <template #default="{ item }">
+          <div class="virtual-scroll-demo__item">
+            {{ item.title }}
+          </div>
+        </template>
+      </VScroll>
+    </div>
+
+    <el-divider>即使不可见，也预先加载50条数据，防止空白</el-divider>
+    <div class="virtual-scroll-demo-wrap">
+      <VScroll
+        :itemHeight="41"
+        :items="data"
+        :height="300"
+        :width="300"
+        :bench="50">
+        <template #default="{ item }">
+          <div class="virtual-scroll-demo__item">
+            {{ item.title }}
+          </div>
+        </template>
+      </VScroll>
+    </div>
+  </PageWrapper>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { VScroll } from '@/components/VirtualScroll/index'
+import { PageWrapper } from '@/components/Page'
+import { data } from './data'
+
+export default defineComponent({
+  components: { VScroll: VScroll, PageWrapper },
+  setup() {
+    return { data }
+  },
+})
+</script>
+
+<style lang="scss" scoped>
+.virtual-scroll-demo {
+  &-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 0 20%;
+    background-color: $component-background;
+  }
+
+  &__item {
+    height: 40px;
+    padding: 0 20px;
+    line-height: 40px;
+    border-bottom: 1px solid $border-color-base;
+  }
+}
+</style>

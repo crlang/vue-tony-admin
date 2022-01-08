@@ -1,0 +1,44 @@
+<template>
+  <PageWrapper
+    title="滚动组件示例"
+    content="基于el-scrollbar">
+    <div class="scroll-wrap">
+      <ScrollContainer class="mt-4">
+        <ul class="p-3">
+          <li
+            v-for="(k,i) in litdata"
+            :key="i">{{ k }}</li>
+        </ul>
+      </ScrollContainer>
+    </div>
+  </PageWrapper>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { ScrollContainer } from '@/components/Container/index'
+import { PageWrapper } from '@/components/Page'
+import { litdata } from './data'
+
+export default defineComponent({
+  components: { ScrollContainer, PageWrapper },
+  setup() {
+    return { litdata }
+  },
+})
+</script>
+
+<style lang="scss" scoped>
+.scroll-wrap {
+  width: 75%;
+  height: 300px;
+  background-color: $component-background;
+
+  li {
+    height: 40px;
+    padding: 0 20px;
+    line-height: 40px;
+    border-bottom: 1px solid $border-color-base;
+  }
+}
+</style>

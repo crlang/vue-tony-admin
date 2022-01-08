@@ -1,0 +1,10 @@
+.el-message {
+  &--info {
+    &.el-message--loading {
+      // Hide info icon in loading
+      .el-icon.el-message__icon.el-message-icon--info {
+        display: none;
+      }
+    }
+  }
+}

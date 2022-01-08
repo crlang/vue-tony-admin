@@ -1,0 +1,93 @@
+<template>
+  <PageWrapper title="动态表单示例">
+    <div class="mb-4">
+      <el-button @click="changeLabel3">更改字段3label</el-button>
+      <el-button @click="changeLabel34">同时更改字段3,4label</el-button>
+      <el-button @click="appendField">往字段3后面插入字段10</el-button>
+      <el-button @click="deleteField">删除字段11</el-button>
+    </div>
+    <CollapseContainer title="动态表单示例,动态根据表单内其他值改变">
+      <BasicForm @register="register" />
+    </CollapseContainer>
+
+    <CollapseContainer
+      class="mt-5"
+      title="componentProps动态改变">
+      <BasicForm @register="register1" />
+    </CollapseContainer>
+  </PageWrapper>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { BasicForm, useForm } from '@/components/Form/index'
+import { CollapseContainer } from '@/components/Container/index'
+import { PageWrapper } from '@/components/Page'
+
+import { dyncSchemas as schemas, dyncSchemas1 as schemas1 } from './data'
+
+export default defineComponent({
+  components: { CollapseContainer, PageWrapper, BasicForm },
+  setup() {
+    const [register, { setProps, updateSchema, appendSchemaByField, removeSchemaByField }] = useForm({
+      labelWidth: 120,
+      schemas,
+      actionColOptions: {
+        span: 24,
+      },
+    })
+    const [register1] = useForm({
+      labelWidth: 120,
+      schemas: schemas1,
+      actionColOptions: {
+        span: 24,
+      },
+    })
+    function changeLabel3() {
+      updateSchema({
+        field: 'field3',
+        label: '字段3 New',
+      })
+    }
+    function changeLabel34() {
+      updateSchema([
+        {
+          field: 'field3',
+          label: '字段3 New++',
+        },
+        {
+          field: 'field4',
+          label: '字段4 New++',
+        },
+      ])
+    }
+
+    function appendField() {
+      appendSchemaByField(
+        {
+          field: 'field10',
+          label: '字段10',
+          component: 'ElInput',
+          colProps: {
+            span: 8,
+          },
+        },
+        'field3'
+      )
+    }
+    function deleteField() {
+      removeSchemaByField('field11')
+    }
+    return {
+      register,
+      register1,
+      schemas,
+      setProps,
+      changeLabel3,
+      changeLabel34,
+      appendField,
+      deleteField,
+    }
+  },
+})
+</script>

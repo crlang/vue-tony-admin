@@ -1,0 +1,20 @@
+$basic-menu-prefix-cls: '#{$namespace}-basic-menu';
+
+.app-top-menu-popup {
+  min-width: 150px;
+
+  &.el-menu--horizontal {
+    .el-menu  {
+      .el-menu-item {
+        height: 40px;
+        padding: 0 16px;
+        margin: 8px 0 4px;
+        line-height: 40px;
+      }
+    }
+  }
+}
+
+.#{$basic-menu-prefix-cls} {
+  width: 100%;
+}

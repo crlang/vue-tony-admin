@@ -1,0 +1,17 @@
+.el-card {
+  font-size: 14px;
+  color: var(--text-primary-color) !important; // theme wait for follow
+  border: none !important; // theme wait for follow
+
+  &.is-border {
+    border: 1px solid var(--border-grey-color);
+  }
+
+  &__body {
+    &::after {
+      display: table;
+      clear: both;
+      content: '';
+    }
+  }
+}

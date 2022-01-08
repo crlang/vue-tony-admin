@@ -1,0 +1,30 @@
+// @use 'sass:color';
+// @use 'sass:math';
+
+@import '../color.scss';
+@import 'easing.scss';
+@import 'breakpoint.scss';
+
+$namespace: tony;
+
+// tabs
+$multiple-height: 62px;
+
+// headers
+$header-height: 48px;
+
+// logo width
+$logo-width: 32px;
+
+// consistent with `menuWidth` in document settings\projectSetting.ts
+$side-width: 220px;
+$side-mini-width: 48px;
+$side-logo-height: 64px;
+$side-drag-z-index: 200;
+$page-loading-z-index: 10000;
+$layout-header-fixed-z-index: 500;
+$multiple-tab-fixed-z-index: 505;
+$layout-sider-fixed-z-index: 510;
+$layout-mix-sider-fixed-z-index: 550;
+$preview-comp-z-index: 1000;
+$page-footer-z-index: 99;
