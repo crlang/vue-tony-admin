@@ -1,5 +1,5 @@
 <template>
-  <el-button
+  <ElButton
     v-bind="getBindValue"
     :class="getButtonClass"
     @click="onClick">
@@ -16,7 +16,7 @@
           :size="iconSize" />
       </div>
     </template>
-  </el-button>
+  </ElButton>
 </template>
 
 <script lang="ts">
@@ -24,12 +24,13 @@ import { computed, unref, defineComponent } from 'vue'
 import Icon from '@/components/Icon/src/Icon.vue'
 import { buttonProps } from './props'
 import { omit } from 'lodash-es'
-import { EleButton } from '@/components/ElementPlus'
 import { useDesign } from '@/hooks/web/useDesign'
+import type { EleButton } from '@/components/ElementPlus'
+import { ElButton } from 'element-plus'
 
 export default defineComponent({
   name: 'Button',
-  components: { Icon },
+  components: { Icon, ElButton },
   props: buttonProps,
   setup(props, { attrs }) {
     const { prefixCls } = useDesign('basic-button')

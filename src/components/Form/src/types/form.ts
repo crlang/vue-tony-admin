@@ -1,10 +1,9 @@
 import type { VNode } from 'vue'
-import type { ButtonProps as ButtonProps2 } from '@/components/Button'
 import type { FormItem } from './formItem'
 import type { ColEx, ComponentType } from './index'
 import type { TableActionType } from '@/components/Table/src/types/table'
 import type { CSSProperties } from 'vue'
-import type { EleRow } from '@/components/ElementPlus'
+import type { EleButton, EleRow } from '@/components/ElementPlus'
 import { EleForm, FormItemRule } from '@/components/ElementPlus'
 
 export type FieldMapToTime = [string, [string, string], string?][]
@@ -16,10 +15,6 @@ export interface RenderCallbackParams {
   values: Recordable
   model: Recordable
   field: string
-}
-
-export interface ButtonProps extends ButtonProps2 {
-  text?: string
 }
 
 export interface FormActionType {
@@ -82,10 +77,10 @@ export interface FormProps extends EleForm {
   showActionButtonGroup?: boolean
 
   // Reset button configuration
-  resetButtonOptions?: Partial<ButtonProps>
+  resetButtonOptions?: Partial<EleButton>
 
   // Confirm button configuration
-  submitButtonOptions?: Partial<ButtonProps>
+  submitButtonOptions?: Partial<EleButton>
 
   // Operation column configuration
   actionColOptions?: Partial<ColEx>

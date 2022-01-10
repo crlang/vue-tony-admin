@@ -48,13 +48,12 @@
 import type { ColEx } from '../types/index'
 import { defineComponent, computed, PropType } from 'vue'
 import { ElFormItem, ElCol } from 'element-plus'
-import { Button, ButtonProps } from '@/components/Button'
+import { Button } from '@/components/Button'
 import { BasicArrow } from '@/components/Basic'
 import { useFormContext } from '../hooks/useFormContext'
 import { useI18n } from '@/hooks/web/useI18n'
 import { propTypes } from '@/utils/propTypes'
-
-type ButtonOptions = Partial<ButtonProps> & { text: string };
+import type { EleButton } from '@/components/ElementPlus'
 
 export default defineComponent({
   name: 'BasicFormAction',
@@ -70,11 +69,11 @@ export default defineComponent({
     showSubmitButton: propTypes.bool.def(true),
     showAdvancedButton: propTypes.bool.def(true),
     resetButtonOptions: {
-      type: Object as PropType<ButtonOptions>,
+      type: Object as PropType<EleButton>,
       default: () => ({}),
     },
     submitButtonOptions: {
-      type: Object as PropType<ButtonOptions>,
+      type: Object as PropType<EleButton>,
       default: () => ({}),
     },
     actionColOptions: {
@@ -104,7 +103,7 @@ export default defineComponent({
       return actionColOpt
     })
 
-    const getResetBtnOptions = computed((): ButtonOptions => {
+    const getResetBtnOptions = computed((): EleButton => {
       return Object.assign(
         {
           text: t('common.resetText'),

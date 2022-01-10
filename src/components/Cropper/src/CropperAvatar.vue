@@ -36,19 +36,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, CSSProperties, unref, ref, watchEffect, watch, PropType } from 'vue'
+import { defineComponent, computed, CSSProperties, unref, ref, watchEffect, watch } from 'vue'
 import CopperModal from './CopperModal.vue'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useMessage } from '@/hooks/web/useMessage'
 import { useI18n } from '@/hooks/web/useI18n'
-import type { ButtonProps } from '@/components/Button'
 import Icon from '@/components/Icon'
+import type { EleButton } from '@/components/ElementPlus'
 
 const props = {
   width: { type: [String, Number], default: '200px' },
   value: { type: String },
   showBtn: { type: Boolean, default: true },
-  btnProps: { type: Object as PropType<ButtonProps> },
+  btnProps: { type: Object as PropType<EleButton> },
   btnText: { type: String, default: '' },
   uploadName: { type: String, default: 'file' },
   uploadApi: { type: Function as PropType<({ file: Blob, name: string }) => Promise<void>> },
