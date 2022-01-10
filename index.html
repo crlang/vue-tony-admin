@@ -8,7 +8,6 @@
       name="viewport"
       content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0"
     />
-
     <title><%= title %></title>
     <link rel="icon" href="/favicon.ico" />
   </head>
@@ -41,6 +40,9 @@
         height: 100%;
         background-color: #f4f7f9;
         flex-direction: column;
+        --loader-text-color: rgba(0, 0, 0, 85%);;
+        --loader-color: #409eff;
+        --loader-size: 10px;
       }
 
       .app-loading .app-loading-wrap {
@@ -63,13 +65,10 @@
         align-items: center;
         margin-top: 30px;
         font-size: 30px;
-        color: rgba(0, 0, 0, 85%);
+        color: var(--loader-text-color);
       }
 
       .app-loading-dots {
-        --loader-color: #409eff;
-        --loader-size: 10px;
-
         position: relative;
         width: 5em;
         height: 5em;
@@ -98,13 +97,7 @@
 
       html[data-theme='dark'] .app-loading {
         background-color: #2c344a;
-      }
-
-      html[data-theme='dark'] .app-loading .app-loading-title {
-        color: rgba(255, 255, 255, 85%);
-      }
-
-      html[data-theme='dark'] .app-loading-dots {
+        --loader-text-color: rgba(255, 255, 255, 85%);
         --loader-color: rgba(255, 255, 255, 85%);
       }
       </style>

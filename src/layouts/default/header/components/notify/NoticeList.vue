@@ -146,7 +146,7 @@ $prefix-cls: '#{$namespace}-header-notify-list';
     }
 
     &.is-read {
-      opacity: 0.5;
+      opacity: 50%;
     }
 
     .avatar {

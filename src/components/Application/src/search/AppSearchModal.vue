@@ -179,7 +179,7 @@ $prefix-cls: '#{$namespace}-app-search-modal';
 
       &__item {
         &-enter {
-          opacity: 0 !important;
+          opacity: 0% !important;
         }
       }
     }
@@ -270,7 +270,7 @@ $prefix-cls: '#{$namespace}-app-search-modal';
         background-color: $primary-color;
 
         .#{$prefix-cls}-list__item-enter {
-          opacity: 1;
+          opacity: 100%;
         }
       }
 
@@ -284,7 +284,7 @@ $prefix-cls: '#{$namespace}-app-search-modal';
 
       &-enter {
         width: 30px;
-        opacity: 0;
+        opacity: 0%;
       }
     }
   }

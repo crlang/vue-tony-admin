@@ -21,21 +21,21 @@ const iframe: AppRouteModule = {
       name: 'Doc',
       component: IFrame,
       meta: {
-        frameSrc: 'https://vvbin.cn/doc-next/',
+        frameSrc: 'http://tony.crlang.com/doc/',
         title: t('routes.demo.iframe.doc'),
       },
     },
     {
-      path: 'antv',
-      name: 'Antv',
+      path: 'eleDoc',
+      name: 'EleDoc',
       component: IFrame,
       meta: {
-        frameSrc: 'https://2x.antdv.com/docs/vue/introduce-cn/',
-        title: t('routes.demo.iframe.antv'),
+        frameSrc: 'https://element-plus.gitee.io/zh-CN/guide/design.html',
+        title: t('routes.demo.iframe.ele'),
       },
     },
     {
-      path: 'https://vvbin.cn/doc-next/',
+      path: 'http://tony.crlang.com/doc/',
       name: 'DocExternal',
       component: IFrame,
       meta: {

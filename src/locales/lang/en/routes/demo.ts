@@ -112,7 +112,7 @@ export default {
   },
   iframe: {
     frame: 'External',
-    antv: 'antVue doc (embedded)',
+    ele: 'Element plus doc (embedded)',
     doc: 'Project doc (embedded)',
     docExternal: 'Project doc (external)',
     outFrame: 'Out of frame page',

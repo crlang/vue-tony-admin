@@ -526,12 +526,12 @@ $prefix-cls: '#{$namespace}-layout-mix-sider';
       font-size: 18px;
       color: $primary-color;
       border-bottom: 1px solid #eee;
-      opacity: 0;
+      opacity: 0%;
       transition: unset;
 
       &.show {
         min-width: 130px;
-        opacity: 1;
+        opacity: 100%;
         transition: all 0.5s ease;
       }
 
