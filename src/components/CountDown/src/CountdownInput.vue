@@ -29,7 +29,7 @@ import { useRuleFormItem } from '@/hooks/component/useFormItem'
 
 const props = {
   modelValue: { type: String },
-  size: { type: String, validator: (v:string) => ['medium', 'small', 'mini', ''].includes(v) },
+  size: { type: String, validator: (v:string) => ['large', 'default', 'small', ''].includes(v) },
   count: { type: Number, default: 60 },
   sendCodeApi: {
     type: Function as PropType<() => Promise<boolean>>,

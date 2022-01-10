@@ -3,15 +3,6 @@
     {
       "path": ".."
     },
-    {
-      "path": "..\\..\\element-plus"
-    },
-    {
-      "path": "..\\..\\vue-vben-admin"
-    },
-    {
-      "path": "..\\..\\ant-design-vue"
-    }
   ],
   "settings": {
     "editor.formatOnSave": false,

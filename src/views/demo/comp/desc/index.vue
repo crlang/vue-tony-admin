@@ -14,7 +14,7 @@
       layout="vertical"
       :collapseOptions="{ canExpand: true, helpMessage: 'help me' }"
       :column="2"
-      size="mini"
+      size="small"
       :border="false"
       :data="mockData"
       :schema="schema"

@@ -3,7 +3,7 @@
  * @Date: 2021-12-25 18:14:24
  * @Description: Ele types - Button
  * @LastEditors: crlang(https://www.crlang.com)
- * @LastEditTime: 2021-12-28 11:04:36
+ * @LastEditTime: 2022-01-10 11:30:57
  */
 
 import type { Component } from 'vue'
@@ -21,9 +21,8 @@ export type EleButtonType =
 export type EleButtonSize =
   | ''
   | 'large'
-  | 'medium'
+  | 'default'
   | 'small'
-  | 'mini'
 
 export type EleButtonNativeType = 'button' | 'submit' | 'reset'
 

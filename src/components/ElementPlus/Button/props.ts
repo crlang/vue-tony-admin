@@ -3,7 +3,7 @@
  * @Date: 2021-12-25 18:14:32
  * @Description: Ele props - Button
  * @LastEditors: crlang(https://www.crlang.com)
- * @LastEditTime: 2022-01-02 21:58:42
+ * @LastEditTime: 2022-01-10 11:30:49
  */
 import { Component } from 'vue'
 import { EleButtonNativeType, EleButtonType, EleButtonSize } from './types'
@@ -18,7 +18,7 @@ import { EleButtonNativeType, EleButtonType, EleButtonSize } from './types'
 //   'text',
 //   '',
 // ]
-// export const EleButtonSize = ['', 'large', 'medium', 'small', 'mini']
+// export const EleButtonSize = ['', 'large', 'default', 'small']
 // export const EleButtonNativeType = ['button', 'submit', 'reset']
 
 export const EleButtonGroupProps = {

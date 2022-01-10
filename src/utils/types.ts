@@ -1,1 +1,1 @@
-export type ComponentSize = 'large' | 'medium' | 'small' | 'mini'
+export type ComponentSize = 'large' | 'default' | 'small'

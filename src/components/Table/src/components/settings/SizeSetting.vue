@@ -10,17 +10,14 @@
         name="colum-height" />
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item command="">
+          <el-dropdown-item command="default">
             <span>{{ t('component.table.settingDensDefault') }}</span>
           </el-dropdown-item>
-          <el-dropdown-item command="medium">
-            <span>{{ t('component.table.settingDensMiddle') }}</span>
+          <el-dropdown-item command="large">
+            <span>{{ t('component.table.settingDensLarge') }}</span>
           </el-dropdown-item>
           <el-dropdown-item command="small">
             <span>{{ t('component.table.settingDensSmall') }}</span>
-          </el-dropdown-item>
-          <el-dropdown-item command="mini">
-            <span>{{ t('component.table.settingDensMini') }}</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </template>

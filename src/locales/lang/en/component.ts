@@ -56,9 +56,8 @@ export default {
   table: {
     settingDens: 'Density',
     settingDensDefault: 'Default',
-    settingDensMiddle: 'Middle',
+    settingDensLarge: 'Loose',
     settingDensSmall: 'Compact',
-    settingDensMini: 'Mini',
     settingColumn: 'Column settings',
     settingColumnShow: 'Column display',
     settingIndexColumnShow: 'Index Column',

@@ -26,7 +26,7 @@
                 v-if="item.extra">
                 <el-tag
                   class="tag"
-                  size="mini"
+                  size="small"
                   :type="item.color">
                   {{ item.extra }}
                 </el-tag>

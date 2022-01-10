@@ -257,25 +257,19 @@
           </template>
 
           <el-button>Default</el-button>
-          <el-button size="medium">Medium</el-button>
+          <el-button size="large">Large</el-button>
           <el-button size="small">Small</el-button>
-          <el-button size="mini">Mini</el-button>
           <el-button
             :icon="Search"
             circle />
           <el-button
             :icon="Search"
-            size="medium"
+            size="large"
             circle />
           <el-button
             :icon="Search"
             size="small"
             circle />
-          <el-button
-            :icon="Search"
-            size="mini"
-            circle />
-
         </el-card>
       </el-col>
     </el-row>

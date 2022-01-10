@@ -4,7 +4,7 @@
     contentBackground>
     <Description
       title="退款申请"
-      size="mini"
+      size="small"
       :border="false"
       :column="3"
       :data="refundData"
@@ -12,7 +12,7 @@
     />
     <Description
       title="用户信息"
-      size="mini"
+      size="small"
       class="mt-4"
       :border="false"
       :column="3"

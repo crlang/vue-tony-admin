@@ -62,7 +62,7 @@
               <span>异步数据，默认展开</span>
               <el-button
                 @click="loadTreeData"
-                size="mini"
+                size="small"
                 :loading="treeLoading">加载数据</el-button>
             </div>
           </template>

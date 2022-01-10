@@ -45,4 +45,4 @@ export type Register = (descInstance: DescInstance) => void
  */
 export type UseDescReturnType = [Register, DescInstance]
 
-export type DescSizes = 'medium' | 'small' | 'mini' | undefined
+export type DescSizes = 'large' | 'default' | 'small' | undefined

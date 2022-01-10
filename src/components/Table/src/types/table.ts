@@ -56,7 +56,7 @@ export interface GetColumnsParams {
   sort?: boolean;
 }
 
-export type SizeType = '' | 'medium' | 'small' | 'mini';
+export type SizeType = '' | 'large' | 'default' | 'small';
 
 export interface TableActionType {
   reload: (opt?: FetchParams) => Promise<void>;
