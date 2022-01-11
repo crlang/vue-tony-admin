@@ -1,5 +1,16 @@
+.el-textarea,
 .el-input {
   &__inner {
+    border-color: transparent;
+
+    &:focus,
+    &:hover {
+      --el-input-focus-border: transparent;
+      --el-input-hover-border: transparent;
+
+      background-color: var(--control-background-hover);
+    }
+
     // --el-input-bg-color: var(--background-primary-color);
   }
 }

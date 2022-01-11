@@ -1,4 +1,6 @@
 // element plus basic color fix
 [class^='el-'] {
   --el-bg-color: var(--background-secondary-color);
+  --el-input-bg-color: var(--background-primary-color);
+  --el-input-text-color: var(--text-primary-color);
 }
