@@ -28,9 +28,6 @@ setTimeout(() => {
     --el-card-padding: 0;
 
     padding: 2rem;
-    border: none;
-    border-radius: var(--card-border-radius);
-    box-shadow: var(--card-shadow);
 
     &__header {
       border: none;

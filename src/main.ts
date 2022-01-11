@@ -4,7 +4,7 @@ import 'virtual:windi-utilities.css'
 // Register icon sprite
 import 'virtual:svg-icons-register'
 // if (import.meta.env.DEV) {
-import('element-plus/dist/index.css')
+import 'element-plus/theme-chalk/src/index.scss'
 // }
 import App from './App.vue'
 import { createApp } from 'vue'

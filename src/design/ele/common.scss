@@ -1,0 +1,4 @@
+// element plus basic color fix
+[class^='el-'] {
+  --el-bg-color: var(--background-secondary-color);
+}
