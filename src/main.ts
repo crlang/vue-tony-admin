@@ -52,9 +52,7 @@ async function bootstrap() {
   // await router.isReady();
 
   // Register global element plus
-  app.use(ElementPlus, {
-    // size: 'small',
-  })
+  app.use(ElementPlus)
 
   app.mount('#app')
 }
