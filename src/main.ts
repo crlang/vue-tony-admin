@@ -53,7 +53,7 @@ async function bootstrap() {
 
   // Register global element plus
   app.use(ElementPlus, {
-    size: 'small',
+    // size: 'small',
   })
 
   app.mount('#app')
