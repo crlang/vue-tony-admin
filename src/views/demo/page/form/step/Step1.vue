@@ -81,18 +81,18 @@ export default defineComponent({
     margin: 0 0 12px;
     font-size: 16px;
     line-height: 32px;
-    color: $text-color;
+    color: var(--text-primary-color);
   }
 
   h4 {
     margin: 0 0 4px;
     font-size: 14px;
     line-height: 22px;
-    color: $text-color;
+    color: var(--text-primary-color);
   }
 
   p {
-    color: $text-color;
+    color: var(--text-primary-color);
   }
 }
 

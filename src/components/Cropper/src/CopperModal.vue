@@ -284,12 +284,12 @@ $prefix-cls: '#{$namespace}-cropper-am';
     background: #eee;
     background-image: linear-gradient(
       45deg,
-      rgb(0, 0, 0, 25%) 25%,
+      rgb(0, 0, 0, 0.25) 25%,
       transparent 0,
       transparent 75%,
-      rgb(0, 0, 0, 25%) 0
+      rgb(0, 0, 0, 0.25) 0
     ),
-      linear-gradient(45deg, rgb(0, 0, 0, 25%) 25%, transparent 0, transparent 75%, rgb(0, 0, 0, 25%) 0);
+      linear-gradient(45deg, rgb(0, 0, 0, 0.25) 25%, transparent 0, transparent 75%, rgb(0, 0, 0, 0.25) 0);
     background-position: 0 0, 12px 12px;
     background-size: 24px 24px;
   }
@@ -306,7 +306,7 @@ $prefix-cls: '#{$namespace}-cropper-am';
     height: 220px;
     margin: 0 auto;
     overflow: hidden;
-    border: 1px solid $border-color-base;
+    border: 1px solid var(--border-grey-color);
     border-radius: 50%;
 
     img {
@@ -321,7 +321,7 @@ $prefix-cls: '#{$namespace}-cropper-am';
     align-items: flex-end;
     padding-top: 8px;
     margin-top: 8px;
-    border-top: 1px solid $border-color-base;
+    border-top: 1px solid var(--border-grey-color);
   }
 }
 </style>

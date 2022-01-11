@@ -295,22 +295,22 @@ export default defineComponent({
     }
   }
 
-  $radius: 4px;
-
   .darg-verify {
+    --varify-radius: 4px;
+
     position: relative;
     overflow: hidden;
     text-align: center;
     background-color: rgb(238, 238, 238);
     border: 1px solid #ddd;
-    border-radius: $radius;
+    border-radius: var(--varify-radius);
 
     &-bar {
       position: absolute;
       width: 0;
       height: 36px;
-      background-color: $success-color;
-      border-radius: $radius;
+      background-color: var(--success-color);
+      border-radius: var(--varify-radius);
 
       &.to-left {
         width: 0 !important;
@@ -338,7 +338,7 @@ export default defineComponent({
       user-select: none;
 
       &.success {
-        -webkit-text-fill-color: $white;
+        -webkit-text-fill-color: var(--white-color);
       }
 
       & > * {
@@ -354,8 +354,8 @@ export default defineComponent({
       justify-content: center;
       align-items: center;
       cursor: move;
-      background-color: $white;
-      border-radius: $radius;
+      background-color: var(--white-color);
+      border-radius: var(--varify-radius);
 
       &__icon {
         width: 1.45em;

@@ -158,7 +158,7 @@ export default defineComponent({
     }
 
     &:not(.is-disabled):hover {
-      color: $text-color-base;
+      color: var(--text-primary-color);
       background-color: #f1f2f3;
     }
   }
@@ -178,11 +178,11 @@ $default-height: 44px;
   width: 156px;
   margin: 0;
   list-style: none;
-  background-color: $component-background;
-  border: 1px solid rgba(0, 0, 0, 8%);
+  background-color: var(--background-secondary-color);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 0.25rem;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 14%), 0 3px 1px -2px rgba(0, 0, 0, 10%),
-    0 1px 5px 0 rgba(0, 0, 0, 6%);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.1),
+    0 1px 5px 0 rgba(0, 0, 0, 0.06);
   background-clip: padding-box;
   user-select: none;
 

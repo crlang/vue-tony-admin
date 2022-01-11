@@ -53,14 +53,14 @@ export default defineComponent({
     display: flex;
     justify-content: center;
     margin: 0 20%;
-    background-color: $component-background;
+    background-color: var(--background-secondary-color);
   }
 
   &__item {
     height: 40px;
     padding: 0 20px;
     line-height: 40px;
-    border-bottom: 1px solid $border-color-base;
+    border-bottom: 1px solid var(--border-grey-color);
   }
 }
 </style>

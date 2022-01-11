@@ -85,13 +85,13 @@ $prefix-cls: '#{$namespace}-setting-theme-picker';
       display: flex;
       justify-content: center;
       align-items: center;
-      border: 1px solid $primary-color;
+      border: 1px solid var(--primary-color);
 
       svg {
         display: inline-block;
         margin: 0 0 3px 3px;
         font-size: 12px;
-        color: $white;
+        color: var(--white-color);
       }
     }
   }

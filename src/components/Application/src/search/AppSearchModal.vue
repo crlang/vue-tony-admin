@@ -146,7 +146,7 @@ $prefix-cls: '#{$namespace}-app-search-modal';
   width: 100%;
   height: 100%;
   padding-top: 50px;
-  background-color: rgba(0, 0, 0, 25%);
+  background-color: rgba(0, 0, 0, 0.25);
 
   &--mobile {
     padding: 0;
@@ -179,7 +179,7 @@ $prefix-cls: '#{$namespace}-app-search-modal';
 
       &__item {
         &-enter {
-          opacity: 0% !important;
+          opacity: 0 !important;
         }
       }
     }
@@ -189,9 +189,9 @@ $prefix-cls: '#{$namespace}-app-search-modal';
     position: relative;
     width: 632px;
     margin: 0 auto auto;
-    background-color: $component-background;
+    background-color: var(--background-secondary-color);
     border-radius: 16px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 25%);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     flex-direction: column;
   }
 
@@ -253,9 +253,9 @@ $prefix-cls: '#{$namespace}-app-search-modal';
       padding-left: 14px;
       margin-top: 8px;
       font-size: 14px;
-      color: $text-color-base;
+      color: var(--text-primary-color);
       cursor: pointer;
-      background-color: $component-background;
+      background-color: var(--background-secondary-color);
       border-radius: 4px;
       box-shadow: 0 1px 3px 0 #d4d9e1;
 
@@ -267,10 +267,10 @@ $prefix-cls: '#{$namespace}-app-search-modal';
 
       &--active {
         color: #fff;
-        background-color: $primary-color;
+        background-color: var(--primary-color);
 
         .#{$prefix-cls}-list__item-enter {
-          opacity: 100%;
+          opacity: 1;
         }
       }
 
@@ -284,7 +284,7 @@ $prefix-cls: '#{$namespace}-app-search-modal';
 
       &-enter {
         width: 30px;
-        opacity: 0%;
+        opacity: 0;
       }
     }
   }

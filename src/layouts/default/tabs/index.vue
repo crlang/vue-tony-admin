@@ -228,7 +228,7 @@ $prefix-cls: '#{$namespace}-multiple-tabs';
         padding: 0 16px;
         margin: 0 16px -1px 0;
         line-height: 1;
-        background: $content-bg;
+        background: var(--background-primary-color);
         border: 1px solid var(--el-border-color-light);
 
         &.is-active {

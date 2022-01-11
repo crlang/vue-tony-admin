@@ -337,16 +337,15 @@ export default defineComponent({
 <style lang="scss">
 $width: 80px;
 $prefix-cls: '#{$namespace}-layout-mix-sider';
-.#{$prefix-cls} {
-  $border-color: $sider-dark-lighten-bg-color;
 
+.#{$prefix-cls} {
   position: fixed;
   top: 0;
   left: 0;
   z-index: $layout-mix-sider-fixed-z-index;
   height: 100%;
   overflow: hidden;
-  background-color: $sider-dark-bg-color;
+  background-color: var(--sider-background-color);
   transition: all 0.2s ease 0s;
 
   &-dom {
@@ -358,7 +357,7 @@ $prefix-cls: '#{$namespace}-layout-mix-sider';
   &-logo {
     display: flex;
     justify-content: center;
-    height: $header-height;
+    height: var(--header-height);
     padding-left: 0 !important;
 
     img {
@@ -381,17 +380,17 @@ $prefix-cls: '#{$namespace}-layout-mix-sider';
     .#{$prefix-cls}-module {
       &__item {
         font-weight: normal;
-        color: rgba(0, 0, 0, 65%);
+        color: rgba(0, 0, 0, 0.65);
 
         &--active {
-          color: $primary-color;
+          color: var(--primary-color);
           background-color: unset;
         }
       }
     }
     .#{$prefix-cls}-menu-list {
       &__content {
-        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 10%);
+        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
       }
 
       // &__title {
@@ -409,26 +408,26 @@ $prefix-cls: '#{$namespace}-layout-mix-sider';
   &.dark {
     &.open {
       .#{$prefix-cls}-logo {
-        // border-bottom: 1px solid $border-color;
+        // border-bottom: 1px solid var(--sider-background-color);
       }
 
       > .scrollbar {
-        border-right: 1px solid $border-color;
+        border-right: 1px solid var(--sider-background-color);
       }
     }
     .#{$prefix-cls}-menu-list {
-      background-color: $sider-dark-bg-color;
+      background-color: var(--sider-background-color);
 
       &__title {
-        color: $white;
+        color: var(--white-color);
         border-bottom: none;
-        border-bottom: 1px solid $border-color;
+        border-bottom: 1px solid var(--sider-background-color);
       }
     }
   }
 
   > .scrollbar {
-    height: calc(100% - $header-height - 38px);
+    height: calc(100% - var(--header-height) - 38px);
   }
 
   &.mini &-module {
@@ -448,20 +447,20 @@ $prefix-cls: '#{$namespace}-layout-mix-sider';
     &__item {
       position: relative;
       padding: 12px 0;
-      color: rgba(255, 255, 255, 65%);
+      color: rgba(255, 255, 255, 0.65);
       text-align: center;
       cursor: pointer;
       transition: all 0.3s ease;
 
       &:hover {
-        color: $white;
+        color: var(--white-color);
       }
 
       // &:hover,
       &--active {
         font-weight: 700;
-        color: $white;
-        background-color: $sider-dark-darken-bg-color;
+        color: var(--white-color);
+        background-color: var(--header-background-color);
 
         &::before {
           position: absolute;
@@ -469,7 +468,7 @@ $prefix-cls: '#{$namespace}-layout-mix-sider';
           left: 0;
           width: 3px;
           height: 100%;
-          background-color: $primary-color;
+          background-color: var(--primary-color);
           content: '';
         }
       }
@@ -496,14 +495,14 @@ $prefix-cls: '#{$namespace}-layout-mix-sider';
     height: 36px;
     font-size: 14px;
     line-height: 36px;
-    color: rgba(255, 255, 255, 65%);
+    color: rgba(255, 255, 255, 0.65);
     text-align: center;
     cursor: pointer;
-    background-color: $trigger-dark-bg-color;
+    background-color: rgba(255, 255, 255, 0.1);
   }
 
   &.light &-trigger {
-    color: rgba(0, 0, 0,65%);
+    color: rgba(0, 0, 0,0.65);
     background-color: #fff;
     border-top: 1px solid #eee;
   }
@@ -520,24 +519,24 @@ $prefix-cls: '#{$namespace}-layout-mix-sider';
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: $header-height;
+      height: var(--header-height);
 
       // margin-left: -6px;
       font-size: 18px;
-      color: $primary-color;
+      color: var(--primary-color);
       border-bottom: 1px solid #eee;
-      opacity: 0%;
+      opacity: 0;
       transition: unset;
 
       &.show {
         min-width: 130px;
-        opacity: 100%;
+        opacity: 1;
         transition: all 0.5s ease;
       }
 
       .pushpin {
         margin-right: 6px;
-        color: rgba(255, 255, 255, 65%);
+        color: rgba(255, 255, 255, 0.65);
         cursor: pointer;
 
         &:hover {
@@ -547,7 +546,7 @@ $prefix-cls: '#{$namespace}-layout-mix-sider';
     }
 
     &__content {
-      height: calc(100% - $header-height) !important;
+      height: calc(100% - var(--header-height)) !important;
 
       .scrollbar__wrap {
         height: 100%;
@@ -570,7 +569,7 @@ $prefix-cls: '#{$namespace}-layout-mix-sider';
     background-color: #f8f8f9;
     border-top: none;
     border-bottom: none;
-    box-shadow: 0 0 4px 0 rgba(28, 36, 56, 15%);
+    box-shadow: 0 0 4px 0 rgba(28, 36, 56, 0.15);
   }
 }
 </style>

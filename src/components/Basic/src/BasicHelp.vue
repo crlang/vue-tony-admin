@@ -81,11 +81,11 @@ export default defineComponent({
     display: inline-block;
     margin-left: 6px;
     font-size: 14px;
-    color: $text-color-help-dark;
+    color: #939393;
     cursor: pointer;
 
     &:hover {
-      color: $primary-color;
+      color: var(--primary-color);
     }
 
     &__wrap {

@@ -117,14 +117,14 @@ export default defineComponent({
     padding: 0 10px;
 
     &:not(:last-child) {
-      border-right: 1px dashed rgba(206,206,206,50%);
+      border-right: 1px dashed rgba(206,206,206,0.5);
     }
   }
 
   &-top {
     padding: 10px;
     margin: 16px 16px 12px;
-    background-color: $component-background;
+    background-color: var(--background-secondary-color);
     border-radius: 3px;
 
     &__avatar {
@@ -167,7 +167,7 @@ export default defineComponent({
   &-bottom {
     padding: 10px;
     margin: 0 16px 16px;
-    background-color: $component-background;
+    background-color: var(--background-secondary-color);
     border-radius: 3px;
   }
 }

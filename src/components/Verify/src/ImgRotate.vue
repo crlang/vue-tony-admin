@@ -202,15 +202,15 @@ export default defineComponent({
     text-align: center;
 
     &.success {
-      background-color: fade($success-color, 60%);
+      background-color: var(--success-color);
     }
 
     &.error {
-      background-color: fade($error-color, 60%);
+      background-color: var(--error-color);
     }
 
     &.normal {
-      background-color: rgba(0, 0, 0, 30%);
+      background-color: rgba(0, 0, 0, 0.3);
     }
   }
 

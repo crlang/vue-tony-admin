@@ -78,7 +78,7 @@ export default defineComponent({
     &-num {
       margin-left: 24px;
       line-height: 36px;
-      color: $text-color-secondary;
+      color: var(--text-secondary-color);
 
       span {
         margin-left: 5px;
@@ -89,7 +89,7 @@ export default defineComponent({
     &-download {
       float: right;
       font-size: 20px !important;
-      color: $primary-color;
+      color: var(--primary-color);
     }
   }
 }

@@ -93,13 +93,13 @@ export default defineComponent({
     }
 
     thead {
-      background-color: $background-color-light;
+      background-color: var(--background-tertiary-color);
     }
 
     table,
     td,
     th {
-      border: 1px solid $border-color-base;
+      border: 1px solid var(--border-grey-color);
     }
   }
 </style>

@@ -67,14 +67,12 @@ export default defineComponent({
 <style lang="scss" scoped>
 $prefix-cls: '#{$namespace}-strength-meter';
 
-// @use 'sass:color';
-
 .#{$prefix-cls} {
   &-bar {
     position: relative;
     height: 6px;
     margin: 10px auto 6px;
-    background-color: $disabled-color;
+    background-color: var(--disabled-color);
     border-radius: 6px;
 
     &::before,
@@ -85,7 +83,7 @@ $prefix-cls: '#{$namespace}-strength-meter';
       width: 20%;
       height: inherit;
       background-color: transparent;
-      border-color: $white;
+      border-color: var(--white-color);
       border-style: solid;
       border-width: 0 5px;
       content: '';
@@ -109,28 +107,27 @@ $prefix-cls: '#{$namespace}-strength-meter';
 
       &[data-score='0'] {
         width: 20%;
-
-        // background-color: color.darken($error-color, 10%);
+        background-color: var(--error-color);
       }
 
       &[data-score='1'] {
         width: 40%;
-        background-color: $error-color;
+        background-color: var(--error-color);
       }
 
       &[data-score='2'] {
         width: 60%;
-        background-color: $warning-color;
+        background-color: var(--warning-color);
       }
 
       &[data-score='3'] {
         width: 80%;
-        background-color: fade-in($success-color, 0.5);
+        background-color: var(--success-color);
       }
 
       &[data-score='4'] {
         width: 100%;
-        background-color: $success-color;
+        background-color: var(--success-color);
       }
     }
   }

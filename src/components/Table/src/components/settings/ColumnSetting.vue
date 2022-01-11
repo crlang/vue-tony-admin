@@ -393,16 +393,16 @@ $prefix-cls: '#{$namespace}-basic-column-setting';
 
   &__fixed-left,
   &__fixed-right {
-    color: rgba(0, 0, 0, 45%);
+    color: rgba(0, 0, 0, 0.45);
     cursor: pointer;
 
     &.active,
     &:hover {
-      color: $primary-color;
+      color: var(--primary-color);
     }
 
     &.disabled {
-      color: $disabled-color;
+      color: var(--disabled-color);
       cursor: not-allowed;
     }
   }

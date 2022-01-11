@@ -242,7 +242,7 @@ $prefix-cls: '#{$namespace}-lock-page';
     align-items: center;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 50%);
+    background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(8px);
 
     &-content {
@@ -272,7 +272,7 @@ $prefix-cls: '#{$namespace}-lock-page';
     &__err-msg {
       display: inline-block;
       margin-top: 10px;
-      color: $error-color;
+      color: var(--error-color);
     }
 
     &__footer {

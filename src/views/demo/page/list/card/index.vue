@@ -105,7 +105,7 @@ export default defineComponent({
       margin-bottom: 5px;
       font-size: 16px;
       font-weight: 500;
-      color: $text-color;
+      color: var(--text-primary-color);
 
       .icon {
         margin-top: -5px;
@@ -118,7 +118,7 @@ export default defineComponent({
       padding-top: 10px;
       padding-left: 30px;
       font-size: 14px;
-      color: $text-color-secondary;
+      color: var(--text-secondary-color);
     }
   }
 }

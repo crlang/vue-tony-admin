@@ -45,7 +45,7 @@ export default defineComponent({
 <style lang="scss">
 .account-setting {
   margin: 12px;
-  background-color: $component-background;
+  background-color: var(--background-secondary-color);
 
   .base-title {
     padding-left: 0;

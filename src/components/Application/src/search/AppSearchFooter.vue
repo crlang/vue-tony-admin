@@ -37,8 +37,8 @@ $prefix-cls: '#{$namespace}-app-search-footer';
   padding: 0 16px;
   font-size: 12px;
   color: #666;
-  background-color: $component-background;
-  border-top: 1px solid $border-color-base;
+  background-color: var(--background-secondary-color);
+  border-top: 1px solid var(--border-grey-color);
   border-radius: 0 0 16px 16px;
   flex-shrink: 0;
 
@@ -52,7 +52,7 @@ $prefix-cls: '#{$namespace}-app-search-footer';
     margin-right: 0.4em;
     background-color: linear-gradient(-225deg, #d5dbe4, #f8f8f8);
     border-radius: 2px;
-    box-shadow: inset 0 -2px 0 0 #cdcde6, inset 0 0 1px 1px #fff, 0 1px 2px 1px rgba(30, 35, 90, 40%);
+    box-shadow: inset 0 -2px 0 0 #cdcde6, inset 0 0 1px 1px #fff, 0 1px 2px 1px rgba(30, 35, 90, 0.4);
 
     &:nth-child(2),
     &:nth-child(3),

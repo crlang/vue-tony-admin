@@ -2,7 +2,7 @@ $menu-prefix-cls: '#{$namespace}-menu';
 $menu-popup-prefix-cls: '#{$namespace}-menu-popup';
 $submenu-popup-prefix-cls: '#{$namespace}-menu-submenu-popup';
 $transition-time: 0.2s;
-$menu-dark-subsidiary-color: rgba(255, 255, 255, 70%);
+$menu-dark-subsidiary-color: rgba(255, 255, 255, 0.7);
 
 @mixin light-border {
   position: absolute;
@@ -11,7 +11,7 @@ $menu-dark-subsidiary-color: rgba(255, 255, 255, 70%);
   bottom: 0;
   display: block;
   width: 2px;
-  background-color: $primary-color;
+  background-color: var(--primary-color);
   content: '';
 }
 
@@ -42,14 +42,14 @@ $menu-dark-subsidiary-color: rgba(255, 255, 255, 70%);
       color: $menu-dark-subsidiary-color;
       cursor: pointer;
       background-color: var(--sider-dark-lighten-bg-color);
-      transition: all $transition-time $ease-in-out;
+      transition: all $transition-time cubic-bezier(0.645, 0.045, 0.355, 1);
 
       &-icon {
         position: absolute;
         top: 50%;
         right: 18px;
         transform: translateY(-50%) rotate(-90deg);
-        transition: transform $transition-time $ease-in-out;
+        transition: transform $transition-time cubic-bezier(0.645, 0.045, 0.355, 1);
       }
     }
 
@@ -66,7 +66,7 @@ $menu-dark-subsidiary-color: rgba(255, 255, 255, 70%);
 
         &-selected {
           color: #fff;
-          background-color: $primary-color !important;
+          background-color: var(--primary-color) !important;
         }
       }
     }
@@ -74,16 +74,16 @@ $menu-dark-subsidiary-color: rgba(255, 255, 255, 70%);
     &-light {
       .#{$menu-prefix-cls}-item,
       .#{$menu-prefix-cls}-submenu-title {
-        color: $text-color-base;
+        color: var(--text-primary-color);
 
         &:hover {
-          color: $primary-color;
+          color: var(--primary-color);
         }
 
         &-selected {
           z-index: 2;
-          color: $primary-color;
-          background-color: fade($primary-color, 10);
+          color: var(--primary-color);
+          background-color: fade(var(--primary-color), 10);
         }
 
         &-selected::after {
@@ -102,8 +102,8 @@ $menu-dark-subsidiary-color: rgba(255, 255, 255, 70%);
   width: 100%;
   padding: 0;
   margin: 0;
-  font-size: $font-size-base;
-  color: $text-color-base;
+  font-size: var(--font-size-base);
+  color: var(--text-primary-color);
   list-style: none;
   outline: none;
 
@@ -116,7 +116,7 @@ $menu-dark-subsidiary-color: rgba(255, 255, 255, 70%);
     background-color: #fff;
 
     .#{$menu-prefix-cls}-submenu-active {
-      color: $primary-color !important;
+      color: var(--primary-color) !important;
 
       &-border {
         &::after {
@@ -137,7 +137,7 @@ $menu-dark-subsidiary-color: rgba(255, 255, 255, 70%);
     z-index: 1;
     display: flex;
     align-items: center;
-    font-size: $font-size-base;
+    font-size: var(--font-size-base);
     color: inherit;
     list-style: none;
     cursor: pointer;
@@ -170,7 +170,7 @@ $menu-dark-subsidiary-color: rgba(255, 255, 255, 70%);
     cursor: pointer;
 
     &:hover {
-      color: $primary-color;
+      color: var(--primary-color);
     }
 
     .#{$menu-prefix-cls}-tooltip {
@@ -207,7 +207,7 @@ $menu-dark-subsidiary-color: rgba(255, 255, 255, 70%);
   }
 
   &-submenu-title-icon {
-    transition: transform $transition-time $ease-in-out;
+    transition: transform $transition-time cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 
   &-vertical .#{$menu-prefix-cls}-opened > * > .#{$menu-prefix-cls}-submenu-title-icon {
@@ -226,15 +226,15 @@ $menu-dark-subsidiary-color: rgba(255, 255, 255, 70%);
   &-light.#{$menu-prefix-cls}-vertical .#{$menu-prefix-cls}-item {
     &-active:not(.#{$menu-prefix-cls}-submenu) {
       z-index: 2;
-      color: $primary-color;
-      background-color: fade($primary-color, 10);
+      color: var(--primary-color);
+      background-color: fade(var(--primary-color), 10);
 
       &::after {
         @include light-border;
       }
     }
     &-active.#{$menu-prefix-cls}-submenu {
-      color: $primary-color;
+      color: var(--primary-color);
     }
   }
 
@@ -242,7 +242,7 @@ $menu-dark-subsidiary-color: rgba(255, 255, 255, 70%);
     > li.#{$menu-prefix-cls}-item-active,
     .#{$menu-prefix-cls}-submenu-active {
       position: relative;
-      background-color: fade($primary-color, 5);
+      background-color: fade(var(--primary-color), 5);
 
       &::after {
         display: none;
@@ -254,7 +254,7 @@ $menu-dark-subsidiary-color: rgba(255, 255, 255, 70%);
         left: 0;
         width: 3px;
         height: 100%;
-        background-color: $primary-color;
+        background-color: var(--primary-color);
         content: '';
       }
     }
@@ -265,7 +265,7 @@ $menu-dark-subsidiary-color: rgba(255, 255, 255, 70%);
     color: $menu-dark-subsidiary-color;
     &-active:not(.#{$menu-prefix-cls}-submenu) {
       color: #fff !important;
-      background-color: $primary-color !important;
+      background-color: var(--primary-color) !important;
     }
 
     &:hover {
@@ -278,7 +278,7 @@ $menu-dark-subsidiary-color: rgba(255, 255, 255, 70%);
     .#{$menu-prefix-cls}-submenu-active {
       position: relative;
       color: #fff !important;
-      background-color: $sider-dark-darken-bg-color !important;
+      background-color: var(--header-background-color) !important;
 
       &::before {
         position: absolute;
@@ -286,7 +286,7 @@ $menu-dark-subsidiary-color: rgba(255, 255, 255, 70%);
         left: 0;
         width: 3px;
         height: 100%;
-        background-color: $primary-color;
+        background-color: var(--primary-color);
         content: '';
       }
 

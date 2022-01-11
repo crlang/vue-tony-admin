@@ -73,7 +73,7 @@ $prefix-cls: '#{$namespace}-default-layout';
   display: flex;
   width: 100%;
   height: 100%;
-  background-color: $content-bg;
+  background-color: var(--background-primary-color);
 
   &-main {
     width: 100%;

@@ -78,7 +78,7 @@ $prefix-cls: '#{$namespace}-list';
   &-empty-text {
     padding: 16px;
     font-size: 14px;
-    color: rgba(0, 0, 0, 25%);
+    color: rgba(0, 0, 0, 0.25);
     text-align: center;
   }
 
@@ -93,7 +93,7 @@ $prefix-cls: '#{$namespace}-list';
     justify-content: space-between;
     align-items: center;
     padding: 12px 0;
-    color: rgba(0, 0, 0, 85%);
+    color: rgba(0, 0, 0, 0.85);
     border-bottom: 1px solid var(--border-base-color);
 
     &--card {
@@ -113,21 +113,21 @@ $prefix-cls: '#{$namespace}-list';
       &-content {
         flex: 1 0;
         width: 0;
-        color: rgba(0, 0, 0, 85%);
+        color: rgba(0, 0, 0, 0.85);
       }
 
       &-title {
         margin-bottom: 4px;
         font-size: 14px;
         line-height: 1.5  ;
-        color: rgba(0, 0, 0, 85%);
+        color: rgba(0, 0, 0, 0.85);
 
         > a {
-          color: rgba(0, 0, 0, 85%);
+          color: rgba(0, 0, 0, 0.85);
           transition: all 0.3s;
 
           // &:hover {
-          //   color: $primary-color;
+          //   color: var(--primary-color);
           // }
         }
       }
@@ -135,7 +135,7 @@ $prefix-cls: '#{$namespace}-list';
       &-description {
         font-size: 14px;
         line-height: 1.5;
-        color: rgba(0, 0, 0, 45%);
+        color: rgba(0, 0, 0, 0.45);
       }
     }
 
@@ -152,7 +152,7 @@ $prefix-cls: '#{$namespace}-list';
         padding: 0 8px;
         font-size: 14px;
         line-height: 1.5;
-        color: rgba(0, 0, 0, 45%);
+        color: rgba(0, 0, 0, 0.45);
         text-align: center;
 
         &:first-child {
@@ -189,7 +189,7 @@ $prefix-cls: '#{$namespace}-list';
   &-empty {
     padding: 16px 0;
     font-size: 12px;
-    color: rgba(0, 0, 0, 45%);
+    color: rgba(0, 0, 0, 0.45);
     text-align: center;
   }
 
@@ -240,7 +240,7 @@ $prefix-cls: '#{$namespace}-list';
         margin-bottom: 12px;
         font-size: 16px;
         line-height: 24px;
-        color: rgba(0, 0, 0, 85%);
+        color: rgba(0, 0, 0, 0.85);
       }
     }
 

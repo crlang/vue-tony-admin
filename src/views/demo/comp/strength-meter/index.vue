@@ -32,7 +32,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .demo-wrap {
   width: 50%;
-  background-color: $component-background;
+  background-color: var(--background-secondary-color);
   border-radius: 10px;
 }
 </style>

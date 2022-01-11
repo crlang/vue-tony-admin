@@ -85,9 +85,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       preprocessorOptions: {
         scss: {
           additionalData: `
-          @use 'sass:color';
-          @use 'sass:math';
-          @import './src/design/var/index.scss';
+          @use '/src/design/var/breakpoint.scss' as *;
+          @use '/src/design/var/index.scss' as *;
           `,
         },
       },

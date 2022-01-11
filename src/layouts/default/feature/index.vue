@@ -68,9 +68,9 @@ $prefix-cls: '#{$namespace}-setting-drawer-fearure';
   justify-content: center;
   align-items: center;
   padding: 10px;
-  color: $white;
+  color: var(--white-color);
   cursor: pointer;
-  background-color: $primary-color;
+  background-color: var(--primary-color);
   border-radius: 6px 0 0 6px;
 
   svg {

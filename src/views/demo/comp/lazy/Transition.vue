@@ -35,7 +35,7 @@ export default defineComponent({
     height: 2000px;
     margin: 20px auto;
     text-align: center;
-    background-color: $component-background;
+    background-color: var(--background-secondary-color);
     flex-direction: column;
 
     h1 {
@@ -50,12 +50,12 @@ export default defineComponent({
 }
 
 .custom-enter {
-  opacity: 0%;
+  opacity: 0;
   transform: scale(0.4) translate(100%);
 }
 
 .custom-enter-to {
-  opacity: 100%;
+  opacity: 1;
 }
 
 .custom-enter-active {
@@ -66,11 +66,11 @@ export default defineComponent({
 }
 
 .custom-leave {
-  opacity: 100%;
+  opacity: 1;
 }
 
 .custom-leave-to {
-  opacity: 0%;
+  opacity: 0;
   transform: scale(0.4) translate(-100%);
 }
 

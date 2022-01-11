@@ -123,8 +123,8 @@ $prefix-cls: '#{$namespace}-cropper-avatar';
   &-image-wrapper {
     overflow: hidden;
     cursor: pointer;
-    background: $component-background;
-    border: 1px solid $border-color-base;
+    background: var(--background-secondary-color);
+    border: 1px solid var(--border-grey-color);
     border-radius: 50%;
 
     img {
@@ -137,10 +137,10 @@ $prefix-cls: '#{$namespace}-cropper-avatar';
     width: inherit;
     height: inherit;
     cursor: pointer;
-    background: rgba(0, 0, 0, 40%);
+    background: rgba(0, 0, 0, 0.4);
     border: inherit;
     border-radius: inherit;
-    opacity: 0%;
+    opacity: 0;
     transition: opacity 0.4s;
 
     ::v-deep(svg) {
@@ -149,7 +149,7 @@ $prefix-cls: '#{$namespace}-cropper-avatar';
   }
 
   &-image-mask:hover {
-    opacity: 4000%;
+    opacity: 40;
   }
 
   &-upload-btn {

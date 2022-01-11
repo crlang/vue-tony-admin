@@ -106,25 +106,25 @@ export default defineComponent({
   &__top {
     padding: 24px;
     text-align: center;
-    background-color: $component-background;
+    background-color: var(--background-secondary-color);
 
     &-col {
       &:not(:last-child) {
-        border-right: 1px dashed $border-color-base;
+        border-right: 1px dashed var(--border-grey-color);
       }
 
       div {
         margin-bottom: 12px;
         font-size: 14px;
         line-height: 22px;
-        color: $text-color;
+        color: var(--text-primary-color);
       }
 
       p {
         margin: 0;
         font-size: 24px;
         line-height: 32px;
-        color: $text-color;
+        color: var(--text-primary-color);
       }
     }
   }
@@ -132,7 +132,7 @@ export default defineComponent({
   &__content {
     padding: 24px;
     margin-top: 12px;
-    background-color: $component-background;
+    background-color: var(--background-secondary-color);
 
     .list {
       position: relative;
@@ -147,7 +147,7 @@ export default defineComponent({
       top: 20px;
       right: 15px;
       font-weight: normal;
-      color: $primary-color;
+      color: var(--primary-color);
       cursor: pointer;
     }
 

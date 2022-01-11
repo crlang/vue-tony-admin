@@ -1,10 +1,14 @@
 .bg-white {
-  background-color: $component-background !important;
+  background-color: var(--background-secondary-color) !important;
+}
+
+.bg-black {
+  background-color: var(--background-secondary-reverse) !important;
 }
 
 html[data-theme='light'] {
   .text-secondary {
-    color: rgba(0, 0, 0, 45%);
+    color: rgba(0, 0, 0, 0.45);
   }
 
   .el-alert--success {

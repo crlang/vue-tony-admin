@@ -1,9 +1,6 @@
-// @use 'sass:color';
-// @use 'sass:math';
-
-@import '../color.scss';
-@import 'easing.scss';
-@import 'breakpoint.scss';
+// @use 'color.scss' as *;
+// @use 'easing.scss' as *;
+// @use 'breakpoint.scss' as *;
 
 $namespace: tony;
 
@@ -11,7 +8,7 @@ $namespace: tony;
 $multiple-height: 62px;
 
 // headers
-$header-height: 48px;
+// header-height: 48px;
 
 // logo width
 $logo-width: 32px;

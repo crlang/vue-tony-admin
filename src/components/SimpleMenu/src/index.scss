@@ -46,19 +46,19 @@ $vertical-prefix-cls: '#{$namespace}-menu-vertical';
     }
 
     &--primary {
-      background-color: $primary-color;
+      background-color: var(--primary-color);
     }
 
     &--error {
-      background-color: $error-color;
+      background-color: var(--error-color);
     }
 
     &--success {
-      background-color: $success-color;
+      background-color: var(--success-color);
     }
 
     &--warn {
-      background-color: $warning-color;
+      background-color: var(--warning-color);
     }
   }
 }
@@ -66,9 +66,9 @@ $vertical-prefix-cls: '#{$namespace}-menu-vertical';
 .#{$dark-prefix-cls} {
   &.#{$vertical-prefix-cls} {
     .#{$simple-prefix-cls}__parent {
-      background-color: $sider-dark-bg-color;
+      background-color: var(--sider-background-color);
       > .#{$prefix-cls}-submenu-title {
-        background-color: $sider-dark-bg-color;
+        background-color: var(--sider-background-color);
       }
     }
   }

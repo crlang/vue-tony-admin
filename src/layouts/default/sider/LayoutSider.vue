@@ -150,12 +150,12 @@ $prefix-cls: '#{$namespace}-layout-sideBar';
   }
 
   &--mix {
-    top: $header-height;
-    height: calc(100% - $header-height);
+    top: var(--header-height);
+    height: calc(100% - var(--header-height));
   }
 
   &.el-aside {
-    background-color: $sider-dark-bg-color;
+    background-color: var(--sider-background-color);
   }
 
   &:not(.el-aside) {

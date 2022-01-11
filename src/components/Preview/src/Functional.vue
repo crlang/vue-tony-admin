@@ -420,7 +420,7 @@ export default defineComponent({
     bottom: 0;
     left: 0;
     z-index: $preview-comp-z-index;
-    background: rgba(0, 0, 0, 50%);
+    background: rgba(0, 0, 0, 0.5);
     user-select: none;
 
     &-content {
@@ -429,7 +429,7 @@ export default defineComponent({
       align-items: center;
       width: 100%;
       height: 100%;
-      color: $white;
+      color: var(--white-color);
     }
 
     &-image {
@@ -444,9 +444,9 @@ export default defineComponent({
       width: 80px;
       height: 80px;
       overflow: hidden;
-      color: $white;
+      color: var(--white-color);
       cursor: pointer;
-      background-color: rgba(0, 0, 0, 50%);
+      background-color: rgba(0, 0, 0, 0.5);
       border-radius: 50%;
       transition: all 0.2s;
 
@@ -459,7 +459,7 @@ export default defineComponent({
       }
 
       &:hover {
-        background-color: rgba(0, 0, 0, 80%);
+        background-color: rgba(0, 0, 0, 0.8);
       }
     }
 
@@ -469,7 +469,7 @@ export default defineComponent({
       left: 50%;
       padding: 0 22px;
       font-size: 16px;
-      background: rgba(109, 109, 109, 60%);
+      background: rgba(109, 109, 109, 0.6);
       border-radius: 15px;
       transform: translateX(-50%);
     }
@@ -484,7 +484,7 @@ export default defineComponent({
       height: 44px;
       padding: 0 22px;
       margin-left: -139px;
-      background: rgba(109, 109, 109, 60%);
+      background: rgba(109, 109, 109, 0.6);
       border-radius: 22px;
 
       &-item {
@@ -517,7 +517,7 @@ export default defineComponent({
       height: 50px;
       font-size: 28px;
       cursor: pointer;
-      background-color: rgba(0, 0, 0, 50%);
+      background-color: rgba(0, 0, 0, 0.5);
       border-radius: 50%;
       transition: all 0.2s;
 
@@ -528,7 +528,7 @@ export default defineComponent({
       }
 
       &:hover {
-        background-color: rgba(0, 0, 0, 80%);
+        background-color: rgba(0, 0, 0, 0.8);
       }
 
       &.left {

@@ -49,6 +49,6 @@ $prefix-cls: '#{$namespace}-st-login';
   z-index: 9999999;
   width: 100%;
   height: 100%;
-  background: $component-background;
+  background: var(--background-secondary-color);
 }
 </style>

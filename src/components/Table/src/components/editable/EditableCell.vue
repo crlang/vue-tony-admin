@@ -420,7 +420,7 @@ $prefix-cls: '#{$namespace}-editable-cell';
       transform: scale(1.2);
 
       svg {
-        color: $primary-color;
+        color: var(--primary-color);
       }
     }
   }

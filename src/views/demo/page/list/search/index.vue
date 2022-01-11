@@ -115,7 +115,7 @@ export default defineComponent({
 
   &__container {
     padding: 12px;
-    background-color: $component-background;
+    background-color: var(--background-secondary-color);
   }
 
   &__title {
@@ -124,7 +124,7 @@ export default defineComponent({
   }
 
   &__content {
-    color: $text-color-secondary;
+    color: var(--text-secondary-color);
   }
 
   &__action {
@@ -134,7 +134,7 @@ export default defineComponent({
     &-item {
       display: inline-block;
       padding: 0 16px;
-      color: $text-color-secondary;
+      color: var(--text-secondary-color);
 
       &:nth-child(1) {
         padding-left: 0;
@@ -142,7 +142,7 @@ export default defineComponent({
 
       &:nth-child(1),
       &:nth-child(2) {
-        border-right: 1px solid $border-color-base;
+        border-right: 1px solid var(--border-grey-color);
       }
     }
 
@@ -154,7 +154,7 @@ export default defineComponent({
   &__time {
     position: absolute;
     right: 0;
-    color: rgba(0, 0, 0, 45%);
+    color: rgba(0, 0, 0, 0.45);
   }
 }
 </style>

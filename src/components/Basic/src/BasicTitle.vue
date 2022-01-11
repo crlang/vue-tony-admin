@@ -54,7 +54,7 @@ $prefix-cls: '#{$namespace}-basic-title';
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
-  color: $text-color-base;
+  color: var(--text-primary-color);
   cursor: pointer;
   user-select: none;
 
@@ -70,7 +70,7 @@ $prefix-cls: '#{$namespace}-basic-title';
     width: 3px;
     height: 16px;
     margin-right: 4px;
-    background-color: $primary-color;
+    background-color: var(--primary-color);
     content: '';
   }
 

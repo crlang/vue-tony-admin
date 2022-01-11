@@ -132,12 +132,17 @@ $prefix-cls: '#{$namespace}-header-user-dropdown';
 
 .#{$prefix-cls} {
   align-items: center;
-  height: $header-height;
+  height: var(--header-height);
   padding: 0 0 0 10px;
   padding-right: 10px;
   overflow: hidden;
   font-size: 12px;
   cursor: pointer;
+  background-color: var(--header-background-color);
+
+  &:hover {
+    background-color: var(--header-background-hover-color);
+  }
 
   img {
     width: 24px;
@@ -151,26 +156,6 @@ $prefix-cls: '#{$namespace}-header-user-dropdown';
 
   &__name {
     font-size: 14px;
-  }
-
-  &--dark {
-    &:hover {
-      background-color: $header-dark-bg-hover-color;
-    }
-  }
-
-  &--light {
-    &:hover {
-      background-color: $header-light-bg-hover-color;
-    }
-
-    .#{$prefix-cls}__name {
-      color: $text-color-base;
-    }
-
-    .#{$prefix-cls}__desc {
-      color: $header-light-desc-color;
-    }
   }
 
   &-menulist {

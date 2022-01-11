@@ -62,12 +62,11 @@ $prefix-cls: '#{$namespace}-card-grid';
   overflow: visible;
 
   &__container {
-
-    @for $i from 1 through 20 {
-      &.row-span#{$i} > .#{$prefix-cls}-item {
-        width: math.div(100%, $i);
-      }
-    }
+    // @for $i from 1 through 20 {
+    //   &.row-span#{$i} > .#{$prefix-cls}-item {
+    //     width: math.div(100%, $i);
+    //   }
+    // }
 
     display: flex;
     flex-wrap: wrap;
@@ -81,7 +80,7 @@ $prefix-cls: '#{$namespace}-card-grid';
       transition: all 0.3s;
 
       &:hover {
-        box-shadow: 0 2px 8px rgba(0, 0, 0,15%);
+        box-shadow: 0 2px 8px rgba(0, 0, 0,0.15);
       }
 
       &.items-direction-column {

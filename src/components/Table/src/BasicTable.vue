@@ -456,11 +456,11 @@ $prefix-cls: '#{$namespace}-basic-table';
 .#{$prefix-cls} {
   max-width: 100%;
   padding: 8px;
-  background: $component-background;
+  background: var(--background-secondary-color);
 
   &-row__striped {
     td {
-      background-color: $app-content-background;
+      background-color: var(--background-tertiary-color);
     }
   }
 

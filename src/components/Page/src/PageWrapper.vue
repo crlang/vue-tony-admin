@@ -176,14 +176,13 @@ $prefix-cls: '#{$namespace}-page-wrapper';
   }
 
   &-content {
+    padding: 16px;
     margin: 16px;
     overflow: hidden;
 
     &-full {
       height: 100%;
-      margin: 0;
-
-      // overflow: auto;
+      overflow: auto;
     }
   }
 
