@@ -3,7 +3,7 @@
  * @Date: 2021-12-24 17:24:14
  * @Description: Element Plus Type and Props
  * @LastEditors: crlang(https://www.crlang.com)
- * @LastEditTime: 2022-01-10 17:54:11
+ * @LastEditTime: 2022-01-11 10:00:42
  */
 // type
 export * from './Form/types'
@@ -29,8 +29,7 @@ import type {
   DialogProps,
   DrawerProps,
   MessageProps,
-} from 'element-plus/lib/components/index'
-import type { ButtonGroupProps } from 'element-plus/lib/components/button/src/button-group'
+} from 'element-plus'
 
 import {
   buttonProps,
@@ -40,14 +39,10 @@ import {
   dialogProps,
   drawerProps,
   messageProps,
-} from 'element-plus/lib/components/index'
-import { buttonGroupProps } from 'element-plus/lib/components/button/src/button-group'
+} from 'element-plus'
 
 export const EleButtonProps = buttonProps
 export declare type EleButton = ButtonProps & { text?: string }
-
-export const EleButtonGroupProps = buttonGroupProps
-export declare type EleButtonGroup = ButtonGroupProps
 
 export const EleColProps = colProps
 export declare type EleCol = ColProps
