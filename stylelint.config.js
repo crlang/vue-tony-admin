@@ -42,7 +42,7 @@ module.exports = {
     'no-descending-specificity': true,
     'keyframes-name-pattern': null,
     'color-function-notation': 'legacy',
-    'alpha-value-notation': 'percentage',
+    'alpha-value-notation': 'number',
     'unit-no-unknown': true,
     indentation: 2,
     'max-nesting-depth': 4,

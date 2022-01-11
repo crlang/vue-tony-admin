@@ -45,7 +45,7 @@ $prefix-cls: '#{$namespace}-basic-table-header-cell';
 .#{$prefix-cls} {
   &__help {
     margin-left: 8px;
-    color: rgba(0, 0, 0, 65%) !important;
+    color: rgba(0, 0, 0, 0.65) !important;
   }
 }
 </style>

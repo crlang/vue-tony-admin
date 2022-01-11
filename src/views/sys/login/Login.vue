@@ -168,7 +168,7 @@ $prefix-cls: '#{$namespace}-login';
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(to top, rgba(0, 0, 0, 25%) 0%, rgba(0, 0, 0, 0%) 100%);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0) 100%);
       content: '';
     }
 

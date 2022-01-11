@@ -64,8 +64,8 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
-$normal-color: rgba(0, 0, 0, 45%);
-$hover-color: rgba(0, 0, 0, 85%);
+$normal-color: rgba(0, 0, 0, 0.45);
+$hover-color: rgba(0, 0, 0, 0.85);
 $prefix-cls: '#{$namespace}-layout-footer';
 
 .#{$prefix-cls} {

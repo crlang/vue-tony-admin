@@ -65,7 +65,7 @@ export default defineComponent({
       margin: 5px 10px;
       font-size: 16px;
       font-weight: 500;
-      color: rgba(0, 0, 0, 85%);
+      color: rgba(0, 0, 0, 0.85);
     }
 
     &-content {

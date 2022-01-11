@@ -105,7 +105,7 @@ span.iconify {
   display: block;
   min-width: 1em;
   min-height: 1em;
-  background-color: rgba(85, 85, 85, 6%);
+  background-color: rgba(85, 85, 85, 0.06);
   border-radius: 100%;
 }
 
