@@ -77,7 +77,8 @@ $prefix-cls: '#{$namespace}-basic-drawer-footer';
   width: 100%;
   padding: 0 12px 0 20px;
   text-align: right;
-  background-color: var(--background-secondary-color);
-  border-top: 1px solid var(--border-grey-color);
+
+  // background-color: var(--background-secondary-color);
+  // border-top: 1px solid var(--border-grey-color);
 }
 </style>

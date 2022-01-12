@@ -1,0 +1,13 @@
+@use 'mix_tooltip.scss' as *;
+
+.el-picker {
+  &-panel {
+    background-color: transparent;
+  }
+
+  &__popper{
+    &.el-popper[role='tooltip'] {
+      @include tooltip;
+    }
+  }
+}

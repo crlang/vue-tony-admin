@@ -12,7 +12,6 @@
       <template v-else-if="title">
         <div :class="`${prefixCls}-header__title`">{{ title }}</div>
       </template>
-
       <template v-if="$slots.description">
         <slot name="description"></slot>
       </template>
@@ -53,7 +52,7 @@ import { useDesign } from '@/hooks/web/useDesign'
 export default defineComponent({
   name: 'PageWrapper',
   components: { PageFooter },
-  inheritAttrs: false,
+  // inheritAttrs: false,
   props: {
     title: String,
     description: String,
@@ -148,7 +147,7 @@ $prefix-cls: '#{$namespace}-page-wrapper';
   &-header {
     position: relative;
     padding: 16px 24px;
-    background-color: #fff;
+    background-color: var(--background-primary-color);
 
     &-full {
       padding: 0;
@@ -188,6 +187,8 @@ $prefix-cls: '#{$namespace}-page-wrapper';
 
   &-content-bg {
     background-color: var(--background-secondary-color);
+
+    // background-color: var(--background-primary-color);
   }
 }
 </style>

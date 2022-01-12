@@ -1,5 +1,37 @@
-.el-textarea,
 .el-input {
+  &__inner {
+    height: 42px;
+    line-height: 42px;
+    border-color: transparent;
+  }
+
+  &:focus,
+  &:hover {
+    --el-input-focus-border: transparent;
+    --el-input-hover-border: transparent;
+
+    background-color: var(--control-background-hover);
+  }
+
+  &-number__decrease,
+  &-number__increase {
+    border: none;
+
+    ~ .el-input:not(.is-disabled) .el-input__inner {
+      border-color: var(--control-background-hover);
+    }
+
+    &:hover {
+      background-color: var(--control-background-hover);
+
+      ~ .el-input:not(.is-disabled) .el-input__inner {
+        border-color: transparent;
+      }
+    }
+  }
+}
+
+.el-textarea{
   &__inner {
     border-color: transparent;
 
@@ -10,7 +42,5 @@
 
       background-color: var(--control-background-hover);
     }
-
-    // --el-input-bg-color: var(--background-primary-color);
   }
 }

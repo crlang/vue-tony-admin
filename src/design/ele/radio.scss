@@ -1,0 +1,11 @@
+.el-radio {
+  --el-radio-input-bg-color: var(--grey-light-color-1);
+  --el-radio-input-border: 1px solid var(--grey-light-color-2);
+}
+
+html[data-theme='dark'] {
+  .el-radio {
+    --el-radio-input-border: 1px solid var(--black-color-4);
+    --el-radio-input-bg-color: var(--black-color);
+  }
+}

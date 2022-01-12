@@ -151,7 +151,7 @@ $prefix-cls: '#{$namespace}-multiple-tabs';
 .#{$prefix-cls} {
   position: relative;
   z-index: 10;
-  background: #fff;
+  background-color: var(--header-background-color);
 
   &-content__info {
     display: flex;
@@ -231,9 +231,9 @@ $prefix-cls: '#{$namespace}-multiple-tabs';
         background: var(--background-primary-color);
         border: 1px solid var(--el-border-color-light);
 
-        &.is-active {
-          background: var(--header-bg-color);
-        }
+        // &.is-active {
+        //   background: var(--header-bg-color);
+        // }
 
         .el-dropdown{
           display: flex;

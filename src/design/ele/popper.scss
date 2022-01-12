@@ -1,0 +1,28 @@
+.el-popper{
+  &.is-dark {
+    color: var(--white-color);
+    background-color: var(--grey-color-3);
+    border: 1px solid var(--grey-color-3);
+
+    .el-popper__arrow::before {
+      background-color: #44566c;
+    }
+  }
+
+  &.is-light {
+    color: var(--text-primary-color);
+    background-color: var(--background-secondary-color);
+    border-color: var(--grey-color-5);
+    box-shadow: var(--control-shadow);
+
+    .el-popper__arrow {
+      --pop-bd: var(--grey-color-5);
+      --pop-bg: var(--background-secondary-color);
+
+      &::before {
+        background-color: var(--pop-bg, inherit);
+        border-color: var(--pop-bd, inherit);
+      }
+    }
+  }
+}

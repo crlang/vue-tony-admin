@@ -138,8 +138,9 @@ html[data-theme='light'] {
   --text-primary-color: var(--grey-color-3);
   --text-primary-reverse: var(--white-color);
   --text-secondary-color: var(--grey-color-1);
-  --text-third-color: var(--grey-color-3);
+  --text-third-color: var(--grey-color-5);
   --border-grey-color: var(--grey-light-color-3);
+  --border-blue-color: var(--blue-color);
   --scrollbar-color: var(--grey-light-color-3);
   --control-background-hover: var(--grey-light-color-2);
   --control-background-hover-light: var(--grey-light-color-3);
@@ -164,9 +165,9 @@ html[data-theme='light'] {
   --error-color: var(--red-color-2); // error
 
   // left sider
-  --sider-background-color: var(--black-color-2);
-  --sider-background-active-color: var(--grey-color-2);
-  --sider-text-color: var(--blue-color);
+  --sider-background-color: var(--black-color-3);
+  --sider-background-active-color: var(--black-color-4);
+  --sider-text-color: var(--grey-color-2);
   --sider-text-active-color: var(--blue-color);
 
   // header
@@ -184,7 +185,7 @@ html[data-theme='dark'] {
   --secondary-color: var(--orange-color);
   --text-primary-color: var(--white-color);
   --text-primary-reverse: var(--grey-color-3);
-  --text-secondary-color: var(--grey-color-6);
+  --text-secondary-color: var(--grey-color-4);
   --text-third-color: var(--grey-color-6);
   --border-grey-color: var(--black-color-4);
   --scrollbar-color: var(--grey-color-6);

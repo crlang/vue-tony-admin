@@ -1,0 +1,11 @@
+
+@mixin tooltip {
+  background-color: var(--background-primary-color);
+  border-color: var(--border-grey-color);
+  box-shadow: var(--card-shadow);
+
+  .el-popper__arrow::before {
+    background-color: var(--background-primary-color);
+    border-color: var(--border-grey-color);
+  }
+}

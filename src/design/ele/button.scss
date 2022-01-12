@@ -1,4 +1,35 @@
 .el-button {
+  --el-button-bg-color: var(--background-primary-color);
+  --el-button-hover-bg-color: var(--background-secondary-color);
+  --el-button-hover-border-color: var(--border-grey-color);
+
+  height: 40px;
+
+  &--default {
+    --el-button-text-color: var(--text-secondary-color);
+    --el-button-hover-text-color: var(--text-primary-color);
+    --el-button-disabled-text-color: var(--text-third-color);
+    --el-button-border-color: var(--border-grey-color);
+  }
+
+  &--primary ,
+  &--warning ,
+  &--info ,
+  &--danger {
+    --el-button-text-color: var(--white-color);
+    --el-button-hover-text-color: var(--white-color);
+    --el-button-disabled-text-color: var(--white-color);
+  }
+
+  // &--primary {
+  //   --el-button-bg-color: var(--primary-color) !important;
+  //   --el-button-border-color: var(--primary-color) !important;
+  //   --el-button-hover-bg-color: var(--blue-color-control-1) !important;
+  //   --el-button-hover-border-color: var(--blue-color-control-1) !important;
+  //   --el-button-active-bg-color: var(--primary-color) !important;
+  //   --el-button-active-border-color: var(--primary-color) !important;
+  // }
+
   svg {
     display: inline-block;
   }

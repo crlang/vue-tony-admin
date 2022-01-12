@@ -62,6 +62,7 @@ export default defineComponent({
       return (
         <ElTooltip
           popper-class={`${prefixCls}__wrap`}
+          effect={props.effect}
           placement={props.placement as 'right'} >
           {{
             content: () => renderTitle(),

@@ -1,9 +1,11 @@
 .el-date {
-  // --el-text-color-regular: var(--text-primary-color);
+  &.is-active {
+    border-color: var(--border-blue-color);
+  }
 
   &-editor {
     .el-range-input {
-      // background-color: var(--background-primary-color);
+      background-color: var(--background-primary-color);
     }
   }
 }
