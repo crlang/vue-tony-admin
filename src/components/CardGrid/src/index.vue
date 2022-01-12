@@ -55,44 +55,4 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
-$prefix-cls: '#{$namespace}-card-grid';
-
-.#{$prefix-cls} {
-  overflow: visible;
-
-  &__container {
-    // @for $i from 1 through 20 {
-    //   &.row-span#{$i} > .#{$prefix-cls}-item {
-    //     width: math.div(100%, $i);
-    //   }
-    // }
-
-    display: flex;
-    flex-wrap: wrap;
-
-    > .#{$prefix-cls}-item {
-      padding: 24px;
-      cursor: pointer;
-      border: 0;
-      border-radius: 0;
-      box-shadow: 1px 0 #f0f0f0, 0 1px #f0f0f0, 1px 1px #f0f0f0, 1px 0 #f0f0f0 inset, 0 1px #f0f0f0 inset;
-      transition: all 0.3s;
-
-      &:hover {
-        box-shadow: 0 2px 8px rgba(0, 0, 0,0.15);
-      }
-
-      &.items-direction-column {
-        flex-direction: column;
-      }
-    }
-
-    &.items-center > .#{$prefix-cls}-item {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-}
-</style>
+<style lang="scss" src="./index.scss"></style>
