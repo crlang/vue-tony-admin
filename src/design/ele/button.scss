@@ -12,9 +12,10 @@
     --el-button-border-color: var(--border-grey-color);
   }
 
-  &--primary ,
-  &--warning ,
-  &--info ,
+  &--primary,
+  &--warning,
+  &--success,
+  &--info,
   &--danger {
     --el-button-text-color: var(--white-color);
     --el-button-hover-text-color: var(--white-color);
