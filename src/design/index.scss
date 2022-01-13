@@ -37,6 +37,7 @@ $breakpoints: (
   --grey-color-5: #cfcfd1;
   --grey-color-6: #737781;
   --grey-color-7: #c4c4c4;
+  --grey-color-8: #ced4da;
   --grey-light-color-1: #f8fafb;
   --grey-light-color-2: #eef3f5;
   --grey-light-color-3: #eaedf0;
@@ -139,7 +140,8 @@ html[data-theme='light'] {
   --text-primary-reverse: var(--white-color);
   --text-secondary-color: var(--grey-color-1);
   --text-third-color: var(--grey-color-5);
-  --border-grey-color: var(--grey-light-color-3);
+  --border-grey-color: var(--grey-color-8);
+  --border-grey-hover-color: var(--grey-color-7);
   --border-blue-color: var(--blue-color);
   --scrollbar-color: var(--grey-light-color-3);
   --control-background-hover: var(--grey-light-color-2);
