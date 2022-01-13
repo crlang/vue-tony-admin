@@ -20,7 +20,7 @@ export const useGlobSetting = (): Readonly<GlobConfig> => {
 
   // Take global configuration
   const glob: Readonly<GlobConfig> = {
-    title: VITE_GLOB_APP_TITLE,
+    title: VITE_GLOB_APP_TITLE?.replace(/{space}/g, ' '),
     apiUrl: VITE_GLOB_API_URL,
     shortName: VITE_GLOB_APP_SHORT_NAME,
     urlPrefix: VITE_GLOB_API_URL_PREFIX,
