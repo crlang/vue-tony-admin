@@ -1,29 +1,27 @@
 <template>
-  <div
-    class="ty-mobile"
-    v-if="getShow">
-    <el-form
-      :model="formData"
-      :rules="getFormRules"
-      ref="formRef">
-      <el-form-item prop="mobile">
-        <el-input
-          v-model="formData.mobile"
-          :placeholder="t('sys.login.mobile')" />
-      </el-form-item>
-      <el-form-item prop="sms">
-        <countdown-input
-          v-model="formData.sms"
-          :placeholder="t('sys.login.smsCode')" />
-      </el-form-item>
-      <el-form-item>
-        <el-button
-          type="primary"
-          @click="handleLogin"
-          :loading="loading"
-          class="login--submit">{{ t('sys.login.loginButton') }}</el-button>
-      </el-form-item></el-form>
-  </div>
+  <el-form
+    v-if="getShow"
+    :model="formData"
+    :rules="getFormRules"
+    ref="formRef">
+    <el-form-item prop="mobile">
+      <el-input
+        v-model="formData.mobile"
+        :placeholder="t('sys.login.mobile')" />
+    </el-form-item>
+    <el-form-item prop="sms">
+      <countdown-input
+        v-model="formData.sms"
+        :placeholder="t('sys.login.smsCode')" />
+    </el-form-item>
+    <el-form-item>
+      <el-button
+        type="primary"
+        @click="handleLogin"
+        :loading="loading"
+        class="login--submit">{{ t('sys.login.loginButton') }}</el-button>
+    </el-form-item>
+  </el-form>
 </template>
 
 <script lang="ts" setup>

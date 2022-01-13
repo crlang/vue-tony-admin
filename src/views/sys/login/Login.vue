@@ -12,8 +12,8 @@
     <el-row :class="`${prefixCls}__inner`">
       <el-col :span="14">
         <div :class="`${prefixCls}__left`">
-          <h1>欢迎使用 <span>Tony Admin</span></h1>
-          <p>tony admin 是一个免费开源的中后台前端模版。</p>
+          <h1>欢迎使用 <span>{{ title }}</span></h1>
+          <p>{{ title }} 是一个免费开源的中后台前端模版。</p>
           <p>基于 element plus ，并且使用了最新的 vue3, vite2, TypeScript 等主流技术开发，开箱即用的中后台前端解决方案。</p>
         </div>
       </el-col>
@@ -78,6 +78,7 @@ import { useDesign } from '@/hooks/web/useDesign'
 import { useLocaleStore } from '@/store/modules/locale'
 import { useLoginState, LoginStateEnum } from './useLogin'
 import { useI18n } from '@/hooks/web/useI18n'
+import { useGlobSetting } from '@/hooks/setting'
 
 export default defineComponent({
   components: {
@@ -100,6 +101,7 @@ export default defineComponent({
     const localeStore = useLocaleStore()
     const showLocale = localeStore.getShowPicker
     const { setLoginState, getLoginState } = useLoginState()
+    const { title } = useGlobSetting()
     const { t } = useI18n()
     const activeName = ref('account')
     const activeNameExt = {
@@ -107,7 +109,6 @@ export default defineComponent({
       'mobile': LoginStateEnum.MOBILE,
       'qrcode': LoginStateEnum.QR_CODE,
     }
-    console.log('getLoginState', getLoginState.value)
 
     const getShow = computed(() => {
       return unref(getLoginState) === LoginStateEnum.LOGIN ||
@@ -122,6 +123,7 @@ export default defineComponent({
     return {
       prefixCls,
       t,
+      title,
       showLocale,
       setLoginState,
       getShow,

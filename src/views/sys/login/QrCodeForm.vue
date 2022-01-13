@@ -4,7 +4,7 @@
     class="text-center">
     <QrCode
       :value="qrCodeUrl"
-      :width="280" />
+      :width="200" />
     <el-divider>{{ t('sys.login.scanSign') }}</el-divider>
   </div>
 </template>
@@ -15,7 +15,7 @@ import { QrCode } from '@/components/Qrcode/index'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useLoginState, LoginStateEnum } from './useLogin'
 
-const qrCodeUrl = 'http://tony.crlang.com'
+const qrCodeUrl = "Hi I'm Tony!"
 
 const { t } = useI18n()
 const { getLoginState } = useLoginState()

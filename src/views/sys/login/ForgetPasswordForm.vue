@@ -42,13 +42,12 @@ import { CountdownInput } from '@/components/CountDown'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useLoginState, LoginStateEnum, useFormRules, useFormValid } from './useLogin'
 import { ElNotification, ElForm } from 'element-plus'
-type ElFormType = InstanceType<typeof ElForm>
 
 const { t } = useI18n()
 const { handleBackLogin, getLoginState } = useLoginState()
 const { getFormRules } = useFormRules()
 
-const formRef = ref<Nullable<ElFormType>>(null)
+const formRef = ref()
 const loading = ref(false)
 const { validForm } = useFormValid(formRef)
 

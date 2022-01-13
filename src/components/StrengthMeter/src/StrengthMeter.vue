@@ -68,6 +68,8 @@ export default defineComponent({
 $prefix-cls: '#{$namespace}-strength-meter';
 
 .#{$prefix-cls} {
+  width: 100%;
+
   &-bar {
     position: relative;
     height: 6px;

@@ -76,7 +76,7 @@ async function handleLogin() {
       toRaw({
         password: formData.password,
         username: formData.account,
-        mode: 'none', // 不要默认的错误提示
+        mode: 'none',
       })
     )
     if (userInfo) {

@@ -1,8 +1,8 @@
 <template>
   <el-form
+    v-if="getShow"
     :model="formData"
     :rules="getFormRules"
-    v-if="getShow"
     ref="formRef">
     <el-form-item prop="account">
       <el-input

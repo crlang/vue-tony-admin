@@ -114,7 +114,6 @@ export default defineComponent({
 
     return () => {
       const { title, subTitle, btnText, icon, handler, status } = unref(getMapValue) || {}
-      console.log('icon', icon)
       return (
         <ElResult
           class={prefixCls}
