@@ -100,7 +100,7 @@ $prefix-cls: '#{$namespace}-header-notify';
 
   &__more {
     padding: 12px;
-    color: var(--text-color);
+    color: var(--text-primary-color);
     text-align: center;
 
     &:hover {

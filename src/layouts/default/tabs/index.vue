@@ -11,9 +11,7 @@
           :name="item.query ? item.fullPath : item.path"
           :closable="!(item && item.meta && item.meta.affix)">
           <template #label>
-            <TabContent
-              :tabItem="item"
-              :isActived="getActiveState(item.query ? item.fullPath : item.path)" />
+            <TabContent :tabItem="item" />
           </template>
         </el-tab-pane>
       </template>
@@ -24,14 +22,14 @@
       <TabRedo
         v-if="getShowRedo"
         :class="`${prefixCls}__extra-redo`" />
+      <FoldButton
+        v-if="getShowQuick"
+        :class="`${prefixCls}__extra-fold`" />
       <TabContent
         isExtra
         :class="`${prefixCls}__extra-more`"
         :tabItem="$route"
         v-if="getShowFold" />
-      <FoldButton
-        v-if="getShowQuick"
-        :class="`${prefixCls}__extra-fold`" />
     </div>
   </div>
 </template>
@@ -118,6 +116,7 @@ export default defineComponent({
 
     // Close the current tab
     function handleEdit(targetKey: string) {
+      console.log('++++++++++++++targetKey', targetKey)
       // Added operation to hide, currently only use delete operation
       if (unref(unClose)) {
         return
@@ -125,12 +124,8 @@ export default defineComponent({
       tabStore.closeTabByKey(targetKey, router)
     }
 
-    function getActiveState(targetKey: string) {
-      return targetKey === activeKeyRef.value
-    }
     return {
       prefixCls,
-      unClose,
       getWrapClass,
       getShowQuick,
       getShowRedo,
@@ -139,7 +134,6 @@ export default defineComponent({
       handleChange,
       activeKeyRef,
       getTabsState,
-      getActiveState,
     }
   },
 })
@@ -153,14 +147,33 @@ $prefix-cls: '#{$namespace}-multiple-tabs';
   z-index: 10;
   background-color: var(--header-background-color);
 
-  &-content__info {
-    display: flex;
-    align-items: center;
+  &-content {
     height: 100%;
 
-    &-text {
-      font-size: 14px;
-      color: var(--text-color);
+    .el-dropdown--default {
+      height: 100%;
+    }
+
+    &__contextmenu {
+      white-space: nowrap;
+    }
+
+    &__quick {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    &__info {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 6px 0 16px;
+
+      &-text {
+        font-size: 14px;
+        color: var(--text-primary-color);
+      }
     }
   }
 
@@ -168,12 +181,19 @@ $prefix-cls: '#{$namespace}-multiple-tabs';
     position: absolute;
     top: calc(50% - 10px);
     right: 12px;
+    display: flex;
+    align-items: center;
     height: 20px;
     line-height: 20px;
 
     &-redo,
     &-more,
     &-fold {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 24px;
+      height: 24px;
       margin-left: 8px;
       cursor: pointer;
 
@@ -197,12 +217,17 @@ $prefix-cls: '#{$namespace}-multiple-tabs';
 
     .el-tabs__nav {
       &-wrap {
-        padding-right: 112px;
-        padding-left: 16px;
+        padding-right: 106px;
+        padding-left: 6px;
         margin: 0 0 16px;
 
         &::after {
           height: 1px;
+        }
+
+        &.is-scrollable {
+          padding-right: 126px;
+          padding-left: 24px;
         }
       }
 
@@ -211,13 +236,17 @@ $prefix-cls: '#{$namespace}-multiple-tabs';
       }
 
       &-next {
-        right: 98px;
+        right: 102px;
       }
 
       &-prev,
       &-next {
+        top: -2px;
+        width: 20px;
+        color: var(--text-primary-color);
+
         &:hover {
-          background: #f5f5f5;
+          background: var(--background-primary-color);;
         }
       }
 
@@ -225,25 +254,21 @@ $prefix-cls: '#{$namespace}-multiple-tabs';
         position: relative;
         display: inline-flex;
         align-items: center;
-        padding: 0 16px;
-        margin: 0 16px -1px 0;
+        padding: 0;
+        margin: 0 4px;
         line-height: 1;
         background: var(--background-primary-color);
         border: 1px solid var(--el-border-color-light);
 
-        // &.is-active {
-        //   background: var(--header-bg-color);
-        // }
-
-        .el-dropdown{
-          display: flex;
-          align-items: center;
-          height: 100%;
-          justify-items: center;
+        &.is-active {
+          margin-bottom: -1px;
+          color: var(--primary-color);
+          background: var(--background-secondary-color);
+          border-bottom-color: transparent;
         }
 
         .is-icon-close {
-          margin: 0 0 0 6px;
+          margin: 0 6px 0 0;
           line-height: 1;
         }
 
@@ -252,14 +277,11 @@ $prefix-cls: '#{$namespace}-multiple-tabs';
           margin: 0;
         }
       }
-
-      .el-dropdown{
-        height: 100%;
-      }
     }
   }
 
   &__content {
     display: none;
   }
-}</style>
+}
+</style>

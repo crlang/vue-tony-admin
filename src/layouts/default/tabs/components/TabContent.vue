@@ -1,11 +1,12 @@
 <template>
   <el-dropdown
-    :trigger="getIsTabs ? 'contextmenu' : 'click'"
-    :class="`${prefixCls}__content`"
+    :trigger="getTrigger"
+    :class="`${prefixCls}`"
     @visible-change="handleContext"
+    :popper-class="`${prefixCls}__contextmenu`"
     @command="handleMenuEvent">
     <template #dropdown>
-      <el-dropdown-menu :class="`${prefixCls}__contextmenu`">
+      <el-dropdown-menu>
         <el-dropdown-item
           v-for="item in getDropMenuList"
           :key="item.command"
@@ -52,10 +53,9 @@ export default defineComponent({
       default: null,
     },
     isExtra: Boolean,
-    isActived: Boolean,
   },
   setup(props) {
-    const { prefixCls } = useDesign('multiple-tabs')
+    const { prefixCls } = useDesign('multiple-tabs-content')
     const { t } = useI18n()
 
     const getTitle = computed(() => {
@@ -72,7 +72,7 @@ export default defineComponent({
 
     const { getDropMenuList, handleMenuEvent, handleContextMenu } = useTabDropdown(props as TabContentProps, getIsTabs)
 
-    function handleContext(v) {
+    function handleContext(v:Boolean) {
       if (v === true && props.tabItem) {
         handleContextMenu(props.tabItem)
       }
@@ -98,14 +98,6 @@ export default defineComponent({
 $prefix-cls: '#{$namespace}-multiple-tabs';
 
 .#{$prefix-cls} {
-  &__quick {
-    cursor: pointer;
-
-    &:hover {
-      color: var(--primary-color);
-    }
-  }
-
   &__contextmenu {
     .el-dropdown-menu {
       &__item {
