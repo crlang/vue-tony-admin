@@ -1,4 +1,4 @@
 
 # Element Plus Types and Props
 
-Sync Ver: `1.2.0-beta.6`
+Sync Ver: `1.3.0-beta.5`
