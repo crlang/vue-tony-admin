@@ -1,11 +1,9 @@
 <template>
-  <CardGrid>
+  <CardGrid shadow="always">
     <template #header>
-      <div class="flex justify-between">
-        <span>项目</span>
-        <el-button
-          type="text"
-          size="small">更多</el-button>
+      <div class="flex justify-between items-center">
+        <div class="el-card__header--title">项目</div>
+        <el-button type="text">更多</el-button>
       </div>
     </template>
     <CardGridItem

@@ -1,8 +1,7 @@
 
 <template>
-  <el-card
-    header="活动进度"
-    shadow="never">
+  <el-card shadow="always">
+    <template #header><div class="el-card__header--title">活动进度</div></template>
     <el-timeline>
       <el-timeline-item
         v-for="(activity, index) in activities"

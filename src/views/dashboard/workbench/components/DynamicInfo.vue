@@ -1,14 +1,9 @@
 <template>
-  <el-card
-    header="最新动态"
-    shadow="never"
-    v-bind="$attrs">
+  <el-card shadow="always">
     <template #header>
-      <div class="flex justify-between">
-        <span>最新动态</span>
-        <el-button
-          type="text"
-          size="small">更多</el-button>
+      <div class="flex justify-between items-center">
+        <div class="el-card__header--title">最新动态</div>
+        <el-button type="text">更多</el-button>
       </div>
     </template>
     <List>

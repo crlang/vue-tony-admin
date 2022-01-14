@@ -1,7 +1,8 @@
 <template>
   <CardGrid
-    header="快捷导航"
-    center>
+    center
+    shadow="always">
+    <template #header><div class="el-card__header--title">快捷导航</div></template>
     <CardGridItem
       vertical
       v-for="(item,index) in navItems"

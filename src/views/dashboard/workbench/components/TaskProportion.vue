@@ -1,7 +1,6 @@
 <template>
-  <el-card
-    header="销售统计"
-    shadow="never">
+  <el-card shadow="always">
+    <template #header><div class="el-card__header--title">销售统计</div></template>
     <div
       ref="chartRef"
       :style="{ width, height }"></div>
