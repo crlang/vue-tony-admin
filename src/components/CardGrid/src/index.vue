@@ -4,7 +4,7 @@
 -->
 <template>
   <el-card
-    shadow="never"
+    :shadow="shadow"
     :class="prefixCls"
     :body-style="{ margin: '-1px 0 0 -1px', padding: 0}">
     <template
@@ -21,6 +21,7 @@
 <script lang="ts">
 import { defineComponent, computed, unref } from 'vue'
 import { useDesign } from '@/hooks/web/useDesign'
+import { ShadowTypes } from './types'
 
 export default defineComponent({
   name: 'CardGrid',
@@ -34,6 +35,10 @@ export default defineComponent({
     center: {
       type: Boolean,
       defalut: false,
+    },
+    shadow: {
+      type: String as PropType<ShadowTypes>,
+      default: 'never',
     },
   },
   setup(props) {

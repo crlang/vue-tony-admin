@@ -3,7 +3,7 @@
  * @Date: 2021-12-24 17:24:14
  * @Description: Element Plus Type and Props
  * @LastEditors: crlang(https://www.crlang.com)
- * @LastEditTime: 2022-01-11 10:00:42
+ * @LastEditTime: 2022-01-14 13:22:44
  */
 // type
 export * from './Form/types'
@@ -29,6 +29,7 @@ import type {
   DialogProps,
   DrawerProps,
   MessageProps,
+  CardProps
 } from 'element-plus'
 
 import {
@@ -39,6 +40,7 @@ import {
   dialogProps,
   drawerProps,
   messageProps,
+  cardProps
 } from 'element-plus'
 
 export const EleButtonProps = buttonProps
@@ -61,3 +63,6 @@ export declare type EleDrawer = DrawerProps
 
 export const EleMessageProps = messageProps
 export declare type EleMessage = MessageProps
+
+export const EleCardProps = cardProps
+export declare type EleCard = CardProps

@@ -12,6 +12,15 @@
     border-color: var(--el-card-border-color);
   }
 
+  &__header {
+    &--title {
+      // margin-bottom: 2rem;
+      font-size: 1.25rem;
+      font-weight: bold;
+      line-height: 2.5rem;
+    }
+  }
+
   // &.is-hover-shadow:hover,
   // &.is-hover-shadow:focus,
   // &.is-always-shadow {
