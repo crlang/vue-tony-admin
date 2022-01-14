@@ -18,7 +18,9 @@
       :showTitle="false"
       :class="`${prefixCls}-logo`" />
 
-    <LayoutTrigger :class="`${prefixCls}-trigger`" />
+    <LayoutTrigger
+      :class="`${prefixCls}-trigger`"
+      sider />
 
     <ScrollContainer>
       <ul :class="`${prefixCls}-module`">

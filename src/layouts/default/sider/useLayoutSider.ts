@@ -1,30 +1,11 @@
 import type { Ref } from 'vue'
 
-import { computed, unref, onMounted, nextTick, ref } from 'vue'
+import { computed, unref, onMounted, nextTick } from 'vue'
 
 import { TriggerEnum } from '@/enums/menuEnum'
 
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { useDebounceFn } from '@vueuse/core'
-
-/**
- * Handle related operations of menu events
- */
-export function useSiderEvent() {
-  const brokenRef = ref(false)
-
-  const { getMiniWidthNumber } = useMenuSetting()
-
-  const getCollapsedWidth = computed(() => {
-    return unref(brokenRef) ? 0 : unref(getMiniWidthNumber)
-  })
-
-  function onBreakpointChange(broken: boolean) {
-    brokenRef.value = broken
-  }
-
-  return { getCollapsedWidth, onBreakpointChange }
-}
 
 /**
  * Handle related operations of menu folding
@@ -42,16 +23,7 @@ export function useTrigger(getIsMobile: Ref<boolean>) {
     )
   })
 
-  const getTriggerAttr = computed(() => {
-    if (unref(getShowTrigger)) {
-      return {}
-    }
-    return {
-      trigger: null,
-    }
-  })
-
-  return { getTriggerAttr, getShowTrigger }
+  return { getShowTrigger }
 }
 
 /**

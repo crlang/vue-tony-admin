@@ -9,28 +9,12 @@
         :theme="getHeaderTheme"
         :style="getLogoWidth"
       />
-      <LayoutTrigger
-        v-if="(getShowContent && getShowHeaderTrigger && !getSplit && !getIsMixSidebar) || getIsMobile"
-        :theme="getHeaderTheme"
-        :sider="false"
-      />
+      <LayoutTrigger v-if="(getShowContent && getShowHeaderTrigger && !getSplit && !getIsMixSidebar) || getIsMobile" />
       <LayoutBreadcrumb
         v-if="getShowContent && getShowBread"
         :theme="getHeaderTheme" />
     </div>
     <!-- left end -->
-
-    <!-- menu start -->
-    <div
-      :class="`${prefixCls}-menu`"
-      v-if="getShowTopMenu && !getIsMobile">
-      <LayoutMenu
-        :isHorizontal="true"
-        :theme="getHeaderTheme"
-        :splitType="getSplitType"
-        :menuMode="getMenuMode" />
-    </div>
-    <!-- menu-end -->
 
     <!-- action  -->
     <div :class="`${prefixCls}-action`">
@@ -71,7 +55,6 @@ import { defineComponent, unref, computed } from 'vue'
 import { propTypes } from '@/utils/propTypes'
 
 import { AppLogo } from '@/components/Application'
-import LayoutMenu from '../menu/index.vue'
 import LayoutTrigger from '../trigger/index.vue'
 
 import { AppSearch } from '@/components/Application'
@@ -97,7 +80,6 @@ export default defineComponent({
     AppLogo,
     LayoutTrigger,
     LayoutBreadcrumb,
-    LayoutMenu,
     UserDropDown,
     AppLocalePicker,
     FullScreen,

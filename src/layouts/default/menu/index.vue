@@ -178,14 +178,11 @@ $logo-prefix-cls: '#{$namespace}-app-logo';
   &-logo {
     height: $side-logo-height;
     padding: 16px;
+    background: var(--sider-background-color);
 
     &.is-hide-logo {
       padding: 16px 8px;
       transition: none;
-    }
-
-    &.dark {
-      background: var(--sider-dark-bg-color);
     }
 
     > img {
