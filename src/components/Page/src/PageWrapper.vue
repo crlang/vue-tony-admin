@@ -147,7 +147,8 @@ $prefix-cls: '#{$namespace}-page-wrapper';
   &-header {
     position: relative;
     padding: 16px 24px;
-    background-color: var(--background-primary-color);
+    background-color: var(--background-secondary-color);
+    box-shadow: var(--control-shadow);
 
     &-full {
       padding: 0;
