@@ -1,6 +1,5 @@
 <template>
   <el-dropdown
-
     @command="handleMenuClick">
     <span
       :class="[prefixCls, `${prefixCls}--${theme}`]"
@@ -137,6 +136,7 @@ $prefix-cls: '#{$namespace}-header-user-dropdown';
   padding-right: 10px;
   overflow: hidden;
   font-size: 12px;
+  color: var(--header-text-color);
   cursor: pointer;
   background-color: var(--header-background-color);
 

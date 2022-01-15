@@ -87,6 +87,14 @@ $prefix-cls: '#{$namespace}-header-notify';
   padding-top: 2px;
 
   &__overlay  {
+    &.is-light {
+      border-color: transparent;
+
+      .el-popper__arrow::before {
+        border-color: transparent;
+      }
+    }
+
     &.el-popover.el-popper {
       padding: 0;
     }
@@ -106,7 +114,7 @@ $prefix-cls: '#{$namespace}-header-notify';
     &:hover {
       color: var(--link-color);
       cursor: pointer;
-      background: #f4f7f9;
+      background: var(--background-primary-color);
     }
   }
 }

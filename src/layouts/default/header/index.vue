@@ -10,9 +10,7 @@
         :style="getLogoWidth"
       />
       <LayoutTrigger v-if="(getShowContent && getShowHeaderTrigger && !getSplit && !getIsMixSidebar) || getIsMobile" />
-      <LayoutBreadcrumb
-        v-if="getShowContent && getShowBread"
-        :theme="getHeaderTheme" />
+      <LayoutBreadcrumb v-if="getShowContent && getShowBread" />
     </div>
     <!-- left end -->
 
@@ -41,7 +39,9 @@
         :class="`${prefixCls}-action__item`"
       />
 
-      <UserDropDown :theme="getHeaderTheme" />
+      <UserDropDown
+        :theme="getHeaderTheme"
+        :class="`${prefixCls}-action__item`" />
 
       <SettingDrawer
         v-if="getShowSetting"

@@ -72,11 +72,11 @@ function handleMenuEvent(command: EleDropdownItem['command']) {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .locale-dropdown-select {
   display: flex;
   align-items: center;
-  color: var(--text-primary-color);
+  color: inherit;
   cursor: pointer;
 
   > svg {

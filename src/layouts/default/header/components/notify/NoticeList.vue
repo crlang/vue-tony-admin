@@ -8,14 +8,13 @@
         :class="[prefixCls+'__item',{'is-read':item.titleDelete}]"
         @click="handleTitleClick(item)">
         <ListItemMeta>
-
-          <template #avatar>
+          <template
+            #avatar
+            v-if="item.avatar">
             <el-avatar
-              v-if="item.avatar"
               style="--el-avatar-bg-color: #fff"
               class="avatar"
               :src="item.avatar" />
-            <span v-else>{{ item.avatar }}</span>
           </template>
 
           <template #title>
@@ -106,7 +105,6 @@ export default defineComponent({
         return {
           total: list.length,
           pageSize,
-          // size: 'small',
           current: unref(current),
           onChange(page) {
             current.value = page
@@ -118,7 +116,7 @@ export default defineComponent({
       }
     })
 
-    function handleTitleClick(item: ListItem) {
+    function handleTitleClick(item: ListItemType) {
       props.onTitleClick && props.onTitleClick(item)
     }
 
@@ -126,23 +124,20 @@ export default defineComponent({
   },
 })
 </script>
+
 <style lang="scss" scoped>
 $prefix-cls: '#{$namespace}-header-notify-list';
 
 .#{$prefix-cls} {
-  max-height: 400px;
+  max-height: 320px;
   overflow-y: auto;
-
-  // &::-webkit-scrollbar {
-  //   display: none;
-  // }
 
   &__item {
     padding: 12px 24px;
     cursor: pointer;
 
     &:hover {
-      background: #f4f7f9;
+      background: var(--background-primary-color);
     }
 
     &.is-read {
@@ -157,6 +152,7 @@ $prefix-cls: '#{$namespace}-header-notify-list';
     .title {
       display: flex;
       margin-bottom: 4px;
+      color: var(--text-primary-color);
 
       > span:first-child {
         overflow: hidden;
@@ -174,11 +170,13 @@ $prefix-cls: '#{$namespace}-header-notify-list';
       overflow: hidden;
       font-size: 12px;
       line-height: 16px;
+      color: var(--text-secondary-color);
     }
 
     .datetime {
       margin-top: 4px;
       font-size: 12px;
+      color: var(--text-secondary-color);
     }
   }
 }

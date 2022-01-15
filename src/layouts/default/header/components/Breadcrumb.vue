@@ -1,26 +1,27 @@
 <template>
-  <div :class="[prefixCls, `${prefixCls}--${theme}`]">
-    <el-breadcrumb
-      separator="/"
-      :routes="routes">
-      <el-breadcrumb-item
-        v-for="route in routes"
-        :key="route.name">
-        <Icon
-          :icon="getIcon(route)"
-          v-if="getShowBreadCrumbIcon && getIcon(route)" />
-        <span v-if="!hasRedirect(routes, route)">
-          {{ t(route.name || route.meta.title) }}
-        </span>
-        <router-link
-          v-else
-          to=""
-          @click="handleClick(route, routes, $event)">
-          {{ t(route.name || route.meta.title) }}
-        </router-link>
-      </el-breadcrumb-item>
-    </el-breadcrumb>
-  </div>
+  <el-breadcrumb
+    separator="/"
+    :class="prefixCls"
+    :routes="routes">
+    <el-breadcrumb-item
+      v-for="route in routes"
+      :key="route.name">
+      <Icon
+        :icon="getIcon(route)"
+        size="14"
+        class="mr-1"
+        v-if="getShowBreadCrumbIcon && getIcon(route)" />
+      <span v-if="!hasRedirect(routes, route)">
+        {{ t(route.name || route.meta.title) }}
+      </span>
+      <router-link
+        v-else
+        to=""
+        @click="handleClick(route, routes, $event)">
+        {{ t(route.name || route.meta.title) }}
+      </router-link>
+    </el-breadcrumb-item>
+  </el-breadcrumb>
 </template>
 
 <script lang="ts">
@@ -37,7 +38,6 @@ import { useRootSetting } from '@/hooks/setting/useRootSetting'
 import { useGo } from '@/hooks/web/usePage'
 import { useI18n } from '@/hooks/web/useI18n'
 
-import { propTypes } from '@/utils/propTypes'
 import { isString } from '@/utils/is'
 import { filter } from '@/utils/helper/treeHelper'
 import { getMenus } from '@/router/menus'
@@ -48,9 +48,7 @@ import { getAllParentPath } from '@/router/helper/menuHelper'
 export default defineComponent({
   name: 'LayoutBreadcrumb',
   components: { Icon },
-  props: {
-    theme: propTypes.oneOf(['dark', 'light']),
-  },
+  props: { },
   setup() {
     const routes = ref<any[]>([])
     const { currentRoute } = useRouter()
@@ -150,11 +148,19 @@ export default defineComponent({
       return routes.indexOf(route) !== routes.length - 1
     }
 
-    function getIcon(route) {
-      return route.icon || route.meta?.icon
+    function getIcon(route:RouteLocationMatched) {
+      return route.meta?.icon
     }
 
-    return { routes, t, prefixCls, getIcon, getShowBreadCrumbIcon, handleClick, hasRedirect }
+    return {
+      routes,
+      t,
+      prefixCls,
+      getIcon,
+      getShowBreadCrumbIcon,
+      handleClick,
+      hasRedirect,
+    }
   },
 })
 </script>
@@ -163,21 +169,30 @@ export default defineComponent({
 $prefix-cls: '#{$namespace}-layout-breadcrumb';
 
 .#{$prefix-cls} {
-  display: flex;
-  align-items: center;
   padding: 0 8px;
 
-  .el-breadcrumb__inner a,
-  .el-breadcrumb__inner.is-link {
-    font-weight: normal;
-  }
+  .el-breadcrumb__item {
+    .el-breadcrumb__separator {
+      margin: 0 8px;
+      font-size: 12px;
+      font-weight: normal;
+      color: inherit;
+      opacity: 0.6;
+    }
 
-  &--light {
-    // position: relative;
-  }
+    .el-breadcrumb__inner {
+      display: inline-flex;
+      color: inherit;
+      vertical-align: top;
 
-  &--dark {
-    // position: relative;
+      &:hover {
+        color: var(--header-text-hover-color, inherit);
+      }
+
+      a,span {
+        color: inherit;
+      }
+    }
   }
 }
 </style>

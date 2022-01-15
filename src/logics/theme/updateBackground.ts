@@ -1,15 +1,18 @@
-import { colorIsDark, lighten, darken } from '@/utils/color'
+import { colorIsDark, darken, lighten } from '@/utils/color'
 import { useAppStore } from '@/store/modules/app'
 import { ThemeEnum } from '@/enums/appEnum'
 import { setCssVar } from './util'
 
-const HEADER_BG_COLOR_VAR = '--header-bg-color'
-const HEADER_BG_HOVER_COLOR_VAR = '--header-bg-hover-color'
-const HEADER_MENU_ACTIVE_BG_COLOR_VAR = '--header-active-menu-bg-color'
+const HEADER_BG_COLOR = '--header-background-color'
+const HEADER_BG_HOVER_COLOR = '--header-background-hover-color'
 
-const SIDER_DARK_BG_COLOR = '--sider-background-color'
-const SIDER_DARK_DARKEN_BG_COLOR = '--sider-background-color'
-const SIDER_LIGHTEN_BG_COLOR = '--sider-background-color'
+const HEADER_TEXT_COLOR = '--header-text-color'
+const HEADER_TEXT_HOVER_COLOR = '--header-text-hover-color'
+
+const SIDER_BG_COLOR = '--sider-background-color'
+const SIDER_BG_HOVER_COLOR = '--sider-background-hover-color'
+const SIDER_TEXT_COLOR = '--sider-text-color'
+const SIDER_TEXT_HOVER_COLOR = '--sider-text-hover-color'
 
 /**
  * Change the background color of the top header
@@ -19,22 +22,23 @@ export function updateHeaderBgColor(color?: string) {
   const appStore = useAppStore()
   const darkMode = appStore.getDarkMode === ThemeEnum.DARK
   if (!color) {
-    if (darkMode) {
+    color = appStore.getHeaderSetting.bgColor
+
+    if (!color) {
       color = '#151515'
-    } else {
-      color = appStore.getHeaderSetting.bgColor
     }
   }
-  // bg color
-  setCssVar(HEADER_BG_COLOR_VAR, color)
+
+  const isDark = colorIsDark(color)
+  const dyncColor = dyncGenerateColor(color)
+
+  // color
+  setCssVar(HEADER_BG_COLOR, color)
+  setCssVar(HEADER_TEXT_COLOR, dyncColor.text)
 
   // hover color
-  const hoverColor = lighten(color!, 6)
-  setCssVar(HEADER_BG_HOVER_COLOR_VAR, hoverColor)
-  setCssVar(HEADER_MENU_ACTIVE_BG_COLOR_VAR, hoverColor)
-
-  // Determine the depth of the color value and automatically switch the theme
-  const isDark = colorIsDark(color!)
+  setCssVar(HEADER_BG_HOVER_COLOR, dyncColor.bgHover)
+  setCssVar(HEADER_TEXT_HOVER_COLOR, dyncColor.textHover)
 
   appStore.setProjectConfig({
     headerSetting: {
@@ -45,23 +49,27 @@ export function updateHeaderBgColor(color?: string) {
 
 /**
  * Change the background color of the left menu
- * @param color  bg color
+ * @param color
  */
 export function updateSidebarBgColor(color?: string) {
   const appStore = useAppStore()
 
-  // if (!isHexColor(color)) return;
   const darkMode = appStore.getDarkMode === ThemeEnum.DARK
   if (!color) {
-    if (darkMode) {
+    color = appStore.getMenuSetting.bgColor
+    if (!color) {
       color = '#212121'
-    } else {
-      color = appStore.getMenuSetting.bgColor
     }
   }
-  setCssVar(SIDER_DARK_BG_COLOR, color)
-  setCssVar(SIDER_DARK_DARKEN_BG_COLOR, darken(color!, 6))
-  setCssVar(SIDER_LIGHTEN_BG_COLOR, lighten(color!, 5))
+
+  const dyncColor = dyncGenerateColor(color)
+
+  setCssVar(SIDER_BG_COLOR, color)
+  setCssVar(SIDER_TEXT_COLOR, dyncColor.text)
+
+  // hover color
+  setCssVar(SIDER_BG_HOVER_COLOR, dyncColor.bgHover)
+  setCssVar(SIDER_TEXT_HOVER_COLOR, dyncColor.textHover)
 
   // only #ffffff is light
   // Only when the background color is #fff, the theme of the menu will be changed to light
@@ -72,4 +80,18 @@ export function updateSidebarBgColor(color?: string) {
       theme: isLight && !darkMode ? ThemeEnum.LIGHT : ThemeEnum.DARK,
     },
   })
+}
+
+/**
+ * Dynamically generate text color
+ * @param color
+ */
+function dyncGenerateColor(color?:string) {
+  const isDark = colorIsDark(color)
+
+  return {
+    text: isDark ? lighten(color, 75) : darken(color, 75),
+    textHover: isDark ? lighten(color, 90) : darken(color, 90),
+    bgHover: isDark ? lighten(color, 5) : darken(color, 5),
+  }
 }

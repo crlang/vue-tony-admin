@@ -1,6 +1,4 @@
 $prefix-cls: '#{$namespace}-layout-header';
-$breadcrumb-prefix-cls: '#{$namespace}-layout-breadcrumb';
-$logo-prefix-cls: '#{$namespace}-app-logo';
 
 .#{$prefix-cls} {
   display: flex;
@@ -13,14 +11,13 @@ $logo-prefix-cls: '#{$namespace}-app-logo';
   background-color: var(--header-background-color);
 
   &--mobile {
-    .#{$breadcrumb-prefix-cls},
     .error-action,
     .notify-item,
     .fullscreen-item {
       display: none;
     }
 
-    .#{$logo-prefix-cls} {
+    .#{$namespace}-app-logo {
       min-width: unset;
       padding-right: 0;
 
@@ -41,7 +38,7 @@ $logo-prefix-cls: '#{$namespace}-app-logo';
     position: fixed;
     top: 0;
     left: 0;
-    z-index: $layout-header-fixed-z-index;
+    z-index: 100;
     width: 100%;
   }
 
@@ -96,25 +93,45 @@ $logo-prefix-cls: '#{$namespace}-app-logo';
 
     &__item {
       display: flex;
+      justify-content: center;
       align-items: center;
+      width: var(--header-height);
       height: var(--header-height);
-      padding: 0 2px;
+      padding: 0;
       font-size: 1.2em;
+      color: inherit;
       cursor: pointer;
 
-      .el-badge__content {
-        position: relative;
-        top: -5px;
-        transform: none;
+      &:hover {
+        background: var(--header-background-hover-color);
+      }
 
-        &.is-dot {
-          right: 0;
+      .el-badge {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        &__content {
+          position: absolute;
+          top: -8px;
+          right: calc(50% - 16px);
+          width: 16px;
+          height: 16px;
+          padding: 0;
+          font-size: 12px;
+          line-height: 16px;
+          border: none;
+          transform: none;
+        }
+
+        &__content.is-dot {
+          top: -3px;
+          right: calc(50% - 12px);
+          width: 6px;
+          height: 6px;
         }
       }
-    }
-
-    span[role='img'] {
-      padding: 0 8px;
     }
   }
 }
