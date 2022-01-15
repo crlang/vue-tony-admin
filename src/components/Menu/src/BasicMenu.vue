@@ -20,7 +20,6 @@ import BasicSubMenuItem from './components/BasicSubMenuItem.vue'
 import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum'
 import { useOpenKeys } from './useOpenKeys'
 import { RouteLocationNormalizedLoaded, useRouter } from 'vue-router'
-import { isFunction } from '@/utils/is'
 import { basicProps } from './props'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { REDIRECT_NAME } from '@/router/constant'
@@ -34,7 +33,7 @@ export default defineComponent({
   components: { BasicSubMenuItem },
   props: basicProps,
   emits: ['menuClick'],
-  setup(props, { emit }) {
+  setup(props) {
     const isClickGo = ref(false)
     const currentActiveMenu = ref('')
 
@@ -103,18 +102,6 @@ export default defineComponent({
         }
       )
 
-    async function handleMenuClick({ key }: { key: string; keyPath: string[] }) {
-      const { beforeClickFn } = props
-      if (beforeClickFn && isFunction(beforeClickFn)) {
-        const flag = await beforeClickFn(key)
-        if (!flag) return
-      }
-      emit('menuClick', key)
-
-      isClickGo.value = true
-      menuState.selectedKeys = [key]
-    }
-
     async function handleMenuChange(route?: RouteLocationNormalizedLoaded) {
       if (unref(isClickGo)) {
         isClickGo.value = false
@@ -141,7 +128,6 @@ export default defineComponent({
     })
 
     return {
-      handleMenuClick,
       getInlineCollapseOptions,
       getMenuClass,
       handleOpenChange,

@@ -15,7 +15,7 @@
     <DragBar ref="dragBarRef" />
     <template v-if="getShowTrigger">
       <LayoutTrigger
-        :class="`${prefixCls}__trigger ${getMenuTheme}`"
+        :class="`${prefixCls}-trigger ${getMenuTheme}`"
         sider />
     </template>
   </el-aside>
@@ -88,7 +88,6 @@ export default defineComponent({
         flex: `0 0 ${width}`,
         maxWidth: width,
         minWidth: width,
-        transition: 'all 0.2s',
       }
     })
 
@@ -119,7 +118,7 @@ export default defineComponent({
 $prefix-cls: '#{$namespace}-layout-sideBar';
 
 .#{$prefix-cls} {
-  z-index: 10;
+  z-index: 101;
 
   &--fixed {
     position: fixed;
@@ -137,7 +136,7 @@ $prefix-cls: '#{$namespace}-layout-sideBar';
     background-color: var(--sider-background-color);
   }
 
-  &__trigger {
+  &-trigger {
     position: absolute;
     right: 0;
     bottom: 0;

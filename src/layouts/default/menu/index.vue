@@ -13,9 +13,7 @@ import { ScrollContainer } from '@/components/Container'
 
 import { useGo } from '@/hooks/web/usePage'
 import { useSplitMenu } from './useLayoutMenu'
-import { openWindow } from '@/utils'
 import { propTypes } from '@/utils/propTypes'
-import { isUrl } from '@/utils/is'
 import { useRootSetting } from '@/hooks/setting/useRootSetting'
 import { useAppInject } from '@/hooks/web/useAppInject'
 import { useDesign } from '@/hooks/web/useDesign'
@@ -96,7 +94,6 @@ export default defineComponent({
       const menus = unref(menusRef)
       return {
         menus,
-        beforeClickFn: beforeMenuClickFn,
         items: menus,
         theme: unref(getComputedMenuTheme),
         accordion: unref(getAccordion),
@@ -112,18 +109,6 @@ export default defineComponent({
 
     function handleMenuClick(path: string) {
       go(path)
-    }
-
-    /**
-       * before click menu
-       * @param menu
-       */
-    async function beforeMenuClickFn(path: string) {
-      if (!isUrl(path)) {
-        return true
-      }
-      openWindow(path)
-      return false
     }
 
     function renderHeader() {
@@ -186,8 +171,8 @@ $logo-prefix-cls: '#{$namespace}-app-logo';
     }
 
     > img {
-      width: $logo-width;
-      height: $logo-width;
+      width: var(--logo-size);
+      height: var(--logo-size);
     }
 
     > span {

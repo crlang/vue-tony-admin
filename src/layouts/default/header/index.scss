@@ -1,15 +1,13 @@
-$header-trigger-prefix-cls: '#{$namespace}-layout-header-trigger';
-$header-prefix-cls: '#{$namespace}-layout-header';
+$prefix-cls: '#{$namespace}-layout-header';
 $breadcrumb-prefix-cls: '#{$namespace}-layout-breadcrumb';
 $logo-prefix-cls: '#{$namespace}-app-logo';
 
-.#{$header-prefix-cls} {
+.#{$prefix-cls} {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: var(--header-height);
   padding: 0;
-  margin-left: -1px;
   line-height: var(--header-height);
   color: var(--header-text-color);
   background-color: var(--header-background-color);
@@ -30,10 +28,11 @@ $logo-prefix-cls: '#{$namespace}-app-logo';
         display: none;
       }
     }
-    .#{$header-trigger-prefix-cls} {
-      padding: 0 4px 0 8px !important;
-    }
-    .#{$header-prefix-cls}-action {
+
+    // .#{$header-trigger-prefix-cls} {
+    //   padding: 0 4px 0 8px !important;
+    // }
+    .#{$prefix-cls}-action {
       padding-right: 4px;
     }
   }
@@ -53,8 +52,8 @@ $logo-prefix-cls: '#{$namespace}-app-logo';
     font-size: 14px;
 
     img {
-      width: $logo-width;
-      height: $logo-width;
+      width: var(--logo-size);
+      height: var(--logo-size);
       margin-right: 2px;
     }
   }
@@ -64,7 +63,7 @@ $logo-prefix-cls: '#{$namespace}-app-logo';
     align-items: center;
     height: 100%;
 
-    .#{$header-trigger-prefix-cls} {
+    .#{$prefix-cls}-trigger {
       display: flex;
       align-items: center;
       height: 100%;
@@ -77,8 +76,8 @@ $logo-prefix-cls: '#{$namespace}-app-logo';
       }
 
       svg {
-        height: 16px;
-        font-size: 16px;
+        height: 24px;
+        font-size: 24px;
       }
     }
   }
@@ -92,8 +91,6 @@ $logo-prefix-cls: '#{$namespace}-app-logo';
 
   &-action {
     display: flex;
-
-    // padding-right: 12px;
     align-items: center;
     min-width: 180px;
 
@@ -120,61 +117,4 @@ $logo-prefix-cls: '#{$namespace}-app-logo';
       padding: 0 8px;
     }
   }
-
-  // &--light {
-  //   background-color: var(--white-color) !important;
-  //   border-bottom: 1px solid $header-light-bottom-border-color;
-  //   border-left: 1px solid $header-light-bottom-border-color;
-
-  //   .#{$header-prefix-cls}-logo {
-  //     color: var(--text-primary-color);
-
-  //     &:hover {
-  //       background-color: $header-light-bg-hover-color;
-  //     }
-  //   }
-
-  //   .#{$header-prefix-cls}-action {
-  //     &__item {
-  //       color: var(--text-primary-color);
-
-  //       .app-iconify {
-  //         padding: 0 10px;
-  //         font-size: 16px !important;
-  //       }
-
-  //       &:hover {
-  //         background-color: $header-light-bg-hover-color;
-  //       }
-  //     }
-
-  //     &-icon,
-  //     span[role='img'] {
-  //       color: var(--text-primary-color);
-  //     }
-  //   }
-  // }
-
-  // &--dark {
-  //   background-color: $header-dark-bg-color !important;
-  //   border-left: 1px solid var(--border-grey-color);
-  //   .#{$header-prefix-cls}-logo {
-  //     &:hover {
-  //       background-color: $header-dark-bg-hover-color;
-  //     }
-  //   }
-
-  //   .#{$header-prefix-cls}-action {
-  //     &__item {
-  //       .app-iconify {
-  //         padding: 0 10px;
-  //         font-size: 16px !important;
-  //       }
-
-  //       &:hover {
-  //         background-color: $header-dark-bg-hover-color;
-  //       }
-  //     }
-  //   }
-  // }
 }

@@ -1,15 +1,12 @@
-<!--
- * @Author: crlang
- * @Date: 2021-09-29 17:55:24
--->
 <template>
   <div
     :class="getAppLogoClass"
     @click="goHome">
-    <img src="../../../assets/images/logo.png" />
+    <img src="@/assets/images/logo.png" />
     <span v-show="showTitle">{{ title }}</span>
   </div>
 </template>
+
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useGlobSetting } from '@/hooks/setting'
@@ -44,17 +41,18 @@ function goHome() {
   go(userStore.getUserInfo.homePath || PageEnum.BASE_HOME)
 }
 </script>
-<style lang="scss" scoped>
+
+<style lang="scss">
 $prefix-cls: '#{$namespace}-app-logo';
 
 .#{$prefix-cls} {
   display: flex;
   align-items: center;
   cursor: pointer;
-  transition: all 0.2s ease;
 
   > img {
-    width: 44px;
+    width: var(--logo-size);
+    height: var(--logo-size);
   }
 
   > span {
@@ -62,7 +60,7 @@ $prefix-cls: '#{$namespace}-app-logo';
     font-family: var(--font-family-secondary);
     font-size: 33px;
     font-weight: 600;
-    color: var(--heading-color);
+    color: var(--text-primary-reverse);
   }
 }
 

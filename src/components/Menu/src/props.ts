@@ -34,9 +34,6 @@ export const basicProps = {
 
   isHorizontal: propTypes.bool,
   accordion: propTypes.bool.def(true),
-  beforeClickFn: {
-    type: Function as PropType<(key: string) => Promise<boolean>>,
-  },
 }
 
 export const itemProps = {

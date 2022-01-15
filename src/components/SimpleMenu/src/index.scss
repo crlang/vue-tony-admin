@@ -13,8 +13,6 @@ $vertical-prefix-cls: '#{$namespace}-menu-vertical';
 }
 
 .#{$simple-prefix-cls} {
-  padding-bottom: 44px;
-
   &-sub-title {
     overflow: hidden;
     text-overflow: ellipsis;

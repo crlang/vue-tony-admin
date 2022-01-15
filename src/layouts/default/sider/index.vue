@@ -43,6 +43,6 @@ export default defineComponent({
 $prefix-cls: '#{$namespace}-layout-sider-wrapper';
 
 .#{$prefix-cls} {
-  // position: relative;
+  --el-drawer-bg-color: var(--sider-background-color);
 }
 </style>

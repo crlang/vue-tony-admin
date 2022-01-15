@@ -29,7 +29,7 @@ import { listenerRouteChange } from '@/logics/mitt/routeChange'
 import { propTypes } from '@/utils/propTypes'
 import { REDIRECT_NAME } from '@/router/constant'
 import { useRouter } from 'vue-router'
-import { isFunction, isUrl } from '@/utils/is'
+import { isUrl } from '@/utils/is'
 import { openWindow } from '@/utils'
 
 import { useOpenKeys } from './useOpenKeys'
@@ -50,9 +50,6 @@ export default defineComponent({
     theme: propTypes.string,
     accordion: propTypes.bool.def(true),
     collapsedShowTitle: propTypes.bool,
-    beforeClickFn: {
-      type: Function as PropType<(key: string) => Promise<boolean>>,
-    },
     isSplitMenu: propTypes.bool,
   },
   emits: ['menuClick'],
@@ -125,11 +122,6 @@ export default defineComponent({
       if (isUrl(key)) {
         openWindow(key)
         return
-      }
-      const { beforeClickFn } = props
-      if (beforeClickFn && isFunction(beforeClickFn)) {
-        const flag = await beforeClickFn(key)
-        if (!flag) return
       }
 
       emit('menuClick', key)

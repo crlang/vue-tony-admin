@@ -18,10 +18,6 @@
       :showTitle="false"
       :class="`${prefixCls}-logo`" />
 
-    <LayoutTrigger
-      :class="`${prefixCls}-trigger`"
-      sider />
-
     <ScrollContainer>
       <ul :class="`${prefixCls}-module`">
         <li
@@ -49,13 +45,15 @@
         </li>
       </ul>
     </ScrollContainer>
+    <LayoutTrigger
+      :class="`${prefixCls}-trigger`"
+      sider />
 
     <div
       :class="`${prefixCls}-menu-list`"
       ref="sideRef"
       :style="getMenuStyle">
       <div
-        v-show="openMenu"
         :class="[
           `${prefixCls}-menu-list__title`,
           {
@@ -337,14 +335,13 @@ export default defineComponent({
 })
 </script>
 <style lang="scss">
-$width: 80px;
 $prefix-cls: '#{$namespace}-layout-mix-sider';
 
 .#{$prefix-cls} {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: $layout-mix-sider-fixed-z-index;
+  z-index: 101;
   height: 100%;
   overflow: hidden;
   background-color: var(--sider-background-color);
@@ -360,109 +357,103 @@ $prefix-cls: '#{$namespace}-layout-mix-sider';
     display: flex;
     justify-content: center;
     height: var(--header-height);
-    padding-left: 0 !important;
-
-    img {
-      width: $logo-width;
-      height: $logo-width;
-    }
   }
 
-  &.light {
-    .#{$prefix-cls}-logo {
-      border-bottom: 1px solid #eee;
-    }
+  // &.light {
+  //   .#{$prefix-cls}-logo {
+  //     border-bottom: 1px solid #eee;
+  //   }
 
-    &.open {
-      > .scrollbar {
-        border-right: 1px solid #eee;
-      }
-    }
+  //   &.open {
+  //     > .scrollbar {
+  //       border-right: 1px solid #eee;
+  //     }
+  //   }
 
-    .#{$prefix-cls}-module {
-      &__item {
-        font-weight: normal;
-        color: rgba(0, 0, 0, 0.65);
+  //   .#{$prefix-cls}-module {
+  //     &__item {
+  //       font-weight: normal;
+  //       color: rgba(0, 0, 0, 0.65);
 
-        &--active {
-          color: var(--primary-color);
-          background-color: unset;
-        }
-      }
-    }
-    .#{$prefix-cls}-menu-list {
-      &__content {
-        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
-      }
+  //       &--active {
+  //         color: var(--primary-color);
+  //         background-color: unset;
+  //       }
+  //     }
+  //   }
+  //   .#{$prefix-cls}-menu-list {
+  //     &__content {
+  //       box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+  //     }
 
-      // &__title {
-      //   .pushpin {
-      //     color: rgba(0, 0, 0, 0.35);
+  //     // &__title {
+  //     //   .pushpin {
+  //     //     color: rgba(0, 0, 0, 0.35);
 
-      //     &:hover {
-      //       color: rgba(0, 0, 0, 0.85);
-      //     }
-      //   }
-      // }
-    }
-  }
+  //     //     &:hover {
+  //     //       color: rgba(0, 0, 0, 0.85);
+  //     //     }
+  //     //   }
+  //     // }
+  //   }
+  // }
 
-  &.dark {
-    &.open {
-      .#{$prefix-cls}-logo {
-        // border-bottom: 1px solid var(--sider-background-color);
-      }
+  // &.dark {
+  //   &.open {
+  //     .#{$prefix-cls}-logo {
+  //       // border-bottom: 1px solid var(--sider-background-color);
+  //     }
 
-      > .scrollbar {
-        border-right: 1px solid var(--sider-background-color);
-      }
-    }
-    .#{$prefix-cls}-menu-list {
-      background-color: var(--sider-background-color);
+  //     > .scrollbar {
+  //       border-right: 1px solid var(--sider-background-color);
+  //     }
+  //   }
+  //   .#{$prefix-cls}-menu-list {
+  //     background-color: var(--sider-background-color);
 
-      &__title {
-        color: var(--white-color);
-        border-bottom: none;
-        border-bottom: 1px solid var(--sider-background-color);
-      }
-    }
-  }
+  //     &__title {
+  //       color: var(--white-color);
+  //       border-bottom: none;
+  //       border-bottom: 1px solid var(--sider-background-color);
+  //     }
+  //   }
+  // }
 
   > .scrollbar {
-    height: calc(100% - var(--header-height) - 38px);
+    height: calc(100% - var(--header-height));
   }
 
-  &.mini &-module {
-    &__name {
-      display: none;
-    }
+  // &.mini &-module {
+  //   &__name {
+  //     display: none;
+  //   }
 
-    &__icon {
-      margin-bottom: 0;
-    }
-  }
+  //   &__icon {
+  //     margin-bottom: 0;
+  //   }
+  // }
 
   &-module {
     position: relative;
-    padding-top: 1px;
+    padding-bottom: 44px;
 
     &__item {
       position: relative;
-      padding: 12px 0;
-      color: rgba(255, 255, 255, 0.65);
+      padding: 12px 4px;
+      color: var(--sider-text-color);
       text-align: center;
       cursor: pointer;
       transition: all 0.3s ease;
 
       &:hover {
-        color: var(--white-color);
+        color: var(--sider-text-active-color);
       }
 
       // &:hover,
       &--active {
         font-weight: 700;
-        color: var(--white-color);
-        background-color: var(--header-background-color);
+        color: var(--sider-text-active-color);
+        background-color: var(--sider-background-active-color);
 
         &::before {
           position: absolute;
@@ -491,58 +482,92 @@ $prefix-cls: '#{$namespace}-layout-mix-sider';
 
   &-trigger {
     position: absolute;
+    right: 0;
     bottom: 0;
     left: 0;
-    width: 100%;
-    height: 36px;
-    font-size: 14px;
-    line-height: 36px;
-    color: rgba(255, 255, 255, 0.65);
-    text-align: center;
+    z-index: 11;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    color: var(--sider-text-color);
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--sider-background-color);
+
+    &::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      border-top: 1px solid var(--sider-text-color);
+      content: '';
+      opacity: 0.25;
+    }
+
+    &:hover::before {
+      opacity: 0.55;
+    }
+
+    > svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
 
-  &.light &-trigger {
-    color: rgba(0, 0, 0,0.65);
-    background-color: #fff;
-    border-top: 1px solid #eee;
-  }
+  // &.light &-trigger {
+  //   color: rgba(0, 0, 0,0.65);
+  //   background-color: #fff;
+  //   border-top: 1px solid #eee;
+  // }
 
   &-menu-list {
     position: fixed;
     top: 0;
+    z-index: 101;
     width: 200px;
-    height: calc(100%);
-    background-color: #fff;
+    height: 100%;
+    background-color: var(--sider-background-color);
     transition: all 0.2s;
 
     &__title {
+      position: relative;
       display: flex;
-      justify-content: space-between;
       align-items: center;
       height: var(--header-height);
-
-      // margin-left: -6px;
-      font-size: 18px;
-      color: var(--primary-color);
-      border-bottom: 1px solid #eee;
+      padding-left: 20px;
+      overflow: hidden;
+      font-size: 22px;
+      color: var(--text-primary-reverse);
+      text-overflow: ellipsis;
+      white-space: nowrap;
       opacity: 0;
-      transition: unset;
+      visibility: hidden;
+
+      &::after {
+        position: absolute;
+        right: 5%;
+        bottom: 0;
+        left: 5%;
+        border-bottom: 1px solid var(--border-grey-color);
+        content: '';
+        opacity: 0.25;
+      }
 
       &.show {
-        min-width: 130px;
         opacity: 1;
-        transition: all 0.5s ease;
+        visibility: visible;
+        transition: all 0.2s 0.2s;
       }
 
       .pushpin {
-        margin-right: 6px;
-        color: rgba(255, 255, 255, 0.65);
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        color: var(--sider-text-color);
         cursor: pointer;
 
         &:hover {
-          color: #fff;
+          color: var(--sider-text-active-color);
         }
       }
     }

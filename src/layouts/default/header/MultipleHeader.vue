@@ -113,7 +113,7 @@ $prefix-cls: '#{$namespace}-layout-multiple-header';
   &--fixed {
     position: fixed;
     top: 0;
-    z-index: $multiple-tab-fixed-z-index;
+    z-index: 100;
     width: 100%;
   }
 }

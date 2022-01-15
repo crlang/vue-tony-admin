@@ -153,5 +153,4 @@ export default defineComponent({
   },
 })
 </script>
-<style lang="scss" src="./menu.scss">
-</style>
+<style lang="scss" src="./menu.scss"></style>

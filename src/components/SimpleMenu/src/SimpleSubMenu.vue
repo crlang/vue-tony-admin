@@ -1,8 +1,8 @@
 <template>
   <MenuItem
-    :name="item.path"
     v-if="!menuHasChildren(item) && getShowMenu"
-    v-bind="$props"
+    :name="item.path"
+    :disabled="item?.disabled"
     :class="getLevelClass">
     <Icon
       v-if="getIcon"
@@ -52,7 +52,8 @@
       v-for="childrenItem in item.children || []"
       :key="childrenItem.path">
       <SimpleSubMenu
-        v-bind="$props"
+        :collapsedShowTitle="collapsedShowTitle"
+        :theme="theme"
         :item="childrenItem"
         :parent="false" />
     </template>

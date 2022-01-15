@@ -138,10 +138,6 @@ export default defineComponent({
 <style lang="scss">
 $prefix-cls: '#{$namespace}-login';
 
-// $logo-prefix-cls: #{$namespace}-app-logo;
-// $countdown-prefix-cls: #{$namespace}-countdown-input;
-// $dark-bg: #293146;
-
 .#{$prefix-cls} {
   display: flex;
   justify-content: center;
