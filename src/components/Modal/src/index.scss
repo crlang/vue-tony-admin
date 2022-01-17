@@ -27,12 +27,12 @@ $prefix-cls: '#{$namespace}-basic-modal';
       width: 32px;
       height: 32px;
       line-height: 32px;
+      color: var(--text-secondary-color);
       text-align: center;
       cursor: pointer;
 
       &:hover {
         color: var(--primary-color);
-        background: var(--background-primary-color);
       }
 
       > svg {

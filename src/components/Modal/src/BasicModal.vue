@@ -2,7 +2,13 @@
   <Modal v-bind="getBindValue">
     <template
       #title
-      v-if="!$slots.title">
+      v-if="$slots.title">
+      <slot name="title"></slot>
+    </template>
+
+    <template
+      #title
+      v-else-if="title">
       <ModalHeader
         :helpMessage="getProps.helpMessage"
         :class="`${prefixCls}__title`"
@@ -21,7 +27,13 @@
 
     <template
       #footer
-      v-if="!$slots.footer">
+      v-if="$slots.footer">
+      <slot name="footer"></slot>
+    </template>
+
+    <template
+      #footer
+      v-else-if="showCancelBtn || showConfirmBtn || $slots.insertFooter || $slots.centerFooter || $slots.appendFooter">
       <ModalFooter
         v-bind="getBindValue"
         :class="`${prefixCls}__footer`"
@@ -35,6 +47,7 @@
             v-bind="data || {}"></slot>
         </template>
       </ModalFooter>
+
     </template>
 
     <ModalWrapper
