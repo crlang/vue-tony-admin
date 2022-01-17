@@ -27,7 +27,7 @@
         :class="`${prefixCls}__extra-fold`" />
       <TabContent
         isExtra
-        :class="`${prefixCls}__extra-more`"
+        :tabClass="`${prefixCls}__extra-more`"
         :tabItem="$route"
         v-if="getShowFold" />
     </div>
@@ -145,7 +145,10 @@ $prefix-cls: '#{$namespace}-multiple-tabs';
 .#{$prefix-cls} {
   position: relative;
   z-index: 10;
-  background-color: var(--header-background-color);
+  background: var(--background-secondary-color);
+  --tabs-bottom: 16px;
+  --tabs-top: 8px;
+  --tabs-height: 40px;
 
   &-content {
     height: 100%;
@@ -158,10 +161,8 @@ $prefix-cls: '#{$namespace}-multiple-tabs';
       white-space: nowrap;
     }
 
-    &__quick {
-      display: flex;
-      align-items: center;
-      height: 100%;
+    .el-dropdown-menu__item--divided::before {
+      display: none;
     }
 
     &__info {
@@ -179,12 +180,11 @@ $prefix-cls: '#{$namespace}-multiple-tabs';
 
   &__extra {
     position: absolute;
-    top: calc(50% - 10px);
-    right: 12px;
+    top: var(--tabs-top);
+    right: 0;
+    bottom: var(--tabs-bottom);
     display: flex;
     align-items: center;
-    height: 20px;
-    line-height: 20px;
 
     &-redo,
     &-more,
@@ -192,20 +192,21 @@ $prefix-cls: '#{$namespace}-multiple-tabs';
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 24px;
-      height: 24px;
+      width: var(--tabs-height);
+      height: var(--tabs-height);
       margin-left: 8px;
       cursor: pointer;
 
       &:hover {
         color: var(--primary-color);
+        background: var(--control-background-hover);
       }
     }
   }
 }
 
 .#{$prefix-cls} .el-tabs {
-  padding-top: 7px;
+  padding-top: var(--tabs-top);
 
   &__active-bar {
     display: none;
@@ -217,16 +218,16 @@ $prefix-cls: '#{$namespace}-multiple-tabs';
 
     .el-tabs__nav {
       &-wrap {
-        padding-right: 106px;
+        padding-right: 142px;
         padding-left: 6px;
-        margin: 0 0 16px;
+        margin: 0 0 var(--tabs-bottom);
 
         &::after {
           height: 1px;
         }
 
         &.is-scrollable {
-          padding-right: 126px;
+          padding-right: 162px;
           padding-left: 24px;
         }
       }
@@ -236,7 +237,7 @@ $prefix-cls: '#{$namespace}-multiple-tabs';
       }
 
       &-next {
-        right: 102px;
+        right: 136px;
       }
 
       &-prev,
@@ -246,7 +247,7 @@ $prefix-cls: '#{$namespace}-multiple-tabs';
         color: var(--text-primary-color);
 
         &:hover {
-          background: var(--background-primary-color);;
+          background: var(--background-primary-color);
         }
       }
 
@@ -254,6 +255,7 @@ $prefix-cls: '#{$namespace}-multiple-tabs';
         position: relative;
         display: inline-flex;
         align-items: center;
+        height: var(--tabs-height);
         padding: 0;
         margin: 0 4px;
         line-height: 1;

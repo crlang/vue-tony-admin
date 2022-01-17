@@ -1,7 +1,6 @@
 <template>
   <el-dropdown
     :trigger="getTrigger"
-    :class="`${prefixCls}`"
     @visible-change="handleContext"
     :popper-class="`${prefixCls}__contextmenu`"
     @command="handleMenuEvent">
@@ -23,7 +22,7 @@
       <span :class="`${prefixCls}__info-text`">{{ getTitle }}</span>
     </div>
     <div
-      :class="`${prefixCls}__quick`"
+      :class="tabClass"
       v-else>
       <Icon icon="ion:chevron-down" />
     </div>
@@ -53,6 +52,7 @@ export default defineComponent({
       default: null,
     },
     isExtra: Boolean,
+    tabClass: String,
   },
   setup(props) {
     const { prefixCls } = useDesign('multiple-tabs-content')
@@ -93,20 +93,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style lang="scss">
-$prefix-cls: '#{$namespace}-multiple-tabs';
-
-.#{$prefix-cls} {
-  &__contextmenu {
-    .el-dropdown-menu {
-      &__item {
-        &--divided::before {
-          display: none;
-        }
-      }
-    }
-  }
-}
-
-</style>
