@@ -7,7 +7,7 @@
     <template #append>
       <el-popover
         :width="560"
-        v-model:visible="visible"
+        trigger="click"
         :placement="placement">
         <div :class="`${prefixCls}__search`">
           <el-input
@@ -103,7 +103,6 @@ const isSvgMode = props.mode === 'svg'
 const icons = isSvgMode ? getSvgIcons() : getIcons()
 
 const currentSelect = ref('')
-const visible = ref(false)
 const currentList = ref(icons)
 const searckKeyword = ref('')
 
@@ -189,7 +188,14 @@ $prefix-cls: '#{$namespace}-icon-picker';
         background: #f4f7f9;
       }
     }
+  }
 
+  &__icon,
+  &__search {
+    svg {
+      width: 16px;
+      height: 16px;
+    }
   }
 }
 </style>
