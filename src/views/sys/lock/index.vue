@@ -5,6 +5,7 @@
     <LockPage v-if="getIsLock" />
   </transition>
 </template>
+
 <script lang="ts" setup>
 import { computed } from 'vue'
 import LockPage from './LockPage.vue'

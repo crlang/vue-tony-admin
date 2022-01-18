@@ -25,8 +25,11 @@
     <transition name="fade-slide">
       <div
         :class="`${prefixCls}-entry`"
+        @click="handleShowForm(true)"
         v-show="!showDate">
-        <div :class="`${prefixCls}-entry-content`">
+        <div
+          :class="`${prefixCls}-entry-content`"
+          @click.stop="">
           <div :class="`${prefixCls}-entry__header`">
             <img :src="userinfo.avatar || headerImg" />
             <p>{{ userinfo.realName }}</p>
@@ -34,37 +37,22 @@
           <div :class="`${prefixCls}-entry__input`">
             <el-input
               v-model="password"
+              type="password"
               :placeholder="t('sys.lock.placeholder')"
               @keypress.enter="unLock()" />
+            <Loading
+              v-if="loading"
+              class="is-loading" />
+            <ArrowRightBold v-else />
           </div>
-          <span
-            :class="`${prefixCls}-entry__err-msg`"
-            v-if="errMsg">
-            {{ t('sys.lock.alert') }}
-          </span>
-          <div :class="`${prefixCls}-entry__footer`">
-            <el-button
-              type="text"
-              size="small"
-              :disabled="loading"
-              @click="handleShowForm(true)">
-              {{ t('common.back') }}
-            </el-button>
-            <el-button
-              type="text"
-              size="small"
-              :disabled="loading"
-              @click="goLogin">
-              {{ t('sys.lock.backToLogin') }}
-            </el-button>
-            <el-button
-              type="text"
-              size="small"
-              @click="unLock()"
-              :loading="loading">
-              {{ t('sys.lock.entry') }}
-            </el-button>
+          <div
+            :class="`${prefixCls}-entry__extra`"
+            @click="goLogin">
+            <el-tooltip :content="t('sys.lock.backToLogin')"><Icon
+              :size="32"
+              icon="ion:power-outline" /></el-tooltip>
           </div>
+
         </div>
       </div>
     </transition>
@@ -86,17 +74,19 @@ import { useLockStore } from '@/store/modules/lock'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useNow } from './useNow'
 import { useDesign } from '@/hooks/web/useDesign'
-import { Lock } from '@element-plus/icons'
+import { Lock, ArrowRightBold, Loading } from '@element-plus/icons'
 import headerImg from '@/assets/images/header.jpg'
+import { useMessage } from '@/hooks/web/useMessage'
+import { Icon } from '@/components/Icon'
 
 const password = ref('')
 const loading = ref(false)
-const errMsg = ref(false)
 const showDate = ref(true)
 
 const { prefixCls } = useDesign('lock-page')
 const lockStore = useLockStore()
 const userStore = useUserStore()
+const { createMessage } = useMessage()
 
 const { hour, month, minute, meridiem, year, day, week } = useNow(true)
 
@@ -106,9 +96,6 @@ const userinfo = computed(() => {
   return userStore.getUserInfo || {}
 })
 
-/**
- * @description: unLock
- */
 async function unLock() {
   if (!password.value) {
     return
@@ -117,7 +104,7 @@ async function unLock() {
   try {
     loading.value = true
     const res = await lockStore.unLock(pwd)
-    errMsg.value = !res
+    !res && createMessage.error(t('sys.lock.alert'))
   } finally {
     loading.value = false
   }
@@ -142,7 +129,7 @@ $prefix-cls: '#{$namespace}-lock-page';
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 1001;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -155,11 +142,17 @@ $prefix-cls: '#{$namespace}-lock-page';
     display: flex;
     align-items: center;
     padding: 12px;
-    color: #fff;
+    color: rgba(255, 255, 255, 0.85);
     text-align: center;
     cursor: pointer;
+    animation: sectimer 1s ease-in infinite;
     transition: all 0.5s linear;
     flex-direction: column;
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.95);
+      animation: none;
+    }
   }
 
   &__box {
@@ -176,8 +169,8 @@ $prefix-cls: '#{$namespace}-lock-page';
     align-items: center;
     width: 48%;
     font-weight: 700;
-    color: #bababa;
-    background-color: #141313;
+    color: rgba(255, 255, 255, 0.65);
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 30px;
 
     @media screen and (max-width: $screen-md) {
@@ -225,7 +218,7 @@ $prefix-cls: '#{$namespace}-lock-page';
     position: absolute;
     bottom: 12px;
     font-size: 24px;
-    color: #fff;
+    color: rgba(255, 255, 255, 0.85);
     text-align: center;
 
     > div:first-child {
@@ -246,43 +239,65 @@ $prefix-cls: '#{$namespace}-lock-page';
     backdrop-filter: blur(8px);
 
     &-content {
-      width: 260px;
+      width: 320px;
     }
 
     &__header {
       text-align: center;
 
       > img {
-        width: 70px;
+        width: 120px;
         margin: 0 auto;
         border-radius: 50%;
       }
 
       > p {
-        margin-top: 5px;
+        margin: 8px 0 12px;
+        font-size: 18px;
         font-weight: 500;
-        color: #bababa;
+        color: rgba(255, 255, 255, 0.65);
       }
     }
 
     &__input {
-      margin: 12px 0;
-    }
+      position: relative;
+      margin: 16px 0;
 
-    &__err-msg {
-      display: inline-block;
-      margin-top: 10px;
-      color: var(--error-color);
-    }
+      > svg {
+        position: absolute;
+        top: calc(50% - 8px);
+        right: 16px;
+        z-index: -1;
+        width: 16px;
+        color: rgba(255, 255, 255, 0.75);
+      }
 
-    &__footer {
-      display: flex;
-      justify-content: space-between;
-
-      > .el-button {
-        margin: 0 6px;
+      :deep(.el-input__inner) {
+        padding-right: 16px;
+        color: rgba(255, 255, 255, 1);
       }
     }
+
+    &__extra {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      color: rgba(255, 255, 255, 0.55);
+      cursor: pointer;
+
+      &:hover {
+        color: rgba(255, 255, 255, 0.95);
+      }
+    }
+  }
+}
+@keyframes sectimer {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
   }
 }
 </style>
