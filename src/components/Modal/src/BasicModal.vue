@@ -58,7 +58,6 @@
       :loading="getProps.loading"
       :loading-tip="getProps.loadingTip"
       :modelValue="visibleRef"
-      :modalFooterHeight="footer !== undefined && !footer ? 0 : undefined"
       v-bind="omit(getProps.wrapperProps, 'modelValue', 'height', 'modalFooterHeight')"
       @ext-height="handleExtHeight"
       @height-change="handleHeightChange">

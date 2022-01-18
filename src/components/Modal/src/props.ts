@@ -18,6 +18,9 @@ export const modalProps = {
 
 export const basicProps = {
   ...modalProps,
+
+  modelValue: { type: Boolean },
+
   defaultFullscreen: { type: Boolean },
   // Can it be full screen
   canFullscreen: { type: Boolean, default: true },
