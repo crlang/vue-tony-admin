@@ -1,20 +1,14 @@
 <template>
   <el-dropdown
     @command="handleMenuClick">
-    <span
-      :class="[prefixCls, `${prefixCls}--${theme}`]"
-      class="flex">
+    <div :class="[prefixCls,itemClass]">
       <img
-        :class="`${prefixCls}__header`"
+        :class="`${prefixCls}__avatar`"
         :src="getUserInfo.avatar" />
-      <span :class="`${prefixCls}__info hidden md:block`">
-        <span
-          :class="`${prefixCls}__name`"
-          class="truncate">
-          {{ getUserInfo.realName }}
-        </span>
+      <span :class="`${prefixCls}__name`">
+        {{ getUserInfo.realName }}
       </span>
-    </span>
+    </div>
 
     <template #dropdown>
       <el-dropdown-menu :class="`${prefixCls}-menulist`">
@@ -37,12 +31,11 @@
       </el-dropdown-menu>
     </template>
   </el-dropdown>
-  <LockAction v-model:visible="lockScreenVisible" />
+  <LockAction @register="register" />
 </template>
-<script lang="ts">
-// components
 
-import { defineComponent, computed, ref } from 'vue'
+<script lang="ts">
+import { defineComponent, computed } from 'vue'
 
 import { DOC_URL } from '@/settings/siteSetting'
 
@@ -50,10 +43,9 @@ import { useUserStore } from '@/store/modules/user'
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useDesign } from '@/hooks/web/useDesign'
-// import { useModal } from '@/components/Modal'
+import { useModal } from '@/components/Modal'
 
 import headerImg from '@/assets/images/header.jpg'
-import { propTypes } from '@/utils/propTypes'
 import { openWindow } from '@/utils'
 import { Icon } from '@/components/Icon'
 
@@ -68,24 +60,23 @@ export default defineComponent({
     Icon,
   },
   props: {
-    theme: propTypes.oneOf(['dark', 'light']),
+    itemClass: String,
   },
   setup() {
     const { prefixCls } = useDesign('header-user-dropdown')
     const { t } = useI18n()
     const { getShowDoc, getUseLockPage } = useHeaderSetting()
     const userStore = useUserStore()
-    const lockScreenVisible = ref(false)
 
     const getUserInfo = computed(() => {
       const { realName = '', avatar, desc } = userStore.getUserInfo || {}
       return { realName, avatar: avatar || headerImg, desc }
     })
 
-    // const [register, { openModal }] = useModal()
+    const [register, { openModal }] = useModal()
 
     function handleLock() {
-      lockScreenVisible.value = true
+      openModal(true)
     }
 
     //  login out
@@ -115,12 +106,11 @@ export default defineComponent({
 
     return {
       prefixCls,
-      lockScreenVisible,
       t,
       getUserInfo,
       handleMenuClick,
       getShowDoc,
-      // register,
+      register,
       getUseLockPage,
     }
   },
@@ -130,7 +120,9 @@ export default defineComponent({
 $prefix-cls: '#{$namespace}-header-user-dropdown';
 
 .#{$prefix-cls} {
+  display: flex;
   align-items: center;
+  width: auto;
   height: var(--header-height);
   padding: 0 0 0 10px;
   padding-right: 10px;
@@ -150,7 +142,7 @@ $prefix-cls: '#{$namespace}-header-user-dropdown';
     margin-right: 12px;
   }
 
-  &__header {
+  &__avatar {
     border-radius: 50%;
   }
 

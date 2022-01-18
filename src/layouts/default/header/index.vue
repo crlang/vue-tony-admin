@@ -39,9 +39,7 @@
         :class="`${prefixCls}-action__item`"
       />
 
-      <UserDropDown
-        :theme="getHeaderTheme"
-        :class="`${prefixCls}-action__item`" />
+      <UserDropDown :itemClass="`${prefixCls}-action__item`" />
 
       <SettingDrawer
         v-if="getShowSetting"
