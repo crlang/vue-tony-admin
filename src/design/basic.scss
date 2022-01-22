@@ -1,0 +1,123 @@
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+
+:root {
+  tab-size: 4;
+}
+
+:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+::-moz-focus-inner {
+  padding: 0;
+  border-style: none;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+::-webkit-search-decoration {
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-appearance: none;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+::-webkit-file-upload-button {
+  font: inherit;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-appearance: button;
+}
+
+[type='search'] {
+  outline-offset: -2px;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-appearance: textfield;
+}
+
+abbr[title] {
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: inherit;
+  line-height: inherit;
+}
+
+html {
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-text-size-adjust: 100%;
+}
+
+h4, h1, h3 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+input, textarea {
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  line-height: inherit;
+  color: inherit;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  border-style: solid;
+}
+
+input::placeholder {
+  color: #a1a1aa;
+  opacity: 1;
+}
+
+img, svg, iframe {
+  display: block;
+  vertical-align: middle;
+}
+
+p, h4, h1, h3 {
+  margin: 0;
+}
+
+table {
+  text-indent: 0;
+  border-collapse: collapse;
+  border-color: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+textarea::placeholder {
+  color: #a1a1aa;
+  opacity: 1;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}

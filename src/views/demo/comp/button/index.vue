@@ -281,7 +281,7 @@
             preIcon="ion:layers-outline">Before</Button>
           <Button type="danger">Normal</Button>
           <Button
-            iconSize="16"
+            :iconSize="16"
             sufIcon="ion:layers-outline">After</Button>
         </el-card>
       </el-col>
