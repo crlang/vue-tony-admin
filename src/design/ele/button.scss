@@ -3,13 +3,28 @@
   --el-button-hover-bg-color: var(--background-secondary-color);
   --el-button-hover-border-color: var(--border-grey-color);
 
-  height: 40px;
+  // Resize the button to 40px
+  height: var(--el-button-size);
 
   &--default {
+    --el-button-size: 40px;
     --el-button-text-color: var(--text-secondary-color);
     --el-button-hover-text-color: var(--text-primary-color);
     --el-button-disabled-text-color: var(--text-third-color);
     --el-button-border-color: var(--border-grey-color);
+  }
+
+  &--large {
+    --el-button-size: 48px;
+  }
+
+  &--small {
+    --el-button-size: 32px;
+  }
+
+  &.is-circle {
+    width: var(--el-button-size);
+    height: var(--el-button-size);
   }
 
   &--primary,

@@ -96,7 +96,7 @@
           class="box-card"
           shadow="hover">
           <template #header>
-            <div class="card-header">icon button (version: 1.2.0.beta.1+)</div>
+            <div class="card-header">icon button</div>
           </template>
 
           <el-button
@@ -125,10 +125,6 @@
           <el-button
             type="primary"
             :icon="Search">Search</el-button>
-          <el-button type="primary">
-            Upload<el-icon class="el-icon--right"><Upload /></el-icon>
-          </el-button>
-
         </el-card>
       </el-col>
       <el-col :span="12">
@@ -191,7 +187,6 @@
           <el-button
             type="danger"
             disabled>Danger</el-button>
-
         </el-card>
       </el-col>
       <el-col :span="12">
@@ -238,14 +233,15 @@
             <div class="card-header">Loading button</div>
           </template>
 
-          <el-button
-            type="primary"
-            :loading="true">Loading</el-button>
-          <el-button
-            type="primary"
-            :loading="loading"
-            @click="onLoading">Click Me</el-button>
-
+          <div class="flex">
+            <el-button
+              type="primary"
+              :loading="true">Loading</el-button>
+            <el-button
+              type="primary"
+              :loading="loading"
+              @click="onLoading">Click Me</el-button>
+          </div>
         </el-card>
       </el-col>
       <el-col :span="12">
@@ -272,6 +268,23 @@
             circle />
         </el-card>
       </el-col>
+      <el-col :span="12">
+        <el-card
+          class="box-card"
+          shadow="hover">
+          <template #header>
+            <div class="card-header">custom global component Button</div>
+          </template>
+
+          <Button
+            type="success"
+            preIcon="ion:layers-outline">Before</Button>
+          <Button type="danger">Normal</Button>
+          <Button
+            iconSize="16"
+            sufIcon="ion:layers-outline">After</Button>
+        </el-card>
+      </el-col>
     </el-row>
   </PageWrapper>
 </template>
@@ -281,7 +294,7 @@ import { defineComponent, ref } from 'vue'
 import { PageWrapper } from '@/components/Page'
 import { Search, Edit, Check, Message, Star, Delete, ArrowLeft, Share, ArrowRight, Upload } from '@element-plus/icons'
 export default defineComponent({
-  components: { PageWrapper, Upload },
+  components: { PageWrapper },
   setup() {
     const loading = ref(false)
 
@@ -302,6 +315,7 @@ export default defineComponent({
       ArrowRight,
       Share,
       loading,
+      Upload,
       onLoading,
     }
   },
