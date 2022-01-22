@@ -84,6 +84,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     css: {
       preprocessorOptions: {
         scss: {
+          charset: false,
           additionalData: `
           @use '/src/design/var/breakpoint.scss' as *;
           @use '/src/design/var/index.scss' as *;
