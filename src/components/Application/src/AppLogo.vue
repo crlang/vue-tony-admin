@@ -60,15 +60,6 @@ $prefix-cls: '#{$namespace}-app-logo';
     font-family: var(--font-family-secondary);
     font-size: 33px;
     font-weight: 600;
-    color: var(--text-primary-reverse);
   }
 }
-
-// html[data-theme='dark'] {
-//   .#{$prefix-cls} {
-//     > span {
-//       color: #fff;
-//     }
-//   }
-// }
 </style>
