@@ -4,6 +4,25 @@
     title="基础组件"
     content=" 基础组件依赖于element-plus,组件库已有的基础组件,项目中不会再次进行demo展示（二次封装组件除外）">
     <el-row :gutter="12">
+      <el-col :span="24">
+        <el-card
+          class="box-card"
+          shadow="hover">
+          <template #header>
+            <div class="card-header">suggestion: custom global component Button</div>
+          </template>
+
+          <Button
+            type="success"
+            preIcon="ion:layers-outline">Before</Button>
+          <Button
+            type="primary"
+            shadow>Shadow</Button>
+          <Button
+            :iconSize="16"
+            sufIcon="ion:layers-outline">After</Button>
+        </el-card>
+      </el-col>
       <el-col :span="12">
         <el-card
           class="box-card"
@@ -266,23 +285,6 @@
             :icon="Search"
             size="small"
             circle />
-        </el-card>
-      </el-col>
-      <el-col :span="12">
-        <el-card
-          class="box-card"
-          shadow="hover">
-          <template #header>
-            <div class="card-header">custom global component Button</div>
-          </template>
-
-          <Button
-            type="success"
-            preIcon="ion:layers-outline">Before</Button>
-          <Button type="danger">Normal</Button>
-          <Button
-            :iconSize="16"
-            sufIcon="ion:layers-outline">After</Button>
         </el-card>
       </el-col>
     </el-row>

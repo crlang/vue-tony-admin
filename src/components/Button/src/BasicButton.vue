@@ -36,11 +36,12 @@ export default defineComponent({
     const { prefixCls } = useDesign('basic-button')
 
     const getButtonClass = computed(() => {
-      const { disabled } = props
+      const { disabled, shadow } = props
       return [
         prefixCls,
         {
           [`is-disabled`]: disabled,
+          [`is-shadow`]: shadow,
         },
       ]
     })
@@ -78,6 +79,10 @@ $prefix-cls: '#{$tonyname}-basic-button';
         margin-left: 2px;
       }
     }
+  }
+
+  &.is-shadow {
+    box-shadow: 0 6px 7px -1px rgba(80, 86, 175, 0.3);
   }
 }
 </style>

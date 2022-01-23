@@ -3,6 +3,10 @@ import { EleButtonProps } from '@/components/ElementPlus'
 export const buttonProps = {
   ...EleButtonProps,
   /**
+   * button shadow
+   */
+  shadow: { type: Boolean },
+  /**
    * Text before icon.
    */
   preIcon: { type: String },
