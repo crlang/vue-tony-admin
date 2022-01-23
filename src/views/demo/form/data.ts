@@ -396,7 +396,7 @@ export const basicSchemas: FormSchema[] = [
   },
   {
     field: 'selectA',
-    component: 'Select',
+    component: 'ElSelect',
     label: '互斥SelectA',
     slot: 'selectA',
     defaultValue: [],
@@ -406,7 +406,7 @@ export const basicSchemas: FormSchema[] = [
   },
   {
     field: 'selectB',
-    component: 'Select',
+    component: 'ElSelect',
     label: '互斥SelectB',
     slot: 'selectB',
     defaultValue: [],
