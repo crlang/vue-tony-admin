@@ -1,17 +1,24 @@
 .el-button {
-  --el-button-bg-color: var(--background-primary-color);
-  --el-button-hover-bg-color: var(--background-secondary-color);
-  --el-button-hover-border-color: var(--border-grey-color);
+  --el-button-text-color: var(--primary-color);
+  --el-button-bg-color: var(--blue-color-a15);
+  --el-button-border-color: transparent;
+  --el-button-disabled-text-color: var(--text-third-color);
+
+  // hover
+  --el-button-hover-text-color: var(--primary-color);
+  --el-button-hover-bg-color: var(--blue-color-a15);
+  --el-button-hover-border-color: transparent;
 
   // Resize the button to 40px
   height: var(--el-button-size);
 
+  &.is-plain {
+    --el-button-hover-border-color: inherit;
+    --el-button-hover-bg-color: inherit;
+  }
+
   &--default {
     --el-button-size: 40px;
-    --el-button-text-color: var(--text-secondary-color);
-    --el-button-hover-text-color: var(--text-primary-color);
-    --el-button-disabled-text-color: var(--text-third-color);
-    --el-button-border-color: var(--border-grey-color);
   }
 
   &--large {
@@ -33,8 +40,8 @@
   &--info,
   &--danger {
     --el-button-text-color: var(--white-color);
-    --el-button-hover-text-color: var(--white-color);
     --el-button-disabled-text-color: var(--white-color);
+    --el-button-hover-text-color: var(--white-color);
   }
 
   // &--primary {
