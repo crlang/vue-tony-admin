@@ -67,7 +67,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss">
-$prefix-cls: '#{$namespace}-default-layout';
+$prefix-cls: '#{$tonyname}-default-layout';
 
 .#{$prefix-cls} {
   display: flex;
