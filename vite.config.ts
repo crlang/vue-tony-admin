@@ -86,8 +86,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         scss: {
           charset: false,
           additionalData: `
-          @use '/src/design/var/breakpoint.scss' as *;
-          @use '/src/design/var/index.scss' as *;
+            @use "@/design/ele/setting.scss" as *;
+            @use "@/design/var/index.scss" as *;
           `,
         },
       },
