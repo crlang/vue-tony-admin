@@ -2,13 +2,6 @@
 # yarn lockfile v1
 
 
-"@antfu/utils@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.npmjs.org/@antfu/utils/-/utils-0.3.0.tgz"
-  integrity sha512-UU8TLr/EoXdg7OjMp0h9oDoIAVr+Z/oW9cpOxQQyrsz6Qzd2ms/1CdWx8fl2OQdFpxGmq5Vc4TwfLHId6nAZjA==
-  dependencies:
-    "@types/throttle-debounce" "^2.1.0"
-
 "@apideck/better-ajv-errors@^0.3.1":
   version "0.3.1"
   resolved "https://registry.npmmirror.com/@apideck/better-ajv-errors/download/@apideck/better-ajv-errors-0.3.1.tgz#a8d4ef3ce67c418b8b24f2b76b6bc84eb547baf7"
@@ -2170,11 +2163,6 @@
   dependencies:
     "@types/estree" "*"
 
-"@types/throttle-debounce@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.nlark.com/@types/throttle-debounce/download/@types/throttle-debounce-2.1.0.tgz"
-  integrity sha1-HD32JL/Eti+ZLTASuExW1B6rN3Y=
-
 "@types/through@*":
   version "0.0.30"
   resolved "https://registry.nlark.com/@types/through/download/@types/through-0.0.30.tgz?cache=0&sync_timestamp=1629709559256&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fthrough%2Fdownload%2F%40types%2Fthrough-0.0.30.tgz"
@@ -2558,28 +2546,6 @@
   integrity sha512-BJ71cxHN5VByW1S58Gl85NFJaQu93F7Vs7K/MuAKsIIuHm9PBbkR5Vxkg9ko9cBdiKVt+FNoo13BhdbA+Vwycg==
   dependencies:
     vue-demi "*"
-
-"@windicss/config@1.6.1":
-  version "1.6.1"
-  resolved "https://registry.npmmirror.com/@windicss/config/download/@windicss/config-1.6.1.tgz#f0db67e8d426b961b65f746015b7d17e9f766094"
-  integrity sha512-E4FKtWdYl5HwFknBQ+Z2JIF58TZiR4/ZiP8B30sfRxNlG6clh4agn5MJqTb4ER0MLkDb30Hugl2tGun0AQNbFw==
-  dependencies:
-    debug "^4.3.3"
-    jiti "^1.12.9"
-    windicss "^3.4.0"
-
-"@windicss/plugin-utils@1.6.1":
-  version "1.6.1"
-  resolved "https://registry.npmmirror.com/@windicss/plugin-utils/download/@windicss/plugin-utils-1.6.1.tgz#0459428beaa3b9053838c047ccb6001493a926a9"
-  integrity sha512-hFQY27bOr9SSpekIvSwBpIX25nR4cwrU5/1kJFqCwAzqyazvd7U9c/iI1E2sTEQOkPbpTTJkY2Act21Q70oSDQ==
-  dependencies:
-    "@antfu/utils" "^0.3.0"
-    "@windicss/config" "1.6.1"
-    debug "^4.3.3"
-    fast-glob "^3.2.7"
-    magic-string "^0.25.7"
-    micromatch "^4.0.4"
-    windicss "^3.4.0"
 
 "@zxcvbn-ts/core@^1.2.0":
   version "1.2.0"
@@ -8300,11 +8266,6 @@ jest@^27.4.7:
     import-local "^3.0.2"
     jest-cli "^27.4.7"
 
-jiti@^1.12.9:
-  version "1.12.9"
-  resolved "https://registry.npmmirror.com/jiti/download/jiti-1.12.9.tgz#2ce45b265cfc8dc91ebd70a5204807cf915291bc"
-  integrity sha1-LORbJlz8jckevXClIEgHz5FSkbw=
-
 jpegtran-bin@^5.0.0:
   version "5.0.2"
   resolved "https://registry.npm.taobao.org/jpegtran-bin/download/jpegtran-bin-5.0.2.tgz"
@@ -8563,11 +8524,6 @@ known-css-properties@^0.5.0:
   version "0.5.0"
   resolved "https://registry.nlark.com/known-css-properties/download/known-css-properties-0.5.0.tgz"
   integrity sha1-b/ZpQ+1KW1VlfuCVd5qR9FNvgIQ=
-
-kolorist@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.npmmirror.com/kolorist/download/kolorist-1.5.1.tgz#c3d66dc4fabde4f6b7faa6efda84c00491f9e52b"
-  integrity sha512-lxpCM3HTvquGxKGzHeknB/sUjuVoUElLlfYnXZT73K8geR9jQbroGlSCFBax9/0mpGoD3kzcMLnOlGQPJJNyqQ==
 
 leven@^3.1.0:
   version "3.1.0"
@@ -13128,16 +13084,6 @@ vite-plugin-vue-setup-extend@^0.3.0:
     "@vue/compiler-sfc" "^3.2.26"
     magic-string "^0.25.7"
 
-vite-plugin-windicss@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.npmmirror.com/vite-plugin-windicss/download/vite-plugin-windicss-1.6.1.tgz#89c6790d6fff2ea17fc540a8487759da9d7d4ec0"
-  integrity sha512-63uv4HqBxtSZB0WOtrZS8yhyfQPgGQwYgcBald+/BpLSlYJREcDKgX9Xd/qDgTAjpDRozxKQj/JWreIlyIahGg==
-  dependencies:
-    "@windicss/plugin-utils" "1.6.1"
-    debug "^4.3.3"
-    kolorist "^1.5.1"
-    windicss "^3.4.0"
-
 vite@^2.7.10:
   version "2.7.10"
   resolved "https://registry.npmmirror.com/vite/download/vite-2.7.10.tgz#d12c4c10e56a0ecf7890cb529c15996c6111218f"
@@ -13474,11 +13420,6 @@ wide-align@^1.1.2:
   integrity sha1-3x1MIGhUNp7PPJpImPGyP72dFdM=
   dependencies:
     string-width "^1.0.2 || 2 || 3 || 4"
-
-windicss@^3.4.0:
-  version "3.4.2"
-  resolved "https://registry.npmmirror.com/windicss/download/windicss-3.4.2.tgz#257795c9be8b6e93117ffa3fb27874d225da6679"
-  integrity sha512-YieqWaXiwPu0JJoB7z03RXdjZjQQJtMZAeXUXu/j3JXSMhIgV/2rUXu4Q7QrworRlbaASZlFhxjnL/78aAty+Q==
 
 with@^7.0.0:
   version "7.0.2"
