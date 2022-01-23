@@ -100,7 +100,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
-$prefix-cls: '#{$namespace}-layout-multiple-header';
+$prefix-cls: '#{$tonyname}-layout-multiple-header';
 
 .#{$prefix-cls} {
   transition: width 0.2s;

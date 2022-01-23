@@ -57,7 +57,7 @@ function hideLoading() {
 </script>
 
 <style lang="scss" scoped>
-$prefix-cls: '#{$namespace}-iframe-page';
+$prefix-cls: '#{$tonyname}-iframe-page';
 
 .#{$prefix-cls} {
   &__mask {

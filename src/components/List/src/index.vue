@@ -46,7 +46,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-list';
+$prefix-cls: '#{$tonyname}-list';
 
 .#{$prefix-cls} {
   position: relative;

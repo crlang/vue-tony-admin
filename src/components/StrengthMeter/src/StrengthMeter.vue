@@ -65,7 +65,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
-$prefix-cls: '#{$namespace}-strength-meter';
+$prefix-cls: '#{$tonyname}-strength-meter';
 
 .#{$prefix-cls} {
   width: 100%;

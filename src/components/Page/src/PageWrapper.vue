@@ -133,7 +133,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-page-wrapper';
+$prefix-cls: '#{$tonyname}-page-wrapper';
 
 .#{$prefix-cls} {
   position: relative;

@@ -187,7 +187,7 @@ export default defineComponent({
 
   &-table {
     height: 100%;
-    .#{$namespace}-basic-table {
+    .#{$tonyname}-basic-table {
       height: calc(100% - 52px);
     }
   }

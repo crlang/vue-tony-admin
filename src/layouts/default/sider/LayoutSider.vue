@@ -115,7 +115,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-layout-sideBar';
+$prefix-cls: '#{$tonyname}-layout-sideBar';
 
 .#{$prefix-cls} {
   z-index: 101;

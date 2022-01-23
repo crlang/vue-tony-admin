@@ -121,7 +121,7 @@ function handleShowForm(show = false) {
 </script>
 
 <style lang="scss" scoped>
-$prefix-cls: '#{$namespace}-lock-page';
+$prefix-cls: '#{$tonyname}-lock-page';
 
 .#{$prefix-cls} {
   position: fixed;
@@ -173,35 +173,35 @@ $prefix-cls: '#{$namespace}-lock-page';
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 30px;
 
-    @media screen and (max-width: $screen-md) {
+    @media screen and (max-width: 768px) {
       span:not(.meridiem) {
         font-size: 160px;
       }
     }
 
-    @media screen and (min-width: $screen-md) {
+    @media screen and (min-width: 768px) {
       span:not(.meridiem) {
         font-size: 160px;
       }
     }
 
-    @media screen and (max-width: $screen-sm) {
+    @media screen and (max-width: 576px) {
       span:not(.meridiem) {
         font-size: 90px;
       }
     }
-    @media screen and (min-width: $screen-lg) {
+    @media screen and (min-width: 992px) {
       span:not(.meridiem) {
         font-size: 220px;
       }
     }
 
-    @media screen and (min-width: $screen-xl) {
+    @media screen and (min-width: 1200px) {
       span:not(.meridiem) {
         font-size: 260px;
       }
     }
-    @media screen and (min-width: $screen-2xl) {
+    @media screen and (min-width: 1600px) {
       span:not(.meridiem) {
         font-size: 320px;
       }

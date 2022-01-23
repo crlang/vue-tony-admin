@@ -1,6 +1,6 @@
-$menu-prefix-cls: '#{$namespace}-menu';
-$menu-popup-prefix-cls: '#{$namespace}-menu-popup';
-$submenu-popup-prefix-cls: '#{$namespace}-menu-submenu-popup';
+$menu-prefix-cls: '#{$tonyname}-menu';
+$menu-popup-prefix-cls: '#{$tonyname}-menu-popup';
+$submenu-popup-prefix-cls: '#{$tonyname}-menu-submenu-popup';
 $menu-dark-subsidiary-color: rgba(255, 255, 255, 0.7);
 
 @mixin light-border {

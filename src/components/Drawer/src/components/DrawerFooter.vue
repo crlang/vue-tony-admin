@@ -69,7 +69,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-basic-drawer-footer';
+$prefix-cls: '#{$tonyname}-basic-drawer-footer';
 
 .#{$prefix-cls} {
   position: absolute;

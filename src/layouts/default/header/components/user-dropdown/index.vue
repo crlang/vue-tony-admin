@@ -117,7 +117,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss">
-$prefix-cls: '#{$namespace}-header-user-dropdown';
+$prefix-cls: '#{$tonyname}-header-user-dropdown';
 
 .#{$prefix-cls} {
   display: flex;

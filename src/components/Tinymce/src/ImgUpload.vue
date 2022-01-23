@@ -81,7 +81,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
-$prefix-cls: '#{$namespace}-tinymce-img-upload';
+$prefix-cls: '#{$tonyname}-tinymce-img-upload';
 
 .#{$prefix-cls} {
   position: absolute;

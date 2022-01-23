@@ -157,8 +157,8 @@ export default defineComponent({
 })
 </script>
 <style lang="scss">
-$prefix-cls: '#{$namespace}-layout-menu';
-$logo-prefix-cls: '#{$namespace}-app-logo';
+$prefix-cls: '#{$tonyname}-layout-menu';
+$logo-prefix-cls: '#{$tonyname}-app-logo';
 .#{$logo-prefix-cls}.#{$prefix-cls} {
   &-logo {
     height: $side-logo-height;

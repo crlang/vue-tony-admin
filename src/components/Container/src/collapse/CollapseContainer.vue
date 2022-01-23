@@ -89,7 +89,7 @@ function handleExpand() {
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-collapse-container';
+$prefix-cls: '#{$tonyname}-collapse-container';
 
 .#{$prefix-cls} {
   background-color: var(--background-secondary-color);

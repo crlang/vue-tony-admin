@@ -66,7 +66,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$prefix-cls: '#{$namespace}-setting-select-item';
+$prefix-cls: '#{$tonyname}-setting-select-item';
 
 .#{$prefix-cls} {
   display: flex;

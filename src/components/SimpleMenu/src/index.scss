@@ -1,7 +1,7 @@
-$simple-prefix-cls: '#{$namespace}-simple-menu';
-$prefix-cls: '#{$namespace}-menu';
-$dark-prefix-cls: '#{$namespace}-menu-dark';
-$vertical-prefix-cls: '#{$namespace}-menu-vertical';
+$simple-prefix-cls: '#{$tonyname}-simple-menu';
+$prefix-cls: '#{$tonyname}-menu';
+$dark-prefix-cls: '#{$tonyname}-menu-dark';
+$vertical-prefix-cls: '#{$tonyname}-menu-vertical';
 
 .#{$prefix-cls} {
   .collapse-title {

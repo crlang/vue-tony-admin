@@ -81,7 +81,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-header-notify';
+$prefix-cls: '#{$tonyname}-header-notify';
 
 .#{$prefix-cls} {
   padding-top: 2px;

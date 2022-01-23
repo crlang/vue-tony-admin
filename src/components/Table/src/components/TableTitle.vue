@@ -46,7 +46,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss">
-$prefix-cls: '#{$namespace}-basic-table-title';
+$prefix-cls: '#{$tonyname}-basic-table-title';
 
 .#{$prefix-cls} {
   display: flex;

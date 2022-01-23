@@ -45,7 +45,7 @@ const getClass = computed(() => [
 </script>
 
 <style lang="scss" scoped>
-$prefix-cls: '#{$namespace}-basic-title';
+$prefix-cls: '#{$tonyname}-basic-title';
 
 .#{$prefix-cls} {
   position: relative;

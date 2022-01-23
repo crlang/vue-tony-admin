@@ -299,7 +299,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-basic-form';
+$prefix-cls: '#{$tonyname}-basic-form';
 
 .#{$prefix-cls} {
   position: relative;

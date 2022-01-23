@@ -47,7 +47,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$prefix-cls: '#{$namespace}-setting-input-number-item';
+$prefix-cls: '#{$tonyname}-setting-input-number-item';
 
 .#{$prefix-cls} {
   display: flex;

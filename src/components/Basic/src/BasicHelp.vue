@@ -76,7 +76,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-  $prefix-cls: '#{$namespace}-basic-help';
+  $prefix-cls: '#{$tonyname}-basic-help';
 
   .#{$prefix-cls} {
     display: inline-block;

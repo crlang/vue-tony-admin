@@ -178,7 +178,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-cropper-image';
+$prefix-cls: '#{$tonyname}-cropper-image';
 
 .#{$prefix-cls} {
   &--circled {

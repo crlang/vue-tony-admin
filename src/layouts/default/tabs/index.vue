@@ -140,7 +140,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-multiple-tabs';
+$prefix-cls: '#{$tonyname}-multiple-tabs';
 
 .#{$prefix-cls} {
   position: relative;

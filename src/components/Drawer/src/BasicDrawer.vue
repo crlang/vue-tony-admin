@@ -195,7 +195,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-basic-drawer';
+$prefix-cls: '#{$tonyname}-basic-drawer';
 
 .#{$prefix-cls} {
   .el-drawer__header {

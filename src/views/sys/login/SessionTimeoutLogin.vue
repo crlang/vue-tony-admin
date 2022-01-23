@@ -43,7 +43,7 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-$prefix-cls: '#{$namespace}-st-login';
+$prefix-cls: '#{$tonyname}-st-login';
 
 .#{$prefix-cls} {
   position: fixed;

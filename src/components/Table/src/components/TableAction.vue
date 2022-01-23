@@ -93,7 +93,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss">
-$prefix-cls: '#{$namespace}-basic-table-action';
+$prefix-cls: '#{$tonyname}-basic-table-action';
 
 .#{$prefix-cls} {
   display: flex;

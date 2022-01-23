@@ -55,7 +55,7 @@ export default defineComponent({
 
 <style lang="scss">
 $footer-height: 60px;
-$prefix-cls: '#{$namespace}-basic-drawer-header';
+$prefix-cls: '#{$tonyname}-basic-drawer-header';
 
 .#{$prefix-cls} {
   display: flex;

@@ -126,7 +126,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$prefix-cls: '#{$namespace}-header-notify-list';
+$prefix-cls: '#{$tonyname}-header-notify-list';
 
 .#{$prefix-cls} {
   max-height: 320px;

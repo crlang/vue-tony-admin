@@ -40,7 +40,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss">
-$prefix-cls: '#{$namespace}-layout-sider-wrapper';
+$prefix-cls: '#{$tonyname}-layout-sider-wrapper';
 
 .#{$prefix-cls} {
   --el-drawer-bg-color: var(--sider-background-color);

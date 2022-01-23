@@ -166,7 +166,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-layout-breadcrumb';
+$prefix-cls: '#{$tonyname}-layout-breadcrumb';
 
 .#{$prefix-cls} {
   padding: 0 8px;

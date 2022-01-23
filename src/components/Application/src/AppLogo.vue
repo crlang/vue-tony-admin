@@ -43,7 +43,7 @@ function goHome() {
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-app-logo';
+$prefix-cls: '#{$tonyname}-app-logo';
 
 .#{$prefix-cls} {
   display: flex;

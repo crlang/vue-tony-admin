@@ -386,7 +386,7 @@ export default defineComponent({
   });
 </script>
 <style lang="scss">
-$prefix-cls: '#{$namespace}-editable-cell';
+$prefix-cls: '#{$tonyname}-editable-cell';
 
 .edit-cell-align-left {
   text-align: left;

@@ -136,7 +136,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-login';
+$prefix-cls: '#{$tonyname}-login';
 
 .#{$prefix-cls} {
   display: flex;

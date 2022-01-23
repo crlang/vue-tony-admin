@@ -107,7 +107,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-header-lock-modal';
+$prefix-cls: '#{$tonyname}-header-lock-modal';
 
 .#{$prefix-cls} {
   &__entry {

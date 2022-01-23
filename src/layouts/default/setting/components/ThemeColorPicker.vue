@@ -62,7 +62,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-setting-theme-picker';
+$prefix-cls: '#{$tonyname}-setting-theme-picker';
 
 .#{$prefix-cls} {
   display: flex;

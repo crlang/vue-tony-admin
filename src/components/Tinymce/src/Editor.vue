@@ -323,7 +323,7 @@ export default defineComponent({
 <style lang="scss" scoped></style>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-tinymce-container';
+$prefix-cls: '#{$tonyname}-tinymce-container';
 
 .#{$prefix-cls} {
   position: relative;

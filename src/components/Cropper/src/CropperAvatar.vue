@@ -114,7 +114,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$prefix-cls: '#{$namespace}-cropper-avatar';
+$prefix-cls: '#{$tonyname}-cropper-avatar';
 
 .#{$prefix-cls} {
   display: inline-block;

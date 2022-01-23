@@ -137,7 +137,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-app-exception-page';
+$prefix-cls: '#{$tonyname}-app-exception-page';
 
 .#{$prefix-cls} {
   display: flex;

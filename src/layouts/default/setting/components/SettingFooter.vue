@@ -92,7 +92,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$prefix-cls: '#{$namespace}-setting-footer';
+$prefix-cls: '#{$tonyname}-setting-footer';
 
 .#{$prefix-cls} {
   display: flex;

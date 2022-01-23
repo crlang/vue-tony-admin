@@ -40,7 +40,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss">
-$prefix-cls: '#{$namespace}-basic-table-header-cell';
+$prefix-cls: '#{$tonyname}-basic-table-header-cell';
 
 .#{$prefix-cls} {
   &__help {

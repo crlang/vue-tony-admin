@@ -44,7 +44,7 @@ function toggleDarkMode() {
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-dark-switch';
+$prefix-cls: '#{$tonyname}-dark-switch';
 
 html[data-theme='dark'] {
   .#{$prefix-cls} {

@@ -71,7 +71,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss">
-$prefix-cls: '#{$namespace}-basic-table-header';
+$prefix-cls: '#{$tonyname}-basic-table-header';
 
 .#{$prefix-cls} {
   &__inner {

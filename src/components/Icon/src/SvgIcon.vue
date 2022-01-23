@@ -54,7 +54,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$prefix-cls: '#{$namespace}-svg-icon';
+$prefix-cls: '#{$tonyname}-svg-icon';
 
 .#{$prefix-cls} {
   display: inline-block;

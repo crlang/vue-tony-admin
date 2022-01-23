@@ -27,7 +27,7 @@ const { t } = useI18n()
 </script>
 
 <style lang="scss" scoped>
-$prefix-cls: '#{$namespace}-app-search-footer';
+$prefix-cls: '#{$tonyname}-app-search-footer';
 
 .#{$prefix-cls} {
   position: relative;

@@ -335,7 +335,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss">
-$prefix-cls: '#{$namespace}-layout-mix-sider';
+$prefix-cls: '#{$tonyname}-layout-mix-sider';
 
 .#{$prefix-cls} {
   position: fixed;

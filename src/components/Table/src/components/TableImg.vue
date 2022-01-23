@@ -62,7 +62,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-basic-table-img';
+$prefix-cls: '#{$tonyname}-basic-table-img';
 
 .#{$prefix-cls} {
   &.simple-show {

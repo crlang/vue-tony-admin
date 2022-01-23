@@ -1,4 +1,4 @@
-$prefix-cls: '#{$namespace}-layout-header';
+$prefix-cls: '#{$tonyname}-layout-header';
 
 .#{$prefix-cls} {
   display: flex;
@@ -17,7 +17,7 @@ $prefix-cls: '#{$namespace}-layout-header';
       display: none;
     }
 
-    .#{$namespace}-app-logo {
+    .#{$tonyname}-app-logo {
       min-width: unset;
       padding-right: 0;
 

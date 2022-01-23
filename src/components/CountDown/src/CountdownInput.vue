@@ -51,7 +51,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss">
-$prefix-cls: '#{$namespace}-countdown-input';
+$prefix-cls: '#{$tonyname}-countdown-input';
 
 .#{$prefix-cls} {
   position: relative;

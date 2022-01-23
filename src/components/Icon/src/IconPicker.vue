@@ -146,7 +146,7 @@ function handleSearchChange(value: any) {
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-icon-picker';
+$prefix-cls: '#{$tonyname}-icon-picker';
 
 .#{$prefix-cls} {
 

@@ -53,7 +53,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-header-error-action';
+$prefix-cls: '#{$tonyname}-header-error-action';
 .#{$prefix-cls} {
   .el-badge {
     display: flex;

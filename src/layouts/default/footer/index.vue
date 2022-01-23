@@ -66,7 +66,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 $normal-color: rgba(0, 0, 0, 0.45);
 $hover-color: rgba(0, 0, 0, 0.85);
-$prefix-cls: '#{$namespace}-layout-footer';
+$prefix-cls: '#{$tonyname}-layout-footer';
 
 .#{$prefix-cls} {
   color: $normal-color;

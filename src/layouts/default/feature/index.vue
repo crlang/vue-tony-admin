@@ -57,7 +57,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-setting-drawer-fearure';
+$prefix-cls: '#{$tonyname}-setting-drawer-fearure';
 
 .#{$prefix-cls} {
   position: absolute;

@@ -351,7 +351,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-basic-column-setting';
+$prefix-cls: '#{$tonyname}-basic-column-setting';
 
 .table-coulmn-drag-icon {
   margin: 0 5px;

@@ -60,7 +60,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$prefix-cls: '#{$namespace}-setting-menu-type-picker';
+$prefix-cls: '#{$tonyname}-setting-menu-type-picker';
 
 .#{$prefix-cls} {
   display: flex;

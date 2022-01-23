@@ -32,7 +32,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss">
-$prefix-cls: '#{$namespace}-layout-content';
+$prefix-cls: '#{$tonyname}-layout-content';
 
 .#{$prefix-cls} {
   position: relative;

@@ -60,7 +60,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-basic-button';
+$prefix-cls: '#{$tonyname}-basic-button';
 
 .#{$prefix-cls} {
   &__inner {

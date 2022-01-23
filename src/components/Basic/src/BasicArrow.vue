@@ -52,7 +52,7 @@ const getClass = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-$prefix-cls: '#{$namespace}-basic-arrow';
+$prefix-cls: '#{$tonyname}-basic-arrow';
 
 .#{$prefix-cls} {
   display: inline-block;

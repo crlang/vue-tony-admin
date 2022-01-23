@@ -43,7 +43,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
-$prefix-cls: '#{$namespace}-darg-bar';
+$prefix-cls: '#{$tonyname}-darg-bar';
 
 .#{$prefix-cls} {
   position: absolute;

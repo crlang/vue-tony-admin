@@ -261,7 +261,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-cropper-am';
+$prefix-cls: '#{$tonyname}-cropper-am';
 
 .#{$prefix-cls} {
   display: flex;

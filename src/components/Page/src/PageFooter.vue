@@ -27,7 +27,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
-$prefix-cls: '#{$namespace}-page-footer';
+$prefix-cls: '#{$tonyname}-page-footer';
 
 .#{$prefix-cls} {
   position: fixed;

@@ -447,7 +447,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$namespace}-basic-table';
+$prefix-cls: '#{$tonyname}-basic-table';
 
 [data-theme='dark'] {
   // position: relative;
