@@ -7,7 +7,7 @@
         :value="getCount"
         @click="handleToErrorList"
         :max="99">
-        <Icon icon="ion:bug-outline" />
+        <span><Icon icon="ion:bug-outline" /></span>
       </el-badge>
     </el-tooltip>
   </div>

@@ -11,15 +11,15 @@
           :class="`${prefixCls}-content`"
           v-click-outside="handleClose">
           <div :class="`${prefixCls}-input__wrapper`">
-            <el-input
+            <ElInput
               :class="`${prefixCls}-input`"
               :placeholder="t('common.searchText')"
               ref="inputRef"
               clearable
               v-model="searchKey"
               @input="handleSearch">
-              <template #prefix><Search style="width: 1em;height: 1em;" /></template>
-            </el-input>
+              <template #prefix><Search /></template>
+            </ElInput>
             <span
               :class="`${prefixCls}-cancel`"
               @click="handleClose">
@@ -28,7 +28,7 @@
           </div>
 
           <div
-            :class="`${prefixCls}-not-data`"
+            :class="`${prefixCls}-nodata`"
             v-show="getIsNotData">
             {{ t('component.app.searchNotData') }}
           </div>
@@ -65,7 +65,7 @@
               </div>
             </li>
           </ul>
-          <AppSearchFooter />
+          <AppSearchFooter :class="`${prefixCls}-footer`" />
         </div>
       </div>
     </transition>
@@ -83,6 +83,7 @@ import { useRefs } from '@/hooks/core/useRefs'
 import { useMenuSearch } from './useMenuSearch'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useAppInject } from '@/hooks/web/useAppInject'
+import { ElInput } from 'element-plus'
 
 const props = defineProps({
   visible: { type: Boolean },
@@ -95,7 +96,7 @@ const inputRef = ref<Nullable<HTMLElement>>(null)
 const searchKey = ref('')
 
 const { t } = useI18n()
-const { prefixCls } = useDesign('app-search-modal')
+const { prefixCls } = useDesign('header-search-modal')
 const [refs, setRefs] = useRefs()
 const { getIsMobile } = useAppInject()
 
@@ -121,6 +122,7 @@ watch(
   (visible: boolean) => {
     visible &&
       nextTick(() => {
+        searchKey.value = ''
         unref(inputRef)?.focus()
       })
   }
@@ -132,35 +134,31 @@ function handleClose() {
 }
 </script>
 
-<style lang="scss" scoped>
-$footer-prefix-cls: '#{$tonyname}-app-search-footer';
-$prefix-cls: '#{$tonyname}-app-search-modal';
+<style lang="scss">
+$prefix-cls: '#{$tonyname}-header-search-modal';
 
 .#{$prefix-cls} {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 800;
+  z-index: 1000;
   display: flex;
   justify-content: center;
   width: 100%;
   height: 100%;
-  padding-top: 50px;
-  background-color: rgba(0, 0, 0, 0.25);
+  padding-top: 3.25rem;
+  background-color: rgba(0, 0, 0, 0.3);
 
   &--mobile {
     padding: 0;
 
-    > div {
-      width: 100%;
-    }
-
     .#{$prefix-cls}-input {
-      width: calc(100% - 38px);
+      width: calc(100% - 2.75rem);
     }
 
     .#{$prefix-cls}-cancel {
       display: inline-block;
+      color: var(--text-secondary-color);
     }
 
     .#{$prefix-cls}-content {
@@ -169,17 +167,17 @@ $prefix-cls: '#{$tonyname}-app-search-modal';
       border-radius: 0;
     }
 
-    .#{$footer-prefix-cls} {
+    .#{$prefix-cls}-footer {
       display: none;
     }
 
     .#{$prefix-cls}-list {
-      height: calc(100% - 80px);
+      height: calc(100% - 5rem);
       max-height: unset;
 
       &__item {
         &-enter {
-          opacity: 0 !important;
+          opacity: 0;
         }
       }
     }
@@ -187,11 +185,11 @@ $prefix-cls: '#{$tonyname}-app-search-modal';
 
   &-content {
     position: relative;
-    width: 632px;
+    width: 40rem;
     margin: 0 auto auto;
     background-color: var(--background-secondary-color);
-    border-radius: 16px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border-radius: 1rem;
+    box-shadow: 0 1.5rem 3.25rem -0.5rem rgba(0, 0, 0, 0.25);
     flex-direction: column;
   }
 
@@ -199,48 +197,43 @@ $prefix-cls: '#{$tonyname}-app-search-modal';
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 14px 0;
+    padding: 1rem;
   }
 
   &-input {
     width: 100%;
-    height: 48px;
+    height: 3rem;
     font-size: 1.5em;
-    color: #1c1e21;
-    border-radius: 6px;
+    color: var(--text-primary-color);
+    border-radius: var(--radius-base);
   }
 
-  :deep(.el-input__inner) {
+  .el-input__inner {
     height: 100%;
+    padding-left: 1.75em;
   }
 
-  :deep(.el-input__prefix-inner) {
-    display: inline-flex;
+  .el-input__prefix-inner {
+    display: flex;
     align-items: center;
   }
 
   &-cancel {
     display: none;
-    font-size: 1em;
-    color: #666;
   }
 
-  &-not-data {
+  &-nodata {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100px;
-    font-size: 0.9;
-    color: #969faf;
+    height: 7.5rem;
+    color: var(--text-secondary-color);
   }
 
   &-list {
-    max-height: 472px;
-    padding: 0 14px;
-    padding-bottom: 20px;
-    margin: 0 auto;
-    margin-top: 14px;
+    max-height: 30rem;
+    padding: 0 1rem;
     overflow: auto;
 
     &__item {
@@ -248,25 +241,17 @@ $prefix-cls: '#{$tonyname}-app-search-modal';
       display: flex;
       align-items: center;
       width: 100%;
-      height: 56px;
-      padding-bottom: 4px;
-      padding-left: 14px;
-      margin-top: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
       font-size: 14px;
       color: var(--text-primary-color);
       cursor: pointer;
       background-color: var(--background-secondary-color);
-      border-radius: 4px;
-      box-shadow: 0 1px 3px 0 #d4d9e1;
-
-      > div:first-child,
-      > div:last-child {
-        display: flex;
-        align-items: center;
-      }
+      border-radius: var(--radius-base);
+      box-shadow: var(--control-shadow);
 
       &--active {
-        color: #fff;
+        color: var(--text-primary-reverse);
         background-color: var(--primary-color);
 
         .#{$prefix-cls}-list__item-enter {
@@ -275,7 +260,7 @@ $prefix-cls: '#{$tonyname}-app-search-modal';
       }
 
       &-icon {
-        width: 30px;
+        width: 2rem;
       }
 
       &-text {
@@ -283,8 +268,25 @@ $prefix-cls: '#{$tonyname}-app-search-modal';
       }
 
       &-enter {
-        width: 30px;
+        width: 2rem;
         opacity: 0;
+      }
+    }
+  }
+
+  &-footer {
+    display: flex;
+    padding: 1rem;
+
+    > div {
+      display: flex;
+      margin: 0 0.5rem;
+
+      > span > span {
+        padding: 4px;
+        margin-right: 8px;
+        background-color: var(--background-primary-color);
+        box-shadow: var(--control-shadow);
       }
     }
   }

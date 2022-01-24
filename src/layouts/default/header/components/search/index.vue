@@ -1,17 +1,15 @@
 <template>
-  <span
-    role="img"
-    @click="changeModal(true)">
-    <el-tooltip
+  <div @click="showModal = true">
+    <ElTooltip
       effect="dark"
       :content="t('common.searchText')"
       placement="bottom-end">
-      <Search style="width: 18px; height: 18px;" />
-    </el-tooltip>
+      <span><Search /></span>
+    </ElTooltip>
     <AppSearchModal
-      @close="changeModal(false)"
+      @close="showModal = false"
       :visible="showModal" />
-  </span>
+  </div>
 </template>
 
 <script lang="ts">
@@ -19,20 +17,16 @@ import { defineComponent, ref } from 'vue'
 import { Search } from '@element-plus/icons'
 import AppSearchModal from './AppSearchModal.vue'
 import { useI18n } from '@/hooks/web/useI18n'
+import { ElTooltip } from 'element-plus'
 
 export default defineComponent({
   name: 'AppSearch',
-  components: { AppSearchModal, Search },
+  components: { ElTooltip, AppSearchModal, Search },
   setup() {
     const showModal = ref(false)
     const { t } = useI18n()
 
-    function changeModal(show: boolean) {
-      showModal.value = show
-    }
-
     return {
-      changeModal,
       t,
       showModal,
     }
