@@ -50,6 +50,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import { ElInput, ElAlert, ElButton } from 'element-plus'
 import { CollapseContainer } from '@/components/Container/index'
 import { useTabs } from '@/hooks/web/useTabs'
 import { PageWrapper } from '@/components/Page'
@@ -57,7 +58,7 @@ import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
   name: 'TabsDemo',
-  components: { CollapseContainer, PageWrapper },
+  components: { ElInput, ElAlert, ElButton, CollapseContainer, PageWrapper },
   setup() {
     const title = ref<string>('')
     const { closeAll, closeLeft, closeRight, closeOther, closeCurrent, refreshPage, setTitle } = useTabs()

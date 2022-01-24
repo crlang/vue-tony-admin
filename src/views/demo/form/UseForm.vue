@@ -29,6 +29,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
 import { BasicForm, useForm } from '@/components/Form/index'
 import { CollapseContainer } from '@/components/Container/index'
 import { useMessage } from '@/hooks/web/useMessage'
@@ -36,7 +37,7 @@ import { PageWrapper } from '@/components/Page'
 import { UseSchemas as schemas } from './data'
 
 export default defineComponent({
-  components: { BasicForm, CollapseContainer, PageWrapper },
+  components: { ElButton, BasicForm, CollapseContainer, PageWrapper },
   setup() {
     const { createMessage } = useMessage()
 

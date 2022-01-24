@@ -22,12 +22,13 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref, unref } from 'vue'
+import { ElButton, ElInput } from 'element-plus'
 import { useRouter } from 'vue-router'
 import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
   name: 'TestMenu',
-  components: { PageWrapper },
+  components: { ElButton, ElInput, PageWrapper },
   setup() {
     const { currentRoute, replace } = useRouter()
     const value = ref<string>('')

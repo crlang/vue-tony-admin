@@ -31,13 +31,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElRow, ElCol, ElCard } from 'element-plus'
 import Basic1 from './Basic1.vue'
 import Basic2 from './Basic2.vue'
 import Basic3 from './Basic3.vue'
 import { useI18n } from '@/hooks/web/useI18n'
 
 export default defineComponent({
-  components: { Basic1, Basic2, Basic3 },
+  components: { ElRow, ElCol, ElCard, Basic1, Basic2, Basic3 },
   props: {
     loading: {
       type: Boolean,

@@ -27,9 +27,10 @@
 
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue'
+import { ElButton } from 'element-plus'
 import { BasicModal, useModalInner } from '@/components/Modal'
 export default defineComponent({
-  components: { BasicModal },
+  components: { ElButton, BasicModal },
   props: {
     modalValue: Boolean,
   },

@@ -18,12 +18,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElSkeleton } from 'element-plus'
 import TargetContent from './TargetContent.vue'
 import { LazyContainer } from '@/components/Container/index'
 import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { LazyContainer, PageWrapper, TargetContent },
+  components: { ElSkeleton, LazyContainer, PageWrapper, TargetContent },
 })
 </script>
 

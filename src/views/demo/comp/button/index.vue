@@ -293,10 +293,11 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import { ElRow, ElCol, ElCard, ElButton, ElButtonGroup } from 'element-plus'
 import { PageWrapper } from '@/components/Page'
 import { Search, Edit, Check, Message, Star, Delete, ArrowLeft, Share, ArrowRight, Upload } from '@element-plus/icons'
 export default defineComponent({
-  components: { PageWrapper },
+  components: { ElRow, ElCol, ElCard, ElButton, ElButtonGroup, PageWrapper },
   setup() {
     const loading = ref(false)
 

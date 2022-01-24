@@ -107,6 +107,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, unref } from 'vue'
+import { ElButton } from 'element-plus'
 import { QrCode, QrCodeActionType } from '@/components/Qrcode/index'
 import LogoImg from '@/assets/images/logo.png'
 import { CollapseContainer } from '@/components/Container/index'
@@ -114,7 +115,7 @@ import { PageWrapper } from '@/components/Page'
 
 const qrCodeUrl = 'https://www.crlang.com'
 export default defineComponent({
-  components: { CollapseContainer, QrCode, PageWrapper },
+  components: { ElButton, CollapseContainer, QrCode, PageWrapper },
   setup() {
     const qrRef = ref<Nullable<QrCodeActionType>>(null)
     const qrDiyRef = ref<Nullable<QrCodeActionType>>(null)

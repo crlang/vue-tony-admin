@@ -23,6 +23,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed, unref } from 'vue'
+import { ElTree } from 'element-plus'
 import { BasicForm, useForm } from '@/components/Form/index'
 import { formSchema } from './data'
 import { BasicDrawer, useDrawerInner } from '@/components/Drawer'
@@ -32,7 +33,7 @@ import { getMenuList } from '@/api/demo/system'
 
 export default defineComponent({
   name: 'RoleDrawer',
-  components: { BasicDrawer, BasicForm },
+  components: { ElTree, BasicDrawer, BasicForm },
   emits: ['success', 'register'],
   setup(_, { emit }) {
     const isUpdate = ref(true)

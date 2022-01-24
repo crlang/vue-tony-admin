@@ -28,11 +28,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
 import { groupItems } from './data'
 import { CardGrid, CardGridItem } from '@/components/CardGrid'
 
 export default defineComponent({
-  components: { CardGrid, CardGridItem },
+  components: { ElButton, CardGrid, CardGridItem },
   setup() {
     return { items: groupItems }
   },

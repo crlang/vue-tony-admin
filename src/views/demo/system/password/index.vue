@@ -17,13 +17,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
 import { PageWrapper } from '@/components/Page'
 import { BasicForm, useForm } from '@/components/Form'
 
 import { formSchema } from './data'
 export default defineComponent({
   name: 'ChangePassword',
-  components: { BasicForm, PageWrapper },
+  components: { ElButton, BasicForm, PageWrapper },
   setup() {
     const [register, { validate, resetFields, getFieldsValue }] = useForm({
       size: 'large',

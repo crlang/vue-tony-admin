@@ -26,9 +26,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElResult, ElButton, ElDescriptions, ElDescriptionsItem } from 'element-plus'
 
 export default defineComponent({
   components: {
+    ElResult,
+    ElButton,
+    ElDescriptions,
+    ElDescriptionsItem,
   },
   emits: ['redo'],
   setup(_, { emit }) {

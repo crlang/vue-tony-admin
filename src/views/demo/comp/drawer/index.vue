@@ -46,6 +46,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElAlert, ElButton } from 'element-plus'
 import { useDrawer } from '@/components/Drawer'
 import Drawer1 from './Drawer1.vue'
 import Drawer2 from './Drawer2.vue'
@@ -55,7 +56,15 @@ import Drawer5 from './Drawer5.vue'
 import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { PageWrapper, Drawer1, Drawer2, Drawer3, Drawer4, Drawer5 },
+  components: {
+    ElAlert,
+    ElButton,
+    PageWrapper,
+    Drawer1,
+    Drawer2,
+    Drawer3,
+    Drawer4,
+    Drawer5 },
   setup() {
     const [register1, { openDrawer: openDrawer1, setDrawerProps }] = useDrawer()
     const [register2, { openDrawer: openDrawer2 }] = useDrawer()

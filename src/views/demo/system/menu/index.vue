@@ -41,6 +41,7 @@
 
 <script lang="ts">
 import { defineComponent, nextTick } from 'vue'
+import { ElButton, ElTableColumn } from 'element-plus'
 
 import { BasicTable, useTable, TableAction } from '@/components/Table'
 import { getMenuList } from '@/api/demo/system'
@@ -52,7 +53,7 @@ import { columns, searchFormSchema } from './data'
 
 export default defineComponent({
   name: 'MenuManagement',
-  components: { BasicTable, MenuDrawer, TableAction },
+  components: { ElButton, ElTableColumn, BasicTable, MenuDrawer, TableAction },
   setup() {
     const [registerDrawer, { openDrawer }] = useDrawer()
     const [registerTable, { reload, expandAll }] = useTable({

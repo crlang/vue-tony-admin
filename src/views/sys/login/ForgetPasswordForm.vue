@@ -38,10 +38,10 @@
 
 <script lang="ts" setup>
 import { reactive, ref, computed, unref } from 'vue'
+import { ElNotification, ElForm, ElFormItem, ElInput, ElButton } from 'element-plus'
 import { CountdownInput } from '@/components/CountDown'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useLoginState, LoginStateEnum, useFormRules, useFormValid } from './useLogin'
-import { ElNotification, ElForm } from 'element-plus'
 
 const { t } = useI18n()
 const { handleBackLogin, getLoginState } = useLoginState()

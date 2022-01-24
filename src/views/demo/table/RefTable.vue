@@ -29,13 +29,14 @@
 
 <script lang="ts">
 import { defineComponent, ref, unref } from 'vue'
+import { ElButton } from 'element-plus'
 import { BasicTable, TableActionType } from '@/components/Table'
 import { getBasicColumns, getBasicShortColumns } from './tableData'
 import { useMessage } from '@/hooks/web/useMessage'
 import { demoListApi } from '@/api/demo/table'
 
 export default defineComponent({
-  components: { BasicTable },
+  components: { ElButton, BasicTable },
   setup() {
     const tableRef = ref<Nullable<TableActionType>>(null)
     const { createMessage } = useMessage()

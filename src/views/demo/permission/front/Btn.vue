@@ -87,6 +87,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
+import { ElButton, ElDivider, ElButtonGroup, ElAlert } from 'element-plus'
 import CurrentPermissionMode from '../CurrentPermissionMode.vue'
 import { useUserStore } from '@/store/modules/user'
 import { RoleEnum } from '@/enums/roleEnum'
@@ -95,7 +96,7 @@ import { Authority } from '@/components/Authority'
 import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { PageWrapper, CurrentPermissionMode, Authority },
+  components: { ElButton, ElDivider, ElButtonGroup, ElAlert, PageWrapper, CurrentPermissionMode, Authority },
   setup() {
     const { changeRole, hasPermission } = usePermission()
     const userStore = useUserStore()

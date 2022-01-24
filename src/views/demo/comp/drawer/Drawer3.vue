@@ -28,9 +28,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
 import { BasicDrawer } from '@/components/Drawer'
 export default defineComponent({
-  components: { BasicDrawer },
+  components: { ElButton, BasicDrawer },
   setup() {
     return {
       handleOk: () => {

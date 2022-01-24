@@ -36,6 +36,7 @@
 </template>
 
 <script lang="ts" setup>
+import { ElCard, ElButton } from 'element-plus'
 import { dynamicInfoItems } from './data'
 import { List, ListItem, ListItemMeta } from '@/components/List'
 </script>

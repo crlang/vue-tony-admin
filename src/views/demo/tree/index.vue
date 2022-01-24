@@ -79,13 +79,14 @@
 
 <script lang="ts">
 import { defineComponent, nextTick, reactive, ref } from 'vue'
+import { ElRow, ElCol, ElCard, ElTree, ElButton } from 'element-plus'
 import { TreeType, TreeNodeProps } from '@/components/Tree/index'
 import { treeData } from './data'
 import { PageWrapper } from '@/components/Page'
 import { cloneDeep } from 'lodash-es'
 
 export default defineComponent({
-  components: { PageWrapper },
+  components: { ElRow, ElCol, ElCard, ElTree, ElButton, PageWrapper },
   setup() {
     const asyncTreeRef = ref<Nullable<TreeType>>(null)
     const asyncExpandTreeRef = ref<Nullable<TreeType>>(null)

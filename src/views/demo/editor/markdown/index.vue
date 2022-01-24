@@ -26,11 +26,12 @@
 
 <script lang="ts">
 import { defineComponent, ref, unref } from 'vue'
+import { ElButton, ElCard } from 'element-plus'
 import { MarkDown, MarkDownActionType, MarkdownViewer } from '@/components/Markdown'
 import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { MarkDown, PageWrapper, MarkdownViewer },
+  components: { ElButton, ElCard, MarkDown, PageWrapper, MarkdownViewer },
   setup() {
     const markDownRef = ref<Nullable<MarkDownActionType>>(null)
     const markdownValue = ref(`

@@ -67,6 +67,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref, unref, watch } from 'vue'
+import { ElRow, ElCol, ElTabs, ElTabPane } from 'element-plus'
 import { AppLogo } from '@/components/Application'
 import { AppLocalePicker, AppDarkModeToggle } from '@/components/Application'
 import LoginForm from './LoginForm.vue'
@@ -82,6 +83,10 @@ import { useGlobSetting } from '@/hooks/setting'
 
 export default defineComponent({
   components: {
+    ElRow,
+    ElCol,
+    ElTabs,
+    ElTabPane,
     LoginForm,
     ForgetPasswordForm,
     RegisterForm,

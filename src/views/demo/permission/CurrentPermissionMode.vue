@@ -15,12 +15,14 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
+import { ElButton, ElDivider } from 'element-plus'
 import { useAppStore } from '@/store/modules/app'
 import { PermissionModeEnum } from '@/enums/appEnum'
 import { usePermission } from '@/hooks/web/usePermission'
+
 export default defineComponent({
   name: 'CurrentPermissionMode',
-  components: { },
+  components: { ElButton, ElDivider },
   setup() {
     const appStore = useAppStore()
     const permissionMode = computed(() => appStore.getProjectConfig.permissionMode)

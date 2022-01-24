@@ -39,6 +39,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElButton, ElTableColumn } from 'element-plus'
 
 import { BasicTable, useTable, TableAction } from '@/components/Table'
 import { getRoleListByPage } from '@/api/demo/system'
@@ -49,7 +50,7 @@ import { columns, searchFormSchema } from './data'
 
 export default defineComponent({
   name: 'RoleManagement',
-  components: { BasicTable, RoleDrawer, TableAction },
+  components: { ElButton, ElTableColumn, BasicTable, RoleDrawer, TableAction },
   setup() {
     const [registerDrawer, { openDrawer }] = useDrawer()
     const [registerTable, { reload }] = useTable({

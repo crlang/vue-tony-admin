@@ -67,6 +67,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElTag } from 'element-plus'
 import Icon from '@/components/Icon/index'
 import { BasicForm } from '@/components/Form/index'
 import { actions, searchList as list, schemas } from './data'
@@ -76,6 +77,7 @@ import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
   components: {
+    ElTag,
     Icon,
     PageWrapper,
     BasicForm,

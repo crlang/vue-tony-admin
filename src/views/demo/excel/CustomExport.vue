@@ -20,6 +20,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import { ElButton } from 'element-plus'
 import { BasicTable } from '@/components/Table'
 import { jsonToSheetXlsx, ExportModalResult } from '@/components/Excel'
 import { PageWrapper } from '@/components/Page'
@@ -27,7 +28,7 @@ import { ExpExcelModal } from '@/components/Excel'
 import { columns, data } from './data'
 
 export default defineComponent({
-  components: { PageWrapper, BasicTable, ExpExcelModal },
+  components: { ElButton, PageWrapper, BasicTable, ExpExcelModal },
   setup() {
     const modalVisible = ref(false)
 

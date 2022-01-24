@@ -17,6 +17,7 @@
 
 <script lang="ts">
 import { defineComponent, unref, ref } from 'vue'
+import { ElButton, ElInput } from 'element-plus'
 import { CollapseContainer } from '@/components/Container/index'
 import { useCopyToClipboard } from '@/hooks/web/useCopyToClipboard'
 import { useMessage } from '@/hooks/web/useMessage'
@@ -24,7 +25,7 @@ import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
   name: 'Copy',
-  components: { CollapseContainer, PageWrapper },
+  components: { ElButton, ElInput, CollapseContainer, PageWrapper },
   setup() {
     const valueRef = ref('')
     const { createMessage } = useMessage()

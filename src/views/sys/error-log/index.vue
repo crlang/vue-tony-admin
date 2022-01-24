@@ -45,6 +45,7 @@
 
 <script lang="ts" setup>
 import { watch, ref, nextTick } from 'vue'
+import { ElButton, ElTableColumn } from 'element-plus'
 import { useMessage } from '@/hooks/web/useMessage'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useErrorLogStore } from '@/store/modules/errorLog'

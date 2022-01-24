@@ -87,6 +87,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
+import { ElButton, ElDivider } from 'element-plus'
 import CurrentPermissionMode from '../CurrentPermissionMode.vue'
 import { usePermission } from '@/hooks/web/usePermission'
 import { Authority } from '@/components/Authority'
@@ -97,7 +98,7 @@ import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
 
 export default defineComponent({
-  components: { PageWrapper, CurrentPermissionMode, Authority },
+  components: { ElButton, ElDivider, PageWrapper, CurrentPermissionMode, Authority },
   setup() {
     const { hasPermission } = usePermission()
     const permissionStore = usePermissionStore()

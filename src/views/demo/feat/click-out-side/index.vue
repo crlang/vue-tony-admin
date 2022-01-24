@@ -18,11 +18,12 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import { ElLink } from 'element-plus'
 import { ClickOutSide } from '@/components/ClickOutSide'
 import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { ClickOutSide, PageWrapper },
+  components: { ElLink, ClickOutSide, PageWrapper },
   setup() {
     const text = ref('Click')
     function handleClickOutside() {

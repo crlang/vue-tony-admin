@@ -39,6 +39,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import { ElButton, ElTableColumn } from 'element-plus'
 
 import { BasicTable, useTable, TableAction } from '@/components/Table'
 import { getDeptList } from '@/api/demo/system'
@@ -49,7 +50,7 @@ import { columns, searchFormSchema } from './data'
 
 export default defineComponent({
   name: 'DeptManagement',
-  components: { BasicTable, TableAction, DeptModal },
+  components: { ElButton, ElTableColumn, BasicTable, TableAction, DeptModal },
   setup() {
     const [registerModal, { openModal }] = useModal()
     const modalVisible = ref(false)

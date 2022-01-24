@@ -56,6 +56,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElRow, ElCol, ElCard } from 'element-plus'
 import { AddLocation, Aim, AlarmClock } from '@element-plus/icons'
 import { Icon, IconPicker, SvgIcon } from '@/components/Icon/index'
 import { PageWrapper } from '@/components/Page'
@@ -63,6 +64,9 @@ import { CardGrid, CardGridItem } from '@/components/CardGrid'
 
 export default defineComponent({
   components: {
+    ElRow,
+    ElCol,
+    ElCard,
     PageWrapper,
     IconPicker,
     AddLocation,

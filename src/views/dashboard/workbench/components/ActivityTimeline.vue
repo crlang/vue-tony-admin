@@ -20,6 +20,7 @@
 </template>
 
 <script lang="ts" setup>
+import { ElCard, ElTimeline, ElTimelineItem } from 'element-plus'
 import { Check } from '@element-plus/icons'
 
 const activities = [

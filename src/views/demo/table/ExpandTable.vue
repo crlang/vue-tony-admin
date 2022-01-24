@@ -43,6 +43,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElTableColumn } from 'element-plus'
 import { BasicTable, useTable, TableAction } from '@/components/Table'
 import { PageWrapper } from '@/components/Page'
 import { getBasicColumns } from './tableData'
@@ -50,7 +51,7 @@ import { getBasicColumns } from './tableData'
 import { demoListApi } from '@/api/demo/table'
 
 export default defineComponent({
-  components: { BasicTable, TableAction, PageWrapper },
+  components: { ElTableColumn, BasicTable, TableAction, PageWrapper },
   setup() {
     const [registerTable] = useTable({
       api: demoListApi,

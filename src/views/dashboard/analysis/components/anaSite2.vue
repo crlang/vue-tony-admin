@@ -42,12 +42,13 @@
 
 <script lang="ts">
 import { defineComponent, ref, unref, watch } from 'vue'
+import { ElRow, ElCol, ElCard, ElSelect, ElOption, ElDatePicker } from 'element-plus'
 import { dateType as DateType } from '../data'
 import VisitAnalysis from './VisitAnalysis.vue'
 import VisitAnalysisBar from './VisitAnalysisPie.vue'
 
 export default defineComponent({
-  components: { VisitAnalysisBar, VisitAnalysis },
+  components: { ElRow, ElCol, ElCard, ElSelect, ElOption, ElDatePicker, VisitAnalysisBar, VisitAnalysis },
   props: {
     loading: {
       type: Boolean,

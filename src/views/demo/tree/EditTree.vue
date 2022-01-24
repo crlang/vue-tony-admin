@@ -23,6 +23,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElCard, ElTree } from 'element-plus'
 import { treeData } from './data'
 import { PageWrapper } from '@/components/Page'
 import { useContextMenu } from '@/hooks/web/useContextMenu'
@@ -31,7 +32,7 @@ import { Delete, Position } from '@element-plus/icons'
 export type { ContextMenuItem } from '@/hooks/web/useContextMenu'
 
 export default defineComponent({
-  components: { PageWrapper },
+  components: { ElCard, ElTree, PageWrapper },
   setup() {
     const [createContextMenu] = useContextMenu()
 

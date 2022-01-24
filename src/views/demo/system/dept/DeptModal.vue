@@ -18,13 +18,14 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed, unref, watchEffect, watch, reactive } from 'vue'
+import { ElButton } from 'element-plus'
 import { BasicModal } from '@/components/Modal'
 import { BasicForm, useForm } from '@/components/Form/index'
 import { formSchema } from './data'
 
 export default defineComponent({
   name: 'DeptModal',
-  components: { BasicModal, BasicForm },
+  components: { ElButton, BasicModal, BasicForm },
   props: {
     visible: {
       type: Boolean,

@@ -11,6 +11,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
 import { BasicTable, useTable } from '@/components/Table'
 import { getBasicColumns, getFormConfig } from './tableData'
 
@@ -18,7 +19,7 @@ import { demoListApi } from '@/api/demo/table'
 import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
-  components: { BasicTable },
+  components: { ElButton, BasicTable },
   setup() {
     const [registerTable, { getForm }] = useTable({
       title: '开启搜索区域',

@@ -28,6 +28,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
+import { ElAvatar } from 'element-plus'
 import { useUserStore } from '@/store/modules/user'
 import headerImg from '@/assets/images/header.jpg'
 

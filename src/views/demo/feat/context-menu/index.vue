@@ -18,13 +18,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
 import { useContextMenu } from '@/hooks/web/useContextMenu'
 import { CollapseContainer } from '@/components/Container'
 import { useMessage } from '@/hooks/web/useMessage'
 import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { CollapseContainer, PageWrapper },
+  components: { ElButton, CollapseContainer, PageWrapper },
   setup() {
     const [createContextMenu] = useContextMenu()
     const { createMessage } = useMessage()

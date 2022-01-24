@@ -25,12 +25,15 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElRow, ElCol } from 'element-plus'
 import demoImg from '@/assets/images/demo.png'
 import { projectList } from './data'
 import { List, ListItem } from '@/components/List'
 
 export default defineComponent({
   components: {
+    ElRow,
+    ElCol,
     List,
     ListItem,
   },

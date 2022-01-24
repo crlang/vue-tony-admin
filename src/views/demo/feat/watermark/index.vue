@@ -21,12 +21,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
 import { CollapseContainer } from '@/components/Container/index'
 import { useWatermark } from '@/hooks/web/useWatermark'
 import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { CollapseContainer, PageWrapper },
+  components: { ElButton, CollapseContainer, PageWrapper },
   setup() {
     const { setWatermark, clear } = useWatermark()
     return {

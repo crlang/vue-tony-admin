@@ -63,6 +63,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue'
+import { ElRow, ElCol, ElButton, ElTableColumn } from 'element-plus'
 
 import { BasicTable, useTable, TableAction } from '@/components/Table'
 import { getAccountList } from '@/api/demo/system'
@@ -78,7 +79,17 @@ import { columns, searchFormSchema } from './data'
 
 export default defineComponent({
   name: 'AccountManagement',
-  components: { BasicTable, PageWrapper, DeptTree, AccountModal, TableAction },
+  components: {
+    ElRow,
+    ElCol,
+    ElButton,
+    ElTableColumn,
+    BasicTable,
+    PageWrapper,
+    DeptTree,
+    AccountModal,
+    TableAction,
+  },
   setup() {
     const go = useGo()
     const { createConfirm, createMessage } = useMessage()

@@ -27,6 +27,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import { ElSelect, ElOption, ElButton } from 'element-plus'
 import { PageWrapper } from '@/components/Page'
 import {
   FadeTransition,
@@ -67,6 +68,9 @@ const options = transitionList.map((item) => ({
 
 export default defineComponent({
   components: {
+    ElSelect,
+    ElOption,
+    ElButton,
     PageWrapper,
     FadeTransition,
     ScaleTransition,

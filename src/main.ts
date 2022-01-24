@@ -3,12 +3,10 @@
 // import 'virtual:windi-utilities.css'
 // Register icon sprite
 import 'virtual:svg-icons-register'
-// if (import.meta.env.DEV) {
 import 'element-plus/theme-chalk/src/index.scss'
-// }
 import App from './App.vue'
 import { createApp } from 'vue'
-import ElementPlus from 'element-plus'
+// import ElementPlus from 'element-plus'
 import { initAppConfigStore } from '@/logics/initAppConfig'
 import { setupErrorHandle } from '@/logics/error-handle'
 import { router, setupRouter } from '@/router'
@@ -52,7 +50,9 @@ async function bootstrap() {
   // await router.isReady();
 
   // Register global element plus
-  app.use(ElementPlus)
+  // Not recommended, the project has been introduced on demand
+  // 不建议，项目已经按需引入
+  // app.use(ElementPlus)
 
   app.mount('#app')
 }

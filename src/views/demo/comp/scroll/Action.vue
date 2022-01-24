@@ -24,12 +24,13 @@
 
 <script lang="ts">
 import { defineComponent, ref, unref } from 'vue'
+import { ElButton } from 'element-plus'
 import { ScrollContainer, ScrollActionType } from '@/components/Container/index'
 import { PageWrapper } from '@/components/Page'
 import { litdata } from './data'
 
 export default defineComponent({
-  components: { ScrollContainer, PageWrapper },
+  components: { ElButton, ScrollContainer, PageWrapper },
   setup() {
     const scrollRef = ref<Nullable<ScrollActionType>>(null)
     const getScroll = () => {

@@ -50,6 +50,7 @@
 
 <script lang="ts" setup>
 import { reactive, ref, unref, computed } from 'vue'
+import { ElCheckbox, ElButton, ElForm, ElFormItem, ElInput } from 'element-plus'
 import { StrengthMeter } from '@/components/StrengthMeter'
 import { CountdownInput } from '@/components/CountDown'
 import { useI18n } from '@/hooks/web/useI18n'

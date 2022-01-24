@@ -36,13 +36,14 @@
 
 <script>
 import { defineComponent, ref } from 'vue'
+import { ElButton, ElTabs, ElTabPane } from 'element-plus'
 import { useRoute } from 'vue-router'
 import { PageWrapper } from '@/components/Page'
 import { useTabs } from '@/hooks/web/useTabs'
 
 export default defineComponent({
   name: 'AccountDetail',
-  components: { PageWrapper },
+  components: { ElButton, ElTabs, ElTabPane, PageWrapper },
   setup() {
     const route = useRoute()
     // 此处可以得到用户ID

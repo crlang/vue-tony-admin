@@ -43,6 +43,7 @@
 
 <script lang="ts" setup>
 import { reactive, ref, toRaw, unref, computed } from 'vue'
+import { ElRow, ElCol, ElCheckbox, ElButton, ElForm, ElFormItem, ElInput } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useMessage } from '@/hooks/web/useMessage'
 import { useUserStore } from '@/store/modules/user'

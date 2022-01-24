@@ -43,11 +43,12 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 // import { PaginationProps } from '@/components/Table'
+import { ElButton, ElTableColumn } from 'element-plus'
 import { BasicTable, ColumnChangeParam } from '@/components/Table'
 import { getBasicColumns, getBasicData } from './tableData'
 
 export default defineComponent({
-  components: { BasicTable },
+  components: { ElButton, ElTableColumn, BasicTable },
   setup() {
     const loading = ref(false)
     const stripe = ref(true)

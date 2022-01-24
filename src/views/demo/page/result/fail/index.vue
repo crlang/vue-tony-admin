@@ -31,10 +31,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElResult, ElButton, ElLink } from 'element-plus'
 import { CircleClose } from '@element-plus/icons'
 
 export default defineComponent({
-  components: { CircleClose },
+  components: { ElResult, ElButton, ElLink, CircleClose },
 })
 </script>
 

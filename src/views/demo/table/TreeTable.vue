@@ -15,11 +15,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
 import { BasicTable, useTable } from '@/components/Table'
 import { getBasicColumns, getTreeTableData } from './tableData'
 
 export default defineComponent({
-  components: { BasicTable },
+  components: { ElButton, BasicTable },
   setup() {
     const [register, { expandAll, collapseAll }] = useTable({
       title: '树形表格',

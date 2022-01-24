@@ -27,8 +27,10 @@
     </div>
   </PageWrapper>
 </template>
+
 <script lang="ts">
 import { defineComponent, ref, reactive, toRefs } from 'vue'
+import { ElSteps, ElStep } from 'element-plus'
 import Step1 from './Step1.vue'
 import Step2 from './Step2.vue'
 import Step3 from './Step3.vue'
@@ -37,6 +39,8 @@ import { PageWrapper } from '@/components/Page'
 export default defineComponent({
   name: 'FormStepPage',
   components: {
+    ElSteps,
+    ElStep,
     Step1,
     Step2,
     Step3,

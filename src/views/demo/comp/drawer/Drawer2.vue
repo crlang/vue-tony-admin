@@ -13,9 +13,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
 import { BasicDrawer, useDrawerInner } from '@/components/Drawer'
 export default defineComponent({
-  components: { BasicDrawer },
+  components: { ElButton, BasicDrawer },
   setup() {
     const [register, { closeDrawer }] = useDrawerInner()
     return { register, closeDrawer }

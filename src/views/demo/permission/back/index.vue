@@ -34,6 +34,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
+import { ElButton, ElAlert, ElButtonGroup } from 'element-plus'
 import CurrentPermissionMode from '../CurrentPermissionMode.vue'
 import { RoleEnum } from '@/enums/roleEnum'
 import { usePermission } from '@/hooks/web/usePermission'
@@ -41,8 +42,9 @@ import { useUserStore } from '@/store/modules/user'
 import { PageWrapper } from '@/components/Page'
 import { PermissionModeEnum } from '@/enums/appEnum'
 import { useAppStore } from '@/store/modules/app'
+
 export default defineComponent({
-  components: { CurrentPermissionMode, PageWrapper },
+  components: { ElButton, ElAlert, ElButtonGroup, CurrentPermissionMode, PageWrapper },
   setup() {
     const { refreshMenu } = usePermission()
     const userStore = useUserStore()

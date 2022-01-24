@@ -67,6 +67,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, unref, ref } from 'vue'
+import { ElSelect, ElOption } from 'element-plus'
 import { BasicForm, ApiSelect } from '@/components/Form/index'
 import { CollapseContainer } from '@/components/Container'
 import { useMessage } from '@/hooks/web/useMessage'
@@ -96,7 +97,7 @@ const optionsB = computed(() => {
 })
 
 export default defineComponent({
-  components: { BasicForm, CollapseContainer, PageWrapper, ApiSelect },
+  components: { ElSelect, ElOption, BasicForm, CollapseContainer, PageWrapper, ApiSelect },
   setup() {
     const { createMessage } = useMessage()
     const keyword = ref('')

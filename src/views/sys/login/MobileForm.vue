@@ -26,6 +26,7 @@
 
 <script lang="ts" setup>
 import { reactive, ref, computed, unref } from 'vue'
+import { ElButton, ElForm, ElFormItem, ElInput } from 'element-plus'
 import { CountdownInput } from '@/components/CountDown'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ElNotification } from 'element-plus'

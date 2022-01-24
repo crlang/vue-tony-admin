@@ -28,6 +28,7 @@
 
 <script lang="ts">
 import { BasicForm, useForm } from '@/components/Form'
+import { ElButton, ElCard } from 'element-plus'
 import { defineComponent, ref } from 'vue'
 import PersonTable from './PersonTable.vue'
 import { PageWrapper } from '@/components/Page'
@@ -35,7 +36,7 @@ import { schemas, taskSchemas } from './data'
 
 export default defineComponent({
   name: 'FormHightPage',
-  components: { BasicForm, PersonTable, PageWrapper },
+  components: { ElButton, ElCard, BasicForm, PersonTable, PageWrapper },
   setup() {
     const tableRef = ref()
 

@@ -20,13 +20,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElCard, ElButton } from 'element-plus'
 import { PageWrapper } from '@/components/Page'
 import { useUserStore } from '@/store/modules/user'
 import { sessionTimeoutApi, tokenExpiredApi } from '@/api/demo/account'
 
 export default defineComponent({
   name: 'TestSessionTimeout',
-  components: { PageWrapper },
+  components: { ElCard, ElButton, PageWrapper },
   setup() {
     const userStore = useUserStore()
     async function test1() {

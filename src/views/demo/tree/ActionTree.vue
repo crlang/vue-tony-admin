@@ -54,13 +54,14 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref, unref, watch } from 'vue'
+import { ElButton, ElInput, ElCard, ElTree } from 'element-plus'
 import { TreeType, expandTreeNode, setAllTreeNodes, TreeNode } from '@/components/Tree/index'
 import { treeData } from './data'
 import { useMessage } from '@/hooks/web/useMessage'
 import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { PageWrapper },
+  components: { ElButton, ElInput, ElCard, ElTree, PageWrapper },
   setup() {
     const treeRef = ref<Nullable<TreeType>>(null)
     const { createMessage } = useMessage()

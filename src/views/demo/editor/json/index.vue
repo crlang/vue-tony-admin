@@ -27,6 +27,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, unref, h } from 'vue'
+import { ElButton, ElSpace, ElRadio, ElRadioGroup } from 'element-plus'
 import { CodeEditor, JsonPreview, MODE } from '@/components/CodeEditor'
 import { PageWrapper } from '@/components/Page'
 import { useMessage } from '@/hooks/web/useMessage'
@@ -67,6 +68,10 @@ const htmlData = `
   `
 export default defineComponent({
   components: {
+    ElSpace,
+    ElButton,
+    ElRadio,
+    ElRadioGroup,
     CodeEditor,
     PageWrapper,
   },

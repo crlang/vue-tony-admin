@@ -28,6 +28,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, onMounted } from 'vue'
+import { ElRow, ElCol, ElButton } from 'element-plus'
 import { BasicForm, useForm } from '@/components/Form/index'
 import { CollapseContainer } from '@/components/Container'
 import { CropperAvatar } from '@/components/Cropper'
@@ -42,6 +43,9 @@ import { uploadApi } from '@/api/sys/upload'
 
 export default defineComponent({
   components: {
+    ElRow,
+    ElCol,
+    ElButton,
     BasicForm,
     CollapseContainer,
     CropperAvatar,

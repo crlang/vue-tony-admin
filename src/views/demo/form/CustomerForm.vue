@@ -23,7 +23,7 @@ import { PageWrapper } from '@/components/Page'
 import { ElInput } from 'element-plus'
 
 export default defineComponent({
-  components: { CollapseContainer, PageWrapper, BasicForm },
+  components: { ElInput, CollapseContainer, PageWrapper, BasicForm },
   setup() {
     const { createMessage } = useMessage()
     const schemas: FormSchema[] = [

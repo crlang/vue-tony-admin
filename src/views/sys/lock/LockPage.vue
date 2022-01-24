@@ -69,6 +69,7 @@
 
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
+import { ElInput, ElTooltip } from 'element-plus'
 import { useUserStore } from '@/store/modules/user'
 import { useLockStore } from '@/store/modules/lock'
 import { useI18n } from '@/hooks/web/useI18n'

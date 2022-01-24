@@ -78,6 +78,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
+import { ElRow, ElCol, ElTabs, ElTabPane, ElTag } from 'element-plus'
 import { CollapseContainer } from '@/components/Container/index'
 import Icon from '@/components/Icon/index'
 import Article from './Article.vue'
@@ -90,6 +91,11 @@ import { useUserStore } from '@/store/modules/user'
 
 export default defineComponent({
   components: {
+    ElRow,
+    ElCol,
+    ElTabs,
+    ElTabPane,
+    ElTag,
     CollapseContainer,
     Icon,
     Article,

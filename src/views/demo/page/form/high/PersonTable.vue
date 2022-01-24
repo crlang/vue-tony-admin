@@ -18,9 +18,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElTableColumn, ElButton } from 'element-plus'
 import { BasicTable, useTable, TableAction, BasicColumn, ActionItem, EditRecordRow } from '@/components/Table'
+
 export default defineComponent({
-  components: { BasicTable, TableAction },
+  components: { ElTableColumn, ElButton, BasicTable, TableAction },
   setup() {
     const columns: BasicColumn[] = [
       {

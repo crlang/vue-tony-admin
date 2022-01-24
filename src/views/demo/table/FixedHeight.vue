@@ -19,13 +19,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElTableColumn } from 'element-plus'
 import { BasicTable, useTable } from '@/components/Table'
 import { getCustomHeaderColumns } from './tableData'
 import { demoListApi } from '@/api/demo/table'
 import { BasicHelp } from '@/components/Basic'
 
 export default defineComponent({
-  components: { BasicTable, BasicHelp },
+  components: { ElTableColumn, BasicTable, BasicHelp },
   setup() {
     const [registerTable] = useTable({
       title: '定高/头部自定义',

@@ -16,13 +16,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
 import { BasicTable } from '@/components/Table'
 import { jsonToSheetXlsx } from '@/components/Excel'
 import { PageWrapper } from '@/components/Page'
 import { columns, data } from './data'
 
 export default defineComponent({
-  components: { BasicTable, PageWrapper },
+  components: { ElButton, BasicTable, PageWrapper },
   setup() {
     function defaultHeader() {
       // Default Object.keys(data[0]) as header

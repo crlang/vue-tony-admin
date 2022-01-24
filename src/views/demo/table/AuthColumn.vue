@@ -37,13 +37,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElTableColumn } from 'element-plus'
 import { BasicTable, useTable, BasicColumn, TableAction } from '@/components/Table'
 
 import { demoListApi } from '@/api/demo/table'
 import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
-  components: { BasicTable, TableAction },
+  components: { ElTableColumn, BasicTable, TableAction },
   setup() {
     const { createConfirm, createMessage } = useMessage()
     const columns:BasicColumn[] = [

@@ -42,8 +42,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElResult, ElButton, ElDescriptions, ElDescriptionsItem, ElSteps, ElStep } from 'element-plus'
+
 export default defineComponent({
-  components: { },
+  components: { ElResult, ElButton, ElDescriptions, ElDescriptionsItem, ElSteps, ElStep },
 })
 </script>
 

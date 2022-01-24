@@ -15,12 +15,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
 import { BasicTable } from '@/components/Table'
 import { aoaToSheetXlsx } from '@/components/Excel'
 import { arrHeader, arrData, columns, data } from './data'
 import { PageWrapper } from '@/components/Page'
+
 export default defineComponent({
-  components: { BasicTable, PageWrapper },
+  components: { ElButton, BasicTable, PageWrapper },
   setup() {
     function aoaToExcel() {
       // 保证data顺序与header一致

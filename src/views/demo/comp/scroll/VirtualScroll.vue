@@ -35,12 +35,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElDivider } from 'element-plus'
 import { VScroll } from '@/components/VirtualScroll/index'
 import { PageWrapper } from '@/components/Page'
 import { data } from './data'
 
 export default defineComponent({
-  components: { VScroll: VScroll, PageWrapper },
+  components: { ElDivider, VScroll, PageWrapper },
   setup() {
     return { data }
   },

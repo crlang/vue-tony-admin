@@ -16,9 +16,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
 import { BasicModal, useModalInner } from '@/components/Modal'
 export default defineComponent({
-  components: { BasicModal },
+  components: { ElButton, BasicModal },
   setup() {
     const [register, { closeModal, setModalProps }] = useModalInner()
     return {

@@ -41,6 +41,7 @@
 </template>
 
 <script lang="ts" setup>
+import { ElRow, ElCol, ElCard } from 'element-plus'
 import { CountTo } from '@/components/CountTo/index'
 import { SvgIcon } from '@/components/Icon'
 import { CardList } from '../data'

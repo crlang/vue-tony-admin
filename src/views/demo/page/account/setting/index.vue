@@ -18,6 +18,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElTabs, ElTabPane } from 'element-plus'
 import { ScrollContainer } from '@/components/Container/index'
 import { settingList } from './data'
 import BaseSetting from './BaseSetting.vue'
@@ -27,6 +28,8 @@ import MsgNotify from './MsgNotify.vue'
 
 export default defineComponent({
   components: {
+    ElTabs,
+    ElTabPane,
     ScrollContainer,
     BaseSetting,
     SecureSetting,

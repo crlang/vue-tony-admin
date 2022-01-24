@@ -13,6 +13,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
+import { ElCard, ElTree } from 'element-plus'
 
 import { TreeType } from '@/components/Tree'
 import { getDeptList } from '@/api/demo/system'
@@ -20,7 +21,7 @@ import { DeptListItem } from '@/api/demo/model/systemModel'
 
 export default defineComponent({
   name: 'DeptTree',
-  components: { },
+  components: { ElCard, ElTree },
 
   emits: ['select'],
   setup(_, { emit }) {

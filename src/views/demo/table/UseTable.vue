@@ -20,13 +20,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
 import { BasicTable, ColumnChangeParam, useTable } from '@/components/Table'
 import { getBasicColumns, getBasicShortColumns } from './tableData'
 import { useMessage } from '@/hooks/web/useMessage'
 import { demoListApi } from '@/api/demo/table'
 
 export default defineComponent({
-  components: { BasicTable },
+  components: { ElButton, BasicTable },
   setup() {
     const { createMessage } = useMessage()
     const columns = getBasicColumns()

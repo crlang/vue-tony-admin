@@ -18,6 +18,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed, unref, watch, watchEffect, reactive } from 'vue'
+import { ElButton } from 'element-plus'
 import { BasicModal, useModalInner } from '@/components/Modal'
 import { BasicForm, useForm } from '@/components/Form/index'
 import { accountFormSchema } from './data'
@@ -25,7 +26,7 @@ import { getDeptList } from '@/api/demo/system'
 
 export default defineComponent({
   name: 'AccountModal',
-  components: { BasicModal, BasicForm },
+  components: { ElButton, BasicModal, BasicForm },
   props: {
     visible: {
       type: Boolean,

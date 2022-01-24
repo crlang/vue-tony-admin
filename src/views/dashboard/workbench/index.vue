@@ -17,6 +17,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { ElRow, ElCol } from 'element-plus'
 import { PageWrapper } from '@/components/Page'
 import WorkbenchHeader from './components/WorkbenchHeader.vue'
 import ProjectCard from './components/ProjectCard.vue'

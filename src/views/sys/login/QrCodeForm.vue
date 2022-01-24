@@ -11,6 +11,7 @@
 
 <script lang="ts" setup>
 import { computed, unref } from 'vue'
+import { ElDivider } from 'element-plus'
 import { QrCode } from '@/components/Qrcode/index'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useLoginState, LoginStateEnum } from './useLogin'

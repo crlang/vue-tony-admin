@@ -71,13 +71,14 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import { ElButton } from 'element-plus'
 import { BasicDragVerify, DragVerifyActionType, PassingData } from '@/components/Verify/index'
 import { useMessage } from '@/hooks/web/useMessage'
 import { Coffee, ArrowRight } from '@element-plus/icons'
 import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { BasicDragVerify, Coffee, ArrowRight, PageWrapper },
+  components: { ElButton, BasicDragVerify, Coffee, ArrowRight, PageWrapper },
   setup() {
     const { createMessage } = useMessage()
     const el1 = ref<Nullable<DragVerifyActionType>>(null)

@@ -20,6 +20,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
 import { BasicForm, useForm } from '@/components/Form/index'
 import { CollapseContainer } from '@/components/Container/index'
 import { PageWrapper } from '@/components/Page'
@@ -27,7 +28,7 @@ import { PageWrapper } from '@/components/Page'
 import { dyncSchemas as schemas, dyncSchemas1 as schemas1 } from './data'
 
 export default defineComponent({
-  components: { CollapseContainer, PageWrapper, BasicForm },
+  components: { ElButton, CollapseContainer, PageWrapper, BasicForm },
   setup() {
     const [register, { setProps, updateSchema, appendSchemaByField, removeSchemaByField }] = useForm({
       labelWidth: 120,
