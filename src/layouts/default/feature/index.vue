@@ -1,6 +1,6 @@
 <template>
   <LayoutLockPage />
-  <el-backtop v-if="getUseOpenBackTop" />
+  <ElBacktop v-if="getUseOpenBackTop" />
   <SettingDrawer
     v-if="getIsFixedSettingDrawer"
     :class="prefixCls" />
@@ -9,6 +9,7 @@
 
 <script lang="ts">
 import { defineComponent, computed, unref } from 'vue'
+import { ElBacktop } from 'element-plus'
 
 import { useRootSetting } from '@/hooks/setting/useRootSetting'
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
@@ -22,6 +23,7 @@ import SessionTimeoutLogin from '@/views/sys/login/SessionTimeoutLogin.vue'
 export default defineComponent({
   name: 'LayoutFeatures',
   components: {
+    ElBacktop,
     LayoutLockPage: createAsyncComponent(() => import('@/views/sys/lock/index.vue')),
     SettingDrawer: createAsyncComponent(() => import('@/layouts/default/setting/index.vue')),
     SessionTimeoutLogin,

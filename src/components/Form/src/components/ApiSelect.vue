@@ -1,5 +1,5 @@
 <template>
-  <el-select
+  <ElSelect
     @visible-change="handleFetch"
     v-bind="$attrs"
     clearable
@@ -7,17 +7,18 @@
     :suffix-icon="getSelectIcon"
     :no-data-text="getSelectEmpty"
     v-model:modelValue="state">
-    <el-option
+    <ElOption
       v-for="item in getOptions"
       :key="item.value"
       :label="item.label"
       :value="item.value"
     />
-  </el-select>
+  </ElSelect>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType, ref, watchEffect, computed, unref, watch, onMounted } from 'vue'
+import { ElSelect, ElOption } from 'element-plus'
 import { isFunction } from '@/utils/is'
 import { useRuleFormItem } from '@/hooks/component/useFormItem'
 import { get, omit } from 'lodash-es'
@@ -29,7 +30,7 @@ type OptionsItem = { label: string; value: string; disabled?: boolean }
 
 export default defineComponent({
   name: 'ApiSelect',
-  components: { },
+  components: { ElSelect, ElOption },
   inheritAttrs: false,
   props: {
     modelValue: [Array, Object, String, Number],

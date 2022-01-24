@@ -3,24 +3,24 @@
     :class="[prefixCls,{'simple-show':simpleShow}]"
     v-if="imgList?.length"
     :style="getWrapStyle">
-    <el-badge
+    <ElBadge
       :value="imgList.length"
       v-if="simpleShow">
       <div :class="`${prefixCls}__preview`">
-        <el-image
+        <ElImage
           :width="size"
           :fit="fit"
           :src="imgList[index]"
           :preview-src-list="imgList" />
       </div>
-    </el-badge>
+    </ElBadge>
     <div
       :class="`${prefixCls}__thumbs`"
       v-else>
       <template
         v-for="img in imgList"
         :key="img">
-        <el-image
+        <ElImage
           :width="size"
           :fit="fit"
           :src="img" />
@@ -31,13 +31,15 @@
 
 <script lang="ts">
 import type { CSSProperties } from 'vue'
+
 import { defineComponent, computed } from 'vue'
+import { ElBadge, ElImage } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
 import { propTypes } from '@/utils/propTypes'
 
 export default defineComponent({
   name: 'TableImage',
-  components: { },
+  components: { ElBadge, ElImage },
   props: {
     imgList: propTypes.arrayOf(propTypes.string),
     fit: propTypes.string.def(''),

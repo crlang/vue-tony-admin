@@ -1,27 +1,27 @@
 <template>
   <div :class="prefixCls">
-    <el-popover
+    <ElPopover
       placement="bottom"
       trigger="click"
       width="300px"
       :popper-class="`${prefixCls}__overlay`">
       <template #reference>
-        <el-badge
+        <ElBadge
           :value="count"
           is-dot>
           <SvgIcon
             size="18"
             name="notices" />
-        </el-badge>
+        </ElBadge>
       </template>
 
-      <el-tabs
+      <ElTabs
         :class="`${prefixCls}__tabs`"
         stretch>
         <template
           v-for="item in listData"
           :key="item.key">
-          <el-tab-pane>
+          <ElTabPane>
             <template #label>
               {{ item.name }}
               <span v-if="item.list.length !== 0">({{ item.list.length }})</span>
@@ -35,15 +35,16 @@
               :list="item.list"
               v-else />
             <div :class="`${prefixCls}__more`">查看更多</div>
-          </el-tab-pane>
+          </ElTabPane>
         </template>
-      </el-tabs>
-    </el-popover>
+      </ElTabs>
+    </ElPopover>
   </div>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue'
+import { ElPopover, ElBadge, ElTabs, ElTabPane } from 'element-plus'
 import { tabListData, ListItem } from './data'
 import NoticeList from './NoticeList.vue'
 import { useDesign } from '@/hooks/web/useDesign'
@@ -51,7 +52,7 @@ import { SvgIcon } from '@/components/Icon'
 import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
-  components: { SvgIcon, NoticeList },
+  components: { ElPopover, ElBadge, ElTabs, ElTabPane, SvgIcon, NoticeList },
   setup() {
     const { prefixCls } = useDesign('header-notify')
     const { createMessage } = useMessage()

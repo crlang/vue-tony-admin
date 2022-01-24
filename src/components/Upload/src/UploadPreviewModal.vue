@@ -9,9 +9,9 @@
       :columns="columns"
       :actionColumn="actionColumn" />
     <template #footer>
-      <el-button
+      <ElButton
         type="default"
-        @click="visibleRef=false">{{ t('common.closeText') }}</el-button>
+        @click="visibleRef=false">{{ t('common.closeText') }}</ElButton>
     </template>
   </BasicModal>
 </template>
@@ -19,6 +19,7 @@
 <script lang="ts">
 import { defineComponent, watch, ref, watchEffect } from 'vue'
 //   import { BasicTable, useTable } from '@/components/Table';
+import { ElButton } from 'element-plus'
 import FileList from './FileList.vue'
 import { BasicModal } from '@/components/Modal'
 import { previewProps } from './props'
@@ -29,7 +30,7 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { isArray } from '@/utils/is'
 
 export default defineComponent({
-  components: { BasicModal, FileList },
+  components: { ElButton, BasicModal, FileList },
   props: previewProps,
   emits: ['list-change', 'update:visible', 'delete'],
   setup(props, { emit }) {

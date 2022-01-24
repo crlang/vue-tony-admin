@@ -1,40 +1,40 @@
 <template>
 
-  <el-popover
+  <ElPopover
     trigger="click"
     :width="330"
     @show="handleVisibleChange(true)"
     @hide="handleVisibleChange(false)"
     :popper-class="`${prefixCls}__cloumn-list`">
     <div :class="`${prefixCls}__popover-title`">
-      <el-checkbox
+      <ElCheckbox
         :indeterminate="indeterminate"
         v-model="checkAll"
         @change="onCheckAllChange">
         {{ t('component.table.settingColumnShow') }}
-      </el-checkbox>
+      </ElCheckbox>
 
-      <!-- <el-checkbox
+      <!-- <ElCheckbox
         v-model:modelValue="checkIndex"
         @change="handleIndexCheckChange">
         {{ t('component.table.settingIndexColumnShow') }}
-      </el-checkbox>
+      </ElCheckbox>
 
-      <el-checkbox
+      <ElCheckbox
         v-model:modelValue="checkSelect"
         @change="handleSelectCheckChange">
         {{ t('component.table.settingSelectColumnShow') }}
-      </el-checkbox> -->
+      </ElCheckbox> -->
 
-      <el-button
+      <ElButton
         size="small"
         type="text"
         @click="reset">
         {{ t('common.resetText') }}
-      </el-button>
+      </ElButton>
     </div>
     <ScrollContainer>
-      <el-checkbox-group
+      <ElCheckboxGroup
         v-model="checkedList"
         @change="handleChange"
         ref="columnListRef">
@@ -42,8 +42,8 @@
           v-for="item in plainOptions"
           :key="item.value">
           <div :class="`${prefixCls}__check-item`">
-            <el-checkbox :label="item.prop">{{ item.label }}</el-checkbox>
-            <el-tooltip
+            <ElCheckbox :label="item.prop">{{ item.label }}</ElCheckbox>
+            <ElTooltip
               placement="bottom-start"
               :content="t('component.table.settingFixedLeft')">
               <Icon
@@ -57,9 +57,9 @@
                 ]"
                 @click="handleColumnFixed(item, 'left')"
               />
-            </el-tooltip>
-            <el-divider direction="vertical" />
-            <el-tooltip
+            </ElTooltip>
+            <ElDivider direction="vertical" />
+            <ElTooltip
               placement="bottom-start"
               :content="t('component.table.settingFixedRight')">
               <Icon
@@ -73,15 +73,15 @@
                 ]"
                 @click="handleColumnFixed(item, 'right')"
               />
-            </el-tooltip>
+            </ElTooltip>
           </div>
         </template>
-      </el-checkbox-group>
+      </ElCheckboxGroup>
     </ScrollContainer>
     <template #reference>
       <Setting :title="t('component.table.settingColumn')" />
     </template>
-  </el-popover>
+  </ElPopover>
 </template>
 
 <script lang="ts">
@@ -96,6 +96,14 @@ import {
   unref,
   computed
 } from 'vue'
+import {
+  ElPopover,
+  ElCheckbox,
+  ElCheckboxGroup,
+  ElButton,
+  ElTooltip,
+  ElDivider
+} from 'element-plus'
 import { Icon } from '@/components/Icon'
 import { ScrollContainer } from '@/components/Container'
 import { useI18n } from '@/hooks/web/useI18n'
@@ -122,6 +130,12 @@ interface State {
 export default defineComponent({
   name: 'ColumnSetting',
   components: {
+    ElPopover,
+    ElCheckbox,
+    ElCheckboxGroup,
+    ElButton,
+    ElTooltip,
+    ElDivider,
     Setting,
     ScrollContainer,
     Icon,

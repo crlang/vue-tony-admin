@@ -1,5 +1,5 @@
 <template>
-  <el-drawer
+  <ElDrawer
     v-if="getIsMobile"
     direction="ltr"
     :customClass="prefixCls"
@@ -7,13 +7,14 @@
     :modelValue="!getCollapsed"
     @close="handleClose">
     <Sider />
-  </el-drawer>
+  </ElDrawer>
   <MixSider v-else-if="getIsMixSidebar" />
   <Sider v-else />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElDrawer } from 'element-plus'
 
 import Sider from './LayoutSider.vue'
 import MixSider from './MixSider.vue'
@@ -23,7 +24,7 @@ import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { useDesign } from '@/hooks/web/useDesign'
 export default defineComponent({
   name: 'SiderWrapper',
-  components: { Sider, MixSider },
+  components: { ElDrawer, Sider, MixSider },
   setup() {
     const { prefixCls } = useDesign('layout-sider-wrapper')
     const { getIsMobile } = useAppInject()

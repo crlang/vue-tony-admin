@@ -1,9 +1,9 @@
 <template>
-  <el-breadcrumb
+  <ElBreadcrumb
     separator="/"
     :class="prefixCls"
     :routes="routes">
-    <el-breadcrumb-item
+    <ElBreadcrumbItem
       v-for="route in routes"
       :key="route.name">
       <Icon
@@ -20,16 +20,17 @@
         @click="handleClick(route, routes, $event)">
         {{ t(route.name || route.meta.title) }}
       </router-link>
-    </el-breadcrumb-item>
-  </el-breadcrumb>
+    </ElBreadcrumbItem>
+  </ElBreadcrumb>
 </template>
 
 <script lang="ts">
 import type { RouteLocationMatched } from 'vue-router'
-import { useRouter } from 'vue-router'
 import type { Menu } from '@/router/types'
 
 import { defineComponent, ref, watchEffect } from 'vue'
+import { ElBreadcrumb, ElBreadcrumbItem } from 'element-plus'
+import { useRouter } from 'vue-router'
 
 import Icon from '@/components/Icon'
 
@@ -47,7 +48,7 @@ import { getAllParentPath } from '@/router/helper/menuHelper'
 
 export default defineComponent({
   name: 'LayoutBreadcrumb',
-  components: { Icon },
+  components: { ElBreadcrumb, ElBreadcrumbItem, Icon },
   props: { },
   setup() {
     const routes = ref<any[]>([])

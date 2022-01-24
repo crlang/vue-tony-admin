@@ -18,7 +18,7 @@
       </div>
       <div :class="`${prefixCls}__toolbar`">
         <slot name="toolbar"></slot>
-        <el-divider
+        <ElDivider
           direction="vertical"
           v-if="$slots.toolbar && showTableSetting" />
         <TableSetting
@@ -34,7 +34,9 @@
 <script lang="ts">
 import type { TableSetting, ColumnChangeParam } from '../types/table'
 import type { PropType } from 'vue'
+
 import { defineComponent } from 'vue'
+import { ElDivider } from 'element-plus'
 import TableSettingComponent from './settings/index.vue'
 import TableTitle from './TableTitle.vue'
 import { useDesign } from '@/hooks/web/useDesign'
@@ -42,6 +44,7 @@ import { useDesign } from '@/hooks/web/useDesign'
 export default defineComponent({
   name: 'BasicTableHeader',
   components: {
+    ElDivider,
     TableTitle,
     TableSetting: TableSettingComponent,
   },

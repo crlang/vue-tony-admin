@@ -3,7 +3,7 @@
     :class="getClass"
     @click.stop="handleClickItem"
     :style="getCollapse ? {} : getItemStyle">
-    <el-tooltip
+    <ElTooltip
       placement="right"
       v-if="showTooptip">
       <div :class="`${prefixCls}-tooltip`">
@@ -11,7 +11,7 @@
       </div>
       <template #content>
         <slot name="title"></slot>
-      </template></el-tooltip>
+      </template></ElTooltip>
 
     <template v-else>
       <slot></slot>
@@ -23,12 +23,14 @@
 <script lang="ts">
 import { PropType } from 'vue'
 import { defineComponent, ref, computed, unref, getCurrentInstance, watch } from 'vue'
+import { ElTooltip } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
 import { propTypes } from '@/utils/propTypes'
 import { useMenuItem } from './useMenu'
 import { useSimpleRootMenuContext } from './useSimpleMenuContext'
 export default defineComponent({
   name: 'MenuItem',
+  components: { ElTooltip },
   props: {
     name: {
       type: [String, Number] as PropType<string | number>,

@@ -1,5 +1,5 @@
 <template>
-  <el-menu
+  <ElMenu
     :default-active="getActiveKey"
     mode="horizontal"
     :class="getMenuClass"
@@ -11,11 +11,14 @@
         :item="item"
         :isHorizontal="isHorizontal" />
     </template>
-  </el-menu>
+  </ElMenu>
 </template>
+
 <script lang="ts">
 import type { MenuState } from './types'
+
 import { computed, defineComponent, unref, reactive, watch, toRefs, ref } from 'vue'
+import { ElMenu } from 'element-plus'
 import BasicSubMenuItem from './components/BasicSubMenuItem.vue'
 import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum'
 import { useOpenKeys } from './useOpenKeys'
@@ -30,7 +33,7 @@ import { getAllParentPath } from '@/router/helper/menuHelper'
 
 export default defineComponent({
   name: 'BasicMenu',
-  components: { BasicSubMenuItem },
+  components: { ElMenu, BasicSubMenuItem },
   props: basicProps,
   emits: ['menuClick'],
   setup(props) {

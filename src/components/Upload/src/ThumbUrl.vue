@@ -1,6 +1,6 @@
 <template>
   <span class="thumb">
-    <el-image
+    <ElImage
       v-if="fileUrl"
       :src="fileUrl"
       :preview-src-list="[fileUrl]"
@@ -10,10 +10,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElImage } from 'element-plus'
 import { propTypes } from '@/utils/propTypes'
 
 export default defineComponent({
-  components: { },
+  components: { ElImage },
   props: {
     fileUrl: propTypes.string.def(''),
     fileName: propTypes.string.def(''),

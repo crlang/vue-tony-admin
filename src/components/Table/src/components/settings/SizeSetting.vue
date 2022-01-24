@@ -1,40 +1,48 @@
 <template>
-  <el-tooltip
+  <ElTooltip
     placement="top"
     :content="t('component.table.settingDens')">
-    <el-dropdown
+    <ElDropdown
       trigger="click"
       @command="handleTitleClick">
       <SvgIcon
         size="0"
         name="colum-height" />
       <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item command="default">
+        <ElDropdownMenu>
+          <ElDropdownItem command="default">
             <span>{{ t('component.table.settingDensDefault') }}</span>
-          </el-dropdown-item>
-          <el-dropdown-item command="large">
+          </ElDropdownItem>
+          <ElDropdownItem command="large">
             <span>{{ t('component.table.settingDensLarge') }}</span>
-          </el-dropdown-item>
-          <el-dropdown-item command="small">
+          </ElDropdownItem>
+          <ElDropdownItem command="small">
             <span>{{ t('component.table.settingDensSmall') }}</span>
-          </el-dropdown-item>
-        </el-dropdown-menu>
+          </ElDropdownItem>
+        </ElDropdownMenu>
       </template>
-    </el-dropdown>
-  </el-tooltip>
+    </ElDropdown>
+  </ElTooltip>
 </template>
 
 <script lang="ts">
 import type { SizeType } from '../../types/table'
+
 import { defineComponent } from 'vue'
+import { ElTooltip, ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useTableContext } from '../../hooks/useTableContext'
 import { SvgIcon } from '@/components/Icon'
 
 export default defineComponent({
   name: 'SizeSetting',
-  components: { SvgIcon },
+  components: {
+    ElTooltip,
+    ElDropdown,
+    ElDropdownItem,
+    ElDropdownMenu,
+    SvgIcon,
+  },
   setup() {
     const table = useTableContext()
     const { t } = useI18n()

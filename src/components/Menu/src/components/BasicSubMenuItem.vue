@@ -1,8 +1,8 @@
 <template>
-  <el-menu-item
+  <ElMenuItem
     v-if="!menuHasChildren(item) && getShowMenu"
-    :index="item.path">{{ t(item.name) }}</el-menu-item>
-  <el-sub-menu
+    :index="item.path">{{ t(item.name) }}</ElMenuItem>
+  <ElSubMenu
     v-if="menuHasChildren(item) && getShowMenu"
     :key="`submenu-${item.path}`"
     :index="item.path"
@@ -16,11 +16,14 @@
       :key="childrenItem.path">
       <BasicSubMenuItem :item="childrenItem" />
     </template>
-  </el-sub-menu>
+  </ElSubMenu>
 </template>
+
 <script lang="ts">
 import type { Menu as MenuType } from '@/router/types'
+
 import { defineComponent, computed } from 'vue'
+import { ElSubMenu, ElMenuItem } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
 import { itemProps } from '../props'
 import MenuItemContent from './MenuItemContent.vue'
@@ -29,7 +32,7 @@ import { useI18n } from '@/hooks/web/useI18n'
 export default defineComponent({
   name: 'BasicSubMenuItem',
   isSubMenu: true,
-  components: { MenuItemContent },
+  components: { ElSubMenu, ElMenuItem, MenuItemContent },
   props: itemProps,
   setup(props) {
     const { prefixCls } = useDesign('basic-menu-item')

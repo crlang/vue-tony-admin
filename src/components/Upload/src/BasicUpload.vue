@@ -1,13 +1,13 @@
 <template>
   <div>
-    <el-button-group>
-      <el-button
+    <ElButtonGroup>
+      <ElButton
         type="primary"
         @click="uploadVisible=true"
         :icon="UploadFilled">
         {{ t('component.upload.upload') }}
-      </el-button>
-      <el-tooltip
+      </ElButton>
+      <ElTooltip
         placement="bottom"
         v-if="showPreview">
         <template #content>
@@ -16,13 +16,13 @@
             {{ fileList.length }}
           </template>
         </template>
-        <el-button @click="previewVisible=true">
+        <ElButton @click="previewVisible=true">
           <Icon
             icon="bi:eye"
             size="12" /> <template v-if="fileList.length && showPreviewNumber"> {{ fileList.length }}</template>
-        </el-button>
-      </el-tooltip>
-    </el-button-group>
+        </ElButton>
+      </ElTooltip>
+    </ElButtonGroup>
 
     <UploadModal
       v-bind="bindValue"
@@ -43,6 +43,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, watch, unref, computed } from 'vue'
+import { ElButton, ElButtonGroup, ElTooltip } from 'element-plus'
 import UploadModal from './UploadModal.vue'
 import UploadPreviewModal from './UploadPreviewModal.vue'
 import { Icon } from '@/components/Icon'
@@ -54,7 +55,7 @@ import { UploadFilled } from '@element-plus/icons'
 
 export default defineComponent({
   name: 'BasicUpload',
-  components: { UploadModal, UploadPreviewModal, Icon },
+  components: { ElButton, ElButtonGroup, ElTooltip, UploadModal, UploadPreviewModal, Icon },
   props: uploadContainerProps,
   emits: ['change', 'delete', 'preview-delete', 'update:value'],
 

@@ -11,23 +11,25 @@
       @register="registerForm"
     />
     <template #footer>
-      <el-button @click="visibleRef = false">关闭</el-button>
-      <el-button
+      <ElButton @click="visibleRef = false">关闭</ElButton>
+      <ElButton
         type="primary"
-        @click="handleOk">提交</el-button>
+        @click="handleOk">提交</ElButton>
     </template>
   </BasicModal>
 </template>
 
 <script lang="ts">
 import type { ExportModalResult } from './typing'
+
 import { defineComponent, ref, watch, watchEffect } from 'vue'
+import { ElButton } from 'element-plus'
 import { BasicModal } from '@/components/Modal'
 import { useI18n } from '@/hooks/web/useI18n'
 import { BasicForm, FormSchema, useForm } from '@/components/Form/index'
 
 export default defineComponent({
-  components: { BasicModal, BasicForm },
+  components: { ElButton, BasicModal, BasicForm },
   props: {
     visible: {
       type: Boolean,

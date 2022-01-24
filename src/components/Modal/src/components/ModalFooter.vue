@@ -1,30 +1,33 @@
 <template>
   <div>
     <slot name="insertFooter"></slot>
-    <el-button
+    <ElButton
       v-bind="cancelButtonProps"
       @click="handleCancel"
       v-if="showCancelBtn">
       {{ cancelText }}
-    </el-button>
+    </ElButton>
     <slot name="centerFooter"></slot>
-    <el-button
+    <ElButton
       :type="confirmType"
       @click="handleOk"
       :loading="confirmLoading"
       v-bind="confirmButtonProps"
       v-if="showConfirmBtn">
       {{ confirmText }}
-    </el-button>
+    </ElButton>
     <slot name="appendFooter"></slot>
   </div>
 </template>
+
 <script lang="ts">
 import { defineComponent } from 'vue'
-
+import { ElButton } from 'element-plus'
 import { basicProps } from '../props'
+
 export default defineComponent({
   name: 'BasicModalFooter',
+  components: { ElButton },
   props: basicProps,
   emits: ['ok', 'cancel'],
   setup(_, { emit }) {

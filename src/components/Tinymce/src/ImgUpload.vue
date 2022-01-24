@@ -1,31 +1,32 @@
 <template>
   <div :class="[prefixCls, { fullscreen }]">
-    <el-upload
+    <ElUpload
       :file-list="[]"
       multiple
       @change="handleChange"
       :action="uploadUrl"
       :show-file-list="false"
       accept="image/*">
-      <el-button
+      <ElButton
         type="primary"
         size="small"
         v-bind="{ ...getButtonProps }">
         {{ t('component.upload.imgUpload') }}
-      </el-button>
-    </el-upload>
+      </ElButton>
+    </ElUpload>
 
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
+import { ElButton, ElUpload } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useGlobSetting } from '@/hooks/setting'
 import { useI18n } from '@/hooks/web/useI18n'
 
 export default defineComponent({
   name: 'TinymceImageUpload',
-  components: { },
+  components: { ElButton, ElUpload },
   props: {
     fullscreen: {
       type: Boolean,

@@ -1,5 +1,5 @@
 <template>
-  <el-header :class="getHeaderClass">
+  <ElHeader :class="getHeaderClass">
     <!-- left start -->
     <div :class="`${prefixCls}-left`">
       <!-- logo -->
@@ -45,11 +45,12 @@
         v-if="getShowSetting"
         :class="`${prefixCls}-action__item`" />
     </div>
-  </el-header>
+  </ElHeader>
 </template>
 
 <script lang="ts">
 import { defineComponent, unref, computed } from 'vue'
+import { ElHeader } from 'element-plus'
 
 import { propTypes } from '@/utils/propTypes'
 
@@ -74,6 +75,7 @@ import { useLocale } from '@/locales/useLocale'
 export default defineComponent({
   name: 'LayoutHeader',
   components: {
+    ElHeader,
     AppLogo,
     LayoutTrigger,
     LayoutBreadcrumb,

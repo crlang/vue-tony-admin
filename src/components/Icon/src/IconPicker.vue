@@ -1,16 +1,16 @@
 <template>
-  <el-input
+  <ElInput
     :style="{ width }"
     :placeholder="t('component.icon.placeholder')"
     :class="prefixCls"
     v-model="currentSelect">
     <template #append>
-      <el-popover
+      <ElPopover
         :width="560"
         trigger="click"
         :placement="placement">
         <div :class="`${prefixCls}__search`">
-          <el-input
+          <ElInput
             v-model="searckKeyword"
             :placeholder="t('component.icon.search')"
             @input="debounceHandleSearchChange"
@@ -39,7 +39,7 @@
           </ScrollContainer>
         </div>
         <template v-else>
-          <div class="p-5"><el-empty /></div>
+          <div class="p-5"><ElEmpty /></div>
         </template>
 
         <template #reference>
@@ -53,13 +53,14 @@
             v-else><Icon :icon="currentSelect || 'ion:apps-outline'" /></span>
         </template>
 
-      </el-popover>
+      </ElPopover>
     </template>
-  </el-input>
+  </ElInput>
 </template>
 
 <script lang="ts" setup>
 import { ref, watchEffect, watch, unref } from 'vue'
+import { ElInput, ElPopover, ElEmpty } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
 import { ScrollContainer } from '@/components/Container'
 import Icon from './Icon.vue'

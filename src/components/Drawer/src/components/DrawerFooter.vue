@@ -5,21 +5,21 @@
     v-if="showFooter || $slots.footer">
     <template v-if="!$slots.footer">
       <slot name="insertFooter"></slot>
-      <el-button
+      <ElButton
         @click="handleClose"
         class="mr-2"
         v-if="showCancelBtn">
         {{ cancelText }}
-      </el-button>
+      </ElButton>
       <slot name="centerFooter"></slot>
-      <el-button
+      <ElButton
         :type="confirmType"
         @click="handleOk"
         class="mr-2"
         :loading="confirmLoading"
         v-if="showConfirmBtn">
         {{ confirmText }}
-      </el-button>
+      </ElButton>
       <slot name="appendFooter"></slot>
     </template>
 
@@ -31,12 +31,15 @@
 
 <script lang="ts">
 import type { CSSProperties } from 'vue'
+
 import { defineComponent, computed } from 'vue'
+import { ElButton } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
 
 import { footerProps } from '../props'
 export default defineComponent({
   name: 'BasicDrawerFooter',
+  components: { ElButton },
   props: {
     ...footerProps,
     height: {

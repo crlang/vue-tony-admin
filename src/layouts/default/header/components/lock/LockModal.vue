@@ -20,12 +20,12 @@
       <BasicForm @register="registerForm" />
 
       <div :class="`${prefixCls}__footer`">
-        <el-button
+        <ElButton
           type="primary"
           class="mt-2"
           @click="handleLock">
           {{ t('layout.header.lockScreenBtn') }}
-        </el-button>
+        </ElButton>
       </div>
     </div>
   </BasicModal>
@@ -33,6 +33,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
+import { ElButton } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useDesign } from '@/hooks/web/useDesign'
 import { BasicModal, useModalInner } from '@/components/Modal/index'
@@ -43,7 +44,7 @@ import { BasicForm, useForm } from '@/components/Form'
 
 export default defineComponent({
   name: 'LockModal',
-  components: { BasicModal, BasicForm },
+  components: { ElButton, BasicModal, BasicForm },
   props: {
     visible: {
       type: Boolean,

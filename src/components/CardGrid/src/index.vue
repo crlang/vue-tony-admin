@@ -3,7 +3,7 @@
  * @Description: Card Grid component
 -->
 <template>
-  <el-card
+  <ElCard
     :shadow="shadow"
     :class="prefixCls"
     :body-style="{ margin: '-1px 0 0 -1px', padding: 0}">
@@ -15,17 +15,19 @@
     <div :class="getContentClass">
       <slot></slot>
     </div>
-  </el-card>
+  </ElCard>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed, unref } from 'vue'
+import { ElCard } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
 import { ShadowTypes } from './types'
 
 export default defineComponent({
   name: 'CardGrid',
   components: {
+    ElCard,
   },
   props: {
     rows: {

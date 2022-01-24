@@ -1,15 +1,16 @@
 <template>
-  <el-button
+  <ElButton
     v-bind="$attrs"
     :disabled="isStart"
     @click="handleStart"
     :loading="loading">
     {{ getButtonText }}
-  </el-button>
+  </ElButton>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, watchEffect, computed, unref } from 'vue'
+import { ElButton } from 'element-plus'
 import { useCountdown } from './useCountdown'
 import { isFunction } from '@/utils/is'
 import { useI18n } from '@/hooks/web/useI18n'
@@ -25,6 +26,7 @@ const props = {
 
 export default defineComponent({
   name: 'CountButton',
+  components: { ElButton },
   props,
   setup(props) {
     const loading = ref(false)

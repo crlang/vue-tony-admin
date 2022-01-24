@@ -1,41 +1,42 @@
 <template>
   <div>
     <template v-if="canFullscreen">
-      <el-tooltip
+      <ElTooltip
         :content="t('component.modal.restore')"
         placement="bottom"
         v-if="fullScreen">
         <span><SvgIcon
           name="fullscreen-exit"
           @click="handleFullScreen" /></span>
-      </el-tooltip>
-      <el-tooltip
+      </ElTooltip>
+      <ElTooltip
         :content="t('component.modal.maximize')"
         placement="bottom"
         v-else>
         <span><SvgIcon
           name="fullscreen"
           @click="handleFullScreen" /></span>
-      </el-tooltip>
+      </ElTooltip>
     </template>
-    <el-tooltip
+    <ElTooltip
       :content="t('component.modal.close')"
       placement="bottom">
       <span><SvgIcon
         name="close"
         @click="handleCancel" /></span>
-    </el-tooltip>
+    </ElTooltip>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElTooltip } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 import { SvgIcon } from '@/components/Icon'
 
 export default defineComponent({
   name: 'ModalClose',
-  components: { SvgIcon },
+  components: { ElTooltip, SvgIcon },
   props: {
     canFullscreen: { type: Boolean, default: true },
     fullScreen: { type: Boolean },

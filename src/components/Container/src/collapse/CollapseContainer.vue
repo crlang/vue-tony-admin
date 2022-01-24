@@ -17,7 +17,7 @@
 
     <div class="p-4">
       <CollapseTransition :enable="canExpan">
-        <el-skeleton
+        <ElSkeleton
           v-if="loading"
           :active="loading" />
         <div
@@ -39,6 +39,7 @@
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import { ref } from 'vue'
+import { ElSkeleton } from 'element-plus'
 // component
 import { CollapseTransition } from '@/components/Transition'
 import CollapseHeader from './CollapseHeader.vue'

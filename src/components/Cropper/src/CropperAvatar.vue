@@ -21,12 +21,12 @@
         v-if="sourceValue"
         alt="avatar" />
     </div>
-    <el-button
+    <ElButton
       :class="`${prefixCls}-upload-btn`"
       @click="openModal=true"
       v-if="showBtn">
       {{ btnText ? btnText : t('component.cropper.selectImage') }}
-    </el-button>
+    </ElButton>
     <CopperModal
       v-model:visible="openModal"
       @fail="handleUploadFail"
@@ -36,13 +36,15 @@
 </template>
 
 <script lang="ts">
+import type { EleButton } from '@/components/ElementPlus'
+
 import { defineComponent, computed, CSSProperties, unref, ref, watchEffect, watch } from 'vue'
+import { ElButton } from 'element-plus'
 import CopperModal from './CopperModal.vue'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useMessage } from '@/hooks/web/useMessage'
 import { useI18n } from '@/hooks/web/useI18n'
 import Icon from '@/components/Icon'
-import type { EleButton } from '@/components/ElementPlus'
 
 const props = {
   width: { type: [String, Number], default: '200px' },
@@ -56,7 +58,7 @@ const props = {
 
 export default defineComponent({
   name: 'CropperAvatar',
-  components: { CopperModal, Icon },
+  components: { ElButton, CopperModal, Icon },
   props,
   emits: ['update:value', 'change'],
   setup(props, { emit }) {

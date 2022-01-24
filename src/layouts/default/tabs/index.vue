@@ -1,21 +1,21 @@
 <template>
   <div :class="getWrapClass">
-    <el-tabs
+    <ElTabs
       v-model="activeKeyRef"
       @tab-click="handleChange"
       @edit="handleEdit">
       <template
         v-for="item in getTabsState"
         :key="item.query ? item.fullPath : item.path">
-        <el-tab-pane
+        <ElTabPane
           :name="item.query ? item.fullPath : item.path"
           :closable="!(item && item.meta && item.meta.affix)">
           <template #label>
             <TabContent :tabItem="item" />
           </template>
-        </el-tab-pane>
+        </ElTabPane>
       </template>
-    </el-tabs>
+    </ElTabs>
     <div
       :class="`${prefixCls}__extra`"
       v-if="getShowRedo || getShowQuick">
@@ -38,6 +38,7 @@
 import type { RouteLocationNormalized, RouteMeta } from 'vue-router'
 
 import { defineComponent, computed, unref, ref, toRaw } from 'vue'
+import { ElTabs, ElTabPane } from 'element-plus'
 
 import TabContent from './components/TabContent.vue'
 import FoldButton from './components/FoldButton.vue'
@@ -58,7 +59,7 @@ import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting'
 
 export default defineComponent({
   name: 'MultipleTabs',
-  components: { TabContent, TabRedo, FoldButton },
+  components: { ElTabs, ElTabPane, TabContent, TabRedo, FoldButton },
   setup() {
     const activeKeyRef = ref('')
 

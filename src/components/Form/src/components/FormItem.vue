@@ -3,7 +3,9 @@ import type { PropType } from 'vue'
 import type { FormActionType, FormProps } from '../types/form'
 import type { FormSchema } from '../types/form'
 import type { TableActionType } from '@/components/Table'
+
 import { defineComponent, computed, unref } from 'vue'
+import { ElOption, ElCheckbox, ElRadio, ElRadioButton, ElDivider, ElCol } from 'element-plus'
 import { componentMap } from '../componentMap'
 import { BasicHelp } from '@/components/Basic'
 import { isBoolean, isFunction, isNull } from '@/utils/is'
@@ -18,6 +20,7 @@ export declare type SyncValidateResult = boolean | SyncErrorType | SyncErrorType
 
 export default defineComponent({
   name: 'BasicFormItem',
+  components: { ElOption, ElCheckbox, ElRadio, ElRadioButton, ElDivider, ElCol },
   inheritAttrs: false,
   props: {
     schema: {
@@ -307,28 +310,28 @@ export default defineComponent({
         showEmpty && (compSlot.empty = () => isFunction(empty) ? empty(unref(getValues)) : empty)
         if (component === 'ElSelect' && compAttr?.options) {
           compSlot.default = () => compAttr?.options.map(k => {
-            return <el-option label={k.label} value={k.value} />
+            return <ElOption label={k.label} value={k.value} />
           })
         }
 
         if (component === 'ElCheckboxGroup' && compAttr?.options) {
           compSlot.default = () => compAttr?.options.map(k => {
-            return <el-checkbox label={k.value}>{k.label}</el-checkbox>
+            return <ElCheckbox label={k.value}>{k.label}</ElCheckbox>
           })
         }
         if (component === 'ElRadioGroup' && compAttr?.options) {
           compSlot.default = () => compAttr?.options.map(k => {
-            return <el-radio label={k.value}>{k.label}</el-radio>
+            return <ElRadio label={k.value}>{k.label}</ElRadio>
           })
         }
         if (component === 'ElRadio' && compAttr?.options) {
           compSlot.default = () => compAttr?.options.map(k => {
-            return <el-radio label={k.value}>{k.label}</el-radio>
+            return <ElRadio label={k.value}>{k.label}</ElRadio>
           })
         }
         if (component === 'ElRadioButton' && compAttr?.options) {
           compSlot.default = () => compAttr?.options.map(k => {
-            return <el-radio-button label={k.value}>{k.label}</el-radio-button>
+            return <ElRadioButton label={k.value}>{k.label}</ElRadioButton>
           })
         }
         return <Comp {...compAttr} >{compSlot}</Comp>
@@ -371,7 +374,7 @@ export default defineComponent({
 
       if (component === 'ElDivider') {
         return (
-          <el-divider {...unref(getComponentsProps)}>{renderLabelHelpMessage()}</el-divider>
+          <ElDivider {...unref(getComponentsProps)}>{renderLabelHelpMessage()}</ElDivider>
         )
       } else {
         const getContent = () => {
@@ -421,9 +424,9 @@ export default defineComponent({
 
       return (
         isIfShow && (
-          <el-col {...realColProps} v-show={isShow}>
+          <ElCol {...realColProps} v-show={isShow}>
             {getContent()}
-          </el-col>
+          </ElCol>
         )
       )
     }

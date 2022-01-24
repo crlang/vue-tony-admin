@@ -1,30 +1,28 @@
-<!--
- * @Author: Tony
- * @Description: Multi-language switching component
--->
 <template>
-  <el-dropdown @command="handleMenuEvent">
+  <ElDropdown @command="handleMenuEvent">
     <span class="locale-dropdown-select">
       <SvgIcon
         :size="size"
         name="language" /><span v-if="showText">{{ getLocaleText }}</span>
     </span>
     <template #dropdown>
-      <el-dropdown-menu>
-        <el-dropdown-item
+      <ElDropdownMenu>
+        <ElDropdownItem
           v-for="item in localeList"
           :key="item"
           :command="item.event">
           {{ item.text }}
-        </el-dropdown-item>
-      </el-dropdown-menu>
+        </ElDropdownItem>
+      </ElDropdownMenu>
     </template>
-  </el-dropdown>
+  </ElDropdown>
 </template>
 
 <script lang="ts" setup>
 import type { LocaleType } from '#/config'
+
 import { ref, watchEffect, unref, computed } from 'vue'
+import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
 import { SvgIcon } from '@/components/Icon'
 import { useLocale } from '@/locales/useLocale'
 import { localeList } from '@/settings/localeSetting'

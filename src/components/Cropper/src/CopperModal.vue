@@ -1,5 +1,5 @@
 <template>
-  <el-dialog
+  <ElDialog
     v-model="sourceVisible"
     :title="t('component.cropper.modalTitle')"
     destroy-on-close
@@ -20,84 +20,84 @@
         </div>
 
         <div :class="`${prefixCls}-toolbar`">
-          <el-upload
+          <ElUpload
             :file-list="[]"
             accept="image/*"
             action="blockit"
             :before-upload="handleBeforeUpload">
-            <el-tooltip
+            <ElTooltip
               :content="t('component.cropper.selectImage')"
               placement="bottom">
-              <el-button
+              <ElButton
                 size="small"
-                type="primary"><Icon icon="ant-design:upload-outlined" /></el-button>
-            </el-tooltip>
-          </el-upload>
-          <el-space>
-            <el-tooltip
+                type="primary"><Icon icon="ant-design:upload-outlined" /></ElButton>
+            </ElTooltip>
+          </ElUpload>
+          <ElSpace>
+            <ElTooltip
               :content="t('component.cropper.btn_reset')"
               placement="bottom">
-              <el-button
+              <ElButton
                 type="primary"
                 size="small"
                 :disabled="!src"
-                @click="handlerToolbar('reset')"><Icon icon="ant-design:reload-outlined" /></el-button>
-            </el-tooltip>
-            <el-tooltip
+                @click="handlerToolbar('reset')"><Icon icon="ant-design:reload-outlined" /></ElButton>
+            </ElTooltip>
+            <ElTooltip
               :content="t('component.cropper.btn_rotate_left')"
               placement="bottom">
-              <el-button
+              <ElButton
                 type="primary"
                 size="small"
                 :disabled="!src"
-                @click="handlerToolbar('rotate', -45)"><Icon icon="ant-design:rotate-left-outlined" /></el-button>
-            </el-tooltip>
-            <el-tooltip
+                @click="handlerToolbar('rotate', -45)"><Icon icon="ant-design:rotate-left-outlined" /></ElButton>
+            </ElTooltip>
+            <ElTooltip
               :content="t('component.cropper.btn_rotate_right')"
               placement="bottom">
-              <el-button
+              <ElButton
                 type="primary"
                 size="small"
                 :disabled="!src"
-                @click="handlerToolbar('rotate', 45)"><Icon icon="ant-design:rotate-right-outlined" /></el-button>
-            </el-tooltip>
-            <el-tooltip
+                @click="handlerToolbar('rotate', 45)"><Icon icon="ant-design:rotate-right-outlined" /></ElButton>
+            </ElTooltip>
+            <ElTooltip
               :content="t('component.cropper.btn_scale_x')"
               placement="bottom">
-              <el-button
+              <ElButton
                 type="primary"
                 size="small"
                 :disabled="!src"
-                @click="handlerToolbar('scaleX')"><Icon icon="vaadin:arrows-long-h" /></el-button>
-            </el-tooltip>
-            <el-tooltip
+                @click="handlerToolbar('scaleX')"><Icon icon="vaadin:arrows-long-h" /></ElButton>
+            </ElTooltip>
+            <ElTooltip
               :content="t('component.cropper.btn_scale_y')"
               placement="bottom">
-              <el-button
+              <ElButton
                 type="primary"
                 size="small"
                 :disabled="!src"
-                @click="handlerToolbar('scaleY')"><Icon icon="vaadin:arrows-long-v" /></el-button>
-            </el-tooltip>
-            <el-tooltip
+                @click="handlerToolbar('scaleY')"><Icon icon="vaadin:arrows-long-v" /></ElButton>
+            </ElTooltip>
+            <ElTooltip
               :content="t('component.cropper.btn_zoom_in')"
               placement="bottom">
-              <el-button
+              <ElButton
                 type="primary"
                 size="small"
                 :disabled="!src"
-                @click="handlerToolbar('zoom', 0.1)"><Icon icon="ant-design:zoom-in-outlined" /></el-button>
-            </el-tooltip>
-            <el-tooltip
+                @click="handlerToolbar('zoom', 0.1)"><Icon icon="ant-design:zoom-in-outlined" /></ElButton>
+            </ElTooltip>
+            <ElTooltip
               :content="t('component.cropper.btn_zoom_out')"
               placement="bottom">
-              <el-button
+              <ElButton
                 type="primary"
                 size="small"
                 :disabled="!src"
-                @click="handlerToolbar('zoom', -0.1)"><Icon icon="ant-design:zoom-out-outlined" /></el-button>
-            </el-tooltip>
-          </el-space>
+                @click="handlerToolbar('zoom', -0.1)"><Icon icon="ant-design:zoom-out-outlined" /></ElButton>
+            </ElTooltip>
+          </ElSpace>
         </div>
       </div>
       <div :class="`${prefixCls}-right`">
@@ -109,16 +109,16 @@
         </div>
         <template v-if="previewSource">
           <div :class="`${prefixCls}-group`">
-            <el-avatar
+            <ElAvatar
               :src="previewSource"
               size="large" />
-            <el-avatar
+            <ElAvatar
               :src="previewSource"
               :size="48" />
-            <el-avatar
+            <ElAvatar
               :src="previewSource"
               :size="64" />
-            <el-avatar
+            <ElAvatar
               :src="previewSource"
               :size="80" />
           </div>
@@ -127,19 +127,21 @@
     </div>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="handleClose('cancel')">{{ t('common.cancelText') }}</el-button>
-        <el-button
+        <ElButton @click="handleClose('cancel')">{{ t('common.cancelText') }}</ElButton>
+        <ElButton
           type="primary"
           :disabled="!previewSource"
-          @click="handleOk()">{{ t('component.cropper.confirmText') }}</el-button>
+          @click="handleOk()">{{ t('component.cropper.confirmText') }}</ElButton>
       </span>
     </template>
-  </el-dialog>
+  </ElDialog>
 </template>
 
 <script lang="ts">
 import type { CropendResult, Cropper } from './typing'
+
 import { defineComponent, ref, watchEffect, watch } from 'vue'
+import { ElDialog, ElUpload, ElTooltip, ElButton, ElAvatar, ElSpace } from 'element-plus'
 import CropperImage from './Cropper.vue'
 import { useDesign } from '@/hooks/web/useDesign'
 import { dataURLtoBlob } from '@/utils/file/base64Conver'
@@ -169,7 +171,16 @@ const props = {
 
 export default defineComponent({
   name: 'CropperModal',
-  components: { CropperImage, Icon },
+  components: {
+    ElDialog,
+    ElUpload,
+    ElTooltip,
+    ElButton,
+    ElAvatar,
+    ElSpace,
+    CropperImage,
+    Icon,
+  },
   props,
   emits: ['update:visible', 'fail', 'success'],
   setup(props, { emit }) {

@@ -20,7 +20,7 @@
       </CollapseTransition>
     </template>
 
-    <el-popover
+    <ElPopover
       placement="right"
       v-else
       effect="dark"
@@ -54,13 +54,14 @@
           <slot></slot>
         </ul>
       </div>
-    </el-popover>
+    </ElPopover>
   </li>
 </template>
 
 <script lang="ts">
 import type { PropType } from 'vue'
 import type { SubMenuProvider } from './types'
+
 import {
   defineComponent,
   computed,
@@ -72,6 +73,7 @@ import {
   onBeforeMount,
   inject
 } from 'vue'
+import { ElPopover } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
 import { propTypes } from '@/utils/propTypes'
 import { useMenuItem } from './useMenu'
@@ -85,6 +87,7 @@ const DELAY = 200
 export default defineComponent({
   name: 'SubMenu',
   components: {
+    ElPopover,
     Icon,
     CollapseTransition,
   },

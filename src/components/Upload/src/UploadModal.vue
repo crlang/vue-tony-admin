@@ -6,28 +6,28 @@
     @close="handleCloseFunc">
 
     <template #footer>
-      <el-button
+      <ElButton
         @click="handleStartUpload"
         type="success"
         :disabled="!getIsSelectFile"
         :loading="isUploadingRef">
         {{ getUploadBtnText }}
-      </el-button>
+      </ElButton>
 
-      <el-button
+      <ElButton
         type="default"
-        @click="handleCloseFunc">{{ t('common.closeText') }}</el-button>
-      <el-button v-bind="getConfirmButtonProps">{{ t('component.upload.save') }}</el-button>
+        @click="handleCloseFunc">{{ t('common.closeText') }}</ElButton>
+      <ElButton v-bind="getConfirmButtonProps">{{ t('component.upload.save') }}</ElButton>
     </template>
 
     <div class="upload-modal-toolbar">
-      <el-alert
+      <ElAlert
         :title="getHelpText"
         type="info"
         :closable="false"
         class="upload-modal-toolbar__text" />
 
-      <el-upload
+      <ElUpload
         action="NotUrl"
         :accept="getStringAccept"
         :multiple="multiple"
@@ -35,7 +35,7 @@
         :disabled="disabled || getChooseButtonProps.disabled"
         :show-file-list="false"
         :before-upload="beforeUpload"
-        class="upload-modal-toolbar__btn"><el-button v-bind="getChooseButtonProps">{{ t('component.upload.choose') }}</el-button></el-upload>
+        class="upload-modal-toolbar__btn"><ElButton v-bind="getChooseButtonProps">{{ t('component.upload.choose') }}</ElButton></ElUpload>
 
     </div>
 
@@ -48,6 +48,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref, toRefs, unref, computed, PropType, watchEffect, watch } from 'vue'
+import { ElButton, ElUpload, ElAlert } from 'element-plus'
 import { BasicModal } from '@/components/Modal'
 // hooks
 import { useUploadType } from './useUpload'
@@ -65,7 +66,7 @@ import FileList from './FileList.vue'
 import { useI18n } from '@/hooks/web/useI18n'
 
 export default defineComponent({
-  components: { BasicModal, FileList },
+  components: { ElButton, ElUpload, ElAlert, BasicModal, FileList },
   props: {
     ...basicProps,
     previewFileList: {

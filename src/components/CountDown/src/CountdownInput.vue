@@ -1,5 +1,5 @@
 <template>
-  <el-input
+  <ElInput
     v-bind="$attrs"
     :class="prefixCls"
     :size="size"
@@ -18,11 +18,12 @@
         :name="item"
         v-bind="data || {}"></slot>
     </template>
-  </el-input>
+  </ElInput>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
+import { ElInput } from 'element-plus'
 import CountButton from './CountButton.vue'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useRuleFormItem } from '@/hooks/component/useFormItem'
@@ -39,7 +40,7 @@ const props = {
 
 export default defineComponent({
   name: 'CountDownInput',
-  components: { CountButton },
+  components: { ElInput, CountButton },
   inheritAttrs: false,
   props,
   setup(props) {

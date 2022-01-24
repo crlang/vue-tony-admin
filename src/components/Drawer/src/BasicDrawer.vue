@@ -1,5 +1,5 @@
 <template>
-  <el-drawer
+  <ElDrawer
     @close="onClose"
     v-bind="getBindValues"
     v-model="visibleRef">
@@ -41,13 +41,15 @@
           v-bind="data || {}"></slot>
       </template>
     </DrawerFooter>
-  </el-drawer>
+  </ElDrawer>
 </template>
 
 <script lang="ts">
-import type { DrawerInstance, DrawerProps } from './typing'
 import type { CSSProperties } from 'vue'
+import type { DrawerInstance, DrawerProps } from './typing'
+
 import { defineComponent, ref, computed, watch, unref, nextTick, toRaw, getCurrentInstance } from 'vue'
+import { ElDrawer } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 import { isFunction } from '@/utils/is'
 import { deepMerge } from '@/utils'
@@ -60,7 +62,7 @@ import { useAttrs } from '@/hooks/core/useAttrs'
 import { omit } from 'lodash-es'
 
 export default defineComponent({
-  components: { ScrollContainer, DrawerFooter, DrawerHeader },
+  components: { ElDrawer, ScrollContainer, DrawerFooter, DrawerHeader },
   inheritAttrs: false,
   props: basicProps,
   emits: ['visible-change', 'ok', 'close', 'register'],

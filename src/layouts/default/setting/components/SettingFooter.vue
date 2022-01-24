@@ -1,28 +1,29 @@
 <template>
   <div :class="prefixCls">
-    <el-button
+    <ElButton
       type="primary"
       @click="handleCopy">
       <CopyDocument /> {{ t('layout.setting.copyBtn') }}
-    </el-button>
+    </ElButton>
 
-    <el-button
+    <ElButton
       type="warning"
       @click="handleResetSetting"
       class="my-3">
       <RefreshLeft /> {{ t('common.resetText') }}
-    </el-button>
+    </ElButton>
 
-    <el-button
+    <ElButton
       type="danger"
       @click="handleClearAndRedo">
       <Refresh /> {{ t('layout.setting.clearBtn') }}
-    </el-button>
+    </ElButton>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, unref } from 'vue'
+import { ElButton } from 'element-plus'
 
 import { CopyDocument, RefreshLeft, Refresh } from '@element-plus/icons'
 import { useAppStore } from '@/store/modules/app'
@@ -41,7 +42,7 @@ import defaultSetting from '@/settings/projectSetting'
 
 export default defineComponent({
   name: 'SettingFooter',
-  components: { CopyDocument, RefreshLeft, Refresh },
+  components: { ElButton, CopyDocument, RefreshLeft, Refresh },
   setup() {
     const permissionStore = usePermissionStore()
     const { prefixCls } = useDesign('setting-footer')

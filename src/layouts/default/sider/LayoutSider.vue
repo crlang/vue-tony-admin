@@ -3,7 +3,7 @@
     v-if="getMenuFixed && !getIsMobile"
     :style="getHiddenDomStyle"
     v-show="showClassSideBarRef"></div>
-  <el-aside
+  <ElAside
     v-show="showClassSideBarRef"
     ref="sideRef"
     :class="getSiderClass"
@@ -18,11 +18,12 @@
         :class="`${prefixCls}-trigger ${getMenuTheme}`"
         sider />
     </template>
-  </el-aside>
+  </ElAside>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, ref, unref, CSSProperties } from 'vue'
+import { ElAside } from 'element-plus'
 import LayoutMenu from '../menu/index.vue'
 import LayoutTrigger from '@/layouts/default/trigger/index.vue'
 
@@ -36,7 +37,7 @@ import { useDesign } from '@/hooks/web/useDesign'
 import DragBar from './DragBar.vue'
 export default defineComponent({
   name: 'LayoutSideBar',
-  components: { LayoutMenu, DragBar, LayoutTrigger },
+  components: { ElAside, LayoutMenu, DragBar, LayoutTrigger },
   setup() {
     const dragBarRef = ref<ElRef>(null)
     const sideRef = ref<ElRef>(null)

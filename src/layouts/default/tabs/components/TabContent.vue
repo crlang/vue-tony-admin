@@ -1,20 +1,20 @@
 <template>
-  <el-dropdown
+  <ElDropdown
     :trigger="getTrigger"
     @visible-change="handleContext"
     :popper-class="`${prefixCls}__contextmenu`"
     @command="handleMenuEvent">
     <template #dropdown>
-      <el-dropdown-menu>
-        <el-dropdown-item
+      <ElDropdownMenu>
+        <ElDropdownItem
           v-for="item in getDropMenuList"
           :key="item.command"
           :command="item.command"
           :disabled="item.disabled"
           :divided="item.divided"> <Icon
             :icon="item.icon"
-            class="mr-2" /> {{ item.text }}</el-dropdown-item>
-      </el-dropdown-menu>
+            class="mr-2" /> {{ item.text }}</ElDropdownItem>
+      </ElDropdownMenu>
     </template>
     <div
       :class="`${prefixCls}__info`"
@@ -26,7 +26,7 @@
       v-else>
       <Icon icon="ion:chevron-down" />
     </div>
-  </el-dropdown>
+  </ElDropdown>
 </template>
 
 <script lang="ts">
@@ -34,6 +34,7 @@ import type { PropType } from 'vue'
 import type { RouteLocationNormalized } from 'vue-router'
 
 import { defineComponent, computed, unref } from 'vue'
+import { ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus'
 import { Icon } from '@/components/Icon'
 
 import { TabContentProps } from '../types'
@@ -45,7 +46,7 @@ import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting'
 
 export default defineComponent({
   name: 'TabContent',
-  components: { Icon },
+  components: { ElDropdown, ElDropdownItem, ElDropdownMenu, Icon },
   props: {
     tabItem: {
       type: Object as PropType<RouteLocationNormalized>,

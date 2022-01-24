@@ -2,7 +2,7 @@
   <div
     :class="prefixCls"
     class="relative">
-    <el-input
+    <ElInput
       v-if="showInput"
       v-bind="$attrs"
       clearable
@@ -20,12 +20,14 @@
 
 <script lang="ts">
 import { defineComponent, computed, ref, watch, unref, watchEffect } from 'vue'
+import { ElInput } from 'element-plus'
 import { zxcvbn } from '@zxcvbn-ts/core'
 import { useDesign } from '@/hooks/web/useDesign'
 import { propTypes } from '@/utils/propTypes'
 
 export default defineComponent({
   name: 'StrengthMeter',
+  components: { ElInput },
   props: {
     value: propTypes.string,
     showInput: propTypes.bool.def(true),

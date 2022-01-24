@@ -1,12 +1,14 @@
 <template>
-  <el-main
+  <ElMain
     :class="[prefixCls, getLayoutContentMode]"
     v-loading="getOpenPageLoading && getPageLoading">
     <PageLayout />
-  </el-main>
+  </ElMain>
 </template>
+
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElMain } from 'element-plus'
 import PageLayout from '@/layouts/page/index.vue'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useRootSetting } from '@/hooks/setting/useRootSetting'
@@ -15,7 +17,7 @@ import { useContentViewHeight } from './useContentViewHeight'
 
 export default defineComponent({
   name: 'LayoutContent',
-  components: { PageLayout },
+  components: { ElMain, PageLayout },
   setup() {
     const { prefixCls } = useDesign('layout-content')
     const { getOpenPageLoading } = useTransitionSetting()

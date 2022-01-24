@@ -1,20 +1,21 @@
 <template>
   <div :class="prefixCls">
-    <el-tooltip
+    <ElTooltip
       :content="t('layout.header.tooltipErrorLog')"
       placement="bottom">
-      <el-badge
+      <ElBadge
         :value="getCount"
         @click="handleToErrorList"
         :max="99">
         <span><Icon icon="ion:bug-outline" /></span>
-      </el-badge>
-    </el-tooltip>
+      </ElBadge>
+    </ElTooltip>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
+import { ElTooltip, ElBadge } from 'element-plus'
 import Icon from '@/components/Icon'
 
 import { useI18n } from '@/hooks/web/useI18n'
@@ -26,7 +27,7 @@ import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'ErrorAction',
-  components: { Icon },
+  components: { ElTooltip, ElBadge, Icon },
 
   setup() {
     const { t } = useI18n()

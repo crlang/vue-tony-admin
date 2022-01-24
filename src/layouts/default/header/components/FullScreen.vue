@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-tooltip
+    <ElTooltip
       :content="getTitle"
       placement="bottom">
       <span @click="toggle">
@@ -13,12 +13,13 @@
           name="fullscreen-exit"
           v-else />
       </span>
-    </el-tooltip>
+    </ElTooltip>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed, unref } from 'vue'
+import { ElTooltip } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useFullscreen } from '@vueuse/core'
 
@@ -26,7 +27,7 @@ import { SvgIcon } from '@/components/Icon'
 
 export default defineComponent({
   name: 'FullScreen',
-  components: { SvgIcon },
+  components: { ElTooltip, SvgIcon },
   setup() {
     const { t } = useI18n()
     const { toggle, isFullscreen } = useFullscreen()

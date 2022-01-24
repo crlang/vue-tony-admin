@@ -4,19 +4,20 @@
 -->
 <template>
   <li :class="getClass">
-    <el-card
+    <ElCard
       v-if="type === 'card'"
       :shadow="cardShadow"
       :body-style="cardStyle"
       :class="getCardClass">
       <slot></slot>
-    </el-card>
+    </ElCard>
     <slot v-else></slot>
   </li>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, unref } from 'vue'
+import { ElCard } from 'element-plus'
 
 import type { PropType } from 'vue'
 import type { ShadowTypes, ListTypes } from './types'
@@ -24,7 +25,7 @@ import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'ListItem',
-  components: {},
+  components: { ElCard },
   props: {
     type: {
       type: String as PropType<ListTypes>,

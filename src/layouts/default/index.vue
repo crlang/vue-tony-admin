@@ -1,20 +1,21 @@
 <template>
-  <el-container
+  <ElContainer
     :class="[layoutClass]"
     v-bind="lockEvents">
     <LayoutSideBar v-if="getShowSidebar || getIsMobile" />
-    <el-container :class="`${prefixCls}-main`">
+    <ElContainer :class="`${prefixCls}-main`">
       <LayoutFeatures />
       <LayoutMultipleHeader />
       <LayoutContent />
       <LayoutFooter />
-    </el-container>
-  </el-container>
+    </ElContainer>
+  </ElContainer>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed, unref } from 'vue'
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
+import { ElContainer } from 'element-plus'
 
 import LayoutContent from './content/index.vue'
 import LayoutSideBar from './sider/index.vue'
@@ -30,6 +31,7 @@ import { useAppInject } from '@/hooks/web/useAppInject'
 export default defineComponent({
   name: 'DefaultLayout',
   components: {
+    ElContainer,
     LayoutFeatures: createAsyncComponent(() => import('@/layouts/default/feature/index.vue')),
     LayoutFooter: createAsyncComponent(() => import('@/layouts/default/footer/index.vue')),
     // LayoutHeader,

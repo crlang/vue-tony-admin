@@ -11,7 +11,7 @@
           <template
             #avatar
             v-if="item.avatar">
-            <el-avatar
+            <ElAvatar
               style="--el-avatar-bg-color: #fff"
               class="avatar"
               :src="item.avatar" />
@@ -23,12 +23,12 @@
               <div
                 class="extra"
                 v-if="item.extra">
-                <el-tag
+                <ElTag
                   class="tag"
                   size="small"
                   :type="item.color">
                   {{ item.extra }}
-                </el-tag>
+                </ElTag>
               </div>
             </div>
           </template>
@@ -53,12 +53,15 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType, ref, watch, unref } from 'vue'
+import { ElAvatar, ElTag } from 'element-plus'
 import { ListItem as ListItemType } from './data'
 import { useDesign } from '@/hooks/web/useDesign'
 import { List, ListItem, ListItemMeta } from '@/components/List'
 
 export default defineComponent({
   components: {
+    ElAvatar,
+    ElTag,
     List,
     ListItem,
     ListItemMeta,

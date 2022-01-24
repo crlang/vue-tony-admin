@@ -1,5 +1,5 @@
 <template>
-  <el-dropdown
+  <ElDropdown
     @command="handleMenuClick">
     <div :class="[prefixCls,itemClass]">
       <img
@@ -11,31 +11,32 @@
     </div>
 
     <template #dropdown>
-      <el-dropdown-menu :class="`${prefixCls}-menulist`">
-        <el-dropdown-item
+      <ElDropdownMenu :class="`${prefixCls}-menulist`">
+        <ElDropdownItem
           command="doc"
           v-if="getShowDoc"><Icon
             class="mr-2"
-            icon="ion:document-text-outline" />{{ t('layout.header.dropdownItemDoc') }}</el-dropdown-item>
-        <el-dropdown-item
+            icon="ion:document-text-outline" />{{ t('layout.header.dropdownItemDoc') }}</ElDropdownItem>
+        <ElDropdownItem
           v-if="getUseLockPage"
           :divided="getShowDoc"
           command="lock"><Icon
             class="mr-2"
-            icon="ion:lock-closed-outline" />{{ t('layout.header.tooltipLock') }}</el-dropdown-item>
-        <el-dropdown-item
+            icon="ion:lock-closed-outline" />{{ t('layout.header.tooltipLock') }}</ElDropdownItem>
+        <ElDropdownItem
           command="logout"
           divided><Icon
             class="mr-2"
-            icon="ion:power-outline" />{{ t('layout.header.dropdownItemLoginOut') }}</el-dropdown-item>
-      </el-dropdown-menu>
+            icon="ion:power-outline" />{{ t('layout.header.dropdownItemLoginOut') }}</ElDropdownItem>
+      </ElDropdownMenu>
     </template>
-  </el-dropdown>
+  </ElDropdown>
   <LockAction @register="register" />
 </template>
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
+import { ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus'
 
 import { DOC_URL } from '@/settings/siteSetting'
 
@@ -56,6 +57,9 @@ type MenuEvent = 'logout' | 'doc' | 'lock'
 export default defineComponent({
   name: 'UserDropdown',
   components: {
+    ElDropdown,
+    ElDropdownItem,
+    ElDropdownMenu,
     LockAction: createAsyncComponent(() => import('../lock/LockModal.vue')),
     Icon,
   },
