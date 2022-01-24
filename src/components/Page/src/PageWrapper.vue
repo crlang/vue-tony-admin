@@ -148,7 +148,7 @@ $prefix-cls: '#{$tonyname}-page-wrapper';
     position: relative;
     padding: 16px 24px;
     background-color: var(--background-secondary-color);
-    box-shadow: var(--control-shadow);
+    box-shadow: var(--card-shadow);
 
     &-full {
       padding: 0;

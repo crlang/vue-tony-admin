@@ -96,6 +96,17 @@ img, svg, iframe {
   vertical-align: middle;
 }
 
+svg {
+  width: 1em;
+  height: 1em;
+}
+
+// fix the echarts
+[_echarts_instance_] svg {
+  width: auto;
+  height: auto;
+}
+
 p, h4, h1, h3 {
   margin: 0;
 }
