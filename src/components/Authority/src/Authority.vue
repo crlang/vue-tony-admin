@@ -1,8 +1,4 @@
-<!--
- Access control component for fine-grained access control.
--->
 <script lang="ts">
-import type { PropType } from 'vue'
 import { defineComponent } from 'vue'
 import { RoleEnum } from '@/enums/roleEnum'
 import { usePermission } from '@/hooks/web/usePermission'

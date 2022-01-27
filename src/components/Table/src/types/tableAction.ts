@@ -1,11 +1,13 @@
+import type { EleButton } from '@/components/ElementPlus'
+
 import { RoleEnum } from '@/enums/roleEnum'
 import { Component } from 'vue'
-import { EleButton, EleButtonType } from '@/components/ElementPlus'
+import { ComponentSize } from '@/utils/types'
 
 export interface ActionItem extends EleButton {
   onClick?: Fn;
   label?: string;
-  type?: EleButtonType;
+  type?: ComponentSize;
   icon?: string;
   popConfirm?: PopConfirm;
   disabled?: boolean;

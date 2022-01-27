@@ -20,13 +20,14 @@
 </template>
 
 <script lang="ts">
+import type { EleButton } from '@/components/ElementPlus'
+
 import { computed, unref, defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
 import Icon from '@/components/Icon/src/Icon.vue'
 import { buttonProps } from './props'
 import { omit } from 'lodash-es'
 import { useDesign } from '@/hooks/web/useDesign'
-import type { EleButton } from '@/components/ElementPlus'
-import { ElButton } from 'element-plus'
 
 export default defineComponent({
   name: 'Button',

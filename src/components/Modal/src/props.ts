@@ -1,5 +1,6 @@
 import type { PropType } from 'vue'
 import type { ModalWrapperProps } from './typing'
+
 import { useI18n } from '@/hooks/web/useI18n'
 import { EleDialogProps, EleButtonProps } from '@/components/ElementPlus'
 

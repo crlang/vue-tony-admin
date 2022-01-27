@@ -1,5 +1,5 @@
 import type { ComputedRef } from 'vue'
-import type { EleButtonType, EleButtonProps } from '@/components/ElementPlus'
+import type { EleButtonType, EleButton } from '@/components/ElementPlus'
 /**
  * @description: 弹窗对外暴露的方法
  */
@@ -87,13 +87,13 @@ export interface ModalProps {
    * The ok button props, follow jsx rules
    * @type object
    */
-  confirmButtonProps?: EleButtonProps;
+  confirmButtonProps?: EleButton;
 
   /**
    * The cancel button props, follow jsx rules
    * @type object
    */
-  cancelButtonProps?: EleButtonProps;
+  cancelButtonProps?: EleButton;
 }
 
 export interface ModalWrapperProps {

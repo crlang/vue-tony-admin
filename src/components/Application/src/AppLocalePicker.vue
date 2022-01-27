@@ -20,19 +20,22 @@
 
 <script lang="ts" setup>
 import type { LocaleType } from '#/config'
+import type { EleDropdownItem } from '@/components/ElementPlus'
 
 import { ref, watchEffect, unref, computed } from 'vue'
 import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
 import { SvgIcon } from '@/components/Icon'
 import { useLocale } from '@/locales/useLocale'
 import { localeList } from '@/settings/localeSetting'
-import { EleDropdownItem } from '@/components/ElementPlus'
 
 const props = defineProps({
   /**
    * Whether to display text
    */
   showText: { type: Boolean, default: true },
+  /**
+   * Icon size
+   */
   size: { type: [Number, String], default: 18 },
   /**
    * Whether to refresh the interface when changing

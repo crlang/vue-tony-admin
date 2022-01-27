@@ -4,6 +4,7 @@ import type { ColEx, ComponentType } from './index'
 import type { TableActionType } from '@/components/Table/src/types/table'
 import type { CSSProperties } from 'vue'
 import type { EleButton, EleRow } from '@/components/ElementPlus'
+
 import { EleForm, FormItemRule } from '@/components/ElementPlus'
 
 export type FieldMapToTime = [string, [string, string], string?][]

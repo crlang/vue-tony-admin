@@ -3,26 +3,15 @@
  * @Date: 2021-12-24 17:24:14
  * @Description: Element Plus Type and Props
  * @LastEditors: crlang(https://www.crlang.com)
- * @LastEditTime: 2022-01-14 13:22:44
+ * @LastEditTime: 2022-01-27 17:19:30
  */
-// type
-export * from './Form/types'
-export * from './Form/types.rule'
-export * from './FormItem/types'
-export * from './Table/types'
-export * from './TableColumn/types'
-export * from './Dropdown/types'
-
-// prop
-export * from './Form/props'
-export * from './FormItem/props'
-export * from './Table/props'
-export * from './TableColumn/props'
-export * from './Dropdown/props'
+import { ExtractPropTypes } from 'vue'
 
 // 引入 element-plus
 import type {
   ButtonProps,
+  ButtonType,
+  ButtonNativeType,
   ColProps,
   RowProps,
   ImageProps,
@@ -40,11 +29,13 @@ import {
   dialogProps,
   drawerProps,
   messageProps,
-  cardProps
+  cardProps,
 } from 'element-plus'
 
 export const EleButtonProps = buttonProps
 export declare type EleButton = ButtonProps & { text?: string }
+export type EleButtonType = ButtonType
+export type EleButtonNativeType = ButtonNativeType
 
 export const EleColProps = colProps
 export declare type EleCol = ColProps
@@ -66,3 +57,12 @@ export declare type EleMessage = MessageProps
 
 export const EleCardProps = cardProps
 export declare type EleCard = CardProps
+
+// 临时方案
+import { dropdownProps, dropdownItemProps } from 'element-plus/es/components/dropdown/src/dropdown'
+
+export const EleDropdownProps = dropdownProps
+export declare type EleDropdown = ExtractPropTypes<typeof dropdownProps>
+
+export const EleDropdownItemProps = dropdownItemProps
+export declare type EleDropdownItem = ExtractPropTypes<typeof dropdownItemProps>

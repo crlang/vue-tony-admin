@@ -1,5 +1,6 @@
 import type { TabContentProps } from './types'
 import type { ComputedRef } from 'vue'
+import type { EleDropdownItem } from '@/components/ElementPlus'
 
 import { computed, unref, reactive } from 'vue'
 import { MenuEventEnum } from './types'
@@ -7,7 +8,6 @@ import { useMultipleTabStore } from '@/store/modules/multipleTab'
 import { RouteLocationNormalized, useRouter } from 'vue-router'
 import { useTabs } from '@/hooks/web/useTabs'
 import { useI18n } from '@/hooks/web/useI18n'
-import { EleDropdownItem } from '@/components/ElementPlus'
 
 interface DropdownItem extends EleDropdownItem{
   icon?: string

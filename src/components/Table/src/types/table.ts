@@ -2,7 +2,6 @@ import type { VNodeChild } from 'vue'
 import type { PaginationProps } from './pagination'
 import type { FormProps } from '@/components/Form'
 import { ElTableColumn } from 'element-plus'
-// import ElTableColumnType from 'element-plus/es/components/table/src/table-column/defaults'
 export type ElTableColumnType = InstanceType<typeof ElTableColumn>
 
 import { ComponentType } from './componentType'

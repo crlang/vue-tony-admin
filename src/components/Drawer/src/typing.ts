@@ -1,6 +1,6 @@
 import type { CSSProperties, VNodeChild, ComputedRef } from 'vue'
 import type { ScrollContainerOptions } from '@/components/Container/index'
-import { EleButtonType, EleDrawer } from '@/components/ElementPlus'
+import type { EleButtonType, EleDrawer } from '@/components/ElementPlus'
 
 export interface DrawerInstance {
   setDrawerProps: (props: Partial<DrawerProps> | boolean) => void

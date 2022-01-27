@@ -46,6 +46,8 @@
 
 <script lang="ts">
 import type { ColEx } from '../types/index'
+import type { EleButton } from '@/components/ElementPlus'
+
 import { defineComponent, computed, PropType } from 'vue'
 import { ElFormItem, ElCol } from 'element-plus'
 import { Button } from '@/components/Button'
@@ -53,7 +55,6 @@ import { BasicArrow } from '@/components/Basic'
 import { useFormContext } from '../hooks/useFormContext'
 import { useI18n } from '@/hooks/web/useI18n'
 import { propTypes } from '@/utils/propTypes'
-import type { EleButton } from '@/components/ElementPlus'
 
 export default defineComponent({
   name: 'BasicFormAction',

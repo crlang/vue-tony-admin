@@ -2,8 +2,9 @@ import type { FormSchema } from './types/form'
 import type { CSSProperties, PropType } from 'vue'
 import type { ColEx } from './types'
 import type { TableActionType } from '@/components/Table'
-import { propTypes } from '@/utils/propTypes'
 import type { EleButton, EleRow } from '@/components/ElementPlus'
+
+import { propTypes } from '@/utils/propTypes'
 import { EleFormProps } from '@/components/ElementPlus'
 
 export const basicProps = {
