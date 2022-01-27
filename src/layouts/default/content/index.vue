@@ -1,7 +1,5 @@
 <template>
-  <ElMain
-    :class="[prefixCls, getLayoutContentMode]"
-    v-loading="getOpenPageLoading && getPageLoading">
+  <ElMain :class="[prefixCls, getLayoutContentMode]">
     <PageLayout />
   </ElMain>
 </template>

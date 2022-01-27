@@ -22,10 +22,7 @@
       <slot name="title"></slot>
     </template>
 
-    <ScrollContainer
-      :style="getScrollContentStyle"
-      v-loading="getLoading"
-      :element-loading-text="loadingText || t('common.loadingText')">
+    <ScrollContainer :style="getScrollContentStyle">
       <slot></slot>
     </ScrollContainer>
     <DrawerFooter
