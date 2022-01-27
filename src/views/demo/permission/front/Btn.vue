@@ -17,9 +17,9 @@
       权限切换(请先切换权限模式为前端角色权限模式):
       <el-button-group>
         <el-button
-          @click="changeRole(RoleEnum.SUPER)"
-          :type="isSuper ? 'primary' : 'default'">
-          {{ RoleEnum.SUPER }}
+          @click="changeRole(RoleEnum.ADMIN)"
+          :type="isAdmin ? 'primary' : 'default'">
+          {{ RoleEnum.ADMIN }}
         </el-button>
         <el-button
           @click="changeRole(RoleEnum.TEST)"
@@ -29,10 +29,10 @@
       </el-button-group>
     </div>
     <el-divider>组件方式判断权限(有需要可以自行全局注册)</el-divider>
-    <Authority :value="RoleEnum.SUPER">
+    <Authority :value="RoleEnum.ADMIN">
       <el-button
         type="primary"
-        class="mx-4">拥有super角色权限可见</el-button>
+        class="mx-4">拥有admin角色权限可见</el-button>
     </Authority>
 
     <Authority :value="RoleEnum.TEST">
@@ -41,17 +41,17 @@
         class="mx-4">拥有test角色权限可见</el-button>
     </Authority>
 
-    <Authority :value="[RoleEnum.TEST, RoleEnum.SUPER]">
+    <Authority :value="[RoleEnum.TEST, RoleEnum.ADMIN]">
       <el-button
         type="danger"
-        class="mx-4">拥有[test,super]角色权限可见</el-button>
+        class="mx-4">拥有[test,admin]角色权限可见</el-button>
     </Authority>
 
     <el-divider>函数方式方式判断权限(适用于函数内部过滤)</el-divider>
     <el-button
-      v-if="hasPermission(RoleEnum.SUPER)"
+      v-if="hasPermission(RoleEnum.ADMIN)"
       type="primary"
-      class="mx-4">拥有super角色权限可见</el-button>
+      class="mx-4">拥有admin角色权限可见</el-button>
 
     <el-button
       v-if="hasPermission(RoleEnum.TEST)"
@@ -59,17 +59,17 @@
       class="mx-4">拥有test角色权限可见</el-button>
 
     <el-button
-      v-if="hasPermission([RoleEnum.TEST, RoleEnum.SUPER])"
+      v-if="hasPermission([RoleEnum.TEST, RoleEnum.ADMIN])"
       type="danger"
       class="mx-4">
-      拥有[test,super]角色权限可见
+      拥有[test,admin]角色权限可见
     </el-button>
 
     <el-divider>指令方式方式判断权限(该方式不能动态修改权限.)</el-divider>
     <el-button
-      v-auth="RoleEnum.SUPER"
+      v-auth="RoleEnum.ADMIN"
       type="primary"
-      class="mx-4">拥有super角色权限可见</el-button>
+      class="mx-4">拥有admin角色权限可见</el-button>
 
     <el-button
       v-auth="RoleEnum.TEST"
@@ -77,10 +77,10 @@
       class="mx-4">拥有test角色权限可见</el-button>
 
     <el-button
-      v-auth="[RoleEnum.TEST, RoleEnum.SUPER]"
+      v-auth="[RoleEnum.TEST, RoleEnum.ADMIN]"
       type="danger"
       class="mx-4">
-      拥有[test,super]角色权限可见
+      拥有[test,admin]角色权限可见
     </el-button>
   </PageWrapper>
 </template>
@@ -104,7 +104,7 @@ export default defineComponent({
     return {
       userStore,
       RoleEnum,
-      isSuper: computed(() => userStore.getRoleList.includes(RoleEnum.SUPER)),
+      isAdmin: computed(() => userStore.getRoleList.includes(RoleEnum.ADMIN)),
       isTest: computed(() => userStore.getRoleList.includes(RoleEnum.TEST)),
       changeRole,
       hasPermission,

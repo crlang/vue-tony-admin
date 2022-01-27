@@ -9,8 +9,8 @@ const fakeUserInfo = {
   token: 'fakeToken1',
   roles: [
     {
-      roleName: 'Super Admin',
-      value: 'super',
+      roleName: 'Admin user',
+      value: 'admin',
     },
   ],
 }

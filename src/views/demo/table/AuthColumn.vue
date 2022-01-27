@@ -13,7 +13,7 @@
                 {
                   label: '启用',
                   onClick: handleOpen.bind(null, scope.row),
-                  auth: 'super' // 根据权限控制是否显示: 无权限，不显示
+                  auth: 'admin' // 根据权限控制是否显示: 无权限，不显示
                 },
                 {
                   label: '编辑',
@@ -24,7 +24,7 @@
                   label: '删除',
                   icon: 'ic:outline-delete-outline',
                   onClick: handleDelete.bind(null, scope.row),
-                  auth: 'super' // 根据权限控制是否显示: 有权限，会显示
+                  auth: 'admin' // 根据权限控制是否显示: 有权限，会显示
                 }
               ]"
             />
@@ -65,7 +65,7 @@ export default defineComponent({
       {
         label: '地址',
         prop: 'address',
-        auth: 'super', // 同时根据权限和业务控制是否显示
+        auth: 'admin', // 同时根据权限和业务控制是否显示
         ifShow: true,
       },
       {

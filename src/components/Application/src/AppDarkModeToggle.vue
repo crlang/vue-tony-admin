@@ -46,12 +46,6 @@ function toggleDarkMode() {
 <style lang="scss">
 $prefix-cls: '#{$tonyname}-dark-switch';
 
-html[data-theme='dark'] {
-  .#{$prefix-cls} {
-    border: 1px solid #c4bcbc;
-  }
-}
-
 .#{$prefix-cls} {
   position: relative;
   display: flex;
@@ -77,6 +71,8 @@ html[data-theme='dark'] {
   }
 
   &--dark {
+    border: 1px solid #c4bcbc;
+
     .#{$prefix-cls}-inner {
       transform: translateX(calc(100% + 2px));
     }

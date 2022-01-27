@@ -14,8 +14,8 @@ export function createFakeUserList() {
       homePath: '/dashboard/analysis',
       roles: [
         {
-          roleName: 'Super Admin',
-          value: 'super',
+          roleName: 'Admin user',
+          value: 'admin',
         },
       ],
     },
@@ -23,7 +23,7 @@ export function createFakeUserList() {
       userId: '2',
       username: 'test',
       password: '123456',
-      realName: 'test user',
+      realName: 'Tony user',
       avatar: 'https://himg.bdimg.com/sys/portrait/hotitem/wildkid/20',
       desc: 'tester',
       token: 'fakeToken2',

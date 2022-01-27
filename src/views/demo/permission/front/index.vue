@@ -18,9 +18,9 @@
     <div class="mt-4">
       权限切换: <el-button-group>
         <el-button
-          @click="changeRole(RoleEnum.SUPER)"
-          :type="isSuper ? 'primary' : 'default'">
-          {{ RoleEnum.SUPER }}
+          @click="changeRole(RoleEnum.ADMIN)"
+          :type="isAdmin ? 'primary' : 'default'">
+          {{ RoleEnum.ADMIN }}
         </el-button>
         <el-button
           @click="changeRole(RoleEnum.TEST)"
@@ -55,7 +55,7 @@ export default defineComponent({
     return {
       userStore,
       RoleEnum,
-      isSuper: computed(() => userStore.getRoleList.includes(RoleEnum.SUPER)),
+      isAdmin: computed(() => userStore.getRoleList.includes(RoleEnum.ADMIN)),
       isTest: computed(() => userStore.getRoleList.includes(RoleEnum.TEST)),
       changeRole,
     }
