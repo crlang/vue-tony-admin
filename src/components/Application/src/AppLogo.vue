@@ -14,12 +14,13 @@ import { useGo } from '@/hooks/web/usePage'
 import { useDesign } from '@/hooks/web/useDesign'
 import { PageEnum } from '@/enums/pageEnum'
 import { useUserStore } from '@/store/modules/user'
+import { GlobalThemeType } from '@/utils/types'
 
 const props = defineProps({
   /**
    * The theme of the current parent component
    */
-  theme: { type: String, validator: (v: string) => ['light', 'dark'].includes(v) },
+  theme: { type: String as PropType<GlobalThemeType> },
   /**
    * Whether to show title
    */
@@ -35,7 +36,11 @@ const userStore = useUserStore()
 const { title } = useGlobSetting()
 const go = useGo()
 
-const getAppLogoClass = computed(() => [prefixCls, props.theme, !props.showTitle ? 'is-hide-logo' : ''])
+const getAppLogoClass = computed(() => [
+  prefixCls,
+  props.theme,
+  !props.showTitle ? 'is-hide-logo' : '',
+])
 
 function goHome() {
   go(userStore.getUserInfo.homePath || PageEnum.BASE_HOME)
