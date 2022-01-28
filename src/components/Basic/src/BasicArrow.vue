@@ -1,12 +1,6 @@
-<!--
- * @Author: Tony
- * @Description: Arrow component with animation
--->
 <template>
   <span :class="getClass">
-    <Icon
-      icon="ion:chevron-forward"
-      :style="$attrs.iconStyle" />
+    <Icon icon="ion:chevron-forward" />
   </span>
 </template>
 
@@ -14,6 +8,7 @@
 import { computed } from 'vue'
 import { Icon } from '@/components/Icon'
 import { useDesign } from '@/hooks/web/useDesign'
+import { ArrowDirection } from './typing'
 
 const props = defineProps({
   /**
@@ -23,66 +18,56 @@ const props = defineProps({
   /**
    * Arrow up by default
    */
-  up: { type: Boolean },
-  /**
-   * Arrow down by default
-   */
-  down: { type: Boolean },
-  /**
-   * Cancel padding/margin for inline
-   */
-  inset: { type: Boolean },
+  direction: { type: String as PropType<ArrowDirection>, default: 'down' },
 })
 
 const { prefixCls } = useDesign('basic-arrow')
 
 // get component class
 const getClass = computed(() => {
-  const { expand, up, down, inset } = props
+  const { expand, direction } = props
   return [
     prefixCls,
+    `${prefixCls}--${direction}`,
     {
-      [`${prefixCls}--active`]: expand,
-      up,
-      inset,
-      down,
+      'is-actived': expand,
     },
   ]
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $prefix-cls: '#{$tonyname}-basic-arrow';
 
 .#{$prefix-cls} {
   display: inline-block;
+  font-size: 0;
   cursor: pointer;
   transform: rotate(0deg);
   transition: all 0.3s ease 0.1s;
-  transform-origin: center center;
 
-  &--active {
+  &.is-actived {
     transform: rotate(90deg);
   }
 
-  &.inset {
-    line-height: 0px;
-  }
-
-  &.up {
+  &--up {
     transform: rotate(-90deg);
   }
 
-  &.down {
+  &--down {
     transform: rotate(90deg);
+
+    &.is-actived {
+      transform: rotate(-90deg);
+    }
   }
 
-  &.up.#{$prefix-cls}--active {
-    transform: rotate(90deg);
+  &--left {
+    transform: rotate(180deg);
   }
 
-  &.down.#{$prefix-cls}--active {
-    transform: rotate(-90deg);
+  &--right {
+    transform: rotate(0);
   }
 }
 </style>

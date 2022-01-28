@@ -1,8 +1,7 @@
 <template>
   <div :class="[`${prefixCls}__header`, $attrs.class]">
     <BasicTitle
-      :helpMessage="helpMessage"
-      normal>
+      :helpMessage="helpMessage">
       <template v-if="title">
         {{ title }}
       </template>
@@ -14,7 +13,7 @@
       <slot name="action"></slot>
       <BasicArrow
         v-if="canExpan"
-        up
+        direction="up"
         :expand="show"
         @click="$emit('expand')" />
     </div>

@@ -36,7 +36,7 @@
           <BasicArrow
             class="ml-1"
             :expand="!isAdvanced"
-            up />
+            direction="up" />
         </Button>
         <slot name="advanceAfter"></slot>
       </ElFormItem>

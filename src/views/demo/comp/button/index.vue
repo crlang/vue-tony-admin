@@ -9,7 +9,9 @@
           class="box-card"
           shadow="hover">
           <template #header>
-            <div class="card-header">suggestion: custom global component Button</div>
+            <div class="card-header"><BasicTitle
+              helpMessage="suggestion: custom global component Button"
+              span>custom global component Button</BasicTitle></div>
           </template>
 
           <Button
@@ -28,7 +30,9 @@
           class="box-card"
           shadow="hover">
           <template #header>
-            <div class="card-header">basic button</div>
+            <div class="card-header">basic button <BasicArrow
+              direction="up"
+              :expand="true" /></div>
           </template>
 
           <el-button>Default</el-button>
@@ -46,7 +50,7 @@
           class="box-card"
           shadow="hover">
           <template #header>
-            <div class="card-header">plain button</div>
+            <div class="card-header">plain button <BasicHelp :text="['提示1', '提示2']" /></div>
           </template>
 
           <el-button plain>Default</el-button>
@@ -296,8 +300,10 @@ import { defineComponent, ref } from 'vue'
 import { ElRow, ElCol, ElCard, ElButton, ElButtonGroup } from 'element-plus'
 import { PageWrapper } from '@/components/Page'
 import { Search, Edit, Check, Message, Star, Delete, ArrowLeft, Share, ArrowRight, Upload } from '@element-plus/icons'
+import { BasicTitle, BasicArrow, BasicHelp } from '@/components/Basic/index'
+
 export default defineComponent({
-  components: { ElRow, ElCol, ElCard, ElButton, ElButtonGroup, PageWrapper },
+  components: { ElRow, ElCol, ElCard, ElButton, ElButtonGroup, PageWrapper, BasicTitle, BasicArrow, BasicHelp },
   setup() {
     const loading = ref(false)
 

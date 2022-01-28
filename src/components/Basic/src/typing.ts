@@ -1,1 +1,1 @@
-export type effectTypes = 'dark' | 'light';
+export type ArrowDirection = 'up' | 'down' | 'left' | 'right'

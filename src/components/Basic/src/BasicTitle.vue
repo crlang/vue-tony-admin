@@ -9,14 +9,13 @@
 </template>
 
 <script lang="ts" setup>
-import type { PropType } from 'vue'
 import { useSlots, computed } from 'vue'
 import BasicHelp from './BasicHelp.vue'
 import { useDesign } from '@/hooks/web/useDesign'
 
 const props = defineProps({
   /**
-   * Help text list or string
+   * Prompt text or text array
    * @default: ''
    */
   helpMessage: {
@@ -24,58 +23,58 @@ const props = defineProps({
     default: '',
   },
   /**
-   * Whether the color block on the left side of the title
+   * Whether to show the color block to the left of the title
    * @default: false
    */
   span: { type: Boolean },
   /**
-   * Whether to default the text, that is, not bold
+   * Whether the title is bold
    * @default: false
    */
-  normal: { type: Boolean },
+  bold: { type: Boolean },
 })
 
 const { prefixCls } = useDesign('basic-title')
 const slots = useSlots()
 const getClass = computed(() => [
   prefixCls,
-  { [`${prefixCls}-show-span`]: props.span && slots.default },
-  { [`${prefixCls}-normal`]: props.normal },
+  { [`${prefixCls}--span`]: props.span && slots.default },
+  { [`${prefixCls}--bold`]: props.bold },
 ])
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $prefix-cls: '#{$tonyname}-basic-title';
 
 .#{$prefix-cls} {
   position: relative;
   display: flex;
+  align-items: center;
   padding-left: 7px;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.5rem;
   color: var(--text-primary-color);
   cursor: pointer;
   user-select: none;
 
-  &-normal {
-    font-size: 14px;
-    font-weight: 500;
+  &--bold {
+    font-weight: bold;
   }
 
-  &-show-span::before {
+  &--span::before {
     position: absolute;
-    top: 4px;
+    top: 10%;
     left: 0;
     width: 3px;
-    height: 16px;
+    height: 80%;
     margin-right: 4px;
     background-color: var(--primary-color);
     content: '';
   }
 
   &-help {
-    margin-left: 10px;
+    margin-left: 0.75rem;
   }
 }
 </style>
