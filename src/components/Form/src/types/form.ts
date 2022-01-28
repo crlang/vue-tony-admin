@@ -5,7 +5,7 @@ import type { TableActionType } from '@/components/Table/src/types/table'
 import type { CSSProperties } from 'vue'
 import type { EleButton, EleRow } from '@/components/ElementPlus'
 
-import { EleForm, FormItemRule } from '@/components/ElementPlus'
+// import { EleForm, FormItemRule } from '@/components/ElementPlus'
 
 export type FieldMapToTime = [string, [string, string], string?][]
 
@@ -42,7 +42,7 @@ export type RegisterFn = (formInstance: FormActionType) => void
 
 export type UseFormReturnType = [RegisterFn, FormActionType]
 
-export interface FormProps extends EleForm {
+export interface FormProps {
   // Row configuration for the entire form
   rowProps?: EleRow
   // Submit form on reset

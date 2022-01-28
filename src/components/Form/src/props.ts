@@ -5,10 +5,10 @@ import type { TableActionType } from '@/components/Table'
 import type { EleButton, EleRow } from '@/components/ElementPlus'
 
 import { propTypes } from '@/utils/propTypes'
-import { EleFormProps } from '@/components/ElementPlus'
+// import { EleFormProps } from '@/components/ElementPlus'
 
 export const basicProps = {
-  ...EleFormProps,
+  // ...EleFormProps,
   // 表单配置规则
   schemas: {
     type: [Array] as PropType<FormSchema[]>,

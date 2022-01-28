@@ -1,9 +1,9 @@
-import { EleFormItem } from '@/components/ElementPlus'
+// import { EleFormItem } from '@/components/ElementPlus'
 import type { VNodeChild } from 'vue'
 
 type NamePath = string | number | (string | number)[];
 
-export interface FormItem extends EleFormItem {
+export interface FormItem {
 
   /**
    * The extra prompt message. It is similar to help. Usage example: to display error message and prompt message at the same time.
