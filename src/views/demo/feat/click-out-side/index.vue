@@ -26,6 +26,7 @@ export default defineComponent({
   components: { ElLink, ClickOutSide, PageWrapper },
   setup() {
     const text = ref('Click')
+
     function handleClickOutside() {
       text.value = 'Click Out Side'
     }
