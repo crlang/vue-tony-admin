@@ -1,38 +1,32 @@
 <template>
-  <PageWrapper title="密码强度校验组件">
-    <div class="flex justify-center">
-      <div class="demo-wrap p-10">
-        <StrengthMeter placeholder="默认" />
-        <StrengthMeter
-          placeholder="禁用"
-          disabled />
-        <br />
-        <StrengthMeter
-          placeholder="隐藏input"
-          :show-input="false"
-          value="!@#qwe12345" />
-      </div>
-    </div>
+  <PageWrapper
+    title="密码强度校验组件"
+    content-background>
+    <ElAlert
+      title="默认"
+      class="my-6" />
+    <StrengthMeter />
+    <ElAlert
+      class="my-6"
+      title="隐藏 input" />
+    <StrengthMeter
+      placeholder=""
+      :show-input="false"
+      value="!@#qwe12345" />
   </PageWrapper>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { ElAlert } from 'element-plus'
 import { StrengthMeter } from '@/components/StrengthMeter'
 import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
   components: {
+    ElAlert,
     StrengthMeter,
     PageWrapper,
   },
 })
 </script>
-
-<style lang="scss" scoped>
-.demo-wrap {
-  width: 50%;
-  background-color: var(--background-secondary-color);
-  border-radius: 10px;
-}
-</style>

@@ -1,7 +1,5 @@
 <template>
-  <div
-    :class="prefixCls"
-    class="relative">
+  <div :class="prefixCls">
     <ElInput
       v-if="showInput"
       v-bind="$attrs"
@@ -21,7 +19,7 @@
 <script lang="ts">
 import { defineComponent, computed, ref, watch, unref, watchEffect } from 'vue'
 import { ElInput } from 'element-plus'
-import { zxcvbn } from '@zxcvbn-ts/core'
+import { zxcvbn, ZxcvbnResult } from '@zxcvbn-ts/core'
 import { useDesign } from '@/hooks/web/useDesign'
 import { propTypes } from '@/utils/propTypes'
 
@@ -42,7 +40,8 @@ export default defineComponent({
       const { disabled } = props
       if (disabled) return -1
       const innerValue = unref(innerValueRef)
-      const score = innerValue ? zxcvbn(unref(innerValueRef)).score : -1
+      const zxc = zxcvbn(unref(innerValueRef)) as ZxcvbnResult
+      const score = innerValue ? zxc.score : -1
       emit('score-change', score)
       return score
     })
@@ -66,10 +65,12 @@ export default defineComponent({
   },
 })
 </script>
+
 <style lang="scss" scoped>
 $prefix-cls: '#{$tonyname}-strength-meter';
 
 .#{$prefix-cls} {
+  position: relative;
   width: 100%;
 
   &-bar {
@@ -111,27 +112,27 @@ $prefix-cls: '#{$tonyname}-strength-meter';
 
       &[data-score='0'] {
         width: 20%;
-        background-color: var(--error-color);
+        background-color: var(--el-color-primary);
       }
 
       &[data-score='1'] {
         width: 40%;
-        background-color: var(--error-color);
+        background-color: var(--el-color-danger);
       }
 
       &[data-score='2'] {
         width: 60%;
-        background-color: var(--warning-color);
+        background-color: var(--el-color-warning);
       }
 
       &[data-score='3'] {
         width: 80%;
-        background-color: var(--success-color);
+        background-color: var(--el-color-info);
       }
 
       &[data-score='4'] {
         width: 100%;
-        background-color: var(--success-color);
+        background-color: var(--el-color-success);
       }
     }
   }
