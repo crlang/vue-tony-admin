@@ -164,7 +164,7 @@
               :icon="ArrowLeft">Previous Page</el-button>
             <el-button
               type="primary"
-              class="ty-rtl"
+              class="direction-rtl"
               :icon="ArrowRight">
               Next Page
             </el-button>

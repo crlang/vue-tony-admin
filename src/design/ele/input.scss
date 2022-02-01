@@ -1,4 +1,6 @@
-.el-input {
+$elenamex: 'el-input';
+
+.#{$elenamex} {
   &__inner {
     --el-input-focus-border: var(--border-blue-color);
     --el-input-hover-border: var(--border-grey-hover-color);
@@ -8,34 +10,45 @@
     border-color: var(--border-grey-color);
   }
 
-  &-number__decrease,
-  &-number__increase {
-    border: none;
-
-    ~ .el-input:not(.is-disabled) .el-input__inner {
-      border-color: var(--control-background-hover);
+  &-number {
+    &__decrease,
+    &__increase {
+      border-color: var(--border-grey-color);
     }
 
-    &:hover {
-      background-color: var(--control-background-hover);
-
-      ~ .el-input:not(.is-disabled) .el-input__inner {
-        border-color: transparent;
-      }
+    .#{$elenamex}__inner {
+      border-color: var(--border-grey-color);
     }
+  }
+
+  // &--prefix .#{$elenamex}__inner {
+  //   padding-right: 44px;
+  // }
+  // &--suffix .#{$elenamex}__inner {
+  //   padding-left: 44px;
+  // }
+
+  &-group {
+    &__append,
+    &__prepend {
+      border-color: var(--border-grey-color);
+    }
+
+    // &--preend .#{$elenamex}__inner,
+    // &--append .#{$elenamex}__inner {
+    //   padding: 0 32px;
+    // }
   }
 }
 
 .el-textarea{
   &__inner {
-    border-color: transparent;
+    border-color: var(--border-grey-color);
 
     &:focus,
     &:hover {
-      --el-input-focus-border: transparent;
-      --el-input-hover-border: transparent;
-
-      background-color: var(--control-background-hover);
+      --el-input-focus-border: var(--border-blue-color);
+      --el-input-hover-border: var(--border-blue-color);
     }
   }
 }

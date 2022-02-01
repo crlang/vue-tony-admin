@@ -18,7 +18,8 @@
   --el-drawer-bg-color: var(--background-secondary-color);
   --el-border-color-base: var(--border-grey-color);
   --el-disabled-bg-color: var(--disabled-color);
-  --el-disabled-border-color: var(--disabled-color);
+  --el-disabled-border-color: var(--border-grey-color);
+  --el-disabled-text-color: var(--text-secondary-color);
 
   // box shadow
   --el-box-shadow-light: var(--card-shadow);

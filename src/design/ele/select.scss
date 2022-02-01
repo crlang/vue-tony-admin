@@ -24,4 +24,10 @@
       @include tooltip;
     }
   }
+
+  .el-input__inner {
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+
 }
