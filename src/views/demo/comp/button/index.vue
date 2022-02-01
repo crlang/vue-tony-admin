@@ -14,15 +14,23 @@
               span>custom global component Button</BasicTitle></div>
           </template>
 
-          <Button
-            type="success"
-            preIcon="ion:layers-outline">Before</Button>
+          <Button preIcon="ion:layers-outline">Default</Button>
           <Button
             type="primary"
-            shadow>Shadow</Button>
+            preIcon="ion:layers-outline">Primary</Button>
+
           <Button
-            :iconSize="16"
-            sufIcon="ion:layers-outline">After</Button>
+            sufIcon="ion:layers-outline"
+            type="success">Success</Button>
+          <Button
+            sufIcon="ion:layers-outline"
+            :iconSize="22"
+            type="info">Large Icon</Button>
+
+          <Button shadow>Shadow</Button>
+          <Button
+            shadow
+            type="primary">Success</Button>
         </el-card>
       </el-col>
       <el-col :span="12">

@@ -49,7 +49,13 @@ export default defineComponent({
 
     const getBindValue = computed(():EleButton => {
       const opt = { ...props, ...unref(attrs) }
-      return omit(opt, 'preIcon', 'sufIcon', 'iconSize')
+
+      return omit(opt, [
+        'iconSize',
+        'preIcon',
+        'shadow',
+        'sufIcon',
+      ])
     })
 
     return {
@@ -72,12 +78,12 @@ $prefix-cls: '#{$tonyname}-basic-button';
 
     > .eleicon {
       &:first-child {
-        margin-right: 2px;
+        margin-right: 4px;
 
       }
 
       &:last-child {
-        margin-left: 2px;
+        margin-left: 4px;
       }
     }
   }
