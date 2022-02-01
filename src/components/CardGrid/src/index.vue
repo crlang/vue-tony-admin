@@ -1,7 +1,3 @@
-<!--
- * @Author: Crlang
- * @Description: Card Grid component
--->
 <template>
   <ElCard
     :shadow="shadow"

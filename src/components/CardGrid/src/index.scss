@@ -26,16 +26,13 @@ $prefix-cls: '#{$tonyname}-card-grid';
       &:hover {
         box-shadow: 0 2px 8px rgba(0, 0, 0,0.15);
       }
-
-      &.items-direction-column {
-        flex-direction: column;
-      }
     }
 
     &.items-center > .#{$prefix-cls}-item {
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
     }
   }
 }
