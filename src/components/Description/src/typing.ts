@@ -1,48 +1,39 @@
 import type { CollapseContainerOptions } from '@/components/Container/index'
-import { IDescriptionsInject } from 'element-plus/es/components/descriptions/src/descriptions.type'
+import type { EleDescriptions, EleDescriptionsItem } from '@/components/ElementPlus'
+import { VNode } from 'vue'
 
-export interface DescItem {
-  label: string
+export interface DescItem extends EleDescriptionsItem {
   field: string
-  width?: string | number
-  minWidth?: string | number
-  span?: number
-  align?: string
-  show?: boolean
-  labelAlign?: string
-  className?: string
-  labelClassName?: string
+  show?: (...arg: any) => boolean
+  render?: (
+    val: any,
+    data: Recordable,
+  ) => VNode | undefined | Element | string | number
 }
 
-export interface DescriptionProps extends IDescriptionsInject {
-  // Whether to include the collapse component
+export interface DescProps extends EleDescriptions {
+  /**
+   * Whether to include the collapse component
+   */
   useCollapse?: boolean
   /**
    * item configuration
-   * @type DescItem
    */
   schema: DescItem[]
   /**
-   * 数据
-   * @type object
+   * desc data
    */
   data: Recordable
   /**
-   * Built-in CollapseContainer component configuration
-   * @type CollapseContainerOptions
+   * collapse component configuration
    */
   collapseOptions?: CollapseContainerOptions
 }
 
 export interface DescInstance {
-  setDescProps(descProps: Partial<DescriptionProps>): void
+  setDescProps(descProps: Partial<DescProps>): void
 }
 
 export type Register = (descInstance: DescInstance) => void
 
-/**
- * @description:
- */
 export type UseDescReturnType = [Register, DescInstance]
-
-export type DescSizes = 'large' | 'default' | 'small' | undefined

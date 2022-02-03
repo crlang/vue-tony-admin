@@ -3,7 +3,7 @@
  * @Date: 2021-12-24 17:24:14
  * @Description: Element Plus Type and Props
  * @LastEditors: crlang(https://www.crlang.com)
- * @LastEditTime: 2022-01-27 17:19:30
+ * @LastEditTime: 2022-02-02 21:11:15
  */
 import { ExtractPropTypes } from 'vue'
 
@@ -66,3 +66,71 @@ export declare type EleDropdown = ExtractPropTypes<typeof dropdownProps>
 
 export const EleDropdownItemProps = dropdownItemProps
 export declare type EleDropdownItem = ExtractPropTypes<typeof dropdownItemProps>
+
+import { IDescriptionsInject, IDescriptionsItemInject } from 'element-plus/es/components/descriptions/src/descriptions.type'
+import { isValidComponentSize } from '@/utils/validators'
+import { ComponentSize } from '@/utils/types'
+
+export const EleDescriptionsProps = {
+  border: {
+    type: Boolean,
+    default: false,
+  },
+  column: {
+    type: Number,
+    default: 3,
+  },
+  direction: {
+    type: String as PropType<'horizontal' | 'vertical'>,
+    default: 'horizontal',
+  },
+  size: {
+    type: String as PropType<ComponentSize>,
+    validator: isValidComponentSize,
+  },
+  title: {
+    type: String,
+    default: '',
+  },
+  extra: {
+    type: String,
+    default: '',
+  },
+}
+export declare type EleDescriptions = IDescriptionsInject
+
+export const EleDescriptionsItemProps = {
+  label: {
+    type: String,
+    default: '',
+  },
+  span: {
+    type: Number,
+    default: 1,
+  },
+  width: {
+    type: [String, Number],
+    default: '',
+  },
+  minWidth: {
+    type: [String, Number],
+    default: '',
+  },
+  align: {
+    type: String as PropType<'left' | 'center' | 'right'>,
+    default: 'left',
+  },
+  labelAlign: {
+    type: String as PropType<'left' | 'center' | 'right'>,
+    default: '',
+  },
+  className: {
+    type: String,
+    default: '',
+  },
+  labelClassName: {
+    type: String,
+    default: '',
+  },
+}
+export declare type EleDescriptionsItem = IDescriptionsItemInject

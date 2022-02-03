@@ -1,91 +1,57 @@
 <script lang="tsx">
-import type { DescriptionProps, DescInstance, DescItem } from './typing'
+import type { DescProps, DescInstance } from './typing'
 import type { CSSProperties } from 'vue'
 import type { CollapseContainerOptions } from '@/components/Container/index'
+
 import { defineComponent, computed, ref, unref } from 'vue'
 import { ElDescriptions, ElDescriptionsItem } from 'element-plus'
 import { CollapseContainer } from '@/components/Container/index'
 import { useDesign } from '@/hooks/web/useDesign'
 import { getSlot } from '@/utils/helper/tsxHelper'
 import { useAttrs } from '@/hooks/core/useAttrs'
-import { DescSizes } from './typing'
 import { get } from 'lodash-es'
 import { isFunction } from '@/utils/is'
-
-const props = {
-  useCollapse: {
-    type: Boolean,
-    default: true,
-  },
-  title: {
-    type: String,
-    default: '',
-  },
-  border: {
-    type: Boolean,
-    default: false,
-  },
-  column: {
-    type: Number,
-    default: 3,
-  },
-  direction: {
-    type: String,
-    default: 'horizontal',
-  },
-  size: {
-    type: String as PropType<DescSizes>,
-  },
-  extra: {
-    type: String,
-    default: '',
-  },
-  collapseOptions: {
-    type: Object as PropType<CollapseContainerOptions>,
-    default: null,
-  },
-  schema: {
-    type: Array as PropType<DescItem[]>,
-    default: () => [],
-  },
-  data: { type: Object },
-}
+import { basicProps } from './props'
 
 export default defineComponent({
   name: 'Description',
-  props,
+  props: basicProps,
   emits: ['register'],
   setup(props, { slots, emit }) {
-    const propsRef = ref<Partial<DescriptionProps> | null>(null)
+    const propsRef = ref<Partial<DescProps> | null>(null)
 
-    const { prefixCls } = useDesign('description')
+    const { prefixCls } = useDesign('basic-description')
     const attrs = useAttrs()
 
-    // Custom title component: get title
+    /**
+     * Custom title component: get title
+     */
     const getMergeProps = computed(() => {
       return {
         ...props,
         ...(unref(propsRef) as Recordable),
-      } as DescriptionProps
+      } as DescProps
     })
 
-    // Hide the header of the Descriptions component
+    /**
+     * Hide the header of the Descriptions component
+     */
     const getProps = computed(() => {
       const opt = {
         ...unref(getMergeProps),
         title: '',
       }
-      return opt as DescriptionProps
+      return opt as DescProps
     })
 
     /**
-       * @description: Whether to setting title
-       */
+     * Whether to setting title
+     */
     const useWrapper = computed(() => !!unref(getMergeProps).title)
 
     /**
-       * @description: Get configuration Collapse
-       */
+     * Get configuration Collapse
+     */
     const getCollapseOptions = computed((): CollapseContainerOptions => {
       return {
         // Cannot be expanded by default
@@ -95,13 +61,13 @@ export default defineComponent({
     })
 
     const getDescriptionsProps = computed(() => {
-      return { ...unref(attrs), ...unref(getProps) } as DescriptionProps
+      return { ...unref(attrs), ...unref(getProps) } as DescProps
     })
 
     /**
-       * @description:设置desc
+       * Set desc
        */
-    function setDescProps(descProps: Partial<DescriptionProps>): void {
+    function setDescProps(descProps: Partial<DescProps>): void {
       // Keep the last setDrawerProps
       propsRef.value = { ...(unref(propsRef) as Recordable), ...descProps } as Recordable
     }
@@ -110,8 +76,7 @@ export default defineComponent({
       const { schema, data } = unref(getProps)
       return unref(schema)
         .map((item) => {
-          const { minWidth } = item
-          const { field, show } = item
+          const { field, show, render, minWidth } = item
 
           if (show && isFunction(show) && !show(data)) {
             return null
@@ -123,10 +88,11 @@ export default defineComponent({
               return null
             }
             const getField = get(_data, field)
-            return getField ?? ''
+            return isFunction(render) ? render(getField, _data) : getField ?? ''
           }
+
           return (
-            <ElDescriptionsItem {...(unref(item) as any)}>
+            <ElDescriptionsItem {...(unref(item))}>
               {() => {
                 if (!minWidth) {
                   return getContent()
@@ -144,17 +110,16 @@ export default defineComponent({
 
     const renderDesc = () => {
       return (
-        <ElDescriptions class={`${prefixCls}`} {...(unref(getDescriptionsProps) as any)}>
+        <ElDescriptions class={`${prefixCls}`} {...(unref(getDescriptionsProps))}>
           {renderItem()}
         </ElDescriptions>
       )
     }
 
     const renderContainer = () => {
-      const content = props.useCollapse ? renderDesc() : <div>{renderDesc()}</div>
       // Reduce the dom level
       if (!props.useCollapse) {
-        return content
+        return renderDesc()
       }
 
       const { canExpand, helpMessage } = unref(getCollapseOptions)
@@ -163,7 +128,7 @@ export default defineComponent({
       return (
         <CollapseContainer title={title} canExpan={canExpand} helpMessage={helpMessage}>
           {{
-            default: () => content,
+            default: () => renderDesc(),
             action: () => getSlot(slots, 'action'),
           }}
         </CollapseContainer>
