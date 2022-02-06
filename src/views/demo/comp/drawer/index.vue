@@ -64,7 +64,8 @@ export default defineComponent({
     Drawer2,
     Drawer3,
     Drawer4,
-    Drawer5 },
+    Drawer5,
+  },
   setup() {
     const [register1, { openDrawer: openDrawer1, setDrawerProps }] = useDrawer()
     const [register2, { openDrawer: openDrawer2 }] = useDrawer()

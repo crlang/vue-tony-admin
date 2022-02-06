@@ -1,7 +1,7 @@
 import type { PropType } from 'vue'
 
 import { useI18n } from '@/hooks/web/useI18n'
-import { EleDrawerProps } from '@/components/ElementPlus'
+import { EleButton, EleDrawerProps } from '@/components/ElementPlus'
 const { t } = useI18n()
 
 export const footerProps = {
@@ -26,7 +26,7 @@ export const footerProps = {
     default: t('common.confirmText'),
   },
   confirmType: {
-    type: String,
+    type: String as EleButton['type'],
     default: 'primary',
   },
   confirmLoading: {
