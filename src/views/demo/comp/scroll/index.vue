@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ScrollContainer } from '@/components/Container/index'
+import { ScrollContainer } from '@/components/Container'
 import { PageWrapper } from '@/components/Page'
 import { litdata } from './data'
 

@@ -42,7 +42,7 @@
 
 <script lang="ts" setup>
 import { ElRow, ElCol, ElCard } from 'element-plus'
-import { CountTo } from '@/components/CountTo/index'
+import { CountTo } from '@/components/CountTo'
 import { SvgIcon } from '@/components/Icon'
 import { CardList } from '../data'
 // import { useI18n } from '@/hooks/web/useI18n'

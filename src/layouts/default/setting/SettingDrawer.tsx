@@ -1,5 +1,5 @@
 import { defineComponent, computed, unref } from 'vue'
-import { BasicDrawer } from '@/components/Drawer/index'
+import { BasicDrawer } from '@/components/Drawer'
 import { ElDivider } from 'element-plus'
 import { TypePicker, ThemeColorPicker, SettingFooter, SwitchItem, SelectItem, InputNumberItem } from './components'
 

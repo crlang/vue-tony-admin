@@ -68,8 +68,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElTag } from 'element-plus'
-import Icon from '@/components/Icon/index'
-import { BasicForm } from '@/components/Form/index'
+import Icon from '@/components/Icon'
+import { BasicForm } from '@/components/Form'
 import { actions, searchList as list, schemas } from './data'
 import { PageWrapper } from '@/components/Page'
 import { List, ListItem, ListItemMeta } from '@/components/List'

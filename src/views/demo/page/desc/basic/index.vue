@@ -30,7 +30,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
-import { Description } from '@/components/Description/index'
+import { Description } from '@/components/Description'
 import { BasicTable, useTable } from '@/components/Table'
 import { PageWrapper } from '@/components/Page'
 

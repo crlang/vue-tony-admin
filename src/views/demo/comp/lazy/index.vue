@@ -20,7 +20,7 @@
 import { defineComponent } from 'vue'
 import { ElSkeleton } from 'element-plus'
 import TargetContent from './TargetContent.vue'
-import { LazyContainer } from '@/components/Container/index'
+import { LazyContainer } from '@/components/Container'
 import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({

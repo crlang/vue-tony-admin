@@ -29,7 +29,7 @@
 <script lang="ts">
 import { computed, defineComponent, onMounted } from 'vue'
 import { ElRow, ElCol, ElButton } from 'element-plus'
-import { BasicForm, useForm } from '@/components/Form/index'
+import { BasicForm, useForm } from '@/components/Form'
 import { CollapseContainer } from '@/components/Container'
 import { CropperAvatar } from '@/components/Cropper'
 

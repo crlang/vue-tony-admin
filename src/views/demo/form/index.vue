@@ -68,7 +68,7 @@
 <script lang="ts">
 import { computed, defineComponent, unref, ref } from 'vue'
 import { ElSelect, ElOption } from 'element-plus'
-import { BasicForm, ApiSelect } from '@/components/Form/index'
+import { BasicForm, ApiSelect } from '@/components/Form'
 import { CollapseContainer } from '@/components/Container'
 import { useMessage } from '@/hooks/web/useMessage'
 import { PageWrapper } from '@/components/Page'

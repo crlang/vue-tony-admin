@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed, unref } from 'vue'
-import { BasicForm, useForm } from '@/components/Form/index'
+import { BasicForm, useForm } from '@/components/Form'
 import { formSchema } from './data'
 import { BasicDrawer, useDrawerInner } from '@/components/Drawer'
 

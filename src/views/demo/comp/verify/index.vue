@@ -72,7 +72,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { ElButton } from 'element-plus'
-import { BasicDragVerify, DragVerifyActionType, PassingData } from '@/components/Verify/index'
+import { BasicDragVerify, DragVerifyActionType, PassingData } from '@/components/Verify'
 import { useMessage } from '@/hooks/web/useMessage'
 import { Coffee, ArrowRight } from '@element-plus/icons'
 import { PageWrapper } from '@/components/Page'

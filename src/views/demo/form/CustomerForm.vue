@@ -16,8 +16,8 @@
 
 <script lang="ts">
 import { defineComponent, h } from 'vue'
-import { FormSchema, useForm, BasicForm } from '@/components/Form/index'
-import { CollapseContainer } from '@/components/Container/index'
+import { FormSchema, useForm, BasicForm } from '@/components/Form'
+import { CollapseContainer } from '@/components/Container'
 import { useMessage } from '@/hooks/web/useMessage'
 import { PageWrapper } from '@/components/Page'
 import { ElInput } from 'element-plus'

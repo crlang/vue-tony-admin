@@ -20,7 +20,7 @@
 import { defineComponent, ref, computed, unref, watchEffect, watch, reactive } from 'vue'
 import { ElButton } from 'element-plus'
 import { BasicModal } from '@/components/Modal'
-import { BasicForm, useForm } from '@/components/Form/index'
+import { BasicForm, useForm } from '@/components/Form'
 import { formSchema } from './data'
 
 export default defineComponent({

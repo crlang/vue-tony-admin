@@ -1,5 +1,5 @@
 import { defineAsyncComponent } from 'vue'
-import { noop } from '@/utils/index'
+import { noop } from '@/utils'
 
 interface Options {
   size?: 'default' | 'small' | 'large'

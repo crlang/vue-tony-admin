@@ -26,7 +26,7 @@ import { defineComponent, ref, watch, watchEffect } from 'vue'
 import { ElButton } from 'element-plus'
 import { BasicModal } from '@/components/Modal'
 import { useI18n } from '@/hooks/web/useI18n'
-import { BasicForm, FormSchema, useForm } from '@/components/Form/index'
+import { BasicForm, FormSchema, useForm } from '@/components/Form'
 
 export default defineComponent({
   components: { ElButton, BasicModal, BasicForm },

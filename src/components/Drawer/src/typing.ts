@@ -1,5 +1,5 @@
 import type { CSSProperties, VNodeChild, ComputedRef } from 'vue'
-import type { ScrollContainerOptions } from '@/components/Container/index'
+import type { ScrollContainerOptions } from '@/components/Container'
 import type { EleButtonType, EleDrawer } from '@/components/ElementPlus'
 
 export interface DrawerInstance {

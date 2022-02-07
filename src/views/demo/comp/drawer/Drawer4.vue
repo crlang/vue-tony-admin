@@ -14,7 +14,7 @@
 import { defineComponent } from 'vue'
 import { BasicDrawer, useDrawerInner } from '@/components/Drawer'
 
-import { BasicForm, FormSchema, useForm } from '@/components/Form/index'
+import { BasicForm, FormSchema, useForm } from '@/components/Form'
 
 export default defineComponent({
   components: { BasicDrawer, BasicForm },

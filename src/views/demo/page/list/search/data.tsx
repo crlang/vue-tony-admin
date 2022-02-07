@@ -1,4 +1,4 @@
-import { FormSchema } from '@/components/Form/index'
+import { FormSchema } from '@/components/Form'
 import { Search } from '@element-plus/icons'
 
 export const searchList = (() => {

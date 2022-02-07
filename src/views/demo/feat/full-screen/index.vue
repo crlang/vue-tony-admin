@@ -43,7 +43,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { ElButton } from 'element-plus'
-import { CollapseContainer } from '@/components/Container/index'
+import { CollapseContainer } from '@/components/Container'
 import { useFullscreen } from '@vueuse/core'
 
 import { PageWrapper } from '@/components/Page'

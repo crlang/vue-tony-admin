@@ -1,5 +1,5 @@
 import { ElTag } from 'element-plus'
-import { BasicColumn } from '@/components/Table/index'
+import { BasicColumn } from '@/components/Table'
 import { ErrorTypeEnum } from '@/enums/exceptionEnum'
 import { useI18n } from '@/hooks/web/useI18n'
 

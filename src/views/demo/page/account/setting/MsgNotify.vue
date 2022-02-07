@@ -30,7 +30,7 @@
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
 import { ElSwitch } from 'element-plus'
-import { CollapseContainer } from '@/components/Container/index'
+import { CollapseContainer } from '@/components/Container'
 import { List, ListItem, ListItemMeta } from '@/components/List'
 
 import { msgNotifyList } from './data'

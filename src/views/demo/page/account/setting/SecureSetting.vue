@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { CollapseContainer } from '@/components/Container/index'
+import { CollapseContainer } from '@/components/Container'
 import { List, ListItem, ListItemMeta } from '@/components/List'
 
 import { secureSettingList } from './data'

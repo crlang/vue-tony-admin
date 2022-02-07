@@ -26,7 +26,7 @@
 // import { h } from 'vue'
 // import { ElTag } from 'element-plus'
 import { PageWrapper } from '@/components/Page'
-import { Description, DescItem, useDescription } from '@/components/Description/index'
+import { Description, DescItem, useDescription } from '@/components/Description'
 import { GITHUB_URL, SITE_URL, DOC_URL } from '@/settings/siteSetting'
 
 const { pkg, lastBuildTime } = __APP_INFO__

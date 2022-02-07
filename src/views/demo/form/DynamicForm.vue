@@ -21,8 +21,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
-import { BasicForm, useForm } from '@/components/Form/index'
-import { CollapseContainer } from '@/components/Container/index'
+import { BasicForm, useForm } from '@/components/Form'
+import { CollapseContainer } from '@/components/Container'
 import { PageWrapper } from '@/components/Page'
 
 import { dyncSchemas as schemas, dyncSchemas1 as schemas1 } from './data'

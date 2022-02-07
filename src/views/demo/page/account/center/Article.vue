@@ -50,7 +50,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElTag } from 'element-plus'
-import Icon from '@/components/Icon/index'
+import Icon from '@/components/Icon'
 import { actions, articleList } from './data'
 import { List, ListItem, ListItemMeta } from '@/components/List'
 

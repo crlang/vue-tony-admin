@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { Description, useDescription } from '@/components/Description/index'
+import { Description, useDescription } from '@/components/Description'
 import { PageWrapper } from '@/components/Page'
 import { demoData, schema } from './data'
 

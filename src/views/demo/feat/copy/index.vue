@@ -18,7 +18,7 @@
 <script lang="ts">
 import { defineComponent, unref, ref } from 'vue'
 import { ElButton, ElInput } from 'element-plus'
-import { CollapseContainer } from '@/components/Container/index'
+import { CollapseContainer } from '@/components/Container'
 import { useCopyToClipboard } from '@/hooks/web/useCopyToClipboard'
 import { useMessage } from '@/hooks/web/useMessage'
 import { PageWrapper } from '@/components/Page'

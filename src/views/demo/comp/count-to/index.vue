@@ -44,7 +44,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { CountTo } from '@/components/CountTo/index'
+import { CountTo } from '@/components/CountTo'
 import { PageWrapper } from '@/components/Page'
 import { CardGrid, CardGridItem } from '@/components/CardGrid'
 import { useMessage } from '@/hooks/web/useMessage'

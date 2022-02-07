@@ -79,8 +79,8 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { ElRow, ElCol, ElTabs, ElTabPane, ElTag } from 'element-plus'
-import { CollapseContainer } from '@/components/Container/index'
-import Icon from '@/components/Icon/index'
+import { CollapseContainer } from '@/components/Container'
+import Icon from '@/components/Icon'
 import Article from './Article.vue'
 import Application from './Application.vue'
 import Project from './Project.vue'

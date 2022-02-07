@@ -107,7 +107,7 @@ import type {
 
 import { defineComponent, ref, computed, unref, toRaw, watch } from 'vue'
 import { ElTable, ElTableColumn, ElPagination } from 'element-plus'
-import { BasicForm, useForm } from '@/components/Form/index'
+import { BasicForm, useForm } from '@/components/Form'
 // import expandIcon from './components/ExpandIcon'
 // import HeaderCell from './components/HeaderCell.vue'
 import { InnerHandlers } from './types/table'

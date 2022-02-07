@@ -1,11 +1,11 @@
 <script lang="tsx">
 import type { DescProps, DescInstance } from './typing'
 import type { CSSProperties } from 'vue'
-import type { CollapseContainerOptions } from '@/components/Container/index'
+import type { CollapseContainerOptions } from '@/components/Container'
 
 import { defineComponent, computed, ref, unref } from 'vue'
 import { ElDescriptions, ElDescriptionsItem } from 'element-plus'
-import { CollapseContainer } from '@/components/Container/index'
+import { CollapseContainer } from '@/components/Container'
 import { useDesign } from '@/hooks/web/useDesign'
 import { getSlot } from '@/utils/helper/tsxHelper'
 import { useAttrs } from '@/hooks/core/useAttrs'

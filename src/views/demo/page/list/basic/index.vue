@@ -76,7 +76,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElRow, ElCol, ElProgress } from 'element-plus'
-import Icon from '@/components/Icon/index'
+import Icon from '@/components/Icon'
 import { cardList } from './data'
 import { PageWrapper } from '@/components/Page'
 import { List, ListItem, ListItemMeta } from '@/components/List'

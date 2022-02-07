@@ -38,8 +38,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
-import { CollapseContainer } from '@/components/Container/index'
-import Icon from '@/components/Icon/index'
+import { CollapseContainer } from '@/components/Container'
+import Icon from '@/components/Icon'
 import { List, ListItem, ListItemMeta } from '@/components/List'
 
 import { accountBindList } from './data'

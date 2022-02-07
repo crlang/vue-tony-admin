@@ -45,7 +45,7 @@
 </template>
 
 <script lang="ts">
-import type { ColEx } from '../types/index'
+import type { ColEx } from '../types'
 import type { EleButton } from '@/components/ElementPlus'
 
 import { defineComponent, computed, PropType } from 'vue'

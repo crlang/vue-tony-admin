@@ -18,7 +18,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElButton, ElImage } from 'element-plus'
-import { createImgPreview } from '@/components/Preview/index'
+import { createImgPreview } from '@/components/Preview'
 import { PageWrapper } from '@/components/Page'
 // import { PreviewActions } from '@/components/Preview/src/typing';
 

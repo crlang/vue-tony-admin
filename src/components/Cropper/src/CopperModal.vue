@@ -147,7 +147,7 @@ import { useDesign } from '@/hooks/web/useDesign'
 import { dataURLtoBlob } from '@/utils/file/base64Conver'
 import { isFunction } from '@/utils/is'
 import { useI18n } from '@/hooks/web/useI18n'
-import { Icon } from '@/components/Icon/index'
+import { Icon } from '@/components/Icon'
 
 type apiFunParams = { file: Blob; name: string; filename: string }
 

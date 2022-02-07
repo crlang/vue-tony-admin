@@ -55,7 +55,7 @@
 <script lang="ts">
 import { defineComponent, reactive, ref, unref, watch } from 'vue'
 import { ElButton, ElInput, ElCard, ElTree } from 'element-plus'
-import { TreeType, expandTreeNode, setAllTreeNodes, TreeNode } from '@/components/Tree/index'
+import { TreeType, expandTreeNode, setAllTreeNodes, TreeNode } from '@/components/Tree'
 import { treeData } from './data'
 import { useMessage } from '@/hooks/web/useMessage'
 import { PageWrapper } from '@/components/Page'

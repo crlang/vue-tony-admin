@@ -13,8 +13,8 @@
 
 <script lang="ts">
 import { defineComponent, h } from 'vue'
-import { BasicForm, FormSchema } from '@/components/Form/index'
-import { CollapseContainer } from '@/components/Container/index'
+import { BasicForm, FormSchema } from '@/components/Form'
+import { CollapseContainer } from '@/components/Container'
 import { useMessage } from '@/hooks/web/useMessage'
 import { MarkDown } from '@/components/Markdown'
 import { PageWrapper } from '@/components/Page'
