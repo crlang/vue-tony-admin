@@ -26,14 +26,23 @@ export default defineComponent({
     ElCard,
   },
   props: {
+    /**
+     * Number of Rows
+     */
     rows: {
       type: Number,
       default: 3,
     },
+    /**
+     * Whether to center the grid content
+     */
     center: {
       type: Boolean,
       defalut: false,
     },
+    /**
+     * Shadow display mode of the card
+     */
     shadow: {
       type: String as PropType<ShadowTypes>,
       default: 'never',

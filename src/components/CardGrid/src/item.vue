@@ -1,6 +1,5 @@
 <template>
-  <div
-    :class="prefixCls">
+  <div :class="prefixCls">
     <slot></slot>
   </div>
 </template>
@@ -12,12 +11,7 @@ import { useDesign } from '@/hooks/web/useDesign'
 export default defineComponent({
   name: 'CardGridItem',
   components: {},
-  props: {
-    vertical: {
-      type: Boolean,
-      default: true,
-    },
-  },
+  props: {},
   setup() {
     const { prefixCls } = useDesign('card-grid-item')
 

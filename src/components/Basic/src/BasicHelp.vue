@@ -1,10 +1,12 @@
 <script lang="tsx">
+import type { UsePopperCoreConfigProps } from 'element-plus'
+
 import { defineComponent } from 'vue'
 import { InfoFilled } from '@element-plus/icons'
 import { isArray, isString } from '@/utils/is'
 import { getSlot } from '@/utils/helper/tsxHelper'
 import { useDesign } from '@/hooks/web/useDesign'
-import { ElTooltip, UsePopperCoreConfigProps } from 'element-plus'
+import { ElTooltip } from 'element-plus'
 import { GlobalThemeType } from '@/utils/types'
 
 export default defineComponent({
@@ -13,12 +15,10 @@ export default defineComponent({
   props: {
   /**
    * Whether to display the serial number
-   * @default: false
    */
     showIndex: { type: Boolean },
     /**
    * Help theme
-   * @default: #ffffff
    */
     effect: { type: String as PropType<GlobalThemeType>, default: 'dark' },
     /**

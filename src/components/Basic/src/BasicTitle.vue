@@ -16,7 +16,6 @@ import { useDesign } from '@/hooks/web/useDesign'
 const props = defineProps({
   /**
    * Prompt text or text array
-   * @default: ''
    */
   helpMessage: {
     type: [String, Array] as PropType<string | string[]>,
@@ -24,12 +23,10 @@ const props = defineProps({
   },
   /**
    * Whether to show the color block to the left of the title
-   * @default: false
    */
   span: { type: Boolean },
   /**
    * Whether the title is bold
-   * @default: false
    */
   bold: { type: Boolean },
 })

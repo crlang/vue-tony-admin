@@ -16,14 +16,13 @@ const props = defineProps({
    */
   expand: { type: Boolean },
   /**
-   * Arrow up by default
+   * Arrow direction
    */
   direction: { type: String as PropType<ArrowDirection>, default: 'down' },
 })
 
 const { prefixCls } = useDesign('basic-arrow')
 
-// get component class
 const getClass = computed(() => {
   const { expand, direction } = props
   return [
@@ -43,30 +42,34 @@ $prefix-cls: '#{$tonyname}-basic-arrow';
   display: inline-block;
   font-size: 0;
   cursor: pointer;
-  transform: rotate(0deg);
-  transition: all 0.3s ease 0.1s;
+  user-select: none;
 
-  &.is-actived {
+  > .eleicon {
+    transform: rotate(0deg);
+    transition: transform 0.3s ease 0.1s;
+  }
+
+  &.is-actived > .eleicon{
     transform: rotate(90deg);
   }
 
-  &--up {
+  &--up > .eleicon{
     transform: rotate(-90deg);
   }
 
-  &--down {
+  &--down > .eleicon{
     transform: rotate(90deg);
 
-    &.is-actived {
+    &.is-actived > .eleicon{
       transform: rotate(-90deg);
     }
   }
 
-  &--left {
+  &--left > .eleicon{
     transform: rotate(180deg);
   }
 
-  &--right {
+  &--right > .eleicon{
     transform: rotate(0);
   }
 }

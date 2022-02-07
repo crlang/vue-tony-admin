@@ -8,47 +8,59 @@
 
     <CollapseContainer
       title="定时更新"
-      class="my-4">
-      <Time
-        :value="now"
-        :step="1" />
-      <br />
-      <Time
-        :value="now"
-        :step="5" />
-    </CollapseContainer>
-
-    <CollapseContainer title="定时更新">
-      <Time
-        :value="now"
-        mode="date" />
-      <br />
-      <Time
-        :value="now"
-        mode="datetime" />
-      <br />
-      <Time :value="now" />
+      @expand="handleExpand"
+      class="mt-4">
+      <el-descriptions
+        :column="1"
+        border>
+        <el-descriptions-item label="每60秒更新(默认)">
+          <Time :value="now" />
+        </el-descriptions-item>
+        <el-descriptions-item label="格式化日期">
+          <Time
+            :value="now"
+            mode="date" />
+        </el-descriptions-item>
+        <el-descriptions-item label="格式化时间">
+          <Time
+            :value="now"
+            mode="datetime" />
+        </el-descriptions-item>
+        <el-descriptions-item label="每秒更新">
+          <Time
+            :value="now"
+            :step="1" />
+        </el-descriptions-item>
+        <el-descriptions-item label="每5秒更新">
+          <Time
+            :value="now"
+            :step="5" />
+        </el-descriptions-item>
+      </el-descriptions>
     </CollapseContainer>
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue'
+import { defineComponent } from 'vue'
 import { PageWrapper } from '@/components/Page'
 import { Time } from '@/components/Time'
 import { CollapseContainer } from '@/components/Container'
+import { ElDescriptions, ElDescriptionsItem } from 'element-plus'
 
 export default defineComponent({
-  components: { PageWrapper, Time, CollapseContainer },
+  components: { ElDescriptions, ElDescriptionsItem, PageWrapper, Time, CollapseContainer },
   setup() {
     const now = new Date().getTime()
-    const state = reactive({
-      time1: now - 60 * 3 * 1000,
-      time2: now - 86400 * 3 * 1000,
-    })
+
+    function handleExpand(v:boolean) {
+      console.table(v)
+    }
     return {
-      ...toRefs(state),
       now,
+      time1: now - (60 * 3 * 1000),
+      time2: now - (86400 * 3 * 1000),
+      handleExpand,
     }
   },
 })
