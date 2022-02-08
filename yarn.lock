@@ -1904,22 +1904,10 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/codemirror@^5.60.5":
-  version "5.60.5"
-  resolved "https://registry.npmmirror.com/@types/codemirror/download/@types/codemirror-5.60.5.tgz#5b989a3b4bbe657458cf372c92b6bfda6061a2b7"
-  integrity sha1-W5iaO0u+ZXRYzzcskra/2mBhorc=
-  dependencies:
-    "@types/tern" "*"
-
 "@types/crypto-js@^4.1.0":
   version "4.1.0"
   resolved "https://registry.npmmirror.com/@types/crypto-js/download/@types/crypto-js-4.1.0.tgz#09ba1b49bcce62c9a8e6d5e50a3364aa98975578"
   integrity sha512-DCFfy/vh2lG6qHSGezQ+Sn2Ulf/1Mx51dqOdmOKyW5nMK3maLlxeS3onC7r212OnBM2pBR95HkAmAjjF08YkxQ==
-
-"@types/estree@*":
-  version "0.0.50"
-  resolved "https://registry.nlark.com/@types/estree/download/@types/estree-0.0.50.tgz?cache=0&sync_timestamp=1629707624966&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Festree%2Fdownload%2F%40types%2Festree-0.0.50.tgz"
-  integrity sha1-Hgyqk2TT/M0pMcPtlv2+ql1MyoM=
 
 "@types/estree@0.0.39":
   version "0.0.39"
@@ -2155,13 +2143,6 @@
   integrity sha1-8MUO7ShkIvY7TjNG2KMJsOpn1Yo=
   dependencies:
     "@types/node" "*"
-
-"@types/tern@*":
-  version "0.23.4"
-  resolved "https://registry.nlark.com/@types/tern/download/@types/tern-0.23.4.tgz?cache=0&sync_timestamp=1629709630310&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Ftern%2Fdownload%2F%40types%2Ftern-0.23.4.tgz"
-  integrity sha1-A5JusT2+rzrg05DK9wayZDoBJ/s=
-  dependencies:
-    "@types/estree" "*"
 
 "@types/through@*":
   version "0.0.30"
@@ -3830,11 +3811,6 @@ co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.nlark.com/co/download/co-4.6.0.tgz"
   integrity sha1-bqa989hTrlTMuOR7+gvz+QMfsYQ=
-
-codemirror@^5.65.0:
-  version "5.65.0"
-  resolved "https://registry.npmmirror.com/codemirror/download/codemirror-5.65.0.tgz#50344359393579f526ca53797e510ff75477117f"
-  integrity sha512-gWEnHKEcz1Hyz7fsQWpK7P0sPI2/kSkRX2tc7DFA6TmZuDN75x/1ejnH/Pn8adYKrLEA1V2ww6L00GudHZbSKw==
 
 codepage@~1.15.0:
   version "1.15.0"
@@ -13280,11 +13256,6 @@ vue-i18n@^9.2.0-beta.26:
     "@intlify/shared" "9.2.0-beta.26"
     "@intlify/vue-devtools" "9.2.0-beta.26"
     "@vue/devtools-api" "^6.0.0-beta.13"
-
-vue-json-pretty@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.npmmirror.com/vue-json-pretty/download/vue-json-pretty-2.0.6.tgz#7738c5c122ff84487f0bc7f8b6867597482e1863"
-  integrity sha512-aVdxw8ZRGR/Uj8GEaJ1/W2Ks/MdCfv5t2HRbbd+ICp3nL7msKRLN+1qOkSzaMvDygbDPxGhwUHBxZz8nxP+r3A==
 
 vue-router@^4.0.12:
   version "4.0.12"
