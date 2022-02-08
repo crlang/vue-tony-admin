@@ -259,6 +259,7 @@ $menu-dark-subsidiary-color: rgba(255, 255, 255, 0.7);
   &-dark.#{$menu-prefix-cls}-vertical .#{$menu-prefix-cls}-item,
   &-dark.#{$menu-prefix-cls}-vertical .#{$menu-prefix-cls}-submenu-title {
     color: $menu-dark-subsidiary-color;
+    user-select: none;
     &-active:not(.#{$menu-prefix-cls}-submenu) {
       color: #fff !important;
       background-color: var(--primary-color) !important;
