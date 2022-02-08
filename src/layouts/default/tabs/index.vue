@@ -117,7 +117,6 @@ export default defineComponent({
 
     // Close the current tab
     function handleEdit(targetKey: string) {
-      console.log('++++++++++++++targetKey', targetKey)
       // Added operation to hide, currently only use delete operation
       if (unref(unClose)) {
         return

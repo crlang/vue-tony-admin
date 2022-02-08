@@ -10,8 +10,6 @@ import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'CardGridItem',
-  components: {},
-  props: {},
   setup() {
     const { prefixCls } = useDesign('card-grid-item')
 
