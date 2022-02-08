@@ -6,8 +6,8 @@
     showFooter
     @ok="handleOk">
     <p
-      class="h-20"
-      v-for="index in 40"
+      class="p-20"
+      v-for="index in 10"
       :key="index">根据屏幕高度自适应</p>
     <template #insertFooter>
       <el-button>btn</el-button>
@@ -15,7 +15,6 @@
     <template #centerFooter>
       <el-button>btn2</el-button>
     </template>
-
     <template #appendFooter>
       <el-button>btn3</el-button>
     </template>
@@ -35,7 +34,7 @@ export default defineComponent({
   setup() {
     return {
       handleOk: () => {
-        console.log('ok')
+        console.table('ok')
       },
     }
   },

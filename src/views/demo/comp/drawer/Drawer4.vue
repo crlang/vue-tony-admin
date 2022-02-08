@@ -39,7 +39,6 @@ export default defineComponent({
       },
     ]
     const [registerForm, { setFieldsValue }] = useForm({
-      labelWidth: 120,
       schemas,
       showActionButtonGroup: false,
       actionColOptions: {

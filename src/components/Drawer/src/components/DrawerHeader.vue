@@ -1,27 +1,26 @@
 <template>
-  <BasicTitle
-    v-if="!isDetail"
-    :class="prefixCls">
-    <slot name="title"></slot>
-    {{ !$slots.title ? title : '' }}
-  </BasicTitle>
-
   <div
-    :class="[prefixCls, `${prefixCls}--detail`]"
-    v-else>
-    <span :class="`${prefixCls}__twrap`">
+    v-if="isDetail"
+    :class="`${prefixCls}-header`">
+    <span :class="`${prefixCls}-header__title`">
       <span
-        @click="handleClose"
-        v-if="showDetailBack">
-        <span :class="`${prefixCls}__back`"><ArrowLeft /></span>
-      </span>
+        :class="`${prefixCls}-header__back`"
+        v-if="showDetailBack"
+        @click="handleClose"><ArrowLeft /></span>
       <span v-if="title">{{ title }}</span>
     </span>
 
-    <span :class="`${prefixCls}__toolbar`">
+    <span :class="`${prefixCls}-header__toolbar`">
       <slot name="titleToolbar"></slot>
     </span>
   </div>
+
+  <BasicTitle
+    v-else
+    :class="prefixCls">
+    <template v-if="$slots.title"><slot name="title"></slot></template>
+    <template v-else>{{ title || '' }}</template>
+  </BasicTitle>
 </template>
 
 <script lang="ts">
@@ -29,59 +28,23 @@ import { defineComponent } from 'vue'
 import { BasicTitle } from '@/components/Basic'
 import { ArrowLeft } from '@element-plus/icons'
 
-import { useDesign } from '@/hooks/web/useDesign'
-
-import { propTypes } from '@/utils/propTypes'
 export default defineComponent({
   name: 'BasicDrawerHeader',
   components: { BasicTitle, ArrowLeft },
+  inheritAttrs: false,
   props: {
-    isDetail: propTypes.bool,
-    showDetailBack: propTypes.bool,
-    title: propTypes.string,
+    prefixCls: { type: String },
+    isDetail: { type: Boolean },
+    showDetailBack: { type: Boolean },
+    title: { type: String },
   },
   emits: ['close'],
   setup(_, { emit }) {
-    const { prefixCls } = useDesign('basic-drawer-header')
-
     function handleClose() {
       emit('close')
     }
 
-    return { prefixCls, handleClose }
+    return { handleClose }
   },
 })
 </script>
-
-<style lang="scss">
-$footer-height: 60px;
-$prefix-cls: '#{$tonyname}-basic-drawer-header';
-
-.#{$prefix-cls} {
-  display: flex;
-  align-items: center;
-  height: 100%;
-
-  &__back {
-    padding: 0 12px;
-    cursor: pointer;
-
-    &:hover {
-      color: var(--primary-color);
-    }
-  }
-
-  &__twrap {
-    flex: 1;
-
-    svg {
-      width: 1em;
-      height: 1em;
-    }
-  }
-
-  &__toolbar {
-    padding-right: 50px;
-  }
-}
-</style>

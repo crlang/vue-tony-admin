@@ -1,6 +1,31 @@
-import type { CSSProperties, VNodeChild, ComputedRef } from 'vue'
-import type { ScrollContainerOptions } from '@/components/Container'
+import type { ComputedRef } from 'vue'
 import type { EleButtonType, EleDrawer } from '@/components/ElementPlus'
+
+export interface DrawerFooterProps{
+  showConfirmBtn: boolean
+  showCancelBtn: boolean
+
+  cancelText: string
+  cancelType: EleButtonType
+
+  confirmText: string
+  confirmType: EleButtonType
+  confirmLoading: boolean
+
+  showFooter: boolean
+  footerHeight: number
+}
+
+export interface DrawerProps extends EleDrawer, DrawerFooterProps {
+  title?: string
+  modelValue?: boolean
+  // 拓展
+  isDetail?: boolean
+  showDetailBack?: boolean
+  loading?: boolean
+  loadingText?: string,
+  closeFunc?: () => Promise<any>
+}
 
 export interface DrawerInstance {
   setDrawerProps: (props: Partial<DrawerProps> | boolean) => void
@@ -25,95 +50,3 @@ export interface ReturnInnerMethods extends DrawerInstance {
 export type UseDrawerReturnType = [RegisterFn, ReturnMethods]
 
 export type UseDrawerInnerReturnType = [RegisterFn, ReturnInnerMethods]
-
-export interface DrawerFooterProps{
-  showConfirmBtn: boolean
-  showCancelBtn: boolean
-  /**
-   * Text of the Cancel button
-   * @default 'cancel'
-   * @type string
-   */
-  cancelText: string
-  cancelType: EleButtonType
-  /**
-   * Text of the OK button
-   * @default 'OK'
-   * @type string
-   */
-  confirmText: string
-
-  /**
-   * Button type of the OK button
-   * @default 'primary'
-   * @type string
-   */
-  confirmType: EleButtonType
-
-  /**
-   * Whether to apply loading visual effect for OK button or not
-   * @default false
-   * @type boolean
-   */
-  confirmLoading: boolean
-
-  showFooter: boolean
-  footerHeight: number
-}
-export interface DrawerProps extends DrawerFooterProps, EleDrawer {
-  isDetail?: boolean
-  loading?: boolean
-  modelValue?: boolean
-  showDetailBack?: boolean
-  /**
-   * Built-in ScrollContainer component configuration
-   * @type ScrollContainerOptions
-   */
-  scrollOptions?: ScrollContainerOptions
-  closeFunc?: () => Promise<any>
-  triggerWindowResize?: boolean
-
-  /**
-   * Style for Drawer's mask element.
-   * @default {}
-   * @type object
-   */
-  maskStyle?: CSSProperties
-
-  /**
-   * The title for Drawer.
-   * @type any (string | slot)
-   */
-  title?: VNodeChild | JSX.Element
-
-  /**
-   * Style of wrapper element which **contains mask** compare to `drawerStyle`
-   * @type object
-   */
-  wrapStyle?: CSSProperties
-
-  /**
-   * Style of the popup layer element
-   * @type object
-   */
-  drawerStyle?: CSSProperties
-
-  headerStyle?: CSSProperties
-
-  /**
-   * The z-index of the Drawer.
-   * @default 1000
-   * @type number
-   */
-  zIndex?: number
-  /**
-   * Specify a callback that will be called when a user clicks mask, close button or Cancel button.
-   */
-  onClose?: (e?: Event) => void
-  footerOptions?: DrawerFooterProps
-}
-export interface DrawerActionType {
-  scrollBottom: () => void
-  scrollTo: (to: number) => void
-  getScrollWrap: () => Element | null
-}

@@ -3,33 +3,34 @@
     @close="onClose"
     v-bind="getBindValues"
     v-model="visibleRef">
-    <template
-      #title
-      v-if="!$slots.title">
+    <template #title>
       <DrawerHeader
-        :title="getMergeProps.title"
-        :isDetail="isDetail"
-        :showDetailBack="showDetailBack"
+        v-bind="getProps"
+        :prefixCls="prefixCls"
         @close="onClose">
-        <template #titleToolbar>
+        <template
+          #title
+          v-if="$slots.title">
+          <slot name="title"></slot>
+        </template>
+        <template
+          #titleToolbar
+          v-if="$slots.titleToolbar">
           <slot name="titleToolbar"></slot>
         </template>
       </DrawerHeader>
-    </template>
-    <template
-      v-else
-      #title>
-      <slot name="title"></slot>
     </template>
 
     <ScrollContainer :style="getScrollContentStyle">
       <slot></slot>
     </ScrollContainer>
+
     <DrawerFooter
       v-bind="getProps"
+      :prefixCls="prefixCls"
+      :height="getFooterHeight"
       @close="onClose"
-      @ok="handleOk"
-      :height="getFooterHeight">
+      @ok="handleOk">
       <template
         #[item]="data"
         v-for="item in Object.keys($slots)">
@@ -46,17 +47,18 @@ import type { CSSProperties } from 'vue'
 import type { DrawerInstance, DrawerProps } from './typing'
 
 import { defineComponent, ref, computed, watch, unref, nextTick, toRaw, getCurrentInstance } from 'vue'
-import { ElDrawer } from 'element-plus'
+import { ElDrawer, ElLoading } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 import { isFunction } from '@/utils/is'
 import { deepMerge } from '@/utils'
 import DrawerFooter from './components/DrawerFooter.vue'
 import DrawerHeader from './components/DrawerHeader.vue'
 import { ScrollContainer } from '@/components/Container'
-import { basicProps } from './props'
+import { basicProps, extProps, footerProps } from './props'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useAttrs } from '@/hooks/core/useAttrs'
 import { omit } from 'lodash-es'
+import { EleDrawer } from '@/components/ElementPlus'
 
 export default defineComponent({
   components: { ElDrawer, ScrollContainer, DrawerFooter, DrawerHeader },
@@ -67,6 +69,7 @@ export default defineComponent({
     const visibleRef = ref(false)
     const attrs = useAttrs()
     const propsRef = ref<Partial<Nullable<DrawerProps>>>(null)
+    const loadingInstance = ref()
 
     const { t } = useI18n()
     const { prefixCls } = useDesign('basic-drawer')
@@ -90,7 +93,7 @@ export default defineComponent({
         ...unref(getMergeProps),
         // modelValue: unref(visibleRef)
       }
-      opt.title = undefined
+      // opt.title = undefined
       const { isDetail, width, customClass } = opt
       if (isDetail) {
         if (!width) {
@@ -99,17 +102,15 @@ export default defineComponent({
         const detailCls = `${prefixCls}__detail`
         opt.customClass = customClass ? `${customClass} ${detailCls}` : detailCls
       }
-      return opt as DrawerProps
+      return opt
     })
 
-    const getBindValues = computed(() => {
-      const opts = {
-        ...unref(attrs),
-        ...unref(getProps),
-      }
-      opts.customClass = `${prefixCls} ${opts?.customClass}`
+    const getBindValues = computed(():EleDrawer => {
+      const preOpts = { ...unref(getProps) }
+      preOpts.customClass = `${prefixCls} ${preOpts?.customClass} basic-drawer-${instance?.uid}`
+      const opts = omit(preOpts, Object.getOwnPropertyNames({ ...footerProps, ...extProps })) as EleDrawer
 
-      return omit(opts, ['isDetail', 'showDetailBack', 'visible', 'loading', 'closeFunc', 'showCancelBtn', 'cancelType', 'footer', 'cancelText', 'showConfirmBtn', 'confirmLoading', 'confirmText', 'confirmType', 'showFooter', 'footerHeight', 'loadingText'])
+      return opts
     })
 
     // Custom implementation of the bottom button,
@@ -142,6 +143,21 @@ export default defineComponent({
     )
 
     watch(
+      () => propsRef.value?.loading,
+      (v) => {
+        if (v) {
+          loadingInstance.value = ElLoading.service({
+            target: `.basic-drawer-${instance?.uid}`,
+            text: propsRef.value?.loadingText || props.loadingText || 'Loading',
+          })
+        } else {
+          loadingInstance.value?.close()
+        }
+      },
+      { deep: true }
+    )
+
+    watch(
       () => visibleRef.value,
       (visible) => {
         nextTick(() => {
@@ -151,7 +167,7 @@ export default defineComponent({
       }
     )
 
-    // Cancel event
+    // Cancel
     async function onClose(e: Recordable) {
       const { closeFunc } = unref(getProps)
       emit('close', e)
@@ -181,9 +197,9 @@ export default defineComponent({
       t,
       prefixCls,
       visibleRef,
-      getMergeProps: getMergeProps as any,
+      getMergeProps,
       getScrollContentStyle,
-      getProps: getProps as any,
+      getProps,
       getLoading,
       getBindValues,
       getFooterHeight,
@@ -197,19 +213,56 @@ export default defineComponent({
 $prefix-cls: '#{$tonyname}-basic-drawer';
 
 .#{$prefix-cls} {
+  &-header {
+    display: flex;
+    align-items: center;
+
+    &__back {
+      padding: 0 12px;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
+
+    &__title {
+      flex: 1;
+      display: flex;
+      align-items: center;
+
+    }
+
+    &__toolbar {
+      padding-right: 48px;
+    }
+  }
+
+  &-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    padding: 0 16px;
+  }
+
   .el-drawer__header {
     margin-bottom: 15px;
   }
 
   .el-drawer__body {
     width: 100%;
-    height: calc(100% - 60px);
+    flex: 1;
     padding: 0 16px;
   }
 
   .scrollbar__wrap {
-    padding: 16px !important;
-    margin-bottom: 0 !important;
+    padding: 16px;
+    margin-bottom: 0;
   }
 
   .scrollbar > .scrollbar__bar.is-horizontal {

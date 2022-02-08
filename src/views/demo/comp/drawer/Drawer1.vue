@@ -1,17 +1,41 @@
 <template>
+  <Button
+    @click="openDrawerLoading"
+    class="my-4"
+    type="primary">打开Drawer</Button>
   <BasicDrawer
-    v-bind="$attrs"
+    @register="register"
     title="Drawer Title"
-    size="50%">Drawer Info.</BasicDrawer>
+    size="50%">
+    <p> Drawer Info.</p>
+    <Button
+      @click="closeDrawer"
+      class="my-4">关闭 Drawer</Button>
+  </BasicDrawer>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { BasicDrawer } from '@/components/Drawer'
+import { BasicDrawer, useDrawer } from '@/components/Drawer'
+
 export default defineComponent({
   components: { BasicDrawer },
   setup() {
-    return {}
+    const [register, { openDrawer, setDrawerProps, closeDrawer }] = useDrawer()
+
+    function openDrawerLoading() {
+      openDrawer()
+      setDrawerProps({ loading: true })
+      setTimeout(() => {
+        setDrawerProps({ loading: false })
+      }, 2000)
+    }
+
+    return {
+      register,
+      openDrawerLoading,
+      closeDrawer,
+    }
   },
 })
 </script>

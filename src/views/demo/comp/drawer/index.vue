@@ -3,10 +3,7 @@
     <el-alert
       title="使用 useDrawer 进行抽屉操作"
       show-icon />
-    <el-button
-      type="primary"
-      class="my-4"
-      @click="openDrawerLoading">打开Drawer</el-button>
+    <Drawer1 />
 
     <el-alert
       title="内外同时控制显示隐藏"
@@ -36,7 +33,6 @@
       type="primary"
       class="my-4"
       @click="openDrawer5(true)">打开详情Drawer</el-button>
-    <Drawer1 @register="register1" />
     <Drawer2 @register="register2" />
     <Drawer3 @register="register3" />
     <Drawer4 @register="register4" />
@@ -48,12 +44,12 @@
 import { defineComponent } from 'vue'
 import { ElAlert, ElButton } from 'element-plus'
 import { useDrawer } from '@/components/Drawer'
+import { PageWrapper } from '@/components/Page'
 import Drawer1 from './Drawer1.vue'
 import Drawer2 from './Drawer2.vue'
 import Drawer3 from './Drawer3.vue'
 import Drawer4 from './Drawer4.vue'
 import Drawer5 from './Drawer5.vue'
-import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
   components: {
@@ -67,7 +63,6 @@ export default defineComponent({
     Drawer5,
   },
   setup() {
-    const [register1, { openDrawer: openDrawer1, setDrawerProps }] = useDrawer()
     const [register2, { openDrawer: openDrawer2 }] = useDrawer()
     const [register3, { openDrawer: openDrawer3 }] = useDrawer()
     const [register4, { openDrawer: openDrawer4 }] = useDrawer()
@@ -78,15 +73,7 @@ export default defineComponent({
         info: 'Info',
       })
     }
-    function openDrawerLoading() {
-      openDrawer1()
-      setDrawerProps({ loading: true })
-      setTimeout(() => {
-        setDrawerProps({ loading: false })
-      }, 2000)
-    }
     return {
-      register1,
       register2,
       openDrawer2,
       register3,
@@ -95,7 +82,6 @@ export default defineComponent({
       register5,
       openDrawer5,
       send,
-      openDrawerLoading,
     }
   },
 })
