@@ -1,8 +1,7 @@
 <template>
   <Scrollbar
     ref="scrollbarRef"
-    class="scroll-container"
-    v-bind="$attrs">
+    :class="prefixCls">
     <slot></slot>
   </Scrollbar>
 </template>
@@ -11,12 +10,14 @@
 import { defineComponent, ref, unref, nextTick } from 'vue'
 import { Scrollbar, ScrollbarType } from '@/components/Scrollbar'
 import { useScrollTo } from '@/hooks/event/useScrollTo'
+import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'ScrollContainer',
   components: { Scrollbar },
   setup() {
     const scrollbarRef = ref<Nullable<ScrollbarType>>(null)
+    const { prefixCls } = useDesign('scroll-container')
 
     /**
      * Scroll to the specified position
@@ -71,6 +72,7 @@ export default defineComponent({
     }
 
     return {
+      prefixCls,
       scrollbarRef,
       scrollTo,
       scrollBottom,
@@ -79,13 +81,16 @@ export default defineComponent({
   },
 })
 </script>
+
 <style lang="scss">
-.scroll-container {
+$prefix-cls: '#{$tonyname}-scroll-container';
+
+.#{$prefix-cls} {
   width: 100%;
   height: 100%;
 
   .scrollbar__wrap {
-    margin-bottom: 18px !important;
+    margin-bottom: 16px;
     overflow-x: hidden;
   }
 

@@ -1,7 +1,5 @@
 <template>
-  <PageWrapper
-    title="滚动组件示例"
-    content="基于el-scrollbar">
+  <PageWrapper title="滚动组件示例">
     <div class="scroll-wrap">
       <ScrollContainer class="mt-4">
         <ul class="p-3">

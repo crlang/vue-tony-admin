@@ -1,7 +1,5 @@
 <template>
-  <PageWrapper
-    title="滚动组件函数示例"
-    content="基于el-scrollbar">
+  <PageWrapper title="滚动组件函数示例">
     <div class="my-4">
       <el-button @click="scrollTo(100)">滚动到100px位置</el-button>
       <el-button @click="scrollTo(800)">滚动到800px位置</el-button>
@@ -23,9 +21,11 @@
 </template>
 
 <script lang="ts">
+import type { ScrollActionType } from '@/components/Container'
+
 import { defineComponent, ref, unref } from 'vue'
 import { ElButton } from 'element-plus'
-import { ScrollContainer, ScrollActionType } from '@/components/Container'
+import { ScrollContainer } from '@/components/Container'
 import { PageWrapper } from '@/components/Page'
 import { litdata } from './data'
 
