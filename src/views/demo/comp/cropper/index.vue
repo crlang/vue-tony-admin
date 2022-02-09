@@ -15,7 +15,7 @@
       <div class="p-4">
         <div class="cropper">
           <CropperImage
-            ref="refCropper"
+            ref="cropperRef"
             :realTimePreview="false"
             :src="avatarImg"
             @cropend="handleCropend" />
@@ -51,6 +51,8 @@
 </template>
 
 <script lang="ts">
+import type { CropperActionType } from '@/components/Cropper'
+
 import { defineComponent, ref, unref } from 'vue'
 import { PageWrapper } from '@/components/Page'
 import { CollapseContainer } from '@/components/Container'
@@ -71,15 +73,23 @@ export default defineComponent({
     const cropperImg = ref('')
     const circleInfo = ref('')
     const circleImg = ref('')
-    const refCropper = ref()
     const userStore = useUserStore()
     const avatar = ref(userStore.getUserInfo?.avatar || '')
+
+    const cropperRef = ref<Nullable<CropperActionType>>(null)
+    const getCropper = () => {
+      const cropper = unref(cropperRef)
+      if (!cropper) {
+        throw new Error('cropper is Null')
+      }
+      return cropper
+    }
 
     /**
      * Trigger cropper
      */
     function handleCutImg() {
-      unref(refCropper).croppered()
+      getCropper().croppered()
     }
     function handleCropend({ imgBase64, imgInfo }) {
       info.value = imgInfo
@@ -97,7 +107,7 @@ export default defineComponent({
       circleInfo,
       cropperImg,
       circleImg,
-      refCropper,
+      cropperRef,
       handleCutImg,
       handleCropend,
       handleCircleCropend,

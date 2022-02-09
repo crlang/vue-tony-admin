@@ -8,3 +8,7 @@ export interface CropendResult {
 export type { Cropper }
 
 export type successReturnType = { source: string; data: object;}
+
+export type CropperActionType = RefType<{
+  croppered: () => void
+}>
