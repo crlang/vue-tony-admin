@@ -10,7 +10,7 @@ const { uploadUrl = '' } = useGlobSetting()
  */
 export function uploadApi(
   params: UploadFileParams,
-  onUploadProgress: (progressEvent: ProgressEvent) => void
+  onUploadProgress?: (progressEvent: ProgressEvent) => void
 ) {
   return defHttp.uploadFile<UploadApiResult>(
     {

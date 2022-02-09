@@ -12,31 +12,32 @@
     <CollapseContainer
       title="矩形裁剪"
       class="my-4">
-      <div class="container p-4">
-        <div class="cropper-container mr-10">
+      <div class="p-4">
+        <div class="cropper">
           <CropperImage
             ref="refCropper"
+            :realTimePreview="false"
             :src="avatarImg"
-            @cropend="handleCropend"
-            style="width: 40vw" />
+            @cropend="handleCropend" />
         </div>
         <img
           :src="cropperImg"
-          class="croppered"
-          v-if="cropperImg"
-          alt="" />
+          v-if="cropperImg" />
       </div>
       <p v-if="cropperImg">裁剪后图片信息：{{ info }}</p>
+      <Button
+        @click="handleCutImg"
+        class="mx-4"
+        type="success">完成裁剪</Button>
     </CollapseContainer>
 
     <CollapseContainer title="圆形裁剪">
       <div class="container p-4">
-        <div class="cropper-container mr-10">
+        <div class="cropper">
           <CropperImage
-            ref="refCropper"
+            ref="refCircleCropper"
             :src="avatarImg"
             @cropend="handleCircleCropend"
-            style="width: 40vw"
             circled />
         </div>
         <img
@@ -50,7 +51,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, unref } from 'vue'
 import { PageWrapper } from '@/components/Page'
 import { CollapseContainer } from '@/components/Container'
 import { CropperImage, CropperAvatar } from '@/components/Cropper'
@@ -70,8 +71,16 @@ export default defineComponent({
     const cropperImg = ref('')
     const circleInfo = ref('')
     const circleImg = ref('')
+    const refCropper = ref()
     const userStore = useUserStore()
     const avatar = ref(userStore.getUserInfo?.avatar || '')
+
+    /**
+     * Trigger cropper
+     */
+    function handleCutImg() {
+      unref(refCropper).croppered()
+    }
     function handleCropend({ imgBase64, imgInfo }) {
       info.value = imgInfo
       cropperImg.value = imgBase64
@@ -82,58 +91,31 @@ export default defineComponent({
       circleImg.value = imgBase64
     }
 
-    // function convertImgToBase64(url:string, outputFormat?:string) {
-    //   return new Promise((resolve, reject) => {
-    //     const canvas = document.createElement('canvas') as HTMLCanvasElement
-    //     const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
-    //     const img = new Image()
-    //     img.src = url
-    //     img.crossOrigin = 'Anonymous'
-    //     img.onload = function () {
-    //       canvas.height = img.height
-    //       canvas.width = img.width
-    //       ctx.drawImage(img, 0, 0)
-    //       var dataURL = canvas.toDataURL(outputFormat || 'image/jpeg')
-    //       resolve(dataURL)
-    //     }
-    //     img.onerror = function (err) {
-    //       console.log('img err', err)
-    //       reject(null)
-    //     }
-    //   })
-    // }
-
     return {
       avatarImg,
       info,
       circleInfo,
       cropperImg,
       circleImg,
+      refCropper,
+      handleCutImg,
       handleCropend,
       handleCircleCropend,
       avatar,
-      uploadApi: uploadApi as any,
+      uploadApi,
     }
   },
 })
 </script>
 
 <style scoped>
-.container {
-  display: flex;
-  align-items: center;
-  width: 100vw;
+.cropper {
+  display: inline-block;
+  margin-right: 12px;
+  vertical-align: middle;
 }
 
-.cropper-container {
-  width: 40vw;
-}
-
-.croppered {
-  height: 360px;
-}
-
-p {
-  margin: 10px;
+.cropper + img{
+  display: inline-block;
 }
 </style>

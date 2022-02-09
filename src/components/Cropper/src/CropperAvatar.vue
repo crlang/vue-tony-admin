@@ -13,8 +13,7 @@
           icon="ant-design:cloud-upload-outlined"
           :size="getIconWidth"
           :style="getImageWrapperStyle"
-          color="#d6d6d6"
-        />
+          color="#d6d6d6" />
       </div>
       <img
         :src="sourceValue"
@@ -24,21 +23,23 @@
     <ElButton
       :class="`${prefixCls}-upload-btn`"
       @click="openModal=true"
+      :type="btnType"
       v-if="showBtn">
-      {{ btnText ? btnText : t('component.cropper.selectImage') }}
+      {{ btnText || t('component.cropper.selectImage') }}
     </ElButton>
     <CopperModal
       v-model:visible="openModal"
-      @fail="handleUploadFail"
       @success="handleUploadSuccess"
       :uploadApi="uploadApi" />
   </div>
 </template>
 
 <script lang="ts">
-import type { EleButton } from '@/components/ElementPlus'
+import type { EleButtonType } from '@/components/ElementPlus'
+import type { successReturnType } from './typing'
+import type { UploadFileParams } from '#/axios'
 
-import { defineComponent, computed, CSSProperties, unref, ref, watchEffect, watch } from 'vue'
+import { defineComponent, computed, CSSProperties, ref, watchEffect, watch } from 'vue'
 import { ElButton } from 'element-plus'
 import CopperModal from './CopperModal.vue'
 import { useDesign } from '@/hooks/web/useDesign'
@@ -46,20 +47,44 @@ import { useMessage } from '@/hooks/web/useMessage'
 import { useI18n } from '@/hooks/web/useI18n'
 import Icon from '@/components/Icon'
 
-const props = {
-  width: { type: [String, Number], default: '200px' },
-  value: { type: String },
-  showBtn: { type: Boolean, default: true },
-  btnProps: { type: Object as PropType<EleButton> },
-  btnText: { type: String, default: '' },
-  uploadName: { type: String, default: 'file' },
-  uploadApi: { type: Function as PropType<({ file: Blob, name: string }) => Promise<void>> },
-}
-
 export default defineComponent({
   name: 'CropperAvatar',
   components: { ElButton, CopperModal, Icon },
-  props,
+  props: {
+    /**
+     * Avatar size
+     */
+    size: { type: Number, default: 200 },
+    /**
+     * Default avatar URL
+     */
+    value: { type: String },
+    /**
+     * Whether to show the upload button
+     */
+    showBtn: { type: Boolean, default: true },
+    /**
+     * Upload button type
+     */
+    btnType: { type: String as PropType<EleButtonType>, default: '' },
+    /**
+     * Upload button text
+     */
+    btnText: { type: String, default: '' },
+    /**
+     * Upload name
+     */
+    uploadName: { type: String, default: 'file' },
+    /**
+     * Uploaded promise method
+     */
+    uploadApi: {
+      type: Function as PropType<(
+        params: UploadFileParams,
+        onUploadProgress?: (progressEvent: ProgressEvent) => void
+      ) => Promise<any>>,
+    },
+  },
   emits: ['update:value', 'change'],
   setup(props, { emit }) {
     const sourceValue = ref(props.value || '')
@@ -70,13 +95,16 @@ export default defineComponent({
 
     const getClass = computed(() => [prefixCls])
 
-    const getWidth = computed(() => `${props.width}`.replace(/px/, '') + 'px')
+    const getSize = computed(() => {
+      const { size } = props
+      return (size + 'px')
+    })
 
-    const getIconWidth = computed(() => parseInt(`${props.width}`.replace(/px/, '')) / 2 + 'px')
+    const getIconWidth = computed(() => (parseInt(getSize.value) / 2))
 
-    const getStyle = computed((): CSSProperties => ({ width: unref(getWidth) }))
+    const getStyle = computed((): CSSProperties => ({ width: getSize.value }))
 
-    const getImageWrapperStyle = computed((): CSSProperties => ({ width: unref(getWidth), height: unref(getWidth) }))
+    const getImageWrapperStyle = computed((): CSSProperties => ({ width: getSize.value, height: getSize.value }))
 
     watchEffect(() => {
       sourceValue.value = props.value || ''
@@ -89,13 +117,9 @@ export default defineComponent({
       }
     )
 
-    function handleUploadFail() {
-      openModal.value = false
-      // createMessage.error(t('component.upload.uploadError'))
-    }
-    function handleUploadSuccess({ source }) {
-      sourceValue.value = source
-      emit('change', source)
+    function handleUploadSuccess(data:successReturnType) {
+      sourceValue.value = data.source
+      emit('change', data)
       createMessage.success(t('component.cropper.uploadSuccess'))
     }
 
@@ -109,13 +133,12 @@ export default defineComponent({
       getImageWrapperStyle,
       getStyle,
       handleUploadSuccess,
-      handleUploadFail,
     }
   },
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $prefix-cls: '#{$tonyname}-cropper-avatar';
 
 .#{$prefix-cls} {
@@ -145,7 +168,7 @@ $prefix-cls: '#{$tonyname}-cropper-avatar';
     opacity: 0;
     transition: opacity 0.4s;
 
-    ::v-deep(svg) {
+    svg {
       margin: auto;
     }
   }

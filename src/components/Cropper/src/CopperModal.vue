@@ -12,11 +12,10 @@
           <CropperImage
             v-if="src"
             :src="src"
-            height="300px"
+            :height="300"
             :circled="circled"
             @cropend="handleCropend"
-            @ready="handleReady"
-          />
+            @ready="handleReady" />
         </div>
 
         <div :class="`${prefixCls}-toolbar`">
@@ -29,8 +28,7 @@
               :content="t('component.cropper.selectImage')"
               placement="bottom">
               <ElButton
-                size="small"
-                type="primary"><Icon icon="ant-design:upload-outlined" /></ElButton>
+                type="success"><Icon icon="ant-design:upload-outlined" /></ElButton>
             </ElTooltip>
           </ElUpload>
           <ElSpace>
@@ -111,23 +109,23 @@
           <div :class="`${prefixCls}-group`">
             <ElAvatar
               :src="previewSource"
-              size="large" />
+              :size="64" />
             <ElAvatar
               :src="previewSource"
               :size="48" />
             <ElAvatar
               :src="previewSource"
-              :size="64" />
+              :size="72" />
             <ElAvatar
               :src="previewSource"
-              :size="80" />
+              :size="96" />
           </div>
         </template>
       </div>
     </div>
     <template #footer>
       <span class="dialog-footer">
-        <ElButton @click="handleClose('cancel')">{{ t('common.cancelText') }}</ElButton>
+        <ElButton @click="handleClose()">{{ t('common.cancelText') }}</ElButton>
         <ElButton
           type="primary"
           :disabled="!previewSource"
@@ -138,6 +136,7 @@
 </template>
 
 <script lang="ts">
+import type { UploadFileParams } from '#/axios'
 import type { CropendResult, Cropper } from './typing'
 
 import { defineComponent, ref, watchEffect, watch } from 'vue'
@@ -148,26 +147,7 @@ import { dataURLtoBlob } from '@/utils/file/base64Conver'
 import { isFunction } from '@/utils/is'
 import { useI18n } from '@/hooks/web/useI18n'
 import { Icon } from '@/components/Icon'
-
-type apiFunParams = { file: Blob; name: string; filename: string }
-
-const props = {
-  circled: {
-    type: Boolean,
-    default: true,
-  },
-  uploadApi: {
-    type: Function as PropType<(params: apiFunParams) => Promise<any>>,
-  },
-  uploadName: {
-    type: String,
-    default: 'file',
-  },
-  visible: {
-    type: Boolean,
-    default: false,
-  },
-}
+import { FileHandler } from 'element-plus/es/components/upload/src/upload.type'
 
 export default defineComponent({
   name: 'CropperModal',
@@ -181,7 +161,26 @@ export default defineComponent({
     CropperImage,
     Icon,
   },
-  props,
+  props: {
+    circled: {
+      type: Boolean,
+      default: true,
+    },
+    uploadApi: {
+      type: Function as PropType<(
+        params: UploadFileParams,
+        onUploadProgress?: (progressEvent: ProgressEvent) => void
+      ) => Promise<any>>,
+    },
+    uploadName: {
+      type: String,
+      default: 'file',
+    },
+    visible: {
+      type: Boolean,
+      default: false,
+    },
+  },
   emits: ['update:visible', 'fail', 'success'],
   setup(props, { emit }) {
     let filename = ''
@@ -207,7 +206,7 @@ export default defineComponent({
     )
 
     // Block upload
-    function handleBeforeUpload(file: File) {
+    function handleBeforeUpload(file: File):FileHandler<void> {
       const reader = new FileReader()
       reader.readAsDataURL(file)
       src.value = ''
@@ -216,7 +215,7 @@ export default defineComponent({
         src.value = (e.target?.result as string) ?? ''
         filename = file.name
       }
-      return false
+      return false as any
     }
 
     function handleCropend({ imgBase64 }: CropendResult) {
@@ -244,14 +243,14 @@ export default defineComponent({
         try {
           const result = await uploadApi({ name: props.uploadName, file: blob, filename })
           emit('success', { source: previewSource.value, data: result.data })
-          handleClose('success')
-        } finally {
-          handleClose('catch')
+        } catch (e) {
+          console.error('Upload Fail', e)
         }
+        handleClose()
       }
     }
-    function handleClose(type:String) {
-      emit('fail', { type })
+    function handleClose() {
+      sourceVisible.value = false
     }
 
     return {

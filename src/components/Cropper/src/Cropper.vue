@@ -14,6 +14,7 @@
 
 <script lang="ts">
 import type { CSSProperties } from 'vue'
+
 import { defineComponent, onMounted, ref, unref, computed, onUnmounted } from 'vue'
 import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
@@ -45,23 +46,45 @@ const defaultOptions: Options = {
   rotatable: true,
 }
 
-const props = {
-  src: { type: String, required: true },
-  alt: { type: String },
-  circled: { type: Boolean, default: false },
-  realTimePreview: { type: Boolean, default: true },
-  height: { type: [String, Number], default: '360px' },
-  crossorigin: {
-    type: String as PropType<'' | 'anonymous' | 'use-credentials' | undefined>,
-    default: undefined,
-  },
-  imageStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
-  options: { type: Object as PropType<Options>, default: () => ({}) },
-}
-
 export default defineComponent({
   name: 'CropperImage',
-  props,
+  props: {
+    /**
+     * Default displayed image URL
+     */
+    src: { type: String, required: true },
+    /**
+     * Image alt
+     */
+    alt: { type: String },
+    /**
+     * Whether to cut circularly
+     */
+    circled: { type: Boolean, default: false },
+    /**
+     * Whether to preview in real time
+     */
+    realTimePreview: { type: Boolean, default: true },
+    /**
+     * size of the picture
+     */
+    size: { type: Number, default: 300 },
+    /**
+     * Image address cross-domain source setting
+     */
+    crossorigin: {
+      type: String as PropType<'' | 'anonymous' | 'use-credentials' | undefined>,
+      default: undefined,
+    },
+    /**
+     * image style
+     */
+    imageStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
+    /**
+     * cropper.js parameters
+     */
+    options: { type: Object as PropType<Options>, default: () => ({}) },
+  },
   emits: ['cropend', 'ready', 'cropendError'],
   setup(props, { attrs, emit }) {
     const imgElRef = ref<ElRef<HTMLImageElement>>()
@@ -73,7 +96,7 @@ export default defineComponent({
 
     const getImageStyle = computed((): CSSProperties => {
       return {
-        height: props.height,
+        height: props.size,
         maxWidth: '100%',
         ...props.imageStyle,
       }
@@ -90,7 +113,8 @@ export default defineComponent({
     })
 
     const getWrapperStyle = computed((): CSSProperties => {
-      return { height: `${props.height}`.replace(/px/, '') + 'px' }
+      const { size } = props
+      return { height: props.size + 'px', width: size + 'px' }
     })
 
     onMounted(init)
