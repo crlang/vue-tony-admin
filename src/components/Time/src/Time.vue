@@ -8,7 +8,6 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { useIntervalFn } from '@vueuse/core'
 import { formatToDateTime, formatToDate, dateUtil } from '@/utils/dateUtil'
 import { isNumber, isObject, isString } from '@/utils/is'
-import { propTypes } from '@/utils/propTypes'
 
 const ONE_SECONDS = 1000
 const ONE_MINUTES = ONE_SECONDS * 60
@@ -18,9 +17,27 @@ const ONE_DAY = ONE_HOUR * 24
 export default defineComponent({
   name: 'Time',
   props: {
-    value: propTypes.oneOfType([propTypes.number, propTypes.instanceOf(Date), propTypes.string]).isRequired,
-    step: propTypes.number.def(60),
-    mode: propTypes.oneOf(['date', 'datetime', 'relative']).def('relative'),
+    /**
+     * current time
+     */
+    value: {
+      type: [String, Number, Date],
+      required: true,
+    },
+    /**
+     * refresh interval (s)
+     */
+    step: {
+      type: Number,
+      default: 60,
+    },
+    /**
+     * display mode
+     */
+    mode: {
+      type: String as PropType<'date' | 'datetime' | 'relative'>,
+      default: 'relative',
+    },
   },
   setup(props) {
     const date = ref('')
