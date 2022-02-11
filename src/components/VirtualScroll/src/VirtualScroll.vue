@@ -15,27 +15,6 @@ import { getSlot } from '@/utils/helper/tsxHelper'
 
   type NumberOrNumberString = PropType<string | number | undefined>;
 
-const props = {
-  height: [Number, String] as NumberOrNumberString,
-  maxHeight: [Number, String] as NumberOrNumberString,
-  maxWidth: [Number, String] as NumberOrNumberString,
-  minHeight: [Number, String] as NumberOrNumberString,
-  minWidth: [Number, String] as NumberOrNumberString,
-  width: [Number, String] as NumberOrNumberString,
-  bench: {
-    type: [Number, String] as NumberOrNumberString,
-    default: 0,
-  },
-  itemHeight: {
-    type: [Number, String] as NumberOrNumberString,
-    required: true,
-  },
-  items: {
-    type: Array as PropType<any[]>,
-    default: () => [],
-  },
-}
-
 const prefixCls = 'virtual-scroll'
 
 function convertToUnit(str: string | number | null | undefined, unit = 'px'): string | undefined {
@@ -50,7 +29,26 @@ function convertToUnit(str: string | number | null | undefined, unit = 'px'): st
 
 export default defineComponent({
   name: 'VirtualScroll',
-  props,
+  props: {
+    height: [Number, String] as NumberOrNumberString,
+    maxHeight: [Number, String] as NumberOrNumberString,
+    maxWidth: [Number, String] as NumberOrNumberString,
+    minHeight: [Number, String] as NumberOrNumberString,
+    minWidth: [Number, String] as NumberOrNumberString,
+    width: [Number, String] as NumberOrNumberString,
+    bench: {
+      type: [Number, String] as NumberOrNumberString,
+      default: 0,
+    },
+    itemHeight: {
+      type: [Number, String] as NumberOrNumberString,
+      required: true,
+    },
+    items: {
+      type: Array as PropType<any[]>,
+      default: () => [],
+    },
+  },
   setup(props, { slots }) {
     const wrapElRef = ref<HTMLDivElement | null>(null)
     const state = reactive({
