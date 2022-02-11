@@ -4,9 +4,9 @@
     content="懒加载组件显示动画">
     <div class="lazy-base-demo-wrap">
       <h1>向下滚动</h1>
-
       <div class="lazy-base-demo-box">
-        <LazyContainer transitionName="custom">
+        <LazyContainer
+          transitionName="custom">
           <TargetContent />
         </LazyContainer>
       </div>

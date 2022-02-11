@@ -15,3 +15,9 @@ export type ScrollActionType = RefType<{
   getScrollWrap: () => Nullable<HTMLElement>
   scrollTo: (top: number) => void
 }>
+
+export interface LazyState {
+  isInit: boolean
+  loading: boolean
+  intersectionObserverInstance: IntersectionObserver | null
+}

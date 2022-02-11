@@ -23,63 +23,60 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue'
+import type { LazyState } from './typing'
+
 import { defineComponent, reactive, onMounted, ref, toRef, toRefs } from 'vue'
 import { ElSkeleton } from 'element-plus'
 import { useTimeoutFn } from '@/hooks/core/useTimeout'
 import { useIntersectionObserver } from '@/hooks/event/useIntersectionObserver'
 
-interface State {
-  isInit: boolean
-  loading: boolean
-  intersectionObserverInstance: IntersectionObserver | null
-}
-
-const props = {
-  /**
-   * Waiting time, if the time is specified, whether visible or not, it will be automatically loaded after the specified time
-   */
-  timeout: { type: Number },
-  /**
-   * The viewport where the component is located.
-   * If the component is scrolling in the page container, the viewport is the container
-   */
-  viewport: {
-    type: (typeof window !== 'undefined' ? window.HTMLElement : Object) as PropType<HTMLElement>,
-    default: () => null,
-  },
-  /**
-   * Preload threshold, css unit
-   */
-  threshold: { type: String, default: '0px' },
-  /**
-   * The scroll direction of the viewport, vertical represents the vertical direction, horizontal represents the horizontal direction
-   */
-  direction: {
-    type: String,
-    default: 'vertical',
-    validator: (v) => ['vertical', 'horizontal'].includes(v),
-  },
-  /**
-   * The label name of the outer container that wraps the component
-   */
-  tag: { type: String, default: 'div' },
-  maxWaitingTime: { type: Number, default: 80 },
-  /**
-   * transition name
-   */
-  transitionName: { type: String, default: 'lazy-container' },
-}
-
 export default defineComponent({
   name: 'LazyContainer',
   components: { ElSkeleton },
   inheritAttrs: false,
-  props,
+  props: {
+    /**
+     * Waiting time
+     * if the time is specified, whether visible or not, it will be automatically loaded after the specified time
+     */
+    timeout: { type: Number },
+    /**
+     * The viewport where the component is located.
+     * If the component is scrolling in the page container, the viewport is the container
+     */
+    viewport: {
+      type: (typeof window !== 'undefined' ? window.HTMLElement : Object) as PropType<HTMLElement>,
+      default: () => null,
+    },
+    /**
+     * Preload threshold, css unit
+     */
+    threshold: { type: String, default: '0px' },
+    /**
+     * The scroll direction of the viewport
+     */
+    direction: {
+      type: String,
+      default: 'vertical',
+      validator: (v:string) => ['vertical', 'horizontal'].includes(v),
+    },
+    /**
+   * The label name of the outer container that wraps the component
+   */
+    tag: { type: String, default: 'div' },
+    /**
+     * maximum waiting time
+     */
+    maxWaitingTime: { type: Number, default: 120 },
+    /**
+     * transition name
+     */
+    transitionName: { type: String, default: 'lazy-container' },
+  },
   emits: ['init'],
   setup(props, { emit }) {
     const elRef = ref()
-    const state = reactive<State>({
+    const state = reactive<LazyState>({
       isInit: false,
       loading: false,
       intersectionObserverInstance: null,
@@ -106,7 +103,7 @@ export default defineComponent({
         if (state.isInit) return
         state.isInit = true
         emit('init')
-      }, props.maxWaitingTime || 80)
+      }, props.maxWaitingTime || 120)
     }
 
     function initIntersectionObserver() {
