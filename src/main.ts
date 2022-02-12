@@ -17,6 +17,7 @@ import { setupI18n } from '@/locales/setupI18n'
 import { registerGlobComp } from '@/components/registerGlobComp'
 import '@/design/util.scss'
 import '@/design/index.scss'
+import { ElLoading } from 'element-plus'
 
 async function bootstrap() {
   const app = createApp(App)
@@ -53,6 +54,7 @@ async function bootstrap() {
   // Not recommended, the project has been introduced on demand
   // 不建议，项目已经按需引入
   // app.use(ElementPlus)
+  app.use(ElLoading)
 
   app.mount('#app')
 }
