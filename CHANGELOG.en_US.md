@@ -1,3 +1,48 @@
+## [0.1.1-beta.1](https://github.com/crlang/vue-tony-admin/compare/0.0.1-alpha.3...0.1.1-beta.1) (2022-02-13)
+
+### Bug Fixes
+
+- add border property to ElAlert ([8492f93](https://github.com/crlang/vue-tony-admin/commit/8492f93041d1eb1e214d2e4e789a29c32201a030))
+- adjust Basic components ([b7ee7f6](https://github.com/crlang/vue-tony-admin/commit/b7ee7f62a0dd85aac8f0988a6971f1494d025581))
+- adjust ele button size ([0304bdc](https://github.com/crlang/vue-tony-admin/commit/0304bdc909c4606b249eeecec3c436297502c5f5))
+- adjust element plus default color: ([50883cd](https://github.com/crlang/vue-tony-admin/commit/50883cd5d3b30ed4988342fb195efb0cd07ab752))
+- adjust header search location ([9d87ca1](https://github.com/crlang/vue-tony-admin/commit/9d87ca19df457b974cc6c0f289dc39c66abfcced))
+- **Button:** component optimization ([a0cb821](https://github.com/crlang/vue-tony-admin/commit/a0cb821f51a3d0a13ac11fab324780aa4464ffa3))
+- **CardGrid:** component optimization ([2f434c7](https://github.com/crlang/vue-tony-admin/commit/2f434c76265b281b2fb22655bfb6bf072ed2a81b))
+- **ClickOutSide:** component optimization ([fb7e8e6](https://github.com/crlang/vue-tony-admin/commit/fb7e8e67cbd0ef843f5a1369a4abb1db014d25ee))
+- **CollapseContainer:** component optimization ([6edd70a](https://github.com/crlang/vue-tony-admin/commit/6edd70a710817fb5e9e40a97589830947377a5ae))
+- **CountDown:** adjust related parameters ([84a9172](https://github.com/crlang/vue-tony-admin/commit/84a91728068f1f9b4a659ba0d5b6e129e853207a))
+- **CountTo:** component optimization ([5426553](https://github.com/crlang/vue-tony-admin/commit/542655317deed93aacb9b1a3018ff131e7264307))
+- **Cropper:** component optimization ([0359717](https://github.com/crlang/vue-tony-admin/commit/0359717f609e9534ef88c5dbbf3b98197d559071))
+- **Description:** component optimization ([f49bd77](https://github.com/crlang/vue-tony-admin/commit/f49bd776bde6340004d01535bb2abc8a86ba3030))
+- **Drawer:** component optimization ([9804d87](https://github.com/crlang/vue-tony-admin/commit/9804d87d90a7aa2cbdde5ae226ea0ba56892ca73))
+- fix bugs in the previous version ([c383963](https://github.com/crlang/vue-tony-admin/commit/c3839632413360e2f93a6079f33875f3206fcf9f))
+- fix memory overflow caused by v-loading ([0133fa2](https://github.com/crlang/vue-tony-admin/commit/0133fa28f7ad2868c6cc6a9fba811c0f819f6c93))
+- fix possible null bug ([4123c91](https://github.com/crlang/vue-tony-admin/commit/4123c91d1705ea72f2940d8e80ad6e547f1232b1))
+- fix the basic form demo ([50be741](https://github.com/crlang/vue-tony-admin/commit/50be741600c4f9c8dcab2fbe2c3dcc3c732eafd8))
+- fixed empty props causing editor error ([ef8b990](https://github.com/crlang/vue-tony-admin/commit/ef8b99029c9389fafcdd9a6be507ed93abdb6f43))
+- **LazyContainer:** component optimization ([32cf073](https://github.com/crlang/vue-tony-admin/commit/32cf073dfd2fd8502ea81b0d38877fbed3f832c2))
+- logo title ([8dc4f2c](https://github.com/crlang/vue-tony-admin/commit/8dc4f2cb39911cce52833aac20eae6792accd4cd))
+- menu text prohibits being selected ([f261dab](https://github.com/crlang/vue-tony-admin/commit/f261dab8498e11e7ec8b8ada94bd0018b8513dca))
+- remove CodeEditor components ([f636e01](https://github.com/crlang/vue-tony-admin/commit/f636e01f7f82e8236ee1b0e3f1f5cfed19d5f230))
+- remove img border ([ecd52e4](https://github.com/crlang/vue-tony-admin/commit/ecd52e4d0038c500a2296345ccaf5be3bc6d91b4))
+- remove old element props ([4470abf](https://github.com/crlang/vue-tony-admin/commit/4470abf6e0e247bfc142b6b5ccdf9b9cf4c3fad4))
+- remove page loading ([4e0971d](https://github.com/crlang/vue-tony-admin/commit/4e0971d8281e4f14d98a542787f4c73a64168dd3))
+- rename sass namespace to tonyname ([322dd99](https://github.com/crlang/vue-tony-admin/commit/322dd9961cf4a55d107045aa37693d2b5a90fffb))
+- **ScrollContainer:** component optimization ([2bb98ea](https://github.com/crlang/vue-tony-admin/commit/2bb98ead3d227f1f69582105443c2aeb9e9fefca))
+- **StrengthMeter:** adjust the password strength check component ([b1b053a](https://github.com/crlang/vue-tony-admin/commit/b1b053a454984b8d56d1eeb2bf9c4bef810c7463))
+- **Time:** component optimization ([db52118](https://github.com/crlang/vue-tony-admin/commit/db521187328fda7f129a2e32826b4dbc1a343f40))
+- **VirtualScroll:** component optimization ([44997e2](https://github.com/crlang/vue-tony-admin/commit/44997e2e896d4f9571d78c15fc4a93adb87482c6))
+
+### Features
+
+- add theme type ([4f76c6e](https://github.com/crlang/vue-tony-admin/commit/4f76c6eb46f5b042533cea8542e153102fb6d7e8))
+- **Button:** add shadow attr ([86730e9](https://github.com/crlang/vue-tony-admin/commit/86730e95b378792963dc0638b1a3bc25f4f371bc))
+
+### Performance Improvements
+
+- element plus component change to import on demand ([4393484](https://github.com/crlang/vue-tony-admin/commit/4393484b26dcf3049ac25b564357e6b354e31628))
+
 ## [0.0.1-alpha.3](https://github.com/crlang/vue-tony-admin/compare/0.0.1-alpha.2...0.0.1-alpha.3) (2022-01-19)
 
 ### Bug Fixes
@@ -38,9 +83,3 @@
 ### Performance Improvements
 
 - adjust SCSS variable to custom attribute ([198f820](https://github.com/crlang/vue-tony-admin/commit/198f820ab617857b8588d6bc24e33c4e0dbcf2d4))
-
-# 0.0.1-alpha.1 (2022-1-4)
-
-### Chores
-
-- **Tony:** The framework is basically complete and enters the bug fix stage
