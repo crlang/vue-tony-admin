@@ -23,8 +23,8 @@ Vue Tony Admin is a free and open source management side frontend template. Base
 
 ## Preview
 
-- [vue-tony-admin](https://tony.crlang.com/) - Chinese site
-- [vue-tony-admin-github-pages](https://crlang.github.io/vue-tony-admin/) - github site
+- [Github site](https://crlang.github.io/vue-tony-admin-site)
+- [Gitee site](https://crlang.gitee.io/vue-tony-admin-site)
 
 ## Documentation
 

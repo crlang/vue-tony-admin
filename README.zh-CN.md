@@ -23,8 +23,8 @@ Vue Tony Admin 是一个免费开源的中后台前端模版。基于`Element Pl
 
 ## 预览
 
-- [vue-tony-admin](https://tony.crlang.com/) - 中文站点
-- [vue-tony-admin-github-pages](https://crlang.github.io/vue-tony-admin/) - Github 站点
+- [Gitee 演示地址 - 国内加速](https://crlang.gitee.io/vue-tony-admin-site)
+- [Github 演示地址](https://crlang.github.io/vue-tony-admin-site)
 
 ## 文档
 
