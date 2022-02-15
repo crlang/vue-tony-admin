@@ -11,6 +11,7 @@
     </div>
   </div>
 </template>
+
 <script lang="ts">
 import { defineComponent, ref, unref } from 'vue'
 import XLSX from 'xlsx'
@@ -20,12 +21,15 @@ import type { ExcelData } from './typing'
 export default defineComponent({
   name: 'ImportExcel',
   props: {
-    // 日期时间格式。如果不提供或者提供空值，将返回原始Date对象
+    /**
+     * datetime format
+     */
     dateFormat: {
       type: String,
     },
-    // 时区调整。实验性功能，仅为了解决读取日期时间值有偏差的问题。目前仅提供了+08:00时区的偏差修正值
-    // https://github.com/SheetJS/sheetjs/issues/1470#issuecomment-501108554
+    /**
+     * time zone
+     */
     timeZone: {
       type: Number,
       default: 8,
@@ -37,7 +41,7 @@ export default defineComponent({
     const loadingRef = ref<Boolean>(false)
 
     /**
-     * @description: 第一行作为头部
+     * first line as header
      */
     function getHeaderRow(sheet: XLSX.WorkSheet) {
       if (!sheet || !sheet['!ref']) return []
@@ -59,7 +63,7 @@ export default defineComponent({
     }
 
     /**
-     * @description: 获得excel数据
+     * get excel data
      */
     function getExcelData(workbook: XLSX.WorkBook) {
       const excelData: ExcelData[] = []
@@ -97,7 +101,7 @@ export default defineComponent({
     }
 
     /**
-     * @description: 读取excel数据
+     * read excel data
      */
     function readerData(rawFile: File) {
       loadingRef.value = true
@@ -132,7 +136,7 @@ export default defineComponent({
     }
 
     /**
-     * @description: 触发选择文件管理器
+     * Trigger select file manager
      */
     function handleInputClick(e: Event) {
       const files = e && (e.target as HTMLInputElement).files
@@ -142,7 +146,7 @@ export default defineComponent({
     }
 
     /**
-     * @description: 点击上传按钮
+     * the upload button
      */
     function handleUpload() {
       const inputRefDom = unref(inputRef)

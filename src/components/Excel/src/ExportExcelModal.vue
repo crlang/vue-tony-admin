@@ -1,20 +1,22 @@
 <template>
   <BasicModal
-    :visible="visibleRef"
+    :modelValue="visibleRef"
     :title="t('component.excel.exportModalTitle')"
     :width="600"
     @close="visibleRef = false">
-    <BasicForm
-      :labelWidth="100"
-      :schemas="schemas"
-      :showActionButtonGroup="false"
-      @register="registerForm"
-    />
+    <div class="p-4">
+      <BasicForm
+        :labelWidth="100"
+        :schemas="schemas"
+        :showActionButtonGroup="false"
+        @register="registerForm"
+      />
+    </div>
     <template #footer>
-      <ElButton @click="visibleRef = false">关闭</ElButton>
+      <ElButton @click="visibleRef = false">{{ t('common.closeText') }}</ElButton>
       <ElButton
         type="primary"
-        @click="handleOk">提交</ElButton>
+        @click="handleOk">{{ t('common.confirmText') }}</ElButton>
     </template>
   </BasicModal>
 </template>
