@@ -1,22 +1,17 @@
 <template>
   <PageWrapper title="MarkDown组件示例">
-    {{ markdownValue }}
-    <div>
-      <el-button
-        @click="toggleTheme"
-        class="mb-2"
-        type="primary">黑暗主题</el-button>
-      <el-button
-        @click="clearValue"
-        class="mb-2"
-        type="default">清空内容</el-button>
-      <MarkDown
-        v-model:value="markdownValue"
-        @change="handleChange"
-        ref="markDownRef"
-        placeholder="这是占位文本" />
+    <div class="mb-6">
+      <Button @click="toggleTheme">黑暗主题</Button>
+      <Button @click="clearValue">清空内容</Button>
     </div>
-    <div class="mt-2">
+
+    <MarkDown
+      v-model:value="markdownValue"
+      @change="handleChange"
+      ref="markDownRef"
+      placeholder="这是占位文本" />
+
+    <div class="mt-4">
       <el-card header="Markdown Viewer 组件演示">
         <MarkdownViewer :value="markdownValue" />
       </el-card>
@@ -25,13 +20,15 @@
 </template>
 
 <script lang="ts">
+import type { MarkDownActionType } from '@/components/Markdown'
+
 import { defineComponent, ref, unref } from 'vue'
-import { ElButton, ElCard } from 'element-plus'
-import { MarkDown, MarkDownActionType, MarkdownViewer } from '@/components/Markdown'
+import { ElCard } from 'element-plus'
+import { MarkDown, MarkdownViewer } from '@/components/Markdown'
 import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { ElButton, ElCard, MarkDown, PageWrapper, MarkdownViewer },
+  components: { ElCard, MarkDown, PageWrapper, MarkdownViewer },
   setup() {
     const markDownRef = ref<Nullable<MarkDownActionType>>(null)
     const markdownValue = ref(`
@@ -39,16 +36,19 @@ export default defineComponent({
 
 # content
 `)
+    const themeName = ref<'classic'|'dark'>('dark')
 
     function toggleTheme() {
       const markDown = unref(markDownRef)
       if (!markDown) return
+
       const vditor = markDown.getVditor()
-      vditor.setTheme('dark')
+      themeName.value = themeName.value === 'dark' ? 'classic' : 'dark'
+
+      vditor.setTheme(themeName.value)
     }
 
     function handleChange(v: string) {
-      console.log('change', v)
       markdownValue.value = v
     }
 

@@ -1,28 +1,40 @@
 
 <template>
-  <div
-    :class="$props.class"
-    class="markdown-viewer">
+  <div :class="[$props.class,prefixCls]">
     <!-- eslint-disable-next-line vue/no-v-html -->
     <div v-html="getHtmlData"></div>
   </div>
 </template>
 
-<script lang="ts" setup>
-import { computed } from 'vue'
+<script lang="ts">
+import { computed, defineComponent } from 'vue'
 import showdown from 'showdown'
+import { useDesign } from '@/hooks/web/useDesign'
 
-const converter = new showdown.Converter()
-converter.setOption('tables', true)
-const props = defineProps({
-  value: { type: String },
-  class: { type: String },
+export default defineComponent({
+  props: {
+    value: { type: String },
+    class: { type: String },
+  },
+  setup(props) {
+    const { prefixCls } = useDesign('markdown-view')
+    const converter = new showdown.Converter()
+    const getHtmlData = computed(() => converter.makeHtml(props.value || ''))
+
+    converter.setOption('tables', true)
+
+    return {
+      prefixCls,
+      getHtmlData,
+    }
+  },
 })
-const getHtmlData = computed(() => converter.makeHtml(props.value || ''))
 </script>
 
-<style scoped>
-.markdown-viewer {
+<style lang="scss">
+$prefix-cls: '#{$tonyname}-markdown-view';
+
+.#{$prefix-cls} {
   width: 100%;
 }
 </style>

@@ -1,9 +1,12 @@
 <template>
-  <div ref="wrapRef"></div>
+  <div
+    ref="wrapRef"
+    :class="prefixCls"></div>
 </template>
 
 <script lang="ts">
 import type { Ref } from 'vue'
+
 import { defineComponent, ref, unref, nextTick, computed, watch, onBeforeUnmount, onDeactivated } from 'vue'
 import Vditor from 'vditor'
 import 'vditor/dist/index.css'
@@ -11,6 +14,7 @@ import { useLocale } from '@/locales/useLocale'
 import { useModalContext } from '../../Modal'
 import { useRootSetting } from '@/hooks/setting/useRootSetting'
 import { onMountedOrActivated } from '@/hooks/core/onMountedOrActivated'
+import { useDesign } from '@/hooks/web/useDesign'
 
 type Lang = 'zh_CN' | 'en_US' | 'ja_JP' | 'ko_KR' | undefined
 
@@ -25,6 +29,7 @@ export default defineComponent({
     const wrapRef = ref<ElRef>(null)
     const vditorRef = ref(null) as Ref<Nullable<Vditor>>
     const initedRef = ref(false)
+    const { prefixCls } = useDesign('markdown')
 
     const modalFn = useModalContext()
 
@@ -74,6 +79,7 @@ export default defineComponent({
       }
       return lang
     })
+
     function init() {
       const wrapEl = unref(wrapRef) as HTMLElement
       if (!wrapEl) return
@@ -134,6 +140,7 @@ export default defineComponent({
     onDeactivated(destroy)
     return {
       wrapRef,
+      prefixCls,
       ...instance,
     }
   },
