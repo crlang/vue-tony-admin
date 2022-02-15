@@ -40,7 +40,7 @@
                       onClick: handleEdit.bind(null, scope.row),
                     },
                     {
-                      icon: 'ant-design:delete-outlined',
+                      icon: 'ep:delete',
                       color: 'error',
                       label: '删除',
                       onClick: handleDelete.bind(null, scope.row),

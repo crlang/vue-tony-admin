@@ -60,7 +60,7 @@
               </div>
               <div :class="`${prefixCls}-list__item-enter`">
                 <Icon
-                  icon="ant-design:enter-outlined"
+                  icon="uil:enter"
                   :size="20" />
               </div>
             </li>

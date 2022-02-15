@@ -28,7 +28,7 @@
               :content="t('component.cropper.selectImage')"
               placement="bottom">
               <ElButton
-                type="success"><Icon icon="ant-design:upload-outlined" /></ElButton>
+                type="success"><Icon icon="ep:upload-filled" /></ElButton>
             </ElTooltip>
           </ElUpload>
           <ElSpace>
@@ -39,7 +39,7 @@
                 type="primary"
                 size="small"
                 :disabled="!src"
-                @click="handlerToolbar('reset')"><Icon icon="ant-design:reload-outlined" /></ElButton>
+                @click="handlerToolbar('reset')"><Icon icon="ep:refresh-right" /></ElButton>
             </ElTooltip>
             <ElTooltip
               :content="t('component.cropper.btn_rotate_left')"
@@ -48,7 +48,7 @@
                 type="primary"
                 size="small"
                 :disabled="!src"
-                @click="handlerToolbar('rotate', -45)"><Icon icon="ant-design:rotate-left-outlined" /></ElButton>
+                @click="handlerToolbar('rotate', -45)"><Icon icon="ic:baseline-rotate-90-degrees-ccw" /></ElButton>
             </ElTooltip>
             <ElTooltip
               :content="t('component.cropper.btn_rotate_right')"
@@ -57,7 +57,7 @@
                 type="primary"
                 size="small"
                 :disabled="!src"
-                @click="handlerToolbar('rotate', 45)"><Icon icon="ant-design:rotate-right-outlined" /></ElButton>
+                @click="handlerToolbar('rotate', 45)"><Icon icon="ic:baseline-rotate-90-degrees-ccw" /></ElButton>
             </ElTooltip>
             <ElTooltip
               :content="t('component.cropper.btn_scale_x')"
@@ -84,7 +84,7 @@
                 type="primary"
                 size="small"
                 :disabled="!src"
-                @click="handlerToolbar('zoom', 0.1)"><Icon icon="ant-design:zoom-in-outlined" /></ElButton>
+                @click="handlerToolbar('zoom', 0.1)"><Icon icon="ep:zoom-in" /></ElButton>
             </ElTooltip>
             <ElTooltip
               :content="t('component.cropper.btn_zoom_out')"
@@ -93,7 +93,7 @@
                 type="primary"
                 size="small"
                 :disabled="!src"
-                @click="handlerToolbar('zoom', -0.1)"><Icon icon="ant-design:zoom-out-outlined" /></ElButton>
+                @click="handlerToolbar('zoom', -0.1)"><Icon icon="ep:zoom-out" /></ElButton>
             </ElTooltip>
           </ElSpace>
         </div>

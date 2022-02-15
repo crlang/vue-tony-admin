@@ -14,22 +14,35 @@ import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'SvgIcon',
+  inheritAttrs: false,
   props: {
-    prefix: {
-      type: String,
-      default: 'icon',
-    },
+    /**
+     * Icon name
+     */
     name: {
       type: String,
       required: true,
     },
+    /**
+     * Icon size
+     */
     size: {
       type: [Number, String],
       default: 0,
     },
+    /**
+     * Whether the icon is turned on rotation
+     */
     spin: {
       type: Boolean,
       default: false,
+    },
+    /**
+     * Icon prefix
+     */
+    prefix: {
+      type: String,
+      default: 'icon',
     },
   },
   setup(props) {
@@ -53,7 +66,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $prefix-cls: '#{$tonyname}-svg-icon';
 
 .#{$prefix-cls} {
@@ -64,11 +77,10 @@ $prefix-cls: '#{$tonyname}-svg-icon';
 }
 
 .svg-icon-spin {
-  animation: loadingCircle 1s infinite linear;
+  animation: svgLoadingCircle 1s infinite linear;
 }
 
-/* stylelint-disable-next-line order/order */
-@keyframes loadingCircle {
+@keyframes svgLoadingCircle {
   100% {
     transform: rotate(360deg);
   }

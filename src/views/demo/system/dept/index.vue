@@ -18,7 +18,7 @@
                   onClick: handleEdit.bind(null, scope.row),
                 },
                 {
-                  icon: 'ant-design:delete-outlined',
+                  icon: 'ep:delete',
                   color: 'error',
                   popConfirm: {
                     title: '是否确认删除',

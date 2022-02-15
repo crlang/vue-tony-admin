@@ -13,34 +13,48 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue'
 import { defineComponent, ref, watch, onMounted, nextTick, unref, computed, CSSProperties } from 'vue'
 import SvgIcon from './SvgIcon.vue'
 import Iconify from '@purge-icons/generated'
 import { isString } from '@/utils/is'
-import { propTypes } from '@/utils/propTypes'
 
 const SVG_END_WITH_FLAG = '|svg'
 export default defineComponent({
   name: 'Icon',
   components: { SvgIcon },
+  inheritAttrs: false,
   props: {
-    // icon name
-    icon: propTypes.string,
-    // icon color
-    color: propTypes.string,
-    // icon size
+    /**
+     * Icon name
+     */
+    icon: { type: String, required: true },
+    /**
+     * Icon color
+     */
+    color: { type: String },
+    /**
+     * Icon size
+     */
     size: {
-      type: [String, Number] as PropType<string | number>,
+      type: [String, Number],
       default: 16,
     },
-    spin: propTypes.bool.def(false),
-    prefix: propTypes.string.def(''),
+    /**
+     * Whether the icon is turned on rotation
+     */
+    spin: { type: Boolean },
+    /**
+     * Icon Prefix
+     */
+    prefix: {
+      type: String,
+      default: '',
+    },
   },
   setup(props) {
     const elRef = ref<ElRef>(null)
 
-    const isSvgIcon = computed(() => props.icon?.endsWith(SVG_END_WITH_FLAG))
+    const isSvgIcon = computed(() => props.icon.endsWith(SVG_END_WITH_FLAG))
     const getSvgIcon = computed(() => props.icon.replace(SVG_END_WITH_FLAG, ''))
     const getIconRef = computed(() => `${props.prefix ? props.prefix + ':' : ''}${props.icon}`)
 
@@ -96,7 +110,7 @@ export default defineComponent({
 
   &-spin {
     svg {
-      animation: loadingCircle 1s infinite linear;
+      animation: iconLoadingCircle 1s infinite linear;
     }
   }
 }
@@ -108,9 +122,7 @@ span.iconify {
   background-color: rgba(85, 85, 85, 0.06);
   border-radius: 100%;
 }
-
-/* stylelint-disable-next-line order/order */
-@keyframes loadingCircle {
+@keyframes iconLoadingCircle {
   100% {
     transform: rotate(360deg);
   }

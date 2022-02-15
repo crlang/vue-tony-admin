@@ -13,7 +13,7 @@
             :uploadApi="uploadApi"
             :value="avatar"
             btnText="更换头像"
-            :btnProps="{ preIcon: 'ant-design:cloud-upload-outlined' }"
+            :btnProps="{ preIcon: 'ep:upload-filled' }"
             @change="updateAvatar"
             width="150"
           />

@@ -2,7 +2,7 @@
   <div>
     <div>
       <span>
-        <Icon icon="ant-design:enter-outlined" />
+        <Icon icon="uil:enter" />
       </span>
       <span>{{ t('component.app.toSearch') }}</span>
     </div>

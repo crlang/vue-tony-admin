@@ -32,6 +32,7 @@
                   :name="icon" />
                 <Icon
                   :icon="icon"
+                  size="36"
                   v-else />
                 <div>{{ icon }}</div>
               </li>
@@ -58,99 +59,140 @@
   </ElInput>
 </template>
 
-<script lang="ts" setup>
-import { ref, watchEffect, watch, unref } from 'vue'
+<script lang="ts">
+import { ref, watchEffect, watch, unref, defineComponent } from 'vue'
 import { ElInput, ElPopover, ElEmpty } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
 import { ScrollContainer } from '@/components/Container'
 import Icon from './Icon.vue'
 import SvgIcon from './SvgIcon.vue'
-
 import iconsData from '../data/icons.data'
-import { propTypes } from '@/utils/propTypes'
 import { useDebounceFn } from '@vueuse/core'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useCopyToClipboard } from '@/hooks/web/useCopyToClipboard'
 import { useMessage } from '@/hooks/web/useMessage'
 import svgIcons from 'virtual:svg-icons-names'
 
-function getIcons() {
-  const data = iconsData as any
-  const prefix: string = data?.prefix ?? ''
-  let result: string[] = []
-  if (prefix) {
-    result = (data?.icons ?? []).map((item) => `${prefix}:${item}`)
-  } else if (Array.isArray(iconsData)) {
-    result = iconsData as string[]
-  }
-  return result
-}
+export default defineComponent({
+  name: 'IconPicker',
+  components: { ElInput, ElPopover, ElEmpty, ScrollContainer, Icon, SvgIcon },
+  inheritAttrs: false,
+  props: {
+    /**
+     * Default icon value
+     */
+    value: {
+      type: String,
+      default: '',
+    },
+    /**
+     * Input width
+     */
+    width: {
+      type: String,
+      default: '300px',
+    },
+    /**
+     * Popover placement
+     */
+    placement: {
+      type: String,
+      default: 'bottom',
+    },
+    /**
+     * Whether to copy when clicked
+     */
+    copy: { type: Boolean },
+    /**
+     * Icon mode
+     */
+    mode: {
+      type: String as PropType<'svg' | 'iconify'>,
+      default: 'iconify',
+    },
+  },
+  emits: ['change', 'update:value'],
+  setup(props, { emit }) {
+    const isSvgMode = props.mode === 'svg'
+    const icons = isSvgMode ? getSvgIcons() : getIcons()
 
-function getSvgIcons() {
-  return svgIcons.map((icon) => icon.replace('icon-', ''))
-}
+    const currentSelect = ref('')
+    const currentList = ref(icons)
+    const searckKeyword = ref('')
 
-const props = defineProps({
-  value: propTypes.string,
-  width: propTypes.string.def('300px'),
-  placement: propTypes.string.def('bottom'),
-  copy: propTypes.bool.def(false),
-  mode: propTypes.oneOf<('svg' | 'iconify')[]>(['svg', 'iconify']).def('iconify'),
-})
+    const { t } = useI18n()
+    const { prefixCls } = useDesign('icon-picker')
 
-const emit = defineEmits(['change', 'update:value'])
+    const debounceHandleSearchChange = useDebounceFn(handleSearchChange, 100)
+    const { clipboardRef, isSuccessRef } = useCopyToClipboard(props.value)
+    const { createMessage } = useMessage()
 
-const isSvgMode = props.mode === 'svg'
-const icons = isSvgMode ? getSvgIcons() : getIcons()
+    watchEffect(() => {
+      currentSelect.value = props.value
+    })
 
-const currentSelect = ref('')
-const currentList = ref(icons)
-const searckKeyword = ref('')
+    watch(
+      () => currentSelect.value,
+      (v) => {
+        emit('update:value', v)
+        return emit('change', v)
+      }
+    )
 
-const { t } = useI18n()
-const { prefixCls } = useDesign('icon-picker')
-
-const debounceHandleSearchChange = useDebounceFn(handleSearchChange, 100)
-const { clipboardRef, isSuccessRef } = useCopyToClipboard(props.value)
-const { createMessage } = useMessage()
-
-watchEffect(() => {
-  currentSelect.value = props.value
-})
-
-watch(
-  () => currentSelect.value,
-  (v) => {
-    emit('update:value', v)
-    return emit('change', v)
-  }
-)
-
-function handleClick(icon: string) {
-  currentSelect.value = icon
-  if (props.copy) {
-    clipboardRef.value = icon
-    console.log('isSuccessRef', isSuccessRef.value)
-    if (unref(isSuccessRef)) {
-      createMessage.success(t('component.icon.copy'))
+    function getIcons() {
+      const data = iconsData as any
+      const prefix: string = data?.prefix ?? ''
+      let result: string[] = []
+      if (prefix) {
+        result = (data?.icons ?? []).map((item) => `${prefix}:${item}`)
+      } else if (Array.isArray(iconsData)) {
+        result = iconsData as string[]
+      }
+      return result
     }
-  }
-}
 
-function handleSearchChange(value: any) {
-  if (!value) {
-    currentList.value = icons
-    return
-  }
-  currentList.value = icons.filter((item) => item.includes(value))
-}
+    function getSvgIcons() {
+      return svgIcons.map((icon) => icon.replace('icon-', ''))
+    }
+
+    function handleClick(icon: string) {
+      currentSelect.value = icon
+      if (props.copy) {
+        clipboardRef.value = icon
+        console.log('isSuccessRef', isSuccessRef.value)
+        if (unref(isSuccessRef)) {
+          createMessage.success(t('component.icon.copy'))
+        }
+      }
+    }
+
+    function handleSearchChange(value: any) {
+      if (!value) {
+        currentList.value = icons
+        return
+      }
+      currentList.value = icons.filter((item) => item.includes(value))
+    }
+
+    return {
+      t,
+      prefixCls,
+      currentSelect,
+      currentList,
+      isSvgMode,
+      searckKeyword,
+      handleClick,
+      debounceHandleSearchChange,
+    }
+  },
+})
+
 </script>
 
 <style lang="scss">
 $prefix-cls: '#{$tonyname}-icon-picker';
 
 .#{$prefix-cls} {
-
   &__list{
     display: block;
     margin: 24px 0;
@@ -173,15 +215,14 @@ $prefix-cls: '#{$tonyname}-icon-picker';
         }
 
         > svg {
-          width: 36px !important;
-          height: 36px !important;
+          width: 36px;
+          height: 36px;
         }
       }
     }
 
     .eleicon {
       padding: 12px;
-      font-size: 36px !important;
       cursor: pointer;
       border: 1px solid #eee;
 

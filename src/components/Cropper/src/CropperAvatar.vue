@@ -10,7 +10,7 @@
         :class="`${prefixCls}-image-mask`"
         :style="getImageWrapperStyle">
         <Icon
-          icon="ant-design:cloud-upload-outlined"
+          icon="ep:upload-filled"
           :size="getIconWidth"
           :style="getImageWrapperStyle"
           color="#d6d6d6" />
