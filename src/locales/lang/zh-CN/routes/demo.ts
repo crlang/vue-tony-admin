@@ -16,6 +16,7 @@ export default {
     basic: '基础组件',
     transition: '动画组件',
     countTo: '数字动画',
+    progress: '进度条动画',
 
     scroll: '滚动组件',
     scrollBasic: '基础滚动',

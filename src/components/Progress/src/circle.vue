@@ -145,16 +145,16 @@ export default defineComponent({
     })
 
     const getBgCricleProps = computed(():SVGAttributes => {
-      const { backgroundColor } = props
-      return { ...unref(getBasicProps), stroke: backgroundColor }
+      const { background } = props
+      return { ...unref(getBasicProps), stroke: background }
     })
 
     const getBarCricleProps = computed(():SVGAttributes => {
-      const { barColor, barStyle, isAnimation, size, width, progress } = props
+      const { color, barStyle, isAnimation, size, width, progress } = props
       const barWidth = (size - width) * 3.14
       return {
         ...unref(getBasicProps),
-        stroke: barColor,
+        stroke: color,
         'stroke-linecap': barStyle,
         'stroke-dasharray': barWidth,
         'stroke-dashoffset': isAnimation ? barWidth : barWidth * (100 - progress) / 100,

@@ -251,6 +251,14 @@ const comp: AppRouteModule = {
       },
     },
     {
+      path: 'progress',
+      name: 'Progress',
+      component: () => import('@/views/demo/comp/progress/index.vue'),
+      meta: {
+        title: t('routes.demo.comp.progress'),
+      },
+    },
+    {
       path: 'tree',
       name: 'TreeDemo',
       redirect: '/comp/tree/basic',

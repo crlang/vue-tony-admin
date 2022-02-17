@@ -16,6 +16,7 @@ export default {
     basic: 'Basic',
     transition: 'Animation',
     countTo: 'Count To',
+    progress: 'Progress',
 
     scroll: 'Scroll',
     scrollBasic: 'Basic',
