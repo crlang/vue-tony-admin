@@ -59,12 +59,33 @@ export default defineComponent({
   components: { PageFooter },
   // inheritAttrs: false,
   props: {
+    /**
+     * Page header title
+     */
     title: String,
+    /**
+     * Page header description
+     */
     description: String,
+    /**
+     * Whether the header is full
+     */
     headerFullHeight: Boolean,
+    /**
+     * Whether the header is fixed
+     */
     headerFixed: Boolean,
+    /**
+     * Whether the content is full
+     */
     contentFullHeight: Boolean,
+    /**
+     * Content class
+     */
     contentClass: String,
+    /**
+     * Content background
+     */
     contentBackground: Boolean,
   },
   setup(props, { slots, attrs }) {

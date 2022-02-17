@@ -1,4 +1,4 @@
 import { withInstall } from '@/utils'
-import progress from './src/Progress.vue'
+import circle from './src/circle.vue'
 
-export const Progress = withInstall(progress)
+export const CircleProgress = withInstall(circle)

@@ -23,10 +23,10 @@
               </div>
             </div>
             <div class="ana-card--chart">
-              <Progress
+              <CircleProgress
                 :size="112"
                 :width="5"
-                :barColor="getBarColor(item.mix)"
+                :color="getBarColor(item.mix)"
                 :progress="item.mix" />
               <div class="ana-card--chart-inner">
                 <div><CountTo :endVal="item.mix" /><span>%</span></div>
@@ -46,7 +46,7 @@ import { CountTo } from '@/components/CountTo'
 import { SvgIcon } from '@/components/Icon'
 import { CardList } from '../data'
 // import { useI18n } from '@/hooks/web/useI18n'
-import { Progress } from '@/components/Progress'
+import { CircleProgress } from '@/components/Progress'
 
 // const { t } = useI18n()
 

@@ -2,69 +2,102 @@
   <svg
     v-bind="getCircelValues"
     v-if="show">
-    <circle v-bind="getBgCricleProps" />
+    <circle
+      v-bind="getBgCricleProps"
+      :class="`${prefixCls}__bg`" />
     <circle
       v-bind="getBarCricleProps"
-      class="circle_progress_bar"
-      ref="circleBarRef"
-    />
+      :class="`${prefixCls}__bar`"
+      ref="circleBarRef" />
   </svg>
 </template>
 
 <script lang="ts">
+import { useDesign } from '@/hooks/web/useDesign'
 import { error } from '@/utils/log'
 import { computed, CSSProperties, defineComponent, onMounted, ref, SVGAttributes, unref } from 'vue'
 
 export default defineComponent({
   name: 'Progress',
+  inheritAttrs: false,
   props: {
+    /**
+     * Circle size
+     */
     size: {
       type: Number,
       default: 32,
-    }, // circle size
+    },
+    /**
+     * Circle bar width
+     */
     width: {
       type: Number,
       default: 2,
-    }, // circle width
+    },
+    /**
+     * Progress bar percentage
+     */
     progress: {
       type: Number,
       default: 100,
-    }, // Progress bar percentage
-    barColor: {
+    },
+    /**
+     * Progress bar color
+     */
+    color: {
       type: String,
       default: '#22CCE2',
-    }, // Progress bar color
-    backgroundColor: {
+    },
+    /**
+     * Progress bar background
+     */
+    background: {
       type: String,
       default: '#EFF4F8',
-    }, // Progress bar background
+    },
+    /**
+     * Whether to turn on animation
+     */
     isAnimation: {
       type: Boolean,
       default: true,
-    }, // animation effect
+    },
+    /**
+     * Progress bar style(svg stroke-linecap)
+     */
     barStyle: {
       type: String as PropType<SVGAttributes['stroke-linecap']>,
       default: 'round',
     },
+    /**
+     * Progress time duration
+     */
     duration: {
       type: Number,
       default: 1000,
-    }, // Progress time duration
+    },
+    /**
+     * Progress time delay
+     */
     delay: {
       type: Number,
       default: 200,
-    }, // Progress time delay
+    },
+    /**
+     * Progress time function
+     */
     timeFunction: {
       type: String,
       default: 'cubic-bezier(0.99, 0.01, 0.22, 0.94)',
-    }, // Progress time function
+    },
   },
-
   emits: [],
   setup(props) {
     const circleBarRef = ref()
     const circleBarClass = ref('')
     const show = ref(false)
+    const { prefixCls } = useDesign('cricle-progress')
 
     const getCircelValues = computed(():SVGAttributes => {
       const { isAnimation, width, size, duration, delay, timeFunction, progress } = props
@@ -76,6 +109,7 @@ export default defineComponent({
         height: size,
         xmlns: 'http://www.w3.org/2000/svg',
         style,
+        class: prefixCls,
       }
       // not animation effect
       if (!isAnimation) {
@@ -139,6 +173,7 @@ export default defineComponent({
     onMounted(createProgress)
 
     return {
+      prefixCls,
       show,
       getCircelValues,
       getBgCricleProps,
@@ -152,8 +187,15 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.circle_progress_bar {
-  animation: circle_progress_name var(--bar-duration) var(--bar-delay) var(--bar-func) forwards;
+$prefix-cls: '#{$tonyname}-cricle-progress';
+
+.#{$prefix-cls} {
+  width: auto;
+  height: auto;
+
+  &__bar {
+    animation: circle_progress_name var(--bar-duration) var(--bar-delay) var(--bar-func) forwards;
+  }
 }
 
 @keyframes circle_progress_name {
