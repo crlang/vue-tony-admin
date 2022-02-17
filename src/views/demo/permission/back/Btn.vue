@@ -2,8 +2,7 @@
   <PageWrapper
     contentBackground
     title="按钮权限控制"
-    content="必须处于后台权限模式才可测试此页面所展示的功能"
-    contentClass="p-4">
+    description="必须处于后台权限模式才可测试此页面所展示的功能">
     <CurrentPermissionMode />
     <p>当前拥有的code列表: <span>{{ permissionStore.getPermCodeList }}</span></p>
     <el-divider />

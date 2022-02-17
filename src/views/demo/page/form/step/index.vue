@@ -2,8 +2,7 @@
   <PageWrapper
     title="分步表单"
     contentBackground
-    content=" 将一个冗长或用户不熟悉的表单任务分成多个步骤，指导用户完成。"
-    contentClass="p-4">
+    description=" 将一个冗长或用户不熟悉的表单任务分成多个步骤，指导用户完成。">
     <div class="step-form-form">
       <el-steps :current="current">
         <el-step title="填写转账信息" />

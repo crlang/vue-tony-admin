@@ -1,6 +1,6 @@
 <template>
   <PageWrapper title="关于">
-    <template #footer>
+    <template #extra>
       <div class="flex justify-between items-center">
         <span class="flex-1">
           <a

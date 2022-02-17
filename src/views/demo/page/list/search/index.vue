@@ -2,7 +2,7 @@
   <PageWrapper
     :class="prefixCls"
     title="搜索列表">
-    <template #footer>
+    <template #extra>
       <BasicForm
         :class="`${prefixCls}__header-form`"
         :labelWidth="100"

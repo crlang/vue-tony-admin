@@ -1,7 +1,7 @@
 <template>
   <PageWrapper
     title="导出示例"
-    content="可以选择导出格式">
+    description="可以选择导出格式">
     <BasicTable
       title="基础表格"
       :columns="columns"

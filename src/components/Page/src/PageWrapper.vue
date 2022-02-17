@@ -36,6 +36,11 @@
       <template #left>
         <slot name="leftFooter"></slot>
       </template>
+
+      <template #default>
+        <slot name="footer"></slot>
+      </template>
+
       <template #right>
         <slot name="rightFooter"></slot>
       </template>
@@ -68,7 +73,6 @@ export default defineComponent({
     const contentRef = ref<HTMLDivElement | null>(null)
     const footerRef = ref<HTMLDivElement | null>(null)
     const { prefixCls } = useDesign('page-wrapper')
-
     const getClass = computed(() => {
       const { contentFullHeight } = props
 
@@ -91,7 +95,13 @@ export default defineComponent({
       )
     })
 
-    const getShowFooter = computed(() => slots?.leftFooter || slots?.rightFooter)
+    const getShowFooter = computed(() => {
+      return (
+        slots?.leftFooter ||
+        slots?.rightFooter ||
+        slots?.footer
+      )
+    })
 
     const getHeaderClass = computed(() => {
       const { headerFullHeight, headerFixed } = props
@@ -188,8 +198,6 @@ $prefix-cls: '#{$tonyname}-page-wrapper';
 
   &-content-bg {
     background-color: var(--background-secondary-color);
-
-    // background-color: var(--background-primary-color);
   }
 }
 </style>

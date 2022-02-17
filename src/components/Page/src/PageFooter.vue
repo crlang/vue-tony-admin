@@ -1,19 +1,19 @@
 <template>
-  <div
-    :class="prefixCls"
-    :style="{ width: getCalcContentWidth }">
-    <div :class="`${prefixCls}__left`">
-      <slot name="left"></slot>
-    </div>
-    <slot></slot>
-    <div :class="`${prefixCls}__right`">
-      <slot name="right"></slot>
-    </div>
+  <div :class="prefixCls">
+    <template v-if="$slots.default"><slot></slot></template>
+    <template v-else>
+      <div :class="`${prefixCls}__left`">
+        <slot name="left"></slot>
+      </div>
+      <div :class="`${prefixCls}__right`">
+        <slot name="right"></slot>
+      </div>
+    </template>
   </div>
 </template>
+
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
@@ -21,32 +21,26 @@ export default defineComponent({
   inheritAttrs: false,
   setup() {
     const { prefixCls } = useDesign('page-footer')
-    const { getCalcContentWidth } = useMenuSetting()
-    return { prefixCls, getCalcContentWidth }
+    return { prefixCls }
   },
 })
 </script>
-<style lang="scss" scoped>
+
+<style lang="scss">
 $prefix-cls: '#{$tonyname}-page-footer';
 
 .#{$prefix-cls} {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  z-index: $page-footer-z-index;
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 0 24px;
-  line-height: 44px;
   background-color: var(--background-secondary-color);
   border-top: 1px solid var(--border-grey-color);
   box-shadow: 0 -6px 16px -8px rgba(0, 0, 0, 0.08), 0 -9px 28px 0 rgba(0, 0, 0, 0.05),
     0 -12px 48px 16px rgba(0, 0, 0, 0.03);
-  transition: width 0.2s;
 
-  &__left {
-    flex: 1 1;
+  &__left,
+  &__right {
+    flex: 1;
   }
 }
 </style>

@@ -1,6 +1,5 @@
 <template>
-  <PageWrapper
-    title="图片预览示例">
+  <PageWrapper title="图片预览示例">
     <div>
       <el-image
         style="width: 100px; height: 100px"

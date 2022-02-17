@@ -1,9 +1,7 @@
 <template>
-
   <PageWrapper
     title="Tree函数操作示例"
-    contentBackground
-    contentClass="p-4">
+    contentBackground>
     <div class="demo-btns">
 
       <el-button @click="checkAll(true)">全选</el-button>

@@ -1,7 +1,7 @@
 <template>
   <PageWrapper
     title="导出示例"
-    content="根据数组格式的数据进行导出">
+    description="根据数组格式的数据进行导出">
     <BasicTable
       title="基础表格"
       :columns="columns"

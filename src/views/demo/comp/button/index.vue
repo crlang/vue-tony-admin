@@ -2,7 +2,7 @@
   <PageWrapper
     contentFullHeight
     title="基础组件"
-    content=" 基础组件依赖于element-plus,组件库已有的基础组件,项目中不会再次进行demo展示（二次封装组件除外）">
+    description="基础组件依赖于element-plus,组件库已有的基础组件,项目中不会再次进行demo展示（二次封装组件除外）">
     <el-row :gutter="12">
       <el-col :span="24">
         <el-card
@@ -307,7 +307,7 @@
 import { defineComponent, ref } from 'vue'
 import { ElRow, ElCol, ElCard, ElButton, ElButtonGroup } from 'element-plus'
 import { PageWrapper } from '@/components/Page'
-import { Search, Edit, Check, Message, Star, Delete, ArrowLeft, Share, ArrowRight, Upload } from '@element-plus/icons'
+import { Search, Edit, Check, Message, Star, Delete, ArrowLeft, Share, ArrowRight } from '@element-plus/icons'
 import { BasicTitle, BasicArrow, BasicHelp } from '@/components/Basic'
 
 export default defineComponent({
@@ -332,7 +332,6 @@ export default defineComponent({
       ArrowRight,
       Share,
       loading,
-      Upload,
       onLoading,
     }
   },

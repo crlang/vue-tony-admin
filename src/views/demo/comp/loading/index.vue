@@ -2,7 +2,8 @@
   <PageWrapper
     v-loading="loadingRef"
     loading-tip="加载中..."
-    title="未做组件封装，仅是根据官方 ElLoading 组件进行示例">
+    title="ElLoading 示例"
+    description="未做组件封装，仅是根据官方 ElLoading 组件进行示例">
     <div
       ref="wrapEl"
       v-loading.lock="boxLoadingRef"

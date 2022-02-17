@@ -1,7 +1,7 @@
 <template>
   <PageWrapper
     title="图片裁剪示例"
-    content="需要开启测试接口服务才能进行上传测试！">
+    description="需要开启测试接口服务才能进行上传测试！">
     <CollapseContainer title="头像裁剪">
       <CropperAvatar
         uploadName="file"

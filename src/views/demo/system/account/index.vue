@@ -1,8 +1,7 @@
 <template>
   <PageWrapper
     contentFullHeight
-    fixedHeight
-    content-class="p-4">
+    fixedHeight>
     <el-row
       class="dept-wrap"
       :gutter="16">

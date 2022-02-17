@@ -2,7 +2,7 @@
   <PageWrapper
     :class="prefixCls"
     title="卡片列表">
-    <template #footer>
+    <template #extra>
       基于Vue Next, TypeScript, Ant Design Vue实现的一套完整的企业级后台管理系统。
       <div :class="`${prefixCls}__link`">
         <a>
