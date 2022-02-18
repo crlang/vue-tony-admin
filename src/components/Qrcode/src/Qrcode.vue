@@ -16,26 +16,38 @@ import { QrcodeDoneEventParams } from './typing'
 export default defineComponent({
   name: 'QrCode',
   props: {
+    /**
+     * QR code value
+     */
     value: {
-      type: [String, Array] as PropType<string | any[]>,
+      type: String,
       default: null,
     },
-    // 参数
+    /**
+     * QR code options
+     */
     options: {
       type: Object as PropType<QRCodeRenderersOptions>,
       default: null,
     },
-    // 宽度
+    /**
+     * QR code size
+     */
     width: {
-      type: Number as PropType<number>,
+      type: Number,
       default: 200,
     },
-    // 中间logo图标
+    /**
+     * QR code logo
+     */
     logo: {
       type: [String, Object] as PropType<Partial<LogoType> | string>,
       default: '',
     },
-    // img 不支持内嵌logo
+    /**
+     * QR code generation mode
+     * @description img does not support embedded logo
+     */
     tag: {
       type: String as PropType<'canvas' | 'img'>,
       default: 'canvas',
@@ -45,6 +57,7 @@ export default defineComponent({
   emits: { done: (data: QrcodeDoneEventParams) => !!data, error: (error: any) => !!error },
   setup(props, { emit }) {
     const wrapRef = ref<HTMLCanvasElement | HTMLImageElement | null>(null)
+
     async function createQrcode() {
       try {
         const { tag, value, options = {}, width, logo } = props
@@ -98,7 +111,6 @@ export default defineComponent({
 
     onMounted(createQrcode)
 
-    // 监听参数变化重新生成二维码
     watch(
       props,
       () => {
