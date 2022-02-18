@@ -1,7 +1,7 @@
 <template>
   <PageWrapper title="富文本组件示例">
     <Tinymce
-      v-model="value"
+      v-model:modelValue="value"
       @change="handleChange"
       width="100%" />
   </PageWrapper>
@@ -16,8 +16,9 @@ export default defineComponent({
   components: { Tinymce, PageWrapper },
   setup() {
     const value = ref('hello world!')
+
     function handleChange(value: string) {
-      console.log(value)
+      console.table(value)
     }
     return { handleChange, value }
   },

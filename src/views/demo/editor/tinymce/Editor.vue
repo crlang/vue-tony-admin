@@ -40,7 +40,7 @@ export default defineComponent({
         rules: [{ required: true }],
         render: ({ model, field }) => {
           return h(Tinymce, {
-            value: model[field],
+            modelValue: model[field],
             onChange: (value: string) => {
               model[field] = value
             },

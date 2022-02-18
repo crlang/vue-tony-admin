@@ -8,8 +8,7 @@
       @done="handleDone"
       v-if="showImageUpload"
       v-show="editorRef"
-      :disabled="disabled"
-    />
+      :disabled="disabled" />
     <textarea
       :id="tinymceId"
       ref="elRef"
@@ -21,6 +20,7 @@
 
 <script lang="ts">
 import type { Editor, RawEditorSettings } from 'tinymce'
+
 import tinymce from 'tinymce/tinymce'
 import 'tinymce/themes/silver'
 import 'tinymce/icons/default/icons'
@@ -45,7 +45,7 @@ import 'tinymce/plugins/preview'
 import 'tinymce/plugins/print'
 import 'tinymce/plugins/save'
 import 'tinymce/plugins/searchreplace'
-import 'tinymce/plugins/spellchecker'
+// import 'tinymce/plugins/spellchecker'
 import 'tinymce/plugins/tabfocus'
 // import 'tinymce/plugins/table';
 import 'tinymce/plugins/template'
@@ -66,35 +66,52 @@ import { useLocale } from '@/locales/useLocale'
 import { useAppStore } from '@/store/modules/app'
 
 const tinymceProps = {
+  /**
+   * Editor Settings
+   */
   options: {
     type: Object as PropType<Partial<RawEditorSettings>>,
     default: {},
   },
-  value: {
+  /**
+   * Editor value
+   */
+  modelValue: {
     type: String,
   },
-
+  /**
+   * Editor toolbar
+   */
   toolbar: {
     type: Array as PropType<string[]>,
     default: toolbar,
   },
+  /**
+   * Editor plugins
+   */
   plugins: {
     type: Array as PropType<string[]>,
     default: plugins,
   },
-  modelValue: {
-    type: String,
-  },
+  /**
+   * Editor height
+   */
   height: {
-    type: [Number, String] as PropType<string | number>,
+    type: [Number, String],
     required: false,
     default: 400,
   },
+  /**
+   * Editor width
+   */
   width: {
-    type: [Number, String] as PropType<string | number>,
+    type: [Number, String],
     required: false,
     default: 'auto',
   },
+  /**
+   * Whether the editor shows the upload image button
+   */
   showImageUpload: {
     type: Boolean,
     default: true,
@@ -258,16 +275,6 @@ export default defineComponent({
         }
       )
 
-      watch(
-        () => props.value,
-        (val: string, prevVal: string) => {
-          setValue(editor, val, prevVal)
-        },
-        {
-          immediate: true,
-        }
-      )
-
       editor.on(normalizedEvents || 'change keyup undo redo', () => {
         const content = editor.getContent({ format: attrs.outputFormat })
         emit('update:modelValue', content)
@@ -319,8 +326,6 @@ export default defineComponent({
   },
 })
 </script>
-
-<style lang="scss" scoped></style>
 
 <style lang="scss">
 $prefix-cls: '#{$tonyname}-tinymce-container';

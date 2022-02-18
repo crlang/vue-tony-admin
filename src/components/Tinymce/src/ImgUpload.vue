@@ -14,9 +14,9 @@
         {{ t('component.upload.imgUpload') }}
       </ElButton>
     </ElUpload>
-
   </div>
 </template>
+
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { ElButton, ElUpload } from 'element-plus'
@@ -74,7 +74,7 @@ export default defineComponent({
     return {
       prefixCls,
       handleChange,
-      uploadUrl,
+      uploadUrl: uploadUrl as string,
       t,
       getButtonProps,
     }
