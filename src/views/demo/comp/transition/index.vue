@@ -1,27 +1,29 @@
 <template>
   <PageWrapper title="动画组件示例">
-    <div class="flex">
-      <el-select
-        v-model="value"
-        placeholder="选择动画"
-        :style="{ width: '150px' }">
-        <el-option
-          v-for="item in options"
-          :key="item.key"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
-      <el-button
-        type="primary"
-        class="ml-4"
-        @click="start">start</el-button>
-    </div>
+    <el-select
+      v-model="value"
+      placeholder="选择动画"
+      :style="{ width: '150px' }">
+      <el-option
+        v-for="item in options"
+        :key="item.key"
+        :label="item.label"
+        :value="item.value" />
+    </el-select>
+    <el-button
+      type="primary"
+      class="ml-4"
+      @click="start">start</el-button>
     <component :is="`${value}Transition`">
       <div
         class="box"
         v-show="show"></div>
     </component>
+    <ScaleTransition>
+      <div
+        class="box my-4"
+        v-show="show">单个示例</div>
+    </ScaleTransition>
   </PageWrapper>
 </template>
 
@@ -44,27 +46,6 @@ import {
   ExpandXTransition,
   ExpandTransition
 } from '@/components/Transition'
-
-const transitionList = [
-  'Fade',
-  'Scale',
-  'SlideY',
-  'ScrollY',
-  'SlideYReverse',
-  'ScrollYReverse',
-  'SlideX',
-  'ScrollX',
-  'SlideXReverse',
-  'ScrollXReverse',
-  'ScaleRotate',
-  'ExpandX',
-  'Expand',
-]
-const options = transitionList.map((item) => ({
-  label: item,
-  value: item,
-  key: item,
-}))
 
 export default defineComponent({
   components: {
@@ -89,6 +70,27 @@ export default defineComponent({
   setup() {
     const value = ref('Fade')
     const show = ref(true)
+    const transitionList = [
+      'Fade',
+      'Scale',
+      'SlideY',
+      'ScrollY',
+      'SlideYReverse',
+      'ScrollYReverse',
+      'SlideX',
+      'ScrollX',
+      'SlideXReverse',
+      'ScrollXReverse',
+      'ScaleRotate',
+      'ExpandX',
+      'Expand',
+    ]
+    const options = transitionList.map((item) => ({
+      label: item,
+      value: item,
+      key: item,
+    }))
+
     function start() {
       show.value = false
       setTimeout(() => {

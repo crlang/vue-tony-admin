@@ -1,5 +1,3 @@
-import type { PropType } from 'vue'
-
 import { defineComponent, Transition, TransitionGroup } from 'vue'
 import { getSlot } from '@/utils/helper/tsxHelper'
 
@@ -10,7 +8,7 @@ export function createSimpleTransition(name: string, origin = 'top center 0', mo
     name,
     props: {
       group: {
-        type: Boolean as PropType<boolean>,
+        type: Boolean,
         default: false,
       },
       mode: {
@@ -18,7 +16,7 @@ export function createSimpleTransition(name: string, origin = 'top center 0', mo
         default: mode,
       },
       origin: {
-        type: String as PropType<string>,
+        type: String,
         default: origin,
       },
     },
@@ -38,6 +36,7 @@ export function createSimpleTransition(name: string, origin = 'top center 0', mo
     },
   })
 }
+
 export function createJavascriptTransition(name: string, functions: Recordable, mode: Mode = 'in-out') {
   return defineComponent({
     name,
