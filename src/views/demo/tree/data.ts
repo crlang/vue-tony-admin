@@ -1,4 +1,4 @@
-export const treeData: TreeNodeProps[] = [
+export const treeData = [
   {
     label: 'parent 0-0',
     key: '0-0',

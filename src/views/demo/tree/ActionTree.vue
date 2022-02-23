@@ -1,8 +1,8 @@
 <template>
   <PageWrapper
-    title="Tree函数操作示例"
+    title="Tree 函数示例"
     contentBackground>
-    <div class="demo-btns">
+    <div class="demo-tree-btns">
 
       <el-button @click="checkAll(true)">全选</el-button>
       <el-button @click="checkAll(false)">全不选</el-button>
@@ -16,7 +16,7 @@
       <el-button @click="handleSetExpandData(true)">展开1-1-1节点数据</el-button>
       <el-button @click="handleSetExpandData(false)">折叠1-1-1节点数据</el-button>
     </div>
-    <div class="demo-btns">
+    <div class="demo-tree-btns">
       <el-button @click="handleSetCheckData">设置勾选数据</el-button>
       <el-button @click="handleGetCheckData">获取勾选数据</el-button>
 
@@ -24,14 +24,14 @@
       <el-button @click="handleGetNodeData">获取节点数据</el-button>
 
     </div>
-    <div class="demo-btns">
+    <div class="demo-tree-btns">
       <el-button @click="appendNodeByKey">在0-0-0内添加子节点</el-button>
       <el-button @click="insertNodeByKey('before')">在0-0-0前添加节点</el-button>
       <el-button @click="insertNodeByKey('after')">在0-0-0后添加节点</el-button>
       <el-button @click="updateNodeByKey">更新0-0-0子节点数据</el-button>
       <el-button @click="deleteNodeByKey">删除2-2-0节点</el-button>
     </div>
-    <div class="demo-btns">
+    <div class="demo-tree-btns">
       <el-input
         class="mb-2"
         v-model="filterTreeNodeKey"
@@ -53,7 +53,7 @@
 <script lang="ts">
 import { defineComponent, reactive, ref, unref, watch } from 'vue'
 import { ElButton, ElInput, ElCard, ElTree } from 'element-plus'
-import { TreeType, expandTreeNode, setAllTreeNodes, TreeNode } from '@/components/Tree'
+import { TreeType, expandTreeNode, setAllTreeNodes } from '@/components/Tree'
 import { treeData } from './data'
 import { useMessage } from '@/hooks/web/useMessage'
 import { PageWrapper } from '@/components/Page'
@@ -112,7 +112,7 @@ export default defineComponent({
         { label: 'leaf 0-0-0-1', key: '0-0-0-1' },
         { label: 'leaf 1-1-1', key: '1-1-1' },
       ])
-      getTree().setCheckedNodes(treeNode as TreeNode[], false)
+      getTree().setCheckedNodes(treeNode as any, false)
     }
 
     function handleGetNodeData() {
@@ -180,7 +180,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.demo-btns {
+.demo-tree-btns {
   > button {
     margin: 0 16px 12px;
   }

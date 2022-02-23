@@ -1,49 +1,40 @@
 <template>
-  <PageWrapper title="Tree基础示例">
+  <PageWrapper
+    title="Tree 基础示例"
+    description="未做封装，仅对 Element ElTree 官方组件进行演示">
     <el-row :gutter="16">
       <el-col :span="8">
-        <el-card
-          header="基础示例，默认展开第一层"
-          class="h-full">
+        <el-card header="基础示例，默认展开第一层">
           <el-tree
             :data="treeData"
             node-key="key"
-            :default-expanded-keys="['0-0', '1-1','2-2']"
-          />
+            :default-expanded-keys="['0-0', '1-1','2-2']" />
         </el-card>
       </el-col>
       <el-col :span="8">
-        <el-card
-          header="可勾选，默认全部展开"
-          class="h-full">
+        <el-card header="可勾选，默认全部展开">
           <el-tree
             :data="treeData"
             node-key="key"
             show-checkbox
             defaultExpandAll
-            @check-change="handleCheck"
-          />
+            @check-change="handleCheck" />
         </el-card>
       </el-col>
       <el-col :span="8">
-        <el-card
-          header="指定默认展开/勾选示例"
-          class="h-full">
+        <el-card header="指定默认展开/勾选示例">
           <el-tree
             :data="treeData"
             node-key="key"
             show-checkbox
             :default-expanded-keys="['0-0']"
-            :default-checked-keys="['0-0']"
-          />
+            :default-checked-keys="['0-0']" />
         </el-card>
       </el-col>
       <el-col
         :span="8"
         class="mt-4">
-        <el-card
-          header="懒加载异步树"
-          class="h-full">
+        <el-card header="懒加载异步树">
           <el-tree
             ref="asyncTreeRef"
             :data="ajaxTree"
@@ -56,13 +47,13 @@
       <el-col
         :span="16"
         class="mt-4">
-        <el-card class="h-full">
+        <el-card>
           <template #header>
-            <div class="card-header flex items-center justify-between">
+            <div>
               <span>异步数据，默认展开</span>
               <el-button
                 @click="loadTreeData"
-                size="small"
+                class="ml-6"
                 :loading="treeLoading">加载数据</el-button>
             </div>
           </template>
@@ -80,17 +71,15 @@
 <script lang="ts">
 import { defineComponent, nextTick, reactive, ref } from 'vue'
 import { ElRow, ElCol, ElCard, ElTree, ElButton } from 'element-plus'
-import { TreeType, TreeNodeProps } from '@/components/Tree'
 import { treeData } from './data'
 import { PageWrapper } from '@/components/Page'
-import { cloneDeep } from 'lodash-es'
 
 export default defineComponent({
   components: { ElRow, ElCol, ElCard, ElTree, ElButton, PageWrapper },
   setup() {
-    const asyncTreeRef = ref<Nullable<TreeType>>(null)
-    const asyncExpandTreeRef = ref<Nullable<TreeType>>(null)
-    const asyncTreeData = ref<TreeNodeProps[]>([])
+    const asyncTreeRef = ref(null)
+    const asyncExpandTreeRef = ref(null)
+    const asyncTreeData = ref([])
     const treeLoading = ref(false)
     const asyncTreeExpand = ref(false)
 
@@ -115,7 +104,7 @@ export default defineComponent({
       // 以下是模拟异步获取数据
       setTimeout(() => {
         // 设置数据源
-        asyncTreeData.value = cloneDeep(treeData)
+        asyncTreeData.value = JSON.parse(JSON.stringify(treeData))
         treeLoading.value = false
         // 展开全部
         nextTick(() => {
@@ -171,3 +160,9 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+  .el-card {
+    height: 100%;
+  }
+</style>

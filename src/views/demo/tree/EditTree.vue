@@ -1,38 +1,35 @@
 <template>
-  <PageWrapper title="Tree函数操作示例">
-    <div class="flex">
-      <el-card
-        class="w-1/2"
-        header="右侧操作按钮/自定义图标">
-        <el-tree
-          class="w-full"
-          :data="treeData"
-          :render-content="actionList"
-        />
-      </el-card>
-      <el-card
-        class="w-1/2 mx-4"
-        header="右键菜单">
-        <el-tree
-          :data="treeData"
-          @node-contextmenu="getRightMenuList" />
-      </el-card>
-    </div>
+  <PageWrapper title="Tree 操作示例">
+    <el-row :gutter="16">
+      <el-col :span="12">
+        <el-card header="右侧操作按钮/自定义图标">
+          <el-tree
+            :data="treeData"
+            :render-content="actionList" />
+        </el-card>
+      </el-col>
+      <el-col :span="12">
+        <el-card header="右键菜单">
+          <el-tree
+            :data="treeData"
+            @node-contextmenu="getRightMenuList" />
+        </el-card>
+      </el-col>
+    </el-row>
   </PageWrapper>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ElCard, ElTree } from 'element-plus'
+import { ElCard, ElTree, ElRow, ElCol } from 'element-plus'
 import { treeData } from './data'
 import { PageWrapper } from '@/components/Page'
 import { useContextMenu } from '@/hooks/web/useContextMenu'
 import { CreateContextOptions } from '@/components/ContextMenu'
 import { Delete, Position } from '@element-plus/icons'
-export type { ContextMenuItem } from '@/hooks/web/useContextMenu'
 
 export default defineComponent({
-  components: { ElCard, ElTree, PageWrapper },
+  components: { ElCard, ElTree, ElRow, ElCol, PageWrapper },
   setup() {
     const [createContextMenu] = useContextMenu()
 
@@ -69,9 +66,9 @@ export default defineComponent({
 
     function actionList(h, { node, data, store }) {
       return h(
-        'span',
+        'div',
         {
-          class: 'w-full flex justify-between items-center',
+          class: 'demo-tree-action',
         },
         h('span', null, node.label),
         h(
@@ -81,7 +78,6 @@ export default defineComponent({
             Position,
             {
               class: 'mr-2',
-              style: 'width: 1em; height: 1em;',
               onClick: () => handleSend(node, data, store),
             }
           ),
@@ -89,7 +85,6 @@ export default defineComponent({
             Delete,
             {
               class: 'mr-2',
-              style: 'width: 1em; height: 1em;',
             }
           )
         )
@@ -104,3 +99,17 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss">
+  .demo-tree-action {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    white-space: nowrap;
+
+    > div {
+      display: flex;
+    }
+  }
+</style>

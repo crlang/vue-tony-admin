@@ -25,8 +25,8 @@ export default {
 
     tree: 'Tree',
     treeBasic: '基础树',
-    editTree: '可搜索/工具栏',
-    actionTree: '函数操作示例',
+    editTree: '操作示例',
+    actionTree: '函数示例',
 
     modal: '弹窗扩展',
     drawer: '抽屉扩展',
