@@ -6,7 +6,7 @@
     :confirmButtonProps="{ disabled: true }">
     <el-button
       type="primary"
-      @click="closeModal"
+      @click="closeModal()"
       class="mr-2"> 从内部关闭弹窗 </el-button>
     <el-button
       type="primary"
@@ -22,9 +22,13 @@ export default defineComponent({
   components: { ElButton, BasicModal },
   setup() {
     const [register, { closeModal, setModalProps }] = useModalInner()
+    function aaa() {
+      console.log('4545454+++')
+    }
     return {
       register,
       closeModal,
+      aaa,
       setModalProps: () => {
         setModalProps({ title: 'Modal New Title' })
       },

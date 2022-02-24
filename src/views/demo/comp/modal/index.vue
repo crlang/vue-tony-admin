@@ -16,13 +16,13 @@
       show-icon />
     <el-button
       type="primary"
-      @click="openModal2"> 打开弹窗 </el-button>
+      @click="openModal2()"> 打开弹窗 </el-button>
     <el-alert
       content="自适应高度"
       show-icon />
     <el-button
       type="primary"
-      @click="openModal3"> 打开弹窗 </el-button>
+      @click="openModal3()"> 打开弹窗 </el-button>
 
     <el-alert
       content="内外数据交互"

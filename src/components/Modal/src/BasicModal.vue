@@ -1,5 +1,7 @@
 <template>
-  <Modal v-bind="getBindValue">
+  <Modal
+    v-bind="getBindValue"
+    v-model:modelValue="visibleRef">
     <template
       #title
       v-if="$slots.title">
@@ -88,7 +90,7 @@ import {
   getCurrentInstance,
   nextTick,
 } from 'vue'
-import Modal from './components/Modal'
+import Modal from './components/Modal.vue'
 import ModalWrapper from './components/ModalWrapper.vue'
 import ModalClose from './components/ModalClose.vue'
 import ModalFooter from './components/ModalFooter.vue'
@@ -164,7 +166,6 @@ export default defineComponent({
       const attr = {
         ...attrs,
         ...unref(getMergeProps),
-        modelValue: unref(visibleRef),
         fullscreen: unref(fullScreenRef),
         customClass: `${prefixCls} ${unref(getCustomClass)}`,
       }
@@ -221,6 +222,7 @@ export default defineComponent({
     function setModalProps(props: Partial<ModalProps>): void {
       // Keep the last setModalProps
       propsRef.value = deepMerge(unref(propsRef) || ({} as any), props)
+      console.log('props.modelValue+++++++--', props.modelValue)
       if (Reflect.has(props, 'modelValue')) {
         visibleRef.value = !!props.modelValue
       }
