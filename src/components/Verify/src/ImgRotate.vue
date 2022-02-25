@@ -1,11 +1,13 @@
 <script lang="tsx">
 import type { MoveData, DragVerifyActionType } from './typing'
+
 import { defineComponent, computed, unref, reactive, watch, ref } from 'vue'
 import { useTimeoutFn } from '@/hooks/core/useTimeout'
 import BasicDragVerify from './DragVerify.vue'
 import { hackCss } from '@/utils/domUtils'
 import { rotateProps } from './props'
 import { useI18n } from '@/hooks/web/useI18n'
+import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'ImgRotateDragVerify',
@@ -26,6 +28,7 @@ export default defineComponent({
       draged: false,
     })
     const { t } = useI18n()
+    const { prefixCls } = useDesign('basic-img-verify')
 
     watch(
       () => state.isPassing,
@@ -125,8 +128,8 @@ export default defineComponent({
       const time = (endTime - startTime) / 1000
 
       return (
-        <div class='ir-dv'>
-          <div class={`ir-dv-img__wrap`} style={unref(getImgWrapStyleRef)}>
+        <div class={`${prefixCls}`}>
+          <div class={`${prefixCls}-img__wrap`} style={unref(getImgWrapStyleRef)}>
             <img
               src={src}
               onLoad={handleImgOnLoad}
@@ -136,29 +139,27 @@ export default defineComponent({
               onClick={() => {
                 resume()
               }}
-              alt='verify'
-            />
+              alt='verify' />
             {state.showTip && (
-              <span class={[`ir-dv-img__tip`, state.isPassing ? 'success' : 'error']}>
+              <span class={[`${prefixCls}-img__tip`, state.isPassing ? 'success' : 'error']}>
                 {state.isPassing
                   ? t('component.verify.time', { time: time.toFixed(1) })
                   : t('component.verify.error')}
               </span>
             )}
             {!state.showTip && !state.draged && (
-              <span class={[`ir-dv-img__tip`, 'normal']}>{t('component.verify.redoTip')}</span>
+              <span class={[`${prefixCls}-img__tip`, 'normal']}>{t('component.verify.redoTip')}</span>
             )}
           </div>
           <BasicDragVerify
-            class={`ir-dv-drag__bar`}
+            class={`${prefixCls}-drag__bar`}
             onMove={handleDragBarMove}
             onEnd={handleDragEnd}
             onStart={handleStart}
             ref={basicRef}
             {...{ ...attrs, ...props }}
             value={isPassing}
-            isSlot={true}
-          />
+            isSlot={true} />
         </div>
       )
     }
@@ -166,8 +167,10 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
-.ir-dv {
+<style lang="scss">
+$prefix-cls: '#{$tonyname}-basic-img-verify';
+
+.#{$prefix-cls} {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -200,6 +203,7 @@ export default defineComponent({
     line-height: 30px;
     color: #fff;
     text-align: center;
+    user-select: none;
 
     &.success {
       background-color: var(--success-color);
@@ -216,6 +220,7 @@ export default defineComponent({
 
   &-drag__bar {
     margin-top: 20px;
+    user-select: none;
   }
 }
 </style>

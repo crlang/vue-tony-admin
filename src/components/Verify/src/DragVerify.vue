@@ -1,11 +1,13 @@
 <script lang="tsx">
-import type { Ref } from 'vue'
+import type { CSSProperties, Ref } from 'vue'
+
 import { defineComponent, ref, computed, unref, reactive, watch, watchEffect } from 'vue'
 import { useTimeoutFn } from '@/hooks/core/useTimeout'
 import { useEventListener } from '@/hooks/event/useEventListener'
 import { basicProps } from './props'
 import { getSlot } from '@/utils/helper/tsxHelper'
 import { Check, DArrowRight } from '@element-plus/icons'
+import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'BaseDargVerify',
@@ -25,6 +27,7 @@ export default defineComponent({
     const barElRef = ref<HTMLDivElement | null>(null)
     const contentElRef = ref<HTMLDivElement | null>(null)
     const actionElRef = ref(null) as Ref<HTMLDivElement | null>
+    const { prefixCls } = useDesign('basic-drag-verify')
 
     useEventListener({
       el: document,
@@ -79,7 +82,7 @@ export default defineComponent({
         height: h,
         width: w,
         ...contentStyle,
-      }
+      } as CSSProperties
     })
 
     watch(
@@ -209,9 +212,8 @@ export default defineComponent({
         state.toLeft = false
         actionEl.style.left = '0'
         barEl.style.width = '0'
-        //  The time is consistent with the animation time
       }, 300)
-      contentEl.style.width = unref(getContentStyleRef).width
+      contentEl.style.width = unref(getContentStyleRef).width as string
     }
 
     expose({
@@ -220,7 +222,7 @@ export default defineComponent({
 
     return () => {
       const renderBar = () => {
-        const cls = [`darg-verify-bar`]
+        const cls = [`${prefixCls}-bar`]
         if (state.toLeft) {
           cls.push('to-left')
         }
@@ -228,7 +230,7 @@ export default defineComponent({
       }
 
       const renderContent = () => {
-        const cls = [`darg-verify-content`]
+        const cls = [`${prefixCls}-content`]
         const { isPassing } = state
         const { text, successText } = props
 
@@ -242,7 +244,7 @@ export default defineComponent({
       }
 
       const renderAction = () => {
-        const cls = [`darg-verify-action`]
+        const cls = [`${prefixCls}-action`]
         const { toLeft, isPassing } = state
         if (toLeft) {
           cls.push('to-left')
@@ -256,9 +258,9 @@ export default defineComponent({
             ref={actionElRef} >
             {getSlot(slots, 'actionIcon', isPassing) ||
                 (isPassing ? (
-                  <Check class={`darg-verify-action__icon`} />
+                  <Check class={`${prefixCls}-action__icon`} />
                 ) : (
-                  <DArrowRight class={`darg-verify-action__icon`} />
+                  <DArrowRight class={`${prefixCls}-action__icon`} />
                 ))}
           </div>
         )
@@ -266,7 +268,7 @@ export default defineComponent({
 
       return (
         <div
-          class='darg-verify'
+          class={prefixCls}
           ref={wrapElRef}
           style={unref(getWrapStyleRef)}
           onMousemove={handleDragMoving}
@@ -285,88 +287,90 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-  @keyframes slidetounlock {
-    0% {
-      background-position: -120px 0;
-    }
+$prefix-cls: '#{$tonyname}-basic-drag-verify';
 
-    100% {
-      background-position: 120px 0;
-    }
-  }
+.#{$prefix-cls} {
+  --varify-radius: 4px;
 
-  .darg-verify {
-    --varify-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  background-color: rgb(238, 238, 238);
+  border: 1px solid #ddd;
+  border-radius: var(--varify-radius);
 
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-    background-color: rgb(238, 238, 238);
-    border: 1px solid #ddd;
+  &-bar {
+    position: absolute;
+    width: 0;
+    height: 36px;
+    background-color: var(--success-color);
     border-radius: var(--varify-radius);
 
-    &-bar {
-      position: absolute;
-      width: 0;
-      height: 36px;
-      background-color: var(--success-color);
-      border-radius: var(--varify-radius);
-
-      &.to-left {
-        width: 0 !important;
-        transition: width 0.3s;
-      }
-    }
-
-    &-content {
-      position: absolute;
-      top: 0;
-      font-size: 12px;
-      text-size-adjust: none;
-      background-color: -webkit-gradient(
-        linear,
-        left top,
-        right top,
-        color-stop(0, #333),
-        color-stop(0.4, #333),
-        color-stop(0.5, #fff),
-        color-stop(0.6, #333),
-        color-stop(1, #333)
-      );
-      animation: slidetounlock 3s infinite;
-      background-clip: text;
-      user-select: none;
-
-      &.success {
-        -webkit-text-fill-color: var(--white-color);
-      }
-
-      & > * {
-        -webkit-text-fill-color: #333;
-      }
-    }
-
-    &-action {
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: move;
-      background-color: var(--white-color);
-      border-radius: var(--varify-radius);
-
-      &__icon {
-        width: 1.45em;
-        height: 1.45em;
-        cursor: inherit;
-      }
-
-      &.to-left {
-        left: 0 !important;
-        transition: left 0.3s;
-      }
+    &.to-left {
+      width: 0 !important;
+      transition: width 0.3s;
     }
   }
+
+  &-content {
+    position: absolute;
+    top: 0;
+    font-size: 12px;
+    text-size-adjust: none;
+    background-color: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      color-stop(0, #333),
+      color-stop(0.4, #333),
+      color-stop(0.5, #fff),
+      color-stop(0.6, #333),
+      color-stop(1, #333)
+    );
+    animation: slidetounlock 3s infinite;
+    background-clip: text;
+    user-select: none;
+
+    &.success {
+      -webkit-text-fill-color: var(--white-color);
+    }
+
+    & > * {
+      -webkit-text-fill-color: #333;
+    }
+  }
+
+  &-action {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: move;
+    background-color: var(--white-color);
+    border-radius: var(--varify-radius);
+
+    &__icon {
+      width: 1.45em;
+      height: 1.45em;
+      cursor: inherit;
+    }
+
+    &.to-left {
+      left: 0 !important;
+      transition: left 0.3s;
+    }
+  }
+}
+
+@keyframes slidetounlock {
+  0% {
+    background-position: -120px 0;
+  }
+
+  100% {
+    background-position: 120px 0;
+  }
+}
 </style>

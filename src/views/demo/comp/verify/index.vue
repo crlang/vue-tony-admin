@@ -1,27 +1,23 @@
 <template>
   <PageWrapper title="拖动校验示例">
-    <div class="ty-demo">
+
+    <div class="flex p-4">
       <BasicDragVerify
         ref="el1"
+        isSlot
         @success="handleSuccess" />
-      <el-button
-        type="primary"
-        size="large"
-        @click="handleBtnClick(el1)">还原</el-button>
+      <el-button @click="handleBtnClick(el1)">还原</el-button>
     </div>
 
-    <div class="ty-demo">
+    <div class="flex p-4">
       <BasicDragVerify
         ref="el2"
         @success="handleSuccess"
         circle />
-      <el-button
-        type="primary"
-        size="large"
-        @click="handleBtnClick(el2)">还原</el-button>
+      <el-button @click="handleBtnClick(el2)">还原</el-button>
     </div>
 
-    <div class="ty-demo">
+    <div class="flex p-4">
       <BasicDragVerify
         ref="el3"
         @success="handleSuccess"
@@ -29,15 +25,11 @@
         successText="校验成功"
         :barStyle="{
           backgroundColor: '#018ffb'
-        }"
-      />
-      <el-button
-        type="primary"
-        size="large"
-        @click="handleBtnClick(el3)">还原</el-button>
+        }" />
+      <el-button @click="handleBtnClick(el3)">还原</el-button>
     </div>
 
-    <div class="ty-demo">
+    <div class="flex p-4">
       <BasicDragVerify
         ref="el4"
         @success="handleSuccess">
@@ -46,33 +38,33 @@
           <template v-else><ArrowRight style="width: 1.45em;" /></template>
         </template>
       </BasicDragVerify>
-      <el-button
-        type="primary"
-        size="large"
-        @click="handleBtnClick(el4)">还原</el-button>
+      <el-button @click="handleBtnClick(el4)">还原</el-button>
     </div>
 
-    <div class="ty-demo">
+    <div class="flex p-4">
       <BasicDragVerify
         ref="el5"
         @success="handleSuccess">
         <template #text="isPassing">
-          <div v-if="isPassing"><Coffee style="width: 1.45em;" />成功</div>
-          <div v-else>拖动<ArrowRight style="width: 1.45em;" /></div>
+          <template v-if="isPassing">
+            <div class="demo-custom-verify is-actived"><Coffee /> 验证成功</div>
+          </template>
+          <template v-else>
+            <div class="demo-custom-verify">请拖动 <ArrowRight /></div>
+          </template>
         </template>
       </BasicDragVerify>
-      <el-button
-        type="primary"
-        size="large"
-        @click="handleBtnClick(el5)">还原</el-button>
+      <el-button @click="handleBtnClick(el5)">还原</el-button>
     </div>
   </PageWrapper>
 </template>
 
 <script lang="ts">
+import type { DragVerifyActionType, PassingData } from '@/components/Verify'
+
 import { defineComponent, ref } from 'vue'
 import { ElButton } from 'element-plus'
-import { BasicDragVerify, DragVerifyActionType, PassingData } from '@/components/Verify'
+import { BasicDragVerify } from '@/components/Verify'
 import { useMessage } from '@/hooks/web/useMessage'
 import { Coffee, ArrowRight } from '@element-plus/icons'
 import { PageWrapper } from '@/components/Page'
@@ -98,6 +90,7 @@ export default defineComponent({
       }
       elRef.resume()
     }
+
     return {
       handleSuccess,
       el1,
@@ -112,9 +105,20 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.ty-demo {
-  display: flex;
-  justify-content: center;
-  margin: 24px 0;
-}
+  .demo-custom-verify {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > svg {
+      width: 1.3em;
+      height: 1.5em;
+      margin: 0 4px;
+    }
+
+    &.is-actived {
+      color: #fff;
+      -webkit-text-fill-color: #fff;
+    }
+  }
 </style>

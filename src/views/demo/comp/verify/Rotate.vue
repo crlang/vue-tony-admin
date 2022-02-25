@@ -21,7 +21,7 @@ export default defineComponent({
   components: { RotateDragVerify, PageWrapper },
   setup() {
     const handleSuccess = () => {
-      console.log('success!')
+      console.table('success!')
     }
     return {
       handleSuccess,
