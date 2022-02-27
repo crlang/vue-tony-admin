@@ -1,5 +1,8 @@
+// import { setRoleStatus } from '@/api/demo/system'
 import { BasicColumn } from '@/components/Table'
 import { FormSchema } from '@/components/Table'
+// import { useMessage } from '@/hooks/web/useMessage'
+// import { ElSwitch } from 'element-plus'
 
 export const columns: BasicColumn[] = [
   {
@@ -21,6 +24,33 @@ export const columns: BasicColumn[] = [
     label: '状态',
     prop: 'status',
     width: 120,
+    // customRender: ({ record }) => {
+    //   if (!Reflect.has(record, 'pendingStatus')) {
+    //     record.pendingStatus = false
+    //   }
+    //   return h(ElSwitch, {
+    //     checked: record.status === '1',
+    //     activeText: '已启用',
+    //     inactiveText: '已禁用',
+    //     loading: record.pendingStatus,
+    //     onChange(checked: boolean) {
+    //       record.pendingStatus = true
+    //       const newStatus = checked ? '1' : '0'
+    //       const { createMessage } = useMessage()
+    //       setRoleStatus(record.id, newStatus)
+    //         .then(() => {
+    //           record.status = newStatus
+    //           createMessage.success(`已成功修改角色状态`)
+    //         })
+    //         .catch(() => {
+    //           createMessage.error('修改角色状态失败')
+    //         })
+    //         .finally(() => {
+    //           record.pendingStatus = false
+    //         })
+    //     },
+    //   })
+    // },
   },
   {
     label: '创建时间',

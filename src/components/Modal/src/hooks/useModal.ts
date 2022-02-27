@@ -142,7 +142,7 @@ export const useModalInner = (callbackFn?: Fn): UseModalInnerReturnType => {
         return visibleData[~~unref(uidRef)]
       }),
 
-      changeOkLoading: (loading = true) => {
+      changeConfirmLoading: (loading = true) => {
         getInstance()?.setModalProps({ confirmButton: { loading } })
       },
 

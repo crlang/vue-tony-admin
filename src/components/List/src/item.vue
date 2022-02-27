@@ -1,7 +1,3 @@
-<!--
- * @Author: CRLang
- * @Description: List Item component
--->
 <template>
   <li :class="getClass">
     <ElCard

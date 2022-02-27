@@ -1,7 +1,3 @@
-<!--
- * @Author: CRLang
- * @Description: List component
--->
 <template>
   <ul :class="prefixCls+'-items'">
     <slot></slot>

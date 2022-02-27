@@ -30,7 +30,7 @@ export default defineComponent({
     const { createMessage } = useMessage()
     const uploadList = ref<string[]>()
     function handleDelete(record: Recordable) {
-      console.table('delete', record)
+      createMessage.info(`移除文件${JSON.stringify(record)}`)
     }
     function handleChange(list: Recordable) {
       createMessage.info(`已上传文件${JSON.stringify(list)}`)

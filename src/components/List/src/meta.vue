@@ -1,7 +1,3 @@
-<!--
- * @Author: CRLang
- * @Description: List Item Meta component
--->
 <template>
   <div :class="prefixCls">
     <div

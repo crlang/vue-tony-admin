@@ -57,7 +57,7 @@ export type UseModalReturnType = [RegisterFn, ReturnMethods]
 export interface ReturnInnerMethods extends ModalMethods {
   closeModal: () => void
   changeLoading: (loading: boolean) => void
-  changeOkLoading: (loading: boolean) => void
+  changeConfirmLoading: (loading: boolean) => void
   getVisible?: ComputedRef<boolean>
   redoModalHeight: () => void
 }
