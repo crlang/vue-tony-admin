@@ -3,7 +3,7 @@
     <ElButtonGroup>
       <ElButton
         type="primary"
-        @click="uploadVisible=true"
+        @click="openUploadModal()"
         :icon="UploadFilled">
         {{ t('component.upload.upload') }}
       </ElButton>
@@ -16,7 +16,7 @@
             {{ fileList.length }}
           </template>
         </template>
-        <ElButton @click="previewVisible=true">
+        <ElButton @click="openPreviewModal()">
           <Icon
             icon="bi:eye"
             size="12" /> <template v-if="fileList.length && showPreviewNumber"> {{ fileList.length }}</template>
@@ -26,18 +26,16 @@
 
     <UploadModal
       v-bind="bindValue"
-      v-model:visible="uploadVisible"
       :previewFileList="fileList"
+      @register="registerUploadModal"
       @change="handleChange"
-      @delete="handleDelete"
-    />
+      @delete="handleDelete" />
 
     <UploadPreviewModal
       :value="fileList"
-      v-model:visible="previewVisible"
+      @register="registerPreviewModal"
       @list-change="handlePreviewChange"
-      @delete="handlePreviewDelete"
-    />
+      @delete="handlePreviewDelete" />
   </div>
 </template>
 
@@ -52,18 +50,21 @@ import { omit } from 'lodash-es'
 import { useI18n } from '@/hooks/web/useI18n'
 import { isArray } from '@/utils/is'
 import { UploadFilled } from '@element-plus/icons'
+import { useModal } from '@/components/Modal'
 
 export default defineComponent({
   name: 'BasicUpload',
-  components: { ElButton, ElButtonGroup, ElTooltip, UploadModal, UploadPreviewModal, Icon },
+  components: { ElTooltip, ElButton, ElButtonGroup, UploadModal, UploadPreviewModal, Icon },
   props: uploadContainerProps,
   emits: ['change', 'delete', 'preview-delete', 'update:value'],
 
   setup(props, { emit, attrs }) {
     const { t } = useI18n()
+    // 上传modal
+    const [registerUploadModal, { openModal: openUploadModal }] = useModal()
 
-    const uploadVisible = ref(false)
-    const previewVisible = ref(false)
+    // 预览modal
+    const [registerPreviewModal, { openModal: openPreviewModal }] = useModal()
 
     const fileList = ref<string[]>([])
 
@@ -75,15 +76,15 @@ export default defineComponent({
 
     const bindValue = computed(() => {
       const value = { ...attrs, ...props }
-      return omit(value, 'onChange', 'visible', 'value', 'showPreviewNumber', 'emptyHidePreview')
+      return omit(value, 'onChange', 'modelValue')
     })
 
     watch(
-      () => props.value,
+      () => props.modelValue,
       (value = []) => {
         fileList.value = isArray(value) ? value : []
       },
-      { immediate: true }
+      { immediate: true },
     )
 
     // 上传modal保存操作
@@ -109,11 +110,13 @@ export default defineComponent({
     }
 
     return {
-      uploadVisible,
-      previewVisible,
-      UploadFilled,
+      registerUploadModal,
+      openUploadModal,
       handleChange,
       handlePreviewChange,
+      registerPreviewModal,
+      openPreviewModal,
+      UploadFilled,
       fileList,
       showPreview,
       bindValue,

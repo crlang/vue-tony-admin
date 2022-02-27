@@ -1,23 +1,25 @@
 <template>
   <BasicModal
-    :visible="visibleRef"
     :title="t('component.upload.upload')"
-    :width="800"
-    @close="handleCloseFunc">
+    :okText="t('component.upload.save')"
+    v-bind="$attrs"
+    @register="register"
+    @ok="handleOk"
+    :closeFunc="handleCloseFunc"
+    :maskClosable="false"
+    :keyboard="false"
+    wrapClassName="upload-modal"
+    :confirmButton="getOkButtonProps"
+    :cancelButton="{ disabled: isUploadingRef }">
 
-    <template #footer>
-      <ElButton
+    <template #centerFooter>
+      <el-button
         @click="handleStartUpload"
         type="success"
         :disabled="!getIsSelectFile"
         :loading="isUploadingRef">
         {{ getUploadBtnText }}
-      </ElButton>
-
-      <ElButton
-        type="default"
-        @click="handleCloseFunc">{{ t('common.closeText') }}</ElButton>
-      <ElButton v-bind="getConfirmButtonProps">{{ t('component.upload.save') }}</ElButton>
+      </el-button>
     </template>
 
     <div class="upload-modal-toolbar">
@@ -32,11 +34,14 @@
         :accept="getStringAccept"
         :multiple="multiple"
         :limit="maxNumber"
-        :disabled="disabled || getChooseButtonProps.disabled"
+        :disabled="isUploadingRef || (fileListRef.length+
+          previewFileList.length) >= maxNumber"
         :show-file-list="false"
         :before-upload="beforeUpload"
-        class="upload-modal-toolbar__btn"><ElButton v-bind="getChooseButtonProps">{{ t('component.upload.choose') }}</ElButton></ElUpload>
-
+        class="upload-modal-toolbar__btn"><ElButton
+          type="primary"
+          :disabled="isUploadingRef || (fileListRef.length+
+            previewFileList.length) >= maxNumber">{{ t('component.upload.choose') }}</ElButton></ElUpload>
     </div>
 
     <FileList
@@ -47,9 +52,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, toRefs, unref, computed, PropType, watchEffect, watch } from 'vue'
+import { defineComponent, reactive, ref, toRefs, unref, computed, PropType } from 'vue'
 import { ElButton, ElUpload, ElAlert } from 'element-plus'
-import { BasicModal } from '@/components/Modal'
+import { BasicModal, useModalInner } from '@/components/Modal'
 // hooks
 import { useUploadType } from './useUpload'
 import { useMessage } from '@/hooks/web/useMessage'
@@ -74,10 +79,8 @@ export default defineComponent({
       default: () => [],
     },
   },
-  emits: ['change', 'delete', 'update:visible'],
+  emits: ['change', 'register', 'delete'],
   setup(props, { emit }) {
-    const visibleRef = ref(false)
-
     const state = reactive<{ fileList: FileItem[] }>({
       fileList: [],
     })
@@ -88,6 +91,7 @@ export default defineComponent({
     const { accept, helpText, maxNumber, maxSize } = toRefs(props)
 
     const { t } = useI18n()
+    const [register, { closeModal }] = useModalInner()
 
     const { getAccept, getStringAccept, getHelpText } = useUploadType({
       acceptRef: accept,
@@ -96,33 +100,28 @@ export default defineComponent({
       maxSizeRef: maxSize,
     })
 
-    const { createMessage, createConfirm } = useMessage()
+    const { createMessage } = useMessage()
 
     const getIsSelectFile = computed(() => {
       return (
-        fileListRef.value.length > 0 && !fileListRef.value.every((item) => item.status === UploadResultStatus.SUCCESS)
+        fileListRef.value.length > 0 &&
+          !fileListRef.value.every((item) => item.status === UploadResultStatus.SUCCESS)
       )
     })
 
-    const getConfirmButtonProps = computed(() => {
-      const someSuccess = fileListRef.value.some((item) => item.status === UploadResultStatus.SUCCESS)
+    const getOkButtonProps = computed(() => {
+      const someSuccess = fileListRef.value.some(
+        (item) => item.status === UploadResultStatus.SUCCESS,
+      )
       return {
-        type: 'primary',
         disabled: isUploadingRef.value || fileListRef.value.length === 0 || !someSuccess,
-        onClick: handleOk,
-      }
-    })
-
-    const getChooseButtonProps = computed(() => {
-      const { maxNumber, previewFileList } = props
-      return {
-        type: 'primary',
-        disabled: (fileListRef.value.length + previewFileList?.length ?? 0) >= maxNumber,
       }
     })
 
     const getUploadBtnText = computed(() => {
-      const someError = fileListRef.value.some((item) => item.status === UploadResultStatus.ERROR)
+      const someError = fileListRef.value.some(
+        (item) => item.status === UploadResultStatus.ERROR,
+      )
       return isUploadingRef.value
         ? t('component.upload.uploading')
         : someError
@@ -130,25 +129,17 @@ export default defineComponent({
           : t('component.upload.startUpload')
     })
 
-    watchEffect(() => {
-      visibleRef.value = !!props.visible
-    })
-
-    watch(
-      () => visibleRef.value,
-      (v) => {
-        emit('update:visible', v)
-      },
-      {
-        immediate: false,
-      }
-    )
-
     // 上传前校验
     function beforeUpload(file: File) {
       const { size, name } = file
       const { maxSize, maxNumber, previewFileList } = props
       const accept = unref(getAccept)
+
+      // 设置数量，则判断
+      if ((fileListRef.value.length + previewFileList?.length ?? 0) >= maxNumber) {
+        return createMessage.warning(t('component.upload.maxNumber', [maxNumber]))
+      }
+
       // 设置最大值，则判断
       if (maxSize && file.size / 1024 / 1024 >= maxSize) {
         createMessage.error(t('component.upload.maxSizeMultiple', [maxSize]))
@@ -160,12 +151,6 @@ export default defineComponent({
         createMessage.error!(t('component.upload.acceptUpload', [accept.join(',')]))
         return false
       }
-
-      if ((fileListRef.value.length + previewFileList?.length ?? 0) >= maxNumber) {
-        createMessage.error(t('component.upload.maxNumber', [maxNumber]))
-        return false
-      }
-
       const commonItem = {
         uuid: buildUUID(),
         file,
@@ -200,6 +185,14 @@ export default defineComponent({
       emit('delete', record)
     }
 
+    // 预览
+    // function handlePreview(record: FileItem) {
+    //   const { thumbUrl = '' } = record;
+    //   createImgPreview({
+    //     imageList: [thumbUrl],
+    //   });
+    // }
+
     async function uploadApiByItem(item: FileItem) {
       const { api } = props
       if (!api || !isFunction(api)) {
@@ -207,14 +200,13 @@ export default defineComponent({
       }
       try {
         item.status = UploadResultStatus.UPLOADING
-        const { data } = await props.api({
-          ...(props.uploadParams || {}),
-          file: item.file,
-        },
-        function onUploadProgress(progressEvent: ProgressEvent) {
+        const onUploadProgress = function (progressEvent: ProgressEvent) {
           const complete = ((progressEvent.loaded / progressEvent.total) * 100) | 0
           item.percent = complete
-        })
+        }
+
+        // eslint-disable-next-line no-unsafe-optional-chaining
+        const { data } = await props.api?.({ ...(props.uploadParams || {}), file: item.file }, onUploadProgress)
         item.status = UploadResultStatus.SUCCESS
         item.responseData = data
         return {
@@ -240,11 +232,12 @@ export default defineComponent({
       try {
         isUploadingRef.value = true
         // 只上传不是成功状态的
-        const uploadFileList = fileListRef.value.filter((item) => item.status !== UploadResultStatus.SUCCESS) || []
+        const uploadFileList =
+            fileListRef.value.filter((item) => item.status !== UploadResultStatus.SUCCESS) || []
         const data = await Promise.all(
           uploadFileList.map((item) => {
             return uploadApiByItem(item)
-          })
+          }),
         )
         isUploadingRef.value = false
         // 生产环境:抛出错误
@@ -279,40 +272,31 @@ export default defineComponent({
         return createMessage.warning(t('component.upload.saveError'))
       }
       fileListRef.value = []
-      visibleRef.value = false
+      closeModal()
       emit('change', fileList)
     }
 
     // 点击关闭：则所有操作不保存，包括上传的
-    function handleCloseFunc() {
-      console.log('isUploadingRef', isUploadingRef.value)
+    async function handleCloseFunc() {
       if (!isUploadingRef.value) {
-        if (fileListRef.value?.length) {
-          createConfirm({
-            title: t('common.operationTipText'),
-            content: t('component.upload.closeUploadList'),
-          }).then(() => {
-            fileListRef.value = []
-            visibleRef.value = false
-          }).catch(() => {})
-        } else {
-          fileListRef.value = []
-          visibleRef.value = false
-        }
+        fileListRef.value = []
+        return true
       } else {
         createMessage.warning(t('component.upload.uploadWait'))
+        return false
       }
     }
 
     return {
-      visibleRef,
       columns: createTableColumns() as any[],
       actionColumn: createActionColumn(handleRemove) as any,
+      register,
+      closeModal,
       getHelpText,
       getStringAccept,
-      getConfirmButtonProps,
-      getChooseButtonProps,
-      beforeUpload,
+      getOkButtonProps,
+      beforeUpload: beforeUpload as any,
+      // registerTable,
       fileListRef,
       state,
       isUploadingRef,

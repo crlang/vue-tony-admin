@@ -3,7 +3,7 @@
     <BasicUpload
       @change="handleChange"
       :api="uploadApi"
-      :value="uploadList"
+      :modelValue="uploadList"
       :maxSize="5"
       :maxNumber="3"
       @delete="handleDelete"

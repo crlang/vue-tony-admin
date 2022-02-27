@@ -1,27 +1,22 @@
 <template>
   <BasicModal
-    width="800px"
-    :visible="visibleRef"
+    :width="800"
     :title="t('component.upload.preview')"
-    @close="visibleRef=false">
+    wrapClassName="upload-preview-modal"
+    v-bind="$attrs"
+    @register="register"
+    :showConfirm="false">
     <FileList
       :dataSource="fileListRef"
       :columns="columns"
       :actionColumn="actionColumn" />
-    <template #footer>
-      <ElButton
-        type="default"
-        @click="visibleRef=false">{{ t('common.closeText') }}</ElButton>
-    </template>
   </BasicModal>
 </template>
 
 <script lang="ts">
-import { defineComponent, watch, ref, watchEffect } from 'vue'
-//   import { BasicTable, useTable } from '@/components/Table';
-import { ElButton } from 'element-plus'
+import { defineComponent, watch, ref } from 'vue'
 import FileList from './FileList.vue'
-import { BasicModal } from '@/components/Modal'
+import { BasicModal, useModalInner } from '@/components/Modal'
 import { previewProps } from './props'
 import { PreviewFileItem } from './typing'
 import { downloadByUrl } from '@/utils/file/download'
@@ -30,16 +25,16 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { isArray } from '@/utils/is'
 
 export default defineComponent({
-  components: { ElButton, BasicModal, FileList },
+  components: { BasicModal, FileList },
   props: previewProps,
-  emits: ['list-change', 'update:visible', 'delete'],
+  emits: ['list-change', 'register', 'delete'],
   setup(props, { emit }) {
     const { t } = useI18n()
-    const visibleRef = ref(false)
+    const [register, { closeModal }] = useModalInner()
 
     const fileListRef = ref<PreviewFileItem[]>([])
     watch(
-      () => props.value,
+      () => props.modelValue,
       (value) => {
         if (!isArray(value)) value = []
         fileListRef.value = value
@@ -53,20 +48,6 @@ export default defineComponent({
           })
       },
       { immediate: true }
-    )
-
-    watchEffect(() => {
-      visibleRef.value = !!props.visible
-    })
-
-    watch(
-      () => visibleRef.value,
-      (v) => {
-        emit('update:visible', v)
-      },
-      {
-        immediate: false,
-      }
     )
 
     // 删除
@@ -98,7 +79,8 @@ export default defineComponent({
 
     return {
       t,
-      visibleRef,
+      register,
+      closeModal,
       fileListRef,
       columns: createPreviewColumns() as any[],
       actionColumn: createPreviewActionColumn({ handleRemove, handleDownload }) as any,
