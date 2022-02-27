@@ -1,48 +1,34 @@
 <template>
   <BasicModal
-    :modelValue="visibleRef"
+    v-bind="$attrs"
     :title="t('component.excel.exportModalTitle')"
-    :width="600"
-    @close="visibleRef = false">
+    @ok="handleOk"
+    @register="registerModal">
     <div class="p-4">
       <BasicForm
         :labelWidth="100"
         :schemas="schemas"
         :showActionButtonGroup="false"
-        @register="registerForm"
-      />
+        @register="registerForm" />
     </div>
-    <template #footer>
-      <ElButton @click="visibleRef = false">{{ t('common.closeText') }}</ElButton>
-      <ElButton
-        type="primary"
-        @click="handleOk">{{ t('common.confirmText') }}</ElButton>
-    </template>
   </BasicModal>
 </template>
 
 <script lang="ts">
 import type { ExportModalResult } from './typing'
 
-import { defineComponent, ref, watch, watchEffect } from 'vue'
-import { ElButton } from 'element-plus'
-import { BasicModal } from '@/components/Modal'
+import { defineComponent } from 'vue'
+import { BasicModal, useModalInner } from '@/components/Modal'
 import { useI18n } from '@/hooks/web/useI18n'
 import { BasicForm, FormSchema, useForm } from '@/components/Form'
+const { t } = useI18n()
 
 export default defineComponent({
-  components: { ElButton, BasicModal, BasicForm },
-  props: {
-    visible: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  emits: ['success', 'update:visible', 'register'],
-  setup(props, { emit }) {
-    const { t } = useI18n()
-    const visibleRef = ref(false)
+  components: { BasicModal, BasicForm },
+  emits: ['success', 'register'],
+  setup(_, { emit }) {
     const [registerForm, { validateField, getFieldsValue }] = useForm()
+    const [registerModal, { closeModal }] = useModalInner()
 
     const schemas: FormSchema[] = [
       {
@@ -83,39 +69,23 @@ export default defineComponent({
         },
       },
     ]
-
-    watchEffect(() => {
-      visibleRef.value = !!props.visible
-    })
-
-    watch(
-      () => visibleRef.value,
-      (v) => {
-        emit('update:visible', v)
-      },
-      {
-        immediate: false,
-      }
-    )
-
     async function handleOk() {
-      const res = (await validateField()) as ExportModalResult
-      if (!res) return
-
-      const { filename, bookType } = getFieldsValue()
+      await validateField()
+      const res = (getFieldsValue()) as ExportModalResult
+      const { filename, bookType } = res
+      console.log('res++++', res)
       emit('success', {
         filename: `${filename.split('.').shift()}.${bookType}`,
         bookType,
       })
-
-      visibleRef.value = false
+      closeModal()
     }
 
     return {
-      visibleRef,
       schemas,
-      registerForm,
       handleOk,
+      registerForm,
+      registerModal,
       t,
     }
   },

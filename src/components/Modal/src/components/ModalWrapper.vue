@@ -1,5 +1,7 @@
 <template>
-  <ScrollContainer ref="wrapperRef">
+  <ScrollContainer
+    ref="wrapperRef"
+    :class="customClass">
     <div
       ref="spinRef"
       :style="spinStyle"
@@ -9,8 +11,10 @@
     </div>
   </ScrollContainer>
 </template>
+
 <script lang="ts">
 import type { CSSProperties } from 'vue'
+
 import {
   defineComponent,
   computed,
@@ -26,23 +30,18 @@ import { useWindowSizeFn } from '@/hooks/event/useWindowSizeFn'
 import { ScrollContainer } from '@/components/Container'
 import { createModalContext } from '../hooks/useModalContext'
 import { useMutationObserver } from '@vueuse/core'
-
-const props = {
-  loading: { type: Boolean },
-  useWrapper: { type: Boolean, default: true },
-  modalHeaderHeight: { type: Number, default: 57 },
-  modalFooterHeight: { type: Number, default: 74 },
-  footerOffset: { type: Number, default: 0 },
-  modelValue: { type: Boolean },
-  fullScreen: { type: Boolean },
-  loadingTip: { type: String },
-}
+import { wrapperProps } from '../props'
 
 export default defineComponent({
   name: 'ModalWrapper',
   components: { ScrollContainer },
   inheritAttrs: false,
-  props,
+  props: {
+    modelValue: { type: Boolean }, // 继承
+    fullscreen: { type: Boolean }, // 继承
+    customClass: { type: String },
+    ...wrapperProps,
+  },
   emits: ['height-change', 'ext-height'],
   setup(props, { emit }) {
     const wrapperRef = ref<ComponentRef>(null)
@@ -73,7 +72,7 @@ export default defineComponent({
 
     const spinStyle = computed((): CSSProperties => {
       return {
-        [props.fullScreen ? 'height' : 'maxHeight']: `${unref(realHeightRef)}px`,
+        [props.fullscreen ? 'height' : 'maxHeight']: `${unref(realHeightRef)}px`,
       }
     })
 
@@ -82,7 +81,7 @@ export default defineComponent({
     })
 
     watch(
-      () => props.fullScreen,
+      () => props.fullscreen,
       (v) => {
         setModalHeight()
         if (!v) {
@@ -111,23 +110,22 @@ export default defineComponent({
     }
 
     async function setModalHeight() {
-      // 解决在弹窗关闭的时候监听还存在,导致再次打开弹窗没有高度
-      // 加上这个,就必须在使用的时候传递父级的modelValue
       if (!props.modelValue) return
+
       const wrapperRefDom = unref(wrapperRef)
       if (!wrapperRefDom) return
 
       const bodyDom = wrapperRefDom.$el.parentElement
       if (!bodyDom) return
-      bodyDom.style.padding = '0'
+
       await nextTick()
 
       try {
-        const modalDom = bodyDom.parentElement && bodyDom.parentElement.parentElement
+        const modalDom = bodyDom.parentElement
         if (!modalDom) return
 
-        const modalRect = getComputedStyle(modalDom as Element).top
-        const modalTop = Number.parseInt(modalRect)
+        const modalTop = modalDom.offsetTop
+
         let maxHeight =
             window.innerHeight -
             modalTop * 2 +
@@ -135,7 +133,7 @@ export default defineComponent({
             props.modalFooterHeight -
             props.modalHeaderHeight
 
-        // 距离顶部过进会出现滚动条
+        // 距离顶部过近会出现滚动条
         if (modalTop < 40) {
           maxHeight -= 26
         }
@@ -144,11 +142,10 @@ export default defineComponent({
 
         if (!spinEl) return
         await nextTick()
-        // if (!realHeight) {
-        realHeight = spinEl.scrollHeight
-        // }
 
-        if (props.fullScreen) {
+        realHeight = spinEl.scrollHeight
+
+        if (props.fullscreen) {
           realHeightRef.value =
               window.innerHeight - props.modalFooterHeight - props.modalHeaderHeight - 28
         } else {
@@ -156,7 +153,7 @@ export default defineComponent({
         }
         emit('height-change', unref(realHeightRef))
       } catch (error) {
-        console.log(error)
+        console.warn(error)
       }
     }
 

@@ -143,7 +143,7 @@ export const useModalInner = (callbackFn?: Fn): UseModalInnerReturnType => {
       }),
 
       changeOkLoading: (loading = true) => {
-        getInstance()?.setModalProps({ confirmLoading: loading })
+        getInstance()?.setModalProps({ confirmButton: { loading } })
       },
 
       closeModal: () => {

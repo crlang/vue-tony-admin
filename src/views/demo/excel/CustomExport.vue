@@ -8,45 +8,48 @@
       :dataSource="data">
       <template #toolbar>
         <el-button
-          @click="modalVisible=true"
+          @click="openModal()"
+          type="primary"
           :disabled="!data?.length">导出</el-button>
       </template>
     </BasicTable>
     <ExpExcelModal
-      v-model:visible="modalVisible"
+      @register="register"
       @success="defaultHeader" />
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
 import { BasicTable } from '@/components/Table'
 import { jsonToSheetXlsx, ExportModalResult } from '@/components/Excel'
 import { PageWrapper } from '@/components/Page'
 import { ExpExcelModal } from '@/components/Excel'
 import { columns, data } from './data'
+import { useModal } from '@/components/Modal'
 
 export default defineComponent({
-  components: { ElButton, PageWrapper, BasicTable, ExpExcelModal },
+  components: { ElButton, BasicTable, ExpExcelModal, PageWrapper },
   setup() {
-    const modalVisible = ref(false)
-
     function defaultHeader({ filename, bookType }: ExportModalResult) {
+      // 默认Object.keys(data[0])作为header
       jsonToSheetXlsx({
-        data: data,
+        data,
         filename,
         write2excelOpts: {
           bookType,
         },
       })
     }
+    const [register, { openModal }] = useModal()
 
     return {
-      modalVisible,
+      defaultHeader,
       columns,
       data,
-      defaultHeader,
+      register,
+      openModal,
     }
   },
 })

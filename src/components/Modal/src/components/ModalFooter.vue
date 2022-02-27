@@ -1,21 +1,17 @@
 <template>
-  <div>
+  <div
+    :class="customClass"
+    v-if="showFooter">
     <slot name="insertFooter"></slot>
     <ElButton
-      v-bind="cancelButtonProps"
+      v-bind="cancelButton"
       @click="handleCancel"
-      v-if="showCancelBtn">
-      {{ cancelText }}
-    </ElButton>
+      v-if="showCancel">{{ cancelText }}</ElButton>
     <slot name="centerFooter"></slot>
     <ElButton
-      :type="confirmType"
+      v-bind="confirmButton"
       @click="handleOk"
-      :loading="confirmLoading"
-      v-bind="confirmButtonProps"
-      v-if="showConfirmBtn">
-      {{ confirmText }}
-    </ElButton>
+      v-if="showConfirm">{{ confirmText }}</ElButton>
     <slot name="appendFooter"></slot>
   </div>
 </template>
@@ -23,12 +19,16 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
-import { basicProps } from '../props'
+import { footerProps } from '../props'
 
 export default defineComponent({
   name: 'BasicModalFooter',
   components: { ElButton },
-  props: basicProps,
+  inheritAttrs: false,
+  props: {
+    ...footerProps,
+    customClass: { type: String },
+  },
   emits: ['ok', 'cancel'],
   setup(_, { emit }) {
     function handleOk(e: Event) {

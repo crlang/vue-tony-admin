@@ -1,8 +1,5 @@
 <template>
   <PageWrapper title="上传组件示例">
-    <el-alert
-      title="基础示例"
-      class="mb-4" />
     <BasicUpload
       @change="handleChange"
       :api="uploadApi"
@@ -14,7 +11,7 @@
 
     <el-alert
       type="error"
-      class="mt-4"
+      class="my-4"
       title="如果需要演示上传功能,需要在test/server中运行test服务器" />
   </PageWrapper>
 </template>
@@ -33,7 +30,7 @@ export default defineComponent({
     const { createMessage } = useMessage()
     const uploadList = ref<string[]>()
     function handleDelete(record: Recordable) {
-      console.log('delete', record)
+      console.table('delete', record)
     }
     function handleChange(list: Recordable) {
       createMessage.info(`已上传文件${JSON.stringify(list)}`)

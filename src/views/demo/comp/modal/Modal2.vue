@@ -2,8 +2,7 @@
   <BasicModal
     @register="register"
     title="Modal Title"
-    :helpMessage="['提示1', '提示2']"
-    :confirmButtonProps="{ disabled: true }">
+    :helpMessage="['提示1', '提示2']">
     <el-button
       type="primary"
       @click="closeModal()"
@@ -22,13 +21,10 @@ export default defineComponent({
   components: { ElButton, BasicModal },
   setup() {
     const [register, { closeModal, setModalProps }] = useModalInner()
-    function aaa() {
-      console.log('4545454+++')
-    }
+
     return {
       register,
       closeModal,
-      aaa,
       setModalProps: () => {
         setModalProps({ title: 'Modal New Title' })
       },

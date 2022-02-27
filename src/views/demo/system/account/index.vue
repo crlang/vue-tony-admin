@@ -55,7 +55,7 @@
     </el-row>
 
     <AccountModal
-      v-model:visible="modalVisible"
+      @register="registerModal"
       @success="handleSuccess" />
   </PageWrapper>
 </template>
@@ -75,6 +75,7 @@ import { useGo } from '@/hooks/web/usePage'
 import { DeptListItem } from '@/api/demo/model/systemModel'
 import { useMessage } from '@/hooks/web/useMessage'
 import { columns, searchFormSchema } from './data'
+import { useModal } from '@/components/Modal'
 
 export default defineComponent({
   name: 'AccountManagement',
@@ -93,14 +94,15 @@ export default defineComponent({
     const go = useGo()
     const { createConfirm, createMessage } = useMessage()
 
+    const [registerModal, { openModal }] = useModal()
+
     const modalVisible = ref(false)
     const demodata = ref<Recordable[]>()
 
     function handleCreate() {
-      modalVisible.value = true
-      // openModal(true, {
-      //   isUpdate: false
-      // })
+      openModal(true, {
+        isUpdate: false,
+      })
     }
 
     const searchInfo = reactive<Recordable>({})
@@ -170,6 +172,7 @@ export default defineComponent({
       modalVisible,
       searchInfo,
       registerTable,
+      registerModal,
       demodata,
       Document,
       Edit,

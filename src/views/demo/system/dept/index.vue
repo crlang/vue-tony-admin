@@ -32,13 +32,13 @@
       </template>
     </BasicTable>
     <DeptModal
-      v-model:visible="modalVisible"
+      @register="registerModal"
       @success="handleSuccess" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import { ElButton, ElTableColumn } from 'element-plus'
 
 import { BasicTable, useTable, TableAction } from '@/components/Table'
@@ -53,7 +53,6 @@ export default defineComponent({
   components: { ElButton, ElTableColumn, BasicTable, TableAction, DeptModal },
   setup() {
     const [registerModal, { openModal }] = useModal()
-    const modalVisible = ref(false)
     const [registerTable, { reload }] = useTable({
       title: '部门列表',
       api: getDeptList,
@@ -99,7 +98,6 @@ export default defineComponent({
     }
 
     return {
-      modalVisible,
       registerTable,
       registerModal,
       handleCreate,

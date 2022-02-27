@@ -1,107 +1,65 @@
 import type { ComputedRef } from 'vue'
-import type { EleButtonType, EleButton } from '@/components/ElementPlus'
+import type { EleDialog, EleButton } from '@/components/ElementPlus'
+
+export interface ModalCustomHeader {
+  showClose?: boolean
+  showFullscreen?: boolean
+  draggable?: boolean
+  helpMessage?: string | string[]
+}
+
+export interface ModalCustomContent {
+  useWrapper?: boolean
+  footerOffset?: number
+  loading?: boolean
+  scrollTop?: boolean
+  loadingTip?: string
+  modalHeaderHeight?: number
+  modalFooterHeight?: number
+  fullScreen?: boolean
+}
+
+export interface ModalCustomFooter {
+  showFooter?: boolean
+  showCancel?: boolean
+  cancelText?: string
+  cancelButton?: Partial<EleButton>,
+  showConfirm?: boolean
+  confirmText?: string
+  confirmButton?: Partial<EleButton>,
+}
+
+export interface ModalProps extends EleDialog, ModalCustomHeader, ModalCustomContent, ModalCustomFooter {
+  modelValue: Boolean
+
+  closeFunc: () => Promise<boolean>
+}
+
 /**
- * @description: 弹窗对外暴露的方法
+ * 弹窗对外暴露的方法
  */
 export interface ModalMethods {
-  setModalProps: (props: Partial<ModalProps>) => void;
-  emitVisible?: (visible: boolean, uid: number) => void;
-  redoModalHeight?: () => void;
+  setModalProps: (props: Partial<ModalProps>) => void
+  emitVisible?: (visible: boolean, uid: number) => void
+  redoModalHeight?: () => void
 }
 
-export type RegisterFn = (modalMethods: ModalMethods, uuid?: string) => void;
+export type RegisterFn = (modalMethods: ModalMethods, uuid?: string) => void
 
 export interface ReturnMethods extends ModalMethods {
-  openModal: <T = any>(props?: boolean, data?: T, openOnSet?: boolean) => void;
-  closeModal: () => void;
-  getVisible?: ComputedRef<boolean>;
+  openModal: <T = any>(props?: boolean, data?: T, openOnSet?: boolean) => void
+  closeModal: () => void
+  getVisible?: ComputedRef<boolean>
 }
 
-export type UseModalReturnType = [RegisterFn, ReturnMethods];
+export type UseModalReturnType = [RegisterFn, ReturnMethods]
 
 export interface ReturnInnerMethods extends ModalMethods {
-  closeModal: () => void;
-  changeLoading: (loading: boolean) => void;
-  changeOkLoading: (loading: boolean) => void;
-  getVisible?: ComputedRef<boolean>;
-  redoModalHeight: () => void;
+  closeModal: () => void
+  changeLoading: (loading: boolean) => void
+  changeOkLoading: (loading: boolean) => void
+  getVisible?: ComputedRef<boolean>
+  redoModalHeight: () => void
 }
 
-export type UseModalInnerReturnType = [RegisterFn, ReturnInnerMethods];
-
-export interface ModalProps {
-  // 启用wrapper后 底部可以适当增加高度
-  wrapperFooterOffset?: number;
-  draggable?: boolean;
-  scrollTop?: boolean;
-
-  // 是否可以进行全屏
-  canFullscreen?: boolean;
-  defaultFullscreen?: boolean;
-  modelValue?: boolean;
-  // 温馨提醒信息
-  helpMessage: string | string[];
-
-  // 是否使用modalWrapper
-  useWrapper: boolean;
-
-  loading: boolean;
-  loadingTip?: string;
-
-  wrapperProps: Omit<ModalWrapperProps, 'loading'>;
-
-  showConfirmBtn: boolean;
-  showCancelBtn: boolean;
-  showClose: boolean;
-  closeFunc: () => Promise<any>;
-
-  /**
-   * Text of the Cancel button
-   * @default 'cancel'
-   * @type string
-   */
-  cancelText?: string;
-
-  /**
-   * Whether to apply loading visual effect for OK button or not
-   * @default false
-   * @type boolean
-   */
-  confirmLoading?: boolean;
-
-  /**
-   * Text of the OK button
-   * @default 'OK'
-   * @type string
-   */
-  confirmText?: string;
-
-  /**
-   * Button type of the OK button
-   * @default 'primary'
-   * @type string
-   */
-  confirmType?: EleButtonType;
-
-  /**
-   * The ok button props, follow jsx rules
-   * @type object
-   */
-  confirmButtonProps?: EleButton;
-
-  /**
-   * The cancel button props, follow jsx rules
-   * @type object
-   */
-  cancelButtonProps?: EleButton;
-}
-
-export interface ModalWrapperProps {
-  footerOffset?: number;
-  loading: boolean;
-  modalHeaderHeight: number;
-  modalFooterHeight: number;
-  modelValue: boolean;
-  fullScreen: boolean;
-  useWrapper: boolean;
-}
+export type UseModalInnerReturnType = [RegisterFn, ReturnInnerMethods]

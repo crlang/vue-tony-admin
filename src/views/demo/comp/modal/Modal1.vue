@@ -49,11 +49,11 @@ export default defineComponent({
     function handleShow(visible: boolean) {
       if (visible) {
         loading.value = true
-        setModalProps({ loading: true, confirmLoading: true })
+        setModalProps({ loading: true, confirmButton: { loading: true } })
         setTimeout(() => {
           lines.value = Math.round(Math.random() * 30 + 5)
           loading.value = false
-          setModalProps({ loading: false, confirmLoading: false })
+          setModalProps({ loading: false, confirmButton: { loading: false } })
         }, 3000)
       }
     }

@@ -3,9 +3,7 @@
     :title="t('layout.header.lockScreen')"
     @register="register"
     :width="600"
-    :showCancelBtn="false"
-    :showConfirmBtn="false"
-    :footer="null"
+    :showFooter="false"
     :custom-class="prefixCls">
     <div :class="`${prefixCls}__entry`">
       <div :class="`${prefixCls}__header`">
