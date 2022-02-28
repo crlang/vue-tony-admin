@@ -1,35 +1,16 @@
 <script lang="tsx">
-import type { UsePopperCoreConfigProps } from 'element-plus'
-
 import { defineComponent } from 'vue'
 import { InfoFilled } from '@element-plus/icons'
 import { isArray, isString } from '@/utils/is'
 import { getSlot } from '@/utils/helper/tsxHelper'
 import { useDesign } from '@/hooks/web/useDesign'
 import { ElTooltip } from 'element-plus'
-import { GlobalThemeType } from '@/utils/types'
+import { basicHelpProps } from './props'
 
 export default defineComponent({
   name: 'BasicHelp',
   components: { InfoFilled },
-  props: {
-  /**
-   * Whether to display the serial number
-   */
-    showIndex: { type: Boolean },
-    /**
-   * Help theme
-   */
-    effect: { type: String as PropType<GlobalThemeType>, default: 'dark' },
-    /**
-     * Help text direction
-     */
-    placement: { type: String as PropType<UsePopperCoreConfigProps['placement']>, default: 'right' },
-    /**
-   * Help text content
-   */
-    text: { type: [Array, String] as PropType<string[] | string> },
-  },
+  props: basicHelpProps,
   setup(props, { slots }) {
     const { prefixCls } = useDesign('basic-help')
 

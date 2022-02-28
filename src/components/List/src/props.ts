@@ -29,14 +29,23 @@ export const itemProps = {
   //   type: String as PropType<EleCard['shadow']>,
   //   default: 'hover',
   // },
+  /**
+   * Thumbnail address
+   */
   thumb: {
     type: String,
     default: '',
   },
+  /**
+   * List title
+   */
   title: {
     type: String,
     default: '',
   },
+  /**
+   * List description
+   */
   description: {
     type: String,
     default: '',

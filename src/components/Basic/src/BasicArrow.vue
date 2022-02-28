@@ -8,18 +8,9 @@
 import { computed } from 'vue'
 import { Icon } from '@/components/Icon'
 import { useDesign } from '@/hooks/web/useDesign'
-import { ArrowDirection } from './typing'
+import { basicArrowProps } from './props'
 
-const props = defineProps({
-  /**
-   * Arrow expand state
-   */
-  expand: { type: Boolean },
-  /**
-   * Arrow direction
-   */
-  direction: { type: String as PropType<ArrowDirection>, default: 'down' },
-})
+const props = defineProps(basicArrowProps)
 
 const { prefixCls } = useDesign('basic-arrow')
 

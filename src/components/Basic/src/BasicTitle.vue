@@ -12,24 +12,9 @@
 import { useSlots, computed } from 'vue'
 import BasicHelp from './BasicHelp.vue'
 import { useDesign } from '@/hooks/web/useDesign'
+import { basicTitleProps } from './props'
 
-const props = defineProps({
-  /**
-   * Prompt text or text array
-   */
-  helpMessage: {
-    type: [String, Array] as PropType<string | string[]>,
-    default: '',
-  },
-  /**
-   * Whether to show the color block to the left of the title
-   */
-  span: { type: Boolean },
-  /**
-   * Whether the title is bold
-   */
-  bold: { type: Boolean },
-})
+const props = defineProps(basicTitleProps)
 
 const { prefixCls } = useDesign('basic-title')
 const slots = useSlots()
