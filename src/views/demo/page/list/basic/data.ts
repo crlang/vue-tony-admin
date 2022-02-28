@@ -1,16 +1,16 @@
 export const cardList = (() => {
-  const result: any[] = []
-  for (let i = 0; i < 6; i++) {
+  const result:any[] = []
+  for (let i = 0; i < 10; i++) {
     result.push({
       id: i,
       title: 'Tony Admin',
-      description: '基于Vue Next, TypeScript, Ant Design Vue实现的一套完整的企业级后台管理系统',
+      description: '基于 Vue3, TypeScript, Element Plus 实现的一套完整的企业级后台管理系统',
       datetime: '2020-11-26 17:39',
       extra: '编辑',
       icon: 'logos:vue',
       color: '#1890ff',
-      author: 'Tony',
-      percent: 20 * (i + 1),
+      author: 'crlang',
+      percent: (i + 1) * 10,
     })
   }
   return result

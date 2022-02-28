@@ -7,20 +7,18 @@
         v-for="item in list"
         :key="item.key">
         <ListItem>
-          <ListItemMeta>
-            <template #title>
-              {{ item.title }}
-              <el-switch
-                v-model="item.checked"
-                class="extra"
-                active-text="开"
-                inactive-text="关"
-                inline-prompt />
-            </template>
-            <template #description>
-              <div>{{ item.description }}</div>
-            </template>
-          </ListItemMeta>
+          <template #title>
+            {{ item.title }}
+            <el-switch
+              v-model="item.checked"
+              class="extra"
+              active-text="开"
+              inactive-text="关"
+              inline-prompt />
+          </template>
+          <template #description>
+            <div>{{ item.description }}</div>
+          </template>
         </ListItem>
       </template>
     </List>
@@ -31,7 +29,7 @@
 import { defineComponent, reactive } from 'vue'
 import { ElSwitch } from 'element-plus'
 import { CollapseContainer } from '@/components/Container'
-import { List, ListItem, ListItemMeta } from '@/components/List'
+import { List, ListItem } from '@/components/List'
 
 import { msgNotifyList } from './data'
 
@@ -41,7 +39,6 @@ export default defineComponent({
     CollapseContainer,
     List,
     ListItem,
-    ListItemMeta,
   },
   setup() {
     const list = reactive(msgNotifyList)

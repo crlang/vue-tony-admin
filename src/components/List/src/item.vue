@@ -1,73 +1,36 @@
 <template>
-  <li :class="getClass">
-    <ElCard
-      v-if="type === 'card'"
-      :shadow="cardShadow"
-      :body-style="cardStyle"
-      :class="getCardClass">
-      <slot></slot>
-    </ElCard>
-    <slot v-else></slot>
-  </li>
+  <div :class="prefixCls">
+    <slot></slot>
+    <ListMeta
+      :thumb="thumb"
+      :title="title"
+      :description="description">
+      <template
+        #[item]="data"
+        v-for="item in Object.keys($slots)">
+        <slot
+          :name="item"
+          v-bind="data || {}"></slot>
+      </template>
+    </ListMeta>
+  </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, unref } from 'vue'
-import { ElCard } from 'element-plus'
-
-import type { PropType } from 'vue'
-import type { ShadowTypes, ListTypes } from './types'
+import { defineComponent } from 'vue'
 import { useDesign } from '@/hooks/web/useDesign'
+import ListMeta from './meta.vue'
+import { itemProps } from './props'
 
 export default defineComponent({
   name: 'ListItem',
-  components: { ElCard },
-  props: {
-    type: {
-      type: String as PropType<ListTypes>,
-      default: '',
-    },
-    cardBorder: {
-      type: Boolean,
-      default: true,
-    },
-    cardClass: {
-      type: String,
-      default: '',
-    },
-    cardStyle: {
-      type: Object,
-      default: () => { return { 'padding': 0 } },
-    },
-    cardShadow: {
-      type: String as PropType<ShadowTypes>,
-      default: 'hover',
-    },
-    vertical: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  setup(props) {
-    const { prefixCls } = useDesign('list-item')
-
-    const getClass = computed(() => [
-      prefixCls,
-      {
-        [`${prefixCls}--card`]: props.type === 'card',
-      },
-    ])
-
-    const getCardClass = computed(() => [
-      {
-        'is-border': unref(props.cardBorder),
-      },
-      props.cardClass,
-    ])
+  components: { ListMeta },
+  props: itemProps,
+  setup() {
+    const { prefixCls } = useDesign('basic-list-item')
 
     return {
-      getClass,
-      getCardClass,
+      prefixCls,
     }
   },
 })

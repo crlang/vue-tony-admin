@@ -7,28 +7,26 @@
         v-for="item in list"
         :key="item.key">
         <ListItem>
-          <ListItemMeta>
-            <template #avatar>
-              <Icon
-                v-if="item.avatar"
-                class="avatar"
-                :icon="item.avatar"
-                :color="item.color" />
-            </template>
-            <template #title>
-              {{ item.title }}
-              <el-button
-                type="text"
-                size="small"
-                v-if="item.extra"
-                class="extra">
-                {{ item.extra }}
-              </el-button>
-            </template>
-            <template #description>
-              <div>{{ item.description }}</div>
-            </template>
-          </ListItemMeta>
+          <template #thumb>
+            <Icon
+              v-if="item.avatar"
+              class="avatar"
+              :icon="item.avatar"
+              :color="item.color" />
+          </template>
+          <template #title>
+            {{ item.title }}
+            <el-button
+              type="text"
+              size="small"
+              v-if="item.extra"
+              class="extra">
+              {{ item.extra }}
+            </el-button>
+          </template>
+          <template #description>
+            <div>{{ item.description }}</div>
+          </template>
         </ListItem>
       </template>
     </List>
@@ -40,7 +38,7 @@ import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
 import { CollapseContainer } from '@/components/Container'
 import Icon from '@/components/Icon'
-import { List, ListItem, ListItemMeta } from '@/components/List'
+import { List, ListItem } from '@/components/List'
 
 import { accountBindList } from './data'
 
@@ -50,7 +48,6 @@ export default defineComponent({
     CollapseContainer,
     List,
     ListItem,
-    ListItemMeta,
     Icon,
   },
   setup() {

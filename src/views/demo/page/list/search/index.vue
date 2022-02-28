@@ -9,8 +9,7 @@
         :schemas="schemas"
         :showActionButtonGroup="false"
         autoSubmitOnEnter
-        @submit="handleSubmit"
-      />
+        @submit="handleSubmit" />
     </template>
 
     <div :class="`${prefixCls}__container`">
@@ -19,45 +18,42 @@
           v-for="item in list"
           :key="item.id">
           <ListItem>
-            <ListItemMeta>
-              <template #description>
-                <div :class="`${prefixCls}__content`">
-                  {{ item.content }}
-                </div>
-                <div :class="`${prefixCls}__action`">
-                  <template
-                    v-for="action in actions"
-                    :key="action.icon">
-                    <div :class="`${prefixCls}__action-item`">
-                      <Icon
-                        v-if="action.icon"
-                        :class="`${prefixCls}__action-icon`"
-                        :icon="action.icon"
-                        :color="action.color"
-                      />
-                      {{ action.text }}
-                    </div>
-                  </template>
-                  <span :class="`${prefixCls}__time`">{{ item.time }}</span>
-                </div>
-              </template>
-              <template #title>
-                <p :class="`${prefixCls}__title`">
-                  {{ item.title }}
-                </p>
-                <div>
-                  <template
-                    v-for="tag in item.description"
-                    :key="tag">
-                    <el-tag
-                      class="mb-2 mr-2"
-                      size="small">
-                      {{ tag }}
-                    </el-tag>
-                  </template>
-                </div>
-              </template>
-            </ListItemMeta>
+            <template #title>
+              <p :class="`${prefixCls}__title`">
+                {{ item.title }}
+              </p>
+              <div>
+                <template
+                  v-for="tag in item.description"
+                  :key="tag">
+                  <el-tag
+                    class="mb-2 mr-2"
+                    size="small">
+                    {{ tag }}
+                  </el-tag>
+                </template>
+              </div>
+            </template>
+            <template #description>
+              <div :class="`${prefixCls}__content`">
+                {{ item.content }}
+              </div>
+              <div :class="`${prefixCls}__action`">
+                <template
+                  v-for="action in actions"
+                  :key="action.icon">
+                  <div :class="`${prefixCls}__action-item`">
+                    <Icon
+                      v-if="action.icon"
+                      :class="`${prefixCls}__action-icon`"
+                      :icon="action.icon"
+                      :color="action.color" />
+                    {{ action.text }}
+                  </div>
+                </template>
+                <span :class="`${prefixCls}__time`">{{ item.time }}</span>
+              </div>
+            </template>
           </ListItem>
         </template>
       </List>
@@ -72,7 +68,7 @@ import Icon from '@/components/Icon'
 import { BasicForm } from '@/components/Form'
 import { actions, searchList as list, schemas } from './data'
 import { PageWrapper } from '@/components/Page'
-import { List, ListItem, ListItemMeta } from '@/components/List'
+import { List, ListItem } from '@/components/List'
 import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
@@ -83,7 +79,6 @@ export default defineComponent({
     BasicForm,
     List,
     ListItem,
-    ListItemMeta,
   },
   setup() {
     const { createMessage } = useMessage()
@@ -132,9 +127,11 @@ export default defineComponent({
   &__action {
     position: relative;
     margin-top: 10px;
+    line-height: 1;
 
     &-item {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       padding: 0 16px;
       color: var(--text-secondary-color);
 

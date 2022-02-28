@@ -3,7 +3,7 @@
  * @Date: 2021-12-24 17:24:14
  * @Description: Element Plus Type and Props
  * @LastEditors: crlang(https://www.crlang.com)
- * @LastEditTime: 2022-02-09 09:26:05
+ * @LastEditTime: 2022-02-27 22:48:27
  */
 import { ExtractPropTypes } from 'vue'
 
@@ -18,7 +18,8 @@ import type {
   DialogProps,
   DrawerProps,
   MessageProps,
-  CardProps
+  CardProps,
+  TagProps
 } from 'element-plus'
 
 import {
@@ -30,6 +31,7 @@ import {
   drawerProps,
   messageProps,
   cardProps,
+  tagProps
 } from 'element-plus'
 
 export const EleButtonProps = buttonProps
@@ -57,6 +59,9 @@ export type EleMessage = MessageProps
 
 export const EleCardProps = cardProps
 export type EleCard = CardProps
+
+export const EleTagProps = tagProps
+export type EleTag = TagProps
 
 // 临时方案
 import { dropdownProps, dropdownItemProps } from 'element-plus/es/components/dropdown/src/dropdown'

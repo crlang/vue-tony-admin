@@ -7,8 +7,8 @@ export const searchList = (() => {
     result.push({
       id: i,
       title: i + '-Tony Admin',
-      description: ['Tony', '设计语言', 'Typescript'],
-      content: '基于Vue Next, TypeScript, Ant Design实现的一套完整的企业级后台管理系统。',
+      description: ['Tony', 'Vue3', 'Typescript'],
+      content: '基于 Vue3, Vite2, TypeScript, Element Plus 实现的一套完整的企业级后台管理系统',
       time: '2020-11-14 11:20',
     })
   }

@@ -5,7 +5,6 @@ import listItemMeta from './src/meta.vue'
 
 export const List = withInstall(list, {
   listItem,
-  listItemMeta,
 })
 export const ListItem = withNoopInstall(listItem)
 export const ListItemMeta = withNoopInstall(listItemMeta)

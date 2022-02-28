@@ -1,7 +1,7 @@
 <template>
   <el-card shadow="always">
     <template #header>
-      <div class="flex justify-between items-center">
+      <div class="dync-card-header">
         <div class="el-card__header--title">最新动态</div>
         <el-button type="text">更多</el-button>
       </div>
@@ -10,25 +10,23 @@
       <template
         v-for="item in dynamicInfoItems"
         :key="item.title">
-        <ListItem style="display: block;">
-          <ListItemMeta>
-            <template #description>
-              {{ item.date }}
-            </template>
-            <template #title>
-              <div class="dync-title">{{ item.name }}</div>
-              <div class="dync-desc">
-                <!-- eslint-disable-next-line vue/no-v-html -->
-                <p v-html="item.desc"></p>
-              </div>
-            </template>
-            <template #avatar>
-              <img
-                :src="item.avatar"
-                :alt="item.name"
-                width="32" />
-            </template>
-          </ListItemMeta>
+        <ListItem>
+          <template #title>
+            <div class="dync-title">{{ item.name }}</div>
+            <div class="dync-desc">
+              <!-- eslint-disable-next-line vue/no-v-html -->
+              <p v-html="item.desc"></p>
+            </div>
+          </template>
+          <template #thumb>
+            <img
+              :src="item.avatar"
+              :alt="item.name"
+              width="32" />
+          </template>
+          <template #description>
+            {{ item.date }}
+          </template>
         </ListItem>
       </template>
     </List>
@@ -38,10 +36,16 @@
 <script lang="ts" setup>
 import { ElCard, ElButton } from 'element-plus'
 import { dynamicInfoItems } from './data'
-import { List, ListItem, ListItemMeta } from '@/components/List'
+import { List, ListItem } from '@/components/List'
 </script>
 
 <style scoped>
+.dync-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .dync-title {
   margin-bottom: 6px;
   font-size: 20px;

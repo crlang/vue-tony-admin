@@ -1,7 +1,7 @@
 <template>
   <PageWrapper
     :class="prefixCls"
-    title="标准列表">
+    title="数据列表">
     <div :class="`${prefixCls}__top`">
       <el-row :gutter="12">
         <el-col
@@ -25,14 +25,14 @@
       </el-row>
     </div>
 
-    <div :class="`${prefixCls}__content`">
-      <List :pagination="pagination">
-        <template
-          v-for="item in list"
-          :key="item.id">
-          <ListItem class="list">
-            <ListItemMeta>
-              <template #avatar>
+    <CollapseContainer title="常规列表">
+      <div :class="`${prefixCls}__content`">
+        <List :pagination="pagination">
+          <template
+            v-for="item in list"
+            :key="item.id">
+            <ListItem class="list">
+              <template #thumb>
                 <Icon
                   class="icon"
                   v-if="item.icon"
@@ -65,11 +65,29 @@
                   <el-progress :percentage="item.percent" />
                 </div>
               </template>
-            </ListItemMeta>
+            </ListItem>
+          </template>
+        </List>
+      </div>
+    </CollapseContainer>
+
+    <CollapseContainer
+      class="my-4"
+      title="基础列表">
+      <div :class="`${prefixCls}__content`">
+        <List>
+          <ListItem
+            v-for="k in 20"
+            :key="k"
+            title="Tony Admin"
+            :thumb="`https://himg.bdimg.com/sys/portrait/hotitem/wildkid/${k+26}`">
+            <template #description>
+              基于 Vue3, TypeScript, Element Plus 实现的一套完整的企业级后台管理系统
+            </template>
           </ListItem>
-        </template>
-      </List>
-    </div>
+        </List>
+      </div>
+    </CollapseContainer>
   </PageWrapper>
 </template>
 
@@ -79,7 +97,8 @@ import { ElRow, ElCol, ElProgress } from 'element-plus'
 import Icon from '@/components/Icon'
 import { cardList } from './data'
 import { PageWrapper } from '@/components/Page'
-import { List, ListItem, ListItemMeta } from '@/components/List'
+import { List, ListItem } from '@/components/List'
+import { CollapseContainer } from '@/components/Container'
 
 export default defineComponent({
   components: {
@@ -90,7 +109,7 @@ export default defineComponent({
     PageWrapper,
     List,
     ListItem,
-    ListItemMeta,
+    CollapseContainer,
   },
   setup() {
     return {
@@ -109,6 +128,7 @@ export default defineComponent({
 .list-basic {
   &__top {
     padding: 24px;
+    margin-bottom: 16px;
     text-align: center;
     background-color: var(--background-secondary-color);
 

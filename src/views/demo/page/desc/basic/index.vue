@@ -108,7 +108,7 @@ export default defineComponent({
     margin-bottom: -8px;
     font-size: 14px;
     line-height: 44px;
-    border-bottom: 1px solid var(--border-base-color)
+    border-bottom: 1px solid var(--border-grey-color)
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <CardGrid shadow="always">
     <template #header>
-      <div class="flex justify-between items-center">
+      <div class="project-card-header">
         <div class="el-card__header--title">项目</div>
         <el-button type="text">更多</el-button>
       </div>
@@ -41,6 +41,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.project-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .project-item {
   &__title {
     display: flex;

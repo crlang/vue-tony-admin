@@ -5,17 +5,22 @@
         v-for="item in list"
         :key="item.title">
         <el-col :span="6">
-          <ListItem type="card">
-            <div
-              :class="`${prefixCls}__card-img`"
-              :style="{'background-image': 'url('+demoImg+')'}"></div>
+          <ListItem :class="`${prefixCls}__item`">
+            <el-card
+              :class="`${prefixCls}__card`"
+              :bodyStyle="{padding:0}">
 
-            <div :class="`${prefixCls}__card-title`">
-              {{ item.title }}
-            </div>
-            <div :class="`${prefixCls}__card-content`">
-              {{ item.content }}
-            </div>
+              <div
+                :class="`${prefixCls}__card-img`"
+                :style="{'background-image': 'url('+demoImg+')'}"></div>
+
+              <div :class="`${prefixCls}__card-title`">
+                {{ item.title }}
+              </div>
+              <div :class="`${prefixCls}__card-content`">
+                {{ item.content }}
+              </div>
+            </el-card>
           </ListItem>
         </el-col>
       </template>
@@ -25,7 +30,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ElRow, ElCol } from 'element-plus'
+import { ElRow, ElCol, ElCard } from 'element-plus'
 import demoImg from '@/assets/images/demo.png'
 import { projectList } from './data'
 import { List, ListItem } from '@/components/List'
@@ -34,6 +39,7 @@ export default defineComponent({
   components: {
     ElRow,
     ElCol,
+    ElCard,
     List,
     ListItem,
   },
@@ -49,12 +55,13 @@ export default defineComponent({
 
 <style lang="scss">
 .account-center-project {
+  &__item {
+    border: none;
+  }
+
   &__card {
     width: 100%;
-
-    .el-card__body {
-      padding: 0 0 24px;
-    }
+    border: 1px solid var(--border-grey-color);
 
     &-img {
       width: 100%;
@@ -68,11 +75,12 @@ export default defineComponent({
       margin: 5px 10px;
       font-size: 16px;
       font-weight: 500;
-      color: rgba(0, 0, 0, 0.85);
+      color: var(--text-primary-color);
     }
 
     &-content {
       margin: 5px 10px;
+      color: var(--text-secondary-color);
     }
   }
 }

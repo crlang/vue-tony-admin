@@ -7,19 +7,17 @@
         v-for="item in list"
         :key="item.key">
         <ListItem>
-          <ListItemMeta>
-            <template #title>
-              {{ item.title }}
-              <div
-                class="extra"
-                v-if="item.extra">
-                {{ item.extra }}
-              </div>
-            </template>
-            <template #description>
-              <div>{{ item.description }}</div>
-            </template>
-          </ListItemMeta>
+          <template #title>
+            {{ item.title }}
+            <div
+              class="extra"
+              v-if="item.extra">
+              {{ item.extra }}
+            </div>
+          </template>
+          <template #description>
+            <div>{{ item.description }}</div>
+          </template>
         </ListItem>
       </template>
     </List>
@@ -29,7 +27,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { CollapseContainer } from '@/components/Container'
-import { List, ListItem, ListItemMeta } from '@/components/List'
+import { List, ListItem } from '@/components/List'
 
 import { secureSettingList } from './data'
 
@@ -38,7 +36,6 @@ export default defineComponent({
     CollapseContainer,
     List,
     ListItem,
-    ListItemMeta,
   },
   setup() {
     return {

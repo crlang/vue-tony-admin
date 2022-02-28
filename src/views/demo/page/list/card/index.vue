@@ -33,21 +33,23 @@
             v-for="item in list"
             :key="item.title">
             <el-col :span="6">
-              <ListItem
-                type="card"
-                :cardClass="`${prefixCls}__card`"
-                :cardBorder="false">
-                <div :class="`${prefixCls}__card-title`">
-                  <Icon
-                    class="icon"
-                    v-if="item.icon"
-                    :icon="item.icon"
-                    :color="item.color" />
-                  {{ item.title }}
-                </div>
-                <div :class="`${prefixCls}__card-detail`">
-                  基于Vue Next, TypeScript, Ant Design Vue实现的一套完整的企业级后台管理系统
-                </div>
+              <ListItem :class="`${prefixCls}__card-item`">
+                <el-card
+                  :class="`${prefixCls}__card`"
+                  :bodyStyle="{padding:0}">
+                  <div :class="`${prefixCls}__card-title`">
+                    <Icon
+                      class="icon"
+                      size="50"
+                      v-if="item.icon"
+                      :icon="item.icon"
+                      :color="item.color" />
+                    <span>{{ item.title }}</span>
+                  </div>
+                  <div :class="`${prefixCls}__card-detail`">
+                    基于 Vue3, TypeScript, Element Plus 实现的一套完整的企业级后台管理系统
+                  </div>
+                </el-card>
               </ListItem>
             </el-col>
           </template>
@@ -59,7 +61,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ElRow, ElCol } from 'element-plus'
+import { ElRow, ElCol, ElCard } from 'element-plus'
 import Icon from '@/components/Icon'
 import { cardList } from './data'
 import { PageWrapper } from '@/components/Page'
@@ -69,6 +71,7 @@ export default defineComponent({
   components: {
     ElRow,
     ElCol,
+    ElCard,
     Icon,
     PageWrapper,
     List,
@@ -98,29 +101,28 @@ export default defineComponent({
     }
   }
 
-  &:deep(#{&}__card) {
-    padding: 16px;
-    margin-bottom: -8px;
-  }
-
   &__card {
+    padding: 16px;
+
+    &-item {
+      border: none;
+    }
+
     &-title {
-      margin-bottom: 5px;
-      font-size: 16px;
+      display: flex;
+      font-size: 18px;
       font-weight: 500;
       color: var(--text-primary-color);
 
       .icon {
-        margin-top: -5px;
         margin-right: 10px;
-        font-size: 38px !important;
       }
     }
 
     &-detail {
-      padding-top: 10px;
-      padding-left: 30px;
-      font-size: 14px;
+      padding-left: 60px;
+      font-size: 16px;
+      line-height: 1.7;
       color: var(--text-secondary-color);
     }
   }

@@ -7,45 +7,43 @@
         style="display: block;"
         :class="[prefixCls+'__item',{'is-read':item.titleDelete}]"
         @click="handleTitleClick(item)">
-        <ListItemMeta>
-          <template
-            #avatar
-            v-if="item.avatar">
-            <ElAvatar
-              style="--el-avatar-bg-color: #fff"
-              class="avatar"
-              :src="item.avatar" />
-          </template>
+        <template
+          #thumb
+          v-if="item.avatar">
+          <ElAvatar
+            style="--el-avatar-bg-color: #fff"
+            class="avatar"
+            :src="item.avatar" />
+        </template>
 
-          <template #title>
-            <div class="title">
-              <span>{{ item.title }}</span>
-              <div
-                class="extra"
-                v-if="item.extra">
-                <ElTag
-                  class="tag"
-                  size="small"
-                  :type="item.color">
-                  {{ item.extra }}
-                </ElTag>
-              </div>
+        <template #title>
+          <div class="title">
+            <span>{{ item.title }}</span>
+            <div
+              class="extra"
+              v-if="item.extra">
+              <ElTag
+                class="tag"
+                size="small"
+                :type="item.color">
+                {{ item.extra }}
+              </ElTag>
             </div>
-          </template>
+          </div>
+        </template>
 
-          <template #description>
-            <div>
-              <div
-                class="description"
-                v-if="item.description">
-                {{ item.description }}
-              </div>
-              <div class="datetime">
-                {{ item.datetime }}
-              </div>
+        <template #description>
+          <div>
+            <div
+              class="description"
+              v-if="item.description">
+              {{ item.description }}
             </div>
-          </template>
-        </ListItemMeta>
+            <div class="datetime">
+              {{ item.datetime }}
+            </div>
+          </div>
+        </template>
       </ListItem>
     </template>
   </List>
@@ -56,7 +54,7 @@ import { computed, defineComponent, PropType, ref, watch, unref } from 'vue'
 import { ElAvatar, ElTag } from 'element-plus'
 import { ListItem as ListItemType } from './data'
 import { useDesign } from '@/hooks/web/useDesign'
-import { List, ListItem, ListItemMeta } from '@/components/List'
+import { List, ListItem } from '@/components/List'
 
 export default defineComponent({
   components: {
@@ -64,7 +62,6 @@ export default defineComponent({
     ElTag,
     List,
     ListItem,
-    ListItemMeta,
   },
   props: {
     list: {
