@@ -3,7 +3,7 @@
  * @Date: 2021-12-24 17:24:14
  * @Description: Element Plus Type and Props
  * @LastEditors: crlang(https://www.crlang.com)
- * @LastEditTime: 2022-02-27 22:48:27
+ * @LastEditTime: 2022-02-28 10:45:03
  */
 import { ExtractPropTypes } from 'vue'
 
@@ -65,16 +65,23 @@ export type EleTag = TagProps
 
 // 临时方案
 import { dropdownProps, dropdownItemProps } from 'element-plus/es/components/dropdown/src/dropdown'
+import type {
+  IDescriptionsInject,
+  IDescriptionsItemInject
+} from 'element-plus/es/components/descriptions/src/descriptions.type'
+import { isValidComponentSize } from '@/utils/validators'
+import type { ComponentSize } from '@/utils/types'
+import type { FormItemRule, FormRulesMap } from 'element-plus/es/components/form/src/form.type'
+import type { TableProps } from 'element-plus/es/components/table/src/table/defaults'
+import TableDefault from 'element-plus/es/components/table/src/table/defaults'
+import type { TableColumnCtx } from 'element-plus/es/components/table/src/table-column/defaults'
+import TableColumn from 'element-plus/es/components/table/src/table-column/defaults'
 
 export const EleDropdownProps = dropdownProps
 export type EleDropdown = ExtractPropTypes<typeof dropdownProps>
 
 export const EleDropdownItemProps = dropdownItemProps
 export type EleDropdownItem = ExtractPropTypes<typeof dropdownItemProps>
-
-import { IDescriptionsInject, IDescriptionsItemInject } from 'element-plus/es/components/descriptions/src/descriptions.type'
-import { isValidComponentSize } from '@/utils/validators'
-import { ComponentSize } from '@/utils/types'
 
 export const EleDescriptionsProps = {
   border: {
@@ -139,3 +146,104 @@ export const EleDescriptionsItemProps = {
   },
 }
 export type EleDescriptionsItem = IDescriptionsItemInject
+
+export type EleFormItemRule = FormItemRule
+
+export type EleFormRulesMap = FormRulesMap
+
+export const EleFormProps = {
+  model: Object,
+  rules: Object as PropType<FormRulesMap>,
+  labelPosition: String,
+  labelWidth: {
+    type: [String, Number],
+    default: '',
+  },
+  labelSuffix: {
+    type: String,
+    default: '',
+  },
+  inline: Boolean,
+  inlineMessage: Boolean,
+  statusIcon: Boolean,
+  showMessage: {
+    type: Boolean,
+    default: true,
+  },
+  size: String as PropType<ComponentSize>,
+  disabled: Boolean,
+  validateOnRuleChange: {
+    type: Boolean,
+    default: true,
+  },
+  hideRequiredAsterisk: {
+    type: Boolean,
+    default: false,
+  },
+  scrollToError: Boolean,
+}
+
+export interface EleForm {
+  model: object
+  rules: FormRulesMap
+  labelPosition: string
+  labelWidth: string | number
+  labelSuffix: string
+  inline: boolean
+  inlineMessage: boolean
+  statusIcon: boolean
+  showMessage: boolean
+  size: ComponentSize
+  disabled: boolean
+  validateOnRuleChange: boolean
+  hideRequiredAsterisk: boolean
+  scrollToError: boolean
+}
+
+export const EleFormItemProps = {
+  label: String,
+  labelWidth: {
+    type: [String, Number],
+    default: '',
+  },
+  prop: String,
+  required: {
+    type: Boolean,
+    default: undefined,
+  },
+  rules: [Object, Array] as PropType<FormItemRule | FormItemRule[]>,
+  error: String,
+  validateStatus: String,
+  for: String,
+  inlineMessage: {
+    type: [String, Boolean],
+    default: '',
+  },
+  showMessage: {
+    type: Boolean,
+    default: true,
+  },
+  size: {
+    type: String as PropType<ComponentSize>,
+    validator: isValidComponentSize,
+  },
+}
+export interface EleFormItem {
+  label: string
+  labelWidth: string | number
+  prop: string
+  required: boolean
+  rules: FormItemRule | FormItemRule[]
+  error: string
+  validateStatus: string
+  for: string
+  inlineMessage: string | boolean
+  showMessage: boolean
+  size: ComponentSize
+}
+
+export const EleTableProps = TableDefault
+export type EleTable = TableProps
+
+export const EleTableColumnProps = TableColumn
+export type EleTableColumn = TableColumnCtx
