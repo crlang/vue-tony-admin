@@ -97,3 +97,28 @@ export function isUrl(path: string): boolean {
     /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/
   return reg.test(path)
 }
+
+/**
+ * Determine whether the current object is a ref object
+ */
+export function isRef(val) {
+  return val && val._is_ref
+}
+/**
+ * Determine whether the current object is a reactive object
+ */
+export function isReactive(val) {
+  return val && val._is_reactive
+}
+/**
+ * Determine whether the current object is a readonly object
+ */
+export function isReadonly(val) {
+  return val && val._is_readonly
+}
+/**
+ * Determine whether the current object is a reactive object or a readonly object(proxy object)
+ */
+export function isProxy(val) {
+  return isReactive(val) || isReadonly(val)
+}

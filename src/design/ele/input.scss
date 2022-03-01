@@ -21,16 +21,17 @@ $elenamex: 'el-input';
     }
   }
 
-  // &--prefix .#{$elenamex}__inner {
-  //   padding-right: 44px;
-  // }
-  // &--suffix .#{$elenamex}__inner {
-  //   padding-left: 44px;
-  // }
+  &__prefix,
+  &__suffix {
+    &-inner {
+      align-items: center;
+    }
+  }
 
   &-group {
     &__append,
     &__prepend {
+      color: var(--text-secondary-color);
       border-color: var(--border-grey-color);
     }
 

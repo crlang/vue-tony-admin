@@ -123,8 +123,8 @@ export default defineComponent({
         keyword.value = ''
       },
       handleSubmit: (values: any) => {
-        console.log('form submit', values)
-        createMessage.success('click search,values:' + JSON.stringify(values))
+        console.table('form submit', values)
+        createMessage.success('submit success!')
       },
     }
   },

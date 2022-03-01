@@ -212,7 +212,6 @@ export function useDataSource(
     const { api, searchInfo, fetchSetting, beforeFetch, afterFetch, useSearchForm, pagination } =
       unref(propsRef)
     if (!api || !isFunction(api)) return
-    // debugger
     try {
       setLoading(true)
       const { pageField, sizeField, listField, totalField } = Object.assign(

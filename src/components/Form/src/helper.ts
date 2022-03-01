@@ -1,31 +1,28 @@
 import type { ComponentType } from './types'
 import { useI18n } from '@/hooks/web/useI18n'
-import { dateUtil } from '@/utils/dateUtil'
-import { isNumber, isObject } from '@/utils/is'
+// import { dateUtil } from '@/utils/dateUtil'
+// import { isNumber, isObject } from '@/utils/is'
 // import { FormItemRule } from 'element-plus/lib/components/form/src/form.type'
 
 const { t } = useI18n()
 
 /**
- * @description: 生成placeholder
+ * 生成placeholder
  */
 export function createPlaceholderMessage(component: ComponentType) {
-  if (component.includes('Input') || component.includes('Complete')) {
+  if (['ElInput', 'ElInputNumber'].includes(component)) {
     return t('common.inputText')
   }
-  if (component.includes('Picker')) {
-    return t('common.chooseText')
-  }
-  if (['Select', 'Cascader', 'Checkbox', 'Radio', 'Switch'].includes(component)) {
+  if (['ElSelect', 'ElSelectV2', 'ElCascader', 'ElDatePicker', 'ElTimePicker', 'ElTimeSelect'].includes(component)) {
     return t('common.chooseText')
   }
   return ''
 }
 
-const DATE_TYPE = ['DatePicker', 'MonthPicker', 'WeekPicker', 'TimePicker']
+const DATE_TYPE = ['ElDatePicker', 'ElTimePicker']
 
 function genType() {
-  return [...DATE_TYPE, 'ElDateRangePicker', 'RangePicker']
+  return [...DATE_TYPE, 'ElDateRangePicker', 'ElDateTimeRangePicker']
 }
 
 // export function setComponentRuleType(
@@ -42,22 +39,14 @@ function genType() {
 //   }
 // }
 
-export function processDateValue(attr: Recordable, component: string) {
-  const { valueFormat, value } = attr
-  if (valueFormat) {
-    attr.value = isObject(value) ? dateUtil(value).format(valueFormat) : value
-  } else if (DATE_TYPE.includes(component) && value) {
-    attr.value = dateUtil(attr.value)
-  }
-}
-
-export function handleInputNumberValue(component?: ComponentType, val?: any) {
-  if (!component) return val
-  if (['Input', 'InputPassword', 'InputSearch', 'InputTextArea'].includes(component)) {
-    return val && isNumber(val) ? `${val}` : val
-  }
-  return val
-}
+// export function processDateValue(attr: Recordable, component: string) {
+//   const { valueFormat, value } = attr
+//   if (valueFormat) {
+//     attr.value = isObject(value) ? dateUtil(value).format(valueFormat) : value
+//   } else if (DATE_TYPE.includes(component) && value) {
+//     attr.value = dateUtil(attr.value)
+//   }
+// }
 
 /**
  * 时间字段

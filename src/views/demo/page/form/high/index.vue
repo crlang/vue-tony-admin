@@ -42,7 +42,7 @@ export default defineComponent({
 
     const [register, { validate, getFieldsValue }] = useForm({
       labelWidth: 120,
-      baseColProps: {
+      colProps: {
         span: 6,
       },
       schemas: schemas,
@@ -51,7 +51,7 @@ export default defineComponent({
 
     const [registerTask, { validate: validateTaskForm, getFieldsValue: getFieldsValue2 }] = useForm({
       labelWidth: 120,
-      baseColProps: {
+      colProps: {
         span: 6,
       },
       schemas: taskSchemas,

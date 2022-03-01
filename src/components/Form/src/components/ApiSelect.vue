@@ -11,8 +11,7 @@
       v-for="item in getOptions"
       :key="item.value"
       :label="item.label"
-      :value="item.value"
-    />
+      :value="item.value" />
   </ElSelect>
 </template>
 
@@ -24,7 +23,6 @@ import { useRuleFormItem } from '@/hooks/component/useFormItem'
 import { get, omit } from 'lodash-es'
 import { ArrowUp, Loading } from '@element-plus/icons'
 import { useI18n } from '@/hooks/web/useI18n'
-import { propTypes } from '@/utils/propTypes'
 
 type OptionsItem = { label: string; value: string; disabled?: boolean }
 
@@ -34,7 +32,7 @@ export default defineComponent({
   inheritAttrs: false,
   props: {
     modelValue: [Array, Object, String, Number],
-    numberToString: propTypes.bool,
+    numberToString: { type: Boolean },
     api: {
       type: Function as PropType<(arg?: Recordable) => Promise<OptionsItem[]>>,
       default: null,
@@ -45,12 +43,24 @@ export default defineComponent({
       default: () => ({}),
     },
     // support xxx.xxx.xx
-    resultField: propTypes.string.def(''),
-    labelField: propTypes.string.def('label'),
-    valueField: propTypes.string.def('value'),
-    immediate: propTypes.bool.def(true),
+    resultField: {
+      type: String,
+      default: '',
+    },
+    labelField: {
+      type: String,
+      default: 'label',
+    },
+    valueField: {
+      type: String,
+      default: 'value',
+    },
+    immediate: {
+      type: Boolean,
+      default: false,
+    },
   },
-  emits: ['options-change', 'change'],
+  emits: ['option-change', 'change'],
   setup(props, { emit }) {
     const options = ref<OptionsItem[]>([])
     const loading = ref(false)
@@ -134,7 +144,7 @@ export default defineComponent({
     }
 
     function emitChange() {
-      emit('options-change', unref(getOptions))
+      emit('option-change', unref(getOptions))
     }
 
     function handleChange(v) {

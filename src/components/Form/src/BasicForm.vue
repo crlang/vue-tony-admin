@@ -5,8 +5,8 @@
     ref="formElRef"
     :model="formModel"
     @keypress.enter="handleEnterPress">
+    <slot name="formHeader"></slot>
     <ElRow v-bind="getRow">
-      <slot name="formHeader"></slot>
       <template
         v-for="schema in getSchema"
         :key="schema.field">
@@ -15,7 +15,7 @@
           :formActionType="formActionType"
           :schema="schema"
           :formProps="getProps"
-          :allDefaultValues="defaultValueRef"
+          :defaultValues="defaultValueRef"
           :formModel="formModel"
           :setFormModel="setFormModel">
           <template
@@ -39,8 +39,8 @@
             v-bind="data || {}"></slot>
         </template>
       </FormAction>
-      <slot name="formFooter"></slot>
     </ElRow>
+    <slot name="formFooter"></slot>
   </ElForm>
 </template>
 
@@ -55,8 +55,8 @@ import { ElForm, ElRow } from 'element-plus'
 import FormItem from './components/FormItem.vue'
 import FormAction from './components/FormAction.vue'
 
-// import { dateItemType } from './helper'
-// import { dateUtil } from '@/utils/dateUtil'
+import { dateItemType } from './helper'
+import { dateUtil } from '@/utils/dateUtil'
 
 // import { cloneDeep } from 'lodash-es';
 import { deepMerge } from '@/utils'
@@ -108,9 +108,9 @@ export default defineComponent({
 
     // Get uniform row style and Row configuration for the entire form
     const getRow = computed((): Recordable => {
-      const { baseRowStyle = {}, rowProps } = unref(getProps)
+      const { rowStyle = {}, rowProps } = unref(getProps)
       return {
-        style: baseRowStyle,
+        style: rowStyle,
         ...rowProps,
       }
     })
@@ -120,22 +120,22 @@ export default defineComponent({
     )
 
     const getSchema = computed((): FormSchema[] => {
-      const schemas: FormSchema[] = unref(schemaRef) || (unref(getProps).schemas as any)
-      // for (const schema of schemas) {
-      // const { defaultValue, component } = schema
-      // handle date type
-      // if (defaultValue && dateItemType.includes(component)) {
-      //   if (!Array.isArray(defaultValue)) {
-      //     schema.defaultValue = dateUtil(defaultValue)
-      //   } else {
-      //     const def: moment.Moment[] = []
-      //     defaultValue.forEach((item) => {
-      //       def.push(dateUtil(item))
-      //     })
-      //     schema.defaultValue = def
-      //   }
-      // }
-      // }
+      const schemas = (unref(schemaRef) || (unref(getProps).schemas)) as FormSchema[]
+      for (const schema of schemas) {
+        const { defaultValue, component } = schema
+        // handle date type
+        if (defaultValue && dateItemType.includes(component)) {
+          if (!Array.isArray(defaultValue)) {
+            schema.defaultValue = dateUtil(defaultValue)
+          } else {
+            const def: moment.Moment[] = []
+            defaultValue.forEach((item) => {
+              def.push(dateUtil(item))
+            })
+            schema.defaultValue = def
+          }
+        }
+      }
       if (unref(getProps).showAdvancedButton) {
         return schemas.filter((schema) => schema.component !== 'ElDivider') as FormSchema[]
       } else {
@@ -202,9 +202,9 @@ export default defineComponent({
         if (!model) return
         setFieldsValue(model)
       },
-      {
-        immediate: true,
-      }
+      // {
+      //   immediate: true,
+      // }
     )
 
     watch(
@@ -246,6 +246,7 @@ export default defineComponent({
     function handleEnterPress(e: KeyboardEvent) {
       const { autoSubmitOnEnter } = unref(getProps)
       if (!autoSubmitOnEnter) return
+
       if (e.key === 'Enter' && e.target && e.target instanceof HTMLElement) {
         const target: HTMLElement = e.target as HTMLElement
         if (target && target.tagName && target.tagName.toUpperCase() === 'INPUT') {

@@ -4,7 +4,7 @@
       <el-button @click="setProps({ labelWidth: 150 })">更改labelWidth</el-button>
       <el-button @click="setProps({ labelWidth: 120 })">还原labelWidth</el-button>
       <el-button @click="setProps({ size: 'large' })">更改Size</el-button>
-      <el-button @click="setProps({ size: '' })">还原Size</el-button>
+      <el-button @click="setProps({ size: 'default' })">还原Size</el-button>
       <el-button @click="setProps({ disabled: true })">禁用表单</el-button>
       <el-button @click="setProps({ disabled: false })">解除禁用</el-button>
       <el-button @click="setProps({ actionColOptions: { span: 8 } })">操作按钮位置</el-button>
@@ -26,8 +26,7 @@
         ref="formElRef"
         :labelWidth="100"
         @submit="handleSubmit"
-        :actionColOptions="{ span: 24 }"
-      />
+        :actionColOptions="{ span: 24 }" />
     </CollapseContainer>
   </PageWrapper>
 </template>
@@ -50,7 +49,7 @@ export default defineComponent({
     function handleSubmit(values: any) {
       createMessage.success('click search,values:' + JSON.stringify(values))
     }
-    function setProps(props: FormProps) {
+    function setProps(props: Partial<FormProps>) {
       const formEl = formElRef.value
       if (!formEl) return
       formEl.setProps(props)

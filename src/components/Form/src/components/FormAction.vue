@@ -4,7 +4,7 @@
     v-if="showActionButtonGroup">
     <div
       style="width: 100%"
-      :style="{ textAlign: actionColOpt.style.textAlign }">
+      :style="{ textAlign: actionColOpt?.style?.textAlign }">
       <ElFormItem>
         <slot name="resetBefore"></slot>
         <Button
@@ -45,16 +45,15 @@
 </template>
 
 <script lang="ts">
-import type { ColEx } from '../types'
-import type { EleButton } from '@/components/ElementPlus'
+import type { EleCol } from '@/components/ElementPlus'
 
-import { defineComponent, computed, PropType } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { ElFormItem, ElCol } from 'element-plus'
 import { Button } from '@/components/Button'
 import { BasicArrow } from '@/components/Basic'
 import { useFormContext } from '../hooks/useFormContext'
 import { useI18n } from '@/hooks/web/useI18n'
-import { propTypes } from '@/utils/propTypes'
+import { formActionProps } from '../props'
 
 export default defineComponent({
   name: 'BasicFormAction',
@@ -64,27 +63,7 @@ export default defineComponent({
     Button,
     BasicArrow,
   },
-  props: {
-    showActionButtonGroup: propTypes.bool.def(true),
-    showResetButton: propTypes.bool.def(true),
-    showSubmitButton: propTypes.bool.def(true),
-    showAdvancedButton: propTypes.bool.def(true),
-    resetButtonOptions: {
-      type: Object as PropType<EleButton>,
-      default: () => ({}),
-    },
-    submitButtonOptions: {
-      type: Object as PropType<EleButton>,
-      default: () => ({}),
-    },
-    actionColOptions: {
-      type: Object as PropType<Partial<ColEx>>,
-      default: () => ({}),
-    },
-    actionSpan: propTypes.number.def(6),
-    isAdvanced: propTypes.bool,
-    hideAdvanceBtn: propTypes.bool,
-  },
+  props: formActionProps,
   emits: ['toggle-advanced'],
   setup(props, { emit }) {
     const { t } = useI18n()
@@ -95,7 +74,7 @@ export default defineComponent({
       const advancedSpanObj = showAdvancedButton
         ? { span: actionSpan < 6 ? 24 : actionSpan }
         : {}
-      const actionColOpt: Partial<ColEx> = {
+      const actionColOpt: Partial<EleCol> = {
         style: { textAlign: 'right' },
         span: showAdvancedButton ? 6 : 4,
         ...advancedSpanObj,
@@ -104,7 +83,7 @@ export default defineComponent({
       return actionColOpt
     })
 
-    const getResetBtnOptions = computed((): EleButton => {
+    const getResetBtnOptions = computed(() => {
       return Object.assign(
         {
           text: t('common.resetText'),

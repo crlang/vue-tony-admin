@@ -9,6 +9,7 @@ interface UseAutoFocusContext {
   isInitedDefault: Ref<boolean>
   formElRef: Ref<FormActionType>
 }
+
 export async function useAutoFocus({
   getSchema,
   getProps,

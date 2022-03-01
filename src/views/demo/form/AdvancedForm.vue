@@ -29,7 +29,6 @@ export default defineComponent({
       actionColOptions: {
         span: 24,
       },
-      compact: true,
       showAdvancedButton: true,
     })
     const extraSchemas: FormSchema[] = []
@@ -53,7 +52,6 @@ export default defineComponent({
       actionColOptions: {
         span: 24,
       },
-      compact: true,
       showAdvancedButton: true,
       alwaysShowLines: 2,
     })

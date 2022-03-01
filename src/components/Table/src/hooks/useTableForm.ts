@@ -17,7 +17,6 @@ export function useTableForm(
       showAdvancedButton: true,
       ...formConfig,
       submitButtonOptions: { loading: unref(getLoading), ...submitButtonOptions },
-      compact: true,
     }
   })
 

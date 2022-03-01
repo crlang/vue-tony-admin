@@ -29,7 +29,7 @@ export default defineComponent({
       labelWidth: 100,
       schemas: formSchema,
       showActionButtonGroup: false,
-      baseColProps: { lg: 12, md: 24 },
+      colProps: { lg: 12, md: 24 },
     })
 
     const [registerDrawer, { setDrawerProps, closeDrawer }] = useDrawerInner(async (data) => {

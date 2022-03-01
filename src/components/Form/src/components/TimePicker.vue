@@ -2,8 +2,7 @@
   <ElTimePicker
     v-bind="$attrs"
     clearable
-    v-model:modelValue="state"
-  />
+    v-model:modelValue="state" />
 </template>
 
 <script lang="ts">

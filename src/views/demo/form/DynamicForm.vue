@@ -7,13 +7,17 @@
       <el-button @click="deleteField">删除字段11</el-button>
     </div>
     <CollapseContainer title="动态表单示例,动态根据表单内其他值改变">
-      <BasicForm @register="register" />
+      <BasicForm
+        @register="register"
+        @submit="handleSubmit" />
     </CollapseContainer>
 
     <CollapseContainer
       class="mt-5"
       title="componentProps动态改变">
-      <BasicForm @register="register1" />
+      <BasicForm
+        @register="register1"
+        @submit="handleSubmit" />
     </CollapseContainer>
   </PageWrapper>
 </template>
@@ -79,6 +83,10 @@ export default defineComponent({
     function deleteField() {
       removeSchemaByField('field11')
     }
+    function handleSubmit(values: any) {
+      console.table('form submit', values)
+    }
+
     return {
       register,
       register1,
@@ -88,6 +96,7 @@ export default defineComponent({
       changeLabel34,
       appendField,
       deleteField,
+      handleSubmit,
     }
   },
 })

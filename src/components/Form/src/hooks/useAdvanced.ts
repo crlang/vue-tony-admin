@@ -1,7 +1,8 @@
-import type { ColEx } from '../types'
 import type { AdvanceState } from '../types/hooks'
 import type { ComputedRef, Ref } from 'vue'
 import type { FormProps, FormSchema } from '../types/form'
+import type { EleCol } from '@/components/ElementPlus'
+
 import { computed, unref, watch } from 'vue'
 import { isBoolean, isFunction, isNumber, isObject } from '@/utils/is'
 import { useBreakpoint } from '@/hooks/event/useBreakpoint'
@@ -61,7 +62,7 @@ export default function ({
     { immediate: true }
   )
 
-  function getAdvanced(itemCol: Partial<ColEx>, itemColSum = 0, isLastAction = false) {
+  function getAdvanced(itemCol: Partial<EleCol>, itemColSum = 0, isLastAction = false) {
     const width = unref(realWidthRef)
 
     const mdWidth =
@@ -114,7 +115,8 @@ export default function ({
   function updateAdvanced() {
     let itemColSum = 0
     let realItemColSum = 0
-    const { baseColProps = {} } = unref(getProps)
+    const { colProps = {} } = unref(getProps)
+    const baseColProps = colProps
 
     for (const schema of unref(getSchema)) {
       const { show, colProps } = schema

@@ -1,10 +1,5 @@
 <script lang="tsx">
-import type { PropType } from 'vue'
-import type { FormActionType, FormProps } from '../types/form'
-import type { FormSchema } from '../types/form'
-import type { TableActionType } from '@/components/Table'
-
-import { defineComponent, computed, unref } from 'vue'
+import { defineComponent, computed, unref, isProxy, toRaw } from 'vue'
 import { ElOption, ElCheckbox, ElRadio, ElRadioButton, ElDivider, ElCol } from 'element-plus'
 import { componentMap } from '../componentMap'
 import { BasicHelp } from '@/components/Basic'
@@ -15,6 +10,7 @@ import { upperFirst, cloneDeep } from 'lodash-es'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ElFormItem } from 'element-plus'
 import type { FormItemRule } from 'element-plus/lib/components/form/src/form.type'
+import { basicFormItemProps } from '../props'
 export declare type SyncErrorType = Error | string;
 export declare type SyncValidateResult = boolean | SyncErrorType | SyncErrorType[];
 
@@ -22,46 +18,19 @@ export default defineComponent({
   name: 'BasicFormItem',
   components: { ElOption, ElCheckbox, ElRadio, ElRadioButton, ElDivider, ElCol },
   inheritAttrs: false,
-  props: {
-    schema: {
-      type: Object as PropType<FormSchema>,
-      default: () => ({}),
-    },
-    formProps: {
-      type: Object as PropType<FormProps>,
-      default: () => ({}),
-    },
-    allDefaultValues: {
-      type: Object as PropType<Recordable>,
-      default: () => ({}),
-    },
-    formModel: {
-      type: Object as PropType<Recordable>,
-      default: () => ({}),
-    },
-    setFormModel: {
-      type: Function as PropType<(key: string, value: any) => void>,
-      default: null,
-    },
-    tableAction: {
-      type: Object as PropType<TableActionType>,
-    },
-    formActionType: {
-      type: Object as PropType<FormActionType>,
-    },
-  },
+  props: basicFormItemProps,
   setup(props, { slots }) {
     const { t } = useI18n()
 
     const getValues = computed(() => {
-      const { allDefaultValues, formModel, schema } = props
+      const { defaultValues, formModel, schema } = props
       const { mergeDynamicData } = props.formProps
       return {
         field: schema.field,
         model: formModel,
         values: {
           ...mergeDynamicData,
-          ...allDefaultValues,
+          ...defaultValues,
           ...formModel,
         } as Recordable,
         schema: schema,
@@ -191,7 +160,7 @@ export default defineComponent({
         }
         if (component) {
           if (!Reflect.has(rule, 'type')) {
-            rule.type = component === 'InputNumber' ? 'number' : 'string'
+            rule.type = component === 'ElInputNumber' ? 'number' : 'string'
           }
 
           rule.message = rule.message || defaultMsg
@@ -228,7 +197,6 @@ export default defineComponent({
         valueField,
       } = props.schema
 
-      // const isCheck = component && ['Switch', 'Checkbox'].includes(component)
       const bindInput = component && ['ElInput', 'ElSlider'].includes(component)
       const bindDefInput = () => {
         const isNum = component && ['ElInputNumber'].includes(component)
@@ -260,7 +228,7 @@ export default defineComponent({
       }
       const Comp = componentMap.get(componentvs) as ReturnType<typeof defineComponent>
 
-      const { autoSetPlaceHolder, size } = props.formProps
+      const { autoSetPlaceHolder, size = 'default' } = props.formProps
       const propsData: Recordable = {
         clearable: true,
         // getPopupContainer: (trigger: Element) => trigger.parentNode,
@@ -268,21 +236,21 @@ export default defineComponent({
         ...unref(getComponentsProps),
         disabled: unref(getDisable),
       }
-      // 移除空size
-      !propsData.size && delete propsData.size
 
       const isCreatePlaceholder = !propsData.disabled && autoSetPlaceHolder
       // RangePicker place is an array
-      if (isCreatePlaceholder && component !== 'RangePicker' && component) {
+      if (isCreatePlaceholder && component) {
         propsData.placeholder =
             unref(getComponentsProps)?.placeholder || createPlaceholderMessage(component)
       }
-      // propsData.codeField = field
-      // propsData.formValues = unref(getValues)
+
+      const componentVal = isProxy(props.formModel[field]) ? toRaw(props.formModel[field]) : props.formModel[field]
 
       const bindValue: Recordable = {
-        [valueField || 'modelValue']: props.formModel[field] ?? (bindDefInput() === false ? undefined : bindDefInput()),
+        [valueField || 'modelValue']: componentVal ?? (bindDefInput() === false ? undefined : bindDefInput()),
       }
+
+      // console.log('bindValue++++', component, field, props.formModel[field], bindValue)
 
       const compAttr: Recordable = {
         ...propsData,
@@ -291,49 +259,49 @@ export default defineComponent({
       }
       // compAttr.modelValue = compAttr?.value
 
-      const showAppend = !!append
-      const showPrepend = !!prepend
-      const showPrefix = !!prefix
-      const showSuffix = !!suffix
-      const showEmpty = !!empty
-
       if (!renderComponentContent) {
         // element input text
         const compSlot:any = {}
         // input slots [append,prepend,prefix,suffix]
-        showAppend && (compSlot.append = () => isFunction(append) ? append(unref(getValues)) : append)
-        showPrepend && (compSlot.prepend = () => isFunction(prepend) ? prepend(unref(getValues)) : prepend)
-        showPrefix && (compSlot.prefix = () => isFunction(prefix) ? prefix(unref(getValues)) : prefix)
-        showSuffix && (compSlot.suffix = () => isFunction(suffix) ? suffix(unref(getValues)) : suffix)
-
-        // select slots [default,prefix,empty]
-        showEmpty && (compSlot.empty = () => isFunction(empty) ? empty(unref(getValues)) : empty)
-        if (component === 'ElSelect' && compAttr?.options) {
-          compSlot.default = () => compAttr?.options.map(k => {
-            return <ElOption label={k.label} value={k.value} />
-          })
+        if (component === 'ElInput') {
+          append && (compSlot.append = () => isFunction(append) ? append(unref(getValues)) : append)
+          prepend && (compSlot.prepend = () => isFunction(prepend) ? prepend(unref(getValues)) : prepend)
+          prefix && (compSlot.prefix = () => isFunction(prefix) ? prefix(unref(getValues)) : prefix)
+          suffix && (compSlot.suffix = () => isFunction(suffix) ? suffix(unref(getValues)) : suffix)
         }
 
-        if (component === 'ElCheckboxGroup' && compAttr?.options) {
-          compSlot.default = () => compAttr?.options.map(k => {
-            return <ElCheckbox label={k.value}>{k.label}</ElCheckbox>
-          })
+        if (compAttr?.options) {
+        // select slots [prefix,empty]
+          if (component === 'ElSelect') {
+            prefix && (compSlot.prefix = () => isFunction(prefix) ? prefix(unref(getValues)) : prefix)
+            empty && (compSlot.empty = () => isFunction(empty) ? empty(unref(getValues)) : empty)
+            compSlot.default = () => compAttr?.options.map(k => {
+              return <ElOption label={k.label} value={k.value} />
+            })
+          }
+
+          if (component === 'ElCheckboxGroup') {
+            compSlot.default = () => compAttr?.options.map(k => {
+              return <ElCheckbox label={k.value}>{k.label}</ElCheckbox>
+            })
+          }
+          if (component === 'ElRadioGroup') {
+            compSlot.default = () => compAttr?.options.map(k => {
+              return <ElRadio label={k.value}>{k.label}</ElRadio>
+            })
+          }
+          if (component === 'ElRadio') {
+            compSlot.default = () => compAttr?.options.map(k => {
+              return <ElRadio label={k.value}>{k.label}</ElRadio>
+            })
+          }
+          if (component === 'ElRadioButton') {
+            compSlot.default = () => compAttr?.options.map(k => {
+              return <ElRadioButton label={k.value}>{k.label}</ElRadioButton>
+            })
+          }
         }
-        if (component === 'ElRadioGroup' && compAttr?.options) {
-          compSlot.default = () => compAttr?.options.map(k => {
-            return <ElRadio label={k.value}>{k.label}</ElRadio>
-          })
-        }
-        if (component === 'ElRadio' && compAttr?.options) {
-          compSlot.default = () => compAttr?.options.map(k => {
-            return <ElRadio label={k.value}>{k.label}</ElRadio>
-          })
-        }
-        if (component === 'ElRadioButton' && compAttr?.options) {
-          compSlot.default = () => compAttr?.options.map(k => {
-            return <ElRadioButton label={k.value}>{k.label}</ElRadioButton>
-          })
-        }
+
         return <Comp {...compAttr} >{compSlot}</Comp>
       }
 
@@ -346,11 +314,10 @@ export default defineComponent({
     }
 
     function renderLabelHelpMessage() {
-      // debugger
       const { label, helpMessage, helpComponentProps, subLabel } = props.schema
       const renderLabel = subLabel ? (
         <span>
-          {label} <span class='text-secondary'>{subLabel}</span>
+          {label} <span>{subLabel}</span>
         </span>
       ) : (
         label
@@ -369,7 +336,6 @@ export default defineComponent({
     }
 
     function renderItem() {
-      // debugger
       const { itemProps, slot, render, field, component } = props.schema
 
       if (component === 'ElDivider') {
@@ -403,13 +369,14 @@ export default defineComponent({
     }
 
     return () => {
-      const { colProps = {}, colSlot, renderColContent, component } = props.schema
+      const { colProps: itemColProps = {}, colSlot, renderColContent, component } = props.schema
+
       if (!componentMap.has(component)) {
         return null
       }
 
-      const { baseColProps = {} } = props.formProps
-      const realColProps = { ...baseColProps, ...colProps }
+      const { colProps = {} } = props.formProps
+      const realColProps = { ...colProps, ...itemColProps }
       const { isIfShow, isShow } = getShow()
       const values = unref(getValues)
 

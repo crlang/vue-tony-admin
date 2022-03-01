@@ -1,11 +1,11 @@
 <template>
   <PageWrapper title="表单校验示例">
     <div class="mb-4">
-      <el-button @click="validateForm"> 手动校验表单 </el-button>
-      <el-button @click="resetValidate"> 清空校验信息 </el-button>
-      <el-button @click="getFormValues"> 获取表单值 </el-button>
-      <el-button @click="setFormValues"> 设置表单值 </el-button>
-      <el-button @click="resetFields"> 重置 </el-button>
+      <el-button @click="validateForm">手动校验表单</el-button>
+      <el-button @click="resetValidate">清空校验信息</el-button>
+      <el-button @click="getFormValues">获取表单值</el-button>
+      <el-button @click="setFormValues">设置表单值</el-button>
+      <el-button @click="resetFields">重置</el-button>
     </div>
     <CollapseContainer title="表单校验">
       <BasicForm

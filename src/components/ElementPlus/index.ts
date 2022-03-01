@@ -3,9 +3,9 @@
  * @Date: 2021-12-24 17:24:14
  * @Description: Element Plus Type and Props
  * @LastEditors: crlang(https://www.crlang.com)
- * @LastEditTime: 2022-02-28 10:45:03
+ * @LastEditTime: 2022-03-01 11:30:33
  */
-import { ExtractPropTypes } from 'vue'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
 
 // 引入 element-plus
 import type {
@@ -40,7 +40,7 @@ export type EleButtonType = ButtonType
 export type EleButtonNativeType = ButtonNativeType
 
 export const EleColProps = colProps
-export type EleCol = ColProps
+export type EleCol = ColProps & { style?: CSSProperties }
 
 export const EleRowProps = rowProps
 export type EleRow = RowProps
@@ -200,6 +200,8 @@ export interface EleForm {
   scrollToError: boolean
 }
 
+type FormItemValidateStatus = '' | 'success' | 'warning' | 'error' | 'validating'
+
 export const EleFormItemProps = {
   label: String,
   labelWidth: {
@@ -213,7 +215,7 @@ export const EleFormItemProps = {
   },
   rules: [Object, Array] as PropType<FormItemRule | FormItemRule[]>,
   error: String,
-  validateStatus: String,
+  validateStatus: String as PropType<FormItemValidateStatus>,
   for: String,
   inlineMessage: {
     type: [String, Boolean],
@@ -228,6 +230,7 @@ export const EleFormItemProps = {
     validator: isValidComponentSize,
   },
 }
+
 export interface EleFormItem {
   label: string
   labelWidth: string | number
@@ -235,7 +238,7 @@ export interface EleFormItem {
   required: boolean
   rules: FormItemRule | FormItemRule[]
   error: string
-  validateStatus: string
+  validateStatus: FormItemValidateStatus
   for: string
   inlineMessage: string | boolean
   showMessage: boolean

@@ -66,6 +66,7 @@ export const basicSchemas: FormSchema[] = [
     colProps: {
       span: 8,
     },
+    subLabel: '( 选填 )',
     componentProps: () => {
       return {
         placeholder: '自定义placeholder',
@@ -76,8 +77,8 @@ export const basicSchemas: FormSchema[] = [
     },
     renderComponentContent: () => {
       return {
-        prefix: () => 'Bef',
-        suffix: () => 'Aft',
+        prefix: () => 'Be',
+        suffix: () => 'Af',
       }
     },
   },
@@ -95,6 +96,7 @@ export const basicSchemas: FormSchema[] = [
         console.log(e)
       },
     },
+    prepend: '第',
     append: '天',
   },
   {
@@ -153,9 +155,9 @@ export const basicSchemas: FormSchema[] = [
     },
   },
   {
-    field: 'field5',
+    field: 'field6',
     component: 'ElRadio',
-    label: '字段5',
+    label: '字段6',
     colProps: {
       span: 8,
     },
@@ -420,18 +422,18 @@ export const basicSchemas: FormSchema[] = [
     label: '其它',
   },
   {
-    field: 'field20',
+    field: 'field21',
     component: 'ElInputNumber',
-    label: '字段20',
+    label: '字段21',
     required: true,
     colProps: {
       span: 8,
     },
   },
   {
-    field: 'field21',
+    field: 'field22',
     component: 'ElSlider',
-    label: '字段21',
+    label: '字段22',
     componentProps: {
       min: 0,
       max: 100,
@@ -446,9 +448,9 @@ export const basicSchemas: FormSchema[] = [
     },
   },
   {
-    field: 'field22',
+    field: 'field23',
     component: 'ElRate',
-    label: '字段22',
+    label: '字段23',
     defaultValue: 3,
     colProps: {
       span: 8,

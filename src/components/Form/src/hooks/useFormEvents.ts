@@ -3,7 +3,6 @@ import type { FormProps, FormSchema, FormActionType } from '../types/form'
 import { unref, toRaw } from 'vue'
 import { isArray, isFunction, isObject, isString } from '@/utils/is'
 import { deepMerge } from '@/utils'
-import { handleInputNumberValue } from '../helper'
 // import { dateUtil } from '@/utils/dateUtil'
 import { cloneDeep, uniqBy } from 'lodash-es'
 import { error } from '@/utils/log'
@@ -46,7 +45,7 @@ export function useFormEvents({
   }
 
   /**
-   * @description: Set form value
+   * Set form value
    */
   async function setFieldsValue(values: Recordable): Promise<void> {
     const fields = unref(getSchema)
@@ -55,12 +54,10 @@ export function useFormEvents({
 
     const validKeys: string[] = []
     Object.keys(values).forEach((key) => {
-      const schema = unref(getSchema).find((item) => item.field === key)
-      let value = values[key]
+      const value = values[key]
 
       const hasKey = Reflect.has(values, key)
 
-      value = handleInputNumberValue(schema?.component, value)
       // 0| '' is allow
       if (hasKey && fields.includes(key)) {
         // time type
@@ -88,7 +85,7 @@ export function useFormEvents({
     validateField(validKeys).catch((_) => {})
   }
   /**
-   * @description: Delete based on field name
+   * Delete based on field name
    */
   async function removeSchemaByField(fields: string | string[]): Promise<void> {
     const schemaList: FormSchema[] = cloneDeep(unref(getSchema))
@@ -107,7 +104,7 @@ export function useFormEvents({
   }
 
   /**
-   * @description: Delete based on field name
+   * Delete based on field name
    */
   function _removeSchemaByField(field: string, schemaList: FormSchema[]): void {
     if (isString(field)) {
@@ -120,7 +117,7 @@ export function useFormEvents({
   }
 
   /**
-   * @description: Insert after a certain field, if not insert the last
+   * Insert after a certain field, if not insert the last
    */
   async function appendSchemaByField(schema: FormSchema, prefixField?: string, first = false) {
     const schemaList: FormSchema[] = cloneDeep(unref(getSchema))
@@ -151,7 +148,7 @@ export function useFormEvents({
     }
 
     const hasField = updateData.every(
-      (item) => item.component === 'Divider' || (Reflect.has(item, 'field') && item.field)
+      (item) => item.component === 'ElDivider' || (Reflect.has(item, 'field') && item.field)
     )
 
     if (!hasField) {
@@ -173,7 +170,7 @@ export function useFormEvents({
     }
 
     const hasField = updateData.every(
-      (item) => item.component === 'Divider' || (Reflect.has(item, 'field') && item.field)
+      (item) => item.component === 'ElDivider' || (Reflect.has(item, 'field') && item.field)
     )
 
     if (!hasField) {
@@ -203,7 +200,7 @@ export function useFormEvents({
   }
 
   /**
-   * @description: Is it time
+   * Is it time
    */
   // function itemIsDateType(key: string) {
   //   return unref(getSchema).some((item) => {
@@ -228,7 +225,7 @@ export function useFormEvents({
   }
 
   /**
-   * @description: Form submission
+   * Form submission
    */
   async function handleSubmit(e?: Event): Promise<void> {
     e && e.preventDefault()
