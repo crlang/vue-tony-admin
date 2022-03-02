@@ -1,3 +1,29 @@
+## [0.1.1-beta.2](https://github.com/crlang/vue-tony-admin/compare/0.1.1-beta.1...0.1.1-beta.2) (2022-03-02)
+
+### Bug Fixes
+
+- adjust basic props ([7606993](https://github.com/crlang/vue-tony-admin/commit/76069932e39ee98ee5c3f95895c1b822a2175af8))
+- adjust some paths and details ([52c6559](https://github.com/crlang/vue-tony-admin/commit/52c655901ea6402d32b3687ed643d2ba08b35980))
+- **CircleProgress:** component optimization ([48238a8](https://github.com/crlang/vue-tony-admin/commit/48238a8eca932cb0bc9185a2d4ab29c4ddb215ce))
+- **Excel:** component optimization ([64e0805](https://github.com/crlang/vue-tony-admin/commit/64e08057b9cc8608021b140bc8bbca3096b4f556))
+- **Form:** component optimization ([a5e2c01](https://github.com/crlang/vue-tony-admin/commit/a5e2c010ee6ee976fb086a7d55f1147b20f16fc1))
+- **Icon:** component optimization ([485145b](https://github.com/crlang/vue-tony-admin/commit/485145ba80b7bf57e35242f984b06d2880344cc3))
+- **List:** component optimization ([cf6ed3f](https://github.com/crlang/vue-tony-admin/commit/cf6ed3f74ef759663249eba6a4d4bc6b1443843c))
+- **Markdown:** component optimization ([ce7053f](https://github.com/crlang/vue-tony-admin/commit/ce7053f961cad54625ac6e441db882ef19839bcd))
+- **Modal:** component optimization ([eb8eda1](https://github.com/crlang/vue-tony-admin/commit/eb8eda17d031a7ebc4b87fbe5139070ec02deca0))
+- **PageWrapper:** component optimization ([f5f6359](https://github.com/crlang/vue-tony-admin/commit/f5f6359877ca950b4330b8e17d7c3c9c98797144))
+- **Qrcode:** component optimization ([c38b529](https://github.com/crlang/vue-tony-admin/commit/c38b52952920dc6fd8d8a86acad9e2778d7be8cf))
+- **Tinymce:** component optimization ([fa793dd](https://github.com/crlang/vue-tony-admin/commit/fa793dd3b18025784c6de07c36d2d380ececbf2f))
+- **Transition:** component optimization ([a6f9b8c](https://github.com/crlang/vue-tony-admin/commit/a6f9b8c5b948b71ea4b3f7b1ab991b08abf45a25))
+- tree demo optimization ([9bb1a45](https://github.com/crlang/vue-tony-admin/commit/9bb1a453ddeeeed2b91e0a70a627335dace4ae58))
+- **Upload:** component optimization ([231e663](https://github.com/crlang/vue-tony-admin/commit/231e663ad5ce05015b7a55e7e4afc77629815a21))
+- **Verify:** component optimization ([d0040ee](https://github.com/crlang/vue-tony-admin/commit/d0040ee6fdc08fa3f717034520b891d5848f93aa))
+
+### Features
+
+- add form/table props ([55761fa](https://github.com/crlang/vue-tony-admin/commit/55761fa0cac3f61f259cf6286bd5d93830248112))
+- add progress demo ([426eb9a](https://github.com/crlang/vue-tony-admin/commit/426eb9ad82669331a1ad65ffb2b66522d8a42d15))
+
 ## [0.1.1-beta.1](https://github.com/crlang/vue-tony-admin/compare/0.0.1-alpha.3...0.1.1-beta.1) (2022-02-13)
 
 ### Bug Fixes
