@@ -3,7 +3,7 @@
  * @Date: 2021-12-24 17:24:14
  * @Description: Element Plus Type and Props
  * @LastEditors: crlang(https://www.crlang.com)
- * @LastEditTime: 2022-03-01 11:30:33
+ * @LastEditTime: 2022-03-03 09:25:29
  */
 import type { CSSProperties, ExtractPropTypes } from 'vue'
 
@@ -246,7 +246,7 @@ export interface EleFormItem {
 }
 
 export const EleTableProps = TableDefault
-export type EleTable = TableProps
+export type EleTable = Partial<TableProps<Object>>
 
 export const EleTableColumnProps = TableColumn
-export type EleTableColumn = TableColumnCtx
+export type EleTableColumn = Partial<TableColumnCtx<Object>>

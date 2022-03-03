@@ -7,8 +7,6 @@ import { deepMerge } from '@/utils'
 import { cloneDeep, uniqBy } from 'lodash-es'
 import { error } from '@/utils/log'
 
-type NamePath = string | number | (string | number)[];
-
 interface UseFormActionContext {
   emit: EmitType
   getProps: ComputedRef<FormProps>
@@ -208,7 +206,7 @@ export function useFormEvents({
   //   })
   // }
 
-  async function validateField(nameList?: NamePath[] | undefined) {
+  async function validateField(nameList?: string | string[]) {
     return nameList ? unref(formElRef)?.validateField(nameList) : validate()
   }
 
@@ -220,8 +218,8 @@ export function useFormEvents({
     await unref(formElRef)?.clearValidate(name)
   }
 
-  async function scrollToField(name: NamePath, options?: ScrollOptions | undefined) {
-    await unref(formElRef)?.scrollToField(name, options)
+  async function scrollToField(name?: string) {
+    await unref(formElRef)?.scrollToField(name)
   }
 
   /**

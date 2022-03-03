@@ -268,7 +268,7 @@ export default defineComponent({
       validateField,
       validate,
       submit: handleSubmit,
-      scrollToField: scrollToField,
+      scrollToField,
     }
 
     onMounted(() => {

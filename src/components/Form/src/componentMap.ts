@@ -8,10 +8,10 @@ import {
   ElInput,
   ElSelect,
   ElDivider,
-  ElRadio,
+  // ElRadio,
   ElRadioGroup,
   ElRadioButton,
-  ElCheckbox,
+  // ElCheckbox,
   ElCheckboxGroup,
   ElSwitch,
   ElCascader,
@@ -41,10 +41,10 @@ componentMap.set('ElInput', ElInput)
 componentMap.set('ElSelect', ElSelect)
 componentMap.set('ElDivider', ElDivider)
 componentMap.set('ElDatePicker', ElDatePicker)
-componentMap.set('ElRadio', ElRadio)
+// componentMap.set('ElRadio', ElRadio)
 componentMap.set('ElRadioGroup', ElRadioGroup)
 componentMap.set('ElRadioButton', ElRadioButton)
-componentMap.set('ElCheckbox', ElCheckbox)
+// componentMap.set('ElCheckbox', ElCheckbox)
 componentMap.set('ElCheckboxGroup', ElCheckboxGroup)
 componentMap.set('ElSwitch', ElSwitch)
 componentMap.set('ElCascader', ElCascader)

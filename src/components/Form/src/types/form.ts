@@ -3,12 +3,10 @@ import type { FormItem } from './formItem'
 import type { ComponentType } from './index'
 import type { TableActionType } from '@/components/Table/src/types/table'
 import type { CSSProperties } from 'vue'
-import type { EleButton, EleCol, EleForm, EleRow } from '@/components/ElementPlus'
+import type { EleButton, EleCol, EleForm, EleFormItemRule, EleRow } from '@/components/ElementPlus'
 import type { BasicHelpTyping } from '@/components/Basic'
 
 export type FieldMapToTime = [string, [string, string], string?][]
-
-type NamePath = string | number | (string | number)[];
 
 export interface RenderCallbackParams {
   schema: FormSchema
@@ -18,11 +16,16 @@ export interface RenderCallbackParams {
 }
 
 export interface FormActionType {
+  // element plus
   submit: () => Promise<void>
-  setFieldsValue: <T>(values: T) => Promise<void>
-  resetFields: () => Promise<void>
-  getFieldsValue: () => Recordable
+  validate: () => Promise<boolean>
+  validateField: (name?: string | string[]) => Promise<boolean>
+  scrollToField: (name?: string) => Promise<void>
   clearValidate: (name?: string | string[]) => Promise<void>
+  resetFields: () => Promise<void>
+  // 拓展
+  setFieldsValue: <T>(values: T) => Promise<void>
+  getFieldsValue: () => any
   updateSchema: (data: Partial<FormSchema> | Partial<FormSchema>[]) => Promise<void>
   resetSchema: (data: Partial<FormSchema> | Partial<FormSchema>[]) => Promise<void>
   setProps: (formProps: Partial<FormProps>) => Promise<void>
@@ -32,9 +35,6 @@ export interface FormActionType {
     prefixField: string | undefined,
     first?: boolean | undefined
   ) => Promise<void>
-  validateField: (nameList?: NamePath[]) => Promise<any>
-  validate: (nameList?: NamePath[]) => Promise<any>
-  scrollToField: (name: NamePath, options?: ScrollOptions) => Promise<void>
 }
 
 export type RegisterFn = (formInstance: FormActionType) => void
@@ -131,7 +131,6 @@ export interface FormProps extends EleForm, basicFormAction {
 }
 
 export interface FormSchema {
-  //
   /**
    * Field name
    */
@@ -155,15 +154,19 @@ export interface FormSchema {
    */
   valueField?: string
   /**
+   * Default Value
+   */
+  defaultValue?: any
+  /**
    * Help text on the right side of the text
    */
-  helpMessage?: string | string[] | ((renderCallbackParams: RenderCallbackParams) => string | string[])
+  helpMessage?: string | string[] | ((rcp: RenderCallbackParams) => string | string[])
   /**
    * BaseHelp component props
    */
   helpComponentProps?: Partial<BasicHelpTyping>
   /**
-   * Label width, if it is passed, the labelCol and WrapperCol configured by itemProps will be invalid
+   * Label width
    */
   labelWidth?: string | number
   /**
@@ -184,31 +187,11 @@ export interface FormSchema {
   /**
    * Is it required
    */
-  required?: boolean | ((renderCallbackParams: RenderCallbackParams) => boolean)
-  /**
-   * Input/Select component prefix
-   */
-  prefix?: string | number | ((values: RenderCallbackParams) => string | number)
-  /**
-   * Input component suffix
-   */
-  suffix?: string | number | ((values: RenderCallbackParams) => string | number)
-  /**
-   * Input component prepend
-   */
-  prepend?: string | number | ((values: RenderCallbackParams) => string | number)
-  /**
-   * Input component append
-   */
-  append?: string | number | ((values: RenderCallbackParams) => string | number)
-  /**
-   * Select component empty
-   */
-  empty?: string | number | ((values: RenderCallbackParams) => string | number)
+  required?: boolean | ((rcp: RenderCallbackParams) => boolean)
   /**
    * Validation rules
    */
-  rules?: FormItemRule[]
+  rules?: EleFormItemRule[]
   /**
    * Check whether the information is added to the label
    */
@@ -222,37 +205,29 @@ export interface FormSchema {
    */
   colProps?: Partial<EleCol>
   /**
-   * Default Value
-   */
-  defaultValue?: any
-  /**
    * Expanded contracted state
    */
   isAdvanced?: boolean
   /**
-   * Matching details components
-   */
-  span?: number
-  /**
    * Dynamically determine whether the current component is displayed, in css
    */
-  ifShow?: boolean | ((renderCallbackParams: RenderCallbackParams) => boolean)
+  ifShow?: boolean | ((rcp: RenderCallbackParams) => boolean)
   /**
    * Dynamically determine whether the current component is displayed, in js
    */
-  show?: boolean | ((renderCallbackParams: RenderCallbackParams) => boolean)
+  show?: boolean | ((rcp: RenderCallbackParams) => boolean)
   /**
    * Render the content in the form-item tag
    */
-  render?: (renderCallbackParams: RenderCallbackParams) => VNode | VNode[] | string
+  render?: (rcp: RenderCallbackParams) => VNode | VNode[] | string
   /**
    * Rendering col content requires outer wrapper form-item
    */
-  renderColContent?: (renderCallbackParams: RenderCallbackParams) => VNode | VNode[] | string
+  renderColContent?: (rcp: RenderCallbackParams) => VNode | VNode[] | string
   /**
    * Render the component content
    */
-  renderComponentContent?: ((renderCallbackParams: RenderCallbackParams) => any) | VNode | VNode[] | string
+  renderComponentContent?: ((rcp: RenderCallbackParams) => any) | VNode | VNode[] | string
   /**
    * Custom slot, in from-item
    */
@@ -264,9 +239,29 @@ export interface FormSchema {
   /**
    * Dynamically disable an item based on conditions
    */
-  dynamicDisabled?: boolean | ((renderCallbackParams: RenderCallbackParams) => boolean)
+  dynamicDisabled?: boolean | ((rcp: RenderCallbackParams) => boolean)
   /**
    * Dynamic validation rules based on conditions
    */
-  dynamicRules?: (renderCallbackParams: RenderCallbackParams) => FormItemRule[]
+  dynamicRules?: (rcp: RenderCallbackParams) => EleFormItemRule[]
+  /**
+   * Input/Select component prefix
+   */
+  // prefix?: string | number | ((rcp: RenderCallbackParams) => string | number)
+  /**
+   * Input component suffix
+   */
+  // suffix?: string | number | ((rcp: RenderCallbackParams) => string | number)
+  /**
+   * Input component prepend
+   */
+  // prepend?: string | number | ((rcp: RenderCallbackParams) => string | number)
+  /**
+   * Input component append
+   */
+  // append?: string | number | ((rcp: RenderCallbackParams) => string | number)
+  /**
+   * Select component empty
+   */
+  // empty?: string | number | ((rcp: RenderCallbackParams) => string | number)
 }

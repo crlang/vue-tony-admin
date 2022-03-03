@@ -121,6 +121,7 @@ const schemas: FormSchema[] = [
     rules: [
       {
         required: true,
+        // todo: 此处写法存在问题
         validator: async (_, value:any, callback:any) => {
           if (!value) {
             callback(new Error('值不能为空'))

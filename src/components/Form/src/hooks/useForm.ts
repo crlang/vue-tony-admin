@@ -6,10 +6,6 @@ import { isProdMode } from '@/utils/env'
 import { error } from '@/utils/log'
 import { getDynamicProps } from '@/utils'
 
-export declare type ValidateFields = (nameList?: NamePath[]) => Promise<Recordable>
-
-type NamePath = string | number | (string | number)[];
-
 type Props = Partial<DynamicProps<FormProps>>
 
 export function useForm(props?: Props): UseFormReturnType {
@@ -51,10 +47,32 @@ export function useForm(props?: Props): UseFormReturnType {
   }
 
   const methods: FormActionType = {
-    scrollToField: async (name: NamePath, options?: ScrollOptions | undefined) => {
+    submit: async (): Promise<any> => {
       const form = await getForm()
-      form.scrollToField(name, options)
+      return form.submit()
     },
+    validate: async (): Promise<Recordable> => {
+      const form = await getForm()
+      return form.validate()
+    },
+    validateField: async (name?: string | string[]): Promise<Recordable> => {
+      const form = await getForm()
+      return form.validateField(name)
+    },
+    resetFields: async () => {
+      getForm().then(async (form) => {
+        await form.resetFields()
+      })
+    },
+    clearValidate: async (name?: string | string[]) => {
+      const form = await getForm()
+      form.clearValidate(name)
+    },
+    scrollToField: async (name: string) => {
+      const form = await getForm()
+      form.scrollToField(name)
+    },
+    // 拓展功能
     setProps: async (formProps: Partial<FormProps>) => {
       const form = await getForm()
       form.setProps(formProps)
@@ -68,17 +86,6 @@ export function useForm(props?: Props): UseFormReturnType {
     resetSchema: async (data: Partial<FormSchema> | Partial<FormSchema>[]) => {
       const form = await getForm()
       form.resetSchema(data)
-    },
-
-    clearValidate: async (name?: string | string[]) => {
-      const form = await getForm()
-      form.clearValidate(name)
-    },
-
-    resetFields: async () => {
-      getForm().then(async (form) => {
-        await form.resetFields()
-      })
     },
 
     removeSchemaByField: async (field: string | string[]) => {
@@ -102,21 +109,6 @@ export function useForm(props?: Props): UseFormReturnType {
     ) => {
       const form = await getForm()
       form.appendSchemaByField(schema, prefixField, first)
-    },
-
-    submit: async (): Promise<any> => {
-      const form = await getForm()
-      return form.submit()
-    },
-
-    validate: async (nameList?: NamePath[]): Promise<Recordable> => {
-      const form = await getForm()
-      return form.validate(nameList)
-    },
-
-    validateField: async (nameList?: NamePath[]): Promise<Recordable> => {
-      const form = await getForm()
-      return form.validateField(nameList)
     },
   }
 

@@ -188,11 +188,11 @@ export default defineComponent({
         renderComponentContent,
         component,
         field,
-        prepend,
-        append,
-        prefix,
-        empty,
-        suffix,
+        // prepend,
+        // append,
+        // prefix,
+        // empty,
+        // suffix,
         changeEvent,
         valueField,
       } = props.schema
@@ -263,18 +263,18 @@ export default defineComponent({
         // element input text
         const compSlot:any = {}
         // input slots [append,prepend,prefix,suffix]
-        if (component === 'ElInput') {
-          append && (compSlot.append = () => isFunction(append) ? append(unref(getValues)) : append)
-          prepend && (compSlot.prepend = () => isFunction(prepend) ? prepend(unref(getValues)) : prepend)
-          prefix && (compSlot.prefix = () => isFunction(prefix) ? prefix(unref(getValues)) : prefix)
-          suffix && (compSlot.suffix = () => isFunction(suffix) ? suffix(unref(getValues)) : suffix)
-        }
+        // if (component === 'ElInput') {
+        //   append && (compSlot.append = () => isFunction(append) ? append(unref(getValues)) : append)
+        //   prepend && (compSlot.prepend = () => isFunction(prepend) ? prepend(unref(getValues)) : prepend)
+        //   prefix && (compSlot.prefix = () => isFunction(prefix) ? prefix(unref(getValues)) : prefix)
+        //   suffix && (compSlot.suffix = () => isFunction(suffix) ? suffix(unref(getValues)) : suffix)
+        // }
 
         if (compAttr?.options) {
         // select slots [prefix,empty]
           if (component === 'ElSelect') {
-            prefix && (compSlot.prefix = () => isFunction(prefix) ? prefix(unref(getValues)) : prefix)
-            empty && (compSlot.empty = () => isFunction(empty) ? empty(unref(getValues)) : empty)
+            // prefix && (compSlot.prefix = () => isFunction(prefix) ? prefix(unref(getValues)) : prefix)
+            // empty && (compSlot.empty = () => isFunction(empty) ? empty(unref(getValues)) : empty)
             compSlot.default = () => compAttr?.options.map(k => {
               return <ElOption label={k.label} value={k.value} />
             })
