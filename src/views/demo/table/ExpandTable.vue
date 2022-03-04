@@ -2,33 +2,32 @@
   <PageWrapper
     title="可展开表格"
     description="不可与scroll共用。TableAction组件可配置stopButtonPropagation来阻止操作按钮的点击事件冒泡，以便配合Table组件的expandRowByClick">
+
     <BasicTable @register="registerTable">
-      <template #address="coo">
+      <template #address="{label,prop}">
         <el-table-column
           type="expand"
-          :label="coo.label"
-          :prop="coo.prop">
+          :label="label"
+          :prop="prop">
           <template #default="scope">
             <span>Address: {{ scope.row.address }}</span>
           </template>
         </el-table-column>
       </template>
-      <template #action="coo">
+      <template #action="{label,prop}">
         <el-table-column
-          :label="coo.label"
-          :prop="coo.prop">
+          :label="label"
+          :prop="prop">
           <template #default="scope">
             <TableAction
               stopButtonPropagation
               :actions="[
                 {
-                  label: '启用',
-                  icon: 'ic:outline-delete-outline',
+                  text: '启用',
                   onClick: handleOpen.bind(null, scope.row)
                 },
                 {
-                  label: '删除',
-                  icon: 'ic:outline-delete-outline',
+                  text: '删除',
                   onClick: handleDelete.bind(null, scope.row)
                 }
 
@@ -67,11 +66,11 @@ export default defineComponent({
         isSlot: true,
       },
     })
-    function handleDelete(record: Recordable) {
-      console.log('点击了删除', record)
+    function handleDelete(record) {
+      console.table('点击了删除', record)
     }
-    function handleOpen(record: Recordable) {
-      console.log('点击了启用', record)
+    function handleOpen(record) {
+      console.table('点击了启用', record)
     }
 
     return {

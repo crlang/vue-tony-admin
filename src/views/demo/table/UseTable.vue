@@ -11,7 +11,6 @@
     </div>
     <div class="mb-4">
       <el-button @click="toggleSelectedRows">切换选中行</el-button>
-      <el-button @click="clearSelectedRows">清空选中行</el-button>
       <el-button @click="getPagination">获取分页信息</el-button>
     </div>
     <BasicTable @register="registerTable" />
@@ -43,7 +42,6 @@ export default defineComponent({
         getPaginationRef,
         setPagination,
         toggleAllSelection,
-        clearSelectedRowKeys,
       },
     ] = useTable({
       title: 'useTable示例',
@@ -73,9 +71,7 @@ export default defineComponent({
     function reloadTable() {
       setColumns(getBasicColumns())
 
-      reload({
-        page: 1,
-      })
+      reload()
     }
     function getColumn() {
       createMessage.info('请在控制台查看！')
@@ -99,7 +95,7 @@ export default defineComponent({
 
     function setPaginationInfo() {
       setPagination({
-        page: 2,
+        currentPage: 2,
       })
       reload()
     }
@@ -109,15 +105,7 @@ export default defineComponent({
       console.log(getSelectRows())
     }
     function toggleSelectedRows() {
-      // createMessage.info('请在控制台查看！')
-      // console.log(getSelectRowKeys())
       toggleAllSelection()
-    }
-    // function setSelectedRowKeyList() {
-    //   setSelectedRows(columns)
-    // }
-    function clearSelectedRows() {
-      clearSelectedRowKeys()
     }
 
     return {
@@ -132,8 +120,6 @@ export default defineComponent({
       setPaginationInfo,
       getSelectRows,
       toggleSelectedRows,
-      clearSelectedRows,
-      // onChange
     }
   },
 })

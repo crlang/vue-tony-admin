@@ -179,6 +179,7 @@ export const getEditColumns: BasicColumn[] = [
     label: '输入框',
     prop: 'name',
     edit: true,
+    editComponent: 'ElInput',
     editComponentProps: {
       prefix: '$',
     },
@@ -188,13 +189,14 @@ export const getEditColumns: BasicColumn[] = [
     label: '默认输入状态',
     prop: 'name7',
     edit: true,
-    editable: true,
+    editComponent: 'ElInput',
     width: 200,
   },
   {
     label: '输入框校验(必填)',
     prop: 'name1',
     edit: true,
+    editComponent: 'ElInput',
     // 默认必填校验
     editRule: true,
     width: 200,
@@ -203,6 +205,7 @@ export const getEditColumns: BasicColumn[] = [
     label: '输入框函数校验(输入tony)',
     prop: 'name2',
     edit: true,
+    editComponent: 'ElInput',
     editRule: async (text) => {
       if (text === 'tony') {
         return '不能输入该值'
@@ -332,7 +335,7 @@ export function getFormConfig(): Partial<FormProps> {
 export function getBasicData() {
   const data: any = (() => {
     const arr: any = []
-    for (let index = 0; index < 40; index++) {
+    for (let index = 0; index < 100; index++) {
       arr.push({
         id: `${index}`,
         name: 'John Brown',

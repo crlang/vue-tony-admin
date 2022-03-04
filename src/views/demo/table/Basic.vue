@@ -8,14 +8,14 @@
       :loading="loading"
       :stripe="stripe"
       showIndexColumn
+      showCheckboxColumn
       :border="border"
       showTableSetting
-      :pagination="pagination"
       @columns-change="handleColumnChange">
-      <template #address="coo">
+      <template #address="{label,prop}">
         <el-table-column
-          :label="coo.label"
-          :prop="coo.prop">
+          :label="label"
+          :prop="prop">
           <template #default="scope">
             {{ scope.row.address }}
           </template>
@@ -42,9 +42,8 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-// import { PaginationProps } from '@/components/Table'
 import { ElButton, ElTableColumn } from 'element-plus'
-import { BasicTable, ColumnChangeParam } from '@/components/Table'
+import { BasicTable } from '@/components/Table'
 import { getBasicColumns, getBasicData } from './tableData'
 
 export default defineComponent({
@@ -53,7 +52,6 @@ export default defineComponent({
     const loading = ref(false)
     const stripe = ref(true)
     const border = ref(true)
-    const pagination = ref<any>(null)
     function toggleStripe() {
       stripe.value = !stripe.value
     }
@@ -61,15 +59,15 @@ export default defineComponent({
       loading.value = true
       setTimeout(() => {
         loading.value = false
-        pagination.value = { pageSize: 20 }
       }, 3000)
     }
     function toggleBorder() {
       border.value = !border.value
     }
 
-    function handleColumnChange(data: ColumnChangeParam[]) {
-      console.log('ColumnChanged', data)
+    // todo
+    function handleColumnChange(data) {
+      console.table('table column change', data)
     }
 
     return {
@@ -81,7 +79,6 @@ export default defineComponent({
       toggleStripe,
       toggleLoading,
       toggleBorder,
-      pagination,
       handleColumnChange,
     }
   },

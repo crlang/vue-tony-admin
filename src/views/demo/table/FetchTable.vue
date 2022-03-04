@@ -7,7 +7,7 @@
           @click="handleReloadCurrent">刷新当前页</el-button>
         <el-button
           type="primary"
-          @click="handleReload">刷新第2页</el-button>
+          @click="handleReload">跳转第2页</el-button>
       </template>
     </BasicTable>
   </PageWrapper>
@@ -24,7 +24,7 @@ import { demoListApi } from '@/api/demo/table'
 export default defineComponent({
   components: { ElButton, BasicTable, PageWrapper },
   setup() {
-    const [registerTable, { reload }] = useTable({
+    const [registerTable, { reload, setPagination }] = useTable({
       title: '远程加载示例',
       api: demoListApi,
       columns: getBasicColumns(),
@@ -34,10 +34,11 @@ export default defineComponent({
     }
 
     function handleReload() {
-      reload({
-        page: 2,
+      setPagination({
+        currentPage: 2,
       })
     }
+
     return {
       registerTable,
       handleReloadCurrent,

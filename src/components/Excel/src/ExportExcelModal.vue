@@ -73,7 +73,6 @@ export default defineComponent({
       await validateField()
       const res = (getFieldsValue()) as ExportModalResult
       const { filename, bookType } = res
-      console.log('res++++', res)
       emit('success', {
         filename: `${filename.split('.').shift()}.${bookType}`,
         bookType,

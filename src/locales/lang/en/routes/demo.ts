@@ -191,7 +191,6 @@ export default {
     expandTable: 'Expandable table',
     fixedHeight: 'Fixed height',
     footerTable: 'Footer',
-    editCellTable: 'Editable cell',
     editRowTable: 'Editable row',
     authColumn: 'Auth column',
   },

@@ -72,7 +72,6 @@ export default defineComponent({
     }
 
     function handleFullscreen(e: Event) {
-      console.log('eee+++', e)
       e?.stopPropagation()
       e?.preventDefault()
       emit('fullscreen')

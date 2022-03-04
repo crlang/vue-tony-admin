@@ -5,29 +5,31 @@
     <template
       v-for="action in getActions"
       :key="action?.id">
-      <Button v-bind="action">{{ action.label || '' }}</Button>
+      <el-button v-bind="action">{{ action.text || '' }}</el-button>
     </template>
   </div>
 </template>
 
 <script lang="ts">
+import type { EleButton } from '@/components/ElementPlus'
+
 import { defineComponent, PropType, computed, toRaw } from 'vue'
 import { ActionItem, TableActionType } from '@/components/Table'
-import { Button } from '@/components/Button'
+import { ElButton } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useTableContext } from '../hooks/useTableContext'
 import { usePermission } from '@/hooks/web/usePermission'
 import { isBoolean, isFunction } from '@/utils/is'
 import { propTypes } from '@/utils/propTypes'
-import { ACTION_COLUMN_FLAG } from '../const'
+// import { ACTION_COLUMN_FLAG } from '../const'
 import { omit } from 'lodash-es'
 
 export default defineComponent({
   name: 'TableAction',
-  components: { Button },
+  components: { ElButton },
   props: {
     actions: {
-      type: Array as PropType<ActionItem[]>,
+      type: Array as PropType<Partial<ActionItem[]>>,
       default: null,
     },
     divider: propTypes.bool.def(true),
@@ -58,24 +60,25 @@ export default defineComponent({
 
     const getActions = computed(() => {
       const opts = (toRaw(props.actions) || [])
-        .filter((action) => {
+        .filter((action:ActionItem) => {
           return hasPermission(action.auth) && isIfShow(action)
         })
         .map((action) => {
           const opt = {
-            preIcon: action?.icon,
+            // preIcon: action?.icon,
+            text: action?.label,
             type: 'text',
             size: 'small',
             ...action,
           }
-          return omit(opt, ['icon']) as ActionItem
+          return omit(opt, ['icon']) as EleButton
         })
       return opts
     })
 
     const getAlign = computed(() => {
       const columns = (table as TableActionType)?.getColumns?.() || []
-      const actionColumn = columns.find((item) => item.flag === ACTION_COLUMN_FLAG)
+      const actionColumn = columns.find((item) => item.type === 'action')
       return actionColumn?.align ?? 'left'
     })
 

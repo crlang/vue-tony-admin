@@ -1,5 +1,4 @@
 <template>
-
   <ElPopover
     trigger="click"
     :width="330"
@@ -14,7 +13,7 @@
         {{ t('component.table.settingColumnShow') }}
       </ElCheckbox>
 
-      <!-- <ElCheckbox
+      <ElCheckbox
         v-model:modelValue="checkIndex"
         @change="handleIndexCheckChange">
         {{ t('component.table.settingIndexColumnShow') }}
@@ -24,7 +23,7 @@
         v-model:modelValue="checkSelect"
         @change="handleSelectCheckChange">
         {{ t('component.table.settingSelectColumnShow') }}
-      </ElCheckbox> -->
+      </ElCheckbox>
 
       <ElButton
         size="small"
@@ -42,57 +41,65 @@
           v-for="item in plainOptions"
           :key="item.value">
           <div :class="`${prefixCls}__check-item`">
+            <!-- <span class="table-coulmn-drag-icon"><Setting /></span> -->
             <ElCheckbox :label="item.prop">{{ item.label }}</ElCheckbox>
             <ElTooltip
               placement="bottom-start"
               :content="t('component.table.settingFixedLeft')">
-              <Icon
-                icon="line-md:arrow-align-left"
-                :class="[
-                  `${prefixCls}__fixed-left`,
-                  {
-                    active: item.fixed === 'left',
-                    disabled: !checkedList.includes(item.prop as string),
-                  },
-                ]"
-                @click="handleColumnFixed(item, 'left')"
-              />
+              <span @click="handleColumnFixed(item, 'left')">
+                <Icon
+                  icon="line-md:arrow-align-left"
+                  :class="[
+                    `${prefixCls}__fixed-left`,
+                    {
+                      active: item.fixed === 'left',
+                      disabled: !checkedList.includes(item.prop as string),
+                    },
+                  ]" />
+              </span>
             </ElTooltip>
             <ElDivider direction="vertical" />
             <ElTooltip
               placement="bottom-start"
               :content="t('component.table.settingFixedRight')">
-              <Icon
-                icon="line-md:arrow-align-left"
-                :class="[
-                  `${prefixCls}__fixed-right`,
-                  {
-                    active: item.fixed === 'right',
-                    disabled: !checkedList.includes(item.prop as string),
-                  },
-                ]"
-                @click="handleColumnFixed(item, 'right')"
-              />
+              <span @click="handleColumnFixed(item, 'right')">
+                <Icon
+                  icon="line-md:arrow-align-left"
+                  :class="[
+                    `${prefixCls}__fixed-right`,
+                    {
+                      active: item.fixed === 'right',
+                      disabled: !checkedList.includes(item.prop as string),
+                    },
+                  ]" />
+              </span>
             </ElTooltip>
           </div>
         </template>
       </ElCheckboxGroup>
     </ScrollContainer>
     <template #reference>
-      <Setting :title="t('component.table.settingColumn')" />
+      <span>
+        <ElTooltip
+          placement="top"
+          :content="t('component.table.settingColumn')">
+          <span><Setting /></span>
+        </ElTooltip>
+      </span>
     </template>
   </ElPopover>
 </template>
 
 <script lang="ts">
 import type { BasicColumn } from '../../types/table'
+
 import {
   defineComponent,
   ref,
   reactive,
   toRefs,
   watchEffect,
-  // nextTick,
+  nextTick,
   unref,
   computed
 } from 'vue'
@@ -147,7 +154,7 @@ export default defineComponent({
     const table = useTableContext()
 
     // const defaultRowSelection = omit(table.getRowSelection(), 'selectedRowKeys')
-    // const inited = false
+    let inited = false
 
     const cachePlainOptions = ref<BasicColumn[]>([])
     const plainOptions = ref<BasicColumn[]>([])
@@ -263,39 +270,41 @@ export default defineComponent({
     // Open the pop-up window for drag and drop initialization
     function handleVisibleChange(v:boolean) {
       if (v === false) return
-      // if (inited) return
-      // nextTick(() => {
-      //   const columnListEl = unref(columnListRef)
-      //   if (!columnListEl) return
-      //   const el = columnListEl.$el as any
-      //   if (!el) return
-      //   // Drag and drop sort
-      //   const { initSortable } = useSortable(el, {
-      //     handle: '.move-column-icon',
-      //     onEnd: (evt) => {
-      //       const { oldIndex, newIndex } = evt
-      //       if (isNullAndUnDef(oldIndex) || isNullAndUnDef(newIndex) || oldIndex === newIndex) {
-      //         return
-      //       }
-      //       // Sort column
-      //       const columns = getColumns()
 
-      //       if (oldIndex > newIndex) {
-      //         columns.splice(newIndex, 0, columns[oldIndex])
-      //         columns.splice(oldIndex + 1, 1)
-      //       } else {
-      //         columns.splice(newIndex + 1, 0, columns[oldIndex])
-      //         columns.splice(oldIndex, 1)
-      //       }
+      if (inited) return
 
-      //       plainSortOptions.value = columns
-      //       plainOptions.value = columns
-      //       setColumns(columns)
-      //     }
-      //   })
-      //   initSortable()
-      //   inited = true
-      // })
+      nextTick(() => {
+        const columnListEl = unref(columnListRef)
+        if (!columnListEl) return
+        const el = columnListEl.$el as any
+        if (!el) return
+        // Drag and drop sort
+        // const { initSortable } = useSortable(el, {
+        //   handle: '.table-coulmn-drag-icon',
+        //   onEnd: (evt) => {
+        //     const { oldIndex, newIndex } = evt
+        //     if (isNullAndUnDef(oldIndex) || isNullAndUnDef(newIndex) || oldIndex === newIndex) {
+        //       return
+        //     }
+        //     // Sort column
+        //     const columns = getColumns()
+
+        //     if (oldIndex > newIndex) {
+        //       columns.splice(newIndex, 0, columns[oldIndex])
+        //       columns.splice(oldIndex + 1, 1)
+        //     } else {
+        //       columns.splice(newIndex + 1, 0, columns[oldIndex])
+        //       columns.splice(oldIndex, 1)
+        //     }
+
+        //     plainSortOptions.value = columns
+        //     plainOptions.value = columns
+        //     setColumns(columns)
+        //   },
+        // })
+        // initSortable()
+        inited = true
+      })
     }
 
     // Control whether the serial number column is displayed
@@ -369,6 +378,7 @@ $prefix-cls: '#{$tonyname}-basic-column-setting';
 
 .table-coulmn-drag-icon {
   margin: 0 5px;
+  font-size: 12px;
   cursor: move;
 }
 

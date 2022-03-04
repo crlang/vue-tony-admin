@@ -19,7 +19,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElTableColumn, ElButton } from 'element-plus'
-import { BasicTable, useTable, TableAction, BasicColumn, ActionItem, EditRecordRow } from '@/components/Table'
+import { BasicTable, useTable, TableAction, BasicColumn, EditRecordRow } from '@/components/Table'
 
 export default defineComponent({
   components: { ElTableColumn, ElButton, BasicTable, TableAction },
@@ -75,14 +75,14 @@ export default defineComponent({
       record.onEdit?.(true)
     }
 
-    function handleCancel(record: EditRecordRow) {
-      record.onEdit?.(false)
-      if (record.isNew) {
-        const data = getDataSource()
-        const index = data.findIndex((item) => item.key === record.key)
-        data.splice(index, 1)
-      }
-    }
+    // function handleCancel(record: EditRecordRow) {
+    //   record.onEdit?.(false)
+    //   if (record.isNew) {
+    //     const data = getDataSource()
+    //     const index = data.findIndex((item) => item.key === record.key)
+    //     data.splice(index, 1)
+    //   }
+    // }
 
     function handleSave(record: EditRecordRow) {
       record.onEdit?.(false, true)
@@ -106,29 +106,29 @@ export default defineComponent({
       data.push(addRow)
     }
 
-    function createActions(record: EditRecordRow, column: BasicColumn): ActionItem[] {
+    function createActions(record: EditRecordRow, column: BasicColumn) {
       if (!record.editable) {
         return [
           {
-            label: '编辑',
+            text: '编辑',
             onClick: handleEdit.bind(null, record),
           },
           {
-            label: '删除',
+            text: '删除',
           },
         ]
       }
       return [
         {
-          label: '保存',
+          text: '保存',
           onClick: handleSave.bind(null, record, column),
         },
         {
-          label: '取消',
-          popConfirm: {
-            title: '是否取消编辑',
-            confirm: handleCancel.bind(null, record, column),
-          },
+          text: '取消',
+          // popConfirm: {
+          //   title: '是否取消编辑',
+          //   confirm: handleCancel.bind(null, record, column),
+          // },
         },
       ]
     }

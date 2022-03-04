@@ -2,15 +2,11 @@ import type { EleButton } from '@/components/ElementPlus'
 
 import { RoleEnum } from '@/enums/roleEnum'
 import { Component } from 'vue'
-import { ComponentSize } from '@/utils/types'
 
 export interface ActionItem extends EleButton {
   onClick?: Fn;
   label?: string;
-  type?: ComponentSize;
-  icon?: string;
-  popConfirm?: PopConfirm;
-  disabled?: boolean;
+  // popConfirm?: PopConfirm;
   divider?: boolean;
   enable?: boolean;
   // 权限编码控制是否显示

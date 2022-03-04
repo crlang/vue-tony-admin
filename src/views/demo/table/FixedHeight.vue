@@ -1,12 +1,12 @@
 <template>
   <div class="p-4">
     <BasicTable @register="registerTable">
-      <template #name="coo">
+      <template #name="{label,prop}">
         <el-table-column
-          :label="coo.label"
-          :prop="coo.prop">
+          :label="label"
+          :prop="prop">
           <template #header>
-            <span class="mr-2">{{ coo.label }}</span><BasicHelp :text="coo.label" />
+            <span class="mr-2">{{ label }}</span><BasicHelp :text="label" />
           </template>
           <template #default="scope">
             {{ scope.row.name }}

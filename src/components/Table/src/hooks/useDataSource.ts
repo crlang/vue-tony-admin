@@ -1,5 +1,6 @@
 import type { BasicTableProps, FetchParams } from '../types/table'
-import type { PaginationProps } from '../types/pagination'
+import type { ElePagination } from '@/components/ElementPlus'
+
 import {
   ref,
   unref,
@@ -18,8 +19,8 @@ import { get, cloneDeep } from 'lodash-es'
 import { FETCH_SETTING, ROW_KEY, PAGE_SIZE } from '../const'
 
 interface ActionType {
-  getPaginationInfo: ComputedRef<PaginationProps>;
-  setPagination: (info: Partial<PaginationProps>) => void;
+  getPaginationInfo: ComputedRef<ElePagination>;
+  setPagination: (info: Partial<ElePagination>) => void;
   setLoading: (loading: boolean) => void;
   getFieldsValue: () => Recordable;
   tableData: Ref<Recordable[]>;
@@ -64,17 +65,31 @@ export function useDataSource(
     }
   )
 
-  watch(
-    () => unref(getPaginationInfo),
-    (v, v2) => {
-      if (v2 && (v.page !== v2?.page || v.size !== v2?.size)) {
-        fetch({ page: v.page, size: v.size || PAGE_SIZE })
-      }
-    },
-    {
-      immediate: true,
+  function handleTableChange(
+    pagination: PaginationProps,
+    filters: Partial<Recordable<string[]>>,
+    sorter: SorterResult,
+  ) {
+    const { clearSelectOnPageChange, sortFn, filterFn } = unref(propsRef)
+    if (clearSelectOnPageChange) {
+      clearSelectedRowKeys()
     }
-  )
+    setPagination(pagination)
+
+    const params: Recordable = {}
+    if (sorter && isFunction(sortFn)) {
+      const sortInfo = sortFn(sorter)
+      searchState.sortInfo = sortInfo
+      params.sortInfo = sortInfo
+    }
+
+    if (filters && isFunction(filterFn)) {
+      const filterInfo = filterFn(filters)
+      searchState.filterInfo = filterInfo
+      params.filterInfo = filterInfo
+    }
+    fetch(params)
+  }
 
   function setTableKey(items: any[]) {
     if (!items || !Array.isArray(items)) return
@@ -211,7 +226,9 @@ export function useDataSource(
   async function fetch(opt?: FetchParams) {
     const { api, searchInfo, fetchSetting, beforeFetch, afterFetch, useSearchForm, pagination } =
       unref(propsRef)
+
     if (!api || !isFunction(api)) return
+
     try {
       setLoading(true)
       const { pageField, sizeField, listField, totalField } = Object.assign(
@@ -221,13 +238,13 @@ export function useDataSource(
       )
       let pageParams: Recordable = {}
 
-      const { page = 1, size = PAGE_SIZE } = (unref(getPaginationInfo) as PaginationProps) ?? {}
+      const { currentPage = 1, pageSize = PAGE_SIZE } = (unref(getPaginationInfo) as ElePagination) ?? {}
 
       if ((isBoolean(pagination) && !pagination) || isBoolean(getPaginationInfo)) {
         pageParams = {}
       } else {
-        pageParams[pageField] = (opt && opt.page) || page
-        pageParams[sizeField] = size
+        pageParams[pageField] = (opt && opt.page) || currentPage
+        pageParams[sizeField] = pageSize
       }
 
       const { sortInfo = {}, filterInfo } = searchState
@@ -257,10 +274,10 @@ export function useDataSource(
 
       // 假如数据变少，导致总页数变少并小于当前选中页码，通过getPaginationRef获取到的页码是不正确的，需获取正确的页码再次执行
       if (resultTotal) {
-        const currentTotalPage = Math.ceil(resultTotal / size)
-        if (page > currentTotalPage) {
+        const currentTotalPage = Math.ceil(resultTotal / pageSize)
+        if (currentPage > currentTotalPage) {
           setPagination({
-            page: currentTotalPage,
+            currentPage: currentTotalPage,
           })
           fetch(opt)
         }
@@ -273,11 +290,11 @@ export function useDataSource(
       setPagination({
         total: resultTotal || 0,
       })
-      if (opt && opt.page) {
-        setPagination({
-          page: opt.page || 1,
-        })
-      }
+
+      // setPagination({
+      //   currentPage: (opt?.page || 0) + 1,
+      // })
+
       emit('fetch-success', {
         items: unref(resultItems),
         page: resultPage,
@@ -331,5 +348,6 @@ export function useDataSource(
     deleteTableDataRecord,
     insertTableDataRecord,
     findTableDataRecord,
+    handleTableChange,
   }
 }

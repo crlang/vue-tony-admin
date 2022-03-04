@@ -15,10 +15,6 @@ export const headerProps = {
    */
   showFullscreen: { type: Boolean, default: true },
   /**
-   * Whether the head can be dragged
-   */
-  draggable: { type: Boolean, default: true },
-  /**
    * Help text to the right of the title
    */
   helpMessage: { type: [String, Array] as PropType<string | string[]>, default: '' },
@@ -91,6 +87,10 @@ export const basicProps = {
    * model value
    */
   modelValue: { type: Boolean },
+  /**
+   * Whether the head can be dragged
+   */
+  draggable: { type: Boolean, default: true },
   /**
    * Whether to scroll back to the top after closing
    */

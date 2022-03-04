@@ -250,8 +250,6 @@ export default defineComponent({
         [valueField || 'modelValue']: componentVal ?? (bindDefInput() === false ? undefined : bindDefInput()),
       }
 
-      // console.log('bindValue++++', component, field, props.formModel[field], bindValue)
-
       const compAttr: Recordable = {
         ...propsData,
         ...on,

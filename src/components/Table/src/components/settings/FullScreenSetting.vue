@@ -2,16 +2,14 @@
   <ElTooltip
     placement="top"
     :content="t('component.table.settingFullScreen')">
-    <SvgIcon
-      size="0"
-      name="fullscreen"
-      @click="toggle"
-      v-if="!isFullscreen" />
-    <SvgIcon
-      size="0"
-      name="fullscreen-exit"
-      @click="toggle"
-      v-else />
+    <span @click="toggle">
+      <SvgIcon
+        name="fullscreen"
+        v-if="!isFullscreen" />
+      <SvgIcon
+        name="fullscreen-exit"
+        v-else />
+    </span>
   </ElTooltip>
 </template>
 

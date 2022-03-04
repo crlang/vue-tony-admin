@@ -1,20 +1,21 @@
 import type { BasicTableProps, TableActionType, FetchParams, BasicColumn } from '../types/table'
-import type { PaginationProps } from '../types/pagination'
 // import type { DynamicProps } from '#/utils'
 import type { FormActionType } from '@/components/Form'
 import type { WatchStopHandle } from 'vue'
+import type { ElePagination } from '@/components/ElementPlus'
+
 import { getDynamicProps } from '@/utils'
 import { ref, onUnmounted, unref, watch, toRaw } from 'vue'
 import { isProdMode } from '@/utils/env'
 import { error } from '@/utils/log'
 
-// type Props = Partial<DynamicProps<BasicTableProps>>;
+type Props = Partial<DynamicProps<BasicTableProps>>;
 
 type UseTableMethod = TableActionType & {
   getForm: () => FormActionType;
 };
 
-export function useTable(tableProps?: BasicTableProps): [
+export function useTable(tableProps?: Props): [
   (instance: TableActionType, formInstance: UseTableMethod) => void,
   TableActionType & {
     getForm: () => FormActionType;
@@ -95,7 +96,7 @@ export function useTable(tableProps?: BasicTableProps): [
     setTableData: (values: any[]) => {
       return getTableInstance().setTableData(values)
     },
-    setPagination: (info: Partial<PaginationProps>) => {
+    setPagination: (info: Partial<ElePagination>) => {
       return getTableInstance().setPagination(info)
     },
     deleteSelectRowByKey: (key: string) => {

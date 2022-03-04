@@ -1,12 +1,13 @@
 import type { VNodeChild } from 'vue'
-import type { PaginationProps } from './pagination'
 import type { FormProps } from '@/components/Form'
-import { ElTableColumn } from 'element-plus'
+import type { ElePagination, EleTable, EleTableColumn } from '@/components/ElementPlus'
 export type ElTableColumnType = InstanceType<typeof ElTableColumn>
+import type { ComponentType } from './componentType'
+import type { ComponentSize } from '@/utils/types'
 
-import { ComponentType } from './componentType'
 import { RoleEnum } from '@/enums/roleEnum'
-import { EleTable, EleTableColumn } from '@/components/ElementPlus'
+
+import { ElTableColumn } from 'element-plus'
 
 export declare type SortOrder = 'ascend' | 'descend';
 
@@ -55,8 +56,6 @@ export interface GetColumnsParams {
   sort?: boolean;
 }
 
-export type SizeType = '' | 'large' | 'default' | 'small';
-
 export interface TableActionType {
   reload: (opt?: FetchParams) => Promise<void>;
   getSelectRows: <T = Recordable>() => T[];
@@ -65,7 +64,7 @@ export interface TableActionType {
   collapseAll: () => void;
   getSelectRowKeys: () => string[];
   deleteSelectRowByKey: (key: string) => void;
-  setPagination: (info: Partial<PaginationProps>) => void;
+  setPagination: (info: Partial<ElePagination>) => void;
   setTableData: <T = Recordable>(values: T[]) => void;
   updateTableDataRecord: (rowKey: string | number, record: Recordable) => Recordable | void;
   deleteTableDataRecord: (record: Recordable | Recordable[]) => Recordable | void;
@@ -81,8 +80,8 @@ export interface TableActionType {
   setSelectedRowKeys: (rowKeys: string[] | number[]) => void;
   setSelectedRows: (rows: string[] | number[]) => void;
   toggleAllSelection: () => void;
-  getPaginationRef: () => PaginationProps | boolean;
-  getSize: () => SizeType;
+  getPaginationRef: () => ElePagination | boolean;
+  getSize: () => ComponentSize;
   getRowSelection: () => Recordable;
   getCacheColumns: () => BasicColumn[];
   emit?: EmitType;
@@ -178,7 +177,7 @@ export interface BasicTableProps extends EleTable {
   // 表格滚动最大高度
   maxHeight?: number;
   // 分页配置
-  pagination?: PaginationProps;
+  pagination?: ElePagination | boolean;
   // loading加载
   loading?: boolean;
 
@@ -259,7 +258,7 @@ export interface BasicTableProps extends EleTable {
    * @default ''
    * @type string
    */
-  size?: SizeType;
+  size?: ComponentSize;
 
   /**
    * Table title renderer
@@ -280,12 +279,27 @@ export interface BasicTableProps extends EleTable {
   }) => Promise<any>;
 
   onColumnsChange?: (data: ColumnChangeParam[]) => void;
+
+  /**
+   * Callback executed when pagination, filters or sorter is changed
+   * @param pagination
+   * @param filters
+   * @param sorter
+   * @param currentDataSource
+   */
+  onChange?: (pagination: any, filters: any, sorter: any, extra: any) => void;
 }
 
 export type CellFormat =
   | string
   | ((text: string, record: Recordable, index: number) => string | number)
   | Map<string | number, any>;
+
+export type tableColumnRender = {
+  row:object
+  column: object
+  $index:number
+}
 
 export interface BasicColumn extends EleTableColumn {
   children?: BasicColumn[];
@@ -300,7 +314,7 @@ export interface BasicColumn extends EleTableColumn {
 
   format?: CellFormat;
 
-  customRender?: (record: Recordable, index: number, column: BasicColumn) => Promise;
+  customRender?: (record: tableColumnRender) => Promise;
 
   // Editable
   edit?: boolean;

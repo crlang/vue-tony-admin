@@ -3,7 +3,7 @@
  * @Date: 2021-12-24 17:24:14
  * @Description: Element Plus Type and Props
  * @LastEditors: crlang(https://www.crlang.com)
- * @LastEditTime: 2022-03-03 09:25:29
+ * @LastEditTime: 2022-03-03 16:51:16
  */
 import type { CSSProperties, ExtractPropTypes } from 'vue'
 
@@ -19,7 +19,8 @@ import type {
   DrawerProps,
   MessageProps,
   CardProps,
-  TagProps
+  TagProps,
+  PaginationProps
 } from 'element-plus'
 
 import {
@@ -31,7 +32,8 @@ import {
   drawerProps,
   messageProps,
   cardProps,
-  tagProps
+  tagProps,
+  paginationProps
 } from 'element-plus'
 
 export const EleButtonProps = buttonProps
@@ -250,3 +252,6 @@ export type EleTable = Partial<TableProps<Object>>
 
 export const EleTableColumnProps = TableColumn
 export type EleTableColumn = Partial<TableColumnCtx<Object>>
+
+export const ElePaginationProps = paginationProps
+export type ElePagination = PaginationProps

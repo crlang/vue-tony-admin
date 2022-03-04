@@ -2,7 +2,7 @@
   <ElTooltip
     placement="top"
     :content="t('common.redo')">
-    <Refresh @click="redo" />
+    <span><Refresh @click="redo" /></span>
   </ElTooltip>
 </template>
 

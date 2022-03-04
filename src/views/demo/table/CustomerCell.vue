@@ -1,19 +1,19 @@
 <template>
   <PageWrapper contentBackground>
     <BasicTable @register="registerTable">
-      <template #id="coo">
+      <template #id="{label,prop}">
         <el-table-column
-          :label="coo.label"
-          :prop="coo.prop">
+          :label="label"
+          :prop="prop">
           <template #default="scope">
             ID: {{ scope.row.id }}
           </template>
         </el-table-column>
       </template>
-      <template #no="coo">
+      <template #no="{label,prop}">
         <el-table-column
-          :label="coo.label"
-          :prop="coo.prop">
+          :label="label"
+          :prop="prop">
           <template #default="scope">
             <el-tag type="success">
               {{ scope.row.no }}
@@ -21,10 +21,10 @@
           </template>
         </el-table-column>
       </template>
-      <template #avatar="coo">
+      <template #avatar="{label,prop}">
         <el-table-column
-          :label="coo.label"
-          :prop="coo.prop">
+          :label="label"
+          :prop="prop">
           <template #default="scope">
             <el-avatar
               :size="60"
@@ -32,10 +32,10 @@
           </template>
         </el-table-column>
       </template>
-      <template #imgArr="coo">
+      <template #imgArr="{label,prop}">
         <el-table-column
-          :label="coo.label"
-          :prop="coo.prop">
+          :label="label"
+          :prop="prop">
           <template #default="scope">
             <TableImg
               :size="60"
@@ -44,10 +44,10 @@
           </template>
         </el-table-column>
       </template>
-      <template #imgs="coo">
+      <template #imgs="{label,prop}">
         <el-table-column
-          :label="coo.label"
-          :prop="coo.prop">
+          :label="label"
+          :prop="prop">
           <template #default="scope">
             <TableImg
               :size="60"
@@ -55,10 +55,10 @@
           </template>
         </el-table-column>
       </template>
-      <template #category="coo">
+      <template #category="{label,prop}">
         <el-table-column
-          :label="coo.label"
-          :prop="coo.prop">
+          :label="label"
+          :prop="prop">
           <template #default="scope">
             <el-tag type="success">
               {{ scope.row.category }}

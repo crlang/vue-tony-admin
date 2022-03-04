@@ -1,6 +1,6 @@
 import type { BasicColumn, BasicTableProps, CellFormat, GetColumnsParams } from '../types/table'
-// import type { PaginationProps } from '../types/pagination'
 import type { ComputedRef } from 'vue'
+
 import { computed, Ref, ref, toRaw, unref, watch } from 'vue'
 // import { renderEditCell } from '../components/editable'
 import { usePermission } from '@/hooks/web/usePermission'
@@ -9,6 +9,7 @@ import { isArray, isBoolean, isFunction, isMap, isString } from '@/utils/is'
 import { cloneDeep, isEqual } from 'lodash-es'
 import { formatToDate } from '@/utils/dateUtil'
 import { ACTION_COLUMN_FLAG, DEFAULT_ALIGN, INDEX_COLUMN_FLAG } from '../const'
+import { useI18n } from '@/hooks/web/useI18n'
 
 function handleItem(item: BasicColumn, ellipsis: boolean) {
   const { key, dataIndex, children } = item
@@ -37,50 +38,60 @@ function handleChildren(children: BasicColumn[] | undefined, ellipsis: boolean) 
   })
 }
 
-// function handleIndexColumn(
-//   propsRef: ComputedRef<BasicTableProps>,
-//   getPaginationRef: ComputedRef<boolean | PaginationProps>,
-//   columns: BasicColumn[]
-// ) {
-//   const { t } = useI18n()
+function handleIndexColumn(
+  propsRef: ComputedRef<BasicTableProps>,
+  columns: BasicColumn[]
+) {
+  const { t } = useI18n()
 
-//   const { showIndexColumn, indexColumnProps } = unref(propsRef)
+  const { showIndexColumn, indexColumnProps } = unref(propsRef)
 
-//   let pushIndexColumns = false
-//   columns.forEach(() => {
-//     const indIndex = columns.findIndex((column) => column.flag === INDEX_COLUMN_FLAG)
-//     if (showIndexColumn) {
-//       pushIndexColumns = indIndex === -1
-//     } else if (!showIndexColumn && indIndex !== -1) {
-//       columns.splice(indIndex, 1)
-//     }
-//   })
+  if (!showIndexColumn) return
 
-//   if (!pushIndexColumns) return
+  const isFixedLeft = columns.some((item) => item.fixed === 'left')
 
-//   const isFixedLeft = columns.some((item) => item.fixed === 'left')
+  const hasIndexColumn = columns.some((item) => item.type === 'index')
 
-//   columns.unshift({
-//     flag: INDEX_COLUMN_FLAG,
-//     width: 50,
-//     title: t('component.table.index'),
-//     align: 'center',
-//     customRender: ({ index }) => {
-//       const getPagination = unref(getPaginationRef)
-//       if (isBoolean(getPagination)) {
-//         return `${index + 1}`
-//       }
-//       const { current = 1, pageSize = PAGE_SIZE } = getPagination
-//       return ((current < 1 ? 1 : current) - 1) * pageSize + index + 1
-//     },
-//     ...(isFixedLeft
-//       ? {
-//         fixed: 'left'
-//       }
-//       : {}),
-//     ...indexColumnProps
-//   })
-// }
+  if (hasIndexColumn) return
+
+  columns.unshift({
+    type: 'index',
+    width: 50,
+    label: t('component.table.index'),
+    prop: 'columnIndex',
+    ...(isFixedLeft
+      ? {
+        fixed: 'left',
+      }
+      : {}),
+    ...indexColumnProps,
+  })
+}
+
+function handleCheckboxColumn(
+  propsRef: ComputedRef<BasicTableProps>,
+  columns: BasicColumn[]
+) {
+  const { showCheckboxColumn } = unref(propsRef)
+
+  if (!showCheckboxColumn) return
+
+  const isFixedLeft = columns.some((item) => item.fixed === 'left')
+  const hasCheckboxColumn = columns.some((item) => item.type === 'selection')
+
+  if (hasCheckboxColumn) return
+
+  columns.unshift({
+    type: 'selection',
+    width: 50,
+    prop: 'columnSelection',
+    ...(isFixedLeft
+      ? {
+        fixed: 'left',
+      }
+      : {}),
+  })
+}
 
 function handleActionColumn(propsRef: ComputedRef<BasicTableProps>, columns: BasicColumn[]) {
   const { actionColumn } = unref(propsRef)
@@ -99,7 +110,6 @@ function handleActionColumn(propsRef: ComputedRef<BasicTableProps>, columns: Bas
 
 export function useColumns(
   propsRef: ComputedRef<BasicTableProps>
-  // getPaginationRef: ComputedRef<boolean | PaginationProps>
 ) {
   const columnsRef = ref(unref(propsRef).columns) as unknown as Ref<BasicColumn[]>
   let cacheColumns = unref(propsRef).columns
@@ -107,7 +117,8 @@ export function useColumns(
   const getColumnsRef = computed(() => {
     const columns = cloneDeep(unref(columnsRef))
 
-    // handleIndexColumn(propsRef, getPaginationRef, columns)
+    handleIndexColumn(propsRef, columns)
+    handleCheckboxColumn(propsRef, columns)
     handleActionColumn(propsRef, columns)
     if (!columns) {
       return []
@@ -149,24 +160,17 @@ export function useColumns(
         return hasPermission(column.auth) && isIfShow(column)
       })
       .map((column) => {
-        const { slots, dataIndex, customRender, format, edit, editRow, flag } = column
+        const {
+          slots,
+          dataIndex,
+        } = column
 
         if (!slots || !slots?.title) {
           column.slots = { title: `header-${dataIndex}`, ...(slots || {}) }
           column.customTitle = column.title
           Reflect.deleteProperty(column, 'title')
         }
-        const isDefaultAction = [INDEX_COLUMN_FLAG, ACTION_COLUMN_FLAG].includes(flag!)
-        if (!customRender && format && !edit && !isDefaultAction) {
-          column.customRender = ({ text, record, index }) => {
-            return formatCell(text, format, record, index)
-          }
-        }
 
-        // edit table
-        if ((edit || editRow) && !isDefaultAction) {
-          column.customRender = renderEditCell(column)
-        }
         return column
       })
   })

@@ -200,14 +200,6 @@ const comp: AppRouteModule = {
           },
         },
         {
-          path: 'editCellTable',
-          name: 'EditCellTableDemo',
-          component: () => import('@/views/demo/table/EditCellTable.vue'),
-          meta: {
-            title: t('routes.demo.table.editCellTable'),
-          },
-        },
-        {
           path: 'authColumn',
           name: 'AuthColumnDemo',
           component: () => import('@/views/demo/table/AuthColumn.vue'),

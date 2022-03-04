@@ -1,9 +1,8 @@
 <template>
-  <div>
+  <div @click="openDrawer(true)">
     <Icon
       icon="ion:settings-outline"
-      style="display: flex;align-items: center;height: 100%;"
-      @click="openDrawer(true)" />
+      style="display: flex;align-items: center;height: 100%;" />
     <SettingDrawer @register="register" />
   </div>
 </template>

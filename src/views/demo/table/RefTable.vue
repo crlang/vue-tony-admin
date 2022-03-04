@@ -10,10 +10,6 @@
       <el-button @click="setPaginationInfo">跳转到第2页</el-button>
     </div>
     <div class="mb-4">
-      <el-button @click="getSelectRowList">获取选中行</el-button>
-      <el-button @click="getSelectRowKeyList">获取选中行Key</el-button>
-      <el-button @click="setSelectedRowKeyList">设置选中行</el-button>
-      <el-button @click="clearSelect">清空选中行</el-button>
       <el-button @click="getPagination">获取分页信息</el-button>
     </div>
     <BasicTable
@@ -22,8 +18,7 @@
       ref="tableRef"
       :api="api"
       :columns="columns"
-      showCheckboxColumn
-    />
+      showCheckboxColumn />
   </div>
 </template>
 
@@ -60,9 +55,7 @@ export default defineComponent({
     function reloadTable() {
       getTableAction().setColumns(getBasicColumns())
 
-      getTableAction().reload({
-        page: 1,
-      })
+      getTableAction().reload()
     }
     function getColumn() {
       createMessage.info('请在控制台查看！')
@@ -85,23 +78,9 @@ export default defineComponent({
 
     function setPaginationInfo() {
       getTableAction().setPagination({
-        page: 2,
+        currentPage: 2,
       })
       getTableAction().reload()
-    }
-    function getSelectRowList() {
-      createMessage.info('请在控制台查看！')
-      console.log(getTableAction().getSelectRows())
-    }
-    function getSelectRowKeyList() {
-      createMessage.info('请在控制台查看！')
-      console.log(getTableAction().getSelectRowKeys())
-    }
-    function setSelectedRowKeyList() {
-      getTableAction().setSelectedRowKeys(['0', '1', '2'])
-    }
-    function clearSelect() {
-      getTableAction().clearSelectedRowKeys()
     }
 
     return {
@@ -116,10 +95,6 @@ export default defineComponent({
       getTableRawData,
       getPagination,
       setPaginationInfo,
-      getSelectRowList,
-      getSelectRowKeyList,
-      setSelectedRowKeyList,
-      clearSelect,
     }
   },
 })

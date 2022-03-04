@@ -14,8 +14,10 @@ export function resultPageSuccess<T = any>(page: number, pageSize: number, list:
 
   return {
     ...resultSuccess({
-      page: parseInt(page) + 1,
+      page: parseInt(page),
+      nextPage: parseInt(page) + 1,
       pageSize: parseInt(pageSize),
+      totalPage: parseInt(list.length / pageSize),
       items: pageData,
       total: list.length,
     }),

@@ -1,5 +1,6 @@
-import type { PaginationProps } from '../types/pagination'
 import type { BasicTableProps } from '../types/table'
+import type { ElePagination } from '@/components/ElementPlus'
+
 import { computed, unref, ref, ComputedRef, watchEffect } from 'vue'
 import { isBoolean } from '@/utils/is'
 import { PAGE_SIZE, PAGE_SIZE_OPTIONS, PAGE_LAYOUT_OPTIONS } from '../const'
@@ -23,12 +24,12 @@ import { PAGE_SIZE, PAGE_SIZE_OPTIONS, PAGE_LAYOUT_OPTIONS } from '../const'
 export function usePagination(refProps: ComputedRef<BasicTableProps>) {
   // const { t } = useI18n()
 
-  const configRef = ref<PaginationProps>({})
+  const configRef = ref<ElePagination>({})
   const show = ref(true)
 
   watchEffect(() => {
-    const { pagination, api } = unref(refProps)
-    if (pagination || api) {
+    const { pagination } = unref(refProps)
+    if (!isBoolean(pagination) && pagination) {
       configRef.value = {
         ...unref(configRef),
         ...(pagination ?? {}),
@@ -36,24 +37,17 @@ export function usePagination(refProps: ComputedRef<BasicTableProps>) {
     }
   })
 
-  // watch(configRef.value, (v1, v2) => {
-  // })
-  // watch(
-  //   () => unref(refProps).pagination,
-  //   (newVal, oldVal) => {
-  //   },
-  //   { deep: true }
-  // )
-  const getPaginationInfo = computed((): PaginationProps => {
-    const { pagination, api } = unref(refProps)
-    if (!unref(show) || (!pagination && !api)) {
+  const getPaginationInfo = computed((): ElePagination => {
+    const { pagination } = unref(refProps)
+
+    if (!unref(show) || (isBoolean(pagination) && !pagination)) {
       return false
     }
 
     return {
-      page: 1,
+      currentPage: 1,
       defaultCurrentPage: 1,
-      size: PAGE_SIZE,
+      pageSize: PAGE_SIZE,
       defaultPageSize: PAGE_SIZE,
       pageSizes: PAGE_SIZE_OPTIONS,
       layout: PAGE_LAYOUT_OPTIONS,
@@ -62,14 +56,12 @@ export function usePagination(refProps: ComputedRef<BasicTableProps>) {
     }
   })
 
-  function setPagination(info: Partial<PaginationProps>) {
+  function setPagination(info: Partial<ElePagination>) {
     const paginationInfo = unref(getPaginationInfo)
     configRef.value = {
       ...(!isBoolean(paginationInfo) ? paginationInfo : {}),
       ...info,
     }
-    setTimeout(() => {
-    }, 300)
   }
 
   function getPagination() {

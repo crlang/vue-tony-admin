@@ -1,21 +1,19 @@
 <template>
   <div class="p-4">
     <BasicTable @register="registerTable">
-      <template #action="coo">
+      <template #action="{label,prop}">
         <el-table-column
-          :label="coo.label"
-          :prop="coo.prop">
+          :label="label"
+          :prop="prop">
           <template #default="scope">
             <TableAction
               :actions="[
                 {
-                  label: '启用',
-                  icon: 'ic:outline-delete-outline',
+                  text: '启用',
                   onClick: handleOpen.bind(null, scope.row)
                 },
                 {
-                  label: '删除',
-                  icon: 'ic:outline-delete-outline',
+                  text: '删除',
                   onClick: handleDelete.bind(null, scope.row)
                 }
               ]"
@@ -76,12 +74,13 @@ export default defineComponent({
         isSlot: true,
       },
     })
-    function handleDelete(record: Recordable) {
-      console.log('点击了删除', record)
+    function handleDelete(record) {
+      console.table('点击了删除', record)
     }
-    function handleOpen(record: Recordable) {
-      console.log('点击了启用', record)
+    function handleOpen(record) {
+      console.table('点击了启用', record)
     }
+
     return {
       registerTable,
       handleDelete,

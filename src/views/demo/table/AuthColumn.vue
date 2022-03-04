@@ -1,33 +1,30 @@
 <template>
   <div class="p-4">
     <BasicTable @register="registerTable">
-      <template #action="coo">
+      <template #action="{label,prop,width}">
         <el-table-column
-          :width="coo.width"
-          :label="coo.label"
-          align="center"
-          :prop="coo.prop">
+          :width="width"
+          :label="label"
+          :prop="prop">
           <template #default="scope">
             <TableAction
               :actions="[
                 {
-                  label: '启用',
+                  text: '启用',
                   onClick: handleOpen.bind(null, scope.row),
                   auth: 'admin' // 根据权限控制是否显示: 无权限，不显示
                 },
                 {
-                  label: '编辑',
+                  text: '编辑',
                   onClick: handleEdit.bind(null, scope.row),
                   auth: 'other' // 根据权限控制是否显示: 无权限，不显示
                 },
                 {
-                  label: '删除',
-                  icon: 'ic:outline-delete-outline',
+                  text: '删除',
                   onClick: handleDelete.bind(null, scope.row),
                   auth: 'admin' // 根据权限控制是否显示: 有权限，会显示
                 }
-              ]"
-            />
+              ]" />
           </template>
         </el-table-column>
       </template>

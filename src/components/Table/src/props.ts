@@ -1,4 +1,3 @@
-import type { PaginationProps } from './types/pagination'
 import type {
   BasicColumn,
   FetchSetting,
@@ -7,6 +6,8 @@ import type {
   // TableCustomRecord
 } from './types/table'
 import type { FormProps } from '@/components/Form'
+import type { ElePagination } from '@/components/ElementPlus'
+
 import { FETCH_SETTING } from './const'
 import { propTypes } from '@/utils/propTypes'
 
@@ -106,7 +107,7 @@ export const basicProps = {
     default: '',
   },
   pagination: {
-    type: Object as PropType<PaginationProps>,
+    type: [Object, Boolean] as PropType<Partial<ElePagination> | boolean>,
     default: null,
   },
   loading: propTypes.bool,
@@ -120,4 +121,26 @@ export const basicProps = {
     }) => Promise<any>
     >,
   },
+  canResize: Boolean,
 }
+
+export const ElTableBasicEmits = [
+  'select',
+  'select-all',
+  'selection-change',
+  'cell-mouse-enter',
+  'cell-mouse-leave',
+  'cell-click',
+  'cell-dblclick',
+  'cell-contextmenu',
+  'row-click',
+  'row-contextmenu',
+  'row-dblclick',
+  'header-click',
+  'header-contextmenu',
+  'sort-change',
+  'filter-change',
+  'current-change',
+  'header-dragend',
+  'expand-change',
+]

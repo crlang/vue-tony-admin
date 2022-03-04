@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import type { SizeType } from '../../types/table'
+import type { ComponentSize } from '@/utils/types'
 
 import { defineComponent } from 'vue'
 import { ElTooltip, ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus'
@@ -47,7 +47,7 @@ export default defineComponent({
     const table = useTableContext()
     const { t } = useI18n()
 
-    function handleTitleClick(key: SizeType) {
+    function handleTitleClick(key: ComponentSize) {
       table.setProps({
         size: key,
       })
