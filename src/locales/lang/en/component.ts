@@ -66,6 +66,7 @@ export default {
     settingFixedRight: 'Fixed Right',
     settingFullScreen: 'Full Screen',
     index: 'Index',
+    operation: 'Operation',
     total: 'total of {total}',
   },
   time: {

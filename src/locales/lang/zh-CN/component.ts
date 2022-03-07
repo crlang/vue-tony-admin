@@ -66,6 +66,7 @@ export default {
     settingFixedRight: '固定到右侧',
     settingFullScreen: '全屏',
     index: '序号',
+    operation: '操作',
     total: '共 {total} 条数据',
   },
   time: {

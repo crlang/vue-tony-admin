@@ -53,14 +53,27 @@
             </template>
           </ElTableColumn>
         </template>
+        <template v-else-if="column.type==='action'">
+          <ElTableColumn v-bind="column">
+            <template #default="scope">
+              <TableAction
+                :prefixCls="`${prefixCls}-action`"
+                :column="column"
+                :scopes="scope" />
+            </template>
+          </ElTableColumn>
+
+        </template>
         <template v-else-if="column.isSlot">
           <slot
             :name="column.prop"
             v-bind="column"></slot>
         </template>
+
         <ElTableColumn
           v-bind="column"
           v-else />
+
       </template>
     </ElTable>
 
@@ -102,11 +115,13 @@ import { useDesign } from '@/hooks/web/useDesign'
 import TableHeader from './components/TableHeader.vue'
 import TableRender from './components/TableRender'
 import TablePagination from './components/TablePagination.vue'
+import TableAction from './components/TableAction.vue'
 
 import { omit } from 'lodash-es'
 import { basicProps, ElTableBasicEmits } from './props'
 import { isFunction, isString } from '@/utils/is'
 import { warn } from '@/utils/log'
+import { useBasicTableFn } from './hooks/useBasic'
 
 export default defineComponent({
   components: {
@@ -116,6 +131,7 @@ export default defineComponent({
     TableHeader,
     TableRender,
     TablePagination,
+    TableAction,
   },
   props: basicProps,
   emits: [
@@ -161,6 +177,18 @@ export default defineComponent({
       setShowPagination,
       getShowPagination,
     } = usePagination(getProps)
+
+    const {
+      clearSelection,
+      toggleRowSelection,
+      toggleAllSelection,
+      toggleRowExpansion,
+      setCurrentRow,
+      clearSort,
+      clearFilter,
+      doLayout,
+      sort,
+    } = useBasicTableFn(getProps, tableElRef)
 
     const {
       getRowSelection,
@@ -298,10 +326,6 @@ export default defineComponent({
       innerPropsRef.value = { ...unref(innerPropsRef), ...props }
     }
 
-    function toggleAllSelection() {
-      unref(tableElRef).toggleAllSelection()
-    }
-
     function handlePageChange(v:number) {
       setPagination({ currentPage: v })
       handleTableChange(unref(getBindValues).pagination)
@@ -313,6 +337,17 @@ export default defineComponent({
     }
 
     const tableAction: TableActionType = {
+      // Element Plus
+      clearSelection,
+      toggleRowSelection,
+      toggleAllSelection,
+      toggleRowExpansion,
+      setCurrentRow,
+      clearSort,
+      clearFilter,
+      doLayout,
+      sort,
+      // 拓展
       reload,
       getSelectRows,
       clearSelectedRowKeys,
@@ -326,7 +361,6 @@ export default defineComponent({
       findTableDataRecord,
       redoHeight,
       setSelectedRows: () => void (0),
-      toggleAllSelection,
       setSelectedRowKeys,
       setColumns,
       setLoading,
@@ -395,7 +429,32 @@ $prefix-cls: '#{$tonyname}-basic-table';
 
   &-form-container {
     padding: 16px;
+  }
 
+  &-action {
+    display: flex;
+    align-items: center;
+
+    &.left {
+      justify-content: flex-start;
+    }
+
+    &.center {
+      justify-content: center;
+    }
+
+    &.right {
+      justify-content: flex-end;
+    }
+
+    .el-button  {
+      display: flex;
+      align-items: center;
+
+      .eleicon {
+        margin-right: 4px;
+      }
+    }
   }
 }
 </style>

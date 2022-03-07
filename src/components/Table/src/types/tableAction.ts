@@ -1,18 +1,19 @@
 import type { EleButton } from '@/components/ElementPlus'
+import type { RenderRowData } from 'element-plus/es/components/table/src/table/defaults'
 
 import { RoleEnum } from '@/enums/roleEnum'
 import { Component } from 'vue'
 
-export interface ActionItem extends EleButton {
-  onClick?: Fn;
-  label?: string;
-  // popConfirm?: PopConfirm;
-  divider?: boolean;
-  enable?: boolean;
+export type ScopeInfo = RenderRowData<Object>
+
+export interface ActionItem extends Partial<EleButton> {
+  callback?: (rowInfo:ScopeInfo)=>void
+  popConfirm?: PopConfirm
+  preIcon?: string
   // 权限编码控制是否显示
-  auth?: RoleEnum | RoleEnum[] | string | string[];
+  auth?: RoleEnum | RoleEnum[] | string | string[]
   // 业务控制是否显示
-  ifShow?: boolean | ((action: ActionItem) => boolean);
+  ifShow?: boolean | ((action: ActionItem) => boolean)
 }
 
 export interface PopConfirm {

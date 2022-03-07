@@ -14,28 +14,6 @@
           </template>
         </el-table-column>
       </template>
-      <template #action="{label,prop}">
-        <el-table-column
-          :label="label"
-          :prop="prop">
-          <template #default="scope">
-            <TableAction
-              stopButtonPropagation
-              :actions="[
-                {
-                  text: '启用',
-                  onClick: handleOpen.bind(null, scope.row)
-                },
-                {
-                  text: '删除',
-                  onClick: handleDelete.bind(null, scope.row)
-                }
-
-              ]"
-            />
-          </template>
-        </el-table-column>
-      </template>
     </BasicTable>
   </PageWrapper>
 </template>
@@ -43,28 +21,36 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElTableColumn } from 'element-plus'
-import { BasicTable, useTable, TableAction } from '@/components/Table'
+import { BasicTable, useTable } from '@/components/Table'
 import { PageWrapper } from '@/components/Page'
 import { getBasicColumns } from './tableData'
 
 import { demoListApi } from '@/api/demo/table'
 
 export default defineComponent({
-  components: { ElTableColumn, BasicTable, TableAction, PageWrapper },
+  components: { ElTableColumn, BasicTable, PageWrapper },
   setup() {
     const [registerTable] = useTable({
       api: demoListApi,
       title: '可展开表格演示',
       titleHelpMessage: ['已启用expandRowByClick', '已启用stopButtonPropagation'],
-      columns: getBasicColumns(),
+      columns: [
+        ...getBasicColumns(),
+        {
+          actions: [
+            {
+              text: '启用',
+              callback: handleOpen,
+            },
+            {
+              text: '删除',
+              callback: handleDelete,
+            },
+          ],
+        },
+      ],
       rowKey: 'id',
       expandRowByClick: true,
-      actionColumn: {
-        width: 160,
-        label: 'Action',
-        prop: 'action',
-        isSlot: true,
-      },
     })
     function handleDelete(record) {
       console.table('点击了删除', record)

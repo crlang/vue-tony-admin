@@ -18,12 +18,6 @@ import { getDeptList } from '@/api/demo/system'
 export default defineComponent({
   name: 'DeptModal',
   components: { BasicModal, BasicForm },
-  props: {
-    visible: {
-      type: Boolean,
-      default: false,
-    },
-  },
   emits: ['success', 'register'],
   setup(_, { emit }) {
     const isUpdate = ref(true)

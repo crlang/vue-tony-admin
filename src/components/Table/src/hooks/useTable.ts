@@ -8,6 +8,7 @@ import { getDynamicProps } from '@/utils'
 import { ref, onUnmounted, unref, watch, toRaw } from 'vue'
 import { isProdMode } from '@/utils/env'
 import { error } from '@/utils/log'
+import { DynamicProps } from '#/utils'
 
 type Props = Partial<DynamicProps<BasicTableProps>>;
 
@@ -68,15 +69,21 @@ export function useTable(tableProps?: Props): [
   const methods: TableActionType & {
     getForm: () => FormActionType;
   } = {
+    // Element Plus
+    clearSelection: () => {
+      getTableInstance().clearSelection()
+    },
+
+    // 拓展
     reload: async (opt?: FetchParams) => {
       getTableInstance().reload(opt)
     },
     setProps: (props: Partial<BasicTableProps>) => {
       getTableInstance().setProps(props)
     },
-    // redoHeight: () => {
-    //   getTableInstance().redoHeight()
-    // },
+    redoHeight: () => {
+      getTableInstance().redoHeight()
+    },
     setLoading: (loading: boolean) => {
       getTableInstance().setLoading(loading)
     },

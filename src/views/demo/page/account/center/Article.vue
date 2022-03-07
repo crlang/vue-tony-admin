@@ -26,7 +26,7 @@
           </div>
           <div class="mt-2">
             <template
-              v-for="action in actions"
+              v-for="action in metaActions"
               :key="action.text">
               <div :class="`${prefixCls}__action`">
                 <Icon
@@ -49,7 +49,7 @@
 import { defineComponent } from 'vue'
 import { ElTag } from 'element-plus'
 import Icon from '@/components/Icon'
-import { actions, articleList } from './data'
+import { articleList } from './data'
 import { List, ListItem } from '@/components/List'
 
 export default defineComponent({
@@ -61,10 +61,16 @@ export default defineComponent({
     Icon,
   },
   setup() {
+    const metaActions = [
+      { icon: 'clarity:star-line', text: '156', color: '#018ffb' },
+      { icon: 'bx:bxs-like', text: '156', color: '#459ae8' },
+      { icon: 'bx:bxs-message-dots', text: '2', color: '#42d27d' },
+    ]
+
     return {
       prefixCls: 'account-center-article',
       list: articleList,
-      actions,
+      metaActions,
     }
   },
 })

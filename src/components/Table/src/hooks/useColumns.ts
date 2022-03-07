@@ -8,12 +8,11 @@ import { usePermission } from '@/hooks/web/usePermission'
 import { isArray, isBoolean, isFunction, isMap, isString } from '@/utils/is'
 import { cloneDeep, isEqual } from 'lodash-es'
 import { formatToDate } from '@/utils/dateUtil'
-import { ACTION_COLUMN_FLAG, DEFAULT_ALIGN, INDEX_COLUMN_FLAG } from '../const'
 import { useI18n } from '@/hooks/web/useI18n'
 
 function handleItem(item: BasicColumn, ellipsis: boolean) {
   const { key, dataIndex, children } = item
-  item.align = item.align || DEFAULT_ALIGN
+  item.align = item.align || 'center'
   if (ellipsis) {
     if (!key) {
       item.key = dataIndex
@@ -94,18 +93,24 @@ function handleCheckboxColumn(
 }
 
 function handleActionColumn(propsRef: ComputedRef<BasicTableProps>, columns: BasicColumn[]) {
-  const { actionColumn } = unref(propsRef)
-  if (!actionColumn) return
+  const hasIndex = columns.findIndex((column) => column.actions)
+  // nonexistent
+  if (hasIndex < 0) return
 
-  const hasIndex = columns.findIndex((column) => column.flag === ACTION_COLUMN_FLAG)
-  if (hasIndex === -1) {
-    columns.push({
+  // processed
+  if (columns[hasIndex]?.type === 'action') return
+
+  const { t } = useI18n()
+
+  columns[hasIndex] =
+    {
+      width: 120,
+      label: t('component.table.operation'),
+      prop: 'action',
+      type: 'action',
+      // fixed: 'right',
       ...columns[hasIndex],
-      fixed: 'right',
-      ...actionColumn,
-      flag: ACTION_COLUMN_FLAG,
-    })
-  }
+    }
 }
 
 export function useColumns(
@@ -179,7 +184,7 @@ export function useColumns(
     () => unref(propsRef).columns,
     (columns) => {
       columnsRef.value = columns
-      cacheColumns = columns?.filter((item) => !item.flag) ?? []
+      cacheColumns = columns?.filter((item) => !item.type) ?? []
     }
   )
 
@@ -247,10 +252,10 @@ export function useColumns(
     const { ignoreIndex, ignoreAction, sort } = opt || {}
     let columns = toRaw(unref(getColumnsRef))
     if (ignoreIndex) {
-      columns = columns.filter((item) => item.flag !== INDEX_COLUMN_FLAG)
+      columns = columns.filter((item) => item.type !== 'index')
     }
     if (ignoreAction) {
-      columns = columns.filter((item) => item.flag !== ACTION_COLUMN_FLAG)
+      columns = columns.filter((item) => item.type !== 'action')
     }
 
     if (sort) {

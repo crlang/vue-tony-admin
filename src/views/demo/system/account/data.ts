@@ -1,38 +1,5 @@
 import { getAllRoleList, isAccountExist } from '@/api/demo/system'
-import { BasicColumn } from '@/components/Table'
 import { FormSchema } from '@/components/Table'
-
-export const columns: BasicColumn[] = [
-  {
-    label: '用户名',
-    prop: 'account',
-    width: 120,
-  },
-  {
-    label: '昵称',
-    prop: 'nickname',
-    width: 120,
-  },
-  {
-    label: '邮箱',
-    prop: 'email',
-    width: 120,
-  },
-  {
-    label: '创建时间',
-    prop: 'createTime',
-    width: 180,
-  },
-  {
-    label: '角色',
-    prop: 'role',
-    width: 200,
-  },
-  {
-    label: '备注',
-    prop: 'remark',
-  },
-]
 
 export const searchFormSchema: FormSchema[] = [
   {

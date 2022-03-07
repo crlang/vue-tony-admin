@@ -8,27 +8,9 @@ import type { ComponentSize } from '@/utils/types'
 import { RoleEnum } from '@/enums/roleEnum'
 
 import { ElTableColumn } from 'element-plus'
+import { ActionItem } from './tableAction'
 
 export declare type SortOrder = 'ascend' | 'descend';
-
-export interface TableCurrentDataSource<T = Recordable> {
-  currentDataSource: T[];
-}
-
-// export interface TableCustomRecord<T> {
-//   record?: T;
-//   index?: number;
-// }
-
-export interface ExpandedRowRenderRecord<T> extends TableCustomRecord<T> {
-  indent?: number;
-  expanded?: boolean;
-}
-export interface ColumnFilterItem {
-  text?: string;
-  value?: string;
-  children?: any;
-}
 
 export interface TableCustomRecord<T = Recordable> {
   record?: T;
@@ -57,6 +39,17 @@ export interface GetColumnsParams {
 }
 
 export interface TableActionType {
+  // Element Plus
+  clearSelection: () => void;
+  toggleRowSelection: (row:any, selected:boolean) => void;
+  toggleAllSelection: () => void;
+  toggleRowExpansion: (row:any, expanded:boolean) => void;
+  setCurrentRow: (row:any) => void;
+  clearSort: () => void;
+  clearFilter: (columnKeys:string[]) => void;
+  doLayout: () => void;
+  sort: (prop: string, order: string) => void;
+  // 拓展
   reload: (opt?: FetchParams) => Promise<void>;
   getSelectRows: <T = Recordable>() => T[];
   clearSelectedRowKeys: () => void;
@@ -214,12 +207,6 @@ export interface BasicTableProps extends EleTable {
   expandedRowKeys?: string[];
 
   /**
-   * Expanded container render for each row
-   * @type Function
-   */
-  expandedRowRender?: (record?: ExpandedRowRenderRecord<T>) => VNodeChild | JSX.Element;
-
-  /**
    * Whether to expand row by clicking anywhere in the whole row
    * @default false
    * @type boolean
@@ -315,6 +302,8 @@ export interface BasicColumn extends EleTableColumn {
   format?: CellFormat;
 
   customRender?: (record: tableColumnRender) => Promise;
+
+  actions?: ActionItem[];
 
   // Editable
   edit?: boolean;

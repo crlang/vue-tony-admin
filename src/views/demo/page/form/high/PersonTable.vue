@@ -2,13 +2,7 @@
   <div>
     <BasicTable
       @register="registerTable"
-      @edit-change="handleEditChange">
-      <template #action="coo">
-        <el-table-column v-slot="scope">
-          <TableAction :actions="createActions(scope.row, coo)" />
-        </el-table-column>
-      </template>
-    </BasicTable>
+      @edit-change="handleEditChange" />
     <el-button
       class="mt-4 mb-8"
       type="warning"
@@ -18,11 +12,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ElTableColumn, ElButton } from 'element-plus'
-import { BasicTable, useTable, TableAction, BasicColumn, EditRecordRow } from '@/components/Table'
+import { ElButton } from 'element-plus'
+import { BasicTable, useTable, BasicColumn } from '@/components/Table'
 
 export default defineComponent({
-  components: { ElTableColumn, ElButton, BasicTable, TableAction },
+  components: { ElButton, BasicTable },
   setup() {
     const columns: BasicColumn[] = [
       {
@@ -39,6 +33,17 @@ export default defineComponent({
         label: '所属部门',
         prop: 'dept',
         edit: true,
+      },
+      {
+        actions: [
+          {
+            text: '编辑',
+            callback: handleEdit,
+          },
+          {
+            text: '删除',
+          },
+        ],
       },
     ]
 
@@ -63,38 +68,23 @@ export default defineComponent({
     const [registerTable, { getDataSource }] = useTable({
       columns: columns,
       dataSource: data,
-      actionColumn: {
-        width: 160,
-        label: '操作',
-        prop: 'action',
-        isSlot: true,
-      },
     })
 
-    function handleEdit(record: EditRecordRow) {
+    function handleEdit(record) {
       record.onEdit?.(true)
     }
 
-    // function handleCancel(record: EditRecordRow) {
-    //   record.onEdit?.(false)
-    //   if (record.isNew) {
-    //     const data = getDataSource()
-    //     const index = data.findIndex((item) => item.key === record.key)
-    //     data.splice(index, 1)
-    //   }
-    // }
-
-    function handleSave(record: EditRecordRow) {
+    function handleSave(record) {
       record.onEdit?.(false, true)
     }
 
-    function handleEditChange(data: Recordable) {
+    function handleEditChange(data) {
       console.log(data)
     }
 
     function handleAdd() {
       const data = getDataSource()
-      const addRow: EditRecordRow = {
+      const addRow = {
         name: '',
         no: '',
         dept: '',
@@ -106,7 +96,7 @@ export default defineComponent({
       data.push(addRow)
     }
 
-    function createActions(record: EditRecordRow, column: BasicColumn) {
+    function createActions(record, column: BasicColumn) {
       if (!record.editable) {
         return [
           {

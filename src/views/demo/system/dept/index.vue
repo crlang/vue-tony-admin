@@ -6,30 +6,6 @@
           type="primary"
           @click="handleCreate"> 新增部门 </el-button>
       </template>
-      <template #action="coo">
-        <el-table-column
-          :lebel="coo.label"
-          :prop="coo.prop">
-          <template #default="scope">
-            <TableAction
-              :actions="[
-                {
-                  icon: 'clarity:note-edit-line',
-                  onClick: handleEdit.bind(null, scope.row),
-                },
-                {
-                  icon: 'ep:delete',
-                  color: 'error',
-                  popConfirm: {
-                    title: '是否确认删除',
-                    confirm: handleDelete.bind(null, scope.row),
-                  },
-                },
-              ]"
-            />
-          </template>
-        </el-table-column>
-      </template>
     </BasicTable>
     <DeptModal
       @register="registerModal"
@@ -39,9 +15,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ElButton, ElTableColumn } from 'element-plus'
+import { ElButton } from 'element-plus'
 
-import { BasicTable, useTable, TableAction } from '@/components/Table'
+import { BasicTable, useTable } from '@/components/Table'
 import { getDeptList } from '@/api/demo/system'
 
 import { useModal } from '@/components/Modal'
@@ -50,13 +26,32 @@ import { columns, searchFormSchema } from './data'
 
 export default defineComponent({
   name: 'DeptManagement',
-  components: { ElButton, ElTableColumn, BasicTable, TableAction, DeptModal },
+  components: { ElButton, BasicTable, DeptModal },
   setup() {
     const [registerModal, { openModal }] = useModal()
     const [registerTable, { reload }] = useTable({
       title: '部门列表',
       api: getDeptList,
-      columns,
+      columns: [
+        ...columns,
+        {
+          actions: [
+            {
+              icon: 'clarity:note-edit-line',
+              text: 'Edit',
+              callback: handleEdit,
+            },
+            {
+              icon: 'ep:delete',
+              text: 'Delete',
+              popConfirm: {
+                title: '是否确认删除',
+                confirm: handleDelete,
+              },
+            },
+          ],
+        },
+      ],
       formConfig: {
         labelWidth: 120,
         schemas: searchFormSchema,
@@ -67,13 +62,6 @@ export default defineComponent({
       showTableSetting: true,
       border: true,
       showIndexColumn: false,
-      actionColumn: {
-        width: 80,
-        label: '操作',
-        prop: 'action',
-        isSlot: true,
-        fixed: undefined,
-      },
     })
 
     function handleCreate() {

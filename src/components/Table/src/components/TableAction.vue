@@ -1,47 +1,46 @@
 <template>
-  <div
-    :class="[prefixCls, getAlign]"
-    @click="onCellClick">
+  <div :class="[prefixCls, getAlign]">
     <template
       v-for="action in getActions"
       :key="action?.id">
-      <el-button v-bind="action">{{ action.text || '' }}</el-button>
+      <el-button
+        type="text"
+        v-bind="action.buttonProps"
+        @click="action?.callback!(scopes)"><Icon
+          :icon="action?.preIcon"
+          v-if="action?.preIcon" />{{ action.buttonProps?.text || '' }}</el-button>
     </template>
   </div>
 </template>
 
 <script lang="ts">
 import type { EleButton } from '@/components/ElementPlus'
+import type { TableActionType } from '../types/table'
+import type { ActionItem } from '../types/tableAction'
 
-import { defineComponent, PropType, computed, toRaw } from 'vue'
-import { ActionItem, TableActionType } from '@/components/Table'
+import { defineComponent, computed } from 'vue'
 import { ElButton } from 'element-plus'
-import { useDesign } from '@/hooks/web/useDesign'
 import { useTableContext } from '../hooks/useTableContext'
 import { usePermission } from '@/hooks/web/usePermission'
 import { isBoolean, isFunction } from '@/utils/is'
-import { propTypes } from '@/utils/propTypes'
-// import { ACTION_COLUMN_FLAG } from '../const'
-import { omit } from 'lodash-es'
+import { Icon } from '@/components/Icon'
 
 export default defineComponent({
   name: 'TableAction',
-  components: { ElButton },
+  components: { ElButton, Icon },
   props: {
-    actions: {
-      type: Array as PropType<Partial<ActionItem[]>>,
+    prefixCls: String,
+    column: {
+      type: Object,
       default: null,
     },
-    divider: propTypes.bool.def(true),
-    outside: propTypes.bool,
-    stopButtonPropagation: propTypes.bool.def(false),
+    scopes: {
+      type: Object,
+      default: null,
+    },
   },
   setup(props) {
-    const { prefixCls } = useDesign('basic-table-action')
-    let table: Partial<TableActionType> = {}
-    if (!props.outside) {
-      table = useTableContext()
-    }
+    const table: Partial<TableActionType> = useTableContext()
 
     const { hasPermission } = usePermission()
     function isIfShow(action: ActionItem): boolean {
@@ -59,19 +58,25 @@ export default defineComponent({
     }
 
     const getActions = computed(() => {
-      const opts = (toRaw(props.actions) || [])
-        .filter((action:ActionItem) => {
-          return hasPermission(action.auth) && isIfShow(action)
-        })
-        .map((action) => {
+      const { actions = [] } = props.column
+      const opts = actions.filter((action) => {
+        return hasPermission(action.auth) && isIfShow(action)
+      })
+        .map((action:ActionItem) => {
           const opt = {
-            // preIcon: action?.icon,
-            text: action?.label,
-            type: 'text',
-            size: 'small',
-            ...action,
+            callback: action?.callback,
+            popConfirm: action?.popConfirm,
+            preIcon: (action.icon || '') as string,
+            buttonProps: {
+              size: 'small',
+              ...action,
+              callback: undefined, // 净化
+              popConfirm: undefined, // 净化
+              icon: '', // 净化
+            } as EleButton,
           }
-          return omit(opt, ['icon']) as EleButton
+
+          return opt
         })
       return opts
     })
@@ -82,41 +87,7 @@ export default defineComponent({
       return actionColumn?.align ?? 'left'
     })
 
-    function onCellClick(e: MouseEvent) {
-      if (!props.stopButtonPropagation) return
-      const path = e.composedPath() as HTMLElement[]
-      const isInButton = path.find((ele) => {
-        return ele.tagName?.toUpperCase() === 'BUTTON'
-      })
-      isInButton && e.stopPropagation()
-    }
-
-    return { prefixCls, getActions, getAlign, onCellClick }
+    return { getActions, getAlign }
   },
 })
 </script>
-<style lang="scss">
-$prefix-cls: '#{$tonyname}-basic-table-action';
-
-.#{$prefix-cls} {
-  display: flex;
-  align-items: center;
-
-  &.left {
-    justify-content: flex-start;
-  }
-
-  &.center {
-    justify-content: center;
-  }
-
-  &.right {
-    justify-content: flex-end;
-  }
-
-  button {
-    display: flex;
-    align-items: center;
-  }
-}
-</style>

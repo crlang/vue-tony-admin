@@ -8,30 +8,6 @@
           type="primary"
           @click="handleCreate"> 新增菜单 </el-button>
       </template>
-      <template #action="coo">
-        <el-table-column
-          :lebel="coo.label"
-          :prop="coo.prop">
-          <template #default="scope">
-            <TableAction
-              :actions="[
-                {
-                  icon: 'clarity:note-edit-line',
-                  onClick: handleEdit.bind(null, scope.row),
-                },
-                {
-                  icon: 'ep:delete',
-                  color: 'error',
-                  popConfirm: {
-                    title: '是否确认删除',
-                    confirm: handleDelete.bind(null, scope.row),
-                  },
-                },
-              ]"
-            />
-          </template>
-        </el-table-column>
-      </template>
     </BasicTable>
     <MenuDrawer
       @register="registerDrawer"
@@ -41,9 +17,9 @@
 
 <script lang="ts">
 import { defineComponent, nextTick } from 'vue'
-import { ElButton, ElTableColumn } from 'element-plus'
+import { ElButton } from 'element-plus'
 
-import { BasicTable, useTable, TableAction } from '@/components/Table'
+import { BasicTable, useTable } from '@/components/Table'
 import { getMenuList } from '@/api/demo/system'
 
 import { useDrawer } from '@/components/Drawer'
@@ -53,13 +29,30 @@ import { columns, searchFormSchema } from './data'
 
 export default defineComponent({
   name: 'MenuManagement',
-  components: { ElButton, ElTableColumn, BasicTable, MenuDrawer, TableAction },
+  components: { ElButton, BasicTable, MenuDrawer },
   setup() {
     const [registerDrawer, { openDrawer }] = useDrawer()
     const [registerTable, { reload, expandAll }] = useTable({
       title: '菜单列表',
       api: getMenuList,
-      columns,
+      columns: [
+        ...columns,
+        {
+          actions: [
+            {
+              icon: 'clarity:note-edit-line',
+              callback: handleEdit,
+            },
+            {
+              icon: 'ep:delete',
+              popConfirm: {
+                title: '是否确认删除',
+                confirm: handleDelete,
+              },
+            },
+          ],
+        },
+      ],
       formConfig: {
         labelWidth: 120,
         schemas: searchFormSchema,
@@ -70,13 +63,6 @@ export default defineComponent({
       showTableSetting: true,
       border: true,
       showIndexColumn: false,
-      actionColumn: {
-        width: 80,
-        label: '操作',
-        prop: 'action',
-        isSlot: true,
-        fixed: undefined,
-      },
     })
 
     function handleCreate() {

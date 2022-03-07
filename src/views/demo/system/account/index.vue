@@ -23,33 +23,6 @@
               type="primary"
               @click="handleCreate">新增账号</el-button>
           </template>
-          <template #action="coo">
-            <el-table-column :label="coo.label">
-              <template #default="scope">
-                <TableAction
-                  :actions="[
-                    {
-                      icon: 'clarity:info-standard-line',
-                      label: '查看',
-                      onClick: handleView.bind(null, scope.row),
-                    },
-                    {
-                      icon: 'clarity:note-edit-line',
-                      label: '编辑',
-                      onClick: handleEdit.bind(null, scope.row),
-                    },
-                    {
-                      icon: 'ep:delete',
-                      color: 'error',
-                      label: '删除',
-                      onClick: handleDelete.bind(null, scope.row),
-
-                    },
-                  ]"
-                />
-              </template>
-            </el-table-column>
-          </template>
         </BasicTable>
       </el-col>
     </el-row>
@@ -62,9 +35,9 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue'
-import { ElRow, ElCol, ElButton, ElTableColumn } from 'element-plus'
+import { ElRow, ElCol, ElButton } from 'element-plus'
 
-import { BasicTable, useTable, TableAction } from '@/components/Table'
+import { BasicColumn, BasicTable, useTable } from '@/components/Table'
 import { getAccountList } from '@/api/demo/system'
 import { PageWrapper } from '@/components/Page'
 import DeptTree from './DeptTree.vue'
@@ -74,7 +47,7 @@ import { Document, Edit, Delete } from '@element-plus/icons'
 import { useGo } from '@/hooks/web/usePage'
 import { DeptListItem } from '@/api/demo/model/systemModel'
 import { useMessage } from '@/hooks/web/useMessage'
-import { columns, searchFormSchema } from './data'
+import { searchFormSchema } from './data'
 import { useModal } from '@/components/Modal'
 
 export default defineComponent({
@@ -83,18 +56,69 @@ export default defineComponent({
     ElRow,
     ElCol,
     ElButton,
-    ElTableColumn,
     BasicTable,
     PageWrapper,
     DeptTree,
     AccountModal,
-    TableAction,
   },
   setup() {
     const go = useGo()
     const { createConfirm, createMessage } = useMessage()
 
     const [registerModal, { openModal }] = useModal()
+
+    const columns: BasicColumn[] = [
+      {
+        label: '用户名',
+        prop: 'account',
+        width: 120,
+      },
+      {
+        label: '昵称',
+        prop: 'nickname',
+        width: 120,
+      },
+      {
+        label: '邮箱',
+        prop: 'email',
+        width: 120,
+      },
+      {
+        label: '创建时间',
+        prop: 'createTime',
+        width: 180,
+      },
+      {
+        label: '角色',
+        prop: 'role',
+        width: 200,
+      },
+      {
+        label: '备注',
+        prop: 'remark',
+      },
+      {
+        width: 220,
+        fixed: 'right',
+        actions: [
+          {
+            icon: 'clarity:info-standard-line',
+            text: '查看',
+            callback: handleView,
+          },
+          {
+            icon: 'clarity:note-edit-line',
+            text: '编辑',
+            callback: handleEdit,
+          },
+          {
+            icon: 'ep:delete',
+            text: '删除',
+            callback: handleDelete,
+          },
+        ],
+      },
+    ]
 
     const modalVisible = ref(false)
     const demodata = ref<Recordable[]>()
@@ -123,12 +147,6 @@ export default defineComponent({
       handleSearchInfoFn(info) {
         console.log('handleSearchInfoFn', info)
         return info
-      },
-      actionColumn: {
-        width: 120,
-        label: '操作',
-        prop: 'action',
-        isSlot: true,
       },
     })
 

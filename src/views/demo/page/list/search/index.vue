@@ -40,7 +40,7 @@
               </div>
               <div :class="`${prefixCls}__action`">
                 <template
-                  v-for="action in actions"
+                  v-for="action in metaActions"
                   :key="action.icon">
                   <div :class="`${prefixCls}__action-item`">
                     <Icon
@@ -66,7 +66,7 @@ import { defineComponent } from 'vue'
 import { ElTag } from 'element-plus'
 import Icon from '@/components/Icon'
 import { BasicForm } from '@/components/Form'
-import { actions, searchList as list, schemas } from './data'
+import { searchList as list, schemas } from './data'
 import { PageWrapper } from '@/components/Page'
 import { List, ListItem } from '@/components/List'
 import { useMessage } from '@/hooks/web/useMessage'
@@ -83,6 +83,12 @@ export default defineComponent({
   setup() {
     const { createMessage } = useMessage()
 
+    const metaActions = [
+      { icon: 'clarity:star-line', text: '156', color: '#018ffb' },
+      { icon: 'bx:bxs-like', text: '156', color: '#459ae8' },
+      { icon: 'bx:bxs-message-dots', text: '2', color: '#42d27d' },
+    ]
+
     function handleSubmit(v:any) {
       if (!v.field1) {
         createMessage.error(JSON.stringify(v))
@@ -95,7 +101,7 @@ export default defineComponent({
       prefixCls: 'list-search',
       list,
       schemas,
-      actions,
+      metaActions,
       handleSubmit,
     }
   },

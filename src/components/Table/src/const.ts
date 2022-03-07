@@ -21,10 +21,3 @@ export const FETCH_SETTING = fetchSetting
 export const DEFAULT_SORT_FN = defaultSortFn
 
 export const DEFAULT_FILTER_FN = defaultFilterFn
-
-//  Default layout of table cells
-export const DEFAULT_ALIGN = 'center'
-
-export const INDEX_COLUMN_FLAG = 'index'
-
-export const ACTION_COLUMN_FLAG = 'ACTION'

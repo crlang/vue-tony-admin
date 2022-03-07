@@ -27,37 +27,21 @@
           {{ t('sys.errorLog.fireAjaxError') }}
         </el-button>
       </template>
-      <template #action="coo">
-        <el-table-column
-          :label="coo.label"
-          :prop="coo.prop"
-          align="center">
-          <template #default="scope">
-            <TableAction
-              :actions="[{ label: t('sys.errorLog.tableActionDesc'), onClick: handleDetail.bind(null, scope.row) }]"
-            />
-          </template>
-        </el-table-column>
-      </template>
     </BasicTable>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { watch, ref, nextTick } from 'vue'
-import { ElButton, ElTableColumn } from 'element-plus'
+import { ElButton } from 'element-plus'
 import { useMessage } from '@/hooks/web/useMessage'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useErrorLogStore } from '@/store/modules/errorLog'
 import { fireErrorApi } from '@/api/demo/error'
-// import { ErrorTypeEnum } from '@/enums/exceptionEnum'
-import { ErrorLogInfo } from '#/store'
-// import { useModal } from '@/components/Modal'
 import { getColumns } from './data'
-import { BasicTable, useTable, TableAction } from '@/components/Table'
+import { BasicTable, useTable } from '@/components/Table'
 import { cloneDeep } from 'lodash-es'
 
-const rowInfo = ref<ErrorLogInfo>()
 const imgList = ref<string[]>([])
 
 const { t } = useI18n()
@@ -72,7 +56,6 @@ const [register, { setTableData }] = useTable({
     isSlot: true,
   },
 })
-// const [registerModal, { openModal }] = useModal()
 
 watch(
   () => errorLogStore.getErrorLogInfoList,
@@ -88,11 +71,6 @@ watch(
 const { createMessage } = useMessage()
 if (import.meta.env.DEV) {
   createMessage.info(t('sys.errorLog.enableMessage'))
-}
-// 查看详情
-function handleDetail(row: ErrorLogInfo) {
-  rowInfo.value = row
-  // openModal(true)
 }
 
 function fireVueError() {

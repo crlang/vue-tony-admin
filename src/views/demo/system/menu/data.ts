@@ -1,8 +1,8 @@
 import { BasicColumn } from '@/components/Table'
 import { FormSchema } from '@/components/Table'
-import { h } from 'vue'
-import { Icon } from '@/components/Icon'
-import { ElTag } from 'element-plus'
+// import { h } from 'vue'
+// import { Icon } from '@/components/Icon'
+// import { ElTag } from 'element-plus'
 
 export const columns: BasicColumn[] = [
   {
@@ -15,9 +15,9 @@ export const columns: BasicColumn[] = [
     label: '图标',
     prop: 'icon',
     width: 50,
-    customRender: (record) => {
-      return h(Icon, { icon: record.icon })
-    },
+    // customRender: (record) => {
+    //   return h(Icon, { icon: record.icon })
+    // },
   },
   {
     label: '权限标识',
@@ -37,13 +37,13 @@ export const columns: BasicColumn[] = [
     label: '状态',
     prop: 'status',
     width: 80,
-    customRender: (record) => {
-      const status = record.status
-      const enable = ~~status === 0
-      const color = enable ? 'success' : 'danger'
-      const text = enable ? '启用' : '停用'
-      return h(ElTag, { type: color }, () => text)
-    },
+    // customRender: (record) => {
+    //   const status = record.status
+    //   const enable = ~~status === 0
+    //   const color = enable ? 'success' : 'danger'
+    //   const text = enable ? '启用' : '停用'
+    //   return h(ElTag, { type: color }, () => text)
+    // },
   },
   {
     label: '创建时间',

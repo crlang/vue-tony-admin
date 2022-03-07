@@ -1,47 +1,18 @@
 <template>
   <div class="p-4">
-    <BasicTable @register="registerTable">
-      <template #action="{label,prop,width}">
-        <el-table-column
-          :width="width"
-          :label="label"
-          :prop="prop">
-          <template #default="scope">
-            <TableAction
-              :actions="[
-                {
-                  text: '启用',
-                  onClick: handleOpen.bind(null, scope.row),
-                  auth: 'admin' // 根据权限控制是否显示: 无权限，不显示
-                },
-                {
-                  text: '编辑',
-                  onClick: handleEdit.bind(null, scope.row),
-                  auth: 'other' // 根据权限控制是否显示: 无权限，不显示
-                },
-                {
-                  text: '删除',
-                  onClick: handleDelete.bind(null, scope.row),
-                  auth: 'admin' // 根据权限控制是否显示: 有权限，会显示
-                }
-              ]" />
-          </template>
-        </el-table-column>
-      </template>
-    </BasicTable>
+    <BasicTable @register="registerTable" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ElTableColumn } from 'element-plus'
-import { BasicTable, useTable, BasicColumn, TableAction } from '@/components/Table'
+import { BasicTable, useTable, BasicColumn } from '@/components/Table'
 
 import { demoListApi } from '@/api/demo/table'
 import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
-  components: { ElTableColumn, BasicTable, TableAction },
+  components: { BasicTable },
   setup() {
     const { createConfirm, createMessage } = useMessage()
     const columns:BasicColumn[] = [
@@ -72,6 +43,25 @@ export default defineComponent({
       {
         label: '结束时间',
         prop: 'endTime',
+      },
+      {
+        actions: [
+          {
+            text: '启用',
+            callback: handleOpen,
+            auth: 'admin', // 根据权限控制是否显示: 无权限，不显示
+          },
+          {
+            text: '编辑',
+            callback: handleEdit,
+            auth: 'other', // 根据权限控制是否显示: 无权限，不显示
+          },
+          {
+            text: '删除',
+            callback: handleDelete,
+            auth: 'admin', // 根据权限控制是否显示: 有权限，会显示
+          },
+        ],
       },
     ]
     const [registerTable] = useTable({
@@ -106,12 +96,7 @@ export default defineComponent({
     function handleOpen(record: Recordable) {
       console.log('点击了启用', record)
     }
-    return {
-      registerTable,
-      handleEdit,
-      handleDelete,
-      handleOpen,
-    }
+    return { registerTable }
   },
 })
 </script>
