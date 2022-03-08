@@ -11,12 +11,12 @@ import { formatToDate } from '@/utils/dateUtil'
 import { useI18n } from '@/hooks/web/useI18n'
 
 function handleItem(item: BasicColumn, ellipsis: boolean) {
-  const { key, dataIndex, children } = item
+  const { columnKey, prop, children } = item
   item.align = item.align || 'center'
+  if (!columnKey) {
+    item.columnKey = prop
+  }
   if (ellipsis) {
-    if (!key) {
-      item.key = dataIndex
-    }
     if (!isBoolean(item.ellipsis)) {
       Object.assign(item, {
         ellipsis,
@@ -167,11 +167,11 @@ export function useColumns(
       .map((column) => {
         const {
           slots,
-          dataIndex,
+          prop,
         } = column
 
         if (!slots || !slots?.title) {
-          column.slots = { title: `header-${dataIndex}`, ...(slots || {}) }
+          column.slots = { title: `header-${prop}`, ...(slots || {}) }
           column.customTitle = column.title
           Reflect.deleteProperty(column, 'title')
         }
@@ -188,12 +188,12 @@ export function useColumns(
     }
   )
 
-  function setCacheColumnsByField(dataIndex: string | undefined, value: Partial<BasicColumn>) {
-    if (!dataIndex || !value) {
+  function setCacheColumnsByField(prop: string | undefined, value: Partial<BasicColumn>) {
+    if (!prop || !value) {
       return
     }
     cacheColumns.forEach((item) => {
-      if (item.dataIndex === dataIndex) {
+      if (item.prop === prop) {
         Object.assign(item, value)
         return
       }
@@ -201,7 +201,7 @@ export function useColumns(
   }
   /**
    * set columns
-   * @param columnList key｜column
+   * @param columnList prop｜column
    */
   function setColumns(columnList: Partial<BasicColumn>[] | string[]) {
     const columns = cloneDeep(columnList)
@@ -214,7 +214,7 @@ export function useColumns(
 
     const firstColumn = columns[0]
 
-    const cacheKeys = cacheColumns.map((item) => item.dataIndex)
+    const cacheKeys = cacheColumns.map((item) => item.prop)
 
     if (!isString(firstColumn)) {
       columnsRef.value = columns as BasicColumn[]
@@ -222,7 +222,7 @@ export function useColumns(
       const columnKeys = columns as string[]
       const newColumns: BasicColumn[] = []
       cacheColumns.forEach((item) => {
-        if (columnKeys.includes(item.dataIndex! || (item.key as string))) {
+        if (columnKeys.includes(item.prop)) {
           newColumns.push({
             ...item,
             defaultHidden: false,
@@ -239,8 +239,8 @@ export function useColumns(
       if (!isEqual(cacheKeys, columns)) {
         newColumns.sort((prev, next) => {
           return (
-            cacheKeys.indexOf(prev.dataIndex as string) -
-            cacheKeys.indexOf(next.dataIndex as string)
+            cacheKeys.indexOf(prev.prop as string) -
+            cacheKeys.indexOf(next.prop as string)
           )
         })
       }
@@ -249,7 +249,7 @@ export function useColumns(
   }
 
   function getColumns(opt?: GetColumnsParams) {
-    const { ignoreIndex, ignoreAction, sort } = opt || {}
+    const { ignoreIndex, ignoreAction, ignoreCheckbox, ignoreExpand, sort } = opt || {}
     let columns = toRaw(unref(getColumnsRef))
     if (ignoreIndex) {
       columns = columns.filter((item) => item.type !== 'index')
@@ -257,13 +257,19 @@ export function useColumns(
     if (ignoreAction) {
       columns = columns.filter((item) => item.type !== 'action')
     }
-
+    if (ignoreCheckbox) {
+      columns = columns.filter((item) => item.type !== 'selection')
+    }
+    if (ignoreExpand) {
+      columns = columns.filter((item) => item.type !== 'expand')
+    }
     if (sort) {
       columns = sortFixedColumn(columns)
     }
 
     return columns
   }
+
   function getCacheColumns() {
     return cacheColumns
   }

@@ -61,8 +61,8 @@ export function getColumns(): BasicColumn[] {
 export function getDescSchema(): any {
   return getColumns().map((column) => {
     return {
-      field: column.dataIndex!,
-      label: column.title,
+      field: column.prop!,
+      label: column.label,
     }
   })
 }

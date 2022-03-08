@@ -11,8 +11,8 @@ const { t } = useI18n()
 export function createTableColumns(): BasicColumn[] {
   return [
     {
-      dataIndex: 'thumbUrl',
-      title: t('component.upload.legend'),
+      prop: 'thumbUrl',
+      label: t('component.upload.legend'),
       width: 100,
       customRender: ({ record }) => {
         const { thumbUrl } = (record as FileItem) || {}
@@ -20,8 +20,8 @@ export function createTableColumns(): BasicColumn[] {
       },
     },
     {
-      dataIndex: 'name',
-      title: t('component.upload.fileName'),
+      prop: 'name',
+      label: t('component.upload.fileName'),
       align: 'left',
       customRender: ({ text, record }) => {
         const { percent, status: uploadStatus } = (record as FileItem) || {}
@@ -45,21 +45,21 @@ export function createTableColumns(): BasicColumn[] {
       },
     },
     {
-      dataIndex: 'size',
-      title: t('component.upload.fileSize'),
+      prop: 'size',
+      label: t('component.upload.fileSize'),
       width: 100,
       customRender: ({ text = 0 }) => {
         return text && (text / 1024).toFixed(2) + 'KB'
       },
     },
     // {
-    //   dataIndex: 'type',
-    //   title: '文件类型',
+    //   prop: 'type',
+    //   label: '文件类型',
     //   width: 100,
     // },
     {
-      dataIndex: 'status',
-      title: t('component.upload.fileStatue'),
+      prop: 'status',
+      label: t('component.upload.fileStatue'),
       width: 100,
       customRender: ({ text }) => {
         if (text === UploadResultStatus.SUCCESS) {
@@ -78,8 +78,8 @@ export function createTableColumns(): BasicColumn[] {
 export function createActionColumn(handleRemove: Function): BasicColumn {
   return {
     width: 120,
-    title: t('component.upload.operating'),
-    dataIndex: 'action',
+    label: t('component.upload.operating'),
+    prop: 'action',
     fixed: false,
     customRender: ({ record }) => {
       return <ElButton type='danger' onClick={handleRemove.bind(null, record)}>{() => t('component.upload.del')}</ElButton>
@@ -90,8 +90,8 @@ export function createActionColumn(handleRemove: Function): BasicColumn {
 export function createPreviewColumns(): BasicColumn[] {
   return [
     {
-      dataIndex: 'url',
-      title: t('component.upload.legend'),
+      prop: 'url',
+      label: t('component.upload.legend'),
       width: 100,
       customRender: ({ record }) => {
         const { url } = (record as PreviewFileItem) || {}
@@ -99,8 +99,8 @@ export function createPreviewColumns(): BasicColumn[] {
       },
     },
     {
-      dataIndex: 'name',
-      title: t('component.upload.fileName'),
+      prop: 'name',
+      label: t('component.upload.fileName'),
       align: 'left',
     },
   ]
@@ -115,8 +115,8 @@ export function createPreviewActionColumn({
 }): BasicColumn {
   return {
     width: 200,
-    title: t('component.upload.operating'),
-    dataIndex: 'action',
+    label: t('component.upload.operating'),
+    prop: 'action',
     fixed: false,
     customRender: ({ record }) => {
       return <ElButtonGroup><ElButton type='danger' onClick={handleRemove.bind(null, record)}>{() => t('component.upload.del')}</ElButton><ElButton type='success' onClick={handleDownload.bind(null, record)}>{() => t('component.upload.download')}</ElButton></ElButtonGroup>

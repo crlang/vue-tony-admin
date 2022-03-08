@@ -35,6 +35,8 @@ export interface FetchParams {
 export interface GetColumnsParams {
   ignoreIndex?: boolean;
   ignoreAction?: boolean;
+  ignoreCheckbox?: boolean;
+  ignoreExpand?: boolean;
   sort?: boolean;
 }
 
@@ -81,7 +83,7 @@ export interface TableActionType {
   updateTableData: (index: number, key: string, value: any) => Recordable;
   setShowPagination: (show: boolean) => Promise<void>;
   getShowPagination: () => boolean;
-  setCacheColumnsByField?: (dataIndex: string | undefined, value: BasicColumn) => void;
+  setCacheColumnsByField?: (prop: string | undefined, value: BasicColumn) => void;
 }
 
 export interface FetchSetting {
@@ -319,7 +321,7 @@ export interface BasicColumn extends EleTableColumn {
 }
 
 export type ColumnChangeParam = {
-  dataIndex: string;
+  prop: string;
   fixed: boolean | 'left' | 'right' | undefined;
   visible: boolean;
 };

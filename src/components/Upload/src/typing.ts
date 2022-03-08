@@ -26,8 +26,8 @@ export interface PreviewFileItem {
 
 export interface FileBasicColumn {
   customRender?: Function
-  title: string
+  prop: string
   width?: number
-  dataIndex: string
+  label: string
   align?: 'left' | 'right' | 'center'
 }

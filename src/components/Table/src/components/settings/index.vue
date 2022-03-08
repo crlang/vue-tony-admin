@@ -1,11 +1,10 @@
 <template>
-  <div class="table-settings">
+  <div>
     <RedoSetting v-if="getSetting.redo" />
     <SizeSetting v-if="getSetting.size" />
     <ColumnSetting
       v-if="getSetting.setting"
-      @columns-change="handleColumnChange"
-    />
+      @columns-change="handleColumnChange" />
     <FullScreenSetting v-if="getSetting.fullScreen" />
   </div>
 </template>
@@ -62,20 +61,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style lang="scss">
-.table-settings {
-  display: flex;
-  align-items: center;
-
-  > * {
-    margin-right: 12px;
-    cursor: pointer;
-  }
-
-  svg {
-    width: 1.3em;
-    height: 1.3em;
-  }
-}
-</style>

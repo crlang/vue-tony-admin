@@ -24,21 +24,21 @@ export default defineComponent({
         <table class='file-table'>
           <colgroup>
             {columnList.map((item) => {
-              const { width = 0, dataIndex } = item
+              const { width = 0, prop } = item
               const style: CSSProperties = {
                 width: `${width}px`,
                 minWidth: `${width}px`,
               }
-              return <col style={width ? style : {}} key={dataIndex} />
+              return <col style={width ? style : {}} key={prop} />
             })}
           </colgroup>
           <thead>
             <tr class='file-table-tr'>
               {columnList.map((item) => {
-                const { title = '', align = 'center', dataIndex } = item
+                const { label = '', align = 'center', prop } = item
                 return (
-                  <th class={['file-table-th', align]} key={dataIndex}>
-                    {title}
+                  <th class={['file-table-th', align]} key={prop}>
+                    {label}
                   </th>
                 )
               })}
@@ -49,13 +49,13 @@ export default defineComponent({
               return (
                 <tr class='file-table-tr' key={`${index + record.name || ''}`}>
                   {columnList.map((item) => {
-                    const { dataIndex = '', customRender, align = 'center' } = item
+                    const { prop = '', customRender, align = 'center' } = item
                     const render = customRender && isFunction(customRender)
                     return (
-                      <td class={['file-table-td', align]} key={dataIndex}>
+                      <td class={['file-table-td', align]} key={prop}>
                         {render
-                          ? customRender?.({ text: record[dataIndex], record })
-                          : record[dataIndex]}
+                          ? customRender?.({ text: record[prop], record })
+                          : record[prop]}
                       </td>
                     )
                   })}

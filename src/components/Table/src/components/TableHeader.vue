@@ -13,8 +13,7 @@
         <TableTitle
           :helpMessage="titleHelpMessage"
           :title="title"
-          v-else-if="title"
-        />
+          v-else-if="title" />
       </div>
       <div :class="`${prefixCls}__toolbar`">
         <slot name="toolbar"></slot>
@@ -22,6 +21,7 @@
           direction="vertical"
           v-if="$slots.toolbar && showTableSetting" />
         <TableSetting
+          :class="`${prefixCls}__toolbar-setting`"
           :setting="tableSetting"
           v-if="showTableSetting"
           @columns-change="handleColumnChange"
@@ -91,6 +91,21 @@ $prefix-cls: '#{$tonyname}-basic-table-header';
 
     > * {
       margin-right: 8px;
+    }
+
+    &-setting {
+      display: flex;
+      align-items: center;
+
+      > * {
+        margin-right: 12px;
+        cursor: pointer;
+      }
+
+      svg {
+        width: 1.3em;
+        height: 1.3em;
+      }
     }
   }
 }

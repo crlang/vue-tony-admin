@@ -1,85 +1,107 @@
 <template>
   <div class="p-4">
+    <Button @click="handleClearSelection">清空选择</Button>
     <BasicTable
-      title="基础示例"
-      titleHelpMessage="温馨提醒"
-      :columns="columns"
-      :dataSource="data"
-      :loading="loading"
-      :stripe="stripe"
-      showIndexColumn
-      showCheckboxColumn
-      :border="border"
-      showTableSetting
-      @columns-change="handleColumnChange">
-      <template #address="{label,prop}">
-        <el-table-column
-          :label="label"
-          :prop="prop">
-          <template #default="scope">
-            {{ scope.row.address }}
-          </template>
-        </el-table-column>
-      </template>
-      <template #toolbar>
-        <el-button
-          type="primary"
-          @click="toggleBorder">
-          {{ !border ? '显示边框' : '隐藏边框' }}
-        </el-button>
-        <el-button
-          type="primary"
-          @click="toggleLoading"> 开启loading </el-button>
-        <el-button
-          type="primary"
-          @click="toggleStripe">
-          {{ !stripe ? '显示斑马纹' : '隐藏斑马纹' }}
-        </el-button>
-      </template>
-    </BasicTable>
+      @register="registerTable"
+      @columns-change="handleChange"
+      show-table-setting
+      @fetch-success="handleFetch"
+      @select-all="handleSelectAll"
+      @select="handleSelect" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { ElButton, ElTableColumn } from 'element-plus'
-import { BasicTable } from '@/components/Table'
-import { getBasicColumns, getBasicData } from './tableData'
+import { defineComponent } from 'vue'
+import { BasicTable, useTable, BasicColumn } from '@/components/Table'
+import { demoListApi } from '@/api/demo/table'
 
 export default defineComponent({
-  components: { ElButton, ElTableColumn, BasicTable },
+  components: { BasicTable },
   setup() {
-    const loading = ref(false)
-    const stripe = ref(true)
-    const border = ref(true)
-    function toggleStripe() {
-      stripe.value = !stripe.value
-    }
-    function toggleLoading() {
-      loading.value = true
-      setTimeout(() => {
-        loading.value = false
-      }, 3000)
-    }
-    function toggleBorder() {
-      border.value = !border.value
+    const columns: BasicColumn[] = [
+      {
+        label: '编号',
+        prop: 'no',
+        width: 100,
+      },
+      {
+        label: '姓名',
+        prop: 'name',
+        auth: 'test', // 根据权限控制是否显示: 无权限，不显示
+      },
+      {
+        label: '地址',
+        prop: 'address',
+        auth: 'admin', // 同时根据权限和业务控制是否显示
+        // ifShow: true,
+      },
+      {
+        actions: [
+          {
+            text: '启用',
+            callback: handleOpen,
+          },
+          {
+            text: '编辑',
+            callback: handleEdit,
+            auth: 'test', // 根据权限控制是否显示: 无权限，不显示
+          },
+          {
+            text: '删除',
+            callback: handleDelete,
+            auth: 'super', // 根据权限控制是否显示: 有权限，会显示
+          },
+        ],
+      },
+    ]
+
+    const [registerTable, { clearSelection }] = useTable({
+      title: 'TableAction组件及固定列示例',
+      api: demoListApi,
+      columns: columns,
+      border: true,
+      showCheckboxColumn: true,
+    })
+
+    function handleEdit(record: Recordable) {
+      console.log('点击了编辑', record)
     }
 
-    // todo
-    function handleColumnChange(data) {
-      console.table('table column change', data)
+    function handleDelete(record: Recordable) {
+      console.log('点击了删除', record)
+    }
+    function handleOpen(record: Recordable) {
+      console.log('点击了启用', record)
+    }
+    function handleClearSelection() {
+      clearSelection!()
     }
 
+    function handleSelect(selection, row) {
+      console.log('当前已经选择', selection, row)
+    }
+    function handleSelectAll(selection) {
+      console.log('全部选择', selection)
+    }
+
+    function handleChange(v1, v2, v3, v4, v5, v6) {
+      console.log('columns-change +++ ', v1, v2, v3, v4, v5, v6)
+    }
+
+    function handleFetch(v1, v2, v3, v4, v5, v6) {
+      console.log('Fetch info +++ ', v1, v2, v3, v4, v5, v6)
+    }
     return {
-      columns: getBasicColumns(),
-      data: getBasicData(),
-      loading,
-      stripe,
-      border,
-      toggleStripe,
-      toggleLoading,
-      toggleBorder,
-      handleColumnChange,
+      registerTable,
+      handleEdit,
+      handleDelete,
+      handleOpen,
+      handleClearSelection,
+      handleSelect,
+      handleSelectAll,
+      handleChange,
+      handleFetch,
     }
   },
 })

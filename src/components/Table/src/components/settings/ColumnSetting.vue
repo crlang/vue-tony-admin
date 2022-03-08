@@ -41,7 +41,7 @@
           v-for="item in plainOptions"
           :key="item.value">
           <div :class="`${prefixCls}__check-item`">
-            <span class="table-coulmn-drag-icon"><Setting /></span>
+            <span class="table-coulmn-drag-icon"><Operation /></span>
             <ElCheckbox :label="item.prop">{{ item.label }}</ElCheckbox>
             <ElTooltip
               placement="bottom-start"
@@ -118,21 +118,14 @@ import { useTableContext } from '../../hooks/useTableContext'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useSortable } from '@/hooks/web/useSortable'
 import { isNullAndUnDef } from '@/utils/is'
-// import { omit } from 'lodash-es'
-import { Setting } from '@element-plus/icons'
+import { Setting, Operation } from '@element-plus/icons'
+import { usePermission } from '@/hooks/web/usePermission'
 
 interface State {
   checkAll: boolean
   checkedList: string[]
   defaultCheckList: string[]
 }
-// type fixedType = boolean | 'left' | 'right'
-
-// interface Options {
-//   label: string
-//   prop: string
-//   fixed?: fixedType
-// }
 
 export default defineComponent({
   name: 'ColumnSetting',
@@ -144,6 +137,7 @@ export default defineComponent({
     ElTooltip,
     ElDivider,
     Setting,
+    Operation,
     ScrollContainer,
     Icon,
   },
@@ -153,7 +147,6 @@ export default defineComponent({
     const { t } = useI18n()
     const table = useTableContext()
 
-    // const defaultRowSelection = omit(table.getRowSelection(), 'selectedRowKeys')
     let inited = false
 
     const cachePlainOptions = ref<BasicColumn[]>([])
@@ -193,10 +186,18 @@ export default defineComponent({
 
     function getColumns() {
       const ret: any[] = []
-      table.getColumns({ ignoreIndex: true, ignoreAction: true }).forEach((item) => {
+      const { hasPermission } = usePermission()
+      table.getColumns({
+        ignoreIndex: true,
+        ignoreAction: true,
+        ignoreCheckbox: true,
+        ignoreExpand: true,
+      }).forEach((item) => {
         ret.push(item)
       })
-      return ret
+      return ret.filter((column) => {
+        return hasPermission(column.auth)
+      })
     }
 
     function init() {
@@ -242,18 +243,8 @@ export default defineComponent({
     function handleChange() {
       const checkList:BasicColumn[] = unref(plainOptions)
         .filter((col) => col.prop && state.checkedList.indexOf(col.prop) !== -1)
-        // .map(k => (k.prop || ''))
-      // const checkList:string[] = state.checkedList
       const len = plainOptions.value.length
       state.checkAll = checkList.length === 0 ? false : checkList.length === len
-
-      // const sortList = unref(plainSortOptions).map((item) => item.value)
-      // checkedList.sort((prev, next) => {
-      //   return sortList.indexOf(prev) - sortList.indexOf(next)
-      // })
-      // const data: ColumnChangeParam[] =
-      // const checkColList:BasicColumn[] = unref(plainOptions)
-      //   .filter((col) => col.prop && state.checkedList.indexOf(col.prop) !== -1)
 
       setColumns(checkList)
     }
@@ -263,7 +254,7 @@ export default defineComponent({
       state.checkedList = [...state.defaultCheckList]
       state.checkAll = true
       plainOptions.value = unref(cachePlainOptions)
-      // plainSortOptions.value = unref(cachePlainOptions)
+      plainSortOptions.value = unref(cachePlainOptions)
       setColumns(table.getCacheColumns())
     }
 
@@ -339,17 +330,10 @@ export default defineComponent({
       if (isFixed && !item.width) {
         item.width = 100
       }
-      // table.setCacheColumnsByField?.(item.prop, { fixed: isFixed })
       setColumns(columns)
     }
 
     function setColumns(columns: BasicColumn[] | string[]) {
-      // const data: ColumnChangeParam[] = unref(plainOptions).filter((col) => {
-
-      // if(state.checkedList.indexOf(col.value) !== -1) {
-      //   return
-      // }
-      // })
       table.setColumns(columns)
 
       emit('columns-change', columns)
@@ -370,7 +354,6 @@ export default defineComponent({
       checkSelect,
       handleIndexCheckChange,
       handleSelectCheckChange,
-      // defaultRowSelection,
       handleColumnFixed,
     }
   },
