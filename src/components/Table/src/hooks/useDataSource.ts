@@ -67,8 +67,8 @@ export function useDataSource(
 
   function handleTableChange(
     pagination: PaginationProps,
-    filters: Partial<Recordable<string[]>>,
-    sorter: SorterResult,
+    filters?: Partial<Recordable<string[]>>,
+    sorter?: SorterResult,
   ) {
     const { clearSelectOnPageChange, sortFn, filterFn } = unref(propsRef)
     if (clearSelectOnPageChange) {

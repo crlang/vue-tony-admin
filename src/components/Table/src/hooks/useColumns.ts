@@ -43,13 +43,13 @@ function handleIndexColumn(
 ) {
   const { t } = useI18n()
 
-  const { showIndexColumn, indexColumnProps } = unref(propsRef)
+  const { showIndexColumn } = unref(propsRef)
 
   if (!showIndexColumn) return
 
-  const isFixedLeft = columns.some((item) => item.fixed === 'left')
-
   const hasIndexColumn = columns.some((item) => item.type === 'index')
+
+  const isFixedLeft = columns.some((item) => item.fixed === 'left')
 
   if (hasIndexColumn) return
 
@@ -63,7 +63,6 @@ function handleIndexColumn(
         fixed: 'left',
       }
       : {}),
-    ...indexColumnProps,
   })
 }
 
@@ -75,10 +74,11 @@ function handleCheckboxColumn(
 
   if (!showCheckboxColumn) return
 
-  const isFixedLeft = columns.some((item) => item.fixed === 'left')
   const hasCheckboxColumn = columns.some((item) => item.type === 'selection')
 
   if (hasCheckboxColumn) return
+
+  const isFixedLeft = columns.some((item) => item.fixed === 'left')
 
   columns.unshift({
     type: 'selection',

@@ -150,8 +150,6 @@ export interface BasicTableProps extends EleTable {
   columns: BasicColumn[];
   // 是否显示序号列
   showIndexColumn?: boolean;
-  // 序号列配置
-  indexColumnProps?: BasicColumn;
   actionColumn?: BasicColumn;
   // 是否显示序号列
   showCheckboxColumn?: boolean;
@@ -325,7 +323,3 @@ export type ColumnChangeParam = {
   fixed: boolean | 'left' | 'right' | undefined;
   visible: boolean;
 };
-
-export interface InnerHandlers {
-  onColumnsChange: (data: ColumnChangeParam[]) => void;
-}

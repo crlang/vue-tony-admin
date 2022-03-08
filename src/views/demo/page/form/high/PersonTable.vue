@@ -1,8 +1,6 @@
 <template>
   <div>
-    <BasicTable
-      @register="registerTable"
-      @edit-change="handleEditChange" />
+    <BasicTable @register="registerTable" />
     <el-button
       class="mt-4 mb-8"
       type="warning"
@@ -78,10 +76,6 @@ export default defineComponent({
       record.onEdit?.(false, true)
     }
 
-    function handleEditChange(data) {
-      console.log(data)
-    }
-
     function handleAdd() {
       const data = getDataSource()
       const addRow = {
@@ -129,7 +123,6 @@ export default defineComponent({
       createActions,
       handleAdd,
       getDataSource,
-      handleEditChange,
     }
   },
 })

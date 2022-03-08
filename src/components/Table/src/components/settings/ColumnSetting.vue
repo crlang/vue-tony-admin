@@ -41,7 +41,7 @@
           v-for="item in plainOptions"
           :key="item.value">
           <div :class="`${prefixCls}__check-item`">
-            <!-- <span class="table-coulmn-drag-icon"><Setting /></span> -->
+            <span class="table-coulmn-drag-icon"><Setting /></span>
             <ElCheckbox :label="item.prop">{{ item.label }}</ElCheckbox>
             <ElTooltip
               placement="bottom-start"
@@ -116,8 +116,8 @@ import { ScrollContainer } from '@/components/Container'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useTableContext } from '../../hooks/useTableContext'
 import { useDesign } from '@/hooks/web/useDesign'
-// import { useSortable } from '@/hooks/web/useSortable'
-// import { isNullAndUnDef } from '@/utils/is'
+import { useSortable } from '@/hooks/web/useSortable'
+import { isNullAndUnDef } from '@/utils/is'
 // import { omit } from 'lodash-es'
 import { Setting } from '@element-plus/icons'
 
@@ -149,7 +149,7 @@ export default defineComponent({
   },
   emits: ['columns-change'],
 
-  setup(_) {
+  setup(_, { emit }) {
     const { t } = useI18n()
     const table = useTableContext()
 
@@ -159,7 +159,7 @@ export default defineComponent({
     const cachePlainOptions = ref<BasicColumn[]>([])
     const plainOptions = ref<BasicColumn[]>([])
 
-    // const plainSortOptions = ref<BasicColumn[]>([])
+    const plainSortOptions = ref<BasicColumn[]>([])
 
     const columnListRef = ref<ComponentRef>(null)
 
@@ -279,30 +279,30 @@ export default defineComponent({
         const el = columnListEl.$el as any
         if (!el) return
         // Drag and drop sort
-        // const { initSortable } = useSortable(el, {
-        //   handle: '.table-coulmn-drag-icon',
-        //   onEnd: (evt) => {
-        //     const { oldIndex, newIndex } = evt
-        //     if (isNullAndUnDef(oldIndex) || isNullAndUnDef(newIndex) || oldIndex === newIndex) {
-        //       return
-        //     }
-        //     // Sort column
-        //     const columns = getColumns()
+        const { initSortable } = useSortable(el, {
+          handle: '.table-coulmn-drag-icon',
+          onEnd: (evt) => {
+            const { oldIndex, newIndex } = evt
+            if (isNullAndUnDef(oldIndex) || isNullAndUnDef(newIndex) || oldIndex === newIndex) {
+              return
+            }
+            // Sort column
+            const columns = getColumns()
 
-        //     if (oldIndex > newIndex) {
-        //       columns.splice(newIndex, 0, columns[oldIndex])
-        //       columns.splice(oldIndex + 1, 1)
-        //     } else {
-        //       columns.splice(newIndex + 1, 0, columns[oldIndex])
-        //       columns.splice(oldIndex, 1)
-        //     }
+            if (oldIndex > newIndex) {
+              columns.splice(newIndex, 0, columns[oldIndex])
+              columns.splice(oldIndex + 1, 1)
+            } else {
+              columns.splice(newIndex + 1, 0, columns[oldIndex])
+              columns.splice(oldIndex, 1)
+            }
 
-        //     plainSortOptions.value = columns
-        //     plainOptions.value = columns
-        //     setColumns(columns)
-        //   },
-        // })
-        // initSortable()
+            plainSortOptions.value = columns
+            plainOptions.value = columns
+            setColumns(columns)
+          },
+        })
+        initSortable()
         inited = true
       })
     }
@@ -312,6 +312,8 @@ export default defineComponent({
       table.setProps({
         showIndexColumn: v,
       })
+      const columns = getColumns() as BasicColumn[]
+      emit('columns-change', columns)
     }
 
     // Control whether the check box is displayed
@@ -319,6 +321,8 @@ export default defineComponent({
       table.setProps({
         showCheckboxColumn: v,
       })
+      const columns = getColumns() as BasicColumn[]
+      emit('columns-change', columns)
     }
 
     function handleColumnFixed(item: BasicColumn, fixed?: 'left' | 'right') {
@@ -348,7 +352,7 @@ export default defineComponent({
       // })
       table.setColumns(columns)
 
-      // emit('columns-change', data)
+      emit('columns-change', columns)
     }
 
     return {

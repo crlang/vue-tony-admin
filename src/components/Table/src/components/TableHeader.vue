@@ -33,7 +33,6 @@
 
 <script lang="ts">
 import type { TableSetting, ColumnChangeParam } from '../types/table'
-import type { PropType } from 'vue'
 
 import { defineComponent } from 'vue'
 import { ElDivider } from 'element-plus'

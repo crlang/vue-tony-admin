@@ -99,7 +99,6 @@ import { defineComponent, ref, computed, unref, toRaw, watchEffect, inject } fro
 import { ElTable, ElTableColumn } from 'element-plus'
 import { BasicForm, useForm } from '@/components/Form'
 import { PageWrapperFixedHeightKey } from '@/components/Page'
-import { InnerHandlers } from './types/table'
 
 import { usePagination } from './hooks/usePagination'
 import { useColumns } from './hooks/useColumns'
@@ -119,7 +118,7 @@ import TableAction from './components/TableAction.vue'
 
 import { omit } from 'lodash-es'
 import { basicProps, ElTableBasicEmits } from './props'
-import { isFunction, isString } from '@/utils/is'
+import { isString } from '@/utils/is'
 import { warn } from '@/utils/log'
 import { useBasicTableFn } from './hooks/useBasic'
 
@@ -139,11 +138,8 @@ export default defineComponent({
     'fetch-success',
     'fetch-error',
     'register',
-    'edit-cancel',
-    'edit-row-end',
-    'edit-change',
     'columns-change',
-    'change',
+    'pagination',
   ],
 
   setup(props, { attrs, emit, slots, expose }) {
@@ -202,7 +198,7 @@ export default defineComponent({
     } = useRowSelection(getProps, tableData, emit)
 
     const {
-      handleTableChange: onTableChange,
+      handleTableChange,
       getDataSourceRef,
       getDataSource,
       getRawDataSource,
@@ -227,13 +223,6 @@ export default defineComponent({
       emit,
     )
 
-    function handleTableChange(...args) {
-      onTableChange.call(undefined, ...args)
-      emit('change', ...args)
-      const { onChange } = unref(getProps)
-      onChange && isFunction(onChange) && onChange.call(undefined, ...args)
-    }
-
     const {
       getViewColumns,
       getColumns,
@@ -255,14 +244,6 @@ export default defineComponent({
 
     const { getExpandOption, expandAll, collapseAll } = useTableExpand(getProps, tableData, emit)
 
-    const handlers: InnerHandlers = {
-      onColumnsChange: (data: ColumnChangeParam[]) => {
-        emit('columns-change', data)
-        // support useTable
-        unref(getProps).onColumnsChange?.(data)
-      },
-    }
-
     const getHeaderProps = computed(() => {
       const { title, showTableSetting, titleHelpMessage, tableSetting } = unref(getProps)
       const hideTitle = !slots.tableTitle && !title && !slots.toolbar && !showTableSetting
@@ -275,7 +256,13 @@ export default defineComponent({
         tableSetting,
         showTableSetting,
         titleHelpMessage,
-        onColumnsChange: handlers.onColumnsChange,
+        onColumnsChange: (data: ColumnChangeParam[]) => {
+          console.log('ddd+++', data)
+          emit('columns-change', data)
+          // support useTable
+          unref(getProps).onColumnsChange?.(data)
+          doLayout()
+        },
       }
 
       return propsData
@@ -328,13 +315,15 @@ export default defineComponent({
       innerPropsRef.value = { ...unref(innerPropsRef), ...props }
     }
 
-    function handlePageChange(v:number) {
-      setPagination({ currentPage: v })
+    function handlePageChange(currentPage:number) {
+      setPagination({ currentPage })
+      emit('pagination', 'currentPage', currentPage, unref(getBindValues).pagination)
       handleTableChange(unref(getBindValues).pagination)
     }
 
-    function handlePageSizeChange(v:number) {
-      setPagination({ pageSize: v })
+    function handlePageSizeChange(pageSize:number) {
+      setPagination({ pageSize })
+      emit('pagination', 'pageSize', pageSize, unref(getBindValues).pagination)
       handleTableChange(unref(getBindValues).pagination)
     }
 

@@ -79,10 +79,6 @@ export const basicProps = {
     default: () => [],
   },
   showIndexColumn: propTypes.bool.def(false),
-  indexColumnProps: {
-    type: Object as PropType<BasicColumn>,
-    default: null,
-  },
   actionColumn: {
     type: Object as PropType<BasicColumn>,
     default: null,
