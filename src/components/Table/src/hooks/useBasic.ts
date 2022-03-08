@@ -4,7 +4,8 @@ import { error } from '@/utils/log'
 
 export function useBasicTableFn(
   propsRef: ComputedRef<BasicTableProps>,
-  tableRef: Ref<ComponentRef>
+  tableRef: Ref<ComponentRef>,
+  emit: EmitType
 ) {
   async function getTable() {
     const table = unref(tableRef)
@@ -53,7 +54,67 @@ export function useBasicTableFn(
     return table.sort(prop, order)
   }
 
+  const getBasicEmits = {
+    onSelect: (selection, row) => {
+      emit('select', selection, row)
+    },
+    onSelectAll: (selection) => {
+      emit('select-all', selection)
+    },
+    onSelectionChange: (selection) => {
+      emit('selection-change', selection)
+    },
+    onCellMouseEnter: (row, column, cell, event) => {
+      emit('cell-mouse-enter', row, column, cell, event)
+    },
+    onCellMouseLeave: (row, column, cell, event) => {
+      emit('cell-mouse-leave', row, column, cell, event)
+    },
+    onCellClick: (row, column, cell, event) => {
+      emit('cell-click', row, column, cell, event)
+    },
+    onCellDblclick: (row, column, cell, event) => {
+      emit('cell-dblclick', row, column, cell, event)
+    },
+    onCellContextmenu: (row, column, cell, event) => {
+      emit('cell-contextmenu', row, column, cell, event)
+    },
+    onRowClick: (row, column, event) => {
+      emit('row-click', row, column, event)
+    },
+    onRowContextmenu: (row, column, event) => {
+      emit('row-contextmenu', row, column, event)
+    },
+    onRowDblclick: (row, column, event) => {
+      emit('row-dblclick', row, column, event)
+    },
+    onHeaderClick: (column, event) => {
+      emit('header-click', column, event)
+    },
+    onHeaderContextmenu: (column, event) => {
+      emit('header-contextmenu', column, event)
+    },
+    onSortChange: ({ column, prop, order }) => {
+      emit('sort-change', { column, prop, order })
+    },
+    onFilterChange: (filters) => {
+      emit('filter-change', filters)
+    },
+    onCurrentChange: (currentRow, oldCurrentRow) => {
+      emit('current-change', currentRow, oldCurrentRow)
+    },
+    onHeaderDragend: (newWidth, oldWidth, column, event) => {
+      emit('header-dragend', newWidth, oldWidth, column, event)
+    },
+    onExpandChange: (row, expandedRows_or_expanded) => {
+      emit('expand-change', row, expandedRows_or_expanded)
+    },
+  }
+
   return {
+    // events
+    getBasicEmits,
+    // methods
     clearSelection,
     toggleRowSelection,
     toggleAllSelection,

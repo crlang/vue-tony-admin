@@ -179,6 +179,7 @@ export default defineComponent({
     } = usePagination(getProps)
 
     const {
+      getBasicEmits,
       clearSelection,
       toggleRowSelection,
       toggleAllSelection,
@@ -188,7 +189,7 @@ export default defineComponent({
       clearFilter,
       doLayout,
       sort,
-    } = useBasicTableFn(getProps, tableElRef)
+    } = useBasicTableFn(getProps, tableElRef, emit)
 
     const {
       getRowSelection,
@@ -287,6 +288,7 @@ export default defineComponent({
       const dataSource = unref(getDataSourceRef)
       let propsData: Recordable = {
         ...attrs,
+        ...getBasicEmits,
         ...unref(getProps),
         ...unref(getHeaderProps),
         scroll: unref(getScrollRef),
