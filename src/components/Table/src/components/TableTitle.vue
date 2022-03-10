@@ -1,16 +1,16 @@
 <template>
   <BasicTitle
     :class="prefixCls"
-    v-if="getTitle"
+    v-if="title"
     :helpMessage="helpMessage">
-    {{ getTitle }}
+    {{ title }}
   </BasicTitle>
 </template>
+
 <script lang="ts">
-import { computed, defineComponent, PropType } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import { BasicTitle } from '@/components/Basic'
 import { useDesign } from '@/hooks/web/useDesign'
-import { isFunction } from '@/utils/is'
 
 export default defineComponent({
   name: 'BasicTableTitle',
@@ -19,29 +19,14 @@ export default defineComponent({
     title: {
       type: [Function, String] as PropType<string | ((data: Recordable) => string)>,
     },
-    getSelectRows: {
-      type: Function as PropType<() => Recordable[]>,
-    },
     helpMessage: {
       type: [String, Array] as PropType<string | string[]>,
     },
   },
-  setup(props) {
+  setup() {
     const { prefixCls } = useDesign('basic-table-title')
 
-    const getTitle = computed(() => {
-      const { title, getSelectRows = () => {} } = props
-      let tit = title
-
-      if (isFunction(title)) {
-        tit = title({
-          selectRows: getSelectRows(),
-        })
-      }
-      return tit
-    })
-
-    return { getTitle, prefixCls }
+    return { prefixCls }
   },
 })
 </script>

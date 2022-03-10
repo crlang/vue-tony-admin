@@ -11,7 +11,7 @@
     </div>
     <div class="mb-4">
       <el-button @click="toggleSelectedRows">切换选中行</el-button>
-      <el-button @click="getPagination">获取分页信息</el-button>
+      <el-button @click="getPagination2">获取分页信息</el-button>
     </div>
     <BasicTable @register="registerTable" />
   </div>
@@ -20,7 +20,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
-import { BasicTable, ColumnChangeParam, useTable } from '@/components/Table'
+import { BasicTable, useTable } from '@/components/Table'
 import { getBasicColumns, getBasicShortColumns } from './tableData'
 import { useMessage } from '@/hooks/web/useMessage'
 import { demoListApi } from '@/api/demo/table'
@@ -39,7 +39,7 @@ export default defineComponent({
         getDataSource,
         getRawDataSource,
         reload,
-        getPaginationRef,
+        getPagination,
         setPagination,
         toggleAllSelection,
       },
@@ -50,15 +50,14 @@ export default defineComponent({
       columns,
       rowKey: 'id',
       showTableSetting: true,
-      onSelectionChange,
+      onSelectionChange: (selection) => {
+        console.table('SelectionChange', selection)
+      },
       showCheckboxColumn: true,
-      onColumnsChange: (data: ColumnChangeParam[]) => {
-        console.log('ColumnsChanged', data)
+      onColumnsChange: (data) => {
+        console.table('ColumnsChange', data)
       },
     })
-    function onSelectionChange(selection) {
-      console.log('onSelectionChange', selection)
-    }
     function changeLoading() {
       setLoading(true)
       setTimeout(() => {
@@ -88,9 +87,9 @@ export default defineComponent({
       console.log(getRawDataSource())
     }
 
-    function getPagination() {
+    function getPagination2() {
       createMessage.info('请在控制台查看！')
-      console.log(getPaginationRef())
+      console.log(getPagination())
     }
 
     function setPaginationInfo() {
@@ -100,10 +99,6 @@ export default defineComponent({
       reload()
     }
 
-    function getSelectRows() {
-      createMessage.info('请在控制台查看！')
-      console.log(getSelectRows())
-    }
     function toggleSelectedRows() {
       toggleAllSelection()
     }
@@ -116,9 +111,8 @@ export default defineComponent({
       getColumn,
       getTableData,
       getTableRawData,
-      getPagination,
+      getPagination2,
       setPaginationInfo,
-      getSelectRows,
       toggleSelectedRows,
     }
   },

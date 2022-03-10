@@ -21,7 +21,7 @@ import { useMessage } from '@/hooks/web/useMessage'
 export default defineComponent({
   components: { ElButton, BasicTable },
   setup() {
-    const [registerTable, { getForm }] = useTable({
+    const [registerTable, { getFormRef }] = useTable({
       title: '开启搜索区域',
       api: demoListApi,
       columns: getBasicColumns(),
@@ -33,7 +33,7 @@ export default defineComponent({
     const { createMessage } = useMessage()
 
     function getFormValues() {
-      createMessage.success(JSON.stringify(getForm().getFieldsValue()))
+      createMessage.success(JSON.stringify(getFormRef().getFieldsValue()))
     }
 
     return {

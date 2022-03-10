@@ -143,7 +143,7 @@ export default defineComponent({
       useSearchForm: true,
       showTableSetting: true,
       border: true,
-      pagination: { size: 5 },
+      pagination: { pageSize: 5 },
       handleSearchInfoFn(info) {
         console.log('handleSearchInfoFn', info)
         return info

@@ -41,8 +41,6 @@ export function useDataSource(
   }: ActionType,
   emit: EmitType
 ) {
-  // const tableData = ref<Recordable[]>([])
-
   const searchState = reactive<SearchState>({
     sortInfo: {},
     filterInfo: {},
@@ -70,10 +68,8 @@ export function useDataSource(
     filters?: Partial<Recordable<string[]>>,
     sorter?: SorterResult,
   ) {
-    const { clearSelectOnPageChange, sortFn, filterFn } = unref(propsRef)
-    if (clearSelectOnPageChange) {
-      clearSelectedRowKeys()
-    }
+    const { sortFn, filterFn } = unref(propsRef)
+
     setPagination(pagination)
 
     const params: Recordable = {}
@@ -272,7 +268,6 @@ export function useDataSource(
       const resultTotal: number = isArrayResult ? 0 : get(res, totalField)
       const resultPage: number = isArrayResult ? 1 : get(res, pageField)
 
-      // 假如数据变少，导致总页数变少并小于当前选中页码，通过getPaginationRef获取到的页码是不正确的，需获取正确的页码再次执行
       if (resultTotal) {
         const currentTotalPage = Math.ceil(resultTotal / pageSize)
         if (currentPage > currentTotalPage) {
@@ -290,10 +285,6 @@ export function useDataSource(
       setPagination({
         total: resultTotal || 0,
       })
-
-      // setPagination({
-      //   currentPage: (opt?.page || 0) + 1,
-      // })
 
       emit('fetch-success', {
         items: unref(resultItems),

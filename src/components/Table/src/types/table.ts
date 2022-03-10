@@ -1,5 +1,5 @@
 import type { VNodeChild } from 'vue'
-import type { FormProps } from '@/components/Form'
+import type { FormActionType, FormProps } from '@/components/Form'
 import type { ElePagination, EleTable, EleTableColumn } from '@/components/ElementPlus'
 export type ElTableColumnType = InstanceType<typeof ElTableColumn>
 import type { ComponentType } from './componentType'
@@ -26,8 +26,6 @@ export interface SorterResult {
 
 export interface FetchParams {
   searchInfo?: Recordable;
-  page?: number;
-  size?: number,
   sortInfo?: Recordable;
   filterInfo?: Recordable;
 }
@@ -52,38 +50,88 @@ export interface TableActionType {
   doLayout: () => void;
   sort: (prop: string, order: string) => void;
   // 拓展
+  /**
+   * 重载
+   */
   reload: (opt?: FetchParams) => Promise<void>;
-  getSelectRows: <T = Recordable>() => T[];
-  clearSelectedRowKeys: () => void;
-  expandAll: () => void;
-  collapseAll: () => void;
-  getSelectRowKeys: () => string[];
-  deleteSelectRowByKey: (key: string) => void;
-  setPagination: (info: Partial<ElePagination>) => void;
-  setTableData: <T = Recordable>(values: T[]) => void;
-  updateTableDataRecord: (rowKey: string | number, record: Recordable) => Recordable | void;
-  deleteTableDataRecord: (record: Recordable | Recordable[]) => Recordable | void;
-  insertTableDataRecord: (record: Recordable, index?: number) => Recordable | void;
-  findTableDataRecord: (rowKey: string | number) => Recordable | void;
-  getColumns: (opt?: GetColumnsParams) => BasicColumn[];
-  setColumns: (columns: BasicColumn[] | string[]) => void;
-  getDataSource: <T = Recordable>() => T[];
-  getRawDataSource: <T = Recordable>() => T;
-  setLoading: (loading: boolean) => void;
+  /**
+   * 设置 props
+   */
   setProps: (props: Partial<BasicTableProps>) => void;
-  redoHeight: () => void;
-  setSelectedRowKeys: (rowKeys: string[] | number[]) => void;
-  setSelectedRows: (rows: string[] | number[]) => void;
-  toggleAllSelection: () => void;
-  getPaginationRef: () => ElePagination | boolean;
-  getSize: () => ComponentSize;
-  getRowSelection: () => Recordable;
+  /**
+   * 获取列
+   */
+  getColumns: (opt?: GetColumnsParams) => BasicColumn[];
+  /**
+   * 设置列
+   */
+  setColumns: (columns: BasicColumn[] | string[]) => void;
+  /**
+   * 设置loading状态
+   */
+  setLoading: (loading: boolean) => void;
+  /**
+   * 获取表格数据
+   */
+  getDataSource: <T = Recordable>() => T[];
+  /**
+   * 获取接口数据
+   */
+  getRawDataSource: <T = Recordable>() => T;
+  /**
+   * 设置表格数据
+   */
+  setTableData: <T = Recordable>(values: T[]) => void;
+  /**
+   * 获取缓存列
+   */
   getCacheColumns: () => BasicColumn[];
-  emit?: EmitType;
+  /**
+   * 刷新表格高度
+   */
+  redoHeight: () => void;
+  /**
+   * 设置分页
+   */
+  setPagination: (info: Partial<ElePagination>) => void;
+  /**
+   * 获取分页
+   */
+  getPagination: () => Partial<ElePagination> | boolean;
+  /**
+   * 获取表单
+   */
+  getFormRef: () => FormActionType;
+  /**
+   * 展开所有Tree表格项
+   */
+  expandAll: () => void;
+  /**
+   * 收起所有Tree表格项
+   */
+  collapseAll: () => void;
+  /**
+   * 更新记录
+   */
+  updateTableDataRecord: (rowKey: string | number, record: Recordable) => Recordable | void;
+  /**
+   * 删除记录
+   */
+  deleteTableDataRecord: (record: Recordable | Recordable[]) => Recordable | void;
+  /**
+   * 插入记录
+   */
+  insertTableDataRecord: (record: Recordable, index?: number) => Recordable | void;
+  /**
+   * 查找记录
+   */
+  findTableDataRecord: (rowKey: string | number) => Recordable | void;
+  /**
+   * 更新表格数据
+   */
   updateTableData: (index: number, key: string, value: any) => Recordable;
-  setShowPagination: (show: boolean) => Promise<void>;
-  getShowPagination: () => boolean;
-  setCacheColumnsByField?: (prop: string | undefined, value: BasicColumn) => void;
+
+  emit?: EmitType;
 }
 
 export interface FetchSetting {
@@ -126,8 +174,6 @@ export interface BasicTableProps extends EleTable {
   summaryData?: Recordable[];
   // 是否显示合计行
   showSummary?: boolean;
-  // 是否可拖拽列
-  canColDrag?: boolean;
   // 接口请求对象
   api?: (...arg: any) => Promise<any>;
   // 请求之前处理参数
@@ -157,9 +203,10 @@ export interface BasicTableProps extends EleTable {
   showCheckboxColumn?: boolean;
   // 文本超过宽度是否显示。。。
   ellipsis?: boolean;
-
-  // 在分页改变的时候清空选项
-  clearSelectOnPageChange?: boolean;
+  // 是否可以自适应高度
+  canResize?: boolean;
+  // 自适应高度偏移， 计算结果-偏移量
+  resizeHeightOffset?: number;
   //
   rowKey?: string | ((record: Recordable) => string);
   // 数据
@@ -170,10 +217,10 @@ export interface BasicTableProps extends EleTable {
   // 表格滚动最大高度
   maxHeight?: number;
   // 分页配置
-  pagination?: ElePagination | boolean;
+  pagination?: Partial<ElePagination> | boolean;
   // loading加载
   loading?: boolean;
-
+  scroll?: { x?: number | true; y?: number };
   /**
    * The column contains children to display
    * @default 'children'
@@ -214,19 +261,6 @@ export interface BasicTableProps extends EleTable {
   expandRowByClick?: boolean;
 
   /**
-   * Table footer renderer
-   * @type Function | VNodeChild
-   */
-  footer?: Function | VNodeChild | JSX.Element;
-
-  /**
-   * Indent size in pixels of tree data
-   * @default 15
-   * @type number
-   */
-  indentSize?: number;
-
-  /**
    * i18n text including filter, sort, empty text, etc
    * @default { filterConfirm: 'Ok', filterReset: 'Reset', emptyText: 'No Data' }
    * @type object
@@ -265,16 +299,27 @@ export interface BasicTableProps extends EleTable {
     value: any;
   }) => Promise<any>;
 
-  onColumnsChange?: (data: ColumnChangeParam[]) => void;
+  onColumnsChange?: (data) => void;
 
-  /**
-   * Callback executed when pagination, filters or sorter is changed
-   * @param pagination
-   * @param filters
-   * @param sorter
-   * @param currentDataSource
-   */
-  onChange?: (pagination: any, filters: any, sorter: any, extra: any) => void;
+  // element plus basic event
+  onSelect?: (selection, row) => void;
+  onSelectAll?: (selection) => void;
+  onSelectionChange?: (selection) => void;
+  onCellMouseEnter?: (row, column, cell, event) => void;
+  onCellMouseLeave?: (row, column, cell, event) => void;
+  onCellClick?: (row, column, cell, event) => void;
+  onCellDblclick?: (row, column, cell, event) => void;
+  onCellContextmenu?: (row, column, cell, event) => void;
+  onRowClick?: (row, column, event) => void;
+  onRowContextmenu?: (row, column, event) => void;
+  onRowDblclick?: (row, column, event) => void;
+  onHeaderClick?: (column, event) => void;
+  onHeaderContextmenu?: (column, event) => void;
+  onSortChange?: ({ column, prop, order }) => void;
+  onFilterChange?: (filters) => void;
+  onCurrentChange?: (currentRow, oldCurrentRow) => void;
+  onHeaderDragend?: (newWidth, oldWidth, column, event) => void;
+  onExpandChange?: (row, expandedRows_or_expanded) => void;
 }
 
 export type CellFormat =

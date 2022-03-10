@@ -35,8 +35,6 @@ export const basicProps = {
     type: Array as PropType<Recordable[]>,
     default: null,
   },
-  indentSize: propTypes.number.def(24),
-  canColDrag: propTypes.bool.def(true),
   api: {
     type: Function as PropType<(...arg: any[]) => Promise<any>>,
     default: null,
@@ -85,7 +83,6 @@ export const basicProps = {
   },
   showCheckboxColumn: propTypes.bool.def(false),
   ellipsis: propTypes.bool.def(true),
-  clearSelectOnPageChange: propTypes.bool,
   title: {
     type: [String, Function] as PropType<string | ((data: Recordable) => string)>,
     default: null,
@@ -107,6 +104,10 @@ export const basicProps = {
     default: null,
   },
   loading: propTypes.bool,
+  scroll: {
+    type: Object as PropType<{ x: number | true; y: number }>,
+    default: null,
+  },
   beforeEditSubmit: {
     type: Function as PropType<
     (data: {

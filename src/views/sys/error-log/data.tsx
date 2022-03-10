@@ -5,7 +5,7 @@ import { useI18n } from '@/hooks/web/useI18n'
 
 const { t } = useI18n()
 
-export function getColumns(): BasicColumn[] {
+export function getLogColumns(): BasicColumn[] {
   return [
     {
       prop: 'type',
@@ -59,7 +59,7 @@ export function getColumns(): BasicColumn[] {
 }
 
 export function getDescSchema(): any {
-  return getColumns().map((column) => {
+  return getLogColumns().map((column) => {
     return {
       field: column.prop!,
       label: column.label,

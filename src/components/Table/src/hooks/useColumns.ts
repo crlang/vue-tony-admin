@@ -49,9 +49,9 @@ function handleIndexColumn(
 
   const hasIndexColumn = columns.some((item) => item.type === 'index')
 
-  const isFixedLeft = columns.some((item) => item.fixed === 'left')
-
   if (hasIndexColumn) return
+
+  const isFixedLeft = columns.some((item) => item.fixed === 'left')
 
   columns.unshift({
     type: 'index',
@@ -188,22 +188,7 @@ export function useColumns(
     }
   )
 
-  function setCacheColumnsByField(prop: string | undefined, value: Partial<BasicColumn>) {
-    if (!prop || !value) {
-      return
-    }
-    cacheColumns.forEach((item) => {
-      if (item.prop === prop) {
-        Object.assign(item, value)
-        return
-      }
-    })
-  }
-  /**
-   * set columns
-   * @param columnList prop｜column
-   */
-  function setColumns(columnList: Partial<BasicColumn>[] | string[]) {
+  function setColumns(columnList: BasicColumn[] | string[]) {
     const columns = cloneDeep(columnList)
     if (!isArray(columns)) return
 
@@ -251,6 +236,7 @@ export function useColumns(
   function getColumns(opt?: GetColumnsParams) {
     const { ignoreIndex, ignoreAction, ignoreCheckbox, ignoreExpand, sort } = opt || {}
     let columns = toRaw(unref(getColumnsRef))
+
     if (ignoreIndex) {
       columns = columns.filter((item) => item.type !== 'index')
     }
@@ -280,7 +266,6 @@ export function useColumns(
     getColumns,
     setColumns,
     getViewColumns,
-    setCacheColumnsByField,
   }
 }
 
@@ -288,6 +273,7 @@ function sortFixedColumn(columns: BasicColumn[]) {
   const fixedLeftColumns: BasicColumn[] = []
   const fixedRightColumns: BasicColumn[] = []
   const defColumns: BasicColumn[] = []
+
   for (const column of columns) {
     if (column.fixed === 'left') {
       fixedLeftColumns.push(column)
@@ -299,6 +285,7 @@ function sortFixedColumn(columns: BasicColumn[]) {
     }
     defColumns.push(column)
   }
+
   return [...fixedLeftColumns, ...defColumns, ...fixedRightColumns].filter(
     (item) => !item.defaultHidden
   )

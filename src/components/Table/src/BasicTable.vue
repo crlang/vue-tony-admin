@@ -95,7 +95,7 @@ import type {
   ColumnChangeParam,
 } from './types/table'
 
-import { defineComponent, ref, computed, unref, toRaw, watchEffect, inject } from 'vue'
+import { defineComponent, ref, computed, unref, watchEffect, inject } from 'vue'
 import { ElTable, ElTableColumn } from 'element-plus'
 import { BasicForm, useForm } from '@/components/Form'
 import { PageWrapperFixedHeightKey } from '@/components/Page'
@@ -104,7 +104,6 @@ import { usePagination } from './hooks/usePagination'
 import { useColumns } from './hooks/useColumns'
 import { useDataSource } from './hooks/useDataSource'
 import { useLoading } from './hooks/useLoading'
-import { useRowSelection } from './hooks/useRowSelection'
 import { useTableScroll } from './hooks/useTableScroll'
 import { useTableStyle } from './hooks/useTableStyle'
 import { useTableExpand } from './hooks/useTableExpand'
@@ -165,13 +164,15 @@ export default defineComponent({
           )
     })
 
-    const { getLoading, setLoading } = useLoading(getProps)
+    const {
+      getLoading,
+      setLoading,
+    } = useLoading(getProps)
+
     const {
       getPaginationInfo,
       getPagination,
       setPagination,
-      setShowPagination,
-      getShowPagination,
     } = usePagination(getProps)
 
     const {
@@ -186,16 +187,6 @@ export default defineComponent({
       doLayout,
       sort,
     } = useBasicTableFn(getProps, tableElRef, emit)
-
-    const {
-      getRowSelection,
-      getRowSelectionRef,
-      getSelectRows,
-      clearSelectedRowKeys,
-      getSelectRowKeys,
-      deleteSelectRowByKey,
-      setSelectedRowKeys,
-    } = useRowSelection(getProps, tableData, emit)
 
     const {
       handleTableChange,
@@ -226,23 +217,30 @@ export default defineComponent({
     const {
       getViewColumns,
       getColumns,
-      setCacheColumnsByField,
       setColumns,
       getColumnsRef,
       getCacheColumns,
     } = useColumns(getProps)
 
-    const { getScrollRef, redoHeight } = useTableScroll(
+    const {
+      // getScrollRef,
+      redoHeight,
+    } = useTableScroll(
       getProps,
       tableElRef,
       getColumnsRef,
-      getRowSelectionRef,
       getDataSourceRef,
     )
 
-    const { getRowClassName } = useTableStyle(getProps, prefixCls)
+    const {
+      getRowClassName,
+    } = useTableStyle(getProps, prefixCls)
 
-    const { getExpandOption, expandAll, collapseAll } = useTableExpand(getProps, tableData, emit)
+    const {
+      getExpandOption,
+      expandAll,
+      collapseAll,
+    } = useTableExpand(getProps, tableData, emit)
 
     const getHeaderProps = computed(() => {
       const { title, showTableSetting, titleHelpMessage, tableSetting } = unref(getProps)
@@ -278,16 +276,16 @@ export default defineComponent({
         ...getBasicEmits,
         ...unref(getProps),
         ...unref(getHeaderProps),
-        scroll: unref(getScrollRef),
+        // scroll: unref(getScrollRef),
         loading: unref(getLoading),
-        rowSelection: unref(getRowSelectionRef),
         rowKey: unref(getRowKey),
-        columns: toRaw(unref(getViewColumns)),
+        // columns: toRaw(unref(getViewColumns)),
         pagination: unref(getPaginationInfo),
         data: dataSource,
         ...unref(getExpandOption),
       }
-      propsData = omit(propsData, ['title'])
+      propsData = omit(propsData, ['title', 'columns', 'api', 'showCheckboxColumn', 'showIndexColumn'])
+      console.log('propsData+++', propsData)
       return propsData
     })
 
@@ -317,13 +315,13 @@ export default defineComponent({
 
     function handlePageChange(currentPage:number) {
       setPagination({ currentPage })
-      emit('pagination', 'currentPage', currentPage, unref(getBindValues).pagination)
+      emit('pagination', unref(getBindValues).pagination, 'currentPage', currentPage)
       handleTableChange(unref(getBindValues).pagination)
     }
 
     function handlePageSizeChange(pageSize:number) {
       setPagination({ pageSize })
-      emit('pagination', 'pageSize', pageSize, unref(getBindValues).pagination)
+      emit('pagination', unref(getBindValues).pagination, 'pageSize', pageSize)
       handleTableChange(unref(getBindValues).pagination)
     }
 
@@ -340,38 +338,26 @@ export default defineComponent({
       sort,
       // 拓展
       reload,
-      getSelectRows,
-      clearSelectedRowKeys,
-      getSelectRowKeys,
-      deleteSelectRowByKey,
-      setPagination,
-      setTableData,
-      updateTableDataRecord,
-      deleteTableDataRecord,
-      insertTableDataRecord,
-      findTableDataRecord,
-      redoHeight,
-      setSelectedRows: () => void (0),
-      setSelectedRowKeys,
+      setProps,
+      getColumns,
       setColumns,
       setLoading,
       getDataSource,
       getRawDataSource,
-      setProps,
-      getRowSelection,
-      getPaginationRef: getPagination,
-      getColumns,
+      setTableData,
       getCacheColumns,
-      emit,
-      updateTableData,
-      setShowPagination,
-      getShowPagination,
-      setCacheColumnsByField,
+      redoHeight,
+      setPagination,
+      getPagination,
+      getFormRef: () => void (0) as any, // No definition needed
       expandAll,
       collapseAll,
-      getSize: () => {
-        return unref(getBindValues).size
-      },
+      updateTableDataRecord,
+      deleteTableDataRecord,
+      insertTableDataRecord,
+      findTableDataRecord,
+      updateTableData,
+      emit,
     }
     createTableContext({ ...tableAction, wrapRef, getBindValues })
 
@@ -394,7 +380,7 @@ export default defineComponent({
       tableAction,
       redoHeight,
       getHeaderProps,
-      getFormProps: getFormProps as any,
+      getFormProps,
       replaceFormSlotKey,
       getFormSlotKeys,
       getWrapperClass,

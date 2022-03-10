@@ -208,7 +208,6 @@ $prefix-cls: '#{$tonyname}-page-wrapper';
 
   &-content {
     padding: 16px;
-    margin: 16px;
     overflow: hidden;
 
     &-full {

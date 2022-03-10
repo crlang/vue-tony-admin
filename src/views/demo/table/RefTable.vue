@@ -36,51 +36,52 @@ export default defineComponent({
     const tableRef = ref<Nullable<TableActionType>>(null)
     const { createMessage } = useMessage()
 
-    function getTableAction() {
-      const tableAction = unref(tableRef)
-      if (!tableAction) {
+    function getTable() {
+      const table = unref(tableRef)
+      if (!table) {
         throw new Error('tableAction is null')
       }
-      return tableAction
+      return table
     }
+
     function changeLoading() {
-      getTableAction().setLoading(true)
+      getTable().setLoading(true)
       setTimeout(() => {
-        getTableAction().setLoading(false)
+        getTable().setLoading(false)
       }, 1000)
     }
     function changeColumns() {
-      getTableAction().setColumns(getBasicShortColumns())
+      getTable().setColumns(getBasicShortColumns())
     }
     function reloadTable() {
-      getTableAction().setColumns(getBasicColumns())
+      getTable().setColumns(getBasicColumns())
 
-      getTableAction().reload()
+      getTable().reload()
     }
     function getColumn() {
       createMessage.info('请在控制台查看！')
-      console.log(getTableAction().getColumns())
+      console.log(getTable().getColumns())
     }
 
     function getTableData() {
       createMessage.info('请在控制台查看！')
-      console.log(getTableAction().getDataSource())
+      console.log(getTable().getDataSource())
     }
     function getTableRawData() {
       createMessage.info('请在控制台查看！')
-      console.log(getTableAction().getRawDataSource())
+      console.log(getTable().getRawDataSource())
     }
 
     function getPagination() {
       createMessage.info('请在控制台查看！')
-      console.log(getTableAction().getPaginationRef())
+      console.log(getTable().getPagination())
     }
 
     function setPaginationInfo() {
-      getTableAction().setPagination({
+      getTable().setPagination({
         currentPage: 2,
       })
-      getTableAction().reload()
+      getTable().reload()
     }
 
     return {

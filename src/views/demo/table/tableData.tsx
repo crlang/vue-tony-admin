@@ -316,13 +316,15 @@ export const getAdvanceSchema = (itemNumber = 6): FormSchema[] => {
 export function getFormConfig(): Partial<FormProps> {
   return {
     labelWidth: 100,
+    showAdvancedButton: true,
+    alwaysShowLines: 1,
+    autoAdvancedLine: 1,
     schemas: [
       ...getAdvanceSchema(5),
       {
         field: `field11`,
         label: `Slot示例`,
         component: 'ElSelect',
-        slot: 'custom',
         colProps: {
           lg: 12,
           xl: 8,

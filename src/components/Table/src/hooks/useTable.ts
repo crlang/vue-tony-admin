@@ -1,25 +1,30 @@
-import type { BasicTableProps, TableActionType, FetchParams, BasicColumn } from '../types/table'
-// import type { DynamicProps } from '#/utils'
+import type {
+  BasicTableProps,
+  TableActionType,
+  FetchParams,
+  BasicColumn,
+  GetColumnsParams
+} from '../types/table'
+import type { DynamicProps } from '#/utils'
 import type { FormActionType } from '@/components/Form'
 import type { WatchStopHandle } from 'vue'
 import type { ElePagination } from '@/components/ElementPlus'
 
 import { getDynamicProps } from '@/utils'
-import { ref, onUnmounted, unref, watch, toRaw } from 'vue'
+import { ref, onUnmounted, unref, watch } from 'vue'
 import { isProdMode } from '@/utils/env'
 import { error } from '@/utils/log'
-import { DynamicProps } from '#/utils'
 
 type Props = Partial<DynamicProps<BasicTableProps>>;
 
 type UseTableMethod = TableActionType & {
-  getForm: () => FormActionType;
+  getFormRef: () => FormActionType;
 };
 
 export function useTable(tableProps?: Props): [
   (instance: TableActionType, formInstance: UseTableMethod) => void,
   TableActionType & {
-    getForm: () => FormActionType;
+    getFormRef: () => FormActionType;
   },
 ] {
   const tableRef = ref<Nullable<TableActionType>>(null)
@@ -67,11 +72,35 @@ export function useTable(tableProps?: Props): [
   }
 
   const methods: TableActionType & {
-    getForm: () => FormActionType;
+    getFormRef: () => FormActionType;
   } = {
     // Element Plus
     clearSelection: () => {
       getTableInstance().clearSelection()
+    },
+    toggleRowSelection: (row: any, selected: boolean) => {
+      getTableInstance().toggleRowSelection(row, selected)
+    },
+    toggleAllSelection: () => {
+      getTableInstance().toggleAllSelection()
+    },
+    toggleRowExpansion: (row: any, expanded: boolean) => {
+      getTableInstance().toggleRowExpansion(row, expanded)
+    },
+    setCurrentRow: (row: any) => {
+      getTableInstance().setCurrentRow(row)
+    },
+    clearSort: () => {
+      getTableInstance().clearSort()
+    },
+    clearFilter: (columnKeys: string[]) => {
+      getTableInstance().clearFilter(columnKeys)
+    },
+    doLayout: () => {
+      getTableInstance().doLayout()
+    },
+    sort: (prop: string, order: string) => {
+      getTableInstance().sort(prop, order)
     },
 
     // 拓展
@@ -81,8 +110,12 @@ export function useTable(tableProps?: Props): [
     setProps: (props: Partial<BasicTableProps>) => {
       getTableInstance().setProps(props)
     },
-    redoHeight: () => {
-      getTableInstance().redoHeight()
+    getColumns: ({ ignoreIndex = false }:GetColumnsParams = {}) => {
+      const columns = getTableInstance().getColumns({ ignoreIndex }) || []
+      return columns
+    },
+    setColumns: (columns: BasicColumn[] | string[]) => {
+      getTableInstance().setColumns(columns)
     },
     setLoading: (loading: boolean) => {
       getTableInstance().setLoading(loading)
@@ -93,45 +126,29 @@ export function useTable(tableProps?: Props): [
     getRawDataSource: () => {
       return getTableInstance().getRawDataSource()
     },
-    getColumns: ({ ignoreIndex = false }: { ignoreIndex?: boolean } = {}) => {
-      const columns = getTableInstance().getColumns({ ignoreIndex }) || []
-      return toRaw(columns)
-    },
-    setColumns: (columns: BasicColumn[]) => {
-      getTableInstance().setColumns(columns)
-    },
-    setTableData: (values: any[]) => {
+    setTableData: <T = Recordable>(values: T[]) => {
       return getTableInstance().setTableData(values)
+    },
+    getCacheColumns: () => {
+      return getTableInstance().getCacheColumns()
+    },
+    redoHeight: () => {
+      getTableInstance().redoHeight()
     },
     setPagination: (info: Partial<ElePagination>) => {
       return getTableInstance().setPagination(info)
     },
-    deleteSelectRowByKey: (key: string) => {
-      getTableInstance().deleteSelectRowByKey(key)
+    getPagination: () => {
+      return getTableInstance().getPagination()
     },
-    getSelectRowKeys: () => {
-      return toRaw(getTableInstance().getSelectRowKeys())
+    getFormRef: () => {
+      return unref(formRef) as unknown as FormActionType
     },
-    getSelectRows: () => {
-      return toRaw(getTableInstance().getSelectRows())
+    expandAll: () => {
+      getTableInstance().expandAll()
     },
-    clearSelectedRows: () => {
-      getTableInstance().toggleRowSelection()
-    },
-    setSelectedRows: (rows: Recordable[]) => {
-      getTableInstance().toggleRowSelection(rows)
-    },
-    toggleAllSelection: () => {
-      getTableInstance().toggleAllSelection()
-    },
-    getPaginationRef: () => {
-      return getTableInstance().getPaginationRef()
-    },
-    getSize: () => {
-      return toRaw(getTableInstance().getSize())
-    },
-    updateTableData: (index: number, key: string, value: any) => {
-      return getTableInstance().updateTableData(index, key, value)
+    collapseAll: () => {
+      getTableInstance().collapseAll()
     },
     deleteTableDataRecord: (record: Recordable | Recordable[]) => {
       return getTableInstance().deleteTableDataRecord(record)
@@ -145,26 +162,8 @@ export function useTable(tableProps?: Props): [
     findTableDataRecord: (rowKey: string | number) => {
       return getTableInstance().findTableDataRecord(rowKey)
     },
-    getRowSelection: () => {
-      return toRaw(getTableInstance().getRowSelection())
-    },
-    getCacheColumns: () => {
-      return toRaw(getTableInstance().getCacheColumns())
-    },
-    getForm: () => {
-      return unref(formRef) as unknown as FormActionType
-    },
-    setShowPagination: async (show: boolean) => {
-      getTableInstance().setShowPagination(show)
-    },
-    getShowPagination: () => {
-      return toRaw(getTableInstance().getShowPagination())
-    },
-    expandAll: () => {
-      getTableInstance().expandAll()
-    },
-    collapseAll: () => {
-      getTableInstance().collapseAll()
+    updateTableData: (index: number, key: string, value: any) => {
+      return getTableInstance().updateTableData(index, key, value)
     },
   }
 

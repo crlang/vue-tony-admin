@@ -27,6 +27,7 @@ export default defineComponent({
     const [registerTable, { reload, setPagination }] = useTable({
       title: '远程加载示例',
       api: demoListApi,
+      canResize: true,
       columns: getBasicColumns(),
     })
     function handleReloadCurrent() {

@@ -1,23 +1,42 @@
 import type { BasicTableProps, BasicColumn } from '../types/table'
-import type { Ref, ComputedRef } from 'vue'
+import { Ref, ComputedRef, watch } from 'vue'
 import { computed, unref, ref, nextTick } from 'vue'
 import { getViewportOffset } from '@/utils/domUtils'
 import { isBoolean } from '@/utils/is'
 import { useWindowSizeFn } from '@/hooks/event/useWindowSizeFn'
 import { useModalContext } from '@/components/Modal'
 import { onMountedOrActivated } from '@/hooks/core/onMountedOrActivated'
-// import { useDebounceFn } from '@vueuse/core'
+import { useDebounceFn } from '@vueuse/core'
 
 export function useTableScroll(
   propsRef: ComputedRef<BasicTableProps>,
   tableElRef: Ref<ComponentRef>,
   columnsRef: ComputedRef<BasicColumn[]>,
-  rowSelectionRef: ComputedRef<any | null>,
   getDataSourceRef: ComputedRef<Recordable[]>
 ) {
   const tableHeightRef: Ref<Nullable<number>> = ref(null)
 
+  const resizeLimit = ref(0)
+
   const modalFn = useModalContext()
+
+  // Greater than animation time 280
+  const debounceRedoHeight = useDebounceFn(redoHeight, 100)
+
+  const getCanResize = computed(() => {
+    const { canResize, scroll } = unref(propsRef)
+    return canResize && !(scroll || {}).y
+  })
+
+  watch(
+    () => [unref(getCanResize), unref(getDataSourceRef)?.length],
+    () => {
+      debounceRedoHeight()
+    },
+    {
+      flush: 'post',
+    },
+  )
 
   function redoHeight() {
     nextTick(() => {
@@ -45,11 +64,25 @@ export function useTableScroll(
     const tableEl: Element = table.$el
     if (!tableEl) return
 
-    if (!bodyEl) {
-      bodyEl = tableEl.querySelector('.el-table__body-wrapper')
-      if (!bodyEl) return
+    // 不处理滚动问题
+    if (!unref(getCanResize) || tableData.length === 0) {
+      if (resizeLimit.value > 4) return
+
+      if (document.createEvent) {
+        const event = document.createEvent('HTMLEvents')
+        event.initEvent('resize', true, true)
+        window.dispatchEvent(event)
+      } else if (document.createEventObject) {
+        window.fireEvent('onresize')
+      }
+      resizeLimit.value = resizeLimit.value + 1
+      return
     }
 
+    if (!bodyEl) {
+      bodyEl = tableEl.querySelector('.el-scrollbar__view')
+      if (!bodyEl) return
+    }
     const hasScrollBarY = bodyEl.scrollHeight > bodyEl.clientHeight
     const hasScrollBarX = bodyEl.scrollWidth > bodyEl.clientWidth
 
@@ -69,10 +102,10 @@ export function useTableScroll(
 
     bodyEl!.style.height = 'unset'
 
-    if (tableData.length === 0) return
+    if (!unref(getCanResize) || tableData.length === 0) return
 
     await nextTick()
-    // Add a delay to get the correct bottomIncludeBody paginationHeight footerHeight headerHeight
+    // Add a delay to get the correct bottomIncludeBody paginationHeight headerHeight
 
     const headEl = tableEl.querySelector('.el-table__header-wrapper ')
 
@@ -117,16 +150,13 @@ export function useTableScroll(
   useWindowSizeFn(calcTableHeight, 280)
   onMountedOrActivated(() => {
     calcTableHeight()
-    // nextTick(() => {
-    //   debounceRedoHeight()
-    // })
+    nextTick(() => {
+      debounceRedoHeight()
+    })
   })
 
   const getScrollX = computed(() => {
     let width = 0
-    if (unref(rowSelectionRef)) {
-      width += 60
-    }
 
     // TODO props ?? 0;
     const NORMAL_WIDTH = 150

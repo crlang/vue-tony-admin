@@ -38,7 +38,7 @@ import { useMessage } from '@/hooks/web/useMessage'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useErrorLogStore } from '@/store/modules/errorLog'
 import { fireErrorApi } from '@/api/demo/error'
-import { getColumns } from './data'
+import { getLogColumns } from './data'
 import { BasicTable, useTable } from '@/components/Table'
 import { cloneDeep } from 'lodash-es'
 
@@ -48,7 +48,7 @@ const { t } = useI18n()
 const errorLogStore = useErrorLogStore()
 const [register, { setTableData }] = useTable({
   title: t('sys.errorLog.tableTitle'),
-  columns: getColumns(),
+  columns: getLogColumns(),
   actionColumn: {
     width: 80,
     label: 'Action',

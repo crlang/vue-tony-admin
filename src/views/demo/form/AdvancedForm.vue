@@ -53,7 +53,7 @@ export default defineComponent({
         span: 24,
       },
       showAdvancedButton: true,
-      alwaysShowLines: 2,
+      alwaysShowLines: 1,
     })
     return {
       register,

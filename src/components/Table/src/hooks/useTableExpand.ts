@@ -22,15 +22,21 @@ export function useTableExpand(
   const getExpandOption = computed(() => {
     return {
       expandRowKeys: unref(expandRowKeys),
-      onExpandChange: (keys: string[]) => {
-        expandRowKeys.value = keys
-        emit('expand-change', keys)
+      onExpandChange: (row, expand) => {
+        if (expand) {
+          expandRowKeys.value = [...unref(expandRowKeys), ...getAllKeys([row])]
+        } else {
+          const rowKeys = getAllKeys([row])
+          expandRowKeys.value = unref(expandRowKeys).finter(k => rowKeys.includes(k))
+        }
+        emit('expand-change', row, expand)
       },
     }
   })
 
   function expandAll() {
     const keys = getAllKeys()
+    console.log('keys', keys)
     expandRowKeys.value = keys
   }
 
@@ -44,6 +50,7 @@ export function useTableExpand(
         keys.push(...getAllKeys(children))
       }
     })
+
     return keys
   }
 
