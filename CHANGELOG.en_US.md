@@ -1,3 +1,18 @@
+## [0.1.1-beta.3](https://github.com/crlang/vue-tony-admin/compare/0.1.1-beta.2...0.1.1-beta.3) (2022-03-10)
+
+### Bug Fixes
+
+- fix table index prop error problem ([9ec5c73](https://github.com/crlang/vue-tony-admin/commit/9ec5c73c6c9989edf1664825574419f32cc6b1db))
+- **Form:** adjust component props ([7aecb5a](https://github.com/crlang/vue-tony-admin/commit/7aecb5a8349c55244bc1e8a1ae38facc05742b41))
+- **Table:** adjust custom event ([42cd20c](https://github.com/crlang/vue-tony-admin/commit/42cd20c625a304f030dfe06b33e72737485aa749))
+- **Table:** component optimization ([a50d73e](https://github.com/crlang/vue-tony-admin/commit/a50d73e07e9838da959b87490a68390ecc90a277))
+- **Table:** readjust and optimize table related functions ([9250d4f](https://github.com/crlang/vue-tony-admin/commit/9250d4f1737d5438890d934f2e84a373395fcd4f))
+- **Table:** support element plus method ([61fb8ad](https://github.com/crlang/vue-tony-admin/commit/61fb8ad676f11d40db2ee895cc7dccad323ae5c1))
+
+### Features
+
+- **Table:** support element plus event ([98e8c8b](https://github.com/crlang/vue-tony-admin/commit/98e8c8b42e5af2026d547b84d851903f3cfbe85e))
+
 ## [0.1.1-beta.2](https://github.com/crlang/vue-tony-admin/compare/0.1.1-beta.1...0.1.1-beta.2) (2022-03-02)
 
 ### Bug Fixes
