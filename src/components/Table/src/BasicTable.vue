@@ -41,7 +41,6 @@
       ref="tableElRef"
       v-bind="getBindValues"
       v-loading="getBindValues.loading"
-      v-show="getEmptyDataIsShowTable"
       :rowClassName="getRowClassName">
       <template
         v-for="column in columns"
@@ -223,7 +222,6 @@ export default defineComponent({
     } = useColumns(getProps)
 
     const {
-      // getScrollRef,
       redoHeight,
     } = useTableScroll(
       getProps,
@@ -234,7 +232,7 @@ export default defineComponent({
 
     const {
       getRowClassName,
-    } = useTableStyle(getProps, prefixCls)
+    } = useTableStyle(getProps)
 
     const {
       getExpandOption,
@@ -255,7 +253,6 @@ export default defineComponent({
         showTableSetting,
         titleHelpMessage,
         onColumnsChange: (data: ColumnChangeParam[]) => {
-          console.log('ddd+++', data)
           emit('columns-change', data)
           // support useTable
           unref(getProps).onColumnsChange?.(data)
@@ -275,17 +272,13 @@ export default defineComponent({
         ...attrs,
         ...getBasicEmits,
         ...unref(getProps),
-        ...unref(getHeaderProps),
-        // scroll: unref(getScrollRef),
         loading: unref(getLoading),
         rowKey: unref(getRowKey),
-        // columns: toRaw(unref(getViewColumns)),
         pagination: unref(getPaginationInfo),
         data: dataSource,
         ...unref(getExpandOption),
       }
       propsData = omit(propsData, ['title', 'columns', 'api', 'showCheckboxColumn', 'showIndexColumn'])
-      console.log('propsData+++', propsData)
       return propsData
     })
 
@@ -296,17 +289,8 @@ export default defineComponent({
         attrs.class,
         {
           [`${prefixCls}-form-container`]: values.useSearchForm,
-          [`${prefixCls}--inset`]: values.inset,
         },
       ]
-    })
-
-    const getEmptyDataIsShowTable = computed(() => {
-      const { emptyDataIsShowTable, useSearchForm } = unref(getProps)
-      if (emptyDataIsShowTable || !useSearchForm) {
-        return true
-      }
-      return !!unref(getDataSourceRef).length
     })
 
     function setProps(props: Partial<BasicTableProps>) {
@@ -372,7 +356,6 @@ export default defineComponent({
       getLoading,
       registerForm,
       handleSearchInfoChange,
-      getEmptyDataIsShowTable,
       getRowClassName,
       handlePageChange,
       handlePageSizeChange,
@@ -397,12 +380,6 @@ $prefix-cls: '#{$tonyname}-basic-table';
   max-width: 100%;
   padding: 8px;
   background: var(--background-secondary-color);
-
-  &-row__striped {
-    td {
-      background-color: var(--background-tertiary-color);
-    }
-  }
 
   &-form-container {
     padding: 16px;

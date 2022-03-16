@@ -38,7 +38,7 @@ export default defineComponent({
       showCheckboxColumn: true,
       columns: getBasicColumns(),
       showSummary: true,
-      summaryFunc: handleSummary,
+      summaryMethod: handleSummary,
     })
 
     return {

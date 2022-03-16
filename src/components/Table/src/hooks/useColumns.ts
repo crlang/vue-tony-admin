@@ -1,39 +1,30 @@
-import type { BasicColumn, BasicTableProps, CellFormat, GetColumnsParams } from '../types/table'
+import type { BasicColumn, BasicTableProps, GetColumnsParams } from '../types/table'
 import type { ComputedRef } from 'vue'
 
 import { computed, Ref, ref, toRaw, unref, watch } from 'vue'
-// import { renderEditCell } from '../components/editable'
 import { usePermission } from '@/hooks/web/usePermission'
 // import { useI18n } from '@/hooks/web/useI18n'
-import { isArray, isBoolean, isFunction, isMap, isString } from '@/utils/is'
+import { isArray, isBoolean, isFunction, isString } from '@/utils/is'
 import { cloneDeep, isEqual } from 'lodash-es'
-import { formatToDate } from '@/utils/dateUtil'
 import { useI18n } from '@/hooks/web/useI18n'
 
-function handleItem(item: BasicColumn, ellipsis: boolean) {
+function handleItem(item: BasicColumn) {
   const { columnKey, prop, children } = item
   item.align = item.align || 'center'
   if (!columnKey) {
     item.columnKey = prop
   }
-  if (ellipsis) {
-    if (!isBoolean(item.ellipsis)) {
-      Object.assign(item, {
-        ellipsis,
-      })
-    }
-  }
   if (children && children.length) {
-    handleChildren(children, !!ellipsis)
+    handleChildren(children)
   }
 }
 
-function handleChildren(children: BasicColumn[] | undefined, ellipsis: boolean) {
+function handleChildren(children: BasicColumn[] | undefined) {
   if (!children) return
   children.forEach((item) => {
     const { children } = item
-    handleItem(item, ellipsis)
-    handleChildren(children, ellipsis)
+    handleItem(item)
+    handleChildren(children)
   })
 }
 
@@ -128,15 +119,8 @@ export function useColumns(
     if (!columns) {
       return []
     }
-    const { ellipsis } = unref(propsRef)
-
     columns.forEach((item) => {
-      const { customRender, slots } = item
-
-      handleItem(
-        item,
-        Reflect.has(item, 'ellipsis') ? !!item.ellipsis : !!ellipsis && !customRender && !slots
-      )
+      handleItem(item)
     })
     return columns
   })
@@ -289,36 +273,4 @@ function sortFixedColumn(columns: BasicColumn[]) {
   return [...fixedLeftColumns, ...defColumns, ...fixedRightColumns].filter(
     (item) => !item.defaultHidden
   )
-}
-
-// format cell
-export function formatCell(text: string, format: CellFormat, record: Recordable, index: number) {
-  if (!format) {
-    return text
-  }
-
-  // custom function
-  if (isFunction(format)) {
-    return format(text, record, index)
-  }
-
-  try {
-    // date type
-    const DATE_FORMAT_PREFIX = 'date|'
-    if (isString(format) && format.startsWith(DATE_FORMAT_PREFIX)) {
-      const dateFormat = format.replace(DATE_FORMAT_PREFIX, '')
-
-      if (!dateFormat) {
-        return text
-      }
-      return formatToDate(text, dateFormat)
-    }
-
-    // Map
-    if (isMap(format)) {
-      return format.get(text)
-    }
-  } catch (error) {
-    return text
-  }
 }

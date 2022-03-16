@@ -1,6 +1,6 @@
 import { FormProps, FormSchema } from '@/components/Table'
 import { BasicColumn } from '@/components/Table/src/types/table'
-import { optionsListApi } from '@/api/demo/select'
+// import { ElTag } from 'element-plus'
 
 export function getBasicColumns(): BasicColumn[] {
   return [
@@ -9,6 +9,10 @@ export function getBasicColumns(): BasicColumn[] {
       prop: 'id',
       // fixed: 'left',
       // width: 200
+      // customRender: ({ text }) => {
+      // const color = 'danger'
+      // return <ElTag type={color}>{() => text}</ElTag>
+      // },
     },
     {
       label: '姓名',
@@ -29,7 +33,7 @@ export function getBasicColumns(): BasicColumn[] {
       prop: 'no',
       // width: 150,
       sortable: true,
-      // defaultHidden: true
+      // defaultHidden: true,
 
     },
     {
@@ -174,130 +178,6 @@ export function getCustomCellColumns(): BasicColumn[] {
   ]
 }
 
-export const getEditColumns: BasicColumn[] = [
-  {
-    label: '输入框',
-    prop: 'name',
-    edit: true,
-    editComponent: 'ElInput',
-    editComponentProps: {
-      prefix: '$',
-    },
-    width: 200,
-  },
-  {
-    label: '默认输入状态',
-    prop: 'name7',
-    edit: true,
-    editComponent: 'ElInput',
-    width: 200,
-  },
-  {
-    label: '输入框校验(必填)',
-    prop: 'name1',
-    edit: true,
-    editComponent: 'ElInput',
-    // 默认必填校验
-    editRule: true,
-    width: 200,
-  },
-  {
-    label: '输入框函数校验(输入tony)',
-    prop: 'name2',
-    edit: true,
-    editComponent: 'ElInput',
-    editRule: async (text) => {
-      if (text === 'tony') {
-        return '不能输入该值'
-      }
-      return ''
-    },
-    width: 200,
-  },
-  {
-    label: '数字输入框',
-    prop: 'id',
-    edit: true,
-    editRule: true,
-    editComponent: 'ElInputNumber',
-    width: 200,
-  },
-  {
-    label: '下拉框',
-    prop: 'name3',
-    edit: true,
-    editComponent: 'ElSelect',
-    editComponentProps: {
-      options: [
-        {
-          label: 'Option1',
-          value: '1',
-        },
-        {
-          label: 'Option2',
-          value: '2',
-        },
-      ],
-    },
-    width: 200,
-  },
-  {
-    label: '远程下拉',
-    prop: 'name4',
-    edit: true,
-    editComponent: 'ApiSelect',
-    editComponentProps: {
-      api: optionsListApi,
-      resultField: 'list',
-      labelField: 'name',
-      valueField: 'id',
-    },
-    width: 200,
-  },
-  {
-    label: '日期选择',
-    prop: 'date',
-    edit: true,
-    editComponent: 'ElDatePicker',
-    editComponentProps: {
-      valueFormat: 'YYYY-MM-DD',
-      format: 'YYYY-MM-DD',
-    },
-    width: 200,
-  },
-  {
-    label: '时间选择',
-    prop: 'time',
-    edit: true,
-    editComponent: 'ElTimePicker',
-    editComponentProps: {
-      valueFormat: 'HH:mm',
-      format: 'HH:mm',
-    },
-    width: 200,
-  },
-  {
-    label: '勾选框',
-    prop: 'name5',
-    edit: true,
-    editComponent: 'ElCheckbox',
-    editValueMap: (value) => {
-      return value ? '是' : '否'
-    },
-    width: 200,
-  },
-  {
-    label: '开关',
-    prop: 'name6',
-    edit: true,
-    editComponent: 'ElSwitch',
-    editValueMap: (value) => {
-      return value ? '开' : '关'
-    },
-    width: 200,
-  },
-]
-
 export const getAdvanceSchema = (itemNumber = 6): FormSchema[] => {
   const arr: any = []
   for (let index = 0; index < itemNumber; index++) {
@@ -340,10 +220,10 @@ export function getBasicData() {
     for (let index = 0; index < 100; index++) {
       arr.push({
         id: `${index}`,
-        name: 'John Brown',
+        name: 'Tony Chen',
         age: `1${index}`,
         no: `${index + 10}`,
-        address: 'New York No. 1 Lake ParkNew York No. 1 Lake Park',
+        address: '啊啊啊啊啊啊啊啊啊啊啊啊啊啊',
         beginTime: new Date().toLocaleString(),
         endTime: new Date().toLocaleString(),
       })

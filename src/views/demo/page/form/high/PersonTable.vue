@@ -1,36 +1,28 @@
 <template>
   <div>
     <BasicTable @register="registerTable" />
-    <el-button
-      class="mt-4 mb-8"
-      type="warning"
-      @click="handleAdd">新增成员</el-button>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ElButton } from 'element-plus'
 import { BasicTable, useTable, BasicColumn } from '@/components/Table'
 
 export default defineComponent({
-  components: { ElButton, BasicTable },
+  components: { BasicTable },
   setup() {
     const columns: BasicColumn[] = [
       {
         label: '成员姓名',
         prop: 'name',
-        edit: true,
       },
       {
         label: '工号',
         prop: 'no',
-        edit: true,
       },
       {
         label: '所属部门',
         prop: 'dept',
-        edit: true,
       },
       {
         actions: [
@@ -72,47 +64,14 @@ export default defineComponent({
       record.onEdit?.(true)
     }
 
-    function handleSave(record) {
-      record.onEdit?.(false, true)
-    }
-
-    function handleAdd() {
-      const data = getDataSource()
-      const addRow = {
-        name: '',
-        no: '',
-        dept: '',
-        editable: true,
-        edit: true,
-        isNew: true,
-        key: `${Date.now()}`,
-      }
-      data.push(addRow)
-    }
-
-    function createActions(record, column: BasicColumn) {
-      if (!record.editable) {
-        return [
-          {
-            text: '编辑',
-            onClick: handleEdit.bind(null, record),
-          },
-          {
-            text: '删除',
-          },
-        ]
-      }
+    function createActions(record) {
       return [
         {
-          text: '保存',
-          onClick: handleSave.bind(null, record, column),
+          text: '编辑',
+          onClick: handleEdit.bind(null, record),
         },
         {
-          text: '取消',
-          // popConfirm: {
-          //   title: '是否取消编辑',
-          //   confirm: handleCancel.bind(null, record, column),
-          // },
+          text: '删除',
         },
       ]
     }
@@ -121,7 +80,6 @@ export default defineComponent({
       registerTable,
       handleEdit,
       createActions,
-      handleAdd,
       getDataSource,
     }
   },

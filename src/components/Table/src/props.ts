@@ -8,32 +8,31 @@ import type {
 import type { FormProps } from '@/components/Form'
 import type { ElePagination } from '@/components/ElementPlus'
 
+import { EleTableProps } from '@/components/ElementPlus'
 import { FETCH_SETTING } from './const'
-import { propTypes } from '@/utils/propTypes'
 
 export const basicProps = {
-  clickToRowSelect: propTypes.bool.def(true),
-  tableSetting: propTypes.shape<TableSetting>({}),
-  inset: propTypes.bool,
-  // sortFn: {
-  //   type: Function as PropType<(sortInfo: SorterResult) => any>,
-  //   default: DEFAULT_SORT_FN
-  // },
-  // filterFn: {
-  //   type: Function as PropType<(data: Partial<Recordable<string[]>>) => any>,
-  //   default: DEFAULT_FILTER_FN
-  // },
-  showTableSetting: propTypes.bool,
-  autoCreateKey: propTypes.bool.def(true),
-  striped: propTypes.bool.def(true),
-  showSummary: propTypes.bool,
-  summaryFunc: {
-    type: [Function, Array] as PropType<(...arg: any[]) => any[]>,
-    default: null,
-  },
-  summaryData: {
+  ...EleTableProps,
+  dataSource: {
     type: Array as PropType<Recordable[]>,
     default: null,
+  },
+  columns: {
+    type: [Array] as PropType<BasicColumn[]>,
+    default: () => [],
+  },
+  actionColumn: {
+    type: Object as PropType<BasicColumn>,
+    default: null,
+  },
+  showTableSetting: { type: Boolean },
+  tableSetting: {
+    type: Object as PropType<Partial<TableSetting>>,
+    default: () => {},
+  },
+  autoCreateKey: {
+    type: Boolean,
+    default: true,
   },
   api: {
     type: Function as PropType<(...arg: any[]) => Promise<any>>,
@@ -57,32 +56,22 @@ export const basicProps = {
       return FETCH_SETTING
     },
   },
-  // 立即请求接口
-  immediate: propTypes.bool.def(true),
-  emptyDataIsShowTable: propTypes.bool.def(true),
-  // 额外的请求参数
+  immediate: {
+    type: Boolean,
+    default: true,
+  },
   searchInfo: {
     type: Object as PropType<Recordable>,
     default: null,
   },
-  // 使用搜索表单
-  useSearchForm: propTypes.bool,
-  // 表单配置
+  useSearchForm: { type: Boolean },
   formConfig: {
     type: Object as PropType<Partial<FormProps>>,
     default: null,
   },
-  columns: {
-    type: [Array] as PropType<BasicColumn[]>,
-    default: () => [],
-  },
-  showIndexColumn: propTypes.bool.def(false),
-  actionColumn: {
-    type: Object as PropType<BasicColumn>,
-    default: null,
-  },
-  showCheckboxColumn: propTypes.bool.def(false),
-  ellipsis: propTypes.bool.def(true),
+  showIndexColumn: { type: Boolean },
+  showCheckboxColumn: { type: Boolean },
+  canResize: { type: Boolean },
   title: {
     type: [String, Function] as PropType<string | ((data: Recordable) => string)>,
     default: null,
@@ -90,35 +79,18 @@ export const basicProps = {
   titleHelpMessage: {
     type: [String, Array] as PropType<string | string[]>,
   },
-  maxHeight: propTypes.number,
-  dataSource: {
-    type: Array as PropType<Recordable[]>,
-    default: null,
-  },
-  rowKey: {
-    type: [String, Function] as PropType<string | ((record: Recordable) => string)>,
-    default: '',
-  },
   pagination: {
     type: [Object, Boolean] as PropType<Partial<ElePagination> | boolean>,
     default: null,
   },
-  loading: propTypes.bool,
-  scroll: {
-    type: Object as PropType<{ x: number | true; y: number }>,
-    default: null,
+  loading: { type: Boolean },
+  childrenColumnName: {
+    type: String,
+    default: 'children',
   },
-  beforeEditSubmit: {
-    type: Function as PropType<
-    (data: {
-      record: Recordable;
-      index: number;
-      key: string;
-      value: any;
-    }) => Promise<any>
-    >,
+  onColumnsChange: {
+    type: Function as PropType<(data) => void>,
   },
-  canResize: Boolean,
 }
 
 export const ElTableBasicEmits = [

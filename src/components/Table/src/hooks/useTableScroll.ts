@@ -24,8 +24,8 @@ export function useTableScroll(
   const debounceRedoHeight = useDebounceFn(redoHeight, 100)
 
   const getCanResize = computed(() => {
-    const { canResize, scroll } = unref(propsRef)
-    return canResize && !(scroll || {}).y
+    const { canResize } = unref(propsRef)
+    return canResize
   })
 
   watch(
@@ -154,38 +154,5 @@ export function useTableScroll(
       debounceRedoHeight()
     })
   })
-
-  const getScrollX = computed(() => {
-    let width = 0
-
-    // TODO props ?? 0;
-    const NORMAL_WIDTH = 150
-
-    const columns = unref(columnsRef).filter((item) => !item.defaultHidden)
-    columns.forEach((item) => {
-      width += Number.parseInt(item.width as string) || 0
-    })
-    const unsetWidthColumns = columns.filter((item) => !Reflect.has(item, 'width'))
-
-    const len = unsetWidthColumns.length
-    if (len !== 0) {
-      width += len * NORMAL_WIDTH
-    }
-
-    const table = unref(tableElRef)
-    const tableWidth = table?.$el?.offsetWidth ?? 0
-    return tableWidth > width ? '100%' : width
-  })
-
-  const getScrollRef = computed(() => {
-    const { scroll } = unref(propsRef)
-    return {
-      x: unref(getScrollX),
-      y: null,
-      scrollToFirstRowOnChange: false,
-      ...scroll,
-    }
-  })
-
-  return { getScrollRef, redoHeight }
+  return { redoHeight }
 }

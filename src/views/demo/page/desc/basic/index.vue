@@ -54,7 +54,7 @@ export default defineComponent({
       showIndexColumn: false,
       scroll: { y: 300 },
       showSummary: true,
-      summaryFunc: handleSummary,
+      summaryMethod: handleSummary,
     })
 
     const [registerRefundTable] = useTable()

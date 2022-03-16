@@ -57,7 +57,6 @@ export default defineComponent({
         schemas: searchFormSchema,
       },
       // pagination: undefined,
-      striped: false,
       useSearchForm: true,
       showTableSetting: true,
       border: true,
