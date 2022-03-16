@@ -1,6 +1,5 @@
 import { FormProps, FormSchema } from '@/components/Table'
 import { BasicColumn } from '@/components/Table/src/types/table'
-// import { ElTag } from 'element-plus'
 
 export function getBasicColumns(): BasicColumn[] {
   return [
@@ -9,10 +8,6 @@ export function getBasicColumns(): BasicColumn[] {
       prop: 'id',
       // fixed: 'left',
       // width: 200
-      // customRender: ({ text }) => {
-      // const color = 'danger'
-      // return <ElTag type={color}>{() => text}</ElTag>
-      // },
     },
     {
       label: '姓名',

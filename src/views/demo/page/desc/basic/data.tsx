@@ -1,7 +1,6 @@
 import { DescItem } from '@/components/Description'
 import { BasicColumn } from '@/components/Table/src/types/table'
-import { Button } from '@/components/Button'
-import { ElBadge } from 'element-plus'
+import { ElBadge, ElButton } from 'element-plus'
 
 export const refundData = {
   a1: '1000000000',
@@ -65,9 +64,9 @@ export const refundTableSchema: BasicColumn[] = [
     prop: 't1',
     customRender: ({ record }) => {
       return (
-        <Button type='text' size='small'>
+        <ElButton type='text' size='small'>
           {() => record.t1}
-        </Button>
+        </ElButton>
       )
     },
   },

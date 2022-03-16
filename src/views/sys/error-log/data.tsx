@@ -1,6 +1,6 @@
-// import { ElTag } from 'element-plus'
+import { ElTag } from 'element-plus'
 import { BasicColumn } from '@/components/Table'
-// import { ErrorTypeEnum } from '@/enums/exceptionEnum'
+import { ErrorTypeEnum } from '@/enums/exceptionEnum'
 import { useI18n } from '@/hooks/web/useI18n'
 
 const { t } = useI18n()
@@ -11,20 +11,20 @@ export function getLogColumns(): BasicColumn[] {
       prop: 'type',
       label: t('sys.errorLog.tableColumnType'),
       width: 80,
-      // customRender: ({ text }) => {
-      //   const color =
-      //     text === ErrorTypeEnum.VUE
-      //       ? 'success'
-      //       : text === ErrorTypeEnum.RESOURCE
-      //         ? 'warning'
-      //         : text === ErrorTypeEnum.PROMISE
-      //           ? 'primary'
-      //           : ErrorTypeEnum.AJAX
-      //             ? 'danger'
-      //             : 'info'
+      customRender: ({ text }) => {
+        const color =
+          text === ErrorTypeEnum.VUE
+            ? 'success'
+            : text === ErrorTypeEnum.RESOURCE
+              ? 'warning'
+              : text === ErrorTypeEnum.PROMISE
+                ? 'primary'
+                : ErrorTypeEnum.AJAX
+                  ? 'danger'
+                  : 'info'
 
-      //   return <ElTag type={color}>{() => text}</ElTag>
-      // },
+        return <ElTag type={color}>{() => text}</ElTag>
+      },
     },
     {
       prop: 'url',

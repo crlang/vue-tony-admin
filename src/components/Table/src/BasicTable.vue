@@ -48,7 +48,10 @@
         <template v-if="column.customRender">
           <ElTableColumn v-bind="column">
             <template #default="scope">
-              <TableRender :render="column.customRender(scope)" />
+              <TableRender
+                :customRender="column.customRender"
+                :scope="scope"
+                :column="column" />
             </template>
           </ElTableColumn>
         </template>
@@ -61,7 +64,6 @@
                 :scopes="scope" />
             </template>
           </ElTableColumn>
-
         </template>
         <template v-else-if="column.isSlot">
           <slot
@@ -219,7 +221,7 @@ export default defineComponent({
       setColumns,
       getColumnsRef,
       getCacheColumns,
-    } = useColumns(getProps)
+    } = useColumns(getProps, getPaginationInfo)
 
     const {
       redoHeight,

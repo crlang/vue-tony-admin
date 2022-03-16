@@ -7,27 +7,27 @@
       :style="{ textAlign: actionColOpt?.style?.textAlign }">
       <ElFormItem>
         <slot name="resetBefore"></slot>
-        <Button
+        <ElButton
           type="default"
           class="mr-2"
           v-bind="getResetBtnOptions"
           @click="resetAction"
           v-if="showResetButton">
           {{ getResetBtnOptions.text }}
-        </Button>
+        </ElButton>
         <slot name="submitBefore"></slot>
 
-        <Button
+        <ElButton
           type="primary"
           class="mr-2"
           v-bind="getSubmitBtnOptions"
           @click="submitAction"
           v-if="showSubmitButton">
           {{ getSubmitBtnOptions.text }}
-        </Button>
+        </ElButton>
 
         <slot name="advanceBefore"></slot>
-        <Button
+        <ElButton
           type="text"
           size="small"
           @click="toggleAdvanced"
@@ -37,7 +37,7 @@
             class="ml-1"
             :expand="!isAdvanced"
             direction="up" />
-        </Button>
+        </ElButton>
         <slot name="advanceAfter"></slot>
       </ElFormItem>
     </div>
@@ -48,8 +48,7 @@
 import type { EleCol } from '@/components/ElementPlus'
 
 import { defineComponent, computed } from 'vue'
-import { ElFormItem, ElCol } from 'element-plus'
-import { Button } from '@/components/Button'
+import { ElFormItem, ElCol, ElButton } from 'element-plus'
 import { BasicArrow } from '@/components/Basic'
 import { useFormContext } from '../hooks/useFormContext'
 import { useI18n } from '@/hooks/web/useI18n'
@@ -60,7 +59,7 @@ export default defineComponent({
   components: {
     ElFormItem,
     ElCol,
-    Button,
+    ElButton,
     BasicArrow,
   },
   props: formActionProps,

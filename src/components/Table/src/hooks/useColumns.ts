@@ -1,12 +1,13 @@
 import type { BasicColumn, BasicTableProps, GetColumnsParams } from '../types/table'
 import type { ComputedRef } from 'vue'
+import type { ElePagination } from '@/components/ElementPlus'
 
 import { computed, Ref, ref, toRaw, unref, watch } from 'vue'
 import { usePermission } from '@/hooks/web/usePermission'
-// import { useI18n } from '@/hooks/web/useI18n'
 import { isArray, isBoolean, isFunction, isString } from '@/utils/is'
 import { cloneDeep, isEqual } from 'lodash-es'
 import { useI18n } from '@/hooks/web/useI18n'
+import { PAGE_SIZE } from '../const'
 
 function handleItem(item: BasicColumn) {
   const { columnKey, prop, children } = item
@@ -30,7 +31,8 @@ function handleChildren(children: BasicColumn[] | undefined) {
 
 function handleIndexColumn(
   propsRef: ComputedRef<BasicTableProps>,
-  columns: BasicColumn[]
+  columns: BasicColumn[],
+  getPaginationRef: ComputedRef<boolean | ElePagination>
 ) {
   const { t } = useI18n()
 
@@ -49,6 +51,14 @@ function handleIndexColumn(
     width: 50,
     label: t('component.table.index'),
     prop: 'columnIndex',
+    customRender: ({ index }) => {
+      const getPagination = unref(getPaginationRef)
+      if (isBoolean(getPagination)) {
+        return `${index + 1}`
+      }
+      const { currentPage = 1, pageSize = PAGE_SIZE } = getPagination
+      return ((currentPage < 1 ? 1 : currentPage) - 1) * pageSize + index + 1
+    },
     ...(isFixedLeft
       ? {
         fixed: 'left',
@@ -105,7 +115,8 @@ function handleActionColumn(propsRef: ComputedRef<BasicTableProps>, columns: Bas
 }
 
 export function useColumns(
-  propsRef: ComputedRef<BasicTableProps>
+  propsRef: ComputedRef<BasicTableProps>,
+  getPaginationRef: ComputedRef<boolean | ElePagination>
 ) {
   const columnsRef = ref(unref(propsRef).columns) as unknown as Ref<BasicColumn[]>
   let cacheColumns = unref(propsRef).columns
@@ -113,7 +124,7 @@ export function useColumns(
   const getColumnsRef = computed(() => {
     const columns = cloneDeep(unref(columnsRef))
 
-    handleIndexColumn(propsRef, columns)
+    handleIndexColumn(propsRef, columns, getPaginationRef)
     handleCheckboxColumn(propsRef, columns)
     handleActionColumn(propsRef, columns)
     if (!columns) {

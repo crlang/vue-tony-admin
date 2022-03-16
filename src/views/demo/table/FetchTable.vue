@@ -28,6 +28,7 @@ export default defineComponent({
       title: '远程加载示例',
       api: demoListApi,
       canResize: true,
+      showIndexColumn: true,
       columns: getBasicColumns(),
     })
     function handleReloadCurrent() {
