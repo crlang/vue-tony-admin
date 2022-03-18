@@ -69,12 +69,6 @@ export default defineComponent({
       api: demoListApi,
       columns,
       border: true,
-      actionColumn: {
-        width: 200,
-        label: 'Action',
-        prop: 'action',
-        isSlot: true,
-      },
     })
     function handleEdit(record: Recordable) {
       console.log('点击了编辑', record)

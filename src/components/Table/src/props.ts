@@ -21,8 +21,8 @@ export const basicProps = {
     type: [Array] as PropType<BasicColumn[]>,
     default: () => [],
   },
-  actionColumn: {
-    type: Object as PropType<BasicColumn>,
+  api: {
+    type: Function as PropType<(...arg: any[]) => Promise<any>>,
     default: null,
   },
   showTableSetting: { type: Boolean },
@@ -33,10 +33,6 @@ export const basicProps = {
   autoCreateKey: {
     type: Boolean,
     default: true,
-  },
-  api: {
-    type: Function as PropType<(...arg: any[]) => Promise<any>>,
-    default: null,
   },
   beforeFetch: {
     type: Function as PropType<Fn>,

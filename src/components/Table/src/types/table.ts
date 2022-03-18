@@ -156,9 +156,9 @@ export interface BasicTableProps extends EleTable {
    */
   columns: BasicColumn[];
   /**
-   * 操作列配置
+   * 接口请求对象
    */
-  actionColumn?: BasicColumn;
+  api?: (...arg: any) => Promise<any>;
   /**
    * 显示表格配置
    */
@@ -171,10 +171,6 @@ export interface BasicTableProps extends EleTable {
    * 是否自动生成key
    */
   autoCreateKey?: boolean;
-  /**
-   * 接口请求对象
-   */
-  api?: (...arg: any) => Promise<any>;
   /**
    * 请求之前处理参数
    */
@@ -265,10 +261,16 @@ export interface BasicTableProps extends EleTable {
   onExpandChange?: (row, expandedRows_or_expanded) => void;
 }
 
+interface tableColumnRenderInfo {
+  text: string
+  index: number
+  record: Record
+}
+
 export type tableColumnRender = {
-  row:object
+  info: tableColumnRenderInfo
+  scope:object
   column: object
-  $index:number
 }
 
 export interface BasicColumn extends EleTableColumn {

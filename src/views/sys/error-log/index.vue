@@ -49,12 +49,6 @@ const errorLogStore = useErrorLogStore()
 const [register, { setTableData }] = useTable({
   title: t('sys.errorLog.tableTitle'),
   columns: getLogColumns(),
-  actionColumn: {
-    width: 80,
-    label: 'Action',
-    prop: 'action',
-    isSlot: true,
-  },
 })
 
 watch(

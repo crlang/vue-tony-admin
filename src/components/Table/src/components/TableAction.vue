@@ -83,8 +83,8 @@ export default defineComponent({
 
     const getAlign = computed(() => {
       const columns = (table as TableActionType)?.getColumns?.() || []
-      const actionColumn = columns.find((item) => item.type === 'action')
-      return actionColumn?.align ?? 'left'
+      const actionCol = columns.find((item) => item.type === 'action')
+      return actionCol?.align ?? 'left'
     })
 
     return { getActions, getAlign }

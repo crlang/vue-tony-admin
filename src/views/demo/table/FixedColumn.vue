@@ -57,12 +57,6 @@ export default defineComponent({
       columns: columns,
       showCheckboxColumn: true,
       border: true,
-      actionColumn: {
-        width: 160,
-        label: 'Action',
-        prop: 'action',
-        isSlot: true,
-      },
     })
     function handleDelete(record) {
       console.table('点击了删除', record)
