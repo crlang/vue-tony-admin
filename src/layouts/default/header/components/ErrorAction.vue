@@ -64,7 +64,7 @@ $prefix-cls: '#{$tonyname}-header-error-action';
 
     &__content {
       position: absolute;
-      top: -8px;
+      top: 2px;
       right: calc(50% - 16px);
       width: 16px;
       height: 16px;
