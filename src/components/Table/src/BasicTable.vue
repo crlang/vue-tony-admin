@@ -280,7 +280,7 @@ export default defineComponent({
         data: dataSource,
         ...unref(getExpandOption),
       }
-      propsData = omit(propsData, ['title', 'columns', 'api', 'showCheckboxColumn', 'showIndexColumn'])
+      propsData = omit(propsData, ['title', 'columns', 'dataSource', 'api', 'showCheckboxColumn', 'showIndexColumn'])
       return propsData
     })
 
