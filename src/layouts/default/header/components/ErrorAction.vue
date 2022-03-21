@@ -3,12 +3,13 @@
     <ElTooltip
       :content="t('layout.header.tooltipErrorLog')"
       placement="bottom">
-      <ElBadge
-        :value="getCount"
-        @click="handleToErrorList"
-        :max="99">
-        <span><Icon icon="ion:bug-outline" /></span>
-      </ElBadge>
+      <span @click="handleToErrorList">
+        <ElBadge
+          :value="getCount"
+          :max="99">
+          <Icon icon="ion:bug-outline" />
+        </ElBadge>
+      </span>
     </ElTooltip>
   </div>
 </template>
@@ -62,18 +63,18 @@ $prefix-cls: '#{$tonyname}-header-error-action';
     align-items: center;
     width: 100%;
 
-    &__content {
-      position: absolute;
-      top: 2px;
-      right: calc(50% - 16px);
-      width: 16px;
-      height: 16px;
-      padding: 0;
-      font-size: 12px;
-      line-height: 16px;
-      border: none;
-      transform: none;
-    }
+    // &__content {
+    //   position: absolute;
+    //   top: 2px;
+    //   right: calc(50% - 16px);
+    //   width: 16px;
+    //   height: 16px;
+    //   padding: 0;
+    //   font-size: 12px;
+    //   line-height: 16px;
+    //   border: none;
+    //   transform: none;
+    // }
   }
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
-  <div @click="openDrawer(true)">
-    <Icon
-      icon="ion:settings-outline"
-      style="display: flex;align-items: center;height: 100%;" />
+  <div>
+    <span
+      style="width: 100%;text-align: center;"
+      @click="openDrawer(true)"><Icon icon="ion:settings-outline" /></span>
     <SettingDrawer @register="register" />
   </div>
 </template>

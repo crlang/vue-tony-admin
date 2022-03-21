@@ -238,11 +238,6 @@ export default defineComponent({
             min={0}
             event={HandlerEnum.LOCK_TIME}
             defaultValue={unref(getLockTime)}
-            formatter={(value: string) => {
-              return parseInt(value) === 0
-                ? `0(${t('layout.setting.notAutoScreenLock')})`
-                : `${value}${t('layout.setting.minute')}`
-            }}
           />
           <InputNumberItem
             title={t('layout.setting.expandedMenuWidth')}
@@ -252,7 +247,6 @@ export default defineComponent({
             event={HandlerEnum.MENU_WIDTH}
             disabled={!unref(getShowMenuRef)}
             defaultValue={unref(getMenuWidth)}
-            formatter={(value: string) => `${parseInt(value)}px`}
           />
         </>
       )
@@ -361,7 +355,6 @@ export default defineComponent({
         {...attrs}
         title={t('layout.setting.drawerTitle')}
         size={480}
-        modelValue
         showFooter
         customClass='setting-drawer' >
         {{

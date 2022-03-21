@@ -22,15 +22,15 @@
 
       <ErrorAction
         v-if="getUseErrorHandle"
-        :class="`${prefixCls}-action__item error-action`" />
+        :class="`${prefixCls}-action__item`" />
 
       <Notify
         v-if="getShowNotice"
-        :class="`${prefixCls}-action__item notify-item`" />
+        :class="`${prefixCls}-action__item`" />
 
       <FullScreen
         v-if="getShowFullScreen"
-        :class="`${prefixCls}-action__item fullscreen-item`" />
+        :class="`${prefixCls}-action__item`" />
 
       <AppLocalePicker
         v-if="getShowLocalePicker"

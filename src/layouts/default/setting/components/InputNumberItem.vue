@@ -1,11 +1,11 @@
 <template>
   <div :class="prefixCls">
     <span>{{ title }}</span>
-    <ElInputNumber
+    <div><ElInputNumber
       v-bind="getBindValue"
       size="small"
       :class="`${prefixCls}-input-number`"
-      @change="handleChange" />
+      @change="handleChange" /></div>
   </div>
 </template>
 
