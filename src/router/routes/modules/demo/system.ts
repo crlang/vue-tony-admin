@@ -11,14 +11,14 @@ const system: AppRouteModule = {
   meta: {
     orderNo: 6,
     icon: 'ion:settings-outline',
-    title: t('routes.demo.system.moduleName'),
+    title: t('routes.system.moduleName'),
   },
   children: [
     {
       path: 'account',
       name: 'AccountManagement',
       meta: {
-        title: t('routes.demo.system.account'),
+        title: t('routes.system.account'),
         ignoreKeepAlive: false,
       },
       component: () => import('@/views/demo/system/account/index.vue'),
@@ -28,7 +28,7 @@ const system: AppRouteModule = {
       name: 'AccountDetail',
       meta: {
         hideMenu: true,
-        title: t('routes.demo.system.account_detail'),
+        title: t('routes.system.account_detail'),
         ignoreKeepAlive: true,
         showMenu: false,
         currentActiveMenu: '/system/account',
@@ -39,7 +39,7 @@ const system: AppRouteModule = {
       path: 'role',
       name: 'RoleManagement',
       meta: {
-        title: t('routes.demo.system.role'),
+        title: t('routes.system.role'),
         ignoreKeepAlive: true,
       },
       component: () => import('@/views/demo/system/role/index.vue'),
@@ -49,7 +49,7 @@ const system: AppRouteModule = {
       path: 'menu',
       name: 'MenuManagement',
       meta: {
-        title: t('routes.demo.system.menu'),
+        title: t('routes.system.menu'),
         ignoreKeepAlive: true,
       },
       component: () => import('@/views/demo/system/menu/index.vue'),
@@ -58,7 +58,7 @@ const system: AppRouteModule = {
       path: 'dept',
       name: 'DeptManagement',
       meta: {
-        title: t('routes.demo.system.dept'),
+        title: t('routes.system.dept'),
         ignoreKeepAlive: true,
       },
       component: () => import('@/views/demo/system/dept/index.vue'),
@@ -67,7 +67,7 @@ const system: AppRouteModule = {
       path: 'changePassword',
       name: 'ChangePassword',
       meta: {
-        title: t('routes.demo.system.password'),
+        title: t('routes.system.password'),
         ignoreKeepAlive: true,
       },
       component: () => import('@/views/demo/system/password/index.vue'),

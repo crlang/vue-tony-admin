@@ -11,14 +11,14 @@ const charts: AppRouteModule = {
   meta: {
     orderNo: 5,
     icon: 'ion:bar-chart-outline',
-    title: t('routes.demo.charts.charts'),
+    title: t('routes.charts.charts'),
   },
   children: [
     {
       path: 'baiduMap',
       name: 'BaiduMap',
       meta: {
-        title: t('routes.demo.charts.baiduMap'),
+        title: t('routes.charts.baiduMap'),
       },
       component: () => import('@/views/demo/charts/map/Baidu.vue'),
     },
@@ -26,7 +26,7 @@ const charts: AppRouteModule = {
       path: 'aMap',
       name: 'AMap',
       meta: {
-        title: t('routes.demo.charts.aMap'),
+        title: t('routes.charts.aMap'),
       },
       component: () => import('@/views/demo/charts/map/Gaode.vue'),
     },
@@ -34,7 +34,7 @@ const charts: AppRouteModule = {
       path: 'googleMap',
       name: 'GoogleMap',
       meta: {
-        title: t('routes.demo.charts.googleMap'),
+        title: t('routes.charts.googleMap'),
       },
       component: () => import('@/views/demo/charts/map/Google.vue'),
     },
@@ -42,7 +42,7 @@ const charts: AppRouteModule = {
       path: 'tMap',
       name: 'tMap',
       meta: {
-        title: t('routes.demo.charts.tMap'),
+        title: t('routes.charts.tMap'),
       },
       component: () => import('@/views/demo/charts/map/Tencent.vue'),
     },
@@ -60,7 +60,7 @@ const charts: AppRouteModule = {
           name: 'Map',
           component: () => import('@/views/demo/charts/Map.vue'),
           meta: {
-            title: t('routes.demo.charts.map'),
+            title: t('routes.charts.map'),
           },
         },
         {
@@ -68,7 +68,7 @@ const charts: AppRouteModule = {
           name: 'Line',
           component: () => import('@/views/demo/charts/Line.vue'),
           meta: {
-            title: t('routes.demo.charts.line'),
+            title: t('routes.charts.line'),
           },
         },
         {
@@ -76,7 +76,7 @@ const charts: AppRouteModule = {
           name: 'Dync',
           component: () => import('@/views/demo/charts/Dync.vue'),
           meta: {
-            title: t('routes.demo.charts.linedync'),
+            title: t('routes.charts.linedync'),
           },
         },
         {
@@ -84,7 +84,7 @@ const charts: AppRouteModule = {
           name: 'Pie',
           component: () => import('@/views/demo/charts/Pie.vue'),
           meta: {
-            title: t('routes.demo.charts.pie'),
+            title: t('routes.charts.pie'),
           },
         },
         {
@@ -92,7 +92,7 @@ const charts: AppRouteModule = {
           name: 'Nightingale',
           component: () => import('@/views/demo/charts/Nightingale.vue'),
           meta: {
-            title: t('routes.demo.charts.nightingale'),
+            title: t('routes.charts.nightingale'),
           },
         },
       ],

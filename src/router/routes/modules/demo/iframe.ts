@@ -12,7 +12,7 @@ const iframe: AppRouteModule = {
   meta: {
     orderNo: 8,
     icon: 'ion:tv-outline',
-    title: t('routes.demo.iframe.frame'),
+    title: t('routes.iframe.frame'),
   },
 
   children: [
@@ -22,7 +22,7 @@ const iframe: AppRouteModule = {
       component: IFrame,
       meta: {
         frameSrc: 'http://tony.crlang.com/doc/',
-        title: t('routes.demo.iframe.doc'),
+        title: t('routes.iframe.doc'),
       },
     },
     {
@@ -31,7 +31,7 @@ const iframe: AppRouteModule = {
       component: IFrame,
       meta: {
         frameSrc: 'https://element-plus.gitee.io/zh-CN/guide/design.html',
-        title: t('routes.demo.iframe.ele'),
+        title: t('routes.iframe.ele'),
       },
     },
     {
@@ -39,7 +39,7 @@ const iframe: AppRouteModule = {
       name: 'DocExternal',
       component: IFrame,
       meta: {
-        title: t('routes.demo.iframe.docExternal'),
+        title: t('routes.iframe.docExternal'),
       },
     },
   ],

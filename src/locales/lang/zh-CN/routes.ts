@@ -1,4 +1,14 @@
 export default {
+  basic: {
+    login: '登录',
+    errorLogList: '错误日志列表',
+  },
+  dashboard: {
+    dashboard: '仪表盘',
+    about: '关于',
+    workbench: '工作台',
+    analysis: '分析页',
+  },
   charts: {
     baiduMap: '百度地图',
     aMap: '高德地图',
@@ -95,10 +105,6 @@ export default {
     breadcrumbChildren: '层级模式',
     breadcrumbChildrenDetail: '层级详情',
   },
-  flow: {
-    name: '图形编辑器',
-    flowChart: '流程图',
-  },
   form: {
     form: 'Form',
     basic: '基础表单',
@@ -144,6 +150,7 @@ export default {
 
     list: '列表页',
     listCard: '卡片列表',
+    basic: '基础列表',
     listBasic: '标准列表',
     listSearch: '搜索列表',
   },

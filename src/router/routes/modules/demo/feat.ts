@@ -11,7 +11,7 @@ const feat: AppRouteModule = {
   meta: {
     orderNo: 3,
     icon: 'ion:git-compare-outline',
-    title: t('routes.demo.feat.feat'),
+    title: t('routes.feat.feat'),
   },
 
   children: [
@@ -20,7 +20,7 @@ const feat: AppRouteModule = {
       name: 'IconDemo',
       component: () => import('@/views/demo/feat/icon/index.vue'),
       meta: {
-        title: t('routes.demo.feat.icon'),
+        title: t('routes.feat.icon'),
       },
     },
     {
@@ -28,7 +28,7 @@ const feat: AppRouteModule = {
       name: 'WebSocket',
       component: () => import('@/views/demo/feat/ws/index.vue'),
       meta: {
-        title: t('routes.demo.feat.ws'),
+        title: t('routes.feat.ws'),
       },
     },
     {
@@ -36,7 +36,7 @@ const feat: AppRouteModule = {
       name: 'SessionTimeout',
       component: () => import('@/views/demo/feat/session-timeout/index.vue'),
       meta: {
-        title: t('routes.demo.feat.sessionTimeout'),
+        title: t('routes.feat.sessionTimeout'),
       },
     },
     {
@@ -44,7 +44,7 @@ const feat: AppRouteModule = {
       name: 'Print',
       component: () => import('@/views/demo/feat/print/index.vue'),
       meta: {
-        title: t('routes.demo.feat.print'),
+        title: t('routes.feat.print'),
       },
     },
     {
@@ -52,7 +52,7 @@ const feat: AppRouteModule = {
       name: 'TabsDemo',
       component: () => import('@/views/demo/feat/tabs/index.vue'),
       meta: {
-        title: t('routes.demo.feat.tabs'),
+        title: t('routes.feat.tabs'),
       },
     },
     {
@@ -61,7 +61,7 @@ const feat: AppRouteModule = {
       redirect: '/feat/breadcrumb/flat',
       component: getParentLayout('BreadcrumbDemo'),
       meta: {
-        title: t('routes.demo.feat.breadcrumb'),
+        title: t('routes.feat.breadcrumb'),
       },
 
       children: [
@@ -70,7 +70,7 @@ const feat: AppRouteModule = {
           name: 'BreadcrumbFlatDemo',
           component: () => import('@/views/demo/feat/breadcrumb/FlatList.vue'),
           meta: {
-            title: t('routes.demo.feat.breadcrumbFlat'),
+            title: t('routes.feat.breadcrumbFlat'),
           },
         },
         {
@@ -78,7 +78,7 @@ const feat: AppRouteModule = {
           name: 'BreadcrumbFlatDetailDemo',
           component: () => import('@/views/demo/feat/breadcrumb/FlatListDetail.vue'),
           meta: {
-            title: t('routes.demo.feat.breadcrumbFlatDetail'),
+            title: t('routes.feat.breadcrumbFlatDetail'),
             hideMenu: true,
             hideTab: true,
             currentActiveMenu: '/feat/breadcrumb/flat',
@@ -89,7 +89,7 @@ const feat: AppRouteModule = {
           name: 'BreadcrumbChildrenDemo',
           component: () => import('@/views/demo/feat/breadcrumb/ChildrenList.vue'),
           meta: {
-            title: t('routes.demo.feat.breadcrumbChildren'),
+            title: t('routes.feat.breadcrumbChildren'),
           },
           children: [
             {
@@ -98,7 +98,7 @@ const feat: AppRouteModule = {
               component: () => import('@/views/demo/feat/breadcrumb/ChildrenListDetail.vue'),
               meta: {
                 currentActiveMenu: '/feat/breadcrumb/children',
-                title: t('routes.demo.feat.breadcrumbChildrenDetail'),
+                title: t('routes.feat.breadcrumbChildrenDetail'),
                 // hideTab: true,
                 // hideMenu: true,
               },
@@ -113,7 +113,7 @@ const feat: AppRouteModule = {
       name: 'ContextMenuDemo',
       component: () => import('@/views/demo/feat/context-menu/index.vue'),
       meta: {
-        title: t('routes.demo.feat.contextMenu'),
+        title: t('routes.feat.contextMenu'),
       },
     },
     {
@@ -121,7 +121,7 @@ const feat: AppRouteModule = {
       name: 'DownLoadDemo',
       component: () => import('@/views/demo/feat/download/index.vue'),
       meta: {
-        title: t('routes.demo.feat.download'),
+        title: t('routes.feat.download'),
       },
     },
     {
@@ -129,7 +129,7 @@ const feat: AppRouteModule = {
       name: 'ClickOutSideDemo',
       component: () => import('@/views/demo/feat/click-out-side/index.vue'),
       meta: {
-        title: t('routes.demo.feat.clickOutSide'),
+        title: t('routes.feat.clickOutSide'),
       },
     },
     {
@@ -137,7 +137,7 @@ const feat: AppRouteModule = {
       name: 'ImgPreview',
       component: () => import('@/views/demo/feat/img-preview/index.vue'),
       meta: {
-        title: t('routes.demo.feat.imgPreview'),
+        title: t('routes.feat.imgPreview'),
       },
     },
     {
@@ -145,7 +145,7 @@ const feat: AppRouteModule = {
       name: 'CopyDemo',
       component: () => import('@/views/demo/feat/copy/index.vue'),
       meta: {
-        title: t('routes.demo.feat.copy'),
+        title: t('routes.feat.copy'),
       },
     },
     {
@@ -153,7 +153,7 @@ const feat: AppRouteModule = {
       name: 'MsgDemo',
       component: () => import('@/views/demo/feat/msg/index.vue'),
       meta: {
-        title: t('routes.demo.feat.msg'),
+        title: t('routes.feat.msg'),
       },
     },
     {
@@ -161,7 +161,7 @@ const feat: AppRouteModule = {
       name: 'WatermarkDemo',
       component: () => import('@/views/demo/feat/watermark/index.vue'),
       meta: {
-        title: t('routes.demo.feat.watermark'),
+        title: t('routes.feat.watermark'),
       },
     },
     {
@@ -169,7 +169,7 @@ const feat: AppRouteModule = {
       name: 'RippleDemo',
       component: () => import('@/views/demo/feat/ripple/index.vue'),
       meta: {
-        title: t('routes.demo.feat.ripple'),
+        title: t('routes.feat.ripple'),
       },
     },
     {
@@ -177,7 +177,7 @@ const feat: AppRouteModule = {
       name: 'FullScreenDemo',
       component: () => import('@/views/demo/feat/full-screen/index.vue'),
       meta: {
-        title: t('routes.demo.feat.fullScreen'),
+        title: t('routes.feat.fullScreen'),
       },
     },
     {
@@ -185,7 +185,7 @@ const feat: AppRouteModule = {
       name: 'ErrorLog',
       component: () => import('@/views/sys/error-log/index.vue'),
       meta: {
-        title: t('routes.demo.feat.errorLog'),
+        title: t('routes.feat.errorLog'),
       },
     },
     {
@@ -195,7 +195,7 @@ const feat: AppRouteModule = {
       component: getParentLayout('Excel'),
       meta: {
         // icon: 'mdi:microsoft-excel',
-        title: t('routes.demo.excel.excel'),
+        title: t('routes.excel.excel'),
       },
 
       children: [
@@ -204,7 +204,7 @@ const feat: AppRouteModule = {
           name: 'CustomExport',
           component: () => import('@/views/demo/excel/CustomExport.vue'),
           meta: {
-            title: t('routes.demo.excel.customExport'),
+            title: t('routes.excel.customExport'),
           },
         },
         {
@@ -212,7 +212,7 @@ const feat: AppRouteModule = {
           name: 'JsonExport',
           component: () => import('@/views/demo/excel/JsonExport.vue'),
           meta: {
-            title: t('routes.demo.excel.jsonExport'),
+            title: t('routes.excel.jsonExport'),
           },
         },
         {
@@ -220,7 +220,7 @@ const feat: AppRouteModule = {
           name: 'ArrayExport',
           component: () => import('@/views/demo/excel/ArrayExport.vue'),
           meta: {
-            title: t('routes.demo.excel.arrayExport'),
+            title: t('routes.excel.arrayExport'),
           },
         },
         {
@@ -228,7 +228,7 @@ const feat: AppRouteModule = {
           name: 'ImportExcel',
           component: () => import('@/views/demo/excel/ImportExcel.vue'),
           meta: {
-            title: t('routes.demo.excel.importExcel'),
+            title: t('routes.excel.importExcel'),
           },
         },
       ],
@@ -238,7 +238,7 @@ const feat: AppRouteModule = {
       name: 'TestTab',
       component: () => import('@/views/demo/feat/tab-params/index.vue'),
       meta: {
-        title: t('routes.demo.feat.tab'),
+        title: t('routes.feat.tab'),
         carryParam: true,
         hidePathForChildren: true,
       },
@@ -248,7 +248,7 @@ const feat: AppRouteModule = {
           name: 'TestTab1',
           component: () => import('@/views/demo/feat/tab-params/index.vue'),
           meta: {
-            title: t('routes.demo.feat.tab1'),
+            title: t('routes.feat.tab1'),
             carryParam: true,
             ignoreRoute: true,
           },
@@ -258,7 +258,7 @@ const feat: AppRouteModule = {
           name: 'TestTab2',
           component: () => import('@/views/demo/feat/tab-params/index.vue'),
           meta: {
-            title: t('routes.demo.feat.tab2'),
+            title: t('routes.feat.tab2'),
             carryParam: true,
             ignoreRoute: true,
           },
@@ -270,7 +270,7 @@ const feat: AppRouteModule = {
       name: 'TestParam',
       component: getParentLayout('TestParam'),
       meta: {
-        title: t('routes.demo.feat.menu'),
+        title: t('routes.feat.menu'),
         ignoreKeepAlive: true,
       },
       children: [
@@ -279,7 +279,7 @@ const feat: AppRouteModule = {
           name: 'TestParam_1',
           component: () => import('@/views/demo/feat/menu-params/index.vue'),
           meta: {
-            title: t('routes.demo.feat.menu1'),
+            title: t('routes.feat.menu1'),
             ignoreKeepAlive: true,
           },
         },
@@ -288,7 +288,7 @@ const feat: AppRouteModule = {
           name: 'TestParam_2',
           component: () => import('@/views/demo/feat/menu-params/index.vue'),
           meta: {
-            title: t('routes.demo.feat.menu2'),
+            title: t('routes.feat.menu2'),
             ignoreKeepAlive: true,
           },
         },

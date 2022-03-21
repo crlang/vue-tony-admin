@@ -12,7 +12,7 @@ const setup: AppRouteModule = {
     orderNo: 9,
     hideChildrenInMenu: true,
     icon: 'whh:paintroll',
-    title: t('routes.demo.setup.page'),
+    title: t('routes.setup.page'),
   },
   children: [
     {
@@ -20,7 +20,7 @@ const setup: AppRouteModule = {
       name: 'SetupDemoPage',
       component: () => import('@/views/demo/setup/index.vue'),
       meta: {
-        title: t('routes.demo.setup.page'),
+        title: t('routes.setup.page'),
         icon: 'whh:paintroll',
         hideMenu: true,
       },

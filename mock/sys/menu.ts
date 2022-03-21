@@ -45,7 +45,7 @@ const backRoute = {
   path: 'back',
   name: 'PermissionBackDemo',
   meta: {
-    title: 'routes.demo.permission.back',
+    title: 'routes.permission.back',
   },
 
   children: [
@@ -54,7 +54,7 @@ const backRoute = {
       name: 'BackAuthPage',
       component: '/demo/permission/back/index',
       meta: {
-        title: 'routes.demo.permission.backPage',
+        title: 'routes.permission.backPage',
       },
     },
     {
@@ -62,7 +62,7 @@ const backRoute = {
       name: 'BackAuthBtn',
       component: '/demo/permission/back/Btn',
       meta: {
-        title: 'routes.demo.permission.backBtn',
+        title: 'routes.permission.backBtn',
       },
     },
   ],
@@ -75,7 +75,7 @@ const authRoute = {
   redirect: '/permission/front/page',
   meta: {
     icon: 'carbon:user-role',
-    title: 'routes.demo.permission.permission',
+    title: 'routes.permission.permission',
   },
   children: [backRoute],
 }
@@ -87,7 +87,7 @@ const levelRoute = {
   redirect: '/level/menu1/menu1-1',
   meta: {
     icon: 'carbon:user-role',
-    title: 'routes.demo.level.level',
+    title: 'routes.level.level',
   },
 
   children: [
@@ -143,14 +143,14 @@ const sysRoute = {
   redirect: '/system/account',
   meta: {
     icon: 'ion:settings-outline',
-    title: 'routes.demo.system.moduleName',
+    title: 'routes.system.moduleName',
   },
   children: [
     {
       path: 'account',
       name: 'AccountManagement',
       meta: {
-        title: 'routes.demo.system.account',
+        title: 'routes.system.account',
         ignoreKeepAlive: true,
       },
       component: '/demo/system/account/index',
@@ -160,7 +160,7 @@ const sysRoute = {
       name: 'AccountDetail',
       meta: {
         hideMenu: true,
-        title: 'routes.demo.system.account_detail',
+        title: 'routes.system.account_detail',
         ignoreKeepAlive: true,
         showMenu: false,
         currentActiveMenu: '/system/account',
@@ -171,7 +171,7 @@ const sysRoute = {
       path: 'role',
       name: 'RoleManagement',
       meta: {
-        title: 'routes.demo.system.role',
+        title: 'routes.system.role',
         ignoreKeepAlive: true,
       },
       component: '/demo/system/role/index',
@@ -181,7 +181,7 @@ const sysRoute = {
       path: 'menu',
       name: 'MenuManagement',
       meta: {
-        title: 'routes.demo.system.menu',
+        title: 'routes.system.menu',
         ignoreKeepAlive: true,
       },
       component: '/demo/system/menu/index',
@@ -190,7 +190,7 @@ const sysRoute = {
       path: 'dept',
       name: 'DeptManagement',
       meta: {
-        title: 'routes.demo.system.dept',
+        title: 'routes.system.dept',
         ignoreKeepAlive: true,
       },
       component: '/demo/system/dept/index',
@@ -199,7 +199,7 @@ const sysRoute = {
       path: 'changePassword',
       name: 'ChangePassword',
       meta: {
-        title: 'routes.demo.system.password',
+        title: 'routes.system.password',
         ignoreKeepAlive: true,
       },
       component: '/demo/system/password/index',
@@ -213,14 +213,14 @@ const linkRoute = {
   component: 'LAYOUT',
   meta: {
     icon: 'ion:tv-outline',
-    title: 'routes.demo.iframe.frame',
+    title: 'routes.iframe.frame',
   },
   children: [
     {
       path: 'doc',
       name: 'Doc',
       meta: {
-        title: 'routes.demo.iframe.doc',
+        title: 'routes.iframe.doc',
         frameSrc: 'http://tony.crlang.com/doc/',
       },
     },
@@ -229,7 +229,7 @@ const linkRoute = {
       name: 'DocExternal',
       component: 'LAYOUT',
       meta: {
-        title: 'routes.demo.iframe.docExternal',
+        title: 'routes.iframe.docExternal',
       },
     },
   ],

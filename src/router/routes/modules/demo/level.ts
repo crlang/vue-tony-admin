@@ -11,7 +11,7 @@ const permission: AppRouteModule = {
   meta: {
     orderNo: 7,
     icon: 'ion:menu-outline',
-    title: t('routes.demo.level.level'),
+    title: t('routes.level.level'),
   },
 
   children: [

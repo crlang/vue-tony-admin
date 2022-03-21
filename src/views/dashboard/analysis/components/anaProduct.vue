@@ -21,7 +21,7 @@
     <el-col :span="8">
       <el-card shadow="always">
         <template #header>
-          <div class="dashboard-analysis__title">{{ t('views.dashboard.analysis.ratio_deal') }}</div>
+          <div class="dashboard-analysis__title">成交占比</div>
         </template>
         <Basic3 />
       </el-card>

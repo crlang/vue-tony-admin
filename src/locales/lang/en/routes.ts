@@ -1,4 +1,14 @@
 export default {
+  basic: {
+    login: 'Login',
+    errorLogList: 'Error Log',
+  },
+  dashboard: {
+    dashboard: 'Dashboard',
+    about: 'About',
+    workbench: 'Workbench',
+    analysis: 'Analysis',
+  },
   charts: {
     baiduMap: 'Baidu map',
     aMap: 'A map',

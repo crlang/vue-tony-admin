@@ -12,7 +12,7 @@ const permission: AppRouteModule = {
   meta: {
     orderNo: 8,
     icon: 'ion:key-outline',
-    title: t('routes.demo.permission.permission'),
+    title: t('routes.permission.permission'),
   },
 
   children: [
@@ -21,7 +21,7 @@ const permission: AppRouteModule = {
       name: 'PermissionFrontDemo',
       component: getParentLayout('PermissionFrontDemo'),
       meta: {
-        title: t('routes.demo.permission.front'),
+        title: t('routes.permission.front'),
       },
       children: [
         {
@@ -29,7 +29,7 @@ const permission: AppRouteModule = {
           name: 'FrontPageAuth',
           component: () => import('@/views/demo/permission/front/index.vue'),
           meta: {
-            title: t('routes.demo.permission.frontPage'),
+            title: t('routes.permission.frontPage'),
           },
         },
         {
@@ -37,7 +37,7 @@ const permission: AppRouteModule = {
           name: 'FrontBtnAuth',
           component: () => import('@/views/demo/permission/front/Btn.vue'),
           meta: {
-            title: t('routes.demo.permission.frontBtn'),
+            title: t('routes.permission.frontBtn'),
           },
         },
         {
@@ -45,7 +45,7 @@ const permission: AppRouteModule = {
           name: 'FrontAuthPageA',
           component: () => import('@/views/demo/permission/front/AuthPageA.vue'),
           meta: {
-            title: t('routes.demo.permission.frontTestA'),
+            title: t('routes.permission.frontTestA'),
             roles: [RoleEnum.ADMIN],
           },
         },
@@ -54,7 +54,7 @@ const permission: AppRouteModule = {
           name: 'FrontAuthPageB',
           component: () => import('@/views/demo/permission/front/AuthPageB.vue'),
           meta: {
-            title: t('routes.demo.permission.frontTestB'),
+            title: t('routes.permission.frontTestB'),
             roles: [RoleEnum.TEST],
           },
         },
@@ -65,7 +65,7 @@ const permission: AppRouteModule = {
       name: 'PermissionBackDemo',
       component: getParentLayout('PermissionBackDemo'),
       meta: {
-        title: t('routes.demo.permission.back'),
+        title: t('routes.permission.back'),
       },
       children: [
         {
@@ -73,7 +73,7 @@ const permission: AppRouteModule = {
           name: 'BackAuthPage',
           component: () => import('@/views/demo/permission/back/index.vue'),
           meta: {
-            title: t('routes.demo.permission.backPage'),
+            title: t('routes.permission.backPage'),
           },
         },
         {
@@ -81,7 +81,7 @@ const permission: AppRouteModule = {
           name: 'BackAuthBtn',
           component: () => import('@/views/demo/permission/back/Btn.vue'),
           meta: {
-            title: t('routes.demo.permission.backBtn'),
+            title: t('routes.permission.backBtn'),
           },
         },
       ],
