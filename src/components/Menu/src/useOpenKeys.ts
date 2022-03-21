@@ -47,9 +47,6 @@ export function useOpenKeys(
     return collapse ? menuState.collapsedOpenKeys : menuState.openKeys
   })
 
-  /**
-   * @description:  重置值
-   */
   function resetKeys() {
     menuState.selectedKeys = []
     menuState.openKeys = []

@@ -35,9 +35,6 @@ export interface ModalProps extends EleDialog, ModalCustomHeader, ModalCustomCon
   closeFunc: () => Promise<boolean>
 }
 
-/**
- * 弹窗对外暴露的方法
- */
 export interface ModalMethods {
   setModalProps: (props: Partial<ModalProps>) => void
   emitVisible?: (visible: boolean, uid: number) => void

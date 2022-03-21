@@ -7,7 +7,7 @@ import { useI18n } from '@/hooks/web/useI18n'
 const { t } = useI18n()
 
 /**
- * 生成placeholder
+ * generate placeholder
  */
 export function createPlaceholderMessage(component: ComponentType) {
   if (['ElInput', 'ElInputNumber'].includes(component)) {
@@ -48,7 +48,4 @@ function genType() {
 //   }
 // }
 
-/**
- * 时间字段
- */
 export const dateItemType = genType()

@@ -322,7 +322,7 @@ export default defineComponent({
       clearFilter,
       doLayout,
       sort,
-      // 拓展
+      // Advanced
       reload,
       setProps,
       getColumns,

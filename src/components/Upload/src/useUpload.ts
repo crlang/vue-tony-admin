@@ -12,7 +12,6 @@ export function useUploadType({
   maxNumberRef: Ref<number>
   maxSizeRef: Ref<number>
 }) {
-  // 文件类型限制
   const getAccept = computed(() => {
     const accept = unref(acceptRef)
     if (accept && accept.length > 0) {
@@ -32,7 +31,6 @@ export function useUploadType({
       .join(',')
   })
 
-  // 支持jpg、jpeg、png格式，不超过2M，最多可选择10张图片，。
   const getHelpText = computed(() => {
     const helpText = unref(helpTextRef)
     if (helpText) {

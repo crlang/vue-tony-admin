@@ -118,13 +118,13 @@ export default defineComponent({
       function validator(rule: any, value: any, callback:any) {
         const msg = rule.message || defaultMsg
         if (value === undefined || isNull(value)) {
-          // 空值
+          // null
           callback(new Error(msg))
         } else if (Array.isArray(value) && value.length === 0) {
-          // 数组类型
+          // array
           callback(new Error(msg))
         } else if (typeof value === 'string' && value.trim() === '') {
-          // 空字符串
+          // empty string
           callback(new Error(msg))
         } else if (
           typeof value === 'object' &&
@@ -135,7 +135,6 @@ export default defineComponent({
             value.checked.length === 0 &&
             value.halfChecked.length === 0
         ) {
-          // 非关联选择的tree组件
           callback(new Error(msg))
         }
         return callback()

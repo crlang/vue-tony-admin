@@ -50,7 +50,6 @@ export default defineComponent({
       { immediate: true }
     )
 
-    // 删除
     function handleRemove(record: PreviewFileItem) {
       const index = fileListRef.value.findIndex((item) => item.url === record.url)
       if (index !== -1) {
@@ -63,7 +62,6 @@ export default defineComponent({
       }
     }
 
-    // // 预览
     // function handlePreview(record: PreviewFileItem) {
     //   const { url = '' } = record;
     //   createImgPreview({
@@ -71,7 +69,6 @@ export default defineComponent({
     //   });
     // }
 
-    // 下载
     function handleDownload(record: PreviewFileItem) {
       const { url } = record
       downloadByUrl({ url })

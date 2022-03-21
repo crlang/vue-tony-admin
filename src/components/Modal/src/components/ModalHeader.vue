@@ -42,10 +42,10 @@ export default defineComponent({
   components: { ElTooltip, BasicTitle, SvgIcon },
   inheritAttrs: false,
   props: {
-    modelValue: { type: Boolean }, // 继承
-    destroyOnClose: { type: Boolean }, // 继承
-    fullscreen: { type: Boolean }, // 继承
-    draggable: { type: Boolean }, // 继承
+    modelValue: { type: Boolean }, // inherit
+    destroyOnClose: { type: Boolean }, // inherit
+    fullscreen: { type: Boolean }, // inherit
+    draggable: { type: Boolean }, // inherit
     customClass: { type: String },
     customTitle: { type: String },
     ...headerProps,

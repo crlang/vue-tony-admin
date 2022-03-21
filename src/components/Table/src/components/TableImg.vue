@@ -45,9 +45,7 @@ export default defineComponent({
     fit: propTypes.string.def(''),
     index: propTypes.number.def(0),
     size: propTypes.number.def(40),
-    // 是否简单显示（只显示第一张图片）
     simpleShow: propTypes.bool,
-    // 简单模式下是否显示图片数量的badge
     showBadge: propTypes.bool.def(true),
   },
   setup(props) {

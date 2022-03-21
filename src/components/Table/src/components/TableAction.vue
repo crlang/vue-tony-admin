@@ -70,9 +70,9 @@ export default defineComponent({
             buttonProps: {
               size: 'small',
               ...action,
-              callback: undefined, // 净化
-              popConfirm: undefined, // 净化
-              icon: '', // 净化
+              callback: undefined, // purify
+              popConfirm: undefined, // purify
+              icon: '', // purify
             } as EleButton,
           }
 

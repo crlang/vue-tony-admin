@@ -25,7 +25,7 @@ export function expandTreeNode($treeRef:TreeType, expandKey:string | number, che
   }
 }
 
-// 存在兄弟节点判断尚未处理
+// todo: the existence of sibling nodes has not been processed yet
 function _expandParentNode(node, checked:boolean) {
   node.expanded = checked
   if (node.parent) {

@@ -3,11 +3,11 @@
  * @Date: 2021-12-24 17:24:14
  * @Description: Element Plus Type and Props
  * @LastEditors: crlang(https://www.crlang.com)
- * @LastEditTime: 2022-03-03 16:51:16
+ * @LastEditTime: 2022-03-21 16:00:31
  */
 import type { CSSProperties, ExtractPropTypes } from 'vue'
 
-// 引入 element-plus
+// baisc element-plus
 import type {
   ButtonProps,
   ButtonType,
@@ -65,7 +65,7 @@ export type EleCard = CardProps
 export const EleTagProps = tagProps
 export type EleTag = TagProps
 
-// 临时方案
+// temporary plan
 import { dropdownProps, dropdownItemProps } from 'element-plus/es/components/dropdown/src/dropdown'
 import type {
   IDescriptionsInject,

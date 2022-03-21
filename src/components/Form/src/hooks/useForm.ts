@@ -73,7 +73,7 @@ export function useForm(props?: Props): UseFormReturnType {
       const form = await getForm()
       form.scrollToField(name)
     },
-    // 拓展功能
+    // Advanced
     setProps: async (formProps: Partial<FormProps>) => {
       const form = await getForm()
       form.setProps(formProps)

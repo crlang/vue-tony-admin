@@ -7,7 +7,6 @@ import { ElButton, ElButtonGroup, ElProgress, ElTag } from 'element-plus'
 
 const { t } = useI18n()
 
-// 文件上传列表
 export function createTableColumns(): BasicColumn[] {
   return [
     {
@@ -52,11 +51,6 @@ export function createTableColumns(): BasicColumn[] {
         return text && (text / 1024).toFixed(2) + 'KB'
       },
     },
-    // {
-    //   prop: 'type',
-    //   label: '文件类型',
-    //   width: 100,
-    // },
     {
       prop: 'status',
       label: t('component.upload.fileStatue'),
@@ -86,7 +80,7 @@ export function createActionColumn(handleRemove: Function): BasicColumn {
     },
   }
 }
-// 文件预览列表
+
 export function createPreviewColumns(): BasicColumn[] {
   return [
     {

@@ -103,7 +103,7 @@ export function useTable(tableProps?: Props): [
       getTableInstance().sort(prop, order)
     },
 
-    // 拓展
+    // Advanced
     reload: async (opt?: FetchParams) => {
       getTableInstance().reload(opt)
     },

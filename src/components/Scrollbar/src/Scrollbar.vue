@@ -57,7 +57,7 @@ export default defineComponent({
       type: [String, Array],
       default: '',
     },
-    noresize: Boolean, // 如果 container 尺寸不会发生变化，最好设置它可以优化性能
+    noresize: Boolean,
     tag: {
       type: String,
       default: 'div',

@@ -161,9 +161,9 @@ export function useDataSource(
     if (!dataSourceRef.value || dataSourceRef.value.length === 0) return
     const records = !Array.isArray(record) ? [record] : record
     const recordIndex = records
-      .map((item) => dataSourceRef.value.findIndex((s) => s.key === item.key)) // 取序号
+      .map((item) => dataSourceRef.value.findIndex((s) => s.key === item.key))
       .filter((item) => item !== undefined)
-      .sort((a, b) => b - a) // 从大到小排序
+      .sort((a, b) => b - a)
     for (const index of recordIndex) {
       unref(dataSourceRef).splice(index, 1)
       unref(propsRef).dataSource?.splice(index, 1)

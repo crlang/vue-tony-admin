@@ -68,7 +68,7 @@ export const footerProps = {
   },
 }
 
-// 拓展
+// Advanced
 export const extProps = {
   /**
    * Whether the details mode

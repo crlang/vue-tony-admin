@@ -64,7 +64,6 @@ export function useTableScroll(
     const tableEl: Element = table.$el
     if (!tableEl) return
 
-    // 不处理滚动问题
     if (!unref(getCanResize) || tableData.length === 0) {
       if (resizeLimit.value > 4) return
 

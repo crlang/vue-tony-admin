@@ -85,7 +85,6 @@ export default defineComponent({
       fileList: [],
     })
 
-    //   是否正在上传
     const isUploadingRef = ref(false)
     const fileListRef = ref<FileItem[]>([])
     const { accept, helpText, maxNumber, maxSize } = toRefs(props)
@@ -129,24 +128,23 @@ export default defineComponent({
           : t('component.upload.startUpload')
     })
 
-    // 上传前校验
     function beforeUpload(file: File) {
       const { size, name } = file
       const { maxSize, maxNumber, previewFileList } = props
       const accept = unref(getAccept)
 
-      // 设置数量，则判断
+      // number of checks
       if ((fileListRef.value.length + previewFileList?.length ?? 0) >= maxNumber) {
         return createMessage.warning(t('component.upload.maxNumber', [maxNumber]))
       }
 
-      // 设置最大值，则判断
+      // size of checks
       if (maxSize && file.size / 1024 / 1024 >= maxSize) {
         createMessage.error(t('component.upload.maxSizeMultiple', [maxSize]))
         return false
       }
 
-      // 设置类型,则判断
+      // type of checks
       if (accept.length > 0 && !checkFileType(file, accept)) {
         createMessage.error!(t('component.upload.acceptUpload', [accept.join(',')]))
         return false
@@ -159,10 +157,7 @@ export default defineComponent({
         percent: 0,
         type: name.split('.').pop(),
       }
-      // 生成图片缩略图
       if (checkImgType(file)) {
-        // beforeUpload，如果异步会调用自带上传方法
-        // file.thumbUrl = await getBase64(file);
         getBase64WithFile(file).then(({ result: thumbUrl }) => {
           fileListRef.value = [
             ...unref(fileListRef),
@@ -178,14 +173,12 @@ export default defineComponent({
       return false
     }
 
-    // 删除
     function handleRemove(record: FileItem) {
       const index = fileListRef.value.findIndex((item) => item.uuid === record.uuid)
       index !== -1 && fileListRef.value.splice(index, 1)
       emit('delete', record)
     }
 
-    // 预览
     // function handlePreview(record: FileItem) {
     //   const { thumbUrl = '' } = record;
     //   createImgPreview({
@@ -223,7 +216,6 @@ export default defineComponent({
       }
     }
 
-    // 点击开始上传
     async function handleStartUpload() {
       const { maxNumber } = props
       if ((fileListRef.value.length + props.previewFileList?.length ?? 0) > maxNumber) {
@@ -231,7 +223,6 @@ export default defineComponent({
       }
       try {
         isUploadingRef.value = true
-        // 只上传不是成功状态的
         const uploadFileList =
             fileListRef.value.filter((item) => item.status !== UploadResultStatus.SUCCESS) || []
         const data = await Promise.all(
@@ -240,7 +231,6 @@ export default defineComponent({
           }),
         )
         isUploadingRef.value = false
-        // 生产环境:抛出错误
         const errorList = data.filter((item: any) => !item.success)
         if (errorList.length > 0) throw errorList
       } catch (e) {
@@ -249,7 +239,6 @@ export default defineComponent({
       }
     }
 
-    //   点击保存
     function handleOk() {
       const { maxNumber } = props
 
@@ -267,7 +256,6 @@ export default defineComponent({
           fileList.push(responseData.url)
         }
       }
-      // 存在一个上传成功的即可保存
       if (fileList.length <= 0) {
         return createMessage.warning(t('component.upload.saveError'))
       }
@@ -276,7 +264,6 @@ export default defineComponent({
       emit('change', fileList)
     }
 
-    // 点击关闭：则所有操作不保存，包括上传的
     async function handleCloseFunc() {
       if (!isUploadingRef.value) {
         fileListRef.value = []

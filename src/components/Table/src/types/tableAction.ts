@@ -10,9 +10,9 @@ export interface ActionItem extends Partial<EleButton> {
   callback?: (rowInfo:ScopeInfo)=>void
   popConfirm?: PopConfirm
   preIcon?: string
-  // 权限编码控制是否显示
+  // Whether the permission code control is displayed
   auth?: RoleEnum | RoleEnum[] | string | string[]
-  // 业务控制是否显示
+  // Whether the business control is displayed
   ifShow?: boolean | ((action: ActionItem) => boolean)
 }
 

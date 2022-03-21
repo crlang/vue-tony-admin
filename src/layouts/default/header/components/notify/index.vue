@@ -26,7 +26,6 @@
               {{ item.name }}
               <span v-if="item.list.length !== 0">({{ item.list.length }})</span>
             </template>
-            <!-- 绑定title-click事件的通知列表中标题是“可点击”的-->
             <NoticeList
               :list="item.list"
               v-if="item.key === '1'"
@@ -34,7 +33,7 @@
             <NoticeList
               :list="item.list"
               v-else />
-            <div :class="`${prefixCls}__more`">查看更多</div>
+            <div :class="`${prefixCls}__more`">{{ t('common.viewMore') }}</div>
           </ElTabPane>
         </template>
       </ElTabs>
@@ -50,6 +49,7 @@ import NoticeList from './NoticeList.vue'
 import { useDesign } from '@/hooks/web/useDesign'
 import { SvgIcon } from '@/components/Icon'
 import { useMessage } from '@/hooks/web/useMessage'
+import { useI18n } from '@/hooks/web/useI18n'
 
 export default defineComponent({
   components: { ElPopover, ElBadge, ElTabs, ElTabPane, SvgIcon, NoticeList },
@@ -57,6 +57,7 @@ export default defineComponent({
     const { prefixCls } = useDesign('header-notify')
     const { createMessage } = useMessage()
     const listData = ref(tabListData)
+    const { t } = useI18n()
 
     const count = computed(() => {
       let count = 0
@@ -67,11 +68,12 @@ export default defineComponent({
     })
 
     function onNoticeClick(record: ListItem) {
-      createMessage.success('你点击了通知，ID=' + record.id)
+      createMessage.success('Notice ID: ' + record.id)
       record.titleDelete = !record.titleDelete
     }
 
     return {
+      t,
       prefixCls,
       listData,
       count,

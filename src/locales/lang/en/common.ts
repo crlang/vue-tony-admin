@@ -18,6 +18,7 @@ export default {
 
   requiredTipText: 'This is required',
   emptyText: 'No Data',
+  viewMore: 'View more',
 
   redo: 'Refresh',
   back: 'Back',

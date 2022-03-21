@@ -99,7 +99,7 @@ export const basicProps = {
    * Close function, execute before closing, return true to close
    */
   closeFunc: Function as PropType<() => Promise<boolean>>,
-  // 事件继承
+  // Events that inherit Element Plus
   onOpen: Function as PropType<() => void>,
   onOpened: Function as PropType<() => void>,
   onClose: Function as PropType<() => void>,

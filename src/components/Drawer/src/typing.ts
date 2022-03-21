@@ -19,7 +19,7 @@ export interface DrawerFooterProps{
 export interface DrawerProps extends EleDrawer, DrawerFooterProps {
   title?: string
   modelValue?: boolean
-  // 拓展
+  // Advanced
   isDetail?: boolean
   showDetailBack?: boolean
   loading?: boolean

@@ -18,6 +18,7 @@ export default {
 
   requiredTipText: '此为必填项',
   emptyText: '数据为空',
+  viewMore: '查看更多',
 
   redo: '刷新',
   back: '返回',

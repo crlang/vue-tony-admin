@@ -177,7 +177,6 @@ export default defineComponent({
       },
     )
 
-    // 取消事件
     async function handleCancel(e: Event) {
       e?.stopPropagation()
 
@@ -191,9 +190,6 @@ export default defineComponent({
       emit('cancel', e)
     }
 
-    /**
-     * 设置modal参数
-     */
     function setModalProps(props: Partial<ModalProps>): void {
       propsRef.value = deepMerge(unref(propsRef) || {}, props)
 

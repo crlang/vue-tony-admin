@@ -37,8 +37,8 @@ export default defineComponent({
   components: { ScrollContainer },
   inheritAttrs: false,
   props: {
-    modelValue: { type: Boolean }, // 继承
-    fullscreen: { type: Boolean }, // 继承
+    modelValue: { type: Boolean }, // inherit
+    fullscreen: { type: Boolean }, // inherit
     customClass: { type: String },
     ...wrapperProps,
   },
@@ -133,7 +133,6 @@ export default defineComponent({
             props.modalFooterHeight -
             props.modalHeaderHeight
 
-        // 距离顶部过近会出现滚动条
         if (modalTop < 40) {
           maxHeight -= 26
         }

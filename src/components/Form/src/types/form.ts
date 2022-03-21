@@ -23,7 +23,7 @@ export interface FormActionType {
   scrollToField: (name?: string) => Promise<void>
   clearValidate: (name?: string | string[]) => Promise<void>
   resetFields: () => Promise<void>
-  // 拓展
+  // Advanced
   setFieldsValue: <T>(values: T) => Promise<void>
   getFieldsValue: () => any
   updateSchema: (data: Partial<FormSchema> | Partial<FormSchema>[]) => Promise<void>
