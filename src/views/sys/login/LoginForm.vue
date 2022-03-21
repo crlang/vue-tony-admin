@@ -7,14 +7,14 @@
     <el-form-item prop="account">
       <el-input
         v-model="formData.account"
-        :placeholder="t('sys.login.userName')" />
+        :placeholder="t('sys.login.userNameEg')" />
     </el-form-item>
     <el-form-item
       prop="password"
       class="mb-1">
       <el-input
         v-model="formData.password"
-        :placeholder="t('sys.login.password')" />
+        :placeholder="t('sys.login.passwordEg')" />
     </el-form-item>
     <el-row class="mt-3">
       <el-col :span="12">
@@ -60,8 +60,8 @@ const loading = ref(false)
 const rememberMe = ref(false)
 
 const formData = reactive({
-  account: 'tony',
-  password: '123456',
+  account: '',
+  password: '',
 })
 const { validForm } = useFormValid(formRef)
 

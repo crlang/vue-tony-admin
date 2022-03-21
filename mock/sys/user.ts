@@ -5,32 +5,32 @@ export function createFakeUserList() {
   return [
     {
       userId: '1',
-      username: 'tony',
-      realName: 'Tony Admin',
-      avatar: 'https://himg.bdimg.com/sys/portrait/hotitem/wildkid/30',
-      desc: 'manager',
+      username: 'admin',
+      realName: 'Administrator',
+      avatar: 'https://himg.bdimg.com/sys/portrait/hotitem/wildkid/31',
+      desc: '致敬钢铁侠！如同Tony的机甲一般，模块组合的前端框架。',
       password: '123456',
       token: 'fakeToken1',
       homePath: '/dashboard/analysis',
       roles: [
         {
-          roleName: 'Admin user',
+          roleName: 'manager',
           value: 'admin',
         },
       ],
     },
     {
       userId: '2',
-      username: 'test',
+      username: 'tony',
       password: '123456',
-      realName: 'Tony user',
-      avatar: 'https://himg.bdimg.com/sys/portrait/hotitem/wildkid/20',
-      desc: 'tester',
+      realName: 'Tony Stark',
+      avatar: 'https://himg.bdimg.com/sys/portrait/hotitem/wildkid/49',
+      desc: "Salute to Iron Man! Like Tony's mecha, the front-end framework for modular combinations.",
       token: 'fakeToken2',
       homePath: '/dashboard/workbench',
       roles: [
         {
-          roleName: 'Tester',
+          roleName: 'tester',
           value: 'test',
         },
       ],
