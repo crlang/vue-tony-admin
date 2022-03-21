@@ -1,4 +1,5 @@
 import type { UserConfig, ConfigEnv } from 'vite'
+
 import pkg from './package.json'
 import moment from 'moment'
 import { loadEnv } from 'vite'
@@ -57,7 +58,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       port: VITE_PORT,
       // Load proxy configuration from .env
       proxy: createProxy(VITE_PROXY),
-      open: true,
+      open: `http://127.0.0.1:${VITE_PORT}`,
     },
     build: {
       target: 'es2015',
