@@ -5,7 +5,7 @@ dist
 .cache
 package-lock.json
 
-.vscode/tony.code-workspace
+.vscode/*.code-workspace
 
 tests/server/static
 tests/server/static/upload
