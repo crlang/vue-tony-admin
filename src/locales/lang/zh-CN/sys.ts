@@ -59,9 +59,9 @@ export default {
   },
   login: {
     backSignIn: '返回',
-    signInFormTitle: '登录',
     mobileSignInFormTitle: '手机号登录',
     qrSignInFormTitle: '二维码登录',
+    signInFormTitle: '账号登录',
     signUpFormTitle: '注册',
     forgetFormTitle: '重置密码',
 
@@ -69,6 +69,11 @@ export default {
     signInDesc: '输入您的个人详细信息开始使用！',
     policy: '我同意xxx隐私政策',
     scanSign: `请扫码后登录`,
+    noAccount: `没有账号？`,
+    welcome: `欢迎使用`,
+    sloganTitle: ` 是一个免费开源的中后台前端模板。`,
+    sloganDesc: `基于 element plus ，并且使用了最新的 vue3, vite2, TypeScript 等主流技术开发，开箱即用的中后台前端解决方案。`,
+    slogan: `Element/Vue3/Typescript 最佳的选择！`,
 
     loginButton: '登录',
     registerButton: '注册',
@@ -92,7 +97,7 @@ export default {
     diffPwd: '两次输入密码不一致',
 
     userName: '账号',
-    userNameEg: '账号 Admin/Tony',
+    userNameEg: '账号 admin/tony',
     password: '密码',
     passwordEg: '密码 123456',
     confirmPassword: '确认密码',

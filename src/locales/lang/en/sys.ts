@@ -75,6 +75,11 @@ export default {
     signInDesc: 'Enter your personal details and get started!',
     policy: 'I agree to the xxx Privacy Policy',
     scanSign: `Scan the code to login`,
+    noAccount: `No account?`,
+    welcome: `Welcome to`,
+    sloganTitle: ` It is a free and open source middle and back-end front-end template.`,
+    sloganDesc: `Based on element plus, and using the latest mainstream technologies such as vue3, vite2, TypeScript, etc., it is an out-of-the-box middle-backend front-end solution.`,
+    slogan: `The best choice for Element/Vue3/Typescript!`,
 
     loginButton: 'Sign in',
     registerButton: 'Sign up',
@@ -97,7 +102,7 @@ export default {
     policyPlaceholder: 'Register after checking',
     diffPwd: 'The two passwords are inconsistent',
 
-    userNameEg: 'Username Admin/Tony(tester)',
+    userNameEg: 'Username admin/tony(tester)',
     userName: 'Username',
     passwordEg: 'Password 123456',
     password: 'Password',

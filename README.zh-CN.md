@@ -10,7 +10,7 @@
 
 ## 简介
 
-Vue Tony Admin 是一个免费开源的中后台前端模版。基于`Element Plus`，并且使用了最新的`vue3`,`vite2`,`TypeScript`等主流技术开发，开箱即用的中后台前端解决方案。
+Vue Tony Admin 是一个免费开源的中后台前端模板。基于`Element Plus`，并且使用了最新的`vue3`,`vite2`,`TypeScript`等主流技术开发，开箱即用的中后台前端解决方案。
 
 ## 特性
 

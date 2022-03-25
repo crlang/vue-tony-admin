@@ -12,9 +12,9 @@
     <el-row :class="`${prefixCls}__inner`">
       <el-col :span="14">
         <div :class="`${prefixCls}__left`">
-          <h1>欢迎使用 <span>{{ title }}</span></h1>
-          <p>{{ title }} 是一个免费开源的中后台前端模版。</p>
-          <p>基于 element plus ，并且使用了最新的 vue3, vite2, TypeScript 等主流技术开发，开箱即用的中后台前端解决方案。</p>
+          <h1>{{ t('sys.login.welcome') }} <span>{{ title }}</span></h1>
+          <p>{{ title }} {{ t('sys.login.sloganTitle') }}</p>
+          <p>{{ t('sys.login.sloganDesc') }}</p>
         </div>
       </el-col>
       <el-col :span="10">
@@ -30,20 +30,20 @@
 
           <div :class="`${prefixCls}__logo`">
             <AppLogo :alwaysShowTitle="true" />
-            <p>Element/Vue3/Typescript 最佳的选择！</p>
+            <p>{{ t('sys.login.slogan') }}</p>
           </div>
           <div :class="`${prefixCls}__form`">
             <el-tabs
               v-if="getShow"
               v-model="activeName">
               <el-tab-pane
-                label="账号登录"
+                :label="t('sys.login.signInFormTitle')"
                 name="account" />
               <el-tab-pane
-                label="手机号登录"
+                :label="t('sys.login.mobileSignInFormTitle')"
                 name="mobile" />
               <el-tab-pane
-                label="二维码登录"
+                :label="t('sys.login.qrSignInFormTitle')"
                 name="qrcode" />
             </el-tabs>
             <LoginForm />
@@ -56,7 +56,7 @@
           <div
             :class="`${prefixCls}__regnew`"
             v-if="getShow">
-            没有账号？<span @click="setLoginState(LoginStateEnum.REGISTER)">去注册</span>
+            {{ t('sys.login.noAccount') }} <span @click="setLoginState(LoginStateEnum.REGISTER)"> {{ t('sys.login.registerButton') }}</span>
           </div>
         </div>
       </el-col>
