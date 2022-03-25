@@ -1,3 +1,20 @@
+## [0.1.1-beta.4](https://github.com/crlang/vue-tony-admin/compare/0.1.1-beta.3...0.1.1-beta.4) (2022-03-25)
+
+### Bug Fixes
+
+- 调整 i18n 内容 ([5e53697](https://github.com/crlang/vue-tony-admin/commit/5e5369723c032319ddd617f49ecd59187467423c))
+- 调整启动项以适应 devtool ([7ac5b4b](https://github.com/crlang/vue-tony-admin/commit/7ac5b4b5a97734bf9d65c643a4e7e32af1798576))
+- 修复头部项点击区域 ([c459381](https://github.com/crlang/vue-tony-admin/commit/c45938108a4eae31e28653500bc7e64cf8c390f6))
+- 修复头部标点位置问题 ([de8da21](https://github.com/crlang/vue-tony-admin/commit/de8da2153faa5546b1886f93717610916ab85e0d))
+- 登录功能优化 ([3c4705f](https://github.com/crlang/vue-tony-admin/commit/3c4705f46e408f90ca086118a3971ee5d234704a))
+- 移除表格部分冗余数据 ([11d5a52](https://github.com/crlang/vue-tony-admin/commit/11d5a52ff22038a66952b8019db6e6e35cb3c8ca))
+- **Table:** 优化调整操作列 ([2e55af2](https://github.com/crlang/vue-tony-admin/commit/2e55af22fd6410ecbdea4259ad713b6370fa35d3))
+- **Table:** 修复自定义列的 customRender 函数异常问题 ([d1eaf4a](https://github.com/crlang/vue-tony-admin/commit/d1eaf4a1d1cb7d27e93a9e3569973f2163c8efc7))
+
+### Reverts
+
+- 撤回演示数据 ([f56031f](https://github.com/crlang/vue-tony-admin/commit/f56031ff1b137e132c13cbaaf33c6b1c882914d4))
+
 ## [0.1.1-beta.3](https://github.com/crlang/vue-tony-admin/compare/0.1.1-beta.2...0.1.1-beta.3) (2022-03-10)
 
 主要针对表格进行进一步优化完善
