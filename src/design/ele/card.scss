@@ -1,5 +1,7 @@
 .el-card {
   --el-color-black: var(--background-secondary-color);
+  --el-card-border-radius: var(--radius-base);
+  --el-box-shadow-light: var(--card-shadow);
 
   // font-size: 14px;
 

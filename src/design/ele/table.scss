@@ -4,16 +4,29 @@
   --el-table-border-color: var(--border-grey-color);
   --el-table-tr-bg-color: var(--white-color);
 
-  .el-table__inner-wrapper {
+  &__inner-wrapper {
     &::after,
     &::before {
       display: none;
     }
   }
-}
 
-.el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
-  background: var(--background-tertiary-color);
+  &__header {
+    &-wrapper {
+      tr  {
+        th.el-table-fixed-column--right {
+          background: var(--el-table-header-bg-color);
+          filter: brightness(0.95);
+        }
+      }
+    }
+  }
+
+  &--striped {
+    .el-table__body tr.el-table__row--striped td.el-table__cell {
+      background: var(--background-tertiary-color);
+    }
+  }
 }
 
 html[data-theme='dark'] {

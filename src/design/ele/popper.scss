@@ -1,4 +1,6 @@
 .el-popper{
+  --el-popper-border-radius: var(--radius-base);
+
   &.is-dark {
     color: var(--white-color);
     background-color: var(--grey-color-3);
