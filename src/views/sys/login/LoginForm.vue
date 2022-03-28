@@ -14,7 +14,8 @@
       class="mb-1">
       <el-input
         v-model="formData.password"
-        :placeholder="t('sys.login.passwordEg')" />
+        :placeholder="t('sys.login.passwordEg')"
+        @keypress.enter="handleLogin" />
     </el-form-item>
     <el-row class="mt-3">
       <el-col :span="12">

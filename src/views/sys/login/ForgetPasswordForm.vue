@@ -17,7 +17,8 @@
     <el-form-item prop="sms">
       <CountdownInput
         v-model="formData.sms"
-        :placeholder="t('sys.login.smsCode')" />
+        :placeholder="t('sys.login.smsCode')"
+        @keypress.enter="handleReset" />
     </el-form-item>
     <el-form-item class="enter-x">
       <el-button
