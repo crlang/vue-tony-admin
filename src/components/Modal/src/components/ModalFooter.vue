@@ -5,11 +5,13 @@
     <slot name="insertFooter"></slot>
     <ElButton
       v-bind="cancelButton"
+      :type="cancelButton?.type || 'default'"
       @click="handleCancel"
       v-if="showCancel">{{ cancelText }}</ElButton>
     <slot name="centerFooter"></slot>
     <ElButton
       v-bind="confirmButton"
+      :type="confirmButton?.type || 'primary'"
       @click="handleOk"
       v-if="showConfirm">{{ confirmText }}</ElButton>
     <slot name="appendFooter"></slot>
