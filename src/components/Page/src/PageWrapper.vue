@@ -19,6 +19,12 @@
         <div :class="`${prefixCls}-header__description`">{{ description }}</div>
       </template>
 
+      <div
+        :class="`${prefixCls}-header__toolbar`"
+        v-if="$slots.toolbar">
+        <slot name="toolbar"></slot>
+      </div>
+
       <template v-if="$slots.extra">
         <slot name="extra"></slot>
       </template>
@@ -76,6 +82,10 @@ export default defineComponent({
      */
     headerFixed: Boolean,
     /**
+     * Header class
+     */
+    headerClass: String,
+    /**
      * Whether the content is full
      */
     contentFullHeight: Boolean,
@@ -125,9 +135,10 @@ export default defineComponent({
     })
 
     const getHeaderClass = computed(() => {
-      const { headerFullHeight, headerFixed } = props
+      const { headerFullHeight, headerFixed, headerClass } = props
       return [
         `${prefixCls}-header`,
+        headerClass,
         {
           [`${prefixCls}-header-full`]: headerFullHeight,
           [`${prefixCls}-header-fixed`]: headerFixed,
@@ -177,7 +188,7 @@ $prefix-cls: '#{$tonyname}-page-wrapper';
 
   &-header {
     position: relative;
-    padding: 16px 24px;
+    padding: 16px;
     background-color: var(--background-secondary-color);
     box-shadow: var(--card-shadow);
 
@@ -203,6 +214,12 @@ $prefix-cls: '#{$tonyname}-page-wrapper';
     &__description {
       padding-top: 16px;
       color: var(--text-secondary-color);
+    }
+
+    &__toolbar {
+      position: absolute;
+      top: 16px;
+      right: 16px;
     }
   }
 
