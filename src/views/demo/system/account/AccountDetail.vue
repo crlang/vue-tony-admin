@@ -2,12 +2,21 @@
   <PageWrapper
     :title="`用户` + userId + `的资料`"
     description="这是用户资料详情页面。本页面仅用于演示相同路由在tab中打开多个页面并且显示不同的数据"
-    headerFullHeight
+    headerClass="py-0-imp"
     contentBackground>
+    <template #toolbar>
+      <el-button
+        size="small"
+        type="danger">禁用账号</el-button>
+      <el-button
+        size="small"
+        type="primary">修改密码</el-button>
+    </template>
     <template #extra>
-      <el-button type="danger">禁用账号</el-button>
-      <el-button type="primary">修改密码</el-button>
-      <el-tabs v-model="currentKey">
+      <el-tabs
+        type="card"
+        class="mt-4"
+        v-model="currentKey">
         <el-tab-pane
           name="detail"
           label="用户资料" />
@@ -17,12 +26,13 @@
       </el-tabs>
     </template>
 
-    <div class="pt-4 m-4 desc-wrap">
+    <div class="pt-4 m-4">
       <template v-if="currentKey == 'detail'">
         <div
           v-for="i in 10"
           :key="i">这是用户{{ userId }}资料Tab</div>
       </template>
+
       <template v-if="currentKey == 'logs'">
         <div
           v-for="i in 10"
@@ -44,7 +54,6 @@ export default defineComponent({
   components: { ElButton, ElTabs, ElTabPane, PageWrapper },
   setup() {
     const route = useRoute()
-    // 此处可以得到用户ID
     const userId = ref(route.params?.id)
     const currentKey = ref('detail')
     const { setTitle } = useTabs()
@@ -58,5 +67,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style></style>

@@ -13,7 +13,6 @@ import { defineComponent, ref, computed, unref } from 'vue'
 import { BasicModal, useModalInner } from '@/components/Modal'
 import { BasicForm, useForm } from '@/components/Form'
 import { accountFormSchema } from './data'
-import { getDeptList } from '@/api/demo/system'
 
 export default defineComponent({
   name: 'AccountModal',
@@ -23,7 +22,7 @@ export default defineComponent({
     const isUpdate = ref(true)
     const rowId = ref('')
 
-    const [registerForm, { setFieldsValue, updateSchema, resetFields, validate }] = useForm({
+    const [registerForm, { setFieldsValue, updateSchema, resetFields, validate, getFieldsValue }] = useForm({
       labelWidth: 100,
       schemas: accountFormSchema,
       showActionButtonGroup: false,
@@ -37,6 +36,8 @@ export default defineComponent({
       setModalProps({ confirmButton: { loading: false } })
       isUpdate.value = !!data?.isUpdate
 
+      console.log('useModalInner data +++', data, !!data?.isUpdate)
+
       if (unref(isUpdate)) {
         rowId.value = data.record.id
         setFieldsValue({
@@ -44,15 +45,11 @@ export default defineComponent({
         })
       }
 
-      const treeData = await getDeptList()
       updateSchema([
         {
           field: 'pwd',
           show: !unref(isUpdate),
-        },
-        {
-          field: 'dept',
-          componentProps: { treeData },
+          ifShow: !unref(isUpdate),
         },
       ])
     })
@@ -61,10 +58,9 @@ export default defineComponent({
 
     async function handleSubmit() {
       try {
-        const values = await validate()
+        await validate()
+        const values = getFieldsValue()
         setModalProps({ confirmButton: { loading: true } })
-        // TODO custom api
-        console.log(values)
         closeModal()
         emit('success', { isUpdate: unref(isUpdate), values: { ...values, id: rowId.value } })
       } finally {

@@ -1,15 +1,21 @@
 <template>
   <PageWrapper
+    title="账号管理"
     contentFullHeight
     fixedHeight>
+    <template #toolbar>
+      <el-button
+        type="primary"
+        size="small"
+        @click="handleCreate">新增账号</el-button>
+    </template>
     <el-row
       class="dept-wrap"
       :gutter="16">
       <el-col
         :span="6"
         class="dept-tree">
-        <DeptTree
-          @select="handleSelect" />
+        <DeptTree @select="handleSelect" />
       </el-col>
 
       <el-col
@@ -17,13 +23,7 @@
         class="dept-table">
         <BasicTable
           @register="registerTable"
-          :searchInfo="searchInfo">
-          <template #toolbar>
-            <el-button
-              type="primary"
-              @click="handleCreate">新增账号</el-button>
-          </template>
-        </BasicTable>
+          :searchInfo="searchInfo" />
       </el-col>
     </el-row>
 
@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from 'vue'
+import { defineComponent, reactive } from 'vue'
 import { ElRow, ElCol, ElButton } from 'element-plus'
 
 import { BasicColumn, BasicTable, useTable } from '@/components/Table'
@@ -120,9 +120,6 @@ export default defineComponent({
       },
     ]
 
-    const modalVisible = ref(false)
-    const demodata = ref<Recordable[]>()
-
     function handleCreate() {
       openModal(true, {
         isUpdate: false,
@@ -140,38 +137,34 @@ export default defineComponent({
         schemas: searchFormSchema,
         autoSubmitOnEnter: true,
       },
+      // canResize: true,
       useSearchForm: true,
-      showTableSetting: true,
+      // showTableSetting: true,
       border: true,
       pagination: { pageSize: 5 },
       handleSearchInfoFn(info) {
-        console.log('handleSearchInfoFn', info)
         return info
       },
     })
 
-    function handleEdit(record: Recordable) {
-      console.log(record)
-      modalVisible.value = true
+    function handleEdit({ row }) {
+      openModal(true, {
+        record: row,
+        isUpdate: true,
+      })
     }
 
-    function handleDelete(record: Recordable) {
-      console.log(record)
-      createConfirm({ title: '温馨提示', content: '是否确认删除?', type: 'error' }).then(res => {
-        console.log('', res)
+    function handleDelete({ row }) {
+      createConfirm({ title: '温馨提示', content: `是否确认删除「${row.nickname}」?`, type: 'error' }).then(() => {
         createMessage.success('删除成功')
-      })
-        .catch(err => {
-          console.log(' err', err)
-        })
+      }).catch(() => { })
     }
 
     function handleSuccess({ isUpdate, values }) {
       if (isUpdate) {
         // 演示不刷新表格直接更新内部数据。
         // 注意：updateTableDataRecord要求表格的rowKey属性为string并且存在于每一行的record的keys中
-        const result = updateTableDataRecord(values.id, values)
-        console.log(result)
+        updateTableDataRecord(values.id, values)
       } else {
         reload()
       }
@@ -182,16 +175,14 @@ export default defineComponent({
       reload()
     }
 
-    function handleView(record: Recordable) {
-      go('/system/account_detail/' + record.id)
+    function handleView({ row }) {
+      go('/system/account_detail/' + row.id)
     }
 
     return {
-      modalVisible,
       searchInfo,
       registerTable,
       registerModal,
-      demodata,
       Document,
       Edit,
       Delete,
@@ -205,23 +196,3 @@ export default defineComponent({
   },
 })
 </script>
-<style lang="scss" scoped>
-.dept {
-  &-wrap {
-    // display: flex;
-    height: 100%;
-  }
-
-  &-tree {
-    height: 100%;
-  }
-
-  &-table {
-    height: 100%;
-    .#{$tonyname}-basic-table {
-      height: calc(100% - 52px);
-    }
-  }
-}
-
-</style>

@@ -1,10 +1,10 @@
 <template>
   <el-card
     header="部门列表"
-    class="h-full"
     shadow="never">
     <el-tree
       :data="treeData"
+      default-expand-all
       :props="{ children: 'children', label: 'deptName' }"
       @current-change="handleSelect"
     />

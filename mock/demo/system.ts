@@ -1,3 +1,4 @@
+import { createFakeUserList } from 'mock/sys/user'
 import { MockMethod } from 'vite-plugin-mock'
 import { resultError, resultPageSuccess, resultSuccess } from '../_util'
 
@@ -192,9 +193,13 @@ export default [
     method: 'post',
     response: ({ body }) => {
       const { account } = body || {}
+      const demoUser = createFakeUserList()
       if (account && account.indexOf('admin') !== -1) {
         return resultError('该字段不能包含admin')
       } else {
+        if (demoUser.some(k => k.username === account)) {
+          return resultError(`${account} is exist`)
+        }
         return resultSuccess(`${account} can use`)
       }
     },
