@@ -412,5 +412,9 @@ $prefix-cls: '#{$tonyname}-basic-table';
       }
     }
   }
+
+  &__pagination {
+    padding: 1rem 0;
+  }
 }
 </style>

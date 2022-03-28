@@ -32,6 +32,7 @@ export function usePagination(refProps: ComputedRef<BasicTableProps>) {
       defaultPageSize: PAGE_SIZE,
       pageSizes: PAGE_SIZE_OPTIONS,
       layout: PAGE_LAYOUT_OPTIONS,
+      background: true,
       ...(pagination ?? {}),
       ...unref(configRef),
     }
