@@ -38,10 +38,12 @@ export default defineComponent({
           actions: [
             {
               icon: 'clarity:note-edit-line',
+              text: '编辑',
               callback: handleEdit,
             },
             {
               icon: 'ep:delete',
+              text: '删除',
               popConfirm: {
                 title: '是否确认删除',
                 confirm: handleDelete,
@@ -55,9 +57,7 @@ export default defineComponent({
         schemas: searchFormSchema,
       },
       useSearchForm: true,
-      showTableSetting: true,
       border: true,
-      showIndexColumn: false,
     })
 
     function handleCreate() {

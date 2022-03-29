@@ -1,14 +1,7 @@
 <template>
   <PageWrapper
-    title="账号管理"
     contentFullHeight
     fixedHeight>
-    <template #toolbar>
-      <el-button
-        type="primary"
-        size="small"
-        @click="handleCreate">新增账号</el-button>
-    </template>
     <el-row
       class="dept-wrap"
       :gutter="16">
@@ -23,7 +16,14 @@
         class="dept-table">
         <BasicTable
           @register="registerTable"
-          :searchInfo="searchInfo" />
+          :searchInfo="searchInfo">
+          <template #toolbar>
+            <el-button
+              type="primary"
+              size="small"
+              @click="handleCreate">新增账号</el-button>
+          </template>
+        </BasicTable>
       </el-col>
     </el-row>
 
@@ -137,9 +137,7 @@ export default defineComponent({
         schemas: searchFormSchema,
         autoSubmitOnEnter: true,
       },
-      // canResize: true,
       useSearchForm: true,
-      // showTableSetting: true,
       border: true,
       pagination: { pageSize: 5 },
       handleSearchInfoFn(info) {
