@@ -1,20 +1,20 @@
 .el-button {
-  --el-button-text-color: var(--primary-color);
-  --el-button-bg-color: var(--blue-color-a15);
-  --el-button-border-color: transparent;
-  --el-button-disabled-text-color: var(--text-tertiary-color);
+  // --el-button-text-color: var(--primary-color);
+  // --el-button-bg-color: var(--blue-color-a15);
+  // --el-button-border-color: transparent;
+  // --el-button-disabled-text-color: var(--text-tertiary-color);
 
   // hover
-  --el-button-hover-text-color: var(--primary-color);
-  --el-button-hover-bg-color: var(--blue-color-a15);
-  --el-button-hover-border-color: transparent;
+  // --el-button-hover-text-color: var(--primary-color);
+  // --el-button-hover-bg-color: var(--blue-color-a15);
+  // --el-button-hover-border-color: transparent;
 
   // Resize the button to 40px
   height: var(--el-button-size);
 
   &.is-plain {
-    --el-button-hover-border-color: inherit;
-    --el-button-hover-bg-color: inherit;
+    // --el-button-hover-border-color: inherit;
+    // --el-button-hover-bg-color: inherit;
   }
 
   &--default {
@@ -39,9 +39,9 @@
   &--success,
   &--info,
   &--danger {
-    --el-button-text-color: var(--white-color);
-    --el-button-disabled-text-color: var(--white-color);
-    --el-button-hover-text-color: var(--white-color);
+    // --el-button-text-color: var(--white-color);
+    // --el-button-disabled-text-color: var(--white-color);
+    // --el-button-hover-text-color: var(--white-color);
   }
 
   // &--primary {

@@ -21,11 +21,7 @@
         <template
           v-for="item in listData"
           :key="item.key">
-          <ElTabPane>
-            <template #label>
-              {{ item.name }}
-              <span v-if="item.list.length !== 0">({{ item.list.length }})</span>
-            </template>
+          <ElTabPane :label="item.name">
             <NoticeList
               :list="item.list"
               v-if="item.key === '1'"
@@ -33,7 +29,7 @@
             <NoticeList
               :list="item.list"
               v-else />
-            <div :class="`${prefixCls}__more`">{{ t('common.viewMore') }}</div>
+            <div :class="`${prefixCls}__more`">{{ t('common.viewMore') }}<span v-if="item.list.length !== 0">({{ item.list.length }})</span></div>
           </ElTabPane>
         </template>
       </ElTabs>

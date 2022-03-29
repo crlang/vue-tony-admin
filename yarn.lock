@@ -1367,10 +1367,10 @@
   resolved "https://registry.npmmirror.com/@ctrl/tinycolor/download/@ctrl/tinycolor-3.4.0.tgz#c3c5ae543c897caa9c2a68630bed355be5f9990f"
   integrity sha1-w8WuVDyJfKqcKmhjC+01W+X5mQ8=
 
-"@element-plus/icons-vue@^0.2.6":
-  version "0.2.6"
-  resolved "https://registry.npmmirror.com/@element-plus/icons-vue/download/@element-plus/icons-vue-0.2.6.tgz#28e48aa4abd5b02638b41c1d95a6e7f96bb23308"
-  integrity sha512-2gg7VCq4d2firgl7/aVym4Cx/wqKFwKybEQGJiiWJN4urW36+QdAEG1knqSD9qidbjhVp0Jnc9XdSTR1/4Whzw==
+"@element-plus/icons-vue@^1.1.4":
+  version "1.1.4"
+  resolved "https://registry.npmmirror.com/@element-plus/icons-vue/-/icons-vue-1.1.4.tgz#5d2788ea356f1458068e6d400e724ca5f3d29aca"
+  integrity sha512-Iz/nHqdp1sFPmdzRwHkEQQA3lKvoObk8azgABZ81QUOpW9s/lUyQVUSh0tNtEPZXQlKwlSh7SPgoVxzrE0uuVQ==
 
 "@element-plus/icons@^0.0.11":
   version "0.0.11"
@@ -1410,6 +1410,18 @@
     js-yaml "^4.1.0"
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
+
+"@floating-ui/core@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.npmmirror.com/@floating-ui/core/-/core-0.6.1.tgz#aed861a1b6dbebadf14a9dd829ba67f4f3ae795c"
+  integrity sha512-Y30eVMcZva8o84c0HcXAtDO4BEzPJMvF6+B7x7urL2xbAqVsGJhojOyHLaoQHQYjb6OkqRq5kO+zeySycQwKqg==
+
+"@floating-ui/dom@^0.4.1":
+  version "0.4.2"
+  resolved "https://registry.npmmirror.com/@floating-ui/dom/-/dom-0.4.2.tgz#5c34a19f23a0d72af564e45e5af8000b45318e60"
+  integrity sha512-2/4vOhMAujkMmGqGX1Gut84phe5MNfk1kGeM+RSTJCpeR0SWR2/RR+/f1r1msOvTQa28wn7HEhxGe71CjYY/vw==
+  dependencies:
+    "@floating-ui/core" "^0.6.1"
 
 "@gar/promisify@^1.0.1":
   version "1.1.2"
@@ -1732,10 +1744,10 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@popperjs/core@^2.11.2":
-  version "2.11.2"
-  resolved "https://registry.npmmirror.com/@popperjs/core/download/@popperjs/core-2.11.2.tgz#830beaec4b4091a9e9398ac50f865ddea52186b9"
-  integrity sha512-92FRmppjjqz29VMJ2dn+xdyXZBrMlE42AV6Kq6BwjWV7CNUW1hs2FtxSNLQE+gJhaZ6AAmYuO9y8dshhcBl7vA==
+"@popperjs/core@^2.11.4":
+  version "2.11.4"
+  resolved "https://registry.npmmirror.com/@popperjs/core/-/core-2.11.4.tgz#d8c7b8db9226d2d7664553a0741ad7d0397ee503"
+  integrity sha512-q/ytXxO5NKvyT37pmisQAItCFqA7FD/vNb8dgaJy3/630Fsc+Mz9/9f2SziBoIZ30TJooXyTwZmhi1zjXmObYg==
 
 "@purge-icons/core@^0.7.0":
   version "0.7.0"
@@ -2521,13 +2533,19 @@
     "@vueuse/shared" "7.5.3"
     vue-demi "*"
 
-"@vueuse/core@^7.5.4":
-  version "7.5.5"
-  resolved "https://registry.npmmirror.com/@vueuse/core/download/@vueuse/core-7.5.5.tgz#c2f2a8783de0884acfb0be25e71ec3c6d1f9c42e"
-  integrity sha512-RBDqmIoGfak4h3xdXa/Av+ibkb8NY044wEy6+PG2FAWNaID8/FkqmSFjbxogrbmpSX1yZ1PBHrM8DUp/FrIpbg==
+"@vueuse/core@^8.1.2":
+  version "8.2.0"
+  resolved "https://registry.npmmirror.com/@vueuse/core/-/core-8.2.0.tgz#2e9163c0bbe8dcb240fdd89d9c8a52576fce8db7"
+  integrity sha512-89ZfKtFHz5ynfpWyFVXtK0yePJ2MZqFaOxnGeZn7cIp8KFbPRlu6Wsxi3gBkJNpjq+q9qbEh6MjV7QBvqCQ5Og==
   dependencies:
-    "@vueuse/shared" "7.5.5"
+    "@vueuse/metadata" "8.2.0"
+    "@vueuse/shared" "8.2.0"
     vue-demi "*"
+
+"@vueuse/metadata@8.2.0":
+  version "8.2.0"
+  resolved "https://registry.npmmirror.com/@vueuse/metadata/-/metadata-8.2.0.tgz#f62a02e840220768941b3683dd8171c39581b950"
+  integrity sha512-cbaezEccNuxQC+OiudG9VjZNg9/RbAAHkyuhC6+8Gsgsc+MvDhfn1NrV6NNTaldLlZgJFgUiYOkrf3JGTTTGXQ==
 
 "@vueuse/shared@7.5.3":
   version "7.5.3"
@@ -2536,10 +2554,10 @@
   dependencies:
     vue-demi "*"
 
-"@vueuse/shared@7.5.5":
-  version "7.5.5"
-  resolved "https://registry.npmmirror.com/@vueuse/shared/download/@vueuse/shared-7.5.5.tgz#0e5c16b848b4a19e5b9ee9199a997e1f6dd39679"
-  integrity sha512-mzzTsotHQRPnPAChy8iCv6ek/90CKYhAFyMRgNsMxpT0afZJkbMO/X0OaOu/1NuGbgb8UVjlsWKmCUgKTOF5hA==
+"@vueuse/shared@8.2.0":
+  version "8.2.0"
+  resolved "https://registry.npmmirror.com/@vueuse/shared/-/shared-8.2.0.tgz#a8e2b637cfd866ea985615df9ec4913c4355c084"
+  integrity sha512-dTw7EJZgZCgG9DoVAiz4LtmKnIFXuE/idUFzvqRAJLjbPiVJc+qQH5kDUdKHI3W1U9t//1mdasQEKONArburiQ==
   dependencies:
     vue-demi "*"
 
@@ -4448,10 +4466,10 @@ dateformat@^3.0.0:
   resolved "https://registry.nlark.com/dateformat/download/dateformat-3.0.3.tgz"
   integrity sha1-puN0maTZqc+F71hyBE1ikByYia4=
 
-dayjs@^1.10.7:
-  version "1.10.7"
-  resolved "https://registry.nlark.com/dayjs/download/dayjs-1.10.7.tgz"
-  integrity sha1-LPX5Gt0oEWdIRAhmoKHSbzps5Gg=
+dayjs@^1.11.0:
+  version "1.11.0"
+  resolved "https://registry.npmmirror.com/dayjs/-/dayjs-1.11.0.tgz#009bf7ef2e2ea2d5db2e6583d2d39a4b5061e805"
+  integrity sha512-JLC809s6Y948/FuCZPm5IX8rRhQwOiyMb2TfVVQEixG7P8Lm/gt5S7yoQZmC8x1UehI9Pb7sksEt4xx14m+7Ug==
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.9:
   version "2.6.9"
@@ -4883,18 +4901,22 @@ electron-to-chromium@^1.4.17:
   resolved "https://registry.npmmirror.com/electron-to-chromium/download/electron-to-chromium-1.4.37.tgz#eedd53cad229ae2d1632b958a92a3d7d7b27f553"
   integrity sha512-XIvFB1omSAxYgHYX48sC+HR8i/p7lx7R+0cX9faElg1g++h9IilCrJ12+bQuY+d96Wp7zkBiJwMOv+AhLtLrTg==
 
-element-plus@^1.3.0-beta.9:
-  version "1.3.0-beta.9"
-  resolved "https://registry.npmmirror.com/element-plus/download/element-plus-1.3.0-beta.9.tgz#eb182f30b56003b5b89b2174e6f78b603e246364"
-  integrity sha512-h+I6VVtJNwjVkNhfhXp2oCYjgBN7kWQ2Y6nWzwc0wiphAlQDhGuBXAGj9eYpf1uOrMgIpFFwbRhvK7C6sOJsWg==
+element-plus@^2.1.7:
+  version "2.1.7"
+  resolved "https://registry.npmmirror.com/element-plus/-/element-plus-2.1.7.tgz#329226c5de5f0407c60e732f447bd96a1052d1ec"
+  integrity sha512-jamE9F/a2rfAQJwf3kLaDfWXxhjXuAJAvrto76SLJsJfr3iIUAzC849RHdn6h7tNJy9Yanq8GlQAsdBe5lJmrA==
   dependencies:
     "@ctrl/tinycolor" "^3.4.0"
-    "@element-plus/icons-vue" "^0.2.6"
-    "@popperjs/core" "^2.11.2"
-    "@vueuse/core" "^7.5.4"
+    "@element-plus/icons-vue" "^1.1.4"
+    "@floating-ui/dom" "^0.4.1"
+    "@popperjs/core" "^2.11.4"
+    "@vueuse/core" "^8.1.2"
     async-validator "^4.0.7"
-    dayjs "^1.10.7"
+    dayjs "^1.11.0"
+    escape-html "^1.0.3"
     lodash "^4.17.21"
+    lodash-es "^4.17.21"
+    lodash-unified "^1.0.2"
     memoize-one "^6.0.0"
     normalize-wheel-es "^1.1.1"
 
@@ -5312,7 +5334,7 @@ escalade@^3.1.1:
   resolved "https://registry.nlark.com/escalade/download/escalade-3.1.1.tgz"
   integrity sha1-2M/ccACWXFoBdLSoLqpcBVJ0LkA=
 
-escape-html@~1.0.3:
+escape-html@^1.0.3, escape-html@~1.0.3:
   version "1.0.3"
   resolved "https://registry.npm.taobao.org/escape-html/download/escape-html-1.0.3.tgz"
   integrity sha1-Aljq5NPQwJdN4cFpGI7wBR0dGYg=
@@ -8644,6 +8666,11 @@ lodash-es@^4.17.21:
   version "4.17.21"
   resolved "https://registry.nlark.com/lodash-es/download/lodash-es-4.17.21.tgz"
   integrity sha1-Q+YmxG5lkbd1C+srUBFzkMYJ4+4=
+
+lodash-unified@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmmirror.com/lodash-unified/-/lodash-unified-1.0.2.tgz#bb2694db3533781e5cce984af60cfaea318b83c1"
+  integrity sha512-OGbEy+1P+UT26CYi4opY4gebD8cWRDxAT6MAObIVQMiqYdxZr1g3QHWCToVsm31x2NkLS4K3+MC2qInaRMa39g==
 
 lodash.debounce@^4.0.8:
   version "4.0.8"
