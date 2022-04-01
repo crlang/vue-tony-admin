@@ -7,7 +7,7 @@
       :maxSize="5"
       :maxNumber="3"
       @delete="handleDelete"
-      :accept="['png','jpg','jpeg','webp','svg','xlsx']" />
+      :accept="['png','jpg','jpeg','webp','svg']" />
 
     <el-alert
       type="error"
