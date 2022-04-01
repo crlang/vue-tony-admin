@@ -1,4 +1,4 @@
-import { createFakeUserList } from 'mock/sys/user'
+import { createFakeUserList } from '../sys/user'
 import { MockMethod } from 'vite-plugin-mock'
 import { resultError, resultPageSuccess, resultSuccess } from '../_util'
 

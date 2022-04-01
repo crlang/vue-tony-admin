@@ -56,9 +56,5 @@ import { List, ListItem } from '@/components/List'
   margin-bottom: 12px;
   font-size: 14px;
   color: var(--text-secondary-color);
-
-  :deep(a) {
-    color: var(--primary-color);
-  }
 }
 </style>

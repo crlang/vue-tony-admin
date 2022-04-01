@@ -58,7 +58,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       port: VITE_PORT,
       // Load proxy configuration from .env
       proxy: createProxy(VITE_PROXY),
-      open: `http://127.0.0.1:${VITE_PORT}`,
+      open: true,
     },
     build: {
       target: 'es2015',
@@ -74,6 +74,36 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       brotliSize: false,
       chunkSizeWarningLimit: 2000,
       emptyOutDir: true,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              const arr = id.toString().split('node_modules/')[1].split('/')
+              switch (arr[0]) {
+                case '@popperjs':
+                case '@vue':
+                case '@iconify':
+                case '@vueuse':
+                case '@zxcvbn-ts':
+                case 'tinymce':
+                case 'vditor':
+                case 'showdown':
+                case 'qrcode':
+                case 'print-js':
+                case 'sortablejs':
+                case 'mockjs':
+                case 'echarts':
+                case 'intro.js':
+                case 'element-plus':
+                case '@element-plus':
+                  return 'ex-pkg-' + arr[0]
+                default :
+                  return 'ex-pkg-vendor'
+              }
+            }
+          },
+        },
+      },
     },
     define: {
       // setting vue-i18-next
