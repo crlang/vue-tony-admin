@@ -9,11 +9,12 @@
     <BasicForm @register="registerForm">
       <template #menu="{ model, field }">
         <el-tree
-          v-model="model[field]"
-          :treeData="treeData"
-          :prop="{ label: 'menuName', key: 'id' }"
-          checkable
-          toolbar
+          :default-checked-keys="model[field]"
+          :data="treeData"
+          node-key="id"
+          defaultExpandAll
+          :props="{ label: 'menuName'}"
+          show-checkbox
           title="菜单分配"
         />
       </template>
@@ -52,6 +53,7 @@ export default defineComponent({
       if (unref(treeData).length === 0) {
         treeData.value = (await getMenuList()) as any as TreeType[]
       }
+      console.log('treeData+++', treeData.value)
       isUpdate.value = !!data?.isUpdate
 
       if (unref(isUpdate)) {
@@ -65,10 +67,8 @@ export default defineComponent({
 
     async function handleSubmit() {
       try {
-        const values = await validate()
+        await validate()
         setDrawerProps({ confirmLoading: true })
-        // TODO custom api
-        console.log(values)
         closeDrawer()
         emit('success')
       } finally {

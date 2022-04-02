@@ -66,15 +66,15 @@ export default defineComponent({
       })
     }
 
-    function handleEdit(record: Recordable) {
+    function handleEdit({ row }) {
       openDrawer(true, {
-        record,
+        record: row,
         isUpdate: true,
       })
     }
 
-    function handleDelete(record: Recordable) {
-      console.log(record)
+    function handleDelete({ row }) {
+      console.table(row)
     }
 
     function handleSuccess() {

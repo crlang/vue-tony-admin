@@ -28,7 +28,6 @@ export default defineComponent({
     const [registerForm, { resetFields, setFieldsValue, updateSchema, validate }] = useForm({
       labelWidth: 100,
       schemas: formSchema,
-      showActionButtonGroup: false,
       colProps: { lg: 12, md: 24 },
     })
 
@@ -53,10 +52,8 @@ export default defineComponent({
 
     async function handleSubmit() {
       try {
-        const values = await validate()
+        await validate()
         setDrawerProps({ confirmLoading: true })
-        // TODO custom api
-        console.log(values)
         closeDrawer()
         emit('success')
       } finally {

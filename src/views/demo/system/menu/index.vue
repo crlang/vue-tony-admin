@@ -57,11 +57,8 @@ export default defineComponent({
         labelWidth: 120,
         schemas: searchFormSchema,
       },
-      pagination: undefined,
       useSearchForm: true,
-      showTableSetting: true,
       border: true,
-      showIndexColumn: false,
     })
 
     function handleCreate() {
@@ -70,15 +67,15 @@ export default defineComponent({
       })
     }
 
-    function handleEdit(record: Recordable) {
+    function handleEdit({ row }) {
       openDrawer(true, {
-        record,
+        record: row,
         isUpdate: true,
       })
     }
 
-    function handleDelete(record: Recordable) {
-      console.log(record)
+    function handleDelete({ row }) {
+      console.log(row)
     }
 
     function handleSuccess() {

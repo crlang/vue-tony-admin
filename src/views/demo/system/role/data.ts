@@ -25,30 +25,30 @@ export const columns: BasicColumn[] = [
     label: '状态',
     prop: 'status',
     width: 120,
-    customRender: ({ record }) => {
+    customRender: ({ record }, { row }) => {
       if (!Reflect.has(record, 'pendingStatus')) {
-        record.pendingStatus = false
+        row.pendingStatus = false
       }
       return h(ElSwitch, {
-        modelValue: record.status === '1',
+        modelValue: record.status === '0',
         activeText: 'Y',
         inactiveText: 'N',
         inlinePrompt: true,
         loading: record.pendingStatus,
         onChange(checked: boolean) {
-          record.pendingStatus = true
-          const newStatus = checked ? '1' : '0'
+          row.pendingStatus = true
+          const newStatus = checked ? '0' : '1'
           const { createMessage } = useMessage()
           setRoleStatus(record.id, newStatus)
             .then(() => {
-              record.status = newStatus
+              row.status = newStatus
               createMessage.success(`已成功修改角色状态`)
             })
             .catch(() => {
               createMessage.error('修改角色状态失败')
             })
             .finally(() => {
-              record.pendingStatus = false
+              row.pendingStatus = false
             })
         },
       })
