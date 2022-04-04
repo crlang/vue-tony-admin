@@ -113,6 +113,11 @@ export default defineComponent({
       animation: iconLoadingCircle 1s infinite linear;
     }
   }
+
+  svg {
+    width: 1em;
+    height: 1em;
+  }
 }
 
 span.iconify {

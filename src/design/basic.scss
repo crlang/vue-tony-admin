@@ -96,10 +96,10 @@ img, svg, iframe {
   vertical-align: middle;
 }
 
-svg {
-  width: 1em;
-  height: 1em;
-}
+// svg {
+//   width: inherit;
+//   height: inherit;
+// }
 
 // fix the echarts
 [_echarts_instance_] svg {
