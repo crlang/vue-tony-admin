@@ -1,5 +1,5 @@
 <template>
-  <div :class="[prefixCls, { fullscreen }]">
+  <div :class="[prefixCls, { 'is-fullscreen': fullscreen }]">
     <ElUpload
       :file-list="[]"
       multiple
@@ -10,6 +10,7 @@
       <ElButton
         type="primary"
         size="small"
+        plain
         v-bind="{ ...getButtonProps }">
         {{ t('component.upload.imgUpload') }}
       </ElButton>
@@ -20,7 +21,6 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { ElButton, ElUpload } from 'element-plus'
-import { useDesign } from '@/hooks/web/useDesign'
 import { useGlobSetting } from '@/hooks/setting'
 import { useI18n } from '@/hooks/web/useI18n'
 
@@ -31,18 +31,20 @@ export default defineComponent({
     fullscreen: {
       type: Boolean,
     },
+    prefixCls: {
+      type: String,
+    },
     disabled: {
       type: Boolean,
       default: false,
     },
   },
-  emits: ['uploading', 'done', 'error'],
+  emits: ['uploading', 'success', 'fail'],
   setup(props, { emit }) {
     let uploading = false
 
     const { uploadUrl } = useGlobSetting()
     const { t } = useI18n()
-    const { prefixCls } = useDesign('tinymce-img-upload')
 
     const getButtonProps = computed(() => {
       const { disabled } = props
@@ -52,27 +54,25 @@ export default defineComponent({
     })
 
     function handleChange(info: Recordable) {
-      const file = info.file
-      const status = file?.status
-      const url = file?.response?.url
-      const name = file?.name
+      const status = info?.status
+      const url = info?.response?.url
+      const name = info?.name
 
-      if (status === 'uploading') {
+      if (status === 'uploading' || status === 'ready') {
         if (!uploading) {
           emit('uploading', name)
           uploading = true
         }
-      } else if (status === 'done') {
-        emit('done', name, url)
+      } else if (status === 'success') {
+        emit('success', name, url)
         uploading = false
-      } else if (status === 'error') {
-        emit('error')
+      } else if (status === 'fail') {
+        emit('fail')
         uploading = false
       }
     }
 
     return {
-      prefixCls,
       handleChange,
       uploadUrl: uploadUrl as string,
       t,
@@ -81,18 +81,3 @@ export default defineComponent({
   },
 })
 </script>
-<style lang="scss" scoped>
-$prefix-cls: '#{$tonyname}-tinymce-img-upload';
-
-.#{$prefix-cls} {
-  position: absolute;
-  top: 4px;
-  right: 10px;
-  z-index: 20;
-
-  &.fullscreen {
-    position: fixed;
-    z-index: 10000;
-  }
-}
-</style>

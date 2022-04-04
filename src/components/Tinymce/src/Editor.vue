@@ -4,8 +4,9 @@
     :style="{ width: containerWidth }">
     <ImgUpload
       :fullscreen="fullscreen"
+      :prefixCls="`${prefixCls}__imageupload`"
       @uploading="handleImageUploading"
-      @done="handleDone"
+      @success="handleImageSuccess"
       v-if="showImageUpload"
       v-show="editorRef"
       :disabled="disabled" />
@@ -20,43 +21,42 @@
 
 <script lang="ts">
 import type { Editor, RawEditorSettings } from 'tinymce'
-
 import tinymce from 'tinymce/tinymce'
 import 'tinymce/themes/silver'
 import 'tinymce/icons/default/icons'
-import 'tinymce/plugins/advlist'
-import 'tinymce/plugins/anchor'
-import 'tinymce/plugins/autolink'
-import 'tinymce/plugins/autosave'
-import 'tinymce/plugins/code'
-import 'tinymce/plugins/codesample'
-import 'tinymce/plugins/directionality'
-import 'tinymce/plugins/fullscreen'
-import 'tinymce/plugins/hr'
-import 'tinymce/plugins/insertdatetime'
-import 'tinymce/plugins/link'
-import 'tinymce/plugins/lists'
-import 'tinymce/plugins/media'
-import 'tinymce/plugins/nonbreaking'
-import 'tinymce/plugins/noneditable'
-import 'tinymce/plugins/pagebreak'
-import 'tinymce/plugins/paste'
-import 'tinymce/plugins/preview'
-import 'tinymce/plugins/print'
-import 'tinymce/plugins/save'
-import 'tinymce/plugins/searchreplace'
+// import 'tinymce/plugins/advlist'
+// import 'tinymce/plugins/anchor'
+// import 'tinymce/plugins/autolink'
+// import 'tinymce/plugins/autosave'
+// import 'tinymce/plugins/code'
+// import 'tinymce/plugins/codesample'
+// import 'tinymce/plugins/directionality'
+// import 'tinymce/plugins/fullscreen'
+// import 'tinymce/plugins/hr'
+// import 'tinymce/plugins/insertdatetime'
+// import 'tinymce/plugins/link'
+// import 'tinymce/plugins/lists'
+// import 'tinymce/plugins/media'
+// import 'tinymce/plugins/nonbreaking'
+// import 'tinymce/plugins/noneditable'
+// import 'tinymce/plugins/pagebreak'
+// import 'tinymce/plugins/paste'
+// import 'tinymce/plugins/preview'
+// import 'tinymce/plugins/print'
+// import 'tinymce/plugins/save'
+// import 'tinymce/plugins/searchreplace'
+// import 'tinymce/plugins/tabfocus'
+// import 'tinymce/plugins/template'
+// import 'tinymce/plugins/textpattern'
+// import 'tinymce/plugins/visualblocks'
+// import 'tinymce/plugins/visualchars'
+// import 'tinymce/plugins/wordcount'
 // import 'tinymce/plugins/spellchecker'
-import 'tinymce/plugins/tabfocus'
 // import 'tinymce/plugins/table';
-import 'tinymce/plugins/template'
-import 'tinymce/plugins/textpattern'
-import 'tinymce/plugins/visualblocks'
-import 'tinymce/plugins/visualchars'
-import 'tinymce/plugins/wordcount'
 
 import { defineComponent, computed, nextTick, ref, unref, watch, onDeactivated, onBeforeUnmount } from 'vue'
 import ImgUpload from './ImgUpload.vue'
-import { toolbar, plugins } from './tinymce'
+import { toolbar, plugins, menubar } from './tinymce'
 import { buildShortUUID } from '@/utils/uuid'
 import { bindHandlers } from './helper'
 import { onMountedOrActivated } from '@/hooks/core/onMountedOrActivated'
@@ -160,7 +160,7 @@ export default defineComponent({
         selector: `#${unref(tinymceId)}`,
         height,
         toolbar,
-        menubar: 'file edit insert view format table',
+        menubar,
         plugins,
         language_url: publicPath + 'tinymce/langs/' + langName.value + '.js',
         language: langName.value,
@@ -296,7 +296,7 @@ export default defineComponent({
       setValue(editor, content)
     }
 
-    function handleDone(name: string, url: string) {
+    function handleImageSuccess(name: string, url: string) {
       const editor = unref(editorRef)
       if (!editor) {
         return
@@ -318,7 +318,7 @@ export default defineComponent({
       elRef,
       tinymceId,
       handleImageUploading,
-      handleDone,
+      handleImageSuccess,
       editorRef,
       fullscreen,
       disabled,
@@ -337,6 +337,18 @@ $prefix-cls: '#{$tonyname}-tinymce-container';
   textarea {
     z-index: -1;
     visibility: hidden;
+  }
+
+  &__imageupload {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    z-index: 20;
+
+    &.is-fullscreen {
+      position: fixed;
+      z-index: 9999;
+    }
   }
 }
 </style>
