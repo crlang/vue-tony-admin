@@ -11,31 +11,28 @@ import { defineComponent, ref, unref, nextTick, computed, watch, onBeforeUnmount
 import Vditor from 'vditor'
 import 'vditor/dist/index.css'
 import { useLocale } from '@/locales/useLocale'
-import { useModalContext } from '../../Modal'
 import { useRootSetting } from '@/hooks/setting/useRootSetting'
 import { onMountedOrActivated } from '@/hooks/core/onMountedOrActivated'
 import { useDesign } from '@/hooks/web/useDesign'
 
-type Lang = 'zh_CN' | 'en_US' | 'ja_JP' | 'ko_KR' | undefined
+type Lang = 'zh_CN' | 'en_US' | undefined
 
 export default defineComponent({
   inheritAttrs: false,
   props: {
-    height: { type: Number, default: 360 },
-    value: { type: String, default: '' },
+    height: { type: Number, default: 400 },
+    modelValue: { type: String, default: '' },
   },
-  emits: ['change', 'get', 'update:value'],
+  emits: ['change', 'get', 'update:modelValue'],
   setup(props, { attrs, emit }) {
     const wrapRef = ref<ElRef>(null)
     const vditorRef = ref(null) as Ref<Nullable<Vditor>>
     const initedRef = ref(false)
     const { prefixCls } = useDesign('markdown')
 
-    const modalFn = useModalContext()
-
     const { getLocale } = useLocale()
     const { getDarkMode } = useRootSetting()
-    const valueRef = ref(props.value || '')
+    const valueRef = ref(props.modelValue || '')
 
     watch(
       [() => getDarkMode.value, () => initedRef.value],
@@ -62,17 +59,11 @@ export default defineComponent({
       }
     )
 
-    const getCurrentLang = computed((): 'zh_CN' | 'en_US' | 'ja_JP' | 'ko_KR' => {
+    const getCurrentLang = computed((): 'zh_CN' | 'en_US' => {
       let lang: Lang
       switch (unref(getLocale)) {
         case 'en':
           lang = 'en_US'
-          break
-        case 'ja':
-          lang = 'ja_JP'
-          break
-        case 'ko':
-          lang = 'ko_KR'
           break
         default:
           lang = 'zh_CN'
@@ -96,21 +87,18 @@ export default defineComponent({
         },
         input: (v) => {
           valueRef.value = v
-          emit('update:value', v)
+          emit('update:modelValue', v)
           emit('change', v)
         },
         after: () => {
           nextTick(() => {
-            modalFn?.redoModalHeight?.()
             insEditor.setValue(valueRef.value)
             vditorRef.value = insEditor
             initedRef.value = true
             emit('get', instance)
           })
         },
-        blur: () => {
-          // unref(vditorRef)?.setValue(props.value);
-        },
+        blur: () => { },
         ...bindValue,
         cache: {
           enable: false,

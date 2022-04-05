@@ -1,6 +1,6 @@
 
 <template>
-  <div :class="[$props.class,prefixCls]">
+  <div :class="prefixCls">
     <!-- eslint-disable-next-line vue/no-v-html -->
     <div v-html="getHtmlData"></div>
   </div>
@@ -13,13 +13,12 @@ import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   props: {
-    value: { type: String },
-    class: { type: String },
+    modelValue: { type: String },
   },
   setup(props) {
     const { prefixCls } = useDesign('markdown-view')
     const converter = new showdown.Converter()
-    const getHtmlData = computed(() => converter.makeHtml(props.value || ''))
+    const getHtmlData = computed(() => converter.makeHtml(props.modelValue || ''))
 
     converter.setOption('tables', true)
 
