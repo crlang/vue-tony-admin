@@ -18,7 +18,7 @@
 或者通过克隆方式
 
 ```bash
-git clone -b Markdown https://gitee.com/crlang/vue-tony-admin.git
+git clone -b Markdown https://github.com/crlang/vue-tony-admin.git Markdown
 ```
 
 **2-迁移**

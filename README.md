@@ -18,7 +18,7 @@ Just clone or download to get components quickly
 Or Clone
 
 ```bash
-git clone -b Markdown https://github.com/crlang/vue-tony-admin.git
+git clone -b Markdown https://github.com/crlang/vue-tony-admin.git Markdown
 ```
 
 **2-Migrate**
