@@ -1,4 +1,4 @@
 import Vditor from 'vditor'
-export interface MarkDownActionType {
+export interface MarkdownActionType {
   getVditor: () => Vditor
 }

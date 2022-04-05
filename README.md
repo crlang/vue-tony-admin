@@ -1,6 +1,6 @@
-# MarkDown
+# Markdown
 
-Currently it is an extension component MarkDown Editor, use the documentation reference `Extended Components->MarkDown`
+Currently it is an extension component Markdown Editor, use the documentation reference `Extended Components->Markdown`
 
 ## Precautions
 
@@ -13,17 +13,17 @@ In order to prevent abnormal use of components due to inconsistent versions, ple
 
 Just clone or download to get components quickly
 
-[Download MarkDown zip now](https://codeload.github.com/crlang/vue-tony-admin/zip/refs/heads/MarkDown)
+[Download Markdown zip now](https://codeload.github.com/crlang/vue-tony-admin/zip/refs/heads/Markdown)
 
 Or Clone
 
 ```bash
-git clone -b MarkDown https://gitee.com/crlang/vue-tony-admin.git
+git clone -b Markdown https://github.com/crlang/vue-tony-admin.git
 ```
 
 **2-Migrate**
 
-Copy the `MarkDown` folder to the TonyAdmin components directory `src/components`
+Copy the `Markdown` folder to the TonyAdmin components directory `src/components`
 
 **3-Install**
 
@@ -39,19 +39,19 @@ yarn add showdown@^1.9.1 vditor@^3.8.10
 
 ```vue
 <template>
-  <MarkDown v-model:modelValue="markdownValue" ref="markDownRef" placeholder="这是占位文本" />
+  <Markdown v-model:modelValue="markdownValue" ref="markDownRef" placeholder="这是占位文本" />
 </template>
 
 <script lang="ts">
-  import type { MarkDownActionType } from '@/components/Markdown';
+  import type { MarkdownActionType } from '@/components/Markdown';
 
   import { defineComponent, ref } from 'vue';
-  import { MarkDown } from '@/components/Markdown';
+  import { Markdown } from '@/components/Markdown';
 
   export default defineComponent({
-    components: { MarkDown },
+    components: { Markdown },
     setup() {
-      const markDownRef = ref<Nullable<MarkDownActionType>>(null);
+      const markDownRef = ref<Nullable<MarkdownActionType>>(null);
       const markdownValue = ref(`
 # title
 

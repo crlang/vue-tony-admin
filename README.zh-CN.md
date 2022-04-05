@@ -39,19 +39,19 @@ yarn add showdown@^1.9.1 vditor@^3.8.10
 
 ```vue
 <template>
-  <MarkDown v-model:modelValue="markdownValue" ref="markDownRef" placeholder="这是占位文本" />
+  <Markdown v-model:modelValue="markdownValue" ref="markDownRef" placeholder="这是占位文本" />
 </template>
 
 <script lang="ts">
-  import type { MarkDownActionType } from '@/components/Markdown';
+  import type { MarkdownActionType } from '@/components/Markdown';
 
   import { defineComponent, ref } from 'vue';
-  import { MarkDown } from '@/components/Markdown';
+  import { Markdown } from '@/components/Markdown';
 
   export default defineComponent({
-    components: { MarkDown },
+    components: { Markdown },
     setup() {
-      const markDownRef = ref<Nullable<MarkDownActionType>>(null);
+      const markDownRef = ref<Nullable<MarkdownActionType>>(null);
       const markdownValue = ref(`
 # title
 
