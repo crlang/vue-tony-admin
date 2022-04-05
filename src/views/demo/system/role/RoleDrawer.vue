@@ -53,7 +53,6 @@ export default defineComponent({
       if (unref(treeData).length === 0) {
         treeData.value = (await getMenuList()) as any as TreeType[]
       }
-      console.log('treeData+++', treeData.value)
       isUpdate.value = !!data?.isUpdate
 
       if (unref(isUpdate)) {

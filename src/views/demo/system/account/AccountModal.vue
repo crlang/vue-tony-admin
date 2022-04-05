@@ -36,8 +36,6 @@ export default defineComponent({
       setModalProps({ confirmButton: { loading: false } })
       isUpdate.value = !!data?.isUpdate
 
-      console.log('useModalInner data +++', data, !!data?.isUpdate)
-
       if (unref(isUpdate)) {
         rowId.value = data.record.id
         setFieldsValue({

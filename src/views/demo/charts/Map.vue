@@ -10,6 +10,7 @@ import { defineComponent, PropType, ref, Ref, onMounted } from 'vue'
 import { useECharts } from '@/hooks/web/useECharts'
 import { mapData } from './data'
 import { registerMap } from 'echarts'
+import axios from 'axios'
 
 export default defineComponent({
   props: {
@@ -27,8 +28,8 @@ export default defineComponent({
     const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>)
 
     onMounted(async () => {
-      const json = (await (await import('./china.json')).default) as any
-      registerMap('china', json)
+      const json = await axios.get('https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json')
+      registerMap('china', json.data)
       setOptions({
         visualMap: [
           {
@@ -67,7 +68,7 @@ export default defineComponent({
               areaColor: '#2f82ce',
               borderColor: '#0DAAC1',
             },
-            data: mapData,
+            data: mapData(),
           },
         ],
       })

@@ -1,42 +1,15 @@
 import { randomNumber } from '@/utils/demo'
 
-export const mapData:any = [
-  { name: '北京', value2: randomNumber(100000) },
-  { name: '天津', value: randomNumber(100000) },
-  { name: '上海', value: randomNumber(100000) },
-  { name: '重庆', value: randomNumber(100000) },
-  { name: '河北', value: randomNumber(100000) },
-  { name: '河南', value: randomNumber(100000) },
-  { name: '云南', value: randomNumber(100000) },
-  { name: '辽宁', value: randomNumber(100000) },
-  { name: '黑龙江', value: randomNumber(100000) },
-  { name: '湖南', value: randomNumber(100000) },
-  { name: '安徽', value: randomNumber(100000) },
-  { name: '山东', value: randomNumber(100000) },
-  { name: '新疆', value: randomNumber(100000) },
-  { name: '江苏', value: randomNumber(100000) },
-  { name: '浙江', value: randomNumber(100000) },
-  { name: '江西', value: randomNumber(100000) },
-  { name: '湖北', value: randomNumber(100000) },
-  { name: '广西', value: randomNumber(100000) },
-  { name: '甘肃', value: randomNumber(100000) },
-  { name: '山西', value: randomNumber(100000) },
-  { name: '内蒙古', value: randomNumber(100000) },
-  { name: '陕西', value: randomNumber(100000) },
-  { name: '吉林', value: randomNumber(100000) },
-  { name: '福建', value: randomNumber(100000) },
-  { name: '贵州', value: randomNumber(100000) },
-  { name: '广东', value: randomNumber(100000) },
-  { name: '青海', value: randomNumber(100000) },
-  { name: '西藏', value: randomNumber(100000) },
-  { name: '四川', value: randomNumber(100000) },
-  { name: '宁夏', value: randomNumber(100000) },
-  { name: '海南', value: randomNumber(100000) },
-  { name: '南海诸岛', value: randomNumber(100000) },
-  { name: '台湾', value: randomNumber(100000) },
-  { name: '香港', value: randomNumber(100000) },
-  { name: '澳门', value: randomNumber(100000) },
-]
+export const mapData = () => {
+  const _cityData:any = ['北京市', '天津市', '上海市', '重庆市', '河北省', '河南省', '云南省', '辽宁省', '黑龙江省', '湖南省', '安徽省', '山东省', '新疆维吾尔自治区', '江苏省', '浙江省', '江西省', '湖北省', '广西壮族自治区', '甘肃省', '山西省', '内蒙古自治区', '陕西省', '吉林省', '福建省', '贵州省', '广东省', '青海省', '西藏自治区', '四川省', '宁夏回族自治区', '海南省', '南海诸岛', '台湾省', '香港特别行政区', '澳门特别行政区', '']
+
+  return _cityData.map(k => {
+    return {
+      name: k,
+      value: randomNumber(100000),
+    }
+  })
+}
 
 export const getLineData = () => {
   const category: any[] = []
