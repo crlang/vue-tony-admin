@@ -21,6 +21,7 @@
 
 <script lang="ts">
 import type { Editor, RawEditorSettings } from 'tinymce'
+
 import tinymce from 'tinymce/tinymce'
 import 'tinymce/themes/silver'
 import 'tinymce/icons/default/icons'
@@ -94,6 +95,13 @@ const tinymceProps = {
     default: plugins,
   },
   /**
+   * Editor menubar
+   */
+  menubar: {
+    type: [String, Boolean] as PropType<string | boolean>,
+    default: menubar,
+  },
+  /**
    * Editor height
    */
   height: {
@@ -154,7 +162,7 @@ export default defineComponent({
     })
 
     const initOptions = computed((): RawEditorSettings => {
-      const { height, options, toolbar, plugins } = props
+      const { height, options, toolbar, plugins, menubar } = props
       const publicPath = import.meta.env.VITE_PUBLIC_PATH || '/'
       return {
         selector: `#${unref(tinymceId)}`,
