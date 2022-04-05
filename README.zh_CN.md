@@ -13,7 +13,7 @@
 
 只需要克隆或者下载即可快速获得组件
 
-[直接下载 Tinymce zip包](https://codeload.github.com/crlang/vue-tony-admin/zip/refs/heads/main)
+[直接下载 Tinymce zip包](https://codeload.github.com/crlang/vue-tony-admin/zip/refs/heads/Tinymce)
 
 或者通过克隆方式
 

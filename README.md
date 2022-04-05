@@ -13,7 +13,7 @@ In order to prevent abnormal use of components due to inconsistent versions, ple
 
 Just clone or download to get components quickly
 
-[Download Tinymce zip now](https://codeload.github.com/crlang/vue-tony-admin/zip/refs/heads/main)
+[Download Tinymce zip now](https://codeload.github.com/crlang/vue-tony-admin/zip/refs/heads/Tinymce)
 
 Or Clone
 
