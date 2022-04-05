@@ -28,11 +28,11 @@ Copy the `Markdown` folder to the TonyAdmin components directory `src/components
 **3-Install**
 
 ```bash
-npm install showdown@^1.9.1 vditor@^3.8.10
+npm install showdown@^1.9.1 vditor@^3.8.10 @types/showdown@^1.9.4
 
 # Or yarn
 
-yarn add showdown@^1.9.1 vditor@^3.8.10
+yarn add showdown@^1.9.1 vditor@^3.8.10 @types/showdown@^1.9.4
 ```
 
 **4-Demo**
