@@ -28,11 +28,11 @@ git clone -b Markdown https://gitee.com/crlang/vue-tony-admin.git
 **3-安装依赖**
 
 ```bash
-npm install tinymce@^5.10.2
+npm install showdown@^1.9.1 vditor@^3.8.10
 
 # 或者通过yarn安装
 
-yarn add tinymce@^5.10.2
+yarn add showdown@^1.9.1 vditor@^3.8.10
 ```
 
 **4-使用例子**

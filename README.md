@@ -28,11 +28,11 @@ Copy the `MarkDown` folder to the TonyAdmin components directory `src/components
 **3-Install**
 
 ```bash
-npm install tinymce@^5.10.2
+npm install showdown@^1.9.1 vditor@^3.8.10
 
 # Or yarn
 
-yarn add tinymce@^5.10.2
+yarn add showdown@^1.9.1 vditor@^3.8.10
 ```
 
 **4-Demo**
