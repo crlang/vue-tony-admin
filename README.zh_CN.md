@@ -18,7 +18,7 @@
 或者通过克隆方式
 
 ```bash
-git clone -b Tinymce https://gitee.com/crlang/vue-tony-admin.git
+git clone -b Tinymce https://github.com/crlang/vue-tony-admin.git Tinymce
 ```
 
 **2-迁移**

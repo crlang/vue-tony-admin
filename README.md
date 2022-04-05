@@ -18,7 +18,7 @@ Just clone or download to get components quickly
 Or Clone
 
 ```bash
-git clone -b Tinymce https://gitee.com/crlang/vue-tony-admin.git
+git clone -b Tinymce https://github.com/crlang/vue-tony-admin.git Tinymce
 ```
 
 **2-Migrate**
