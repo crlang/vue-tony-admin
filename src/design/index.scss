@@ -18,8 +18,14 @@ $breakpoints: (
 ) !default;
 
 @font-face {
-  font-family: 'urial';
-  src: url('@/assets/fonts/URIAL.ttf');
+  font-family: 'Urial';
+  font-style: normal;
+  font-weight: normal;
+  src: url('@/assets/fonts/URIAL.woff') format('woff'), /* Modern Browsers */
+    url('@/assets/fonts/URIAL.woff2') format('woff2'), /* Modern Browsers */
+    url('@/assets/fonts/URIAL.ttf') format('truetype'); /* Safari, Android, iOS */
+
+  text-rendering: optimizeLegibility;
 }
 
 /* Variables */
@@ -66,7 +72,7 @@ $breakpoints: (
   /* Fonts */
   --font-size-base: 16px;
   --font-family-default: 'Roboto', sans-serif;
-  --font-family-secondary: 'urial', sans-serif;
+  --font-family-secondary: 'Urial', sans-serif;
   --font-family-third: 'Rounded Mplus 1c';
   --font-icons: 'Material Icons';
   --sidebar-width: 15rem;
