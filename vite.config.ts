@@ -85,7 +85,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
                 case '@iconify':
                 case '@vueuse':
                 case '@zxcvbn-ts':
-                case 'tinymce':
                 case 'vditor':
                 case 'showdown':
                 case 'qrcode':
