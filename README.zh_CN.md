@@ -1,41 +1,41 @@
 # Tinymce
 
-Currently it is an extension component Tinymce Rich Text Editor, use the documentation reference `Extended Components->Tinymce`
+当前是拓展组件 Tinymce 富文本编辑器，使用文档参考 `拓展组件->Tinymce 富文本编辑器`
 
-## Precautions
+## 注意
 
-In order to prevent abnormal use of components due to inconsistent versions, please strictly follow the specified version numbers below.
+为了防止版本不一致导致组件使用出现异常，请严格按照下方的指定版本号按照
 
-## Usage
+## 使用
 
 
-**1-Download**
+**1-下载**
 
-Just clone or download to get components quickly
+只需要克隆或者下载即可快速获得组件
 
-[Download Tinymce zip now](https://codeload.github.com/crlang/vue-tony-admin/zip/refs/heads/main)
+[直接下载 Tinymce zip包](https://codeload.github.com/crlang/vue-tony-admin/zip/refs/heads/main)
 
-Or Clone
+或者通过克隆方式
 
 ```bash
 git clone -b Tinymce https://gitee.com/crlang/vue-tony-admin.git
 ```
 
-**2-Migrate**
+**2-迁移**
 
-Copy the `Tinymce` folder to the TonyAdmin components directory `src/components`
+复制 `Tinymce` 文件夹 到TonyAdmin组件目录 `src/components`
 
-**3-Install**
+**3-安装依赖**
 
 ```bash
 npm install tinymce@^5.10.2
 
-# Or yarn
+# 或者通过yarn安装
 
 yarn add tinymce@^5.10.2
 ```
 
-**4-Demo**
+**4-使用例子**
 
 ```vue
 <template>
