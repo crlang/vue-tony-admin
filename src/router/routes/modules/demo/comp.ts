@@ -287,45 +287,6 @@ const comp: AppRouteModule = {
       ],
     },
     {
-      path: 'editor',
-      name: 'EditorDemo',
-      redirect: '/comp/editor/markdown',
-      component: getParentLayout('EditorDemo'),
-      meta: {
-        // icon: 'carbon:table-split',
-        title: t('routes.editor.editor'),
-      },
-      children: [
-        {
-          path: 'markdown',
-          component: getParentLayout('MarkdownDemo'),
-          name: 'MarkdownDemo',
-          meta: {
-            title: t('routes.editor.markdown'),
-          },
-          redirect: '/comp/editor/markdown/index',
-          children: [
-            {
-              path: 'index',
-              name: 'MarkDownBasicDemo',
-              component: () => import('@/views/demo/editor/markdown/index.vue'),
-              meta: {
-                title: t('routes.editor.tinymceBasic'),
-              },
-            },
-            {
-              path: 'editor',
-              name: 'MarkDownFormDemo',
-              component: () => import('@/views/demo/editor/markdown/Editor.vue'),
-              meta: {
-                title: t('routes.editor.tinymceForm'),
-              },
-            },
-          ],
-        },
-      ],
-    },
-    {
       path: 'scroll',
       name: 'ScrollDemo',
       redirect: '/comp/scroll/basic',
