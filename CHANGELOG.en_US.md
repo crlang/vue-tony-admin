@@ -1,3 +1,32 @@
+## [0.2.1](https://github.com/crlang/vue-tony-admin/compare/0.1.1-beta.4...0.2.1) (2022-04-05)
+
+### Bug Fixes
+
+- account management demo adjustment ([42935a3](https://github.com/crlang/vue-tony-admin/commit/42935a34d70e26ebbe7d93e80af6029d8fd8c2b2))
+- add table paging background ([064a94e](https://github.com/crlang/vue-tony-admin/commit/064a94ee7e6ddfc33168deeb9ccab19df59800b0))
+- adjust svg size ([c48e844](https://github.com/crlang/vue-tony-admin/commit/c48e8449dc0d0bd1cd43924127411c86a886fd89))
+- charts demo update ([054a654](https://github.com/crlang/vue-tony-admin/commit/054a6546492d6978bd4eaa0c4523b845c7c594f1))
+- **Markdown:** adjust component name ([34d71d7](https://github.com/crlang/vue-tony-admin/commit/34d71d75f532eb19122c09b23f5638ad804cee75))
+- **Markdown:** component has been migrated to the Markdown branch ([87749af](https://github.com/crlang/vue-tony-admin/commit/87749af7f749ac0729d84abe77fafb649cd693c9))
+- **Markdown:** final optimization ([2631e3e](https://github.com/crlang/vue-tony-admin/commit/2631e3e6d8617e7ad042c30ff34bcddafe8ae151))
+- **Modal:** optimize button default style ([98d11bb](https://github.com/crlang/vue-tony-admin/commit/98d11bbeb471498175889a20b0f7844884b1963c))
+- optimize resource size ([04bba08](https://github.com/crlang/vue-tony-admin/commit/04bba08d0065882c5b1034542eba6cd2e191b434))
+- remove Excel components and migrate to Excel branch ([9dd8be3](https://github.com/crlang/vue-tony-admin/commit/9dd8be3b0c232a8d03b8c7ceef9e7a197a5fc47f))
+- **Tinymce:** add menubar prop ([3da910b](https://github.com/crlang/vue-tony-admin/commit/3da910b153b826f6bb0afeffb35cf1d373ed673b))
+- **Tinymce:** adjust the invocation of the plugin to fix upload errors ([e5005ca](https://github.com/crlang/vue-tony-admin/commit/e5005ca660fd732b037813f20aebdf6a4c6d71db))
+- **Tinymce:** split extension components to Tinymce branch ([aca0333](https://github.com/crlang/vue-tony-admin/commit/aca0333b979288c9e32bdaef0423aa637cf32a4c))
+- upgrade Element Plus version to 2.1.7 ([c10e758](https://github.com/crlang/vue-tony-admin/commit/c10e7585bf5803806a9defad8b4cdefcf5f1a9ab))
+
+### Features
+
+- add new vscode workspace ".vscode/tony.code-workspace" for better development experience ([1ffec11](https://github.com/crlang/vue-tony-admin/commit/1ffec1110fb6409e56aa3a8777cb7dc61747fc31))
+- **Page:** add toolbar header slot ([a50c758](https://github.com/crlang/vue-tony-admin/commit/a50c758213cf44b0d22583a9f4681dc5806b47e8))
+
+### Performance Improvements
+
+- login form optimization ([edb39b2](https://github.com/crlang/vue-tony-admin/commit/edb39b23a6a9bed4cd0d95408db5513de08cfcac))
+- optimize build exception errors, subcontract content, and improve loading speed ([e8825f5](https://github.com/crlang/vue-tony-admin/commit/e8825f5422bba5e9d28ac67d0d0ff700c6976156))
+
 ## [0.1.1-beta.4](https://github.com/crlang/vue-tony-admin/compare/0.1.1-beta.3...0.1.1-beta.4) (2022-03-25)
 
 ### Bug Fixes
