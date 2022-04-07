@@ -25,7 +25,6 @@ export default defineComponent({
       await refreshPage()
       setTimeout(() => {
         loading.value = false
-        // Animation execution time
       }, 1200)
     }
     return { t, handleRedo, loading }

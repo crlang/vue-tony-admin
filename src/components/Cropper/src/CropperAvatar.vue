@@ -159,6 +159,9 @@ $prefix-cls: '#{$tonyname}-cropper-avatar';
 
   &-image-mask {
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: inherit;
     height: inherit;
     cursor: pointer;

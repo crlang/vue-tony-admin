@@ -11,7 +11,9 @@
           :name="item.query ? item.fullPath : item.path"
           :closable="!(item && item.meta && item.meta.affix)">
           <template #label>
-            <TabContent :tabItem="item" />
+            <TabContent
+              :tabItem="item"
+              :prefixCls="prefixCls" />
           </template>
         </ElTabPane>
       </template>
@@ -26,8 +28,8 @@
         v-if="getShowQuick"
         :class="`${prefixCls}__extra-fold`" />
       <TabContent
-        isExtra
-        :tabClass="`${prefixCls}__extra-more`"
+        :type="1"
+        :prefixCls="prefixCls"
         :tabItem="$route"
         v-if="getShowFold" />
     </div>
@@ -256,17 +258,20 @@ $prefix-cls: '#{$tonyname}-multiple-tabs';
         display: inline-flex;
         align-items: center;
         height: var(--tabs-height);
-        padding: 0;
-        margin: 0 4px;
-        line-height: 1;
-        background: var(--background-primary-color);
-        border: 1px solid var(--el-border-color-light);
+        padding: 0 30px;
+        margin-top: 5.95px;
+        margin-right: -18px;
+        line-height: var(--tabs-height);
+        text-align: center;
+        border: none;
+        outline: none;
 
         &.is-active {
-          margin-bottom: -1px;
-          color: var(--primary-color);
-          background: var(--background-secondary-color);
-          border-bottom-color: transparent;
+          padding: 0 30px;
+          color: var(--el-color-primary);
+          background: var(--el-color-primary-light-9);
+          mask: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANoAAAAkBAMAAAAdqzmBAAAAMFBMVEVHcEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlTPQ5AAAAD3RSTlMAr3DvEM8wgCBA379gj5//tJBPAAAAnUlEQVRIx2NgAAM27fj/tAO/xBsYkIHyf9qCT8iWMf6nNQhAsk2f5rYheY7Dnua2/U+A28ZEe8v+F9Ax2v7/F4DbxkUH2wzgtvHTwbYPo7aN2jZq26hto7aN2jZq25Cy7Qvctnw62PYNbls9HWz7S8/G6//PsI6H4396gAUQy1je08W2jxDbpv6nD4gB2uWp+J9eYPsEhv/0BPS1DQBvoBLVZ3BppgAAAABJRU5ErkJggg==');
+          mask-size: 100% 100%;
         }
 
         .is-icon-close {

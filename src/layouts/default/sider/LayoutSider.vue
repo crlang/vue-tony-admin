@@ -89,6 +89,7 @@ export default defineComponent({
         flex: `0 0 ${width}`,
         maxWidth: width,
         minWidth: width,
+        transition: 'all 0.2s ease 0s',
       }
     })
 
@@ -120,6 +121,7 @@ $prefix-cls: '#{$tonyname}-layout-sideBar';
 
 .#{$prefix-cls} {
   z-index: 101;
+  transition: all 0.2s ease 0s;
 
   &--fixed {
     position: fixed;

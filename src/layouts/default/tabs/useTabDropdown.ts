@@ -10,7 +10,8 @@ import { useTabs } from '@/hooks/web/useTabs'
 import { useI18n } from '@/hooks/web/useI18n'
 
 interface DropdownItem extends EleDropdownItem{
-  icon?: string
+  icon: string
+  text?: string
 }
 
 export function useTabDropdown(tabContentProps: TabContentProps, getIsTabs: ComputedRef<boolean>) {

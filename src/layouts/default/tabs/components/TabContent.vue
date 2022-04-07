@@ -1,5 +1,6 @@
 <template>
   <ElDropdown
+    ref="tabsDropdownRef"
     :trigger="getTrigger"
     @visible-change="handleContext"
     :popper-class="`${prefixCls}__contextmenu`"
@@ -7,8 +8,8 @@
     <template #dropdown>
       <ElDropdownMenu>
         <ElDropdownItem
-          v-for="item in getDropMenuList"
-          :key="item.command"
+          v-for="(item,index) in getDropMenuList"
+          :key="index"
           :command="item.command"
           :disabled="item.disabled"
           :divided="item.divided"> <Icon
@@ -16,33 +17,27 @@
             class="mr-2" /> {{ item.text }}</ElDropdownItem>
       </ElDropdownMenu>
     </template>
-    <div
-      :class="`${prefixCls}__info`"
-      v-if="getIsTabs">
-      <span :class="`${prefixCls}__info-text`">{{ getTitle }}</span>
-    </div>
-    <div
-      :class="tabClass"
-      v-else>
-      <Icon icon="ion:chevron-down" />
-    </div>
   </ElDropdown>
+  <div
+    :class="`${prefixCls}__name`"
+    v-if="getIsTabs">{{ getTitle }}</div>
+  <div
+    :class="`${prefixCls}__more`"
+    v-else>
+    <Icon icon="ion:chevron-down" />
+  </div>
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue'
 import type { RouteLocationNormalized } from 'vue-router'
+import type { TabContentProps } from '../types'
 
-import { defineComponent, computed, unref } from 'vue'
+import { defineComponent, computed, unref, ref } from 'vue'
 import { ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus'
 import { Icon } from '@/components/Icon'
-
-import { TabContentProps } from '../types'
-
-import { useDesign } from '@/hooks/web/useDesign'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useTabDropdown } from '../useTabDropdown'
-import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting'
+import { TabContentEnum } from '../types'
 
 export default defineComponent({
   name: 'TabContent',
@@ -52,11 +47,14 @@ export default defineComponent({
       type: Object as PropType<RouteLocationNormalized>,
       default: null,
     },
-    isExtra: Boolean,
-    tabClass: String,
+    type: {
+      type: Number as PropType<TabContentEnum>,
+      default: 0,
+    },
+    prefixCls: String,
   },
   setup(props) {
-    const { prefixCls } = useDesign('multiple-tabs-content')
+    const tabsDropdownRef = ref(null)
     const { t } = useI18n()
 
     const getTitle = computed(() => {
@@ -64,12 +62,11 @@ export default defineComponent({
       return meta && t(meta.title as string)
     })
 
-    const getIsTabs = computed(() => !props.isExtra)
+    const getIsTabs = computed(() => props.type === TabContentEnum.TAB_TYPE)
 
     const getTrigger = computed((): ('contextmenu' | 'click' | 'hover')[] =>
-      unref(getIsTabs) ? ['contextmenu'] : ['click']
+      unref(getIsTabs) ? ['contextmenu'] : ['hover']
     )
-    const { getShowQuick, getShowRedo, getShowFold } = useMultipleTabSetting()
 
     const { getDropMenuList, handleMenuEvent, handleContextMenu } = useTabDropdown(props as TabContentProps, getIsTabs)
 
@@ -80,16 +77,13 @@ export default defineComponent({
     }
 
     return {
-      prefixCls,
+      tabsDropdownRef,
       getDropMenuList,
       handleMenuEvent,
       handleContext,
       getTrigger,
       getIsTabs,
       getTitle,
-      getShowQuick,
-      getShowRedo,
-      getShowFold,
     }
   },
 })

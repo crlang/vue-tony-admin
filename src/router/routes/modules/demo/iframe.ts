@@ -10,7 +10,7 @@ const iframe: AppRouteModule = {
   component: LAYOUT,
   redirect: '/frame/doc',
   meta: {
-    orderNo: 8,
+    orderNo: 9,
     icon: 'ion:tv-outline',
     title: t('routes.iframe.frame'),
   },

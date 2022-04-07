@@ -17,11 +17,12 @@ import { propTypes } from '@/utils/propTypes'
 import { useRootSetting } from '@/hooks/setting/useRootSetting'
 import { useAppInject } from '@/hooks/web/useAppInject'
 import { useDesign } from '@/hooks/web/useDesign'
+import { GlobalThemeType } from '@/utils/types'
 
 export default defineComponent({
   name: 'LayoutMenu',
   props: {
-    theme: propTypes.oneOf(['light', 'dark']),
+    theme: String as PropType<GlobalThemeType>,
 
     splitType: {
       type: Number as PropType<MenuSplitTyeEnum>,
@@ -163,6 +164,7 @@ $logo-prefix-cls: '#{$tonyname}-app-logo';
   &-logo {
     height: $side-logo-height;
     padding: 16px;
+    white-space: nowrap;
     background: var(--sider-background-color);
 
     &.is-hide-logo {
