@@ -36,7 +36,6 @@ export function useTableExpand(
 
   function expandAll() {
     const keys = getAllKeys()
-    console.log('keys', keys)
     expandRowKeys.value = keys
   }
 

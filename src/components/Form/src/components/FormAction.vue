@@ -75,7 +75,7 @@ export default defineComponent({
         : {}
       const actionColOpt: Partial<EleCol> = {
         style: { textAlign: 'right' },
-        span: showAdvancedButton ? 6 : 4,
+        span: showAdvancedButton ? 6 : 24,
         ...advancedSpanObj,
         ...actionColOptions,
       }

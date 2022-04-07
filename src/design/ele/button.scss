@@ -10,7 +10,7 @@
   // --el-button-hover-border-color: transparent;
 
   // Resize the button to 40px
-  height: var(--el-button-size);
+  // height: var(--el-button-size);
 
   &.is-plain {
     // --el-button-hover-border-color: inherit;
@@ -18,15 +18,15 @@
   }
 
   &--default {
-    --el-button-size: 40px;
+    // --el-button-size: 40px;
   }
 
   &--large {
-    --el-button-size: 48px;
+    // --el-button-size: 48px;
   }
 
   &--small {
-    --el-button-size: 32px;
+    // --el-button-size: 32px;
   }
 
   &.is-circle {
