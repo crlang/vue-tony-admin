@@ -13,12 +13,12 @@ export const columns: BasicColumn[] = [
   {
     label: '排序',
     prop: 'orderNo',
-    width: 50,
+    width: 100,
   },
   {
     label: '状态',
     prop: 'status',
-    width: 80,
+    width: 100,
     customRender: ({ record }) => {
       const status = record.status
       const enable = ~~status === 0

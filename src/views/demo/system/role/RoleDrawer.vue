@@ -15,8 +15,7 @@
           defaultExpandAll
           :props="{ label: 'menuName'}"
           show-checkbox
-          title="菜单分配"
-        />
+          title="菜单分配" />
       </template>
     </BasicForm>
   </BasicDrawer>
@@ -49,7 +48,6 @@ export default defineComponent({
     const [registerDrawer, { setDrawerProps, closeDrawer }] = useDrawerInner(async (data) => {
       resetFields()
       setDrawerProps({ confirmLoading: false })
-      // 需要在setFieldsValue之前先填充treeData，否则Tree组件可能会报key not exist警告
       if (unref(treeData).length === 0) {
         treeData.value = (await getMenuList()) as any as TreeType[]
       }

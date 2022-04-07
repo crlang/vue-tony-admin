@@ -49,10 +49,8 @@ export default defineComponent({
 
     async function handleSubmit() {
       try {
-        const values = await validate()
+        await validate()
         setModalProps({ confirmButton: { loading: true } })
-        // TODO custom api
-        console.log(values)
         closeModal()
         emit('success')
       } finally {

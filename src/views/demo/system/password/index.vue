@@ -2,35 +2,40 @@
   <PageWrapper
     title="修改当前用户密码"
     description="修改成功后会自动退出当前登录！">
-    <div class="py-8 bg-white flex flex-col justify-center items-center">
-      <BasicForm @register="register" />
-      <div class="flex justify-center">
-        <el-button @click="resetFields"> 重置 </el-button>
-        <el-button
-          class="!ml-4"
-          type="primary"
-          @click="handleSubmit"> 确认 </el-button>
-      </div>
-    </div>
+    <CollapseContainer
+      title="基础示例"
+      :canExpan="false">
+      <BasicForm
+        @register="register"
+        @submit="handleSubmit"
+        @reset="resetFields" />
+    </CollapseContainer>
   </PageWrapper>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ElButton } from 'element-plus'
 import { PageWrapper } from '@/components/Page'
 import { BasicForm, useForm } from '@/components/Form'
+import { CollapseContainer } from '@/components/Container'
 
 import { formSchema } from './data'
+
 export default defineComponent({
   name: 'ChangePassword',
-  components: { ElButton, BasicForm, PageWrapper },
+  components: { BasicForm, PageWrapper, CollapseContainer },
   setup() {
     const [register, { validate, resetFields, getFieldsValue }] = useForm({
       size: 'large',
       labelWidth: 100,
-      showActionButtonGroup: false,
+      colProps: { span: 16 },
       schemas: formSchema,
+      submitButtonOptions: {
+        text: '确认',
+      },
+      resetButtonOptions: {
+        text: '重置',
+      },
     })
 
     async function handleSubmit() {

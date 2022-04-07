@@ -75,7 +75,7 @@ export default defineComponent({
     }
 
     function handleDelete({ row }) {
-      console.log(row)
+      console.table(row)
     }
 
     function handleSuccess() {

@@ -4,7 +4,7 @@
     @register="registerDrawer"
     showFooter
     :title="getTitle"
-    width="50%"
+    size="50%"
     @ok="handleSubmit">
     <BasicForm @register="registerForm" />
   </BasicDrawer>
@@ -28,12 +28,14 @@ export default defineComponent({
     const [registerForm, { resetFields, setFieldsValue, updateSchema, validate }] = useForm({
       labelWidth: 100,
       schemas: formSchema,
-      colProps: { lg: 12, md: 24 },
+      showActionButtonGroup: false,
     })
 
     const [registerDrawer, { setDrawerProps, closeDrawer }] = useDrawerInner(async (data) => {
       resetFields()
-      setDrawerProps({ confirmLoading: false })
+      setDrawerProps({
+        confirmLoading: false,
+      })
       isUpdate.value = !!data?.isUpdate
 
       if (unref(isUpdate)) {

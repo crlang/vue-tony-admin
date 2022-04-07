@@ -29,7 +29,6 @@ export default defineComponent({
 
     async function fetch() {
       treeData.value = (await getDeptList()) as unknown as TreeType[]
-      console.log('treeData', treeData.value)
     }
 
     function handleSelect(treeNodeData:DeptListItem) {

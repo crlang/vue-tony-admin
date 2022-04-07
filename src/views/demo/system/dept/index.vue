@@ -38,12 +38,12 @@ export default defineComponent({
           actions: [
             {
               icon: 'clarity:note-edit-line',
-              text: 'Edit',
+              text: '编辑',
               callback: handleEdit,
             },
             {
               icon: 'ep:delete',
-              text: 'Delete',
+              text: '删除',
               popConfirm: {
                 title: '是否确认删除',
                 confirm: handleDelete,
@@ -69,15 +69,15 @@ export default defineComponent({
       })
     }
 
-    function handleEdit(record: Recordable) {
+    function handleEdit({ row }) {
       openModal(true, {
-        record,
+        record: row,
         isUpdate: true,
       })
     }
 
-    function handleDelete(record: Recordable) {
-      console.log(record)
+    function handleDelete({ row }) {
+      console.table(row)
     }
 
     function handleSuccess() {

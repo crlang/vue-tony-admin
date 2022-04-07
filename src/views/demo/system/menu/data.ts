@@ -14,7 +14,7 @@ export const columns: BasicColumn[] = [
   {
     label: '图标',
     prop: 'icon',
-    width: 50,
+    width: 100,
     customRender: ({ record }) => {
       return h(Icon, { icon: record.icon })
     },
@@ -31,12 +31,12 @@ export const columns: BasicColumn[] = [
   {
     label: '排序',
     prop: 'orderNo',
-    width: 50,
+    width: 100,
   },
   {
     label: '状态',
     prop: 'status',
-    width: 80,
+    width: 100,
     customRender: ({ record }) => {
       const status = record.status
       const enable = ~~status === 0
@@ -90,7 +90,6 @@ export const formSchema: FormSchema[] = [
         { label: '按钮', value: '2' },
       ],
     },
-    colProps: { lg: 24, md: 24 },
   },
   {
     field: 'menuName',
