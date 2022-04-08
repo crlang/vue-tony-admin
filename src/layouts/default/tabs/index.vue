@@ -23,13 +23,13 @@
       v-if="getShowRedo || getShowQuick">
       <TabRedo
         v-if="getShowRedo"
-        :class="`${prefixCls}__extra-redo`" />
+        :class="`${prefixCls}__extra-btn`" />
       <FoldButton
         v-if="getShowQuick"
-        :class="`${prefixCls}__extra-fold`" />
+        :class="`${prefixCls}__extra-btn`" />
       <TabContent
         :type="1"
-        :prefixCls="prefixCls"
+        :prefixCls="`${prefixCls}__extra-btn`"
         :tabItem="$route"
         v-if="getShowFold" />
     </div>
@@ -141,154 +141,4 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
-$prefix-cls: '#{$tonyname}-multiple-tabs';
-
-.#{$prefix-cls} {
-  position: relative;
-  z-index: 10;
-  background: var(--background-secondary-color);
-  --tabs-bottom: 16px;
-  --tabs-top: 8px;
-  --tabs-height: 40px;
-
-  &-content {
-    height: 100%;
-
-    .el-dropdown--default {
-      height: 100%;
-    }
-
-    &__contextmenu {
-      white-space: nowrap;
-    }
-
-    .el-dropdown-menu__item--divided::before {
-      display: none;
-    }
-
-    &__info {
-      display: flex;
-      align-items: center;
-      height: 100%;
-      padding: 0 6px 0 16px;
-
-      &-text {
-        font-size: 14px;
-        color: var(--text-primary-color);
-      }
-    }
-  }
-
-  &__extra {
-    position: absolute;
-    top: var(--tabs-top);
-    right: 0;
-    bottom: var(--tabs-bottom);
-    display: flex;
-    align-items: center;
-
-    &-redo,
-    &-more,
-    &-fold {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: var(--tabs-height);
-      height: var(--tabs-height);
-      margin-left: 8px;
-      cursor: pointer;
-
-      &:hover {
-        color: var(--primary-color);
-        background: var(--control-background-hover);
-      }
-    }
-  }
-}
-
-.#{$prefix-cls} .el-tabs {
-  padding-top: var(--tabs-top);
-
-  &__active-bar {
-    display: none;
-  }
-
-  .el-tabs__header {
-    margin: 0;
-    overflow: hidden;
-
-    .el-tabs__nav {
-      &-wrap {
-        padding-right: 142px;
-        padding-left: 6px;
-        margin: 0 0 var(--tabs-bottom);
-
-        &::after {
-          height: 1px;
-        }
-
-        &.is-scrollable {
-          padding-right: 162px;
-          padding-left: 24px;
-        }
-      }
-
-      &-prev {
-        left: 2px;
-      }
-
-      &-next {
-        right: 136px;
-      }
-
-      &-prev,
-      &-next {
-        top: -2px;
-        width: 20px;
-        color: var(--text-primary-color);
-
-        &:hover {
-          background: var(--background-primary-color);
-        }
-      }
-
-      .el-tabs__item {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        height: var(--tabs-height);
-        padding: 0 30px;
-        margin-top: 5.95px;
-        margin-right: -18px;
-        line-height: var(--tabs-height);
-        text-align: center;
-        border: none;
-        outline: none;
-
-        &.is-active {
-          padding: 0 30px;
-          color: var(--el-color-primary);
-          background: var(--el-color-primary-light-9);
-          mask: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANoAAAAkBAMAAAAdqzmBAAAAMFBMVEVHcEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlTPQ5AAAAD3RSTlMAr3DvEM8wgCBA379gj5//tJBPAAAAnUlEQVRIx2NgAAM27fj/tAO/xBsYkIHyf9qCT8iWMf6nNQhAsk2f5rYheY7Dnua2/U+A28ZEe8v+F9Ax2v7/F4DbxkUH2wzgtvHTwbYPo7aN2jZq26hto7aN2jZq25Cy7Qvctnw62PYNbls9HWz7S8/G6//PsI6H4396gAUQy1je08W2jxDbpv6nD4gB2uWp+J9eYPsEhv/0BPS1DQBvoBLVZ3BppgAAAABJRU5ErkJggg==');
-          mask-size: 100% 100%;
-        }
-
-        .is-icon-close {
-          margin: 0 6px 0 0;
-          line-height: 1;
-        }
-
-        .is-icon-close > svg {
-          display: block;
-          margin: 0;
-        }
-      }
-    }
-  }
-
-  &__content {
-    display: none;
-  }
-}
-</style>
+<style lang="scss" src="./index.scss"></style>

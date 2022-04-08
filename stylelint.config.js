@@ -22,6 +22,8 @@ module.exports = {
   // 规则详情: http://stylelint.cn/user-guide/rules/
   rules: {
     'scss/at-import-partial-extension': 'always',
+    'scss/at-mixin-argumentless-call-parentheses': 'always',
+    'scss/at-mixin-pattern': null,
     'color-hex-case': 'lower',
     'color-no-invalid-hex': true,
     'font-family-name-quotes': 'always-unless-keyword',

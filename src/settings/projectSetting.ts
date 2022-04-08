@@ -56,7 +56,7 @@ const setting: ProjectConfig = {
   // Header configuration
   headerSetting: {
     // header height
-    height: 48,
+    height: 60,
     // header bg color
     bgColor: HEADER_PRESET_BG_COLOR_LIST[0],
     // Fixed at the top
@@ -121,7 +121,7 @@ const setting: ProjectConfig = {
   // Multi-label
   multiTabsSetting: {
     // tabs height
-    height: 62,
+    height: 40,
     cache: false,
     // Turn on
     show: true,

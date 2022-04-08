@@ -148,7 +148,7 @@ $prefix-cls: '#{$tonyname}-cropper-avatar';
   &-image-wrapper {
     overflow: hidden;
     cursor: pointer;
-    background: var(--background-secondary-color);
+    background: var(--background-primary-color);
     border: 1px solid var(--border-grey-color);
     border-radius: 50%;
 

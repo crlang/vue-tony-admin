@@ -52,11 +52,11 @@ export default defineComponent({
 <style lang="scss" scoped>
 .result-success {
   padding: 48px 32px;
-  background-color: var(--background-secondary-color);
+  background-color: var(--background-primary-color);
 
   &__content {
     padding: 24px 40px;
-    background-color: var(--background-tertiary-color);
+    background-color: var(--background-secondary-color);
   }
 }
 </style>

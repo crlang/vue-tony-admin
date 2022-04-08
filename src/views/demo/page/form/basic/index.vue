@@ -70,6 +70,6 @@ export default defineComponent({
 <style lang="scss" scoped>
 .form-wrap {
   padding: 24px;
-  background-color: var(--background-secondary-color);
+  background-color: var(--background-primary-color);
 }
 </style>

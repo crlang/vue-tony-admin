@@ -5,10 +5,10 @@
   --el-select-border-color-hover: transparent;
 
   &-dropdown {
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-primary-color);
 
     &__item {
-      background-color: var(--background-secondary-color);
+      background-color: var(--background-primary-color);
 
       &:hover,
       &.selected,
@@ -21,7 +21,7 @@
 
   &__popper{
     &.el-popper[role='tooltip'] {
-      @include tooltip;
+      @include tooltip ();
     }
   }
 

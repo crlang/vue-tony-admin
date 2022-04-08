@@ -13,13 +13,13 @@
 
   &.is-light {
     color: var(--text-primary-color);
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-primary-color);
     border-color: var(--grey-color-5);
     box-shadow: var(--card-shadow);
 
     .el-popper__arrow {
       --pop-bd: var(--grey-color-5);
-      --pop-bg: var(--background-secondary-color);
+      --pop-bg: var(--background-primary-color);
 
       &::before {
         background-color: var(--pop-bg, inherit);

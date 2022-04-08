@@ -21,6 +21,7 @@ import { getCommonStoragePrefix, getStorageShortName } from '@/utils/env'
 import { Persistent } from '@/utils/cache/persistent'
 import { deepMerge } from '@/utils'
 import { ThemeEnum } from '@/enums/appEnum'
+import { updateHeaderHeight, updateTabsHeight } from './theme/updateSize'
 
 // Initial project configuration
 export function initAppConfigStore() {
@@ -37,6 +38,11 @@ export function initAppConfigStore() {
     headerSetting: { bgColor: headerBgColor } = {},
     menuSetting: { bgColor } = {},
   } = projCfg
+
+  // Initialize various size definitions to generate custom properties
+  updateHeaderHeight()
+  updateTabsHeight()
+
   try {
     // if (themeColor && themeColor !== primaryColor) {
     //   changeTheme(themeColor)

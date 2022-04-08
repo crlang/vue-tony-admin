@@ -1,14 +1,9 @@
 .el-card {
-  --el-color-black: var(--background-secondary-color);
+  --el-color-black: var(--background-primary-color);
   --el-card-border-radius: var(--radius-base);
   --el-box-shadow-light: var(--card-shadow);
 
-  // font-size: 14px;
-
-  // color: var(--text-primary-color);
   border: none;
-
-  // border-radius: var(--card-border-radius);
 
   &.is-border {
     border-color: var(--el-card-border-color);
@@ -41,6 +36,6 @@
 // .dark,
 // html[data-theme='dark'] {
 //   .el-card {
-//     // --el-card-bg-color: var(--background-secondary-color);
+//     // --el-card-bg-color: var(--background-primary-color);
 //   }
 // }

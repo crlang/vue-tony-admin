@@ -201,7 +201,7 @@ $prefix-cls: '#{$tonyname}-login';
       letter-spacing: 2px;
 
       > span {
-        font-family: var(--font-family-secondary);
+        font-family: var(--font-family-logo);
         color: var(--primary-color);
       }
     }
@@ -218,7 +218,7 @@ $prefix-cls: '#{$tonyname}-login';
     min-height: 580px;
     padding: 4rem;
     overflow: auto;
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-primary-color);
   }
 
   &__mode {

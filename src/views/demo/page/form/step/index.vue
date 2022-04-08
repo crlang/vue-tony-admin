@@ -89,7 +89,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .step-form-content {
   padding: 24px;
-  background-color: var(--background-secondary-color);
+  background-color: var(--background-primary-color);
 }
 
 .step-form-form {

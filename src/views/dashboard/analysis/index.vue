@@ -22,7 +22,7 @@ setTimeout(() => {
 
 <style lang="scss">
 .dashboard-analysis {
-  padding: var(--container-gutter);
+  padding: var(--container-gutter-base);
 
   .el-card {
     --el-card-padding: 0;

@@ -1,6 +1,6 @@
 .el-table {
-  --el-table-row-hover-bg-color: var(--background-secondary-color);
-  --el-table-header-bg-color: var(--background-tertiary-color);
+  --el-table-row-hover-bg-color: var(--background-primary-color);
+  --el-table-header-bg-color: var(--background-secondary-color);
   --el-table-border-color: var(--border-grey-color);
   --el-table-tr-bg-color: var(--white-color);
 
@@ -24,7 +24,7 @@
 
   &--striped {
     .el-table__body tr.el-table__row--striped td.el-table__cell {
-      background: var(--background-tertiary-color);
+      background: var(--background-secondary-color);
     }
   }
 }

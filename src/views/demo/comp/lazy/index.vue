@@ -38,7 +38,7 @@ export default defineComponent({
     height: 2000px;
     margin: 20px auto;
     text-align: center;
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-primary-color);
     flex-direction: column;
 
     h1 {

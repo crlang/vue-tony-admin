@@ -30,7 +30,7 @@ export default defineComponent({
 .scroll-wrap {
   width: 75%;
   height: 300px;
-  background-color: var(--background-secondary-color);
+  background-color: var(--background-primary-color);
 
   li {
     height: 40px;

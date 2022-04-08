@@ -2,8 +2,7 @@
   <span
     :class="[prefixCls, theme]"
     @click="toggleCollapsed">
-    <Expand v-if="getCollapsed" />
-    <Fold v-else />
+    <SvgIcon :name="getCollapsed ? 'expand' : 'fold'" />
   </span>
 </template>
 
@@ -12,11 +11,11 @@ import { defineComponent } from 'vue'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { useDesign } from '@/hooks/web/useDesign'
 import { propTypes } from '@/utils/propTypes'
-import { Expand, Fold } from '@element-plus/icons'
+import { SvgIcon } from '@/components/Icon'
 
 export default defineComponent({
   name: 'HeaderTrigger',
-  components: { Expand, Fold },
+  components: { SvgIcon },
   props: {
     theme: propTypes.oneOf(['light', 'dark']),
   },

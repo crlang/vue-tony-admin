@@ -58,7 +58,8 @@
 import { defineComponent } from 'vue'
 import { ElRow, ElCol, ElCard } from 'element-plus'
 import { AddLocation, Aim, AlarmClock } from '@element-plus/icons'
-import { Icon, IconPicker, SvgIcon } from '@/components/Icon'
+import { Icon, SvgIcon } from '@/components/Icon'
+import { IconPicker } from '@/components/IconPicker'
 import { PageWrapper } from '@/components/Page'
 import { CardGrid, CardGridItem } from '@/components/CardGrid'
 

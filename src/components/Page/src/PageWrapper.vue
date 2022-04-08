@@ -189,7 +189,7 @@ $prefix-cls: '#{$tonyname}-page-wrapper';
   &-header {
     position: relative;
     padding: 16px;
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-primary-color);
     box-shadow: var(--card-shadow);
 
     &-full {
@@ -234,7 +234,7 @@ $prefix-cls: '#{$tonyname}-page-wrapper';
   }
 
   &-content-bg {
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-primary-color);
   }
 }
 </style>

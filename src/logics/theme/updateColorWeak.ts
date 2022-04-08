@@ -5,5 +5,5 @@ import { toggleClass } from './util'
  * @param colorWeak
  */
 export function updateColorWeak(colorWeak: boolean) {
-  toggleClass(colorWeak, 'color-weak', document.documentElement)
+  toggleClass(colorWeak, 'weak-mode', document.documentElement)
 }

@@ -25,7 +25,7 @@ import ElDatePicker from './components/DatePicker.vue'
 import TimePicker from './components/TimePicker.vue'
 import { BasicUpload } from '@/components/Upload'
 import { StrengthMeter } from '@/components/StrengthMeter'
-import { IconPicker } from '@/components/Icon'
+import { IconPicker } from '@/components/IconPicker'
 import { CountdownInput } from '@/components/CountDown'
 
 const componentMap = new Map<ComponentType, Component>()

@@ -28,6 +28,7 @@ import { useLayoutHeight } from '../content/useContentViewHeight'
 const HEADER_HEIGHT = projectSetting.headerSetting.height
 
 const TABS_HEIGHT = projectSetting.multiTabsSetting.height
+console.log('projectSetting', projectSetting)
 
 export default defineComponent({
   name: 'LayoutMultipleHeader',
@@ -60,6 +61,7 @@ export default defineComponent({
       if (unref(getShowFullHeaderRef)) {
         style.top = `${HEADER_HEIGHT}px`
       }
+
       return style
     })
 

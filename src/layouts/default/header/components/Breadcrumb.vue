@@ -53,7 +53,7 @@ export default defineComponent({
   setup() {
     const routes = ref<any[]>([])
     const { currentRoute } = useRouter()
-    const { prefixCls } = useDesign('layout-breadcrumb')
+    const { prefixCls } = useDesign('layout-header-breadcrumb')
     const { getShowBreadCrumbIcon } = useRootSetting()
     const go = useGo()
 
@@ -150,7 +150,7 @@ export default defineComponent({
     }
 
     function getIcon(route:RouteLocationMatched) {
-      return route.meta?.icon
+      return route.meta?.icon as string
     }
 
     return {
@@ -167,7 +167,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$tonyname}-layout-breadcrumb';
+$prefix-cls: '#{$tonyname}-layout-header-breadcrumb';
 
 .#{$prefix-cls} {
   padding: 0 8px;
@@ -186,12 +186,13 @@ $prefix-cls: '#{$tonyname}-layout-breadcrumb';
       color: inherit;
       vertical-align: top;
 
-      &:hover {
-        color: var(--header-text-hover-color, inherit);
+      a,span {
+        font-weight: normal;
+        color: inherit;
       }
 
-      a,span {
-        color: inherit;
+      &:hover a {
+        color: var(--primary-color, inherit);
       }
     }
   }

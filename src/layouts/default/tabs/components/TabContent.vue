@@ -1,4 +1,12 @@
 <template>
+  <div
+    :class="`${prefixCls}__name`"
+    v-if="getIsTabs"
+    @contextmenu.prevent="handleOpenDropdown()">{{ getTitle }}</div>
+  <span
+    :class="`${prefixCls}`"
+    v-else
+    @mouseenter="handleOpenDropdown()"><Icon icon="ion:chevron-down" /></span>
   <ElDropdown
     ref="tabsDropdownRef"
     :trigger="getTrigger"
@@ -18,14 +26,6 @@
       </ElDropdownMenu>
     </template>
   </ElDropdown>
-  <div
-    :class="`${prefixCls}__name`"
-    v-if="getIsTabs">{{ getTitle }}</div>
-  <div
-    :class="`${prefixCls}__more`"
-    v-else>
-    <Icon icon="ion:chevron-down" />
-  </div>
 </template>
 
 <script lang="ts">
@@ -54,7 +54,7 @@ export default defineComponent({
     prefixCls: String,
   },
   setup(props) {
-    const tabsDropdownRef = ref(null)
+    const tabsDropdownRef = ref()
     const { t } = useI18n()
 
     const getTitle = computed(() => {
@@ -76,11 +76,16 @@ export default defineComponent({
       }
     }
 
+    function handleOpenDropdown() {
+      tabsDropdownRef.value.handleOpen()
+    }
+
     return {
       tabsDropdownRef,
       getDropMenuList,
       handleMenuEvent,
       handleContext,
+      handleOpenDropdown,
       getTrigger,
       getIsTabs,
       getTitle,

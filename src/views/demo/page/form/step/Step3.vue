@@ -54,6 +54,6 @@ export default defineComponent({
 .desc-wrap {
   padding: 24px 40px;
   margin-top: 24px;
-  background-color: var(--background-tertiary-color);
+  background-color: var(--background-secondary-color);
 }
 </style>

@@ -62,7 +62,7 @@ $prefix-cls: '#{$tonyname}-app-logo';
 
   > span {
     margin-left: 16px;
-    font-family: var(--font-family-secondary);
+    font-family: var(--font-family-logo);
     font-size: 33px;
     font-weight: 600;
   }

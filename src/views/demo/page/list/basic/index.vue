@@ -130,7 +130,7 @@ export default defineComponent({
     padding: 24px;
     margin-bottom: 16px;
     text-align: center;
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-primary-color);
 
     &-col {
       &:not(:last-child) {
@@ -156,7 +156,7 @@ export default defineComponent({
   &__content {
     padding: 24px;
     margin-top: 12px;
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-primary-color);
 
     .list {
       position: relative;

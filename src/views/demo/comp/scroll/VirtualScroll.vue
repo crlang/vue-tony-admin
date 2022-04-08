@@ -52,7 +52,7 @@ export default defineComponent({
     display: flex;
     justify-content: center;
     margin: 0 20%;
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-primary-color);
   }
 
   &__item {

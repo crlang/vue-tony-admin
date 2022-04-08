@@ -187,7 +187,7 @@ $prefix-cls: '#{$tonyname}-header-search-modal';
     position: relative;
     width: 40rem;
     margin: 0 auto auto;
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-primary-color);
     border-radius: 1rem;
     box-shadow: 0 1.5rem 3.25rem -0.5rem rgba(0, 0, 0, 0.25);
     flex-direction: column;
@@ -246,7 +246,7 @@ $prefix-cls: '#{$tonyname}-header-search-modal';
       font-size: 14px;
       color: var(--text-primary-color);
       cursor: pointer;
-      background-color: var(--background-secondary-color);
+      background-color: var(--background-primary-color);
       border-radius: var(--radius-base);
       box-shadow: var(--control-shadow);
 
@@ -285,7 +285,7 @@ $prefix-cls: '#{$tonyname}-header-search-modal';
       > span > span {
         padding: 4px;
         margin-right: 8px;
-        background-color: var(--background-primary-color);
+        background-color: var(--background-main-color);
         box-shadow: var(--control-shadow);
       }
     }

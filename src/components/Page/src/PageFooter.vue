@@ -33,7 +33,7 @@ $prefix-cls: '#{$tonyname}-page-footer';
   display: flex;
   align-items: center;
   width: 100%;
-  background-color: var(--background-secondary-color);
+  background-color: var(--background-primary-color);
   border-top: 1px solid var(--border-grey-color);
   box-shadow: 0 -6px 16px -8px rgba(0, 0, 0, 0.08), 0 -9px 28px 0 rgba(0, 0, 0, 0.05),
     0 -12px 48px 16px rgba(0, 0, 0, 0.03);

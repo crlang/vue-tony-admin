@@ -43,11 +43,11 @@ export default defineComponent({
 .result-error {
   padding: 48px 32px;
   font-size: 14px;
-  background-color: var(--background-secondary-color);
+  background-color: var(--background-primary-color);
 
   &__content {
     padding: 24px 40px;
-    background-color: var(--background-tertiary-color);
+    background-color: var(--background-secondary-color);
 
     &-title {
       margin-bottom: 16px;

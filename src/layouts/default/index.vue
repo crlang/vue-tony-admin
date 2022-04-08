@@ -75,7 +75,7 @@ $prefix-cls: '#{$tonyname}-default-layout';
   display: flex;
   width: 100%;
   height: 100%;
-  background-color: var(--background-primary-color);
+  background-color: var(--background-main-color);
 
   &-main {
     width: 100%;

@@ -3,6 +3,6 @@
 // import { replaceStyleVariables } from 'vite-plugin-theme/es/client'
 // import { mixLighten, mixDarken, tinycolor } from 'vite-plugin-theme/es/colorUtils'
 
-// export async function changeTheme(color: string) {
-//   return color
-// }
+export async function changeTheme(color: string) {
+  return color
+}

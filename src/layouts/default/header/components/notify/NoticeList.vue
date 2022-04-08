@@ -137,7 +137,7 @@ $prefix-cls: '#{$tonyname}-header-notify-list';
     cursor: pointer;
 
     &:hover {
-      background: var(--background-primary-color);
+      background: var(--background-main-color);
     }
 
     &.is-read {

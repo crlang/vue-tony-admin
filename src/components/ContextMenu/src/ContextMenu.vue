@@ -168,7 +168,7 @@ $default-height: 44px;
 
 .context-menu {
 
-  @include item-style;
+  @include item-style ();
 
   position: fixed;
   top: 0;
@@ -178,7 +178,7 @@ $default-height: 44px;
   width: 156px;
   margin: 0;
   list-style: none;
-  background-color: var(--background-secondary-color);
+  background-color: var(--background-primary-color);
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 0.25rem;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.1),
@@ -199,7 +199,7 @@ $default-height: 44px;
   }
 
   &__popup {
-    @include item-style;
+    @include item-style ();
 
     > ul {
       padding: 0;

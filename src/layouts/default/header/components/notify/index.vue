@@ -113,7 +113,7 @@ $prefix-cls: '#{$tonyname}-header-notify';
     &:hover {
       color: var(--link-color);
       cursor: pointer;
-      background: var(--background-primary-color);
+      background: var(--background-main-color);
     }
   }
 }

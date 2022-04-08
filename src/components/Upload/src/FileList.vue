@@ -93,7 +93,7 @@ export default defineComponent({
     }
 
     thead {
-      background-color: var(--background-tertiary-color);
+      background-color: var(--background-secondary-color);
     }
 
     table,

@@ -536,7 +536,7 @@ $prefix-cls: '#{$tonyname}-layout-mix-sider';
       height: var(--header-height);
       padding-left: 20px;
       overflow: hidden;
-      font-family: var(--font-family-secondary);
+      font-family: var(--font-family-logo);
       font-size: 22px;
       color: var(--text-primary-reverse);
       text-overflow: ellipsis;

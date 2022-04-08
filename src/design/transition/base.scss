@@ -11,5 +11,5 @@
 
 .expand-transition,
 .expand-x-transition {
-  @include transition-default;
+  @include transition-default();
 }

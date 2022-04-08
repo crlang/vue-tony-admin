@@ -1,5 +1,5 @@
 .scale-transition {
-  @include transition-default;
+  @include transition-default();
 
   &-enter-from,
   &-leave,
@@ -10,7 +10,7 @@
 }
 
 .scale-rotate-transition {
-  @include transition-default;
+  @include transition-default();
 
   &-enter-from,
   &-leave,

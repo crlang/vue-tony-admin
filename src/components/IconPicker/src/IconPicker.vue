@@ -8,7 +8,7 @@
       <ElPopover
         :width="560"
         trigger="click"
-        :placement="placement">
+        placement="bottom">
         <div :class="`${prefixCls}__search`">
           <ElInput
             v-model="searckKeyword"
@@ -64,9 +64,9 @@ import { ref, watchEffect, watch, unref, defineComponent } from 'vue'
 import { ElInput, ElPopover, ElEmpty } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
 import { ScrollContainer } from '@/components/Container'
-import Icon from './Icon.vue'
-import SvgIcon from './SvgIcon.vue'
-import iconsData from '../data'
+import Icon from '@/components/Icon/src/Icon.vue'
+import SvgIcon from '@/components/Icon/src/SvgIcon.vue'
+import iconsData from './data'
 import { useDebounceFn } from '@vueuse/core'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useCopyToClipboard } from '@/hooks/web/useCopyToClipboard'
@@ -95,10 +95,10 @@ export default defineComponent({
     /**
      * Popover placement
      */
-    placement: {
-      type: String,
-      default: 'bottom',
-    },
+    // placement: {
+    //   type: String,
+    //   default: 'bottom',
+    // },
     /**
      * Whether to copy when clicked
      */
