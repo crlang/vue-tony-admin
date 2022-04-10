@@ -4,7 +4,7 @@ import { createContext, useContext } from '@/hooks/core/useContext'
 
 export interface SimpleRootMenuContextProps {
   rootMenuEmitter: Emitter
-  activeName: Ref<string | number>
+  activeName: Ref<string>
 }
 
 const key: InjectionKey<SimpleRootMenuContextProps> = Symbol()

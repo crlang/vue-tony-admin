@@ -3,13 +3,12 @@
     :class="getTagClass"
     v-if="getShowTag">{{ getContent }}</span>
 </template>
+
 <script lang="ts">
 import type { Menu } from '@/router/types'
 
 import { defineComponent, computed } from 'vue'
-
 import { useDesign } from '@/hooks/web/useDesign'
-import { propTypes } from '@/utils/propTypes'
 
 export default defineComponent({
   name: 'SimpleMenuTag',
@@ -18,14 +17,16 @@ export default defineComponent({
       type: Object as PropType<Menu>,
       default: () => ({}),
     },
-    dot: propTypes.bool,
-    collapseParent: propTypes.bool,
+    dot: Boolean,
+    collapseParent: Boolean,
   },
   setup(props) {
     const { prefixCls } = useDesign('simple-menu')
 
     const getShowTag = computed(() => {
       const { item } = props
+
+      console.log('item+++', item)
 
       if (!item) return false
 
@@ -39,10 +40,11 @@ export default defineComponent({
 
     const getContent = computed(() => {
       if (!getShowTag.value) return ''
+
       const { item, collapseParent } = props
       const { tag } = item
       const { dot, content } = tag!
-      return dot || collapseParent ? '' : content
+      return (dot || collapseParent) ? '' : content
     })
 
     const getTagClass = computed(() => {
@@ -56,7 +58,7 @@ export default defineComponent({
         [`${tagCls}--${type}`],
         {
           [`${tagCls}--collapse`]: collapseParent,
-          [`${tagCls}--dot`]: dot || props.dot,
+          [`${tagCls}--dot`]: dot || props.dot || !getContent.value,
         },
       ]
     })

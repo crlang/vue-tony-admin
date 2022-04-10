@@ -413,7 +413,7 @@ $prefix-cls: '#{$tonyname}-basic-column-setting';
     }
 
     &.disabled {
-      color: var(--disabled-color);
+      color: rgba(0, 0, 0, 0.1);
       cursor: not-allowed;
     }
   }

@@ -1,5 +1,5 @@
 <script lang="tsx">
-import type { PropType, CSSProperties } from 'vue'
+import type { CSSProperties } from 'vue'
 
 import { computed, defineComponent, unref, toRef } from 'vue'
 import { BasicMenu } from '@/components/Menu'
@@ -13,7 +13,6 @@ import { ScrollContainer } from '@/components/Container'
 
 import { useGo } from '@/hooks/web/usePage'
 import { useSplitMenu } from './useLayoutMenu'
-import { propTypes } from '@/utils/propTypes'
 import { useRootSetting } from '@/hooks/setting/useRootSetting'
 import { useAppInject } from '@/hooks/web/useAppInject'
 import { useDesign } from '@/hooks/web/useDesign'
@@ -29,10 +28,10 @@ export default defineComponent({
       default: MenuSplitTyeEnum.NONE,
     },
 
-    isHorizontal: propTypes.bool,
+    isHorizontal: Boolean,
     //  menu Mode
     menuMode: {
-      type: [String] as PropType<Nullable<MenuModeEnum>>,
+      type: String as PropType<Nullable<MenuModeEnum>>,
       default: '',
     },
   },
@@ -77,15 +76,16 @@ export default defineComponent({
 
     const getWrapperStyle = computed((): CSSProperties => {
       return {
-        height: `calc(100% - ${unref(getIsShowLogo) ? '64px' : '0px'})`,
+        height: `calc(100% - ${unref(getIsShowLogo) ? 'var(--header-height)' : '0px'})`,
       }
     })
 
     const getLogoClass = computed(() => {
       return [
-        `${prefixCls}-logo`,
+        `${prefixCls}--logo`,
         unref(getComputedMenuTheme),
         {
+          [`${prefixCls}--mini`]: unref(getCollapsed),
           [`${prefixCls}--mobile`]: unref(getIsMobile),
         },
       ]
@@ -157,24 +157,24 @@ export default defineComponent({
   },
 })
 </script>
+
 <style lang="scss">
 $prefix-cls: '#{$tonyname}-layout-menu';
-$logo-prefix-cls: '#{$tonyname}-app-logo';
-.#{$logo-prefix-cls}.#{$prefix-cls} {
-  &-logo {
-    height: $side-logo-height;
-    padding: 16px;
+
+.#{$prefix-cls} {
+  &--logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: var(--header-height);
+    padding: 0;
     white-space: nowrap;
     background: var(--sider-background-color);
 
-    &.is-hide-logo {
-      padding: 16px 8px;
-      transition: none;
-    }
-
     > img {
-      width: var(--logo-size);
-      height: var(--logo-size);
+      width: calc(var(--header-height) - 24px);
+      height: calc(var(--header-height) - 24px);
     }
 
     > span {
@@ -184,7 +184,7 @@ $logo-prefix-cls: '#{$tonyname}-app-logo';
   }
 
   &--mobile {
-    .#{$logo-prefix-cls} {
+    .#{$tonyname}-app-logo {
       &__title {
         opacity: 1;
       }

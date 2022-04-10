@@ -1,38 +1,11 @@
-.bg-white {
-  background-color: var(--background-primary-color) !important;
-}
-
-.bg-black {
-  background-color: var(--background-primary-reverse) !important;
-}
-
-html[data-theme='light'] {
-  .text-secondary {
-    color: rgba(0, 0, 0, 0.45);
-  }
-
-  .el-alert--success {
-    background-color: #f6ffed;
-    border: 1px solid #b7eb8f;
-  }
-
-  .el-alert--danger {
-    background-color: #fff2f0;
-    border: 1px solid #ffccc7;
-  }
-
-  .el-alert--warning {
-    background-color: #fffbe6;
-    border: 1px solid #ffe58f;
-  }
-
-  :not(:root):fullscreen::backdrop {
-    background-color: $layout-body-background !important;
-  }
-}
-
-html[data-theme='dark'] {
-  .text-secondary {
-    color: #8b949e;
-  }
+@mixin BasicThemeBackground {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background: var(--primary-color);
+  content: '';
+  opacity: 0.15;
 }

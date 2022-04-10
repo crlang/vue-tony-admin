@@ -14,7 +14,7 @@ import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'SvgIcon',
-  inheritAttrs: false,
+  // inheritAttrs: false,
   props: {
     /**
      * Icon name

@@ -111,7 +111,7 @@ $prefix-cls: '#{$tonyname}-header-notify';
     text-align: center;
 
     &:hover {
-      color: var(--link-color);
+      color: var(--text-primary-color);
       cursor: pointer;
       background: var(--background-main-color);
     }

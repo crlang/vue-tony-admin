@@ -5,7 +5,8 @@
   <div
     :style="getWrapStyle"
     :class="getClass">
-    <LayoutHeader v-if="getShowInsetHeaderRef" />
+    <LayoutHeader
+      v-if="getShowInsetHeaderRef" />
     <MultipleTabs v-if="getShowTabs" />
   </div>
 </template>
@@ -28,7 +29,6 @@ import { useLayoutHeight } from '../content/useContentViewHeight'
 const HEADER_HEIGHT = projectSetting.headerSetting.height
 
 const TABS_HEIGHT = projectSetting.multiTabsSetting.height
-console.log('projectSetting', projectSetting)
 
 export default defineComponent({
   name: 'LayoutMultipleHeader',
@@ -101,16 +101,12 @@ export default defineComponent({
   },
 })
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 $prefix-cls: '#{$tonyname}-layout-multiple-header';
 
 .#{$prefix-cls} {
-  transition: width 0.2s;
+  transition: width var(--t-fast);
   flex: 0 0 auto;
-
-  &--dark {
-    margin-left: -1px;
-  }
 
   &--fixed {
     position: fixed;

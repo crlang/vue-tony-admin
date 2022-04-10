@@ -77,7 +77,7 @@ $prefix-cls: '#{$tonyname}-strength-meter';
     position: relative;
     height: 6px;
     margin: 10px auto 6px;
-    background-color: var(--disabled-color);
+    background-color: rgba(0, 0, 0, 0.1);
     border-radius: 6px;
 
     &::before,

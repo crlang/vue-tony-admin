@@ -1,48 +1,38 @@
-$simple-prefix-cls: '#{$tonyname}-simple-menu';
-$prefix-cls: '#{$tonyname}-menu';
-$dark-prefix-cls: '#{$tonyname}-menu-dark';
-$vertical-prefix-cls: '#{$tonyname}-menu-vertical';
+$simple-menu: '#{$tonyname}-simple-menu';
 
-.#{$prefix-cls} {
-  .collapse-title {
-    overflow: hidden;
-    font-size: 12px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-}
-
-.#{$simple-prefix-cls} {
+.#{$simple-menu} {
   &-sub-title {
+    margin-left: 8px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    transition: all 0.3s;
+    transition: var(--t-base);
   }
 
   &-tag {
     position: absolute;
     top: calc(50% - 8px);
-    right: 30px;
+    right: 32px;
     display: inline-block;
-    padding: 2px 3px;
+    padding: 2px 4px;
     margin-right: 4px;
-    font-size: 10px;
+    font-size: 12px;
     line-height: 14px;
     color: #fff;
     border-radius: 2px;
 
-    &--collapse {
-      top: 6px !important;
-      right: 2px;
-    }
-
     &--dot {
-      top: calc(50% - 2px);
+      top: calc(50% - 3px);
       width: 6px;
       height: 6px;
       padding: 0;
+      font-size: 0;
       border-radius: 50%;
+    }
+
+    &--collapse {
+      top: 6px;
+      right: 2px;
     }
 
     &--primary {
@@ -59,17 +49,6 @@ $vertical-prefix-cls: '#{$tonyname}-menu-vertical';
 
     &--warn {
       background-color: var(--warning-color);
-    }
-  }
-}
-
-.#{$dark-prefix-cls} {
-  &.#{$vertical-prefix-cls} {
-    .#{$simple-prefix-cls}__parent {
-      background-color: var(--sider-background-color);
-      > .#{$prefix-cls}-submenu-title {
-        background-color: var(--sider-background-color);
-      }
     }
   }
 }

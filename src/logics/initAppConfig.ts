@@ -11,6 +11,7 @@ import { updateColorWeak } from '@/logics/theme/updateColorWeak'
 import { updateGrayMode } from '@/logics/theme/updateGrayMode'
 import { updateDarkTheme } from '@/logics/theme/dark'
 // import { changeTheme } from '@/logics/theme'
+import { initBasicHeight } from '@/logics/theme/initBasicVariable'
 
 import { useAppStore } from '@/store/modules/app'
 import { useLocaleStore } from '@/store/modules/locale'
@@ -21,7 +22,6 @@ import { getCommonStoragePrefix, getStorageShortName } from '@/utils/env'
 import { Persistent } from '@/utils/cache/persistent'
 import { deepMerge } from '@/utils'
 import { ThemeEnum } from '@/enums/appEnum'
-import { updateHeaderHeight, updateTabsHeight } from './theme/updateSize'
 
 // Initial project configuration
 export function initAppConfigStore() {
@@ -40,8 +40,7 @@ export function initAppConfigStore() {
   } = projCfg
 
   // Initialize various size definitions to generate custom properties
-  updateHeaderHeight()
-  updateTabsHeight()
+  initBasicHeight()
 
   try {
     // if (themeColor && themeColor !== primaryColor) {

@@ -7,9 +7,10 @@
         v-if="getShowHeaderLogo || getIsMobile"
         :class="`${prefixCls}-logo`"
         :theme="getHeaderTheme"
-        :style="getLogoWidth"
-      />
-      <LayoutTrigger v-if="(getShowContent && getShowHeaderTrigger && !getSplit && !getIsMixSidebar) || getIsMobile" />
+        :style="getLogoWidth" />
+      <LayoutTrigger
+        :class="`${prefixCls}-trigger`"
+        v-if="(getShowContent && getShowHeaderTrigger && !getSplit && !getIsMixSidebar) || getIsMobile" />
       <LayoutBreadcrumb v-if="getShowContent && getShowBread" />
     </div>
     <!-- left end -->
@@ -36,8 +37,7 @@
         v-if="getShowLocalePicker"
         :reload="true"
         :showText="false"
-        :class="`${prefixCls}-action__item`"
-      />
+        :class="`${prefixCls}-action__item`" />
 
       <UserDropDown :itemClass="`${prefixCls}-action__item`" />
 
@@ -51,8 +51,6 @@
 <script lang="ts">
 import { defineComponent, unref, computed } from 'vue'
 import { ElHeader } from 'element-plus'
-
-import { propTypes } from '@/utils/propTypes'
 
 import { AppLogo } from '@/components/Application'
 import LayoutTrigger from '../trigger/index.vue'
@@ -90,7 +88,7 @@ export default defineComponent({
     }),
   },
   props: {
-    fixed: propTypes.bool,
+    fixed: Boolean,
   },
   setup(props) {
     const { prefixCls } = useDesign('layout-header')

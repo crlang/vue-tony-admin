@@ -2,14 +2,14 @@ import { Ref } from 'vue'
 
 export interface Props {
   theme: string
-  activeName?: string | number | undefined
+  activeName?: string | undefined
   openNames: string[]
   accordion: boolean
   width: string
   collapsedWidth: string
   indentSize: number
   collapse: boolean
-  activeSubMenuNames: (string | number)[]
+  activeSubMenuNames: string[]
 }
 
 export interface SubMenuProvider {

@@ -5,8 +5,9 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue'
 import type { SubMenuProvider } from './types'
+import type { GlobalThemeType } from '@/utils/types'
+
 import {
   defineComponent,
   ref,
@@ -18,27 +19,44 @@ import {
   getCurrentInstance,
   provide
 } from 'vue'
-
 import { useDesign } from '@/hooks/web/useDesign'
-import { propTypes } from '@/utils/propTypes'
 import { createSimpleRootMenuContext } from './useSimpleMenuContext'
 import mitt from '@/utils/mitt'
+
 export default defineComponent({
   name: 'Menu',
   props: {
-    theme: propTypes.oneOf(['light', 'dark']).def('light'),
-    activeName: propTypes.oneOfType([propTypes.string, propTypes.number]),
+    theme: {
+      type: String as PropType<GlobalThemeType>,
+      default: 'light',
+    },
+    activeName: String,
     openNames: {
       type: Array as PropType<string[]>,
       default: () => [],
     },
-    accordion: propTypes.bool.def(true),
-    width: propTypes.string.def('100%'),
-    collapsedWidth: propTypes.string.def('48px'),
-    indentSize: propTypes.number.def(16),
-    collapse: propTypes.bool.def(true),
+    accordion: {
+      type: Boolean,
+      default: true,
+    },
+    width: {
+      type: String,
+      default: '100%',
+    },
+    collapsedWidth: {
+      type: String,
+      default: '48px',
+    },
+    indentSize: {
+      type: Number,
+      default: 16,
+    },
+    collapse: {
+      type: Boolean,
+      default: true,
+    },
     activeSubMenuNames: {
-      type: Array as PropType<(string | number)[]>,
+      type: Array as PropType<string[]>,
       default: () => [],
     },
   },
@@ -47,10 +65,10 @@ export default defineComponent({
     const rootMenuEmitter = mitt()
     const instance = getCurrentInstance()
 
-    const currentActiveName = ref<string | number>('')
+    const currentActiveName = ref<string>('')
     const openedNames = ref<string[]>([])
 
-    const { prefixCls } = useDesign('menu')
+    const { prefixCls } = useDesign('simple-menu')
 
     const isRemoveAllPopup = ref(false)
 
@@ -153,4 +171,4 @@ export default defineComponent({
   },
 })
 </script>
-<style lang="scss" src="./menu.scss"></style>
+<style lang="scss" src="./index.scss"></style>

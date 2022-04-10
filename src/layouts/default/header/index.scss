@@ -44,15 +44,9 @@ $prefix-cls: '#{$tonyname}-layout-header';
 
   &-logo {
     height: var(--header-height);
-    min-width: 192px;
+    min-width: 200px;
     padding: 0 10px;
     font-size: 14px;
-
-    img {
-      width: var(--logo-size);
-      height: var(--logo-size);
-      margin-right: 2px;
-    }
   }
 
   &-left {
@@ -64,9 +58,8 @@ $prefix-cls: '#{$tonyname}-layout-header';
       display: flex;
       align-items: center;
       height: 100%;
-      padding: 1px 10px 0;
+      padding: 0 10px;
       cursor: pointer;
-      background-color: var(--header-background-color);
 
       &:hover {
         background-color: var(--header-background-hover-color);

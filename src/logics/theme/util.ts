@@ -9,3 +9,7 @@ export function toggleClass(flag: boolean, clsName: string, target?: HTMLElement
 export function setCssVar(prop: string, val: any, dom = docEle) {
   dom.style.setProperty(prop, val)
 }
+
+export function getCssVar(prop: string, dom = docEle) {
+  return getComputedStyle(dom).getPropertyValue(prop) || ''
+}

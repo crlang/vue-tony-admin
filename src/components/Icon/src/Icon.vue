@@ -22,7 +22,7 @@ const SVG_END_WITH_FLAG = '|svg'
 export default defineComponent({
   name: 'Icon',
   components: { SvgIcon },
-  inheritAttrs: false,
+  // inheritAttrs: false,
   props: {
     /**
      * Icon name

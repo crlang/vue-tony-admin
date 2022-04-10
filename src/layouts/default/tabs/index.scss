@@ -1,4 +1,6 @@
 
+@import '@/design/theme.scss';
+
 $prefix-cls: '#{$tonyname}-multiple-tabs';
 
 .#{$prefix-cls} {
@@ -104,7 +106,7 @@ $prefix-cls: '#{$tonyname}-multiple-tabs';
       color: var(--el-text-color-primary);
 
       &:hover {
-        color: var(--el-color-primary);
+        color: var(--primary-color);
         background: var(--el-color-primary-light-9);
       }
     }
@@ -150,13 +152,19 @@ $prefix-cls: '#{$tonyname}-multiple-tabs';
       }
 
       &:hover {
-        color: var(--el-color-primary);
+        color: var(--primary-color);
         background: #f5f6f7;
       }
 
       &.is-active {
-        color: var(--el-color-primary);
-        background: var(--el-color-primary-light-9);
+        position: relative;
+        color: var(--primary-color);
+
+        &::after {
+          @include BasicThemeBackground();
+
+          opacity: 0.1;
+        }
       }
 
       .el-dropdown {

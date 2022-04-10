@@ -1,4 +1,4 @@
-import type { AppRouteModule } from '@/router/types'
+import type { AppRouteModule, MenuTag } from '@/router/types'
 
 import { getParentLayout, LAYOUT } from '@/router/constant'
 import { t } from '@/hooks/web/useI18n'
@@ -12,6 +12,11 @@ const comp: AppRouteModule = {
     orderNo: 2,
     icon: 'ion:layers-outline',
     title: t('routes.comp.comp'),
+    tag: {
+      type: 'success',
+      content: 'New',
+      dot: false,
+    } as MenuTag,
   },
 
   children: [
@@ -20,6 +25,7 @@ const comp: AppRouteModule = {
       name: 'BasicDemo',
       component: () => import('@/views/demo/comp/button/index.vue'),
       meta: {
+        icon: 'ion:layers-outline',
         title: t('routes.comp.basic'),
       },
     },
@@ -32,6 +38,11 @@ const comp: AppRouteModule = {
       meta: {
         // icon: 'mdi:form-select',
         title: t('routes.form.form'),
+        tag: {
+          type: 'error',
+          content: 'Hot',
+          dot: false,
+        } as MenuTag,
       },
       children: [
         {
@@ -108,6 +119,11 @@ const comp: AppRouteModule = {
       meta: {
         // icon: 'carbon:table-split',
         title: t('routes.table.table'),
+        tag: {
+          type: 'error',
+          content: 'Hot',
+          dot: false,
+        } as MenuTag,
       },
 
       children: [
@@ -328,6 +344,11 @@ const comp: AppRouteModule = {
       component: () => import('@/views/demo/comp/modal/index.vue'),
       meta: {
         title: t('routes.comp.modal'),
+        tag: {
+          type: 'warn',
+          content: 'Hot',
+          dot: true,
+        } as MenuTag,
       },
     },
     {
@@ -336,6 +357,11 @@ const comp: AppRouteModule = {
       component: () => import('@/views/demo/comp/drawer/index.vue'),
       meta: {
         title: t('routes.comp.drawer'),
+        tag: {
+          type: 'primary',
+          content: 'Hot',
+          dot: true,
+        } as MenuTag,
       },
     },
     {

@@ -10,13 +10,9 @@
       :size="16" />
     <div
       v-if="collapsedShowTitle && getIsCollapseParent"
-      class="mt-1 collapse-title">
-      {{ getI18nName }}
-    </div>
+      class="mt-1 collapse-title">{{ getI18nName }}</div>
     <template #title>
-      <span :class="['ml-2', `${prefixCls}-sub-title`]">
-        {{ getI18nName }}
-      </span>
+      <span :class="`${prefixCls}-sub-title`">{{ getI18nName }}</span>
       <SimpleMenuTag
         :item="item"
         :collapseParent="getIsCollapseParent" />
@@ -32,18 +28,13 @@
         v-if="getIcon"
         :icon="getIcon"
         :size="16" />
-
       <div
         v-if="collapsedShowTitle && getIsCollapseParent"
-        class="mt-2 collapse-title">
-        {{ getI18nName }}
-      </div>
+        class="collapse-title">{{ getI18nName }}</div>
 
       <span
         v-show="getShowSubTitle"
-        :class="['ml-2', `${prefixCls}-sub-title`]">
-        {{ getI18nName }}
-      </span>
+        :class="`${prefixCls}-sub-title`">{{ getI18nName }}</span>
       <SimpleMenuTag
         :item="item"
         :collapseParent="!!collapse && !!parent" />
@@ -59,9 +50,9 @@
     </template>
   </SubMenu>
 </template>
+
 <script lang="ts">
-import type { PropType } from 'vue'
-import type { Menu } from '@/router/types'
+import type { Menu as MenuType } from '@/router/types'
 
 import { defineComponent, computed } from 'vue'
 import { useDesign } from '@/hooks/web/useDesign'
@@ -69,9 +60,9 @@ import Icon from '@/components/Icon'
 
 import MenuItem from './components/MenuItem.vue'
 import SubMenu from './components/SubMenuItem.vue'
-import { propTypes } from '@/utils/propTypes'
 import { useI18n } from '@/hooks/web/useI18n'
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
+import { GlobalThemeType } from '@/utils/types'
 
 export default defineComponent({
   name: 'SimpleSubMenu',
@@ -83,13 +74,15 @@ export default defineComponent({
   },
   props: {
     item: {
-      type: Object as PropType<Menu>,
+      type: Object as PropType<MenuType>,
       default: () => ({}),
     },
-    parent: propTypes.bool,
-    collapsedShowTitle: propTypes.bool,
-    collapse: propTypes.bool,
-    theme: propTypes.oneOf(['dark', 'light']),
+    parent: Boolean,
+    collapsedShowTitle: Boolean,
+    collapse: Boolean,
+    theme: {
+      type: String as PropType<GlobalThemeType>,
+    },
   },
   setup(props) {
     const { t } = useI18n()
@@ -109,7 +102,7 @@ export default defineComponent({
       ]
     })
 
-    function menuHasChildren(menuTreeItem: Menu): boolean {
+    function menuHasChildren(menuTreeItem: MenuType): boolean {
       return (
         !menuTreeItem.meta?.hideChildrenInMenu &&
         Reflect.has(menuTreeItem, 'children') &&

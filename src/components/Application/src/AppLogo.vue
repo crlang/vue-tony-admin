@@ -25,10 +25,6 @@ const props = defineProps({
    * Whether to show title
    */
   showTitle: { type: Boolean, default: true },
-  /**
-   * The title is also displayed when the menu is collapsed
-   */
-  alwaysShowTitle: { type: Boolean },
 })
 
 const { prefixCls } = useDesign('app-logo')
@@ -36,11 +32,7 @@ const userStore = useUserStore()
 const { title } = useGlobSetting()
 const go = useGo()
 
-const getAppLogoClass = computed(() => [
-  prefixCls,
-  props.theme,
-  !props.showTitle ? 'is-hide-logo' : '',
-])
+const getAppLogoClass = computed(() => [prefixCls, props.theme])
 
 function goHome() {
   go(userStore.getUserInfo.homePath || PageEnum.BASE_HOME)
@@ -56,14 +48,14 @@ $prefix-cls: '#{$tonyname}-app-logo';
   cursor: pointer;
 
   > img {
-    width: var(--logo-size);
-    height: var(--logo-size);
+    width: 32px;
+    height: 32px;
   }
 
   > span {
     margin-left: 16px;
     font-family: var(--font-family-logo);
-    font-size: 33px;
+    font-size: 32px;
     font-weight: 600;
   }
 }

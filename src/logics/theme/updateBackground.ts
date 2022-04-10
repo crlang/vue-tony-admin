@@ -5,7 +5,6 @@ import { setCssVar } from './util'
 
 const HEADER_BG_COLOR = '--header-background-color'
 const HEADER_BG_HOVER_COLOR = '--header-background-hover-color'
-
 const HEADER_TEXT_COLOR = '--header-text-color'
 const HEADER_TEXT_HOVER_COLOR = '--header-text-hover-color'
 
@@ -37,12 +36,12 @@ export function updateHeaderBgColor(color?: string) {
   setCssVar(HEADER_TEXT_COLOR, dyncColor.text)
 
   // hover color
-  setCssVar(HEADER_BG_HOVER_COLOR, dyncColor.bgHover)
+  setCssVar(HEADER_BG_HOVER_COLOR, dyncColor.backgroundHover)
   setCssVar(HEADER_TEXT_HOVER_COLOR, dyncColor.textHover)
 
   appStore.setProjectConfig({
     headerSetting: {
-      theme: isDark || darkMode ? ThemeEnum.DARK : ThemeEnum.LIGHT,
+      theme: (isDark || darkMode) ? ThemeEnum.DARK : ThemeEnum.LIGHT,
     },
   })
 }
@@ -68,7 +67,7 @@ export function updateSidebarBgColor(color?: string) {
   setCssVar(SIDER_TEXT_COLOR, dyncColor.text)
 
   // hover color
-  setCssVar(SIDER_BG_HOVER_COLOR, dyncColor.bgHover)
+  setCssVar(SIDER_BG_HOVER_COLOR, dyncColor.backgroundHover)
   setCssVar(SIDER_TEXT_HOVER_COLOR, dyncColor.textHover)
 
   // only #ffffff is light
@@ -92,6 +91,6 @@ function dyncGenerateColor(color?:string) {
   return {
     text: isDark ? lighten(color, 75) : darken(color, 75),
     textHover: isDark ? lighten(color, 90) : darken(color, 90),
-    bgHover: isDark ? lighten(color, 5) : darken(color, 5),
+    backgroundHover: isDark ? lighten(color, 5) : darken(color, 5),
   }
 }

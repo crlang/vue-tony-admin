@@ -1,6 +1,7 @@
 @use 'var/index.scss' as *;
 
 @import 'basic.scss';
+@import 'theme.scss';
 @import 'transition/index.scss';
 @import 'public.scss';
 
@@ -152,19 +153,19 @@ html[data-theme='light'] {
   --backdrop-opacity: 0.25;
 
   // scenex
-  --link-color: var(--blue-color); // link
-  --disabled-color: rgba(0, 0, 0, 0.1); // error
+  // --link-color: var(--blue-color); // link
+  // --disabled-color: rgba(0, 0, 0, 0.1); // error
 
   // left sider
-  --sider-background-color: var(--black-color-3);
-  --sider-background-active-color: var(--black-color-4);
-  --sider-text-color: var(--grey-color-2);
-  --sider-text-active-color: var(--blue-color);
+  // --sider-background-color: var(--black-color-3);
+  // --sider-background-active-color: var(--black-color-4);
+  // --sider-text-color: var(--grey-color-2);
+  // --sider-text-active-color: var(--blue-color);
 
   // header
-  --header-text-color: var(--grey-color-3);
-  --header-background-color: #fff;
-  --header-background-hover-color: #f6f6f6;
+  // --header-text-color: var(--grey-color-3);
+  // --header-background-color: #fff;
+  // --header-background-hover-color: #f6f6f6;
 }
 
 /* Dark mode will be refactored, please wait */

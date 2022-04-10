@@ -2,14 +2,14 @@
   <li :class="getClass">
     <template v-if="!getCollapse">
       <div
-        :class="`${prefixCls}-submenu-title`"
+        :class="`${prefixCls}-title`"
         @click.stop="handleClick"
         :style="getItemStyle">
         <slot name="title"></slot>
         <Icon
           icon="eva:arrow-ios-downward-outline"
           :size="14"
-          :class="`${prefixCls}-submenu-title-icon`" />
+          :class="`${prefixCls}-title-icon`" />
       </div>
       <CollapseTransition>
         <ul
@@ -27,7 +27,7 @@
       :visible="getIsOpend"
       @show="handleVisibleChange(true)"
       @hide="handleVisibleChange(false)"
-      :popper-class="`${prefixCls}-menu-popover`">
+      :popper-class="`${prefixCls}-popover`">
       <template #reference>
         <div
           :class="getSubClass"
@@ -35,8 +35,8 @@
           <div
             :class="[
               {
-                [`${prefixCls}-submenu-popup`]: !getParentSubMenu,
-                [`${prefixCls}-submenu-collapsed-show-tit`]: collapsedShowTitle
+                [`${prefixCls}--popup`]: !getParentSubMenu,
+                [`${prefixCls}--collapsed-show-title`]: collapsedShowTitle
               }
             ]">
             <slot name="title"></slot>
@@ -45,12 +45,12 @@
             v-if="getParentSubMenu"
             icon="eva:arrow-ios-downward-outline"
             :size="14"
-            :class="`${prefixCls}-submenu-title-icon`"
+            :class="`${prefixCls}-title-icon`"
           />
         </div>
       </template>
       <div v-bind="getEvents(true)">
-        <ul :class="[prefixCls, `${prefixCls}-${getTheme}`, `${prefixCls}-popup`]">
+        <ul :class="[prefixCls, `${prefixCls}--${getTheme}`, `${prefixCls}--popup`]">
           <slot></slot>
         </ul>
       </div>
@@ -59,7 +59,6 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue'
 import type { SubMenuProvider } from './types'
 
 import {
@@ -93,7 +92,7 @@ export default defineComponent({
   },
   props: {
     name: {
-      type: [String, Number] as PropType<string | number>,
+      type: String,
       required: true,
     },
     disabled: propTypes.bool,
@@ -115,7 +114,7 @@ export default defineComponent({
 
     const { getParentSubMenu, getItemStyle, getParentMenu, getParentList } = useMenuItem(instance)
 
-    const { prefixCls } = useDesign('menu')
+    const { prefixCls } = useDesign('simple-submenu-item')
 
     const subMenuEmitter = mitt()
 
@@ -135,13 +134,13 @@ export default defineComponent({
 
     const getClass = computed(() => {
       return [
-        `${prefixCls}-submenu`,
+        `${prefixCls}`,
         {
-          [`${prefixCls}-item-active`]: state.active,
-          [`${prefixCls}-opened`]: state.opened,
-          [`${prefixCls}-submenu-disabled`]: props.disabled,
-          [`${prefixCls}-submenu-has-parent-submenu`]: unref(getParentSubMenu),
-          [`${prefixCls}-child-item-active`]: state.active,
+          [`${prefixCls}--active`]: state.active,
+          [`${prefixCls}--opened`]: state.opened,
+          [`${prefixCls}--disabled`]: props.disabled,
+          [`${prefixCls}--hasparent`]: unref(getParentSubMenu),
+          [`${prefixCls}--childitem-active`]: state.active,
         },
       ]
     })
@@ -161,11 +160,11 @@ export default defineComponent({
     const getSubClass = computed(() => {
       const isActive = rootProps.activeSubMenuNames.includes(props.name)
       return [
-        `${prefixCls}-submenu-title`,
+        `${prefixCls}-title`,
         {
-          [`${prefixCls}-submenu-active`]: isActive,
-          [`${prefixCls}-submenu-active-border`]: isActive && level === 0,
-          [`${prefixCls}-submenu-collapse`]: unref(getCollapse) && level === 0,
+          [`${prefixCls}--active`]: isActive,
+          [`${prefixCls}--active-border`]: isActive && level === 0,
+          [`${prefixCls}--collapse`]: unref(getCollapse) && level === 0,
         },
       ]
     })

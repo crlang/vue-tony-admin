@@ -1,21 +1,20 @@
 <template>
-  <SiderTrigger v-if="sider" />
-  <HeaderTrigger v-else />
+  <span @click="toggleCollapsed">
+    <SvgIcon :name="getCollapsed ? 'expand' : 'fold'" />
+  </span>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
-import HeaderTrigger from './HeaderTrigger.vue'
+import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+import { SvgIcon } from '@/components/Icon'
 
 export default defineComponent({
   name: 'LayoutTrigger',
-  components: {
-    SiderTrigger: createAsyncComponent(() => import('./SiderTrigger.vue')),
-    HeaderTrigger: HeaderTrigger,
-  },
-  props: {
-    sider: Boolean,
+  components: { SvgIcon },
+  setup() {
+    const { getCollapsed, toggleCollapsed } = useMenuSetting()
+    return { getCollapsed, toggleCollapsed }
   },
 })
 </script>

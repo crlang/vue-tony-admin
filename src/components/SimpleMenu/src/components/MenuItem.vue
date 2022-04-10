@@ -6,12 +6,13 @@
     <ElTooltip
       placement="right"
       v-if="showTooptip">
-      <div :class="`${prefixCls}-tooltip`">
+      <div :class="`${prefixCls}--tooltip`">
         <slot></slot>
       </div>
       <template #content>
         <slot name="title"></slot>
-      </template></ElTooltip>
+      </template>
+    </ElTooltip>
 
     <template v-else>
       <slot></slot>
@@ -21,22 +22,21 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue'
 import { defineComponent, ref, computed, unref, getCurrentInstance, watch } from 'vue'
 import { ElTooltip } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
-import { propTypes } from '@/utils/propTypes'
 import { useMenuItem } from './useMenu'
 import { useSimpleRootMenuContext } from './useSimpleMenuContext'
+
 export default defineComponent({
   name: 'MenuItem',
   components: { ElTooltip },
   props: {
     name: {
-      type: [String, Number] as PropType<string | number>,
+      type: String,
       required: true,
     },
-    disabled: propTypes.bool,
+    disabled: Boolean,
   },
   setup(props, { slots }) {
     const instance = getCurrentInstance()
@@ -45,17 +45,17 @@ export default defineComponent({
 
     const { getItemStyle, getParentList, getParentMenu, getParentRootMenu } = useMenuItem(instance)
 
-    const { prefixCls } = useDesign('menu')
+    const { prefixCls } = useDesign('simple-menu-item')
 
     const { rootMenuEmitter, activeName } = useSimpleRootMenuContext()
 
     const getClass = computed(() => {
       return [
-        `${prefixCls}-item`,
+        `${prefixCls}`,
         {
-          [`${prefixCls}-item-active`]: unref(active),
-          [`${prefixCls}-item-selected`]: unref(active),
-          [`${prefixCls}-item-disabled`]: !!props.disabled,
+          [`${prefixCls}--active`]: unref(active),
+          [`${prefixCls}--selected`]: unref(active),
+          [`${prefixCls}--disabled`]: !!props.disabled,
         },
       ]
     })
@@ -68,14 +68,11 @@ export default defineComponent({
 
     function handleClickItem() {
       const { disabled } = props
-      if (disabled) {
-        return
-      }
+      if (disabled) return
 
       rootMenuEmitter.emit('on-menu-item-select', props.name)
-      if (unref(getCollapse)) {
-        return
-      }
+      if (unref(getCollapse)) return
+
       const { uidList } = getParentList()
 
       rootMenuEmitter.emit('on-update-opened', {
@@ -85,7 +82,7 @@ export default defineComponent({
       })
     }
     watch(
-      () => activeName.value,
+      () => unref(activeName),
       (name: string) => {
         if (name === props.name) {
           const { list, uidList } = getParentList()

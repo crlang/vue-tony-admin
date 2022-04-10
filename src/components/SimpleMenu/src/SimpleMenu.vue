@@ -1,8 +1,10 @@
 <template>
   <Menu
-    v-bind="getBindValues"
     :activeName="activeName"
     :openNames="getOpenKeys"
+    :collapse="collapse"
+    :accordion="accordion"
+    :theme="theme"
     :class="prefixCls"
     :activeSubMenuNames="activeSubMenuNames"
     @select="handleSelect">
@@ -17,6 +19,7 @@
     </template>
   </Menu>
 </template>
+
 <script lang="ts">
 import type { MenuState } from './types'
 import type { Menu as MenuType } from '@/router/types'
@@ -33,6 +36,7 @@ import { isUrl } from '@/utils/is'
 import { openWindow } from '@/utils'
 
 import { useOpenKeys } from './useOpenKeys'
+import { GlobalThemeType } from '@/utils/types'
 export default defineComponent({
   name: 'SimpleMenu',
   components: {
@@ -47,7 +51,10 @@ export default defineComponent({
     },
     collapse: propTypes.bool,
     mixSider: propTypes.bool,
-    theme: propTypes.string,
+    theme: {
+      type: String as PropType<GlobalThemeType>,
+      default: '',
+    },
     accordion: propTypes.bool.def(true),
     collapsedShowTitle: propTypes.bool,
     isSplitMenu: propTypes.bool,
@@ -141,6 +148,4 @@ export default defineComponent({
   },
 })
 </script>
-<style lang="scss">
-@import './index.scss';
-</style>
+<style lang="scss" src="./index.scss"></style>

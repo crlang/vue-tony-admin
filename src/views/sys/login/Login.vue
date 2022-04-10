@@ -29,7 +29,7 @@
           </div>
 
           <div :class="`${prefixCls}__logo`">
-            <AppLogo :alwaysShowTitle="true" />
+            <AppLogo />
             <p>{{ t('sys.login.slogan') }}</p>
           </div>
           <div :class="`${prefixCls}__form`">
