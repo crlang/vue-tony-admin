@@ -1,3 +1,10 @@
+## [0.2.2](https://github.com/crlang/vue-tony-admin/compare/0.2.1...0.2.2) (2022-04-10)
+
+### Bug Fixes
+
+- 移除按钮默认尺寸，修复表单提交区域尺寸 ([b353a45](https://github.com/crlang/vue-tony-admin/commit/b353a45805b69e4461ab86a0139324654de98d2b))
+- 系统管理示例更新 ([eba5359](https://github.com/crlang/vue-tony-admin/commit/eba53592a91c4ed7f97c7b07a4a9a40791ab6c34))
+
 ## [0.2.1](https://github.com/crlang/vue-tony-admin/compare/0.1.1-beta.4...0.2.1) (2022-04-05)
 
 ### Bug Fixes
