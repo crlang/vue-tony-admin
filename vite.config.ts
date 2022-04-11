@@ -66,6 +66,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       terserOptions: {
         compress: {
           keep_infinity: true,
+          drop_debugger: true,
           // Used to delete console in production environment
           drop_console: VITE_DROP_CONSOLE,
         },
@@ -78,6 +79,13 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       emptyOutDir: true,
       rollupOptions: {
         output: {
+          compact: true,
+          // 保留箭头函数
+          arrowFunctions: true,
+          // 保留const
+          constBindings: true,
+          sourcemap: false,
+          sourcemapExcludeSources: true,
           // 拆分包
           manualChunks(id) {
             if (id.includes('node_modules')) {
