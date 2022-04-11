@@ -94,7 +94,6 @@ export default defineComponent({
     }
 
     function handleMenuClick(e: MenuEvent) {
-      console.log('handle key', e)
       switch (e) {
         case 'logout':
           handleLoginOut()

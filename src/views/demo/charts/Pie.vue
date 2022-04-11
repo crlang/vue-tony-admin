@@ -24,7 +24,6 @@ export default defineComponent({
     const chartRef = ref<HTMLDivElement | null>(null)
     const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>)
     const dataAll = getRandomNumberData(10)
-    console.log('dataAll', dataAll)
     const yAxisData = ['原因1', '原因2', '原因3', '原因4', '原因5', '原因6', '原因7', '原因8', '原因9', '原因10']
     onMounted(() => {
       setOptions({

@@ -12,7 +12,6 @@ export default class UserService {
     const fileFunc = function (file) {
       fileReader = fs.createReadStream(file.path)
       fileResource = filePath + `/${file.name}`
-      console.log(fileResource)
 
       writeStream = fs.createWriteStream(fileResource)
       fileReader.pipe(writeStream)
@@ -38,7 +37,6 @@ export default class UserService {
         }
       }
     }
-    console.log(isMultiple, files.length)
 
     if (isMultiple) {
       for (let i = 0; i < files.length; i++) {

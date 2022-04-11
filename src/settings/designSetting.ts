@@ -4,6 +4,8 @@ export const prefixCls = 'tony'
 
 export const darkMode = ThemeEnum.LIGHT
 
+export const primaryColor = '#0081FF'
+
 // app theme preset color
 export const APP_PRESET_COLOR_LIST: string[] = [
   '#0960bd',

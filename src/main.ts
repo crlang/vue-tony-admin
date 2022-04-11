@@ -1,6 +1,3 @@
-// import 'virtual:windi-base.css'
-// import 'virtual:windi-components.css'
-// import 'virtual:windi-utilities.css'
 // Register icon sprite
 import 'virtual:svg-icons-register'
 import 'element-plus/theme-chalk/src/index.scss'

@@ -47,7 +47,7 @@ export default defineComponent({
       try {
         await tokenExpiredApi()
       } catch (err) {
-        console.log('接口访问错误：', (err as Error).message || '错误')
+        console.error('接口访问错误：', (err as Error).message || '错误')
       }
     }
 

@@ -357,12 +357,10 @@ export const basicSchemas: FormSchema[] = [
         options: provincesOptions,
         placeholder: '省份与城市联动',
         onChange: (e: any) => {
-          // console.log(e)
           let citiesOptions =
               e === 1
                 ? citiesOptionsData[provincesOptions[0].id]
                 : citiesOptionsData[provincesOptions[1].id]
-          // console.log(citiesOptions)
           if (e === undefined) {
             citiesOptions = []
           }
@@ -708,10 +706,7 @@ export const dyncSchemas1: FormSchema[] = [
         placeholder: '值改变时执行查询,查看控制台',
         onChange: async () => {
           const { validate } = formActionType
-          // tableAction只适用于在表格内开启表单的例子
-          // const { reload } = tableAction;
-          const res = await validate()
-          console.log(res)
+          await validate()
         },
       }
     },

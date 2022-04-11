@@ -24,7 +24,6 @@ export function createTableColumns(): BasicColumn[] {
       align: 'left',
       customRender: ({ text, record }) => {
         const { percent, status: uploadStatus } = (record as FileItem) || {}
-        console.log('record', record)
         let status: '' | 'success' | 'exception' | 'warning'
         if (uploadStatus === UploadResultStatus.ERROR) {
           status = 'exception'

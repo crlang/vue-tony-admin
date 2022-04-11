@@ -70,11 +70,11 @@ export default defineComponent({
       columns,
       border: true,
     })
-    function handleEdit(record: Recordable) {
-      console.log('点击了编辑', record)
+    function handleEdit({ row }) {
+      console.table('点击了编辑', row)
     }
-    function handleDelete(record: Recordable) {
-      console.log('点击了删除', record)
+    function handleDelete({ row }) {
+      console.table('点击了删除', row)
       createConfirm({
         title: '温馨提示',
         content: '是否删除当前文件？',
@@ -87,8 +87,8 @@ export default defineComponent({
           createMessage.info('取消删除')
         })
     }
-    function handleOpen(record: Recordable) {
-      console.log('点击了启用', record)
+    function handleOpen({ row }) {
+      console.table('点击了启用', row)
     }
     return { registerTable }
   },

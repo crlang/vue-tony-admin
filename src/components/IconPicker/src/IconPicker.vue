@@ -159,7 +159,6 @@ export default defineComponent({
       currentSelect.value = icon
       if (props.copy) {
         clipboardRef.value = icon
-        console.log('isSuccessRef', isSuccessRef.value)
         if (unref(isSuccessRef)) {
           createMessage.success(t('component.icon.copy'))
         }

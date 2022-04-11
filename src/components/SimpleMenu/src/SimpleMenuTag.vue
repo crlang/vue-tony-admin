@@ -26,8 +26,6 @@ export default defineComponent({
     const getShowTag = computed(() => {
       const { item } = props
 
-      console.log('item+++', item)
-
       if (!item) return false
 
       const { tag } = item

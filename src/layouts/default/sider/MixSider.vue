@@ -252,7 +252,6 @@ export default defineComponent({
       // hanldeModuleClick(parentPath);
       if (unref(getIsMixSidebar)) {
         activeMenu.value = unref(menuModules).find((item) => item.path === unref(activePath))
-        console.log('activeMenu++++', activeMenu.value)
         const p = activeMenu.value?.path
         if (p) {
           const children = await getChildrenMenus(p)
@@ -295,7 +294,6 @@ export default defineComponent({
     }
 
     function handleFixedMenu() {
-      console.log('123')
       setMenuSetting({
         mixSideFixed: !unref(getIsFixed),
       })

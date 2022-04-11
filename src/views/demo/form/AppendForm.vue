@@ -63,10 +63,9 @@ export default defineComponent({
 
     async function handleSubmit() {
       try {
-        const data = await validate()
-        console.log(data)
+        await validate()
       } catch (e) {
-        console.log(e)
+        // --
       }
     }
 

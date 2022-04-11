@@ -2080,11 +2080,6 @@
   resolved "https://registry.npmjs.org/@types/node/-/node-16.10.1.tgz"
   integrity sha512-4/Z9DMPKFexZj/Gn3LylFgamNKHm4K3QDi0gz9B26Uk0c8izYf97B5fxfpspMNkWlFupblKM/nV8+NA9Ffvr+w==
 
-"@types/node@^14.17.1":
-  version "14.17.17"
-  resolved "https://registry.nlark.com/@types/node/download/@types/node-14.17.17.tgz?cache=0&sync_timestamp=1631828244883&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-14.17.17.tgz"
-  integrity sha1-Tse3G7ywGk5VRVtgsYsbang/4x0=
-
 "@types/node@^17.0.8":
   version "17.0.8"
   resolved "https://registry.npmmirror.com/@types/node/download/@types/node-17.0.8.tgz#50d680c8a8a78fe30abe6906453b21ad8ab0ad7b"
@@ -2157,11 +2152,6 @@
   integrity sha1-4OQs536Je9aurW9upirrE1uKOJU=
   dependencies:
     "@types/node" "*"
-
-"@types/tinycolor2@^1.4.2":
-  version "1.4.3"
-  resolved "https://registry.nlark.com/@types/tinycolor2/download/@types/tinycolor2-1.4.3.tgz?cache=0&sync_timestamp=1629709627510&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Ftinycolor2%2Fdownload%2F%40types%2Ftinycolor2-1.4.3.tgz"
-  integrity sha1-7UoJAflUsSbmqRS0g5x3Ri1W5wY=
 
 "@types/trusted-types@^2.0.2":
   version "2.0.2"
@@ -3673,13 +3663,6 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-clean-css@^5.1.2:
-  version "5.1.5"
-  resolved "https://registry.nlark.com/clean-css/download/clean-css-5.1.5.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fclean-css%2Fdownload%2Fclean-css-5.1.5.tgz"
-  integrity sha1-OwryQNz8mjd5oIwjMt8+vUR08jI=
-  dependencies:
-    source-map "~0.6.0"
-
 clean-css@^5.2.2:
   version "5.2.2"
   resolved "https://registry.npmmirror.com/clean-css/download/clean-css-5.2.2.tgz?cache=0&sync_timestamp=1634992314911&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fclean-css%2Fdownload%2Fclean-css-5.2.2.tgz#d3a7c6ee2511011e051719838bdcf8314dc4548d"
@@ -5161,11 +5144,6 @@ esbuild-openbsd-64@0.14.10:
   resolved "https://registry.npmmirror.com/esbuild-openbsd-64/download/esbuild-openbsd-64-0.14.10.tgz#925ac3d2326cc219d514e1ca806e80e5143aa043"
   integrity sha512-9rkHZzp10zI90CfKbFrwmQjqZaeDmyQ6s9/hvCwRkbOCHuto6RvMYH9ghQpcr5cUxD5OQIA+sHXi0zokRNXjcg==
 
-esbuild-plugin-alias@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.npm.taobao.org/esbuild-plugin-alias/download/esbuild-plugin-alias-0.1.2.tgz"
-  integrity sha1-EjL73oB8DIrUTETshZgZ60kuEqg=
-
 esbuild-register@^3.2.1:
   version "3.3.1"
   resolved "https://registry.npmmirror.com/esbuild-register/download/esbuild-register-3.3.1.tgz#2ae8d6ee43c9c7e742b114a8971da8918592ae75"
@@ -5239,11 +5217,6 @@ esbuild@>=0.14.3, esbuild@^0.14.8:
     esbuild-windows-32 "0.14.10"
     esbuild-windows-64 "0.14.10"
     esbuild-windows-arm64 "0.14.10"
-
-esbuild@^0.11.23:
-  version "0.11.23"
-  resolved "https://registry.nlark.com/esbuild/download/esbuild-0.11.23.tgz"
-  integrity sha1-xCU09jLhZRIGcdZNtniDY0MztLg=
 
 esbuild@^0.13.12:
   version "0.13.15"
@@ -12229,11 +12202,6 @@ timed-out@^4.0.0, timed-out@^4.0.1:
   resolved "https://registry.nlark.com/timed-out/download/timed-out-4.0.1.tgz"
   integrity sha1-8y6srFoXW+ol1/q1Zas+2HQe9W8=
 
-tinycolor2@^1.4.2:
-  version "1.4.2"
-  resolved "https://registry.npm.taobao.org/tinycolor2/download/tinycolor2-1.4.2.tgz"
-  integrity sha1-P2pNEHGtB2dtf6Ry4frECnGdiAM=
-
 tmp@^0.0.33:
   version "0.0.33"
   resolved "https://registry.npm.taobao.org/tmp/download/tmp-0.0.33.tgz?cache=0&sync_timestamp=1615984440866&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ftmp%2Fdownload%2Ftmp-0.0.33.tgz"
@@ -12936,28 +12904,6 @@ vite-plugin-svg-icons@^1.1.0:
     fs-extra "^10.0.0"
     svg-baker "1.7.0"
     svgo "^2.8.0"
-
-vite-plugin-theme@^0.8.1:
-  version "0.8.1"
-  resolved "https://registry.nlark.com/vite-plugin-theme/download/vite-plugin-theme-0.8.1.tgz"
-  integrity sha1-kAglalilfcqBAE/6HeY86fYL+es=
-  dependencies:
-    "@types/node" "^14.17.1"
-    "@types/tinycolor2" "^1.4.2"
-    chalk "^4.1.1"
-    clean-css "^5.1.2"
-    debug "^4.3.2"
-    esbuild "^0.11.23"
-    esbuild-plugin-alias "^0.1.2"
-    tinycolor2 "^1.4.2"
-
-vite-plugin-vue-setup-extend@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.npmmirror.com/vite-plugin-vue-setup-extend/download/vite-plugin-vue-setup-extend-0.3.0.tgz#633ffb87da7046fbaa3a1897ab8cf267dd90450a"
-  integrity sha512-9Nd7Bj4TftB2CoOAD2ZI4cHLW5zjKMF3LNihWbrnAPx3nuGBn33tM9SVUGBVjBB6uv1mGAPavwKCTU0xAD8qhw==
-  dependencies:
-    "@vue/compiler-sfc" "^3.2.26"
-    magic-string "^0.25.7"
 
 vite@^2.7.10:
   version "2.7.10"

@@ -44,14 +44,14 @@ export default defineComponent({
         {
           label: '新增',
           handler: () => {
-            console.log('点击了新增', node)
+            console.table('点击了新增', node)
           },
           icon: 'bi:plus',
         },
         {
           label: '删除',
           handler: () => {
-            console.log('点击了删除', node)
+            console.table('点击了删除', node)
           },
           icon: 'bx:bxs-folder-open',
         },
