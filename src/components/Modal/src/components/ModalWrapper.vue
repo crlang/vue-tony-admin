@@ -152,7 +152,7 @@ export default defineComponent({
         }
         emit('height-change', unref(realHeightRef))
       } catch (error) {
-        console.warn(error)
+        console.error(error)
       }
     }
 

@@ -32,7 +32,6 @@ app.ws.use(
         })
         ctx.websocket.send(data)
       }
-      console.warn(message)
     })
   }),
 )
@@ -59,5 +58,5 @@ app.use(router.allowedMethods())
 app.use(koaStatic(path.join(__dirname)))
 
 app.listen(PORT, () => {
-  console.warn(`Application started successfully: http://localhost:${PORT}`)
+  console.log(`Application started successfully: http://localhost:${PORT}`)
 })

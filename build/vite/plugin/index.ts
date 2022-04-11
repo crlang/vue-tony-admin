@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import legacy from '@vitejs/plugin-legacy'
 import purgeIcons from 'vite-plugin-purge-icons'
+import { configOptimizationPersist } from './persist'
 import { configHtmlPlugin } from './html'
 import { configPwaConfig } from './pwa'
 import { configMockPlugin } from './mock'
@@ -21,6 +22,9 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     vue(),
     // have to
     vueJsx(),
+
+    // Optimize first dev loading speed
+    ...configOptimizationPersist(),
   ]
 
   // TODO

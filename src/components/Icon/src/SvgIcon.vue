@@ -3,7 +3,9 @@
     :class="[prefixCls, $attrs.class, spin && 'svg-icon-spin']"
     :style="getStyle"
     aria-hidden="true">
-    <use :xlink:href="symbolId" />
+    <use
+      :xlink:href="symbolId"
+      :fill="color" />
   </svg>
 </template>
 
@@ -43,6 +45,13 @@ export default defineComponent({
     prefix: {
       type: String,
       default: 'icon',
+    },
+    /**
+     * Icon color
+     */
+    color: {
+      type: String,
+      default: 'inherit',
     },
   },
   setup(props) {

@@ -3,7 +3,7 @@
  * @Date: 2021-12-24 17:24:14
  * @Description: Element Plus Type and Props
  * @LastEditors: crlang(https://www.crlang.com)
- * @LastEditTime: 2022-03-21 16:00:31
+ * @LastEditTime: 2022-04-11 16:01:21
  */
 import type { CSSProperties, ExtractPropTypes } from 'vue'
 
@@ -20,7 +20,9 @@ import type {
   MessageProps,
   CardProps,
   TagProps,
-  PaginationProps
+  PaginationProps,
+  FormItemRule,
+  FormRulesMap
 } from 'element-plus'
 
 import {
@@ -67,13 +69,13 @@ export type EleTag = TagProps
 
 // temporary plan
 import { dropdownProps, dropdownItemProps } from 'element-plus/es/components/dropdown/src/dropdown'
-import type {
-  IDescriptionsInject,
-  IDescriptionsItemInject
-} from 'element-plus/es/components/descriptions/src/descriptions.type'
+// import type {
+//   IDescriptionsInject,
+//   IDescriptionsItemInject
+// } from 'element-plus/es/components/descriptions/src/descriptions.type'
 import { isValidComponentSize } from '@/utils/validators'
 import type { ComponentSize } from '@/utils/types'
-import type { FormItemRule, FormRulesMap } from 'element-plus/es/components/form/src/form.type'
+// import type { FormItemRule, FormRulesMap } from 'element-plus/es/components/form/src/form.type'
 import type { TableProps } from 'element-plus/es/components/table/src/table/defaults'
 import TableDefault from 'element-plus/es/components/table/src/table/defaults'
 import type { TableColumnCtx } from 'element-plus/es/components/table/src/table-column/defaults'

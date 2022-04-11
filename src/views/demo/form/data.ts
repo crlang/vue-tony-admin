@@ -137,7 +137,7 @@ export const basicSchemas: FormSchema[] = [
     component: 'ElCheckboxGroup',
     label: '字段5',
     // The default value must be an array
-    // defaultValue: [],
+    defaultValue: [],
     colProps: {
       span: 8,
     },
@@ -521,6 +521,7 @@ export const UseSchemas: FormSchema[] = [
   {
     field: 'field5',
     component: 'ElCheckboxGroup',
+    defaultValue: [],
     label: '字段5',
     colProps: {
       span: 8,

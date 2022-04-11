@@ -24,191 +24,198 @@ import { useMessage } from '@/hooks/web/useMessage'
 import { PageWrapper } from '@/components/Page'
 import { isAccountExist } from '@/api/demo/system'
 
-const schemas: FormSchema[] = [
-  {
-    field: 'field1',
-    component: 'ElInput',
-    label: '字段1',
-    colProps: {
-      span: 8,
-    },
-    required: true,
-  },
-  {
-    field: 'field2',
-    component: 'ElInput',
-    label: '字段2',
-    colProps: {
-      span: 8,
-    },
-    required: true,
-  },
-  {
-    field: 'id',
-    label: 'id',
-    required: true,
-    defaultValue: 0,
-    component: 'ElInputNumber',
-    show: false,
-  },
-  {
-    field: 'field3',
-    component: 'ElDatePicker',
-    label: '字段3',
-    colProps: {
-      span: 8,
-    },
-    required: true,
-  },
-  {
-    field: 'field33',
-    component: 'ElDatePicker',
-    label: '字段33',
-    colProps: {
-      span: 8,
-    },
-    componentProps: {
-      valueFormat: 'YYYY-MM-DD',
-    },
-    rules: [{ required: true, type: 'string' }],
-  },
-  {
-    field: 'field44',
-    component: 'InputCountDown',
-    label: '验证码',
-    colProps: {
-      span: 8,
-    },
-    required: true,
-  },
-  {
-    field: 'field4',
-    component: 'ElSelect',
-    label: '字段4',
-    colProps: {
-      span: 8,
-    },
-    componentProps: {
-      multiple: true,
-      options: [
-        {
-          label: '选项1',
-          value: '1',
-          key: '1',
-        },
-        {
-          label: '选项2',
-          value: '2',
-          key: '2',
-        },
-      ],
-    },
-    rules: [
-      {
-        required: true,
-        message: '请输入aa',
-        type: 'array',
-      },
-    ],
-  },
-  {
-    field: 'field441',
-    component: 'ElInput',
-    label: '自定义校验',
-    colProps: {
-      span: 8,
-    },
-    rules: [
-      {
-        required: true,
-        // todo: 此处写法存在问题
-        validator: async (_, value:any, callback:any) => {
-          if (!value) {
-            callback(new Error('值不能为空'))
-          }
-          if (value === '1') {
-            callback(new Error('值不能为1'))
-          }
-          return callback()
-        },
-        trigger: 'change',
-      },
-    ],
-
-  },
-  {
-    field: 'field5',
-    component: 'ElCheckboxGroup',
-    label: '字段5',
-    colProps: {
-      span: 8,
-    },
-    required: true,
-    componentProps: {
-      options: [
-        {
-          label: '选项1',
-          value: '1',
-        },
-        {
-          label: '选项2',
-          value: '2',
-        },
-      ],
-    },
-    // rules: [{ required: true }]
-  },
-  {
-    field: 'field7',
-    component: 'ElRadioGroup',
-    label: '字段7',
-    colProps: {
-      span: 8,
-    },
-    componentProps: {
-      options: [
-        {
-          label: '选项1',
-          value: '1',
-        },
-        {
-          label: '选项2',
-          value: '2',
-        },
-      ],
-    },
-    rules: [{ required: true, message: '覆盖默认生成的校验信息' }],
-  },
-  {
-    field: 'field8',
-    component: 'ElInput',
-    label: '后端异步验证',
-    colProps: {
-      span: 8,
-    },
-    helpMessage: ['本字段演示异步验证', '本地规则：必须填写', '后端规则：不能包含admin'],
-    rules: [
-      {
-        required: true,
-        message: '请输入数据',
-      },
-      {
-        validator(_, value:any, callback:any) {
-          isAccountExist(value)
-            .then(() => callback())
-            .catch((err) => {
-              callback(new Error(err.message || '验证失败'))
-            })
-        },
-      },
-    ],
-  },
-]
-
 export default defineComponent({
   components: { ElButton, BasicForm, CollapseContainer, PageWrapper },
   setup() {
     const { createMessage } = useMessage()
+    const schemas: FormSchema[] = [
+      {
+        field: 'field1',
+        component: 'ElInput',
+        label: '字段1',
+        colProps: {
+          span: 8,
+        },
+        required: true,
+      },
+
+      {
+        field: 'field2',
+        component: 'ElInput',
+        label: '字段2',
+        colProps: {
+          span: 8,
+        },
+        required: true,
+      },
+      {
+        field: 'id',
+        label: 'id',
+        required: true,
+        defaultValue: 0,
+        component: 'ElInputNumber',
+        show: false,
+      },
+      {
+        field: 'field3',
+        component: 'ElDatePicker',
+        label: '字段3',
+        colProps: {
+          span: 8,
+        },
+        required: true,
+      },
+      {
+        field: 'field33',
+        component: 'ElDatePicker',
+        label: '字段33',
+        colProps: {
+          span: 8,
+        },
+        componentProps: {
+          valueFormat: 'YYYY-MM-DD',
+        },
+        rules: [{ required: true, type: 'string' }],
+      },
+      {
+        field: 'field44',
+        component: 'InputCountDown',
+        label: '验证码',
+        colProps: {
+          span: 8,
+        },
+        required: true,
+      },
+      {
+        field: 'field4',
+        component: 'ElSelect',
+        label: '字段4',
+        colProps: {
+          span: 8,
+        },
+        componentProps: {
+          multiple: true,
+          options: [
+            {
+              label: '选项1',
+              value: '1',
+              key: '1',
+            },
+            {
+              label: '选项2',
+              value: '2',
+              key: '2',
+            },
+          ],
+        },
+        rules: [
+          {
+            required: true,
+            message: '请选择',
+            type: 'array',
+          },
+        ],
+      },
+      {
+        field: 'field441',
+        component: 'ElInput',
+        label: '自定义校验',
+        colProps: {
+          span: 8,
+        },
+        rules: [
+          {
+            required: true,
+            // todo: 此处写法存在问题
+            validator: async (_, value:any, callback:any) => {
+              if (!value) {
+                callback(new Error('值不能为空'))
+              }
+              if (value === '1') {
+                callback(new Error('值不能为1'))
+              }
+              return callback()
+            },
+            trigger: 'change',
+          },
+        ],
+      },
+      {
+        field: 'field5',
+        component: 'ElCheckboxGroup',
+        defaultValue: [],
+        label: '字段5',
+        colProps: {
+          span: 8,
+        },
+        required: true,
+        componentProps: {
+          options: [
+            {
+              label: '选项1',
+              value: '1',
+            },
+            {
+              label: '选项2',
+              value: '2',
+            },
+          ],
+        },
+        // rules: [{ required: true }],
+      },
+
+      {
+        field: 'field7',
+        component: 'ElRadioGroup',
+        label: '字段7',
+        colProps: {
+          span: 8,
+        },
+        componentProps: {
+          options: [
+            {
+              label: '选项1',
+              value: '1',
+            },
+            {
+              label: '选项2',
+              value: '2',
+            },
+          ],
+        },
+        rules: [
+          {
+            required: true,
+            message: '覆盖默认生成的校验信息',
+            type: 'array',
+          },
+        ],
+      },
+      {
+        field: 'field8',
+        component: 'ElInput',
+        label: '后端异步验证',
+        colProps: {
+          span: 8,
+        },
+        helpMessage: ['本字段演示异步验证', '本地规则：必须填写', '后端规则：不能包含admin'],
+        rules: [
+          {
+            required: true,
+            message: '请输入数据',
+          },
+          {
+            validator(_, value:any, callback:any) {
+              isAccountExist(value)
+                .then(() => callback())
+                .catch((err) => {
+                  callback(new Error(err.message || '验证失败'))
+                })
+            },
+          },
+        ],
+      },
+    ]
     const [
       register,
       { validateField, clearValidate, getFieldsValue, resetFields, setFieldsValue },

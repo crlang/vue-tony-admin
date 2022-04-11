@@ -130,7 +130,7 @@ export default defineComponent({
         }
         emitChange()
       } catch (error) {
-        console.warn(error)
+        console.error(error)
       } finally {
         loading.value = false
       }

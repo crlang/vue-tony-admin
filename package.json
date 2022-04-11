@@ -129,6 +129,8 @@
     "vite-plugin-html": "^3.2.0",
     "vite-plugin-imagemin": "^0.6.1",
     "vite-plugin-mock": "^2.9.6",
+    "vite-plugin-optimize-persist": "^0.1.2",
+    "vite-plugin-package-config": "^0.1.1",
     "vite-plugin-purge-icons": "^0.8.1",
     "vite-plugin-pwa": "^0.11.13",
     "vite-plugin-style-import": "^2.0.0",
@@ -154,5 +156,50 @@
   "homepage": "https://github.com/crlang/vue-tony-admin",
   "engines": {
     "node": ">=14"
+  },
+  "vite": {
+    "optimizeDeps": {
+      "include": [
+        "@element-plus/icons",
+        "@vue/shared",
+        "@vueuse/core",
+        "@vueuse/shared",
+        "@zxcvbn-ts/core",
+        "axios",
+        "cropperjs",
+        "crypto-js/aes",
+        "crypto-js/enc-base64",
+        "crypto-js/enc-utf8",
+        "crypto-js/md5",
+        "crypto-js/mode-ecb",
+        "crypto-js/pad-pkcs7",
+        "echarts",
+        "echarts/charts",
+        "echarts/components",
+        "echarts/core",
+        "echarts/renderers",
+        "element-plus",
+        "element-plus/es/components/dropdown/src/dropdown",
+        "element-plus/es/components/table/src/table-column/defaults",
+        "element-plus/es/components/table/src/table/defaults",
+        "element-plus/lib/locale/lang/en",
+        "element-plus/lib/locale/lang/zh-cn",
+        "intro.js",
+        "lodash-es",
+        "moment",
+        "nprogress",
+        "path-to-regexp",
+        "pinia",
+        "print-js",
+        "qrcode",
+        "qs",
+        "resize-observer-polyfill",
+        "sortablejs",
+        "vue",
+        "vue-i18n/dist/vue-i18n.cjs.js",
+        "vue-router",
+        "vue-types"
+      ]
+    }
   }
 }

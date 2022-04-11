@@ -9,8 +9,8 @@ import { createPlaceholderMessage } from '../helper'
 import { upperFirst, cloneDeep } from 'lodash-es'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ElFormItem } from 'element-plus'
-import type { FormItemRule } from 'element-plus/lib/components/form/src/form.type'
 import { basicFormItemProps } from '../props'
+import { EleFormItemRule } from '@/components/ElementPlus'
 export declare type SyncErrorType = Error | string;
 export declare type SyncValidateResult = boolean | SyncErrorType | SyncErrorType[];
 
@@ -93,7 +93,7 @@ export default defineComponent({
       return { isShow, isIfShow }
     }
 
-    function handleRules(): FormItemRule[] {
+    function handleRules(): EleFormItemRule[] {
       const {
         rules: defRules = [],
         component,
@@ -104,10 +104,10 @@ export default defineComponent({
       } = props.schema
 
       if (isFunction(dynamicRules)) {
-        return dynamicRules(unref(getValues)) as FormItemRule[]
+        return dynamicRules(unref(getValues)) as EleFormItemRule[]
       }
 
-      let rules: FormItemRule[] = cloneDeep(defRules) as FormItemRule[]
+      let rules: EleFormItemRule[] = cloneDeep(defRules) as EleFormItemRule[]
       const { rulesMessageJoinLabel: globalRulesMessageJoinLabel } = props.formProps
 
       const joinLabel = Reflect.has(props.schema, 'rulesMessageJoinLabel')
@@ -159,7 +159,17 @@ export default defineComponent({
         }
         if (component) {
           if (!Reflect.has(rule, 'type')) {
-            rule.type = component === 'ElInputNumber' ? 'number' : 'string'
+            if (component === 'ElInputNumber') {
+              rule.type = 'number'
+            } else if (
+              component === 'ElSelect' ||
+              component === 'ElCheckboxGroup' ||
+              component === 'ElRadioGroup'
+            ) {
+              rule.type = 'array'
+            } else {
+              rule.type = 'string'
+            }
           }
 
           rule.message = rule.message || defaultMsg
