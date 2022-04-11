@@ -80,13 +80,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       rollupOptions: {
         output: {
           compact: true,
-          // 保留箭头函数
-          arrowFunctions: true,
-          // 保留const
-          constBindings: true,
           sourcemap: false,
           sourcemapExcludeSources: true,
-          // 拆分包
           manualChunks(id) {
             if (id.includes('node_modules')) {
               const arr = id.toString().split('node_modules/')[1].split('/')
