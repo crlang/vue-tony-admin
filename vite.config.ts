@@ -72,10 +72,13 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       },
       // Turning off brotliSize display can slightly reduce packaging time
       brotliSize: false,
-      chunkSizeWarningLimit: 2000,
+      // 合并所有CSS文件
+      cssCodeSplit: false,
+      chunkSizeWarningLimit: 500,
       emptyOutDir: true,
       rollupOptions: {
         output: {
+          // 拆分包
           manualChunks(id) {
             if (id.includes('node_modules')) {
               const arr = id.toString().split('node_modules/')[1].split('/')
@@ -99,6 +102,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
               }
             }
           },
+          chunkFileNames: 'assets/js/[name]-[hash].js',
+          entryFileNames: 'assets/js/[name]-[hash].js',
         },
       },
     },

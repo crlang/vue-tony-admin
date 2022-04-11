@@ -1,12 +1,14 @@
 import * as echarts from 'echarts/core'
 
+// echarts 图表并没有全部引入
+
 import {
-  BarChart,
+  BarChart, // 柱状图
   LineChart,
   PieChart,
   MapChart,
-  PictorialBarChart,
-  RadarChart,
+  // PictorialBarChart,
+  // RadarChart,
   GaugeChart
 } from 'echarts/charts'
 
@@ -37,14 +39,14 @@ echarts.use([
   PolarComponent,
   AriaComponent,
   ParallelComponent,
-  BarChart,
+  BarChart, // 柱状图
   LineChart,
   PieChart,
   MapChart,
-  RadarChart,
+  // RadarChart,
+  // PictorialBarChart,
   GaugeChart,
   SVGRenderer,
-  PictorialBarChart,
   RadarComponent,
   ToolboxComponent,
   DataZoomComponent,
