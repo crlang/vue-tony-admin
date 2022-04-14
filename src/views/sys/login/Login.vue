@@ -42,15 +42,11 @@
               <el-tab-pane
                 :label="t('sys.login.mobileSignInFormTitle')"
                 name="mobile" />
-              <el-tab-pane
-                :label="t('sys.login.qrSignInFormTitle')"
-                name="qrcode" />
             </el-tabs>
             <LoginForm />
             <ForgetPasswordForm />
             <RegisterForm />
             <MobileForm />
-            <QrCodeForm />
           </div>
 
           <div
@@ -74,7 +70,6 @@ import LoginForm from './LoginForm.vue'
 import ForgetPasswordForm from './ForgetPasswordForm.vue'
 import RegisterForm from './RegisterForm.vue'
 import MobileForm from './MobileForm.vue'
-import QrCodeForm from './QrCodeForm.vue'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useLocaleStore } from '@/store/modules/locale'
 import { useLoginState, LoginStateEnum } from './useLogin'
@@ -91,7 +86,6 @@ export default defineComponent({
     ForgetPasswordForm,
     RegisterForm,
     MobileForm,
-    QrCodeForm,
     AppLogo,
     AppLocalePicker,
     AppDarkModeToggle,
@@ -112,7 +106,6 @@ export default defineComponent({
     const activeNameExt = {
       'account': LoginStateEnum.LOGIN,
       'mobile': LoginStateEnum.MOBILE,
-      'qrcode': LoginStateEnum.QR_CODE,
     }
 
     const getShow = computed(() => {
