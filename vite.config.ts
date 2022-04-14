@@ -86,18 +86,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
             if (id.includes('node_modules')) {
               const arr = id.toString().split('node_modules/')[1].split('/')
               switch (arr[0]) {
-                case '@popperjs':
                 case '@vue':
-                case '@iconify':
-                case '@vueuse':
-                case '@zxcvbn-ts':
-                case 'print-js':
-                case 'sortablejs':
                 case 'mockjs':
                 case 'echarts':
-                case 'intro.js':
                 case 'element-plus':
-                case '@element-plus':
                   return 'ex-pkg-' + arr[0]
                 default :
                   return 'ex-pkg-vendor'
