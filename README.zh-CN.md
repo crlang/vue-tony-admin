@@ -1,6 +1,6 @@
-# ComponentName
+# Excel
 
-当前是拓展组件 ComponentName，使用文档参考 `拓展组件->ComponentName`
+当前是拓展组件 Excel 表格导入导出，使用文档参考 `拓展组件->Excel 表格导入导出`
 
 ## 注意
 
@@ -13,28 +13,52 @@
 
 只需要克隆或者下载即可快速获得组件
 
-[直接下载 ComponentName zip包](https://codeload.github.com/crlang/vue-tony-admin/zip/refs/heads/ComponentName)
+[直接下载 Excel zip包](https://codeload.github.com/crlang/vue-tony-admin/zip/refs/heads/Excel)
 
 或者通过克隆方式
 
 ```bash
-git clone -b ComponentName https://github.com/crlang/vue-tony-admin.git ComponentName
+git clone -b Excel https://github.com/crlang/vue-tony-admin.git Excel
 ```
 
 **2-迁移**
 
-复制 `ComponentName` 文件夹 到TonyAdmin组件目录 `src/components`
+复制 `Excel` 文件夹 到TonyAdmin组件目录 `src/components`
 
 **3-安装依赖**
 
 ```bash
+npm install xlsx@^0.17.4
 
 # 或者通过yarn安装
 
+yarn add xlsx@^0.17.4
 ```
 
 **4-使用例子**
 
 ```vue
+<template>
+  <ImpExcel @success="loadDataSuccess">
+    <Button>导入Excel</Button>
+  </ImpExcel>
+</template>
 
+<script lang="ts">
+  import { defineComponent } from 'vue';
+  import { ImpExcel, ExcelData } from '@/components/Excel';
+
+  export default defineComponent({
+    components: { ImpExcel },
+    setup() {
+      function loadDataSuccess(excelDataList: ExcelData[]) {
+        console.table(excelDataList);
+      }
+
+      return {
+        loadDataSuccess,
+      };
+    },
+  });
+</script>
 ```
