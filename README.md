@@ -23,8 +23,8 @@ Vue Tony Admin is a free and open source management side frontend template. Base
 
 ## Preview
 
-- [Github site](https://crlang.github.io/vue-tony-admin-site)
-- [Gitee site](https://crlang.gitee.io/vue-tony-admin-site)
+- [Github](https://crlang.github.io/vue-tony-admin-site)
+- [Tony](https://tony.crlang.com/vue-tony-admin-site)
 
 ## Documentation
 
@@ -32,43 +32,34 @@ Vue Tony Admin is a free and open source management side frontend template. Base
 
 ## Preparation
 
-- [Element-Plus](https://element-plus.gitee.io/) - `Element Plus` basic use
-- [TypeScript](https://www.typescriptlang.org/) - Familiar with the basic syntax of `TypeScript`
-
-- [node](http://nodejs.org/) and [git](https://git-scm.com/) - Project development environment
-- [Vite](https://vitejs.dev/) - Familiar with vite features
-- [Vue3](https://v3.vuejs.org/) - Familiar with Vue basic syntax
-- [Es6+](http://es6.ruanyifeng.com/) - Familiar with es6 basic syntax
-- [Vue-Router-Next](https://next.router.vuejs.org/) - Familiar with the basic use of vue-router
-- [Mock.js](https://github.com/nuysoft/Mock) - mockjs basic syntax
+- [Tony](http://tony.crlang.com/doc/) - Tony Admin document
+- [Vue3](https://v3.cn.vuejs.org/) - Vue3 document
+- [Element-Plus](https://element-plus.gitee.io/) - Element Plus document
+- [TypeScript](https://www.tslang.cn/docs/home.html) - TypeScript document
+- [Vite](https://cn.vitejs.dev/) - Vite2 configure
+- [Mock.js](http://mockjs.com/examples.html) - mockjs Example
 
 ## Install and use
 
-- Get the project code
+-
 
 ```bash
+
+# clone the project code
 git clone https://github.com/crlang/vue-tony-admin.git
-```
 
-- Installation dependencies
-
-```bash
+# switch folder
 cd vue-tony-admin
 
+# installation dependencies
 yarn install
 
-```
-
-- run
-
-```bash
+# run
 yarn dev
-```
 
-- build
-
-```bash
+# build
 yarn build
+
 ```
 
 ## Change Log
@@ -77,7 +68,7 @@ yarn build
 
 ## Project
 
-- [vue-tony-admin](https://github.com/crlang/vue-tony-admin) - full version
+- [vue-tony-admin](https://github.com/crlang/vue-tony-admin)
 
 ## How to contribute
 
@@ -89,7 +80,7 @@ You are very welcome to join！[Raise an issue](https://github.com/crlang/vue-to
 2. Create your own branch: `git checkout -b feat/xxxx`
 3. Submit your changes: `git commit -am 'feat(function): add xxxxx'`
 4. Push your branch: `git push origin feat/xxxx`
-5. submit`pull request`
+5. submit `pull request`
 
 ## Git Contribution submission specification
 
@@ -133,7 +124,7 @@ If you think this project is helpful to you, you can help the author buy a cup o
 
 ## grateful
 
-Thanks for the open source support provided by Antd and Vben
+Thanks to Vue, Antd, Vben, Element Plus for open source support
 
 ## License
 

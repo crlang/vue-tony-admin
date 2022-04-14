@@ -23,52 +23,37 @@ Vue Tony Admin 是一个免费开源的中后台前端模板。基于`Element Pl
 
 ## 预览
 
-- [Gitee 演示地址 - 国内加速](https://crlang.gitee.io/vue-tony-admin-site)
-- [Github 演示地址](https://crlang.github.io/vue-tony-admin-site)
+- [Github](https://crlang.github.io/vue-tony-admin-site)
+- [本地预览](https://tony.crlang.com/vue-tony-admin-site)
 
-## 文档
+## 指南
 
-[文档地址](http://tony.crlang.com/doc/)
-
-## 准备
-
-- [Element-Plus](https://element-plus.gitee.io/) - `Element Plus` 基本使用
-- [TypeScript](https://www.typescriptlang.org/) - 熟悉`TypeScript`基本语法
-
-- [node](http://nodejs.org/) 和 [git](https://git-scm.com/) -项目开发环境
-- [Vite](https://vitejs.dev/) - 熟悉 vite 特性
-- [Vue3](https://v3.vuejs.org/) - 熟悉 Vue 基础语法
-- [Es6+](http://es6.ruanyifeng.com/) - 熟悉 es6 基本语法
-- [Vue-Router-Next](https://next.router.vuejs.org/) - 熟悉 vue-router 基本使用
-- [Mock.js](https://github.com/nuysoft/Mock) - mockjs 基本语法
+- [Tony](http://tony.crlang.com/doc/) - Tony Admin 文档
+- [Vue3](https://v3.cn.vuejs.org/) - Vue3 文档
+- [Element-Plus](https://element-plus.gitee.io/) - Element Plus 文档
+- [TypeScript](https://www.tslang.cn/docs/home.html) - TypeScript 文档
+- [Vite](https://cn.vitejs.dev/) - Vite2 配置
+- [Mock.js](http://mockjs.com/examples.html) - mockjs 示例
 
 ## 安装使用
 
-- 获取项目代码
-
 ```bash
+
+# 获取项目代码
 git clone https://github.com/crlang/vue-tony-admin.git
-```
 
-- 安装依赖
-
-```bash
+# 进入目录
 cd vue-tony-admin
 
+# 安装依赖
 yarn install
 
-```
-
-- 运行
-
-```bash
+# 运行
 yarn dev
-```
 
-- 打包
-
-```bash
+# 打包
 yarn build
+
 ```
 
 ## 更新日志
@@ -77,11 +62,11 @@ yarn build
 
 ## 项目地址
 
-- [vue-tony-admin](https://github.com/crlang/vue-tony-admin) - 完整版
+- [vue-tony-admin](https://github.com/crlang/vue-tony-admin)
 
 ## 如何贡献
 
-非常欢迎你的加入！[提一个 Issue](https://github.com/crlang/vue-tony-admin/issues/new/choose) 或者提交一个 Pull Request。
+如果遇到问题，欢迎你[提一个 Issue](https://github.com/crlang/vue-tony-admin/issues/new/choose)或者提交一个 Pull Request。
 
 **Pull Request:**
 
@@ -89,7 +74,7 @@ yarn build
 2. 创建自己的分支: `git checkout -b feat/xxxx`
 3. 提交你的修改: `git commit -am 'feat(function): add xxxxx'`
 4. 推送您的分支: `git push origin feat/xxxx`
-5. 提交`pull request`
+5. 提交 `pull request`
 
 ## Git 贡献提交规范
 
@@ -115,9 +100,9 @@ yarn build
 
 支持现代浏览器, 不支持 IE
 
-|     IE      |      Edge       |     Firefox     |     Chrome      |     Safari      |
-| :---------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| not support | last 2 versions | last 2 versions | last 2 versions | last 2 versions |
+|   IE   | Edge | Firefox | Chrome | Safari |
+| :----: | :--: | :-----: | :----: | :----: |
+| 不支持 | 支持 |  支持   |  支持  |  支持  |
 
 ## 维护者
 
@@ -125,15 +110,15 @@ yarn build
 
 ## 捐赠
 
-如果你觉得这个项目对你有帮助，你可以帮作者买一杯咖啡表示支持!
+如果你觉得这个项目对你有帮助，你可以帮作者买一杯奶茶表示支持!
 
-![donate](https://crlang.com/sponsor.png)
+![donate](https://crlang.com/sponsor2.png)
 
 -- <a href="https://www.paypal.com/paypalme/crlang123">Paypal Me</a> --
 
 ## 感谢
 
-感谢 Antd、Vben 提供的开源支持
+感谢 Vue、Antd、Vben、Element Plus 提供的开源支持
 
 ## License
 
