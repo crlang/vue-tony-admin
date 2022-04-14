@@ -251,7 +251,7 @@ $prefix-cls: '#{$tonyname}-login';
       width: 100%;
 
       .el-tabs__item {
-        width: 33.333%;
+        width: 50%;
         text-align: center;
       }
     }
