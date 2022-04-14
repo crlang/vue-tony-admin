@@ -2,7 +2,6 @@ import type { QRCodeRenderersOptions } from 'qrcode'
 import type { RenderQrCodeParams, ContentType } from './typing'
 
 import { toCanvas } from 'qrcode'
-import { cloneDeep } from 'lodash-es'
 
 export const renderQrCode = ({
   canvas,
@@ -10,7 +9,7 @@ export const renderQrCode = ({
   width = 0,
   options: params = {},
 }: RenderQrCodeParams) => {
-  const options = cloneDeep(params)
+  const options = JSON.parse(JSON.stringify(params))
   // Error tolerance rate. By default, high error tolerance rate is used for QR codes with less content, and low error tolerance rate is used for QR codes with more content.
   options.errorCorrectionLevel = options.errorCorrectionLevel || getErrorCorrectionLevel(content)
 

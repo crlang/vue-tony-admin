@@ -79,12 +79,13 @@ export default defineComponent({
         }
 
         if (tag === 'img') {
-          const url = await toDataURL(renderValue, {
+          const url: string = await toDataURL(renderValue, {
             errorCorrectionLevel: 'H',
             width,
             ...options,
           })
-          ;(unref(wrapRef) as HTMLImageElement).src = url
+          const imgRef = unref(wrapRef) as HTMLImageElement
+          imgRef.src = url
           emit('done', { url })
         }
       } catch (error) {

@@ -1,37 +1,35 @@
 <template>
   <PageWrapper title="二维码组件使用示例">
-    <CardGrid
-      center
-      :rows="4">
-      <CardGridItem>
+    <el-row class="text-center">
+      <el-col :span="6">
         <div>基础示例</div>
         <QrCode :value="qrCodeUrl" />
-      </CardGridItem>
+      </el-col>
 
-      <CardGridItem>
+      <el-col :span="6">
         <div>渲染成img标签示例</div>
         <QrCode
           :value="qrCodeUrl"
           tag="img" />
-      </CardGridItem>
+      </el-col>
 
-      <CardGridItem>
+      <el-col :span="6">
         <div>配置样式示例</div>
         <QrCode
           :value="qrCodeUrl"
           :options="{
             color: { dark: '#ff0'}
           }" />
-      </CardGridItem>
+      </el-col>
 
-      <CardGridItem>
+      <el-col :span="6">
         <div>本地logo示例</div>
         <QrCode
           :value="qrCodeUrl"
           :logo="LogoImg" />
-      </CardGridItem>
+      </el-col>
 
-      <CardGridItem>
+      <el-col :span="6">
         <div>在线logo示例</div>
         <QrCode
           :value="qrCodeUrl"
@@ -39,9 +37,9 @@
           :options="{
             color: { dark: '#55D187' }
           }" />
-      </CardGridItem>
+      </el-col>
 
-      <CardGridItem>
+      <el-col :span="6">
         <div>logo配置示例</div>
         <QrCode
           :value="qrCodeUrl"
@@ -52,9 +50,9 @@
             borderRadius: 50,
             bgColor: 'blue'
           }" />
-      </CardGridItem>
+      </el-col>
 
-      <CardGridItem>
+      <el-col :span="6">
         <div>下载示例</div>
         <QrCode
           :value="qrCodeUrl"
@@ -65,9 +63,9 @@
           type="primary"
           @click="download">下载</el-button>
         <div class="msg">在线logo会导致图片跨域</div>
-      </CardGridItem>
+      </el-col>
 
-      <CardGridItem>
+      <el-col :span="6">
         <div>扩展绘制示例</div>
         <QrCode
           :value="qrCodeUrl"
@@ -81,34 +79,35 @@
           type="primary"
           @click="downloadDiy">下载</el-button>
         <div class="msg">要进行扩展绘制则不能将tag设为img</div>
-      </CardGridItem>
-    </CardGrid>
+      </el-col>
+    </el-row>
   </PageWrapper>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, unref } from 'vue'
-import { ElButton } from 'element-plus'
+import { ElButton, ElRow, ElCol } from 'element-plus'
 import { QrCode, QrCodeActionType } from '@/components/Qrcode'
 import LogoImg from '@/assets/images/logo.png'
 import { PageWrapper } from '@/components/Page'
-import { CardGrid, CardGridItem } from '@/components/CardGrid'
 
-const qrCodeUrl = 'https://www.crlang.com'
 export default defineComponent({
-  components: { ElButton, QrCode, PageWrapper, CardGrid, CardGridItem },
+  components: { ElButton, ElRow, ElCol, QrCode, PageWrapper },
   setup() {
+    const qrCodeUrl = 'https://www.crlang.com'
     const qrRef = ref<Nullable<QrCodeActionType>>(null)
     const qrDiyRef = ref<Nullable<QrCodeActionType>>(null)
+
     function download() {
       const qrEl = unref(qrRef)
       if (!qrEl) return
       qrEl.download('文件名')
     }
+
     function downloadDiy() {
       const qrEl = unref(qrDiyRef)
       if (!qrEl) return
-      qrEl.download('Qrcode')
+      qrEl.download('QrCode')
     }
 
     function onQrcodeDone({ ctx }: any) {
