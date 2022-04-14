@@ -87,7 +87,7 @@
 <script lang="ts">
 import { defineComponent, ref, unref } from 'vue'
 import { ElButton, ElRow, ElCol } from 'element-plus'
-import { QrCode, QrCodeActionType } from '@/components/Qrcode'
+import { QrCode, QrCodeActionType } from '@/components/QrCode'
 import LogoImg from '@/assets/images/logo.png'
 import { PageWrapper } from '@/components/Page'
 
