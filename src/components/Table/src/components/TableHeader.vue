@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import type { TableSetting, ColumnChangeParam } from '../types/table'
+import type { TableSetting, BasicColumn } from '../types/table'
 
 import { defineComponent } from 'vue'
 import { ElDivider } from 'element-plus'
@@ -65,7 +65,7 @@ export default defineComponent({
   emits: ['columns-change'],
   setup(_, { emit }) {
     const { prefixCls } = useDesign('basic-table-header')
-    function handleColumnChange(data: ColumnChangeParam[]) {
+    function handleColumnChange(data: BasicColumn[]) {
       emit('columns-change', data)
     }
     return { prefixCls, handleColumnChange }

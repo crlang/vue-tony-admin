@@ -3,7 +3,7 @@
     placement="top"
     :content="t('component.table.settingDens')">
     <ElDropdown
-      trigger="click"
+      trigger="hover"
       @command="handleTitleClick">
       <SvgIcon
         size="0"

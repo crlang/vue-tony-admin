@@ -256,8 +256,6 @@ export default defineComponent({
         titleHelpMessage,
         onColumnsChange: (data: ColumnChangeParam[]) => {
           emit('columns-change', data)
-          // support useTable
-          unref(getProps).onColumnsChange?.(data)
           doLayout()
         },
       }

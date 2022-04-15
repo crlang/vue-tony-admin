@@ -1,7 +1,7 @@
 <template>
   <ElPopover
-    trigger="click"
-    :width="330"
+    trigger="hover"
+    :width="250"
     @show="handleVisibleChange(true)"
     @hide="handleVisibleChange(false)"
     :popper-class="`${prefixCls}__cloumn-list`">
@@ -11,18 +11,6 @@
         v-model="checkAll"
         @change="onCheckAllChange">
         {{ t('component.table.settingColumnShow') }}
-      </ElCheckbox>
-
-      <ElCheckbox
-        v-model:modelValue="checkIndex"
-        @change="handleIndexCheckChange">
-        {{ t('component.table.settingIndexColumnShow') }}
-      </ElCheckbox>
-
-      <ElCheckbox
-        v-model:modelValue="checkSelect"
-        @change="handleSelectCheckChange">
-        {{ t('component.table.settingSelectColumnShow') }}
       </ElCheckbox>
 
       <ElButton
@@ -99,7 +87,7 @@ import {
   watchEffect,
   nextTick,
   unref,
-  computed
+  computed,
 } from 'vue'
 import {
   ElPopover,
@@ -155,27 +143,13 @@ export default defineComponent({
       defaultCheckList: [],
     })
 
-    const checkIndex = ref(false)
-    const checkSelect = ref(false)
-
     const { prefixCls } = useDesign('basic-column-setting')
-
-    const getValues = computed(() => {
-      return unref(table?.getBindValues) || {}
-    })
 
     watchEffect(() => {
       const columns = table.getColumns()
       if (columns.length) {
         init()
       }
-    })
-
-    watchEffect(() => {
-      const values = unref(getValues)
-      console.log('values', values)
-      checkIndex.value = !!values.showIndexColumn
-      checkSelect.value = !!values.showCheckboxColumn
     })
 
     function getColumns() {
@@ -239,7 +213,6 @@ export default defineComponent({
         .filter((col) => col.prop && state.checkedList.indexOf(col.prop) !== -1)
       const len = plainOptions.value.length
       state.checkAll = checkList.length === 0 ? false : checkList.length === len
-
       setColumns(checkList)
     }
 
@@ -301,7 +274,7 @@ export default defineComponent({
     function setColumns(columns: BasicColumn[] | string[]) {
       table.setColumns(columns)
 
-      emit('columns-change', columns)
+      emit('columns-change', JSON.parse(JSON.stringify(columns)))
     }
 
     return {
@@ -315,8 +288,6 @@ export default defineComponent({
       prefixCls,
       columnListRef,
       handleVisibleChange,
-      checkIndex,
-      checkSelect,
       handleIndexCheckChange,
       handleSelectCheckChange,
       handleColumnFixed,
