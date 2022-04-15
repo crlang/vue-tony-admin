@@ -2112,11 +2112,6 @@
   dependencies:
     "@types/node" "*"
 
-"@types/sortablejs@^1.10.7":
-  version "1.10.7"
-  resolved "https://registry.nlark.com/@types/sortablejs/download/@types/sortablejs-1.10.7.tgz"
-  integrity sha1-q5A5yFQp8FFpVextvAuyATlBexU=
-
 "@types/stack-utils@^2.0.0":
   version "2.0.1"
   resolved "https://registry.nlark.com/@types/stack-utils/download/@types/stack-utils-2.0.1.tgz?cache=0&sync_timestamp=1629709282362&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fstack-utils%2Fdownload%2F%40types%2Fstack-utils-2.0.1.tgz"
@@ -11412,11 +11407,6 @@ sort-keys@^2.0.0:
   integrity sha1-ZYU1WEhh7JfXMNbPQYIuH1ZoQSg=
   dependencies:
     is-plain-obj "^1.0.0"
-
-sortablejs@^1.14.0:
-  version "1.14.0"
-  resolved "https://registry.nlark.com/sortablejs/download/sortablejs-1.14.0.tgz"
-  integrity sha1-bS4XzL2yX0ZHNN9iHU811Ks1s9g=
 
 "source-map-js@>=0.6.2 <2.0.0", source-map-js@^1.0.1:
   version "1.0.1"

@@ -41,7 +41,6 @@
           v-for="item in plainOptions"
           :key="item.value">
           <div :class="`${prefixCls}__check-item`">
-            <span class="table-coulmn-drag-icon"><Operation /></span>
             <ElCheckbox :label="item.prop">{{ item.label }}</ElCheckbox>
             <ElTooltip
               placement="bottom-start"
@@ -58,7 +57,6 @@
                   ]" />
               </span>
             </ElTooltip>
-            <ElDivider direction="vertical" />
             <ElTooltip
               placement="bottom-start"
               :content="t('component.table.settingFixedRight')">
@@ -109,16 +107,13 @@ import {
   ElCheckboxGroup,
   ElButton,
   ElTooltip,
-  ElDivider
 } from 'element-plus'
 import { Icon } from '@/components/Icon'
 import { ScrollContainer } from '@/components/Container'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useTableContext } from '../../hooks/useTableContext'
 import { useDesign } from '@/hooks/web/useDesign'
-import { useSortable } from '@/hooks/web/useSortable'
-import { isNullAndUnDef } from '@/utils/is'
-import { Setting, Operation } from '@element-plus/icons'
+import { Setting } from '@element-plus/icons'
 import { usePermission } from '@/hooks/web/usePermission'
 
 interface State {
@@ -135,9 +130,7 @@ export default defineComponent({
     ElCheckboxGroup,
     ElButton,
     ElTooltip,
-    ElDivider,
     Setting,
-    Operation,
     ScrollContainer,
     Icon,
   },
@@ -180,6 +173,7 @@ export default defineComponent({
 
     watchEffect(() => {
       const values = unref(getValues)
+      console.log('values', values)
       checkIndex.value = !!values.showIndexColumn
       checkSelect.value = !!values.showCheckboxColumn
     })
@@ -265,35 +259,6 @@ export default defineComponent({
       if (inited) return
 
       nextTick(() => {
-        const columnListEl = unref(columnListRef)
-        if (!columnListEl) return
-        const el = columnListEl.$el as any
-        if (!el) return
-        // Drag and drop sort
-        const { initSortable } = useSortable(el, {
-          handle: '.table-coulmn-drag-icon',
-          onEnd: (evt) => {
-            const { oldIndex, newIndex } = evt
-            if (isNullAndUnDef(oldIndex) || isNullAndUnDef(newIndex) || oldIndex === newIndex) {
-              return
-            }
-            // Sort column
-            const columns = getColumns()
-
-            if (oldIndex > newIndex) {
-              columns.splice(newIndex, 0, columns[oldIndex])
-              columns.splice(oldIndex + 1, 1)
-            } else {
-              columns.splice(newIndex + 1, 0, columns[oldIndex])
-              columns.splice(oldIndex, 1)
-            }
-
-            plainSortOptions.value = columns
-            plainOptions.value = columns
-            setColumns(columns)
-          },
-        })
-        initSortable()
         inited = true
       })
     }
@@ -362,12 +327,6 @@ export default defineComponent({
 
 <style lang="scss">
 $prefix-cls: '#{$tonyname}-basic-column-setting';
-
-.table-coulmn-drag-icon {
-  margin: 0 5px;
-  font-size: 12px;
-  cursor: move;
-}
 
 .#{$prefix-cls} {
   &__popover-title {
