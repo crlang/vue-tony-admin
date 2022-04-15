@@ -1,7 +1,7 @@
 import type { UserConfig, ConfigEnv } from 'vite'
 
 import pkg from './package.json'
-import moment from 'moment'
+import dayjs from 'dayjs'
 import { loadEnv } from 'vite'
 import { resolve } from 'path'
 import { createProxy } from './build/vite/proxy'
@@ -16,7 +16,7 @@ function pathResolve(dir: string) {
 const { dependencies, devDependencies, name, version } = pkg
 const __APP_INFO__ = {
   pkg: { dependencies, devDependencies, name, version },
-  lastBuildTime: moment().format('YYYY-MM-DD HH:mm:ss'),
+  lastBuildTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
 }
 
 export default ({ command, mode }: ConfigEnv): UserConfig => {
@@ -128,10 +128,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       include: [
         '@iconify/iconify',
         'element-plus/es/locale/lang/zh-cn',
-        'moment/dist/locale/zh-cn',
+        'dayjs/locale/zh-cn',
 
         'element-plus/es/locale/lang/en',
-        'moment/dist/locale/eu',
+        'dayjs/locale/en',
       ],
       exclude: ['vue-demi'],
     },

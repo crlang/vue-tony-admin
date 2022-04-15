@@ -2,6 +2,7 @@ import type { FormSchema, FormActionType, FormProps } from './types/form'
 import type { CSSProperties } from 'vue'
 import type { TableActionType } from '@/components/Table'
 import type { EleButton, EleCol, EleRow } from '@/components/ElementPlus'
+import type dayjs from 'dayjs'
 
 import { EleFormProps } from '@/components/ElementPlus'
 
@@ -79,7 +80,7 @@ export const basicProps = {
   transformDateFunc: {
     type: Function as PropType<Fn>,
     default: (date: any) => {
-      return date._isAMomentObject ? date?.format('YYYY-MM-DD HH:mm:ss') : date
+      return date instanceof dayjs ? date?.format('YYYY-MM-DD HH:mm:ss') : date
     },
   },
   tableAction: {

@@ -48,9 +48,9 @@
 import type { FormActionType, FormProps, FormSchema } from './types/form'
 import type { AdvanceState } from './types/hooks'
 import type { Ref } from 'vue'
+import type dayjs from 'dayjs'
 
 import { defineComponent, reactive, ref, computed, unref, onMounted, watch, nextTick } from 'vue'
-
 import { ElForm, ElRow } from 'element-plus'
 import FormItem from './components/FormItem.vue'
 import FormAction from './components/FormAction.vue'
@@ -128,7 +128,7 @@ export default defineComponent({
           if (!Array.isArray(defaultValue)) {
             schema.defaultValue = dateUtil(defaultValue)
           } else {
-            const def: moment.Moment[] = []
+            const def: dayjs.ConfigType[] = []
             defaultValue.forEach((item) => {
               def.push(dateUtil(item))
             })
