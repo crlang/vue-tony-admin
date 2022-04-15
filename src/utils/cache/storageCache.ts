@@ -1,31 +1,15 @@
-import { cacheCipher } from '@/settings/encryptionSetting'
-
-import type { EncryptionParams } from '@/utils/cipher'
-
-import { AesEncryption } from '@/utils/cipher'
-
 import { isNullOrUnDef } from '@/utils/is'
 
-export interface CreateStorageParams extends EncryptionParams {
+export interface CreateStorageParams {
   prefixKey: string
   storage: Storage
-  hasEncrypt: boolean
   timeout?: Nullable<number>
 }
 export const createStorage = ({
   prefixKey = '',
   storage = sessionStorage,
-  key = cacheCipher.key,
-  iv = cacheCipher.iv,
   timeout = null,
-  hasEncrypt = true,
 }: Partial<CreateStorageParams> = {}) => {
-  if (hasEncrypt && [key.length, iv.length].some((item) => item !== 16)) {
-    throw new Error('When hasEncrypt is true, the key or iv must be 16 bits!')
-  }
-
-  const encryption = new AesEncryption({ key, iv })
-
   /**
    *Cache class
    *Construction parameters can be passed into sessionStorage, localStorage,
@@ -35,8 +19,6 @@ export const createStorage = ({
   const WebStorage = class WebStorage {
     private storage: Storage
     private prefixKey?: string
-    private encryption: AesEncryption
-    private hasEncrypt: boolean
     /**
      *
      * @param {*} storage
@@ -44,8 +26,6 @@ export const createStorage = ({
     constructor() {
       this.storage = storage
       this.prefixKey = prefixKey
-      this.encryption = encryption
-      this.hasEncrypt = hasEncrypt
     }
 
     private getKey(key: string) {
@@ -66,7 +46,7 @@ export const createStorage = ({
         time: Date.now(),
         expire: !isNullOrUnDef(expire) ? new Date().getTime() + expire * 1000 : null,
       })
-      const stringifyValue = this.hasEncrypt ? this.encryption.encryptByAES(stringData) : stringData
+      const stringifyValue = stringData
       this.storage.setItem(this.getKey(key), stringifyValue)
     }
 
@@ -80,7 +60,7 @@ export const createStorage = ({
       if (!val) return def
 
       try {
-        const decVal = this.hasEncrypt ? this.encryption.decryptByAES(val) : val
+        const decVal = val
         const data = JSON.parse(decVal)
         const { value, expire } = data
         if (isNullOrUnDef(expire) || expire >= new Date().getTime()) {
