@@ -8,6 +8,8 @@
       :dataSource="data"
       :loading="loading"
       :stripe="stripe"
+      :api="demoListApi"
+      :pagination="{pageSize: 20}"
       showIndexColumn
       showCheckboxColumn
       :border="border"
@@ -52,6 +54,7 @@ import { defineComponent, ref, unref } from 'vue'
 import { ElButton, ElTableColumn } from 'element-plus'
 import { BasicTable } from '@/components/Table'
 import { getBasicColumns, getBasicData } from './tableData'
+import { demoListApi } from '@/api/demo/table'
 
 export default defineComponent({
   components: { ElButton, ElTableColumn, BasicTable },
@@ -102,6 +105,7 @@ export default defineComponent({
       toggleLoading,
       toggleBorder,
       handleColumnChange,
+      demoListApi,
     }
   },
 })

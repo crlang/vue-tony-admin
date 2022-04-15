@@ -19,8 +19,8 @@ import { ElButton } from 'element-plus'
 import { BasicTable, useTable } from '@/components/Table'
 import { getBasicColumns } from './tableData'
 import { PageWrapper } from '@/components/Page'
-
 import { demoListApi } from '@/api/demo/table'
+
 export default defineComponent({
   components: { ElButton, BasicTable, PageWrapper },
   setup() {
@@ -29,10 +29,17 @@ export default defineComponent({
       api: demoListApi,
       canResize: true,
       showIndexColumn: true,
+      showTableSetting: true,
+      onColumnsChange: handleColumnChange,
       columns: getBasicColumns(),
     })
     function handleReloadCurrent() {
       reload()
+    }
+
+    // todo
+    function handleColumnChange(data) {
+      console.table('table column change', data)
     }
 
     function handleReload() {

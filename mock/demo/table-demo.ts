@@ -12,28 +12,23 @@ function getRandomPics(count = 10): string[] {
 
 const demoList = (() => {
   const result: any[] = []
-  for (let index = 0; index < 300; index++) {
+  for (let index = 0; index < 111; index++) {
     result.push({
-      id: `${index}`,
+      id: `${index + 1}`,
       beginTime: '@datetime',
       endTime: '@datetime',
       address: '@city()',
-      name: '@cname()',
-      name1: '@cname()',
-      name2: '@cname()',
-      name3: '@cname()',
-      name4: '@cname()',
-      name5: '@cname()',
-      name6: '@cname()',
-      name7: '@cname()',
-      name8: '@cname()',
+      sex: '@integer(1,2)',
+      name: '@first()',
+      nickname: '@cname()',
+      description: '@cparagraph()',
       age: '@integer(1,100)',
       avatar: Random.image('400x400', Random.color(), Random.color(), Random.first()),
-      imgArr: getRandomPics(Math.ceil(Math.random() * 3) + 1),
       imgs: getRandomPics(Math.ceil(Math.random() * 3) + 1),
       date: `@date('yyyy-MM-dd')`,
       time: `@time('HH:mm')`,
       'no|100000-10000000': 100000,
+      type: '@integer(1,3)',
       'status|1': ['normal', 'enable', 'disable'],
     })
   }
