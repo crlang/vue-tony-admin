@@ -118,7 +118,7 @@ Support modern browsers, not IE
 
 If you think this project is helpful to you, you can help the author buy a cup of coffee to show your support!
 
-![donate](https://crlang.com/sponsor.png)
+<img alt="Tony Admin donate" width="400" height="200" src="https://crlang.com/sponsor2.png">
 
 -- <a href="https://www.paypal.com/paypalme/crlang123">Paypal Me</a> --
 

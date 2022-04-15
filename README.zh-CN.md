@@ -112,7 +112,7 @@ yarn build
 
 如果你觉得这个项目对你有帮助，你可以帮作者买一杯奶茶表示支持!
 
-![donate](https://crlang.com/sponsor2.png)
+<img alt="Tony Admin donate" width="400" height="200" src="https://crlang.com/sponsor2.png">
 
 -- <a href="https://www.paypal.com/paypalme/crlang123">Paypal Me</a> --
 
