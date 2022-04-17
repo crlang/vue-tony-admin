@@ -1,10 +1,10 @@
 import type { Ref, ComputedRef } from 'vue'
 import type { FormProps, FormSchema } from '../types/form'
-import type dayjs from 'dayjs'
 
 import { isArray, isFunction, isObject, isString, isNullOrUnDef } from '@/utils/is'
 import { unref } from 'vue'
 import { set } from 'lodash-es'
+import dayjs from 'dayjs'
 
 interface UseFormValuesContext {
   defaultValueRef: Ref<any>

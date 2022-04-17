@@ -1,5 +1,4 @@
-import type dayjs from 'dayjs'
-
+import dayjs from 'dayjs'
 import { isObject, isString } from '@/utils/is'
 
 const DATE_TIME_FORMAT = 'YYYY-MM-DD HH:mm'
