@@ -21,7 +21,7 @@ export default {
     pageSizeOptions: ['10', '20', '30', '50', '100'],
     pageLayoutOptions: 'total, sizes, prev, pager, next, jumper',
     // Default display quantity on one page
-    defaultPageSize: 10,
+    defaultPageSize: 20,
     // Custom general sort function
     // defaultSortFn: (sortInfo: SorterResult) => {
     //   const { field, order } = sortInfo
