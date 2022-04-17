@@ -1,5 +1,5 @@
 <template>
-  <ElMain :class="[prefixCls, getLayoutContentMode]">
+  <ElMain :class="[prefixCls, `${prefixCls}--${getLayoutContentMode}`]">
     <PageLayout />
   </ElMain>
 </template>
@@ -40,7 +40,11 @@ $prefix-cls: '#{$tonyname}-layout-content';
   min-height: 0;
   padding: 0;
 
-  &.fixed {
+  &--full {
+    height: 100%;
+  }
+
+  &--fixed {
     width: 1200px;
     margin: 0 auto;
   }
