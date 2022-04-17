@@ -126,6 +126,7 @@ $prefix-cls: '#{$tonyname}-layout-sideBar';
   &--fixed {
     position: fixed;
     top: 0;
+    bottom: 0;
     left: 0;
     height: 100%;
   }

@@ -168,6 +168,7 @@ $prefix-cls: '#{$tonyname}-layout-menu';
     width: 100%;
     height: var(--header-height);
     padding: 0;
+    overflow: hidden;
     white-space: nowrap;
     background: var(--sider-background-color);
 
