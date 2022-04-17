@@ -1,3 +1,56 @@
+/**
+======================
+CSS DOM命名规范
+常规级联：用 - (中横线)逐级命名，末级为 __ (双下划线)，二级以内的级联，考虑会有重复，需要加顶级父类区分
+🎈🎈例：
+A .parent-child-child__title
+👎不建议
+B .parent__title
+👍建议
+B .parent .parent__title
+级联追随：用 -- (双中横线)命名
+🎈🎈例：
+A .parent.parent--full .parent-child
+B .parent-child.parent-child--full .parent-child-child__title
+末级追随：用 is-xx (xx为表意)
+🎈🎈例：
+A .parent-child-child__title.is-bold
+B .parent-child-child__title.is-hot
+级联过深：三级以上的常规级联，用中横线首字母命名加下划线命名，此命名考虑到会有重复，需要加顶级父类区分
+🎈🎈例：
+👎不建议
+A .parent-child-child-child__title
+B .parent-cat-cat-cat__title
+👍建议
+A .parent-child .pcc__title
+B .parent-cat .pcc__title
+======================
+CSS DOM naming convention
+Conventional cascading: use - (the dash) to name it level by level, the last level is __ (double underscore), the cascade within the second level, considering that there will be duplication, you need to add the top-level parent class to distinguish
+🎈🎈example:
+A.parent-child-child__title
+👎Not recommended
+B.parent__title
+👍Recommend
+B.parent.parent__title
+Cascade Follow: Named with -- (double dash)
+🎈🎈example:
+A.parent.parent--full.parent-child
+B.parent-child.parent-child--full.parent-child-child__title
+The last level to follow: use is-xx (xx is the meaning of expression)
+🎈🎈example:
+A.parent-child-child__title.is-bold
+B.parent-child-child__title.is-hot
+The cascade is too deep: the conventional cascade above three levels is named with the first letter of the horizontal line and the underscore. This naming takes into account the repetition and needs to be distinguished by the top-level parent class
+🎈🎈example:
+👎Not recommended
+A.parent-child-child-child__title
+B.parent-cat-cat-cat__title
+👍Recommend
+A.parent-child.pcc__title
+B.parent-cat.pcc__title
+======================
+*/
 @use 'var/index.scss' as *;
 
 @import 'basic.scss';

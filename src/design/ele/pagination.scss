@@ -1,7 +1,11 @@
 .el-pagination {
-  .el-icon {
-    svg {
-      display: inline-block;
+  .el-select {
+    .el-input {
+      &__inner {
+        padding: 0 16px;
+      }
+
+      width: 90px;
     }
   }
 }
