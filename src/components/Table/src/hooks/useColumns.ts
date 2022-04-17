@@ -48,7 +48,7 @@ function handleIndexColumn(
 
   columns.unshift({
     type: 'index',
-    width: 50,
+    width: 72,
     label: t('component.table.index'),
     prop: 'columnIndex',
     customRender: ({ index }) => {

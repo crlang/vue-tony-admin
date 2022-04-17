@@ -378,7 +378,7 @@ $prefix-cls: '#{$tonyname}-basic-table';
 
 .#{$prefix-cls} {
   max-width: 100%;
-  padding: 8px;
+  padding: 0 8px;
   background: var(--background-primary-color);
 
   &-form-container {

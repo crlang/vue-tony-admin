@@ -65,7 +65,7 @@ export function useTableScroll(
     if (!tableEl) return
 
     if (!unref(getCanResize) || tableData.length === 0) {
-      if (resizeLimit.value > 4) return
+      // if (resizeLimit.value > 4) return
 
       if (document.createEvent) {
         const event = document.createEvent('HTMLEvents')
@@ -112,22 +112,19 @@ export function useTableScroll(
 
     // Table height from bottom
     const { bottomIncludeBody } = getViewportOffset(headEl)
-    // Table height from bottom height-custom offset
 
-    const paddingHeight = 32
     // Pager height
-    let paginationHeight = 2
+    let paginationHeight = 0
     if (!isBoolean(pagination)) {
-      paginationEl = tableEl.querySelector('.el-pagination') as HTMLElement
+      paginationEl = tableEl?.nextSibling as HTMLElement
       if (paginationEl) {
-        const offsetHeight = paginationEl.offsetHeight
+        const offsetHeight = paginationEl.offsetHeight || 0
         paginationHeight += offsetHeight || 0
       } else {
-        // TODO First fix 24
         paginationHeight += 24
       }
     } else {
-      paginationHeight = -8
+      paginationHeight = 0
     }
 
     let headerHeight = 0
@@ -137,7 +134,6 @@ export function useTableScroll(
 
     let height =
       bottomIncludeBody -
-      paddingHeight -
       paginationHeight -
       headerHeight
 
