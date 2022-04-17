@@ -98,7 +98,7 @@ export default defineComponent({
      */
     contentBackground: Boolean,
   },
-  setup(props, { slots, attrs }) {
+  setup(props, { slots }) {
     const wrapperRef = ref<HTMLDivElement | null>(null)
     const headerRef = ref<HTMLDivElement | null>(null)
     const contentRef = ref<HTMLDivElement | null>(null)
@@ -109,9 +109,8 @@ export default defineComponent({
 
       return [
         prefixCls,
-        attrs.class ?? {},
         {
-          [`${prefixCls}__full`]: contentFullHeight,
+          [`${prefixCls}--full`]: contentFullHeight,
         },
       ]
     })
@@ -140,8 +139,8 @@ export default defineComponent({
         `${prefixCls}-header`,
         headerClass,
         {
-          [`${prefixCls}-header-full`]: headerFullHeight,
-          [`${prefixCls}-header-fixed`]: headerFixed,
+          [`${prefixCls}-header--full`]: headerFullHeight,
+          [`${prefixCls}-header--fixed`]: headerFixed,
         },
       ]
     })
@@ -152,8 +151,8 @@ export default defineComponent({
         `${prefixCls}-content`,
         contentClass,
         {
-          [`${prefixCls}-content-bg`]: contentBackground,
-          [`${prefixCls}-content-full`]: contentFullHeight,
+          [`${prefixCls}-content--background`]: contentBackground,
+          [`${prefixCls}-content--full`]: contentFullHeight,
         },
       ]
     })
@@ -180,7 +179,7 @@ $prefix-cls: '#{$tonyname}-page-wrapper';
 .#{$prefix-cls} {
   position: relative;
 
-  &__full {
+  &--full {
     display: flex;
     height: 100%;
     flex-direction: column;
@@ -192,11 +191,11 @@ $prefix-cls: '#{$tonyname}-page-wrapper';
     background-color: var(--background-primary-color);
     box-shadow: var(--card-shadow);
 
-    &-full {
+    &--full {
       padding: 0;
     }
 
-    &-fixed {
+    &--fixed {
       position: sticky;
       top: 0;
       right: 0;
@@ -227,14 +226,16 @@ $prefix-cls: '#{$tonyname}-page-wrapper';
     padding: 16px;
     overflow: hidden;
 
-    &-full {
+    &--full {
       height: 100%;
+      padding: 0 16px;
       overflow: auto;
+    }
+
+    &--background {
+      background-color: var(--background-primary-color);
     }
   }
 
-  &-content-bg {
-    background-color: var(--background-primary-color);
-  }
 }
 </style>
