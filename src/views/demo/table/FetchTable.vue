@@ -1,5 +1,7 @@
 <template>
-  <PageWrapper contentBackground>
+  <PageWrapper
+    contentBackground
+    contentFullHeight>
     <BasicTable @register="registerTable">
       <template #toolbar>
         <el-button
@@ -17,7 +19,7 @@
 import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
 import { BasicTable, useTable } from '@/components/Table'
-import { getBasicColumns } from './tableData'
+import { getBasicColumns } from './data'
 import { PageWrapper } from '@/components/Page'
 import { demoListApi } from '@/api/demo/table'
 
@@ -28,6 +30,7 @@ export default defineComponent({
       title: '远程加载示例',
       api: demoListApi,
       canResize: true,
+      pagination: { pageSize: 30 },
       showIndexColumn: true,
       showTableSetting: true,
       onColumnsChange: handleColumnChange,

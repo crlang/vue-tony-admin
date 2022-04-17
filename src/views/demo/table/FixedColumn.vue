@@ -1,34 +1,67 @@
 <template>
   <div class="p-4">
-    <BasicTable @register="registerTable" />
+    <BasicTable @register="registerTable">
+      <template #imgs="{label,width,prop}">
+        <el-table-column
+          :label="label"
+          :width="width"
+          :prop="prop">
+          <template #default="scope">
+            <img
+              :src="item"
+              :key="index"
+              width="200"
+              v-for="(item,index) in scope.row.imgs" />
+          </template>
+        </el-table-column>
+      </template>
+    </BasicTable>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { BasicTable, useTable, BasicColumn } from '@/components/Table'
-
 import { demoListApi } from '@/api/demo/table'
+import { ElTableColumn } from 'element-plus'
+
 export default defineComponent({
-  components: { BasicTable },
+  components: { ElTableColumn, BasicTable },
   setup() {
     const columns: BasicColumn[] = [
       {
         label: 'ID',
         prop: 'id',
         fixed: 'left',
+        width: 150,
       },
       {
-        label: '姓名',
+        label: '名称',
         prop: 'name',
       },
       {
-        label: '地址',
-        prop: 'address',
+        label: '姓名',
+        prop: 'nickname',
       },
       {
         label: '编号',
         prop: 'no',
+      },
+      {
+        label: '地址',
+        prop: 'address',
+        width: 400,
+      },
+      {
+        label: '描述',
+        prop: 'description',
+        width: 800,
+      },
+      {
+        label: '图片集',
+        prop: 'imgs',
+        width: 800,
+        isSlot: true,
       },
       {
         label: '开始时间',
@@ -39,6 +72,7 @@ export default defineComponent({
         prop: 'endTime',
       },
       {
+        fixed: 'right',
         actions: [
           {
             text: '启用',
@@ -58,11 +92,11 @@ export default defineComponent({
       showCheckboxColumn: true,
       border: true,
     })
-    function handleDelete(record) {
-      console.table('点击了删除', record)
+    function handleDelete({ row }) {
+      console.table('点击了删除', row)
     }
-    function handleOpen(record) {
-      console.table('点击了启用', record)
+    function handleOpen({ row }) {
+      console.table('点击了启用', row)
     }
 
     return {

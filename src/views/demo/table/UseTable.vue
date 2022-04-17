@@ -21,7 +21,7 @@
 import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
 import { BasicTable, useTable } from '@/components/Table'
-import { getBasicColumns, getBasicShortColumns } from './tableData'
+import { getBasicColumns, getBasicShortColumns } from './data'
 import { useMessage } from '@/hooks/web/useMessage'
 import { demoListApi } from '@/api/demo/table'
 

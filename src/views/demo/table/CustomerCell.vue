@@ -75,7 +75,7 @@ import { defineComponent } from 'vue'
 import { ElTag, ElAvatar, ElTableColumn } from 'element-plus'
 import { BasicTable, useTable, TableImg } from '@/components/Table'
 import { demoListApi } from '@/api/demo/table'
-import { getCustomCellColumns } from './tableData'
+import { getCustomCellColumns } from './data'
 import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({

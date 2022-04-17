@@ -5,15 +5,12 @@
       title="基础示例"
       titleHelpMessage="温馨提醒"
       :columns="columns"
-      :dataSource="data"
       :loading="loading"
       :stripe="stripe"
       :api="demoListApi"
-      :pagination="{pageSize: 20}"
       showIndexColumn
       showCheckboxColumn
       :border="border"
-      showTableSetting
       @columns-change="handleColumnChange">
       <template #address="{label,prop}">
         <el-table-column
@@ -53,7 +50,7 @@ import type { TableActionType } from '@/components/Table'
 import { defineComponent, ref, unref } from 'vue'
 import { ElButton, ElTableColumn } from 'element-plus'
 import { BasicTable } from '@/components/Table'
-import { getBasicColumns, getBasicData } from './tableData'
+import { getBasicColumns } from './data'
 import { demoListApi } from '@/api/demo/table'
 
 export default defineComponent({
@@ -96,7 +93,6 @@ export default defineComponent({
     return {
       tableRef,
       columns: getBasicColumns(),
-      data: getBasicData(),
       loading,
       stripe,
       border,

@@ -2,7 +2,6 @@
   <PageWrapper
     title="可展开表格"
     description="不可与scroll共用。">
-
     <BasicTable @register="registerTable">
       <template #address="{label,prop}">
         <el-table-column
@@ -23,8 +22,7 @@ import { defineComponent } from 'vue'
 import { ElTableColumn } from 'element-plus'
 import { BasicTable, useTable } from '@/components/Table'
 import { PageWrapper } from '@/components/Page'
-import { getBasicColumns } from './tableData'
-
+import { getBasicColumns } from './data'
 import { demoListApi } from '@/api/demo/table'
 
 export default defineComponent({
@@ -50,11 +48,11 @@ export default defineComponent({
       ],
       rowKey: 'id',
     })
-    function handleDelete(record) {
-      console.table('点击了删除', record)
+    function handleDelete({ row }) {
+      console.table('点击了删除', row)
     }
-    function handleOpen(record) {
-      console.table('点击了启用', record)
+    function handleOpen({ row }) {
+      console.table('点击了启用', row)
     }
 
     return {

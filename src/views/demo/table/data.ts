@@ -1,22 +1,40 @@
 import { FormProps, FormSchema } from '@/components/Table'
 import { BasicColumn } from '@/components/Table/src/types/table'
+import { ElTag } from 'element-plus'
+import { h } from 'vue'
 
 export function getBasicColumns(): BasicColumn[] {
   return [
     {
       label: 'ID',
       prop: 'id',
-      // fixed: 'left',
-      // width: 200
+      width: 100,
     },
     {
       label: '姓名',
-      prop: 'name',
-      // width: 150,
+      prop: 'nickname',
+      width: 100,
+    },
+    {
+      label: '性别',
+      prop: 'sex',
+      width: 100,
       filters: [
-        { text: 'Male', value: 'male' },
-        { text: 'Female', value: 'female' },
+        { text: '男', value: '1' },
+        { text: '女', value: '2' },
       ],
+      customRender: ({ record }) => {
+        const color = record.sex === 1 ? 'success' : 'danger'
+        const text = record.sex === 1 ? '男' : '女'
+        return h(ElTag, { type: color }, () => text)
+      },
+    },
+    {
+      label: '编号',
+      prop: 'no',
+      width: 100,
+      sortable: true,
+      defaultHidden: true,
     },
     {
       label: '地址',
@@ -24,22 +42,19 @@ export function getBasicColumns(): BasicColumn[] {
       isSlot: true,
     },
     {
-      label: '编号',
-      prop: 'no',
-      // width: 150,
-      sortable: true,
-      // defaultHidden: true,
-
+      label: '描述',
+      prop: 'description',
+      align: 'left',
     },
     {
       label: '开始时间',
-      // width: 180,
+      width: 180,
       sortable: true,
       prop: 'beginTime',
     },
     {
       label: '结束时间',
-      // width: 180,
+      width: 180,
       sortable: true,
       prop: 'endTime',
     },
@@ -207,25 +222,6 @@ export function getFormConfig(): Partial<FormProps> {
       },
     ],
   }
-}
-
-export function getBasicData() {
-  const data: any = (() => {
-    const arr: any = []
-    for (let index = 0; index < 100; index++) {
-      arr.push({
-        id: `${index}`,
-        name: 'Tony Chen',
-        age: `1${index}`,
-        no: `${index + 10}`,
-        address: '啊啊啊啊啊啊啊啊啊啊啊啊啊啊',
-        beginTime: new Date().toLocaleString(),
-        endTime: new Date().toLocaleString(),
-      })
-    }
-    return arr
-  })()
-  return data
 }
 
 export function getTreeTableData() {

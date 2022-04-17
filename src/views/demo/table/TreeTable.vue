@@ -17,19 +17,19 @@
 import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
 import { BasicTable, useTable } from '@/components/Table'
-import { getBasicColumns, getTreeTableData } from './tableData'
+import { getBasicColumns } from './data'
+import { treeDemoListApi } from '@/api/demo/tree'
 
 export default defineComponent({
   components: { ElButton, BasicTable },
   setup() {
     const [register, { expandAll, collapseAll }] = useTable({
       title: '树形表格',
-      stripe: true,
-      showCheckboxColumn: true,
       titleHelpMessage: '树形组件不能和序列号列同时存在',
       columns: getBasicColumns(),
-      dataSource: getTreeTableData(),
-      rowKey: 'id',
+      api: treeDemoListApi,
+      searchInfo: { type: 2 },
+      rowKey: 'code',
     })
 
     return { register, expandAll, collapseAll }

@@ -11,6 +11,7 @@ export interface DemoListItem {
   address: string
   name: string
   no: number
+  type: number
   status: number
 }
 
