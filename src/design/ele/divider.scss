@@ -1,5 +1,6 @@
 .el-divider {
   &__text {
-    // background-color: transparent;
+    line-height: 1;
+    background: var(--background-primary-color);
   }
 }

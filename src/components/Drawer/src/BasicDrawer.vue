@@ -213,6 +213,8 @@ export default defineComponent({
 $prefix-cls: '#{$tonyname}-basic-drawer';
 
 .#{$prefix-cls} {
+  line-height: 1;
+
   &-header {
     display: flex;
     align-items: center;

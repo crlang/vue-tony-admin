@@ -52,8 +52,7 @@ export default defineComponent({
       const tagCls = `${prefixCls}-tag`
       return [
         tagCls,
-
-        [`${tagCls}--${type}`],
+        `${tagCls}--${type}`,
         {
           [`${tagCls}--collapse`]: collapseParent,
           [`${tagCls}--dot`]: dot || props.dot || !getContent.value,
