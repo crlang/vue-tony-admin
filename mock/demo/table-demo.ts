@@ -1,36 +1,11 @@
-import { MockMethod } from 'vite-plugin-mock'
-import { Random } from 'mockjs'
-import { resultPageSuccess } from '../_util'
+import type { MockMethod } from 'vite-plugin-mock'
 
-function getRandomPics(count = 10): string[] {
-  const arr: string[] = []
-  for (let i = 0; i < count; i++) {
-    arr.push(Random.image('800x600', Random.color(), Random.color(), Random.title()))
-  }
-  return arr
-}
+import { getRandomItem, resultPageSuccess } from '../_util'
 
 const demoList = (() => {
   const result: any[] = []
   for (let index = 0; index < 111; index++) {
-    result.push({
-      id: `${index + 1}`,
-      beginTime: '@datetime',
-      endTime: '@datetime',
-      address: '@city()',
-      sex: '@integer(1,2)',
-      name: '@first()',
-      nickname: '@cname()',
-      description: '@cparagraph()',
-      age: '@integer(1,100)',
-      avatar: Random.image('400x400', Random.color(), Random.color(), Random.first()),
-      imgs: getRandomPics(Math.ceil(Math.random() * 3) + 1),
-      date: `@date('yyyy-MM-dd')`,
-      time: `@time('HH:mm')`,
-      'no|100000-10000000': 100000,
-      type: '@integer(1,3)',
-      'status|1': ['normal', 'enable', 'disable'],
-    })
+    result.push(getRandomItem(index + 1))
   }
   return result
 })()
