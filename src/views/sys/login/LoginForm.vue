@@ -69,8 +69,7 @@ const { validForm } = useFormValid(formRef)
 const getShow = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN)
 
 async function handleLogin() {
-  const vf = await validForm()
-  if (!vf) return
+  await validForm()
 
   try {
     loading.value = true
