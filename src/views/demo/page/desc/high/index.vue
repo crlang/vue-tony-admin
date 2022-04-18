@@ -1,15 +1,16 @@
 <template>
   <PageWrapper
     title="单号：234231029431"
-    headerFullHeight
+    description="组合详情"
+    class="p-4"
     contentBackground>
-    <template #extra>
+    <template #toolbar>
       <el-button>操作一</el-button>
       <el-button>操作二</el-button>
       <el-button type="primary">主操作</el-button>
     </template>
 
-    <template #footer>
+    <template #extra>
       <el-tabs v-model="tabActivedName">
         <el-tab-pane
           name="detail"

@@ -44,6 +44,7 @@ import {
   refundTableData,
   refundTimeTableData
 } from './data'
+
 export default defineComponent({
   components: { Description, BasicTable, PageWrapper },
   setup() {
@@ -67,20 +68,26 @@ export default defineComponent({
     })
     const [registerTimeTable] = useTable()
 
-    function handleSummary(tableData: any[]) {
-      let totalT5 = 0
-      let totalT6 = 0
-      tableData.forEach((item) => {
-        totalT5 += item.t5
-        totalT6 += item.t6
+    function handleSummary({ columns, data }) {
+      const sums: string[] = []
+      sums[0] = '总计'
+
+      columns.forEach((column, index) => {
+        const values = data.map((item) => Number(item[column.property]))
+        const showVals = ['t5', 't6']
+        if (showVals.includes(column.property)) {
+          sums[index] = `${values.reduce((prev, curr) => {
+            const value = Number(curr)
+            if (!Number.isNaN(value)) {
+              return prev + curr
+            } else {
+              return prev
+            }
+          }, 0)}`
+        }
       })
-      return [
-        {
-          t1: '总计',
-          t5: totalT5,
-          t6: totalT6,
-        },
-      ]
+
+      return sums
     }
     return {
       refundTableData,

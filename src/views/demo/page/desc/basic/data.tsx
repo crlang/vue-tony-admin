@@ -72,44 +72,36 @@ export const refundTableSchema: BasicColumn[] = [
   },
   {
     label: '商品名称',
-    // width: 150,
     prop: 't2',
   },
   {
     label: '商品条码',
-    // width: 150,
     prop: 't3',
   },
   {
     label: '单价	',
-    // width: 150,
     prop: 't4',
   },
   {
     label: '数量（件）	',
-    // width: 150,
     prop: 't5',
   },
   {
     label: '金额',
-    // width: 150,
     prop: 't6',
   },
 ]
 export const refundTimeTableSchema: BasicColumn[] = [
   {
     label: '时间',
-    // width: 150,
     prop: 't1',
   },
   {
     label: '当前进度',
-    // width: 150,
     prop: 't2',
   },
   {
     label: '状态',
-    // width: 150,
     prop: 't3',
     customRender: ({ record }) => {
       return <ElBadge type='success' value={record.t3} />
@@ -117,12 +109,10 @@ export const refundTimeTableSchema: BasicColumn[] = [
   },
   {
     label: '操作员ID	',
-    // width: 150,
     prop: 't4',
   },
   {
     label: '耗时',
-    // width: 150,
     prop: 't5',
   },
 ]

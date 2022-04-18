@@ -5,30 +5,25 @@ import { ElTag } from 'element-plus'
 export const refundTimeTableSchema: BasicColumn[] = [
   {
     label: '时间',
-    // width: 150,
     prop: 't1',
   },
   {
     label: '当前进度',
-    // width: 150,
     prop: 't2',
   },
   {
     label: '状态',
-    // width: 150,
     prop: 't3',
-    customRender: (record) => {
+    customRender: ({ record }) => {
       return <ElTag type='success'>{record.t3}</ElTag>
     },
   },
   {
     label: '操作员ID	',
-    // width: 150,
     prop: 't4',
   },
   {
     label: '耗时',
-    // width: 150,
     prop: 't5',
   },
 ]

@@ -54,10 +54,6 @@ export default defineComponent({
       font-size: 16px;
       font-weight: 500;
     }
-
-    &-icon {
-      color: #ff4d4f;
-    }
   }
 }
 </style>
