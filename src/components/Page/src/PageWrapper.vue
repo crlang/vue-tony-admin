@@ -38,6 +38,7 @@
 
     <PageFooter
       v-if="getShowFooter"
+      :prefixCls="`${prefixCls}-footer`"
       ref="footerRef">
       <template #left>
         <slot name="leftFooter"></slot>
@@ -104,6 +105,7 @@ export default defineComponent({
     const contentRef = ref<HTMLDivElement | null>(null)
     const footerRef = ref<HTMLDivElement | null>(null)
     const { prefixCls } = useDesign('page-wrapper')
+
     const getClass = computed(() => {
       const { contentFullHeight } = props
 
@@ -179,12 +181,6 @@ $prefix-cls: '#{$tonyname}-page-wrapper';
 .#{$prefix-cls} {
   position: relative;
 
-  &--full {
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-  }
-
   &-header {
     position: relative;
     padding: 16px;
@@ -233,6 +229,35 @@ $prefix-cls: '#{$tonyname}-page-wrapper';
 
     &--background {
       background-color: var(--background-primary-color);
+    }
+  }
+
+  &-footer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: var(--background-primary-color);
+    border-top: 1px solid var(--border-grey-color);
+    box-shadow: 0 -6px 16px -8px rgba(0, 0, 0, 0.08), 0 -9px 28px 0 rgba(0, 0, 0, 0.05),
+      0 -12px 48px 16px rgba(0, 0, 0, 0.03);
+
+    &__left,
+    &__right {
+      flex: 1;
+    }
+  }
+
+  &--full {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+
+    .#{$prefix-cls}-footer {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 11;
     }
   }
 
