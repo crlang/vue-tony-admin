@@ -74,7 +74,7 @@ export default defineComponent({
   &__card {
     width: 100%;
     padding: 16px;
-    border: 1px solid var(--border-grey-color);
+    border: 1px solid var(--border-color);
 
     &-title {
       display: flex;

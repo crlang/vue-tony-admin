@@ -1,0 +1,8 @@
+$elenamex: 'el-tabs';
+
+html[data-theme='dark'] {
+  .#{$elenamex} {
+    --el-border-color-light: var(--border-color-light);
+    --el-text-color-primary: var(--text-primary-color);
+  }
+}

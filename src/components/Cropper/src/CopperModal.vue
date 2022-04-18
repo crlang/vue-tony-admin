@@ -316,7 +316,7 @@ $prefix-cls: '#{$tonyname}-cropper-am';
     height: 220px;
     margin: 0 auto;
     overflow: hidden;
-    border: 1px solid var(--border-grey-color);
+    border: 1px solid var(--border-color);
     border-radius: 50%;
 
     img {
@@ -331,7 +331,7 @@ $prefix-cls: '#{$tonyname}-cropper-am';
     align-items: flex-end;
     padding-top: 8px;
     margin-top: 8px;
-    border-top: 1px solid var(--border-grey-color);
+    border-top: 1px solid var(--border-color);
   }
 }
 </style>

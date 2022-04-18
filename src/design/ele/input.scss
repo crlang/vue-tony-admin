@@ -1,23 +1,17 @@
 $elenamex: 'el-input';
 
 .#{$elenamex} {
-  &__inner {
-    --el-input-focus-border: var(--border-blue-color);
-    --el-input-hover-border: var(--border-grey-hover-color);
+  // &__inner {
+  // }
 
-    border-color: var(--border-grey-color);
-  }
+  // &-number {
+  //   &__decrease,
+  //   &__increase {
+  //   }
 
-  &-number {
-    &__decrease,
-    &__increase {
-      border-color: var(--border-grey-color);
-    }
-
-    .#{$elenamex}__inner {
-      border-color: var(--border-grey-color);
-    }
-  }
+  //   .#{$elenamex}__inner {
+  //   }
+  // }
 
   &__prefix,
   &__suffix {
@@ -26,28 +20,26 @@ $elenamex: 'el-input';
     }
   }
 
-  &-group {
-    &__append,
-    &__prepend {
-      color: var(--text-secondary-color);
-      border-color: var(--border-grey-color);
-    }
-
-    // &--preend .#{$elenamex}__inner,
-    // &--append .#{$elenamex}__inner {
-    //   padding: 0 32px;
-    // }
-  }
+  // &-group {
+  //   &__append,
+  //   &__prepend {
+  //   }
+  // }
 }
 
-.el-textarea{
-  &__inner {
-    border-color: var(--border-grey-color);
+// .el-textarea{
+//   &__inner {
 
-    &:focus,
-    &:hover {
-      --el-input-focus-border: var(--border-blue-color);
-      --el-input-hover-border: var(--border-blue-color);
-    }
+//     &:focus,
+//     &:hover {
+//     }
+//   }
+// }
+html[data-theme='dark'] {
+  .#{$elenamex} {
+    --el-input-bg-color: var(--background-secondary-color);
+    --el-input-border-color: var(--border-color);
+    --el-fill-color-light: var(--background-secondary-color);
+    --el-input-hover-border-color: var(--border-color-light);
   }
 }

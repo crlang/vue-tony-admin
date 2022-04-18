@@ -147,7 +147,7 @@ export default defineComponent({
 
       &:nth-child(1),
       &:nth-child(2) {
-        border-right: 1px solid var(--border-grey-color);
+        border-right: 1px solid var(--border-color);
       }
     }
 

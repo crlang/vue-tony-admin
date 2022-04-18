@@ -110,7 +110,7 @@ $prefix-cls: '#{$tonyname}-collapse-container';
     align-items: center;
     height: 44px;
     padding: 0 12px;
-    border-bottom: 1px solid var(--border-grey-color);
+    border-bottom: 1px solid var(--border-color);
   }
 
   &__body {
@@ -118,7 +118,7 @@ $prefix-cls: '#{$tonyname}-collapse-container';
   }
 
   &__footer {
-    border-top: 1px solid var(--border-grey-color);
+    border-top: 1px solid var(--border-color);
   }
 
   &__action {

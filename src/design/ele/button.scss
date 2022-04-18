@@ -1,4 +1,6 @@
-.el-button {
+$elenamex: 'el-button';
+
+.#{$elenamex} {
   // --el-button-text-color: var(--primary-color);
   // --el-button-bg-color: var(--blue-color-a15);
   // --el-button-border-color: transparent;
@@ -58,5 +60,11 @@
 
   [class*=el-icon]+span {
     vertical-align: text-top;
+  }
+}
+
+html[data-theme='dark'] {
+  .#{$elenamex} {
+    --el-button-bg-color: var(--background-secondary-color);
   }
 }

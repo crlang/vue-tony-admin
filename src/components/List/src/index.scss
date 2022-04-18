@@ -12,7 +12,7 @@ $prefix-cls: '#{$tonyname}-basic-list';
     align-items: center;
     padding: 12px 0;
     color: rgba(0, 0, 0, 0.85);
-    border-bottom: 1px solid var(--border-grey-color);
+    border-bottom: 1px solid var(--border-color);
 
     &--card {
       border-bottom: none;

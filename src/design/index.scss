@@ -175,6 +175,7 @@ html[data-theme='light'] {
   --error-color: var(--el-color-error);
   --black-color: var(--el-color-black);
   --white-color: var(--el-color-white);
+  --border-color: var(--el-border-color);
 
   /* Text Color */
   --text-primary-color: var(--el-text-color-primary);
@@ -187,76 +188,55 @@ html[data-theme='light'] {
   --background-primary-reverse: var(--grey-color-3);
   --background-secondary-color: var(--grey-light-color-5);
 
+  /* Shadow */
+  --card-shadow: 0 2px 4px rgba(169, 194, 209, 0.05), 0 12px 16px rgba(169, 194, 209, 0.1);
+  --card-shadow-shape: 0 32px 32px rgba(169, 194, 209, 0.1), 0 8px 16px rgba(169, 194, 209, 0.05);
+
   /* uncategorized */
-  --border-grey-color: var(--grey-color-8);
-  --border-grey-hover-color: var(--grey-color-7);
-  --border-blue-color: var(--blue-color);
-  --scrollbar-color: var(--grey-light-color-3);
   --control-background-hover: var(--grey-light-color-2);
   --control-background-hover-light: var(--grey-light-color-3);
   --control-background-active: var(--grey-light-color-3);
   --control-shadow: 0 2px 4px rgba(169, 194, 209, 0.55);
-  --placeholder-color: var(--grey-color-1);
-  --card-footer-background: var(--grey-light-color-1);
-  --card-shadow: 0 2px 4px rgba(169, 194, 209, 0.05), 0 12px 16px rgba(169, 194, 209, 0.1);
-  --card-shadow-shape: 0 32px 32px rgba(169, 194, 209, 0.1), 0 8px 16px rgba(169, 194, 209, 0.05);
-  --dropdown-shadow: 0 16px 24px rgba(169, 194, 209, 0.25), 0 2px 4px rgba(169, 194, 209, 0.1);
-  --dropdown-shadow-shape: 0 4px 32px rgba(169, 194, 209, 0.05), 0 2px 16px rgba(169, 194, 209, 0.05);
-  --backdrop-color: var(--grey-color-3);
-  --backdrop-opacity: 0.25;
-
-  // scenex
-  // --link-color: var(--blue-color); // link
-  // --disabled-color: rgba(0, 0, 0, 0.1); // error
-
-  // left sider
-  // --sider-background-color: var(--black-color-3);
-  // --sider-background-active-color: var(--black-color-4);
-  // --sider-text-color: var(--grey-color-2);
-  // --sider-text-active-color: var(--blue-color);
-
-  // header
-  // --header-text-color: var(--grey-color-3);
-  // --header-background-color: #fff;
-  // --header-background-hover-color: #f6f6f6;
 }
 
 /* Dark mode will be refactored, please wait */
 
-/*
 html[data-theme='dark'] {
+  /* Color */
+  --primary-color: var(--el-color-primary);
+  --active-color: var(--el-color-primary-light-1);
+  --success-color: var(--el-color-success);
+  --warning-color: var(--el-color-warning);
+  --danger-color: var(--el-color-danger);
+  --error-color: var(--el-color-error);
+  --black-color: var(--el-color-black);
+  --white-color: var(--el-color-white);
+  --border-color: var(--black-color-4);
+
+  /* Text Color */
+  --text-primary-color: var(--white-color);
+  --text-primary-reverse: var(--grey-light-color-3);
+  --text-secondary-color: var(--grey-color-4);
+
+  /* Background */
   --background-main-color: var(--black-color);
   --background-primary-color: var(--black-color-2);
   --background-primary-reverse: var(--grey-light-color-3);
   --background-secondary-color: var(--black-color-4);
-  --primary-color: var(--blue-color-2);
-  --text-primary-color: var(--white-color);
-  --text-primary-reverse: var(--grey-light-color-3);
-  --text-secondary-color: var(--grey-color-4);
-  --text-tertiary-color: var(--grey-color-6);
-  --border-grey-color: var(--black-color-4);
-  --scrollbar-color: var(--grey-color-6);
+
+  /* Shadow */
+  --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.05), 0 12px 16px rgba(0, 0, 0, 0.2);
+  --card-shadow-shape: 0 32px 32px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.1);
+
+  /* uncategorized */
   --control-background-hover: var(--black-color-control-1);
   --control-background-hover-light: var(--black-color-control-light);
   --control-background-active: var(--black-color-control-2);
   --control-shadow: 0 2px 4px rgba(87, 100, 108, 0.55);
-  --placeholder-color: var(--white-color);
-  --card-footer-background: var(--background-primary-color);
-  --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.05), 0 12px 16px rgba(0, 0, 0, 0.2);
-  --card-shadow-shape: 0 32px 32px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.1);
-  --dropdown-shadow: 0 16px 24px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.1);
-  --dropdown-shadow-shape: 0 4px 32px rgba(0, 0, 0, 0.05), 0 2px 16px rgba(0, 0, 0, 0.05);
-  --backdrop-color: var(--black-color);
-  --backdrop-opacity: 0.4;
 
-  // scenex
-  --link-color: var(--blue-color); // link
-  --disabled-color: rgba(255, 255, 255, 0.25); // error
-
-  // colorx
-  --success-color: var(--green-color); // success
-  --warning-color: var(--orange-color); // warning
-  --error-color: var(--red-color); // error
+  // Dark Exclusive
+  // Color
+  --border-color-light: var(--grey-color-6);
 
   // left sider
   --sider-background-color: var(--black-color-2);
@@ -269,7 +249,6 @@ html[data-theme='dark'] {
   --header-background-color: #394664;
   --header-background-hover-color: #273352;
 }
-*/
 
 html {
   height: 100%;
@@ -315,5 +294,5 @@ $theme-colors: (
   grey-bg: var(--background-main-color),
   grey: var(--text-secondary-color),
   grey-dark: var(--text-primary-color),
-  grey-light: var(--border-grey-color)
+  grey-light: var(--border-color)
 );

@@ -134,7 +134,7 @@ export default defineComponent({
 
     &-col {
       &:not(:last-child) {
-        border-right: 1px dashed var(--border-grey-color);
+        border-right: 1px dashed var(--border-color);
       }
 
       div {

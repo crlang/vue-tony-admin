@@ -36,7 +36,7 @@ export default defineComponent({
     height: 40px;
     padding: 0 20px;
     line-height: 40px;
-    border-bottom: 1px solid var(--border-grey-color);
+    border-bottom: 1px solid var(--border-color);
   }
 }
 </style>
