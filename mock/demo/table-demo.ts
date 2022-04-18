@@ -5,7 +5,7 @@ import { getRandomItem, resultPageSuccess } from '../_util'
 const demoList = (() => {
   const result: any[] = []
   for (let index = 0; index < 111; index++) {
-    result.push(getRandomItem(index + 1))
+    result.push(getRandomItem(index + 1, `k-${index + 1}`))
   }
   return result
 })()

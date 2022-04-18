@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4">
+  <PageWrapper contentFullHeight>
     <BasicTable @register="registerTable">
       <template #imgs="{label,width,prop}">
         <el-table-column
@@ -10,13 +10,13 @@
             <img
               :src="item"
               :key="index"
-              width="200"
+              width="80"
               v-for="(item,index) in scope.row.imgs" />
           </template>
         </el-table-column>
       </template>
     </BasicTable>
-  </div>
+  </PageWrapper>
 </template>
 
 <script lang="ts">
@@ -24,9 +24,10 @@ import { defineComponent } from 'vue'
 import { BasicTable, useTable, BasicColumn } from '@/components/Table'
 import { demoListApi } from '@/api/demo/table'
 import { ElTableColumn } from 'element-plus'
+import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { ElTableColumn, BasicTable },
+  components: { ElTableColumn, PageWrapper, BasicTable },
   setup() {
     const columns: BasicColumn[] = [
       {
@@ -38,14 +39,17 @@ export default defineComponent({
       {
         label: '名称',
         prop: 'name',
+        width: 150,
       },
       {
         label: '姓名',
         prop: 'nickname',
+        width: 150,
       },
       {
         label: '编号',
         prop: 'no',
+        width: 150,
       },
       {
         label: '地址',
@@ -60,16 +64,18 @@ export default defineComponent({
       {
         label: '图片集',
         prop: 'imgs',
-        width: 800,
+        width: 850,
         isSlot: true,
       },
       {
         label: '开始时间',
         prop: 'beginTime',
+        width: 180,
       },
       {
         label: '结束时间',
         prop: 'endTime',
+        width: 180,
       },
       {
         fixed: 'right',
@@ -89,6 +95,7 @@ export default defineComponent({
       title: 'TableAction组件及固定列示例',
       api: demoListApi,
       columns: columns,
+      canResize: true,
       showCheckboxColumn: true,
       border: true,
     })

@@ -34,12 +34,10 @@ export function getBasicColumns(): BasicColumn[] {
       prop: 'no',
       width: 100,
       sortable: true,
-      defaultHidden: true,
     },
     {
       label: '地址',
       prop: 'address',
-      isSlot: true,
     },
     {
       label: '描述',
@@ -87,48 +85,6 @@ export function getBasicShortColumns(): BasicColumn[] {
   ]
 }
 
-export function getCustomHeaderColumns(): BasicColumn[] {
-  return [
-    {
-      label: 'ID',
-      prop: 'id',
-      width: 200,
-    },
-    {
-      label: '姓名',
-      prop: 'name',
-      width: 120,
-      isSlot: true,
-    },
-    {
-      label: '地址',
-      prop: 'address',
-      // width: 120,
-      // isSlot: true,
-      sortable: true,
-    },
-    {
-      label: '编号',
-      prop: 'no',
-      width: 120,
-      filters: [
-        { text: 'Male', value: 'male', children: [] },
-        { text: 'Female', value: 'female', children: [] },
-      ],
-    },
-    {
-      label: '开始时间',
-      prop: 'beginTime',
-      width: 180,
-    },
-    {
-      label: '结束时间',
-      prop: 'endTime',
-      width: 180,
-    },
-  ]
-}
-
 export function getCustomCellColumns(): BasicColumn[] {
   return [
     {
@@ -156,7 +112,7 @@ export function getCustomCellColumns(): BasicColumn[] {
     },
     {
       label: '图片列表1',
-      prop: 'imgArr',
+      prop: 'photos',
       helpMessage: ['这是简单模式的图片列表', '只会显示一张在表格中', '但点击可预览多张图片'],
       width: 140,
       isSlot: true,
@@ -203,6 +159,7 @@ export const getAdvanceSchema = (itemNumber = 6): FormSchema[] => {
   }
   return arr
 }
+
 export function getFormConfig(): Partial<FormProps> {
   return {
     labelWidth: 100,
@@ -224,33 +181,40 @@ export function getFormConfig(): Partial<FormProps> {
   }
 }
 
-export function getTreeTableData() {
-  const data: any = (() => {
-    const arr: any = []
-    for (let index = 0; index < 40; index++) {
-      arr.push({
-        id: `${index}`,
-        name: 'John Brown',
-        age: `1${index}`,
-        no: `${index + 10}`,
-        address: 'New York No. 1 Lake ParkNew York No. 1 Lake Park',
-        beginTime: new Date().toLocaleString(),
-        endTime: new Date().toLocaleString(),
-        children: [
-          {
-            id: `l2-${index}`,
-            name: 'John Brown',
-            age: `1${index}`,
-            no: `${index + 10}`,
-            address: 'New York No. 1 Lake ParkNew York No. 1 Lake Park',
-            beginTime: new Date().toLocaleString(),
-            endTime: new Date().toLocaleString(),
-          },
-        ],
-      })
-    }
-    return arr
-  })()
-
-  return data
+export function getTotalColumns(): BasicColumn[] {
+  return [
+    {
+      label: '姓名',
+      prop: 'nickname',
+    },
+    {
+      label: 'ID',
+      prop: 'id',
+    },
+    {
+      label: '性别',
+      prop: 'sex',
+      filters: [
+        { text: '男', value: '1' },
+        { text: '女', value: '2' },
+      ],
+      customRender: ({ record }) => {
+        const color = record.sex === 1 ? 'success' : 'danger'
+        const text = record.sex === 1 ? '男' : '女'
+        return h(ElTag, { type: color }, () => text)
+      },
+    },
+    {
+      label: '年龄',
+      prop: 'age',
+    },
+    {
+      label: '编号',
+      prop: 'no',
+    },
+    {
+      label: '地址',
+      prop: 'address',
+    },
+  ]
 }

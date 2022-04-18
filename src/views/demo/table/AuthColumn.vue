@@ -1,18 +1,18 @@
 <template>
-  <div class="p-4">
+  <PageWrapper>
     <BasicTable @register="registerTable" />
-  </div>
+  </PageWrapper>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { BasicTable, useTable, BasicColumn } from '@/components/Table'
-
+import { PageWrapper } from '@/components/Page'
 import { demoListApi } from '@/api/demo/table'
 import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
-  components: { BasicTable },
+  components: { PageWrapper, BasicTable },
   setup() {
     const { createConfirm, createMessage } = useMessage()
     const columns:BasicColumn[] = [

@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4">
+  <PageWrapper>
     <div class="mb-4">
       <el-button @click="reloadTable">还原</el-button>
       <el-button @click="changeLoading">开启loading</el-button>
@@ -14,19 +14,20 @@
       <el-button @click="getPagination2">获取分页信息</el-button>
     </div>
     <BasicTable @register="registerTable" />
-  </div>
+  </PageWrapper>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
 import { BasicTable, useTable } from '@/components/Table'
+import { PageWrapper } from '@/components/Page'
 import { getBasicColumns, getBasicShortColumns } from './data'
 import { useMessage } from '@/hooks/web/useMessage'
 import { demoListApi } from '@/api/demo/table'
 
 export default defineComponent({
-  components: { ElButton, BasicTable },
+  components: { ElButton, PageWrapper, BasicTable },
   setup() {
     const { createMessage } = useMessage()
     const columns = getBasicColumns()
@@ -74,22 +75,22 @@ export default defineComponent({
     }
     function getColumn() {
       createMessage.info('请在控制台查看！')
-      console.log(getColumns())
+      console.table(getColumns())
     }
 
     function getTableData() {
       createMessage.info('请在控制台查看！')
-      console.log(getDataSource())
+      console.table(getDataSource())
     }
 
     function getTableRawData() {
       createMessage.info('请在控制台查看！')
-      console.log(getRawDataSource())
+      console.table(getRawDataSource())
     }
 
     function getPagination2() {
       createMessage.info('请在控制台查看！')
-      console.log(getPagination())
+      console.table(getPagination())
     }
 
     function setPaginationInfo() {

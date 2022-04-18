@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4">
+  <PageWrapper>
     <BasicTable
       ref="tableRef"
       title="基础示例"
@@ -41,7 +41,7 @@
         </el-button>
       </template>
     </BasicTable>
-  </div>
+  </PageWrapper>
 </template>
 
 <script lang="ts">
@@ -50,11 +50,12 @@ import type { TableActionType } from '@/components/Table'
 import { defineComponent, ref, unref } from 'vue'
 import { ElButton, ElTableColumn } from 'element-plus'
 import { BasicTable } from '@/components/Table'
+import { PageWrapper } from '@/components/Page'
 import { getBasicColumns } from './data'
 import { demoListApi } from '@/api/demo/table'
 
 export default defineComponent({
-  components: { ElButton, ElTableColumn, BasicTable },
+  components: { ElButton, ElTableColumn, PageWrapper, BasicTable },
   setup() {
     const loading = ref(false)
     const stripe = ref(true)

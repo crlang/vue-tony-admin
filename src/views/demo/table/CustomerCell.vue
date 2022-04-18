@@ -32,29 +32,6 @@
           </template>
         </el-table-column>
       </template>
-      <template #imgArr="{label,prop}">
-        <el-table-column
-          :label="label"
-          :prop="prop">
-          <template #default="scope">
-            <TableImg
-              :size="60"
-              :simpleShow="true"
-              :imgList="scope.row.imgArr" />
-          </template>
-        </el-table-column>
-      </template>
-      <template #imgs="{label,prop}">
-        <el-table-column
-          :label="label"
-          :prop="prop">
-          <template #default="scope">
-            <TableImg
-              :size="60"
-              :imgList="scope.row.imgs" />
-          </template>
-        </el-table-column>
-      </template>
       <template #category="{label,prop}">
         <el-table-column
           :label="label"
@@ -73,13 +50,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElTag, ElAvatar, ElTableColumn } from 'element-plus'
-import { BasicTable, useTable, TableImg } from '@/components/Table'
+import { BasicTable, useTable } from '@/components/Table'
 import { demoListApi } from '@/api/demo/table'
 import { getCustomCellColumns } from './data'
 import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { ElTag, ElAvatar, ElTableColumn, PageWrapper, BasicTable, TableImg },
+  components: { ElTag, ElAvatar, ElTableColumn, PageWrapper, BasicTable },
   setup() {
     const [registerTable] = useTable({
       title: '自定义列内容',

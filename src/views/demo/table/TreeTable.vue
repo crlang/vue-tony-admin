@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4">
+  <PageWrapper>
     <BasicTable @register="register">
       <template #toolbar>
         <el-button
@@ -10,18 +10,19 @@
           @click="collapseAll">折叠全部</el-button>
       </template>
     </BasicTable>
-  </div>
+  </PageWrapper>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
 import { BasicTable, useTable } from '@/components/Table'
+import { PageWrapper } from '@/components/Page'
 import { getBasicColumns } from './data'
 import { treeDemoListApi } from '@/api/demo/tree'
 
 export default defineComponent({
-  components: { ElButton, BasicTable },
+  components: { ElButton, PageWrapper, BasicTable },
   setup() {
     const [register, { expandAll, collapseAll }] = useTable({
       title: '树形表格',

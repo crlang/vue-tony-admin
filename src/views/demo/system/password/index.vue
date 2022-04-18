@@ -20,11 +20,13 @@ import { BasicForm, useForm } from '@/components/Form'
 import { CollapseContainer } from '@/components/Container'
 
 import { formSchema } from './data'
+import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
   name: 'ChangePassword',
   components: { BasicForm, PageWrapper, CollapseContainer },
   setup() {
+    const { createMessage } = useMessage()
     const [register, { validate, resetFields, getFieldsValue }] = useForm({
       size: 'large',
       labelWidth: 100,
@@ -43,10 +45,8 @@ export default defineComponent({
         await validate()
         const { passwordOld, passwordNew } = getFieldsValue()
 
-        // TODO custom api
-        console.log(passwordOld, passwordNew)
-        // const { router } = useRouter();
-        // router.push(pageEnum.BASE_LOGIN);
+        console.table(passwordOld, passwordNew)
+        createMessage.success('重置成功')
       } catch (error) {
         // continue regardless of error
       }

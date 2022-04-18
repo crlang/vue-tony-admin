@@ -81,6 +81,7 @@ export function getRandomItem(id = '', code = '') {
     age: '@integer(1,100)',
     avatar: Random.image('400x400', Random.color(), Random.color(), Random.first()),
     imgs: getRandomPics(getDemoRandomCount()),
+    photos: getRandomPics(getDemoRandomCount()),
     date: `@date('yyyy-MM-dd')`,
     time: `@time('HH:mm')`,
     'no|100000-10000000': 100000,

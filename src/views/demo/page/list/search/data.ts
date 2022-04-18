@@ -26,7 +26,7 @@ export const schemas: FormSchema[] = [
     componentProps: {
       'prefix-icon': Search,
       onChange: (e: any) => {
-        console.log(e)
+        console.table(e)
       },
     },
   },
