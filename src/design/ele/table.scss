@@ -14,9 +14,10 @@
   &__header {
     &-wrapper {
       tr  {
+        th.el-table-fixed-column--left ,
         th.el-table-fixed-column--right {
           background: var(--el-table-header-bg-color);
-          filter: brightness(0.95);
+          filter: brightness(0.96);
         }
       }
     }

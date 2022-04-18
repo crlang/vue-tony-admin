@@ -10,7 +10,8 @@ import {
   watch,
   reactive,
   Ref,
-  watchEffect
+  watchEffect,
+  toRaw
 } from 'vue'
 import { useTimeoutFn } from '@/hooks/core/useTimeout'
 import { buildUUID } from '@/utils/uuid'
@@ -301,11 +302,11 @@ export function useDataSource(
   }
 
   function getDataSource<T = Recordable>() {
-    return getDataSourceRef.value as T[]
+    return toRaw(getDataSourceRef.value as T[])
   }
 
   function getRawDataSource<T = Recordable>() {
-    return rawDataSourceRef.value as T
+    return toRaw(rawDataSourceRef.value as T)
   }
 
   async function reload(opt?: FetchParams) {

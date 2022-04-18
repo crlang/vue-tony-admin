@@ -172,8 +172,6 @@ export default {
     formTable: '开启搜索区域',
     useTable: 'UseTable',
     refTable: 'RefTable',
-    expandTable: '可展开表格',
-    fixedHeight: '定高/头部自定义',
     footerTable: '表尾行合计',
     editRowTable: '可编辑行',
     authColumn: '权限列',

@@ -192,22 +192,6 @@ const comp: AppRouteModule = {
           },
         },
         {
-          path: 'expandTable',
-          name: 'ExpandTableDemo',
-          component: () => import('@/views/demo/table/ExpandTable.vue'),
-          meta: {
-            title: t('routes.table.expandTable'),
-          },
-        },
-        {
-          path: 'fixedHeight',
-          name: 'FixedHeightDemo',
-          component: () => import('@/views/demo/table/FixedHeight.vue'),
-          meta: {
-            title: t('routes.table.fixedHeight'),
-          },
-        },
-        {
           path: 'footerTable',
           name: 'FooterTableDemo',
           component: () => import('@/views/demo/table/FooterTable.vue'),

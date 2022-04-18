@@ -181,8 +181,6 @@ export default {
     formTable: 'Open search',
     useTable: 'UseTable',
     refTable: 'RefTable',
-    expandTable: 'Expandable table',
-    fixedHeight: 'Fixed height',
     footerTable: 'Footer',
     editRowTable: 'Editable row',
     authColumn: 'Auth column',

@@ -286,9 +286,8 @@ export default defineComponent({
       const values = unref(getBindValues)
       return [
         prefixCls,
-        attrs.class,
         {
-          [`${prefixCls}-form-container`]: values.useSearchForm,
+          [`${prefixCls}--full`]: values.canResize,
         },
       ]
     })
@@ -378,11 +377,11 @@ $prefix-cls: '#{$tonyname}-basic-table';
 
 .#{$prefix-cls} {
   max-width: 100%;
-  padding: 0 8px;
+  padding: 16px;
   background: var(--background-primary-color);
 
-  &-form-container {
-    padding: 16px;
+  &--full {
+    height: 100%;
   }
 
   &-action {
