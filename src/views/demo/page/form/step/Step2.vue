@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ElAlert, ElDescriptions, ElDescriptionsItem } from 'element-plus'
+import { ElAlert, ElDescriptions, ElDescriptionsItem, ElDivider } from 'element-plus'
 import { BasicForm, useForm } from '@/components/Form'
 import { step2Schemas } from './data'
 
@@ -27,6 +27,7 @@ export default defineComponent({
     ElAlert,
     ElDescriptions,
     ElDescriptionsItem,
+    ElDivider,
     BasicForm,
   },
   emits: ['next', 'prev'],

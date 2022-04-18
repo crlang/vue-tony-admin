@@ -2,6 +2,7 @@
   <PageWrapper
     class="high-form"
     title="高级表单"
+    contentFullHeight
     description=" 高级表单常见于一次性输入和提交大批量数据的场景。">
 
     <el-card header="仓库管理">
@@ -19,9 +20,11 @@
     </el-card>
 
     <template #rightFooter>
-      <el-button
-        type="primary"
-        @click="submitAll">提交</el-button>
+      <div class="p-2 text-right ">
+        <el-button
+          type="primary"
+          @click="submitAll">提交</el-button>
+      </div>
     </template>
   </PageWrapper>
 </template>
@@ -33,12 +36,15 @@ import { defineComponent, ref } from 'vue'
 import PersonTable from './PersonTable.vue'
 import { PageWrapper } from '@/components/Page'
 import { schemas, taskSchemas } from './data'
+import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
   name: 'FormHightPage',
   components: { ElButton, ElCard, BasicForm, PersonTable, PageWrapper },
   setup() {
     const tableRef = ref()
+
+    const { createMessage } = useMessage()
 
     const [register, { validate, getFieldsValue }] = useForm({
       labelWidth: 120,
@@ -68,6 +74,7 @@ export default defineComponent({
         console.log('form data:', getFieldsValue(), getFieldsValue2())
       } catch (error) {
         // continue regardless of error
+        createMessage.error('请填写完整再提交')
       }
     }
 

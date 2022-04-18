@@ -4,7 +4,7 @@
     contentBackground
     description=" 将一个冗长或用户不熟悉的表单任务分成多个步骤，指导用户完成。">
     <div class="step-form-form">
-      <el-steps :current="current">
+      <el-steps :active="current">
         <el-step title="填写转账信息" />
         <el-step title="确认转账信息" />
         <el-step title="完成" />
@@ -20,7 +20,7 @@
         v-show="current === 1"
         v-if="initSetp2" />
       <Step3
-        v-show="current === 2"
+        v-show="current === 3"
         @redo="handleRedo"
         v-if="initSetp3" />
     </div>
@@ -30,10 +30,10 @@
 <script lang="ts">
 import { defineComponent, ref, reactive, toRefs } from 'vue'
 import { ElSteps, ElStep } from 'element-plus'
+import { PageWrapper } from '@/components/Page'
 import Step1 from './Step1.vue'
 import Step2 from './Step2.vue'
 import Step3 from './Step3.vue'
-import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
   name: 'FormStepPage',
@@ -53,20 +53,18 @@ export default defineComponent({
       initSetp3: false,
     })
 
-    function handleStep1Next(step1Values: any) {
+    function handleStep1Next() {
       current.value++
       state.initSetp2 = true
-      console.log(step1Values)
     }
 
     function handleStepPrev() {
       current.value--
     }
 
-    function handleStep2Next(step2Values: any) {
-      current.value++
+    function handleStep2Next() {
+      current.value = 3
       state.initSetp3 = true
-      console.log(step2Values)
     }
 
     function handleRedo() {

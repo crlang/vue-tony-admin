@@ -7,6 +7,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { BasicTable, useTable, BasicColumn } from '@/components/Table'
+import { demoListApi } from '@/api/demo/table'
 
 export default defineComponent({
   components: { BasicTable },
@@ -37,27 +38,10 @@ export default defineComponent({
       },
     ]
 
-    const data: any[] = [
-      {
-        name: 'John Brown',
-        no: '00001',
-        dept: 'New York No. 1 Lake Park',
-      },
-      {
-        name: 'John Brown2',
-        no: '00002',
-        dept: 'New York No. 2 Lake Park',
-      },
-      {
-        name: 'John Brown3',
-        no: '00003',
-        dept: 'New York No. 3Lake Park',
-      },
-    ]
-
     const [registerTable, { getDataSource }] = useTable({
       columns: columns,
-      dataSource: data,
+      api: demoListApi,
+      pagination: false,
     })
 
     function handleEdit(record) {
