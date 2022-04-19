@@ -1,30 +1,47 @@
-.el-popper{
-  --el-popper-border-radius: var(--radius-base);
+// @import './mix_popper.scss';
 
-  &.is-dark {
-    color: var(--white-color);
-    background-color: var(--grey-color-3);
-    border: 1px solid var(--grey-color-3);
+$elenamex: 'el-popper';
 
-    .el-popper__arrow::before {
-      background-color: #44566c;
+// .#{$elenamex} {
+// }
+
+html[data-theme='dark'] {
+  .#{$elenamex} {
+    --el-color-white: var(--text-secondary-color);
+    --el-border-color-light: var(--border-color);
+
+    background: var(--background-secondary-color);
+
+    &__arrow {
+      --el-text-color-primary: var(--background-secondary-color);
     }
-  }
 
-  &.is-light {
-    color: var(--text-primary-color);
-    background-color: var(--background-primary-color);
-    border-color: var(--grey-color-5);
-    box-shadow: var(--card-shadow);
+    &.el-dropdown__popper {
+      --el-color-white: var(--background-secondary-color);
+      --el-border-color-light: var(--border-color);
 
-    .el-popper__arrow {
-      --pop-bd: var(--grey-color-5);
-      --pop-bg: var(--background-primary-color);
+      background: var(--background-secondary-color);
+    }
 
-      &::before {
-        background-color: var(--pop-bg, inherit);
-        border-color: var(--pop-bd, inherit);
-      }
+    &.el-select__popper {
+      --el-color-white: var(--background-control-color);
+      --el-border-color-light: var(--border-color);
+
+      background: var(--background-control-color);
+    }
+
+    &.el-cascader__dropdown {
+      --el-color-white: var(--background-control-color);
+      --el-border-color-light: var(--border-color);
+
+      background: var(--background-control-color);
+    }
+
+    &.el-picker__popper {
+      --el-color-white: var(--background-control-color);
+      --el-datepicker-border-color: var(--background-control-color);
+
+      background: var(--background-control-color);
     }
   }
 }

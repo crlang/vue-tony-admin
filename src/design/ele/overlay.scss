@@ -1,0 +1,5 @@
+$elenamex: 'el-overlay';
+
+.#{$elenamex} {
+  backdrop-filter: blur(4px);
+}

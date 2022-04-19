@@ -72,6 +72,7 @@ $prefix-cls: '#{$tonyname}-setting-select-item';
   display: flex;
   justify-content: space-between;
   margin: 16px 0;
+  color: var(--text-secondary-color);
 
   &-select {
     width: 126px;

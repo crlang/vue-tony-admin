@@ -1,4 +1,6 @@
-.el-date {
+$elenamex: 'el-date';
+
+.#{$elenamex} {
   // &.is-active {
   // }
 
@@ -6,4 +8,13 @@
   //   .el-range-input {
   //   }
   // }
+}
+
+html[data-theme='dark'] {
+  .#{$elenamex} {
+    &-table {
+      --el-border-color-lighter: var(--border-color-light);
+      --el-datepicker-off-text-color: var(--text-disabled-color)
+    }
+  }
 }

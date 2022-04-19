@@ -239,4 +239,18 @@ $prefix-cls: '#{$tonyname}-icon-picker';
     }
   }
 }
+
+html[data-theme='dark'] {
+  .#{$prefix-cls} {
+    &__list{
+      .eleicon {
+        border: 1px solid #44566c;
+
+        &:hover {
+          background: #44566c;
+        }
+      }
+    }
+  }
+}
 </style>

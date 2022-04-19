@@ -1,4 +1,6 @@
-.el-table {
+$elenamex: 'el-table';
+
+.#{$elenamex} {
   --el-table-row-hover-bg-color: var(--background-primary-color);
   --el-table-header-bg-color: var(--background-secondary-color);
   --el-table-border-color: var(--border-color);
@@ -31,7 +33,20 @@
 }
 
 html[data-theme='dark'] {
-  .el-table {
-    --el-table-tr-bg-color: var(--black-color);
+  .#{$elenamex} {
+    --el-table-text-color: var(--text-secondary-color);
+    --el-table-border-color: var(--border-color-light);
+    --el-table-tr-bg-color: var(--background-primary-color);
+    --el-table-row-hover-bg-color: var(--background-secondary-color);
+    --el-table-bg-color: var(--background-secondary-color);
+
+    &__body {
+      &-wrapper {
+        tr td.el-table-fixed-column--left ,
+        tr td.el-table-fixed-column--right {
+          background: var(--background-primary-color);
+        }
+      }
+    }
   }
 }

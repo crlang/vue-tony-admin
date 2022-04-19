@@ -137,4 +137,12 @@ $prefix-cls: '#{$tonyname}-strength-meter';
     }
   }
 }
+
+html[data-theme='dark'] {
+  .#{$prefix-cls} {
+    &-bar {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
 </style>

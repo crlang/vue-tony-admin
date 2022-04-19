@@ -64,6 +64,6 @@ $prefix-cls: '#{$tonyname}-setting-switch-item';
   display: flex;
   justify-content: space-between;
   margin: 16px 0;
-  color: #666;
+  color: var(--text-secondary-color);
 }
 </style>

@@ -1,13 +1,15 @@
-@use 'mix_tooltip.scss' as *;
+$elenamex: 'el-picker';
 
-.el-picker {
+.#{$elenamex} {
   &-panel {
     background-color: transparent;
   }
+}
 
-  &__popper{
-    &.el-popper[role='tooltip'] {
-      @include tooltip;
+html[data-theme='dark'] {
+  .#{$elenamex} {
+    &-panel {
+      --el-text-color-regular: var(--text-primary-color);
     }
   }
 }

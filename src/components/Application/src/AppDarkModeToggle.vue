@@ -74,6 +74,7 @@ $prefix-cls: '#{$tonyname}-dark-switch';
     border: 1px solid #c4bcbc;
 
     .#{$prefix-cls}-inner {
+      background-color: rgba(255, 255, 255, 0.65);
       transform: translateX(calc(100% + 2px));
     }
   }

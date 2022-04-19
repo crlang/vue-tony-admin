@@ -1,0 +1,10 @@
+$elenamex: 'el-dialog';
+
+// .#{$elenamex} {
+// }
+
+html[data-theme='dark'] {
+  .#{$elenamex} {
+    --el-dialog-bg-color: var(--background-secondary-color);
+  }
+}

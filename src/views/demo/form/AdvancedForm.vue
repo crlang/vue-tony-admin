@@ -1,13 +1,9 @@
 <template>
   <PageWrapper title="可折叠表单示例">
-    <CollapseContainer title="基础收缩示例">
-      <BasicForm @register="register" />
-    </CollapseContainer>
-
     <CollapseContainer
-      title="超过3行自动收起，折叠时保留2行"
+      title="超过3行自动收起，折叠时保留1行"
       class="mt-4">
-      <BasicForm @register="register1" />
+      <BasicForm @register="register" />
     </CollapseContainer>
   </PageWrapper>
 </template>
@@ -23,14 +19,6 @@ import { UseSchemas } from './data'
 export default defineComponent({
   components: { BasicForm, CollapseContainer, PageWrapper },
   setup() {
-    const [register] = useForm({
-      labelWidth: 120,
-      schemas: UseSchemas,
-      actionColOptions: {
-        span: 24,
-      },
-      showAdvancedButton: true,
-    })
     const extraSchemas: FormSchema[] = []
     for (let i = 14; i < 30; i++) {
       extraSchemas.push({
@@ -42,7 +30,7 @@ export default defineComponent({
         },
       })
     }
-    const [register1] = useForm({
+    const [register] = useForm({
       labelWidth: 120,
       schemas: [
         ...UseSchemas,
@@ -57,7 +45,6 @@ export default defineComponent({
     })
     return {
       register,
-      register1,
     }
   },
 })

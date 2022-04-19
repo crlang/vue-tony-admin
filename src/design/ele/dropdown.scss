@@ -1,9 +1,31 @@
-.el-dropdown {
+$elenamex: 'el-dropdown';
+
+.#{$elenamex} {
   &-menu {
     &__item {
       &--divided::before {
         display: none;
       }
+    }
+  }
+}
+
+html[data-theme='dark'] {
+  .#{$elenamex} {
+
+    &-menu {
+      --el-text-color-regular: var(--text-control-color);
+      /* stylelint-disable-next-line custom-property-pattern */
+      --el-dropdown-menuItem-hover-fill: var(--background-primary-color);
+      --el-border-color-lighter: var(--border-color);
+
+      &__item{
+        &:hover {
+          color: var(--primary-color);
+        }
+      }
+
+      background: var(--background-control-color);
     }
   }
 }

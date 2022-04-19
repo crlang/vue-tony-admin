@@ -1,4 +1,6 @@
-.el-card {
+$elenamex: 'el-card';
+
+.#{$elenamex} {
   --el-color-black: var(--background-primary-color);
   --el-card-border-radius: var(--radius-base);
   --el-box-shadow-light: var(--card-shadow);
@@ -33,9 +35,10 @@
   }
 }
 
-// .dark,
-// html[data-theme='dark'] {
-//   .el-card {
-//     // --el-card-bg-color: var(--background-primary-color);
-//   }
-// }
+html[data-theme='dark'] {
+  .#{$elenamex} {
+    --el-text-color-primary: var(--text-primary-color);
+    --el-card-bg-color: var(--background-primary-color);
+    --el-card-border-color: var(--border-color)
+  }
+}

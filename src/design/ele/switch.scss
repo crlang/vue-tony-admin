@@ -1,0 +1,16 @@
+$elenamex: 'el-switch';
+
+// .#{$elenamex} {
+// }
+
+html[data-theme='dark'] {
+  .#{$elenamex} {
+    &.is-disabled {
+      opacity: 1;
+      --el-color-white: var(--text-disabled-color);
+      --el-switch-off-color: var(--background-disabled-color);
+    }
+    --el-color-white: var(--text-primary-color);
+    --el-switch-off-color: var(--background-control-color);
+  }
+}

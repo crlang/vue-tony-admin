@@ -175,3 +175,16 @@ $prefix-cls: '#{$tonyname}-multiple-tabs';
     }
   }
 }
+
+html[data-theme='dark'] {
+  .#{$prefix-cls} .el-tabs .el-tabs__header{
+    .el-tabs__nav {
+      .el-tabs__item {
+        &:hover {
+          background: var(--background-secondary-color);
+        }
+      }
+    }
+
+  }
+}

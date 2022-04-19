@@ -234,20 +234,34 @@ html[data-theme='dark'] {
   --control-background-active: var(--black-color-control-2);
   --control-shadow: 0 2px 4px rgba(87, 100, 108, 0.55);
 
-  // Dark Exclusive
+  // ↓↓↓ Dark Exclusive ↓↓↓
+
   // Color
   --border-color-light: var(--grey-color-6);
 
+  // Disabled
+  --text-disabled-color: var(--grey-color-2);
+  --background-disabled-color: var(--grey-color-6);
+
+  // Control
+  --text-control-color: var(--grey-color-2);
+  --background-control-color: var(--grey-color-3);
+  --text-control-hover: var(--grey-color-8);
+  --background-control-hover: var(--grey-color-1);
+
   // left sider
-  --sider-background-color: var(--black-color-2);
-  --sider-background-active-color: var(--grey-color-2);
-  --sider-text-color: var(--blue-color);
-  --sider-text-active-color: var(--blue-color);
+  --sider-background-color: var(--background-main-color) !important;
+  --sider-background-hover-color: var(--background-secondary-color) !important;
+  --sider-text-color: var(--text-secondary-color) !important;
+  --sider-text-hover-color: var(--text-primary-color) !important;
 
   // top header
-  --header-text-color: var(--grey-light-color-3);
-  --header-background-color: #394664;
-  --header-background-hover-color: #273352;
+  --header-text-color: var(--text-primary-color) !important;
+  --header-text-hover-color: var(--text-secondary-color) !important;
+  --header-background-color: var(--background-main-color) !important;
+  --header-background-hover-color: var(--background-secondary-color) !important;
+
+  // ↑↑↑ Dark Exclusive ↑↑↑
 }
 
 html {

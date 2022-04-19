@@ -1,4 +1,6 @@
-.el-alert {
+$elenamex: 'el-alert';
+
+.#{$elenamex} {
   border-style: solid;
   border-width: 1px;
 
@@ -6,6 +8,15 @@
   &.is-dark {
     .el-alert__closebtn {
       color: inherit;
+    }
+  }
+}
+
+html[data-theme='dark'] {
+  .#{$elenamex} {
+    &--info {
+      --el-color-info: var(--text-secondary-color);
+      --el-alert-bg-color: var(--background-primary-color);
     }
   }
 }

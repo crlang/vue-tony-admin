@@ -1,3 +1,7 @@
-.el-descriptions__body{
-  background: none;
+$elenamex: 'el-descriptions';
+
+.#{$elenamex} {
+  .el-descriptions__body{
+    background: none;
+  }
 }
