@@ -97,6 +97,10 @@ export const extProps = {
 
 export const basicProps = {
   ...EleDrawerProps,
+  appendToBody: {
+    type: Boolean,
+    default: true,
+  },
   title: { type: String },
   modelValue: { type: Boolean },
   ...extProps,
