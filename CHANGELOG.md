@@ -1,3 +1,49 @@
+# [0.3.0](https://github.com/crlang/vue-tony-admin/compare/0.2.2...0.3.0) (2022-04-20)
+
+### Bug Fixes
+
+- adjust default pageSize ([b9035fc](https://github.com/crlang/vue-tony-admin/commit/b9035fce7849c502e048e8dbc783bf4cb4df2e47))
+- adjust the default image style ([8aefe27](https://github.com/crlang/vue-tony-admin/commit/8aefe279e0bb04da8ea54ad01ef52ed61e63ce4b))
+- adjust the layouts class name ([845daf2](https://github.com/crlang/vue-tony-admin/commit/845daf243f1203e5f6f78933e42ef4a4798e2a2d))
+- adjust the page class name ([b65c3cb](https://github.com/crlang/vue-tony-admin/commit/b65c3cba43b9b1d0abdd4484306c54af52e816d5))
+- **Drawer:** adjust to insert body by default ([283fe8a](https://github.com/crlang/vue-tony-admin/commit/283fe8ad3dc1d27e5fa42cab0c4d9a44a6e0f5b7))
+- fix bug with lineheight inheritance ([9e964e1](https://github.com/crlang/vue-tony-admin/commit/9e964e13e3d2bdb72712a3e45202831572ca6997))
+- fix the shift when the side is unfolded ([6cd61e5](https://github.com/crlang/vue-tony-admin/commit/6cd61e593e829897c4379559a6c8ef4d41453444))
+- login menu tab width ([6f80143](https://github.com/crlang/vue-tony-admin/commit/6f801434dab0b8bf24503372b0be4fbf9044c973))
+- mock data adjustment ([085792a](https://github.com/crlang/vue-tony-admin/commit/085792ac28e61b92b0c0790f24a5a6a71ea0fe44))
+- optimize dayjs import error ([3824d47](https://github.com/crlang/vue-tony-admin/commit/3824d47ef8f4564469e197c19e43ec8589e78ebb))
+- page footer cannot be displayed ([4f08a61](https://github.com/crlang/vue-tony-admin/commit/4f08a61cd589e6b25fd800d3a01d8004697553c1))
+- **Qrcode:** component optimization ([d60d02f](https://github.com/crlang/vue-tony-admin/commit/d60d02f7102dcd1d340d19dded1fb7665f56b381))
+- **QrCode:** split extension components to QrCode branch ([23de7c5](https://github.com/crlang/vue-tony-admin/commit/23de7c59e3022ae3789d0df53db957a7948f1345))
+- remove crypto-js and cipher ([4c6f9ab](https://github.com/crlang/vue-tony-admin/commit/4c6f9abd3d6b3f7ff0a1dcc21ebbeaaa51944a0b))
+- remove redundant code ([b4e60c8](https://github.com/crlang/vue-tony-admin/commit/b4e60c85065ada14a6b45ee31b38f7fc5f52a3c8))
+- remove the sortable function of table ([6497357](https://github.com/crlang/vue-tony-admin/commit/6497357a29834fc6ca2fd0297aea9604ceddc329))
+- rename QrCode ([333a110](https://github.com/crlang/vue-tony-admin/commit/333a110d368525d535fc97447df3141304665b9f))
+- resize non-root svg ([b4cc506](https://github.com/crlang/vue-tony-admin/commit/b4cc5068803b18efb3678ce95f4228e3688bc70c))
+- table example update ([e81577e](https://github.com/crlang/vue-tony-admin/commit/e81577ed9856595129e9d15b69d4fdaa1f276bb1))
+- **Table:** problems caused by optimizing resize ([fb60cea](https://github.com/crlang/vue-tony-admin/commit/fb60ceaa90ce195304c0347c57b017e1eb971697))
+- **Table:** remove index and checkbox in header settings ([6b35c19](https://github.com/crlang/vue-tony-admin/commit/6b35c1987c9afe15b2cdbb1c6ae835420ac1c4f8))
+- **Table:** scrolling issue caused by canresize ([73db237](https://github.com/crlang/vue-tony-admin/commit/73db237f186c7302d79d563742b11d6e5680287a))
+- theme configuration optimization, fix the problem that the theme cannot be changed ([9890883](https://github.com/crlang/vue-tony-admin/commit/98908837b9b1213325ef76b6999c919ce0706b6c))
+- undo non-root svg ([43af59c](https://github.com/crlang/vue-tony-admin/commit/43af59c9d402b5556a42471db2a7caf776517209))
+- update example ([f30b87a](https://github.com/crlang/vue-tony-admin/commit/f30b87a320c9e2863756705fab5b78907a3687de))
+- update page desc example ([4a53a20](https://github.com/crlang/vue-tony-admin/commit/4a53a20a0f541384ec05bead53f6ac8983c354d1))
+- update page form example ([ffb291d](https://github.com/crlang/vue-tony-admin/commit/ffb291da8c3c59aaff046c64e1628b60f1b8a5df))
+- update table example ([8963cf4](https://github.com/crlang/vue-tony-admin/commit/8963cf4f5ae834c13c2762e7b7b8b46fcf2035de))
+
+### Features
+
+- change moment to dayjs ([647098e](https://github.com/crlang/vue-tony-admin/commit/647098e3ba238baf07a1ebc86e7adc25c3c7a70a))
+
+### Performance Improvements
+
+- optimize development loading speed ([0c58da7](https://github.com/crlang/vue-tony-admin/commit/0c58da7ffad0b01002afb0a6d77c2b2e3d5640cc))
+- optimize loading speed ([b1d955f](https://github.com/crlang/vue-tony-admin/commit/b1d955f3c144fc23ebd3c8e309f4f1ff432cdd4c))
+
+### Reverts
+
+- remove the problem of updating dependencies ([73f86a1](https://github.com/crlang/vue-tony-admin/commit/73f86a134a2107f2080a40482b83892b811e62c1))
+
 ## [0.2.2](https://github.com/crlang/vue-tony-admin/compare/0.2.1...0.2.2) (2022-04-10)
 
 ### Bug Fixes

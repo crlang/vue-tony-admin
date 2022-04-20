@@ -1,3 +1,45 @@
+# [0.3.0](https://github.com/crlang/vue-tony-admin/compare/0.2.2...0.3.0) (2022-04-20)
+
+### Bug Fixes
+
+- 调整默认页码大小 ([b9035fc](https://github.com/crlang/vue-tony-admin/commit/b9035fce7849c502e048e8dbc783bf4cb4df2e47))
+- 调整默认图片样式 ([8aefe27](https://github.com/crlang/vue-tony-admin/commit/8aefe279e0bb04da8ea54ad01ef52ed61e63ce4b))
+- 统一调整框架页面类名 ([845daf2](https://github.com/crlang/vue-tony-admin/commit/845daf243f1203e5f6f78933e42ef4a4798e2a2d))
+- 统一调整页面类名 ([b65c3cb](https://github.com/crlang/vue-tony-admin/commit/b65c3cba43b9b1d0abdd4484306c54af52e816d5))
+- **Drawer:** 修改为默认插入 body ([283fe8a](https://github.com/crlang/vue-tony-admin/commit/283fe8ad3dc1d27e5fa42cab0c4d9a44a6e0f5b7))
+- 修复行高继承问题 ([9e964e1](https://github.com/crlang/vue-tony-admin/commit/9e964e13e3d2bdb72712a3e45202831572ca6997))
+- 修复侧边展开移位 ([6cd61e5](https://github.com/crlang/vue-tony-admin/commit/6cd61e593e829897c4379559a6c8ef4d41453444))
+- 登录菜单 tab 优化 ([6f80143](https://github.com/crlang/vue-tony-admin/commit/6f801434dab0b8bf24503372b0be4fbf9044c973))
+- mock 数据调整 ([085792a](https://github.com/crlang/vue-tony-admin/commit/085792ac28e61b92b0c0790f24a5a6a71ea0fe44))
+- 修复 dayjs 导入错误 ([3824d47](https://github.com/crlang/vue-tony-admin/commit/3824d47ef8f4564469e197c19e43ec8589e78ebb))
+- 修复 page 底部区域无法显示 ([4f08a61](https://github.com/crlang/vue-tony-admin/commit/4f08a61cd589e6b25fd800d3a01d8004697553c1))
+- **Qrcode:** 组件优化 ([d60d02f](https://github.com/crlang/vue-tony-admin/commit/d60d02f7102dcd1d340d19dded1fb7665f56b381))
+- **QrCode:** 分离组件到 QrCode 分支 ([23de7c5](https://github.com/crlang/vue-tony-admin/commit/23de7c59e3022ae3789d0df53db957a7948f1345))
+- 移除 crypto-js 和 cipher ([4c6f9ab](https://github.com/crlang/vue-tony-admin/commit/4c6f9abd3d6b3f7ff0a1dcc21ebbeaaa51944a0b))
+- 移除冗余代码 ([b4e60c8](https://github.com/crlang/vue-tony-admin/commit/b4e60c85065ada14a6b45ee31b38f7fc5f52a3c8))
+- 移除表的可排序功能 ([6497357](https://github.com/crlang/vue-tony-admin/commit/6497357a29834fc6ca2fd0297aea9604ceddc329))
+- 重命名 QrCode ([333a110](https://github.com/crlang/vue-tony-admin/commit/333a110d368525d535fc97447df3141304665b9f))
+- 调整非 root svg 的大小 ([b4cc506](https://github.com/crlang/vue-tony-admin/commit/b4cc5068803b18efb3678ce95f4228e3688bc70c))
+- 更新表格示例 ([e81577e](https://github.com/crlang/vue-tony-admin/commit/e81577ed9856595129e9d15b69d4fdaa1f276bb1))
+- **Table:** 优化 resize 引起的问题 ([fb60cea](https://github.com/crlang/vue-tony-admin/commit/fb60ceaa90ce195304c0347c57b017e1eb971697))
+- **Table:** 删除标题设置中的索引和复选框 ([6b35c19](https://github.com/crlang/vue-tony-admin/commit/6b35c1987c9afe15b2cdbb1c6ae835420ac1c4f8))
+- **Table:** 修复由 canresize 引起的滚动问题 ([73db237](https://github.com/crlang/vue-tony-admin/commit/73db237f186c7302d79d563742b11d6e5680287a))
+- 主题配置优化，修复主题无法更改的问题 ([9890883](https://github.com/crlang/vue-tony-admin/commit/98908837b9b1213325ef76b6999c919ce0706b6c))
+- 撤回非 root svg 调整 ([43af59c](https://github.com/crlang/vue-tony-admin/commit/43af59c9d402b5556a42471db2a7caf776517209))
+- 更新示例 ([f30b87a](https://github.com/crlang/vue-tony-admin/commit/f30b87a320c9e2863756705fab5b78907a3687de))
+- 更新页面描述示例([4a53a20](https://github.com/crlang/vue-tony-admin/commit/4a53a20a0f541384ec05bead53f6ac8983c354d1))
+- 更新页面表单示例 ([ffb291d](https://github.com/crlang/vue-tony-admin/commit/ffb291da8c3c59aaff046c64e1628b60f1b8a5df))
+- 更新表格示例 ([8963cf4](https://github.com/crlang/vue-tony-admin/commit/8963cf4f5ae834c13c2762e7b7b8b46fcf2035de))
+
+### Features
+
+- 修改 moment 为 dayjs ([647098e](https://github.com/crlang/vue-tony-admin/commit/647098e3ba238baf07a1ebc86e7adc25c3c7a70a))
+
+### Performance Improvements
+
+- 提升开发加载速度 ([0c58da7](https://github.com/crlang/vue-tony-admin/commit/0c58da7ffad0b01002afb0a6d77c2b2e3d5640cc))
+- 优化整体加载速度 ([b1d955f](https://github.com/crlang/vue-tony-admin/commit/b1d955f3c144fc23ebd3c8e309f4f1ff432cdd4c))
+
 ## [0.2.2](https://github.com/crlang/vue-tony-admin/compare/0.2.1...0.2.2) (2022-04-10)
 
 ### Bug Fixes
