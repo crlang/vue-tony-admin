@@ -1,7 +1,7 @@
 <template>
   <ElInput
     :style="{ width }"
-    :placeholder="t('component.icon.placeholder')"
+    placeholder="点击选择图标"
     :class="prefixCls"
     v-model="currentSelect">
     <template #append>
@@ -12,7 +12,7 @@
         <div :class="`${prefixCls}__search`">
           <ElInput
             v-model="searckKeyword"
-            :placeholder="t('component.icon.search')"
+            placeholder="搜索图标"
             @input="debounceHandleSearchChange"
             clearable />
         </div>
@@ -68,7 +68,6 @@ import Icon from '@/components/Icon/src/Icon.vue'
 import SvgIcon from '@/components/Icon/src/SvgIcon.vue'
 import iconsData from './data'
 import { useDebounceFn } from '@vueuse/core'
-import { useI18n } from '@/hooks/web/useI18n'
 import { useCopyToClipboard } from '@/hooks/web/useCopyToClipboard'
 import { useMessage } from '@/hooks/web/useMessage'
 import svgIcons from 'virtual:svg-icons-names'
@@ -120,7 +119,6 @@ export default defineComponent({
     const currentList = ref(icons)
     const searckKeyword = ref('')
 
-    const { t } = useI18n()
     const { prefixCls } = useDesign('icon-picker')
 
     const debounceHandleSearchChange = useDebounceFn(handleSearchChange, 100)
@@ -160,7 +158,7 @@ export default defineComponent({
       if (props.copy) {
         clipboardRef.value = icon
         if (unref(isSuccessRef)) {
-          createMessage.success(t('component.icon.copy'))
+          createMessage.success('复制图标成功!')
         }
       }
     }
@@ -174,7 +172,6 @@ export default defineComponent({
     }
 
     return {
-      t,
       prefixCls,
       currentSelect,
       currentList,

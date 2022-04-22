@@ -6,7 +6,6 @@ import { computed, Ref, ref, toRaw, unref, watch } from 'vue'
 import { usePermission } from '@/hooks/web/usePermission'
 import { isArray, isBoolean, isFunction, isString } from '@/utils/is'
 import { cloneDeep, isEqual } from 'lodash-es'
-import { useI18n } from '@/hooks/web/useI18n'
 import { PAGE_SIZE } from '../const'
 
 function handleItem(item: BasicColumn) {
@@ -34,8 +33,6 @@ function handleIndexColumn(
   columns: BasicColumn[],
   getPaginationRef: ComputedRef<boolean | ElePagination>
 ) {
-  const { t } = useI18n()
-
   const { showIndexColumn } = unref(propsRef)
 
   if (!showIndexColumn) return
@@ -49,7 +46,7 @@ function handleIndexColumn(
   columns.unshift({
     type: 'index',
     width: 72,
-    label: t('component.table.index'),
+    label: '序号',
     prop: 'columnIndex',
     customRender: ({ index }) => {
       const getPagination = unref(getPaginationRef)
@@ -101,12 +98,10 @@ function handleActionColumn(propsRef: ComputedRef<BasicTableProps>, columns: Bas
   // processed
   if (columns[hasIndex]?.type === 'action') return
 
-  const { t } = useI18n()
-
   columns[hasIndex] =
     {
       width: 120,
-      label: t('component.table.operation'),
+      label: '操作',
       prop: 'action',
       type: 'action',
       // fixed: 'right',

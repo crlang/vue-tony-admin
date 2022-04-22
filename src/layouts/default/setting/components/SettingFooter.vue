@@ -3,20 +3,20 @@
     <ElButton
       type="primary"
       @click="handleCopy">
-      <CopyDocument /> {{ t('layout.setting.copyBtn') }}
+      <CopyDocument /> 拷贝
     </ElButton>
 
     <ElButton
       type="warning"
       @click="handleResetSetting"
       class="my-3">
-      <RefreshLeft /> {{ t('common.resetText') }}
+      <RefreshLeft /> 重置
     </ElButton>
 
     <ElButton
       type="danger"
       @click="handleClearAndRedo">
-      <Refresh /> {{ t('layout.setting.clearBtn') }}
+      <Refresh /> 清空缓存并返回登录页
     </ElButton>
   </div>
 </template>
@@ -32,7 +32,6 @@ import { useMultipleTabStore } from '@/store/modules/multipleTab'
 import { useUserStore } from '@/store/modules/user'
 
 import { useDesign } from '@/hooks/web/useDesign'
-import { useI18n } from '@/hooks/web/useI18n'
 import { useMessage } from '@/hooks/web/useMessage'
 import { useCopyToClipboard } from '@/hooks/web/useCopyToClipboard'
 
@@ -46,7 +45,6 @@ export default defineComponent({
   setup() {
     const permissionStore = usePermissionStore()
     const { prefixCls } = useDesign('setting-footer')
-    const { t } = useI18n()
     const { createSuccessModal, createMessage } = useMessage()
     const tabStore = useMultipleTabStore()
     const userStore = useUserStore()
@@ -56,8 +54,8 @@ export default defineComponent({
       const { isSuccessRef } = useCopyToClipboard(JSON.stringify(unref(appStore.getProjectConfig), null, 2))
       unref(isSuccessRef) &&
         createSuccessModal({
-          title: t('layout.setting.operatingTitle'),
-          content: t('layout.setting.operatingContent'),
+          title: '操作成功',
+          content: '复制成功,请到 src/settings/projectSetting.ts 中修改配置！',
         })
     }
     function handleResetSetting() {
@@ -67,7 +65,7 @@ export default defineComponent({
         // updateTheme(themeColor)
         updateColorWeak(colorWeak)
         updateGrayMode(grayMode)
-        createMessage.success(t('layout.setting.resetSuccess'))
+        createMessage.success('重置成功！')
       } catch (error) {
         createMessage.error(error as string)
       }
@@ -83,7 +81,6 @@ export default defineComponent({
     }
     return {
       prefixCls,
-      t,
       handleCopy,
       handleResetSetting,
       handleClearAndRedo,

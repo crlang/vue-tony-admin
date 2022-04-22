@@ -1,15 +1,12 @@
 import { ElTag } from 'element-plus'
 import { BasicColumn } from '@/components/Table'
 import { ErrorTypeEnum } from '@/enums/exceptionEnum'
-import { useI18n } from '@/hooks/web/useI18n'
-
-const { t } = useI18n()
 
 export function getLogColumns(): BasicColumn[] {
   return [
     {
       prop: 'type',
-      label: t('sys.errorLog.tableColumnType'),
+      label: '类型',
       width: 80,
       customRender: ({ text }) => {
         const color =
@@ -33,12 +30,12 @@ export function getLogColumns(): BasicColumn[] {
     },
     {
       prop: 'time',
-      label: t('sys.errorLog.tableColumnDate'),
+      label: '时间',
       width: 160,
     },
     {
       prop: 'file',
-      label: t('sys.errorLog.tableColumnFile'),
+      label: '文件	',
       width: 200,
     },
     {
@@ -48,12 +45,12 @@ export function getLogColumns(): BasicColumn[] {
     },
     {
       prop: 'message',
-      label: t('sys.errorLog.tableColumnMsg'),
+      label: '错误信息',
       width: 300,
     },
     {
       prop: 'stack',
-      label: t('sys.errorLog.tableColumnStackMsg'),
+      label: 'stack信息',
     },
   ]
 }

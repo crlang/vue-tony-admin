@@ -7,44 +7,44 @@
     <el-form-item prop="account">
       <el-input
         v-model="formData.account"
-        :placeholder="t('sys.login.userName')" />
+        placeholder="账号" />
     </el-form-item>
     <el-form-item prop="mobile">
       <el-input
         v-model="formData.mobile"
-        :placeholder="t('sys.login.mobile')" />
+        placeholder="手机号码	" />
     </el-form-item>
     <el-form-item prop="sms">
       <CountdownInput
         v-model="formData.sms"
-        :placeholder="t('sys.login.smsCode')" />
+        placeholder="短信验证码	" />
     </el-form-item>
     <el-form-item prop="password">
       <StrengthMeter
         v-model="formData.password"
-        :placeholder="t('sys.login.password')" />
+        placeholder="密码" />
     </el-form-item>
     <el-form-item prop="confirmPassword">
       <el-input
         v-model="formData.confirmPassword"
-        :placeholder="t('sys.login.confirmPassword')"
+        placeholder="确认密码"
         clearable
         show-password />
     </el-form-item>
     <el-form-item prop="policy">
       <el-checkbox
         v-model="formData.policy"
-        :checked="formData.policy">{{ t('sys.login.policy') }}</el-checkbox>
+        :checked="formData.policy">我同意xxx隐私政策</el-checkbox>
     </el-form-item>
     <el-button
       type="primary"
       class="login--submit"
       @click="handleRegister"
       :loading="loading"
-      :disabled="formData.policy===false">{{ t('sys.login.registerButton') }}</el-button>
+      :disabled="formData.policy===false">注册</el-button>
     <el-button
       @click="handleBackLogin"
-      class="login--back">{{ t('sys.login.backSignIn') }}</el-button>
+      class="login--back">	返回</el-button>
   </el-form>
 </template>
 
@@ -53,11 +53,9 @@ import { reactive, ref, unref, computed } from 'vue'
 import { ElCheckbox, ElButton, ElForm, ElFormItem, ElInput } from 'element-plus'
 import { StrengthMeter } from '@/components/StrengthMeter'
 import { CountdownInput } from '@/components/CountDown'
-import { useI18n } from '@/hooks/web/useI18n'
 import { useLoginState, LoginStateEnum, useFormRules, useFormValid } from './useLogin'
 import { ElNotification } from 'element-plus'
 
-const { t } = useI18n()
 const { handleBackLogin, getLoginState } = useLoginState()
 
 const formRef = ref()
@@ -83,14 +81,14 @@ async function handleRegister() {
   try {
     loading.value = true
     ElNotification({
-      title: t('sys.login.registerSuccessTitle'),
-      message: t('sys.login.registerSuccessDesc'),
+      title: '注册成功',
+      message: '欢迎加入',
       type: 'success',
     })
   } catch (error: any) {
     ElNotification({
-      title: t('sys.api.errorTip'),
-      message: error.message || t('sys.api.networkExceptionMsg'),
+      title: '错误提示',
+      message: error.message || '网络异常，请检查您的网络连接是否正常',
       type: 'error',
     })
   } finally {

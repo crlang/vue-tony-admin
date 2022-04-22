@@ -4,13 +4,13 @@
     v-if="getShowLayoutFooter"
     ref="footerRef">
     <div :class="`${prefixCls}__links`">
-      <a @click="openWindow(SITE_URL)">{{ t('layout.footer.onlinePreview') }}</a>
+      <a @click="openWindow(SITE_URL)">在线预览</a>
 
       <a
         @click="openWindow(GITHUB_URL)"
         :class="`${prefixCls}__github`">Github</a>
 
-      <a @click="openWindow(DOC_URL)">{{ t('layout.footer.onlineDocument') }}</a>
+      <a @click="openWindow(DOC_URL)">在线文档</a>
     </div>
     <div>Copyright &copy;2022 Tony Admin</div>
   </div>
@@ -22,7 +22,6 @@ import { computed, defineComponent, unref, ref } from 'vue'
 import { DOC_URL, GITHUB_URL, SITE_URL } from '@/settings/siteSetting'
 import { openWindow } from '@/utils'
 
-import { useI18n } from '@/hooks/web/useI18n'
 import { useRootSetting } from '@/hooks/setting/useRootSetting'
 import { useRouter } from 'vue-router'
 import { useDesign } from '@/hooks/web/useDesign'
@@ -32,7 +31,6 @@ export default defineComponent({
   name: 'LayoutFooter',
   components: { },
   setup() {
-    const { t } = useI18n()
     const { getShowFooter } = useRootSetting()
     const { currentRoute } = useRouter()
     const { prefixCls } = useDesign('layout-footer')
@@ -53,7 +51,6 @@ export default defineComponent({
     return {
       getShowLayoutFooter,
       prefixCls,
-      t,
       DOC_URL,
       GITHUB_URL,
       SITE_URL,

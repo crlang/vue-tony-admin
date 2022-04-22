@@ -48,7 +48,6 @@ import type { DrawerInstance, DrawerProps } from './typing'
 
 import { defineComponent, ref, computed, watch, unref, nextTick, toRaw, getCurrentInstance } from 'vue'
 import { ElDrawer, ElLoading } from 'element-plus'
-import { useI18n } from '@/hooks/web/useI18n'
 import { isFunction } from '@/utils/is'
 import { deepMerge } from '@/utils'
 import DrawerFooter from './components/DrawerFooter.vue'
@@ -71,7 +70,6 @@ export default defineComponent({
     const propsRef = ref<Partial<Nullable<DrawerProps>>>(null)
     const loadingInstance = ref()
 
-    const { t } = useI18n()
     const { prefixCls } = useDesign('basic-drawer')
 
     const drawerInstance: DrawerInstance = {
@@ -194,7 +192,6 @@ export default defineComponent({
 
     return {
       onClose,
-      t,
       prefixCls,
       visibleRef,
       getMergeProps,

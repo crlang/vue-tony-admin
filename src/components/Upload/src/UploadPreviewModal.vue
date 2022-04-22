@@ -1,7 +1,7 @@
 <template>
   <BasicModal
     :width="800"
-    :title="t('component.upload.preview')"
+    title="预览"
     wrapClassName="upload-preview-modal"
     v-bind="$attrs"
     @register="register"
@@ -21,7 +21,6 @@ import { previewProps } from './props'
 import { PreviewFileItem } from './typing'
 import { downloadByUrl } from '@/utils/file/download'
 import { createPreviewColumns, createPreviewActionColumn } from './data'
-import { useI18n } from '@/hooks/web/useI18n'
 import { isArray } from '@/utils/is'
 
 export default defineComponent({
@@ -29,7 +28,6 @@ export default defineComponent({
   props: previewProps,
   emits: ['list-change', 'register', 'delete'],
   setup(props, { emit }) {
-    const { t } = useI18n()
     const [register, { closeModal }] = useModalInner()
 
     const fileListRef = ref<PreviewFileItem[]>([])
@@ -75,7 +73,6 @@ export default defineComponent({
     }
 
     return {
-      t,
       register,
       closeModal,
       fileListRef,

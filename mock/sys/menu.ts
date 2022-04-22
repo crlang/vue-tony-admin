@@ -9,7 +9,7 @@ const dashboardRoute = {
   component: 'LAYOUT',
   redirect: '/dashboard/analysis',
   meta: {
-    title: 'routes.dashboard.dashboard',
+    title: '仪表盘',
     hideChildrenInMenu: true,
     icon: 'bx:bx-home',
   },
@@ -21,7 +21,7 @@ const dashboardRoute = {
       meta: {
         hideMenu: true,
         hideBreadcrumb: true,
-        title: 'routes.dashboard.analysis',
+        title: '分析页',
         currentActiveMenu: '/dashboard',
         icon: 'bx:bx-home',
       },
@@ -33,7 +33,7 @@ const dashboardRoute = {
       meta: {
         hideMenu: true,
         hideBreadcrumb: true,
-        title: 'routes.dashboard.workbench',
+        title: '工作台',
         currentActiveMenu: '/dashboard',
         icon: 'bx:bx-home',
       },
@@ -45,7 +45,7 @@ const backRoute = {
   path: 'back',
   name: 'PermissionBackDemo',
   meta: {
-    title: 'routes.permission.back',
+    title: '基于后台权限',
   },
 
   children: [
@@ -54,7 +54,7 @@ const backRoute = {
       name: 'BackAuthPage',
       component: '/demo/permission/back/index',
       meta: {
-        title: 'routes.permission.backPage',
+        title: '页面权限',
       },
     },
     {
@@ -62,7 +62,7 @@ const backRoute = {
       name: 'BackAuthBtn',
       component: '/demo/permission/back/Btn',
       meta: {
-        title: 'routes.permission.backBtn',
+        title: '按钮权限',
       },
     },
   ],
@@ -75,7 +75,7 @@ const authRoute = {
   redirect: '/permission/front/page',
   meta: {
     icon: 'carbon:user-role',
-    title: 'routes.permission.permission',
+    title: '权限管理',
   },
   children: [backRoute],
 }
@@ -87,7 +87,7 @@ const levelRoute = {
   redirect: '/level/menu1/menu1-1',
   meta: {
     icon: 'carbon:user-role',
-    title: 'routes.level.level',
+    title: '多级菜单',
   },
 
   children: [
@@ -143,14 +143,14 @@ const sysRoute = {
   redirect: '/system/account',
   meta: {
     icon: 'ion:settings-outline',
-    title: 'routes.system.moduleName',
+    title: '系统管理',
   },
   children: [
     {
       path: 'account',
       name: 'AccountManagement',
       meta: {
-        title: 'routes.system.account',
+        title: '账号管理',
         ignoreKeepAlive: true,
       },
       component: '/demo/system/account/index',
@@ -160,7 +160,7 @@ const sysRoute = {
       name: 'AccountDetail',
       meta: {
         hideMenu: true,
-        title: 'routes.system.account_detail',
+        title: '账号详情',
         ignoreKeepAlive: true,
         showMenu: false,
         currentActiveMenu: '/system/account',
@@ -171,7 +171,7 @@ const sysRoute = {
       path: 'role',
       name: 'RoleManagement',
       meta: {
-        title: 'routes.system.role',
+        title: '角色管理',
         ignoreKeepAlive: true,
       },
       component: '/demo/system/role/index',
@@ -181,7 +181,7 @@ const sysRoute = {
       path: 'menu',
       name: 'MenuManagement',
       meta: {
-        title: 'routes.system.menu',
+        title: '菜单管理',
         ignoreKeepAlive: true,
       },
       component: '/demo/system/menu/index',
@@ -190,7 +190,7 @@ const sysRoute = {
       path: 'dept',
       name: 'DeptManagement',
       meta: {
-        title: 'routes.system.dept',
+        title: '部门管理',
         ignoreKeepAlive: true,
       },
       component: '/demo/system/dept/index',
@@ -199,7 +199,7 @@ const sysRoute = {
       path: 'changePassword',
       name: 'ChangePassword',
       meta: {
-        title: 'routes.system.password',
+        title: '修改密码',
         ignoreKeepAlive: true,
       },
       component: '/demo/system/password/index',
@@ -213,14 +213,14 @@ const linkRoute = {
   component: 'LAYOUT',
   meta: {
     icon: 'ion:tv-outline',
-    title: 'routes.iframe.frame',
+    title: '外部页面',
   },
   children: [
     {
       path: 'doc',
       name: 'Doc',
       meta: {
-        title: 'routes.iframe.doc',
+        title: '项目文档(内嵌)',
         frameSrc: 'http://tony.crlang.com/doc/',
       },
     },
@@ -229,7 +229,7 @@ const linkRoute = {
       name: 'DocExternal',
       component: 'LAYOUT',
       meta: {
-        title: 'routes.iframe.docExternal',
+        title: '项目文档(外链)',
       },
     },
   ],

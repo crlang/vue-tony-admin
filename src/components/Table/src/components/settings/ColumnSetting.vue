@@ -10,14 +10,14 @@
         :indeterminate="indeterminate"
         v-model="checkAll"
         @change="onCheckAllChange">
-        {{ t('component.table.settingColumnShow') }}
+        列展示
       </ElCheckbox>
 
       <ElButton
         size="small"
         type="text"
         @click="reset">
-        {{ t('common.resetText') }}
+        重置
       </ElButton>
     </div>
     <ScrollContainer>
@@ -32,7 +32,7 @@
             <ElCheckbox :label="item.prop">{{ item.label }}</ElCheckbox>
             <ElTooltip
               placement="bottom-start"
-              :content="t('component.table.settingFixedLeft')">
+              content="固定到左侧">
               <span @click="handleColumnFixed(item, 'left')">
                 <Icon
                   icon="line-md:arrow-align-left"
@@ -47,7 +47,7 @@
             </ElTooltip>
             <ElTooltip
               placement="bottom-start"
-              :content="t('component.table.settingFixedRight')">
+              content="固定到右侧">
               <span @click="handleColumnFixed(item, 'right')">
                 <Icon
                   icon="line-md:arrow-align-left"
@@ -68,7 +68,7 @@
       <span>
         <ElTooltip
           placement="top"
-          :content="t('component.table.settingColumn')">
+          content="列设置">
           <span><Setting /></span>
         </ElTooltip>
       </span>
@@ -98,7 +98,6 @@ import {
 } from 'element-plus'
 import { Icon } from '@/components/Icon'
 import { ScrollContainer } from '@/components/Container'
-import { useI18n } from '@/hooks/web/useI18n'
 import { useTableContext } from '../../hooks/useTableContext'
 import { useDesign } from '@/hooks/web/useDesign'
 import { Setting } from '@element-plus/icons'
@@ -125,7 +124,6 @@ export default defineComponent({
   emits: ['columns-change'],
 
   setup(_, { emit }) {
-    const { t } = useI18n()
     const table = useTableContext()
 
     let inited = false
@@ -278,7 +276,6 @@ export default defineComponent({
     }
 
     return {
-      t,
       ...toRefs(state),
       indeterminate,
       onCheckAllChange,

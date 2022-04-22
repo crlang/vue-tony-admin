@@ -45,11 +45,9 @@ import { ElRow, ElCol, ElCard } from 'element-plus'
 import { CountTo } from '@/components/CountTo'
 import { SvgIcon } from '@/components/Icon'
 import { CardList } from '../data'
-// import { useI18n } from '@/hooks/web/useI18n'
 import { CircleProgress } from '@/components/Progress'
 
-// const { t } = useI18n()
-
+//
 defineProps({
   loading: {
     type: Boolean,

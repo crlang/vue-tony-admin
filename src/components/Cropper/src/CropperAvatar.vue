@@ -25,7 +25,7 @@
       @click="openModal=true"
       :type="btnType"
       v-if="showBtn">
-      {{ btnText || t('component.cropper.selectImage') }}
+      {{ btnText || '选择图片' }}
     </ElButton>
     <CopperModal
       v-model:visible="openModal"
@@ -44,7 +44,6 @@ import { ElButton } from 'element-plus'
 import CopperModal from './CopperModal.vue'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useMessage } from '@/hooks/web/useMessage'
-import { useI18n } from '@/hooks/web/useI18n'
 import Icon from '@/components/Icon'
 
 export default defineComponent({
@@ -91,7 +90,6 @@ export default defineComponent({
     const { prefixCls } = useDesign('cropper-avatar')
     const openModal = ref(false)
     const { createMessage } = useMessage()
-    const { t } = useI18n()
 
     const getClass = computed(() => [prefixCls])
 
@@ -120,11 +118,10 @@ export default defineComponent({
     function handleUploadSuccess(data:successReturnType) {
       sourceValue.value = data.source
       emit('change', data)
-      createMessage.success(t('component.cropper.uploadSuccess'))
+      createMessage.success('上传成功')
     }
 
     return {
-      t,
       prefixCls,
       openModal,
       getIconWidth,

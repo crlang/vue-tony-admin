@@ -32,7 +32,7 @@
           size="small"
           @click="toggleAdvanced"
           v-if="showAdvancedButton && !hideAdvanceBtn">
-          {{ isAdvanced ? t('component.form.putAway') : t('component.form.unfold') }}
+          {{ isAdvanced ? '收起' : '展开' }}
           <BasicArrow
             class="ml-1"
             :expand="!isAdvanced"
@@ -51,7 +51,6 @@ import { defineComponent, computed } from 'vue'
 import { ElFormItem, ElCol, ElButton } from 'element-plus'
 import { BasicArrow } from '@/components/Basic'
 import { useFormContext } from '../hooks/useFormContext'
-import { useI18n } from '@/hooks/web/useI18n'
 import { formActionProps } from '../props'
 
 export default defineComponent({
@@ -65,8 +64,6 @@ export default defineComponent({
   props: formActionProps,
   emits: ['toggle-advanced'],
   setup(props, { emit }) {
-    const { t } = useI18n()
-
     const actionColOpt = computed(() => {
       const { showAdvancedButton, actionSpan: span, actionColOptions } = props
       const actionSpan = 24 - span
@@ -85,7 +82,7 @@ export default defineComponent({
     const getResetBtnOptions = computed(() => {
       return Object.assign(
         {
-          text: t('common.resetText'),
+          text: '重置',
         },
         props.resetButtonOptions
       )
@@ -94,7 +91,7 @@ export default defineComponent({
     const getSubmitBtnOptions = computed(() => {
       return Object.assign(
         {
-          text: t('common.queryText'),
+          text: '查询',
         },
         props.submitButtonOptions
       )
@@ -105,7 +102,6 @@ export default defineComponent({
     }
 
     return {
-      t,
       actionColOpt,
       getResetBtnOptions,
       getSubmitBtnOptions,

@@ -7,7 +7,6 @@ import { isBoolean, isFunction, isNull } from '@/utils/is'
 import { getSlot } from '@/utils/helper/tsxHelper'
 import { createPlaceholderMessage } from '../helper'
 import { upperFirst, cloneDeep } from 'lodash-es'
-import { useI18n } from '@/hooks/web/useI18n'
 import { ElFormItem } from 'element-plus'
 import { basicFormItemProps } from '../props'
 import { EleFormItemRule } from '@/components/ElementPlus'
@@ -20,8 +19,6 @@ export default defineComponent({
   inheritAttrs: false,
   props: basicFormItemProps,
   setup(props, { slots }) {
-    const { t } = useI18n()
-
     const getValues = computed(() => {
       const { defaultValues, formModel, schema } = props
       const { mergeDynamicData } = props.formProps
@@ -143,7 +140,7 @@ export default defineComponent({
       const getRequired = isFunction(required) ? required(unref(getValues)) : required
 
       if ((!rules || rules.length === 0) && getRequired) {
-        // rules = [{ required: getRequired, trigger: 'blur', message: t('common.requiredTipText') }]
+        // rules = [{ required: getRequired, trigger: 'blur', message: '此为必填项' }]
         rules = [{ required: getRequired, validator }]
       }
 
@@ -185,9 +182,7 @@ export default defineComponent({
       // Maximum input length rule check
       const characterInx = rules.findIndex((val) => val.max)
       if (characterInx !== -1 && !rules[characterInx].validator) {
-        rules[characterInx].message =
-            rules[characterInx].message ||
-            t('component.form.maxTip', [rules[characterInx].max] as Recordable)
+        rules[characterInx].message = rules[characterInx].message || `字符数应小于${rules[characterInx].max}位`
       }
       return rules
     }

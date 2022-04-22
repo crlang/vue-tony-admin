@@ -22,7 +22,6 @@ import { isFunction } from '@/utils/is'
 import { useRuleFormItem } from '@/hooks/component/useFormItem'
 import { get, omit } from 'lodash-es'
 import { ArrowUp, Loading } from '@element-plus/icons'
-import { useI18n } from '@/hooks/web/useI18n'
 
 type OptionsItem = { label: string; value: string; disabled?: boolean }
 
@@ -66,7 +65,6 @@ export default defineComponent({
     const loading = ref(false)
     const isFirstLoad = ref(true)
     const emitValue = ref<any>('')
-    const { t } = useI18n()
 
     // Embedded in the form, just use the hook binding to perform form verification
     const [state] = useRuleFormItem(props)
@@ -95,9 +93,9 @@ export default defineComponent({
     })
     const getSelectEmpty = computed(() => {
       if (unref(loading)) {
-        return t('component.form.apiSelectNotFound')
+        return '请等待数据加载完成...'
       } else {
-        return t('common.emptyText')
+        return '数据为空	'
       }
     })
 
@@ -155,7 +153,7 @@ export default defineComponent({
       handleFetch()
     })
 
-    return { state, getOptions, loading, getSelectIcon, getSelectEmpty, t, handleFetch, handleChange }
+    return { state, getOptions, loading, getSelectIcon, getSelectEmpty, handleFetch, handleChange }
   },
 })
 </script>

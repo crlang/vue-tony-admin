@@ -1,20 +1,17 @@
 import type { ComponentType } from './types'
-import { useI18n } from '@/hooks/web/useI18n'
 // import { dateUtil } from '@/utils/dateUtil'
 // import { isNumber, isObject } from '@/utils/is'
 // import { FormItemRule } from 'element-plus/lib/components/form/src/form.type'
-
-const { t } = useI18n()
 
 /**
  * generate placeholder
  */
 export function createPlaceholderMessage(component: ComponentType) {
   if (['ElInput', 'ElInputNumber'].includes(component)) {
-    return t('common.inputText')
+    return '请输入'
   }
   if (['ElSelect', 'ElSelectV2', 'ElCascader', 'ElDatePicker', 'ElTimePicker', 'ElTimeSelect'].includes(component)) {
-    return t('common.chooseText')
+    return '请选择'
   }
   return ''
 }

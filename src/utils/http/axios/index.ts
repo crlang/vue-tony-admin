@@ -13,7 +13,6 @@ import { isString } from '@/utils/is'
 import { getToken } from '@/utils/auth'
 import { setObjToUrlParams, deepMerge } from '@/utils'
 import { useErrorLogStoreWithOut } from '@/store/modules/errorLog'
-import { useI18n } from '@/hooks/web/useI18n'
 import { joinTimestamp, formatRequestDate } from './helper'
 import { useUserStoreWithOut } from '@/store/modules/user'
 
@@ -29,7 +28,6 @@ const transform: AxiosTransform = {
    * @description: 处理请求数据。如果数据不是预期格式，可直接抛出错误
    */
   transformRequestHook: (res: AxiosResponse<Result>, options: RequestOptions) => {
-    const { t } = useI18n()
     const { isTransformResponse, isReturnNativeResponse } = options
     // 是否返回原生响应头 比如：需要获取响应头时使用该属性
     if (isReturnNativeResponse) {
@@ -45,7 +43,7 @@ const transform: AxiosTransform = {
     const { data } = res
     if (!data) {
       // return '[HTTP] Request has no return value';
-      throw new Error(t('sys.api.apiRequestFailed'))
+      throw new Error('请求出错，请稍候重试')
     }
     //  这里 code，result，message为 后台统一的字段，需要在 types.ts内修改为项目自己的接口返回格式
     const { code, result, message } = data
@@ -61,7 +59,7 @@ const transform: AxiosTransform = {
     let timeoutMsg = ''
     switch (code) {
       case ResultEnum.TIMEOUT:
-        timeoutMsg = t('sys.api.timeoutMessage')
+        timeoutMsg = '登录超时,请重新登录！'
         const userStore = useUserStoreWithOut()
         userStore.setToken(undefined)
         userStore.logout(true)
@@ -75,12 +73,12 @@ const transform: AxiosTransform = {
     // errorMessageMode=‘modal’的时候会显示modal错误弹窗，而不是消息提示，用于一些比较重要的错误
     // errorMessageMode='none' 一般是调用时明确表示不希望自动弹出错误提示
     if (options.errorMessageMode === 'modal') {
-      createErrorModal({ title: t('sys.api.errorTip'), content: timeoutMsg })
+      createErrorModal({ title: '错误提示', content: timeoutMsg })
     } else if (options.errorMessageMode === 'message') {
       createMessage.error(timeoutMsg)
     }
 
-    throw new Error(timeoutMsg || t('sys.api.apiRequestFailed'))
+    throw new Error(timeoutMsg || '请求出错，请稍候重试')
   },
 
   // 请求之前处理config
@@ -158,7 +156,6 @@ const transform: AxiosTransform = {
    * @description: 响应错误处理
    */
   responseInterceptorsCatch: (error: any) => {
-    const { t } = useI18n()
     const errorLogStore = useErrorLogStoreWithOut()
     errorLogStore.addAjaxErrorInfo(error)
     const { response, code, message, config } = error || {}
@@ -169,15 +166,15 @@ const transform: AxiosTransform = {
 
     try {
       if (code === 'ECONNABORTED' && message.indexOf('timeout') !== -1) {
-        errMessage = t('sys.api.apiTimeoutMessage')
+        errMessage = '接口请求超时,请刷新页面重试'
       }
       if (err?.includes('Network Error')) {
-        errMessage = t('sys.api.networkExceptionMsg')
+        errMessage = '网络异常，请检查您的网络连接是否正常'
       }
 
       if (errMessage) {
         if (errorMessageMode === 'modal') {
-          createErrorModal({ title: t('sys.api.errorTip'), content: errMessage })
+          createErrorModal({ title: '错误提示', content: errMessage })
         } else if (errorMessageMode === 'message') {
           createMessage.error(errMessage)
         }

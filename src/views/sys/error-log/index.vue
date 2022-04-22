@@ -14,17 +14,17 @@
         <el-button
           @click="fireVueError"
           type="primary">
-          {{ t('sys.errorLog.fireVueError') }}
+          点击触发vue错误
         </el-button>
         <el-button
           @click="fireResourceError"
           type="primary">
-          {{ t('sys.errorLog.fireResourceError') }}
+          点击触发资源加载错误
         </el-button>
         <el-button
           @click="fireAjaxError"
           type="primary">
-          {{ t('sys.errorLog.fireAjaxError') }}
+          点击触发ajax错误
         </el-button>
       </template>
     </BasicTable>
@@ -35,7 +35,6 @@
 import { watch, ref, nextTick } from 'vue'
 import { ElButton } from 'element-plus'
 import { useMessage } from '@/hooks/web/useMessage'
-import { useI18n } from '@/hooks/web/useI18n'
 import { useErrorLogStore } from '@/store/modules/errorLog'
 import { fireErrorApi } from '@/api/demo/error'
 import { getLogColumns } from './data'
@@ -44,10 +43,9 @@ import { cloneDeep } from 'lodash-es'
 
 const imgList = ref<string[]>([])
 
-const { t } = useI18n()
 const errorLogStore = useErrorLogStore()
 const [register, { setTableData }] = useTable({
-  title: t('sys.errorLog.tableTitle'),
+  title: '错误日志列表',
   columns: getLogColumns(),
 })
 
@@ -64,7 +62,7 @@ watch(
 )
 const { createMessage } = useMessage()
 if (import.meta.env.DEV) {
-  createMessage.info(t('sys.errorLog.enableMessage'))
+  createMessage.info('只在`/src/settings/projectSetting.ts` 内的useErrorHandle=true时生效')
 }
 
 function fireVueError() {

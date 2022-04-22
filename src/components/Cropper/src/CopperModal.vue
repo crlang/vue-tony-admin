@@ -1,7 +1,7 @@
 <template>
   <ElDialog
     v-model="sourceVisible"
-    :title="t('component.cropper.modalTitle')"
+    title="头像上传"
     destroy-on-close
     :show-close="false"
     :close-on-click-modal="false"
@@ -25,7 +25,7 @@
             action="blockit"
             :before-upload="handleBeforeUpload">
             <ElTooltip
-              :content="t('component.cropper.selectImage')"
+              content="selectImage"
               placement="bottom">
               <ElButton
                 type="success"><Icon icon="ep:upload-filled" /></ElButton>
@@ -33,7 +33,7 @@
           </ElUpload>
           <ElSpace>
             <ElTooltip
-              :content="t('component.cropper.btn_reset')"
+              content="重置"
               placement="bottom">
               <ElButton
                 type="primary"
@@ -42,7 +42,7 @@
                 @click="handlerToolbar('reset')"><Icon icon="ep:refresh-right" /></ElButton>
             </ElTooltip>
             <ElTooltip
-              :content="t('component.cropper.btn_rotate_left')"
+              content="逆时针旋转"
               placement="bottom">
               <ElButton
                 type="primary"
@@ -51,7 +51,7 @@
                 @click="handlerToolbar('rotate', -45)"><Icon icon="ic:baseline-rotate-90-degrees-ccw" /></ElButton>
             </ElTooltip>
             <ElTooltip
-              :content="t('component.cropper.btn_rotate_right')"
+              content="顺时针旋转"
               placement="bottom">
               <ElButton
                 type="primary"
@@ -60,7 +60,7 @@
                 @click="handlerToolbar('rotate', 45)"><Icon icon="ic:baseline-rotate-90-degrees-ccw" /></ElButton>
             </ElTooltip>
             <ElTooltip
-              :content="t('component.cropper.btn_scale_x')"
+              content="水平翻转"
               placement="bottom">
               <ElButton
                 type="primary"
@@ -69,7 +69,7 @@
                 @click="handlerToolbar('scaleX')"><Icon icon="vaadin:arrows-long-h" /></ElButton>
             </ElTooltip>
             <ElTooltip
-              :content="t('component.cropper.btn_scale_y')"
+              content="垂直翻转"
               placement="bottom">
               <ElButton
                 type="primary"
@@ -78,7 +78,7 @@
                 @click="handlerToolbar('scaleY')"><Icon icon="vaadin:arrows-long-v" /></ElButton>
             </ElTooltip>
             <ElTooltip
-              :content="t('component.cropper.btn_zoom_in')"
+              content="放大"
               placement="bottom">
               <ElButton
                 type="primary"
@@ -87,7 +87,7 @@
                 @click="handlerToolbar('zoom', 0.1)"><Icon icon="ep:zoom-in" /></ElButton>
             </ElTooltip>
             <ElTooltip
-              :content="t('component.cropper.btn_zoom_out')"
+              content="缩小"
               placement="bottom">
               <ElButton
                 type="primary"
@@ -103,7 +103,7 @@
           <img
             :src="previewSource"
             v-if="previewSource"
-            :alt="t('component.cropper.preview')" />
+            alt="预览" />
         </div>
         <template v-if="previewSource">
           <div :class="`${prefixCls}-group`">
@@ -125,11 +125,11 @@
     </div>
     <template #footer>
       <span class="dialog-footer">
-        <ElButton @click="handleClose()">{{ t('common.cancelText') }}</ElButton>
+        <ElButton @click="handleClose()">取消</ElButton>
         <ElButton
           type="primary"
           :disabled="!previewSource"
-          @click="handleOk()">{{ t('component.cropper.confirmText') }}</ElButton>
+          @click="handleOk()">确认并上传</ElButton>
       </span>
     </template>
   </ElDialog>
@@ -145,7 +145,6 @@ import CropperImage from './Cropper.vue'
 import { useDesign } from '@/hooks/web/useDesign'
 import { dataURLtoBlob } from '@/utils/file/base64Conver'
 import { isFunction } from '@/utils/is'
-import { useI18n } from '@/hooks/web/useI18n'
 import { Icon } from '@/components/Icon'
 import { FileHandler } from 'element-plus/es/components/upload/src/upload.type'
 
@@ -192,7 +191,6 @@ export default defineComponent({
     let scaleY = 1
 
     const { prefixCls } = useDesign('cropper-am')
-    const { t } = useI18n()
 
     watchEffect(() => {
       sourceVisible.value = props.visible || false
@@ -258,7 +256,6 @@ export default defineComponent({
       src,
       previewSource,
       sourceVisible,
-      t,
       handleBeforeUpload,
       handleCropend,
       handleReady,

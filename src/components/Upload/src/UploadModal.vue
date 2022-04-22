@@ -1,7 +1,7 @@
 <template>
   <BasicModal
-    :title="t('component.upload.upload')"
-    :okText="t('component.upload.save')"
+    title="'上传'"
+    okText="保存"
     v-bind="$attrs"
     @register="register"
     @ok="handleOk"
@@ -41,7 +41,7 @@
         class="upload-modal-toolbar__btn"><ElButton
           type="primary"
           :disabled="isUploadingRef || (fileListRef.length+
-            previewFileList.length) >= maxNumber">{{ t('component.upload.choose') }}</ElButton></ElUpload>
+            previewFileList.length) >= maxNumber">选择文件</ElButton></ElUpload>
     </div>
 
     <FileList
@@ -68,7 +68,6 @@ import { buildUUID } from '@/utils/uuid'
 import { isFunction } from '@/utils/is'
 import { warn } from '@/utils/log'
 import FileList from './FileList.vue'
-import { useI18n } from '@/hooks/web/useI18n'
 
 export default defineComponent({
   components: { ElButton, ElUpload, ElAlert, BasicModal, FileList },
@@ -89,7 +88,6 @@ export default defineComponent({
     const fileListRef = ref<FileItem[]>([])
     const { accept, helpText, maxNumber, maxSize } = toRefs(props)
 
-    const { t } = useI18n()
     const [register, { closeModal }] = useModalInner()
 
     const { getAccept, getStringAccept, getHelpText } = useUploadType({
@@ -122,10 +120,10 @@ export default defineComponent({
         (item) => item.status === UploadResultStatus.ERROR,
       )
       return isUploadingRef.value
-        ? t('component.upload.uploading')
+        ? '上传中'
         : someError
-          ? t('component.upload.reUploadFailed')
-          : t('component.upload.startUpload')
+          ? '重新上传失败文件'
+          : '开始上传'
     })
 
     function beforeUpload(file: File) {
@@ -135,18 +133,18 @@ export default defineComponent({
 
       // number of checks
       if ((fileListRef.value.length + previewFileList?.length ?? 0) >= maxNumber) {
-        return createMessage.warning(t('component.upload.maxNumber', [maxNumber]))
+        return createMessage.warning(`最多只能上传${maxNumber}个文件`)
       }
 
       // size of checks
       if (maxSize && file.size / 1024 / 1024 >= maxSize) {
-        createMessage.error(t('component.upload.maxSizeMultiple', [maxSize]))
+        createMessage.error(`只能上传不超过${maxSize}MB的文件!`)
         return false
       }
 
       // type of checks
       if (accept.length > 0 && !checkFileType(file, accept)) {
-        createMessage.error!(t('component.upload.acceptUpload', [accept.join(',')]))
+        createMessage.error!(`只能上传${accept.join(',')}格式文件`)
         return false
       }
       const commonItem = {
@@ -218,7 +216,7 @@ export default defineComponent({
     async function handleStartUpload() {
       const { maxNumber } = props
       if ((fileListRef.value.length + props.previewFileList?.length ?? 0) > maxNumber) {
-        return createMessage.warning(t('component.upload.maxNumber', [maxNumber]))
+        return createMessage.warning(`最多只能上传${maxNumber}个文件`)
       }
       try {
         isUploadingRef.value = true
@@ -242,10 +240,10 @@ export default defineComponent({
       const { maxNumber } = props
 
       if (fileListRef.value.length > maxNumber) {
-        return createMessage.warning(t('component.upload.maxNumber', [maxNumber]))
+        return createMessage.warning(`最多只能上传${maxNumber}个文件`)
       }
       if (isUploadingRef.value) {
-        return createMessage.warning(t('component.upload.saveWarn'))
+        return createMessage.warning('请等待文件上传后，保存!')
       }
       const fileList: string[] = []
 
@@ -256,7 +254,7 @@ export default defineComponent({
         }
       }
       if (fileList.length <= 0) {
-        return createMessage.warning(t('component.upload.saveError'))
+        return createMessage.warning('没有上传成功的文件，无法保存!')
       }
       fileListRef.value = []
       closeModal()
@@ -268,7 +266,7 @@ export default defineComponent({
         fileListRef.value = []
         return true
       } else {
-        createMessage.warning(t('component.upload.uploadWait'))
+        createMessage.warning('请等待文件上传结束后操作')
         return false
       }
     }
@@ -291,7 +289,6 @@ export default defineComponent({
       handleCloseFunc,
       getIsSelectFile,
       getUploadBtnText,
-      t,
     }
   },
 })

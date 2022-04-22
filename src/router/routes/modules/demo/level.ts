@@ -1,7 +1,6 @@
 import type { AppRouteModule } from '@/router/types'
 
 import { getParentLayout, LAYOUT } from '@/router/constant'
-import { t } from '@/hooks/web/useI18n'
 
 const permission: AppRouteModule = {
   path: '/level',
@@ -11,7 +10,7 @@ const permission: AppRouteModule = {
   meta: {
     orderNo: 8,
     icon: 'ion:menu-outline',
-    title: t('routes.level.level'),
+    title: '多级菜单',
   },
 
   children: [

@@ -2,7 +2,6 @@ import type { AppRouteModule } from '@/router/types'
 
 import { LAYOUT } from '@/router/constant'
 const IFrame = () => import('@/views/sys/iframe/FrameBlank.vue')
-import { t } from '@/hooks/web/useI18n'
 
 const iframe: AppRouteModule = {
   path: '/frame',
@@ -12,7 +11,7 @@ const iframe: AppRouteModule = {
   meta: {
     orderNo: 9,
     icon: 'ion:tv-outline',
-    title: t('routes.iframe.frame'),
+    title: '外部页面',
   },
 
   children: [
@@ -22,7 +21,7 @@ const iframe: AppRouteModule = {
       component: IFrame,
       meta: {
         frameSrc: 'http://tony.crlang.com/doc/',
-        title: t('routes.iframe.doc'),
+        title: '项目文档(内嵌)',
       },
     },
     {
@@ -31,7 +30,7 @@ const iframe: AppRouteModule = {
       component: IFrame,
       meta: {
         frameSrc: 'https://element-plus.gitee.io/zh-CN/guide/design.html',
-        title: t('routes.iframe.ele'),
+        title: 'element plus文档(内嵌)',
       },
     },
     {
@@ -39,7 +38,7 @@ const iframe: AppRouteModule = {
       name: 'DocExternal',
       component: IFrame,
       meta: {
-        title: t('routes.iframe.docExternal'),
+        title: '项目文档(外链)',
       },
     },
   ],

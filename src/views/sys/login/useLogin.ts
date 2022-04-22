@@ -1,5 +1,4 @@
 import { ref, computed, unref } from 'vue'
-import { useI18n } from '@/hooks/web/useI18n'
 
 export enum LoginStateEnum {
   LOGIN,
@@ -37,39 +36,35 @@ export function useFormValid<T extends Object = any>(formRef: Ref<any>) {
 }
 
 export function useFormRules(formData?: Recordable) {
-  const { t } = useI18n()
-
-  const getAccountFormRule = computed(() => createRule(t('sys.login.accountPlaceholder')))
-  const getPasswordFormRule = computed(() => createRule(t('sys.login.passwordPlaceholder')))
-  const getSmsFormRule = computed(() => createRule(t('sys.login.smsPlaceholder')))
+  const getAccountFormRule = computed(() => createRule('请输入账号'))
+  const getPasswordFormRule = computed(() => createRule('请输入密码'))
+  const getSmsFormRule = computed(() => createRule('请输入验证码'))
 
   const validatePolicy = (rule, value, callback) => {
-    return callback(!value ? new Error(t('sys.login.policyPlaceholder')) : null)
+    return callback(!value ? new Error('勾选后才能注册') : null)
   }
 
   const validateConfirmPassword = (rule, value, callback, diffField) => {
-    const { t } = useI18n()
     if (!value) {
-      return callback(new Error(t('sys.login.passwordPlaceholder')))
+      return callback(new Error('请输入密码'))
     } else {
       if (formData[diffField] === value) {
         callback()
       } else {
-        return callback(new Error(t('sys.login.diffPwd')))
+        return callback(new Error('两次输入密码不一致'))
       }
     }
   }
 
   const validateMobile = (rule, value, callback) => {
-    const { t } = useI18n()
     if (!value) {
-      return callback(new Error(t('sys.login.mobilePlaceholder')))
+      return callback(new Error('请输入手机号码'))
     } else {
       const reg = /^1[3,4,5,6,7,8,9][0-9]{9}$/
       if (reg.test(value)) {
         callback()
       } else {
-        return callback(new Error(t('sys.login.mobileError')))
+        return callback(new Error('手机号码不正确'))
       }
     }
   }

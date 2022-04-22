@@ -1,9 +1,6 @@
 import { h, VNode } from 'vue'
-// import { useI18n } from './useI18n'
-// ele
 import { ElMessage, ElIcon, ElMessageBox, ElNotification, MessageBoxData } from 'element-plus'
 import { Loading } from '@element-plus/icons'
-import { useI18n } from '@/hooks/web/useI18n'
 
 export type IconType = 'success' | 'info' | 'error' | 'warning'
 
@@ -23,8 +20,8 @@ function createConfirm(options: MessageBoxOptions): Promise<MessageBoxData> {
     options.content,
     options.title,
     {
-      confirmButtonText: options.nextButton || useI18n().t('common.confirmText'),
-      cancelButtonText: options.cancelButton || useI18n().t('common.cancelText'),
+      confirmButtonText: options.nextButton || '确认',
+      cancelButtonText: options.cancelButton || '取消',
       type: options.type,
     }
   ) as unknown as MessageBoxOptions
@@ -35,8 +32,8 @@ function createModalOptions(options: MessageBoxOptions, icon: IconType): Promise
     options.content,
     options.title,
     {
-      confirmButtonText: options.nextButton || useI18n().t('common.confirmText'),
-      cancelButtonText: options.cancelButton || useI18n().t('common.cancelText'),
+      confirmButtonText: options.nextButton || '确认',
+      cancelButtonText: options.cancelButton || '取消',
       type: icon,
     }
   ) as unknown as MessageBoxOptions

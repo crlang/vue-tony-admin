@@ -2,16 +2,13 @@ import type { BasicColumn } from '@/components/Table'
 import { FileItem, PreviewFileItem, UploadResultStatus } from './typing'
 import { isImgTypeByName } from './helper'
 import ThumbUrl from './ThumbUrl.vue'
-import { useI18n } from '@/hooks/web/useI18n'
 import { ElButton, ElButtonGroup, ElProgress, ElTag } from 'element-plus'
-
-const { t } = useI18n()
 
 export function createTableColumns(): BasicColumn[] {
   return [
     {
       prop: 'thumbUrl',
-      label: t('component.upload.legend'),
+      label: '	略缩图',
       width: 100,
       customRender: ({ record }) => {
         const { thumbUrl } = (record as FileItem) || {}
@@ -20,7 +17,7 @@ export function createTableColumns(): BasicColumn[] {
     },
     {
       prop: 'name',
-      label: t('component.upload.fileName'),
+      label: '文件名',
       align: 'left',
       customRender: ({ text, record }) => {
         const { percent, status: uploadStatus } = (record as FileItem) || {}
@@ -44,7 +41,7 @@ export function createTableColumns(): BasicColumn[] {
     },
     {
       prop: 'size',
-      label: t('component.upload.fileSize'),
+      label: '文件大小',
       width: 100,
       customRender: ({ text = 0 }) => {
         return text && (text / 1024).toFixed(2) + 'KB'
@@ -52,15 +49,15 @@ export function createTableColumns(): BasicColumn[] {
     },
     {
       prop: 'status',
-      label: t('component.upload.fileStatue'),
+      label: '状态',
       width: 100,
       customRender: ({ text }) => {
         if (text === UploadResultStatus.SUCCESS) {
-          return <ElTag type='success'>{() => t('component.upload.uploadSuccess')}</ElTag>
+          return <ElTag type='success'>{() => '上传成功'}</ElTag>
         } else if (text === UploadResultStatus.ERROR) {
-          return <ElTag type='danger'>{() => t('component.upload.uploadError')}</ElTag>
+          return <ElTag type='danger'>{() => '上传失败'}</ElTag>
         } else if (text === UploadResultStatus.UPLOADING) {
-          return <ElTag>{() => t('component.upload.uploading')}</ElTag>
+          return <ElTag>{() => '上传中'}</ElTag>
         }
 
         return text
@@ -71,11 +68,11 @@ export function createTableColumns(): BasicColumn[] {
 export function createActionColumn(handleRemove: Function): BasicColumn {
   return {
     width: 120,
-    label: t('component.upload.operating'),
+    label: '操作',
     prop: 'action',
     fixed: false,
     customRender: ({ record }) => {
-      return <ElButton type='danger' onClick={handleRemove.bind(null, record)}>{() => t('component.upload.del')}</ElButton>
+      return <ElButton type='danger' onClick={handleRemove.bind(null, record)}>{() => '操作'}</ElButton>
     },
   }
 }
@@ -84,7 +81,7 @@ export function createPreviewColumns(): BasicColumn[] {
   return [
     {
       prop: 'url',
-      label: t('component.upload.legend'),
+      label: '略缩图',
       width: 100,
       customRender: ({ record }) => {
         const { url } = (record as PreviewFileItem) || {}
@@ -93,7 +90,7 @@ export function createPreviewColumns(): BasicColumn[] {
     },
     {
       prop: 'name',
-      label: t('component.upload.fileName'),
+      label: '文件名',
       align: 'left',
     },
   ]
@@ -108,11 +105,11 @@ export function createPreviewActionColumn({
 }): BasicColumn {
   return {
     width: 200,
-    label: t('component.upload.operating'),
+    label: '操作',
     prop: 'action',
     fixed: false,
     customRender: ({ record }) => {
-      return <ElButtonGroup><ElButton type='danger' onClick={handleRemove.bind(null, record)}>{() => t('component.upload.del')}</ElButton><ElButton type='success' onClick={handleDownload.bind(null, record)}>{() => t('component.upload.download')}</ElButton></ElButtonGroup>
+      return <ElButtonGroup><ElButton type='danger' onClick={handleRemove.bind(null, record)}>{() => '删除'}</ElButton><ElButton type='success' onClick={handleDownload.bind(null, record)}>{() => '下载'}</ElButton></ElButtonGroup>
     },
   }
 }

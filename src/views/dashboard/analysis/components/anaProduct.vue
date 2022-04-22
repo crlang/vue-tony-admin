@@ -35,7 +35,6 @@ import { ElRow, ElCol, ElCard } from 'element-plus'
 import Basic1 from './Basic1.vue'
 import Basic2 from './Basic2.vue'
 import Basic3 from './Basic3.vue'
-import { useI18n } from '@/hooks/web/useI18n'
 
 export default defineComponent({
   components: { ElRow, ElCol, ElCard, Basic1, Basic2, Basic3 },
@@ -46,8 +45,7 @@ export default defineComponent({
   },
   emits: ['dateType'],
   setup(_) {
-    const { t } = useI18n()
-    return { t }
+    return { }
   },
 })
 

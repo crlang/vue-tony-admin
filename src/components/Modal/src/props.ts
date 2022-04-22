@@ -1,9 +1,6 @@
 import type { EleButton } from '@/components/ElementPlus'
 
 import { EleDialogProps } from '@/components/ElementPlus'
-import { useI18n } from '@/hooks/web/useI18n'
-
-const { t } = useI18n()
 
 export const headerProps = {
   /**
@@ -36,7 +33,7 @@ export const wrapperProps = {
   /**
    * load text
    */
-  loadingTip: { type: String, default: t('common.loadingText') },
+  loadingTip: { type: String, default: '加载中...' },
   /**
    * The height of the module's head
    */
@@ -59,7 +56,7 @@ export const footerProps = {
   /**
    * Cancel text
    */
-  cancelText: { type: String, default: t('common.cancelText') },
+  cancelText: { type: String, default: '取消' },
   /**
    * Cancel button properties, refer to ElButton
    */
@@ -71,7 +68,7 @@ export const footerProps = {
   /**
    * confirmation text
    */
-  confirmText: { type: String, default: t('common.confirmText') },
+  confirmText: { type: String, default: '确认' },
   /**
    * Confirm button properties, refer to ElButton
    */

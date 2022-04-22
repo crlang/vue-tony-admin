@@ -6,13 +6,13 @@
     <div :class="`${customClass}__extra`">
       <template v-if="showFullscreen">
         <ElTooltip
-          :content="t('component.modal.restore')"
+          content="还原"
           placement="bottom"
           v-if="fullscreen">
           <span @click="handleFullscreen"><SvgIcon name="fullscreen-exit" /></span>
         </ElTooltip>
         <ElTooltip
-          :content="t('component.modal.maximize')"
+          content="最大化"
           placement="bottom"
           v-else>
           <span @click="handleFullscreen"><SvgIcon name="fullscreen" /></span>
@@ -20,7 +20,7 @@
       </template>
       <ElTooltip
         v-if="showClose"
-        :content="t('component.modal.close')"
+        content="关闭"
         placement="bottom">
         <span @click="handleCancel"><SvgIcon name="close" /></span>
       </ElTooltip>
@@ -32,7 +32,6 @@
 import { defineComponent, toRefs } from 'vue'
 import { BasicTitle } from '@/components/Basic'
 import { ElTooltip } from 'element-plus'
-import { useI18n } from '@/hooks/web/useI18n'
 import { SvgIcon } from '@/components/Icon'
 import { useModalDragMove } from '../hooks/useModalDrag'
 import { headerProps } from '../props'
@@ -52,7 +51,6 @@ export default defineComponent({
   },
   emits: ['cancel', 'fullscreen'],
   setup(props, { emit }) {
-    const { t } = useI18n()
     const { modelValue, draggable, destroyOnClose } = toRefs(props)
     useModalDragMove({
       modelValue,
@@ -78,7 +76,6 @@ export default defineComponent({
     }
 
     return {
-      t,
       handleCancel,
       handleFullscreen,
       handleTitleDbClick,

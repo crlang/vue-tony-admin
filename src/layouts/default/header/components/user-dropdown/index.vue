@@ -16,18 +16,18 @@
           command="doc"
           v-if="getShowDoc"><Icon
             class="mr-2"
-            icon="ion:document-text-outline" />{{ t('layout.header.dropdownItemDoc') }}</ElDropdownItem>
+            icon="ion:document-text-outline" />文档</ElDropdownItem>
         <ElDropdownItem
           v-if="getUseLockPage"
           :divided="getShowDoc"
           command="lock"><Icon
             class="mr-2"
-            icon="ion:lock-closed-outline" />{{ t('layout.header.tooltipLock') }}</ElDropdownItem>
+            icon="ion:lock-closed-outline" />锁定屏幕</ElDropdownItem>
         <ElDropdownItem
           command="logout"
           divided><Icon
             class="mr-2"
-            icon="ion:power-outline" />{{ t('layout.header.dropdownItemLoginOut') }}</ElDropdownItem>
+            icon="ion:power-outline" />退出系统</ElDropdownItem>
       </ElDropdownMenu>
     </template>
   </ElDropdown>
@@ -42,7 +42,6 @@ import { DOC_URL } from '@/settings/siteSetting'
 
 import { useUserStore } from '@/store/modules/user'
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
-import { useI18n } from '@/hooks/web/useI18n'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useModal } from '@/components/Modal'
 
@@ -68,7 +67,6 @@ export default defineComponent({
   },
   setup() {
     const { prefixCls } = useDesign('header-user-dropdown')
-    const { t } = useI18n()
     const { getShowDoc, getUseLockPage } = useHeaderSetting()
     const userStore = useUserStore()
 
@@ -109,7 +107,6 @@ export default defineComponent({
 
     return {
       prefixCls,
-      t,
       getUserInfo,
       handleMenuClick,
       getShowDoc,

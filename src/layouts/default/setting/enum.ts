@@ -1,10 +1,6 @@
 import { ContentEnum, RouterTransitionEnum } from '@/enums/appEnum'
 import { MenuModeEnum, MenuTypeEnum, TopMenuAlignEnum, TriggerEnum, MixSidebarTriggerEnum } from '@/enums/menuEnum'
 
-import { useI18n } from '@/hooks/web/useI18n'
-
-const { t } = useI18n()
-
 export enum HandlerEnum {
   CHANGE_LAYOUT,
   CHANGE_THEME_COLOR,
@@ -56,26 +52,26 @@ export enum HandlerEnum {
 export const contentModeOptions = [
   {
     value: ContentEnum.FULL,
-    label: t('layout.setting.contentModeFull'),
+    label: '流式',
   },
   {
     value: ContentEnum.FIXED,
-    label: t('layout.setting.contentModeFixed'),
+    label: '定宽',
   },
 ]
 
 export const topMenuAlignOptions = [
   {
     value: TopMenuAlignEnum.CENTER,
-    label: t('layout.setting.topMenuAlignRight'),
+    label: '居中',
   },
   {
     value: TopMenuAlignEnum.START,
-    label: t('layout.setting.topMenuAlignLeft'),
+    label: '居左',
   },
   {
     value: TopMenuAlignEnum.END,
-    label: t('layout.setting.topMenuAlignCenter'),
+    label: '居右',
   },
 ]
 
@@ -83,18 +79,18 @@ export const getMenuTriggerOptions = (hideTop: boolean) => {
   return [
     {
       value: TriggerEnum.NONE,
-      label: t('layout.setting.menuTriggerNone'),
+      label: '不显示',
     },
     {
       value: TriggerEnum.FOOTER,
-      label: t('layout.setting.menuTriggerBottom'),
+      label: '底部',
     },
     ...(hideTop
       ? []
       : [
         {
           value: TriggerEnum.HEADER,
-          label: t('layout.setting.menuTriggerTop'),
+          label: '顶部',
         },
       ]),
   ]
@@ -116,22 +112,22 @@ export const routerTransitionOptions = [
 
 export const menuTypeList = [
   {
-    title: t('layout.setting.menuTypeSidebar'),
+    title: '左侧菜单模式',
     mode: MenuModeEnum.INLINE,
     type: MenuTypeEnum.SIDEBAR,
   },
   // {
-  //   title: t('layout.setting.menuTypeMix'),
+  //   title: '	顶部菜单混合模式',
   //   mode: MenuModeEnum.INLINE,
   //   type: MenuTypeEnum.MIX
   // },
   // {
-  //   title: t('layout.setting.menuTypeTopMenu'),
+  //   title: '顶部菜单模式',
   //   mode: MenuModeEnum.HORIZONTAL,
   //   type: MenuTypeEnum.TOP_MENU,
   // },
   {
-    title: t('layout.setting.menuTypeMixSidebar'),
+    title: '左侧菜单混合模式',
     mode: MenuModeEnum.INLINE,
     type: MenuTypeEnum.MIX_SIDEBAR,
   },
@@ -140,10 +136,10 @@ export const menuTypeList = [
 export const mixSidebarTriggerOptions = [
   {
     value: MixSidebarTriggerEnum.HOVER,
-    label: t('layout.setting.triggerHover'),
+    label: '悬停',
   },
   {
     value: MixSidebarTriggerEnum.CLICK,
-    label: t('layout.setting.triggerClick'),
+    label: '点击',
   },
 ]

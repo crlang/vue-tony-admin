@@ -29,7 +29,7 @@
             <NoticeList
               :list="item.list"
               v-else />
-            <div :class="`${prefixCls}__more`">{{ t('common.viewMore') }}<span v-if="item.list.length !== 0">({{ item.list.length }})</span></div>
+            <div :class="`${prefixCls}__more`">查看更多<span v-if="item.list.length !== 0">({{ item.list.length }})</span></div>
           </ElTabPane>
         </template>
       </ElTabs>
@@ -45,7 +45,6 @@ import NoticeList from './NoticeList.vue'
 import { useDesign } from '@/hooks/web/useDesign'
 import { SvgIcon } from '@/components/Icon'
 import { useMessage } from '@/hooks/web/useMessage'
-import { useI18n } from '@/hooks/web/useI18n'
 
 export default defineComponent({
   components: { ElPopover, ElBadge, ElTabs, ElTabPane, SvgIcon, NoticeList },
@@ -53,7 +52,6 @@ export default defineComponent({
     const { prefixCls } = useDesign('header-notify')
     const { createMessage } = useMessage()
     const listData = ref(tabListData)
-    const { t } = useI18n()
 
     const count = computed(() => {
       let count = 0
@@ -69,7 +67,6 @@ export default defineComponent({
     }
 
     return {
-      t,
       prefixCls,
       listData,
       count,

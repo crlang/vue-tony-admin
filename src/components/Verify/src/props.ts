@@ -1,7 +1,5 @@
-import { useI18n } from '@/hooks/web/useI18n'
 import { CSSProperties } from 'vue'
 
-const { t } = useI18n()
 export const basicProps = {
   /**
    * Validate value
@@ -22,14 +20,14 @@ export const basicProps = {
    */
   text: {
     type: String,
-    default: t('component.verify.dragText'),
+    default: '	请按住滑块拖动',
   },
   /**
    * Drag success text
    */
   successText: {
     type: String,
-    default: t('component.verify.successText'),
+    default: '验证通过',
   },
   /**
    * Drag bar height

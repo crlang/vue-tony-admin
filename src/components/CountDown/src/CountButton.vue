@@ -13,7 +13,6 @@ import { defineComponent, ref, watchEffect, computed, unref } from 'vue'
 import { ElButton } from 'element-plus'
 import { useCountdown } from './useCountdown'
 import { isFunction } from '@/utils/is'
-import { useI18n } from '@/hooks/web/useI18n'
 
 const props = {
   value: { type: [Object, Number, String, Array] },
@@ -32,12 +31,11 @@ export default defineComponent({
     const loading = ref(false)
 
     const { currentCount, isStart, start, reset } = useCountdown(props.count)
-    const { t } = useI18n()
 
     const getButtonText = computed(() => {
       return !unref(isStart)
-        ? t('component.countdown.normalText')
-        : t('component.countdown.sendText', [unref(currentCount)])
+        ? '获取验证码'
+        : `${unref(currentCount)}秒后重新获取`
     })
 
     watchEffect(() => {

@@ -6,8 +6,8 @@
       @change="handleChange"
       inline-prompt
       :disabled="disabled"
-      :active-text="t('layout.setting.on')"
-      :inactive-text="t('layout.setting.off')"
+      active-text="开"
+      inactive-text="关"
     />
   </div>
 </template>
@@ -15,7 +15,6 @@
 <script lang="ts">
 import { defineComponent, PropType, computed } from 'vue'
 import { useDesign } from '@/hooks/web/useDesign'
-import { useI18n } from '@/hooks/web/useI18n'
 import { baseHandler } from '../handler'
 import { HandlerEnum } from '../enum'
 import { ElSwitch } from 'element-plus'
@@ -39,7 +38,6 @@ export default defineComponent({
   },
   setup(props) {
     const { prefixCls } = useDesign('setting-switch-item')
-    const { t } = useI18n()
 
     const getBindValue = computed(() => {
       return props.def ? { modelValue: props.def } : {}
@@ -49,7 +47,6 @@ export default defineComponent({
     }
     return {
       prefixCls,
-      t,
       handleChange,
       getBindValue,
     }

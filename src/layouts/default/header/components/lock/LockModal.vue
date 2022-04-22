@@ -1,6 +1,6 @@
 <template>
   <BasicModal
-    :title="t('layout.header.lockScreen')"
+    title="锁定屏幕"
     @register="register"
     :width="600"
     :showFooter="false"
@@ -22,7 +22,7 @@
           type="primary"
           class="mt-2"
           @click="handleLock">
-          {{ t('layout.header.lockScreenBtn') }}
+          锁定
         </ElButton>
       </div>
     </div>
@@ -32,7 +32,6 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { ElButton } from 'element-plus'
-import { useI18n } from '@/hooks/web/useI18n'
 import { useDesign } from '@/hooks/web/useDesign'
 import { BasicModal, useModalInner } from '@/components/Modal'
 import { useUserStore } from '@/store/modules/user'
@@ -50,7 +49,6 @@ export default defineComponent({
     },
   },
   setup() {
-    const { t } = useI18n()
     const { prefixCls } = useDesign('header-lock-modal')
     const userStore = useUserStore()
     const lockStore = useLockStore()
@@ -67,7 +65,7 @@ export default defineComponent({
           component: 'ElInput',
           componentProps: {
             type: 'password',
-            placeholder: t('layout.header.lockScreenPassword'),
+            placeholder: '锁屏密码',
           },
           required: true,
         },
@@ -98,7 +96,6 @@ export default defineComponent({
       register,
       registerForm,
       avatar,
-      t,
       handleLock,
     }
   },

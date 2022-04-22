@@ -1,7 +1,7 @@
 <template>
   <ElTooltip
     placement="top"
-    :content="t('component.table.settingDens')">
+    content="密度">
     <ElDropdown
       trigger="hover"
       @command="handleTitleClick">
@@ -11,13 +11,13 @@
       <template #dropdown>
         <ElDropdownMenu>
           <ElDropdownItem command="default">
-            <span>{{ t('component.table.settingDensDefault') }}</span>
+            <span>默认</span>
           </ElDropdownItem>
           <ElDropdownItem command="large">
-            <span>{{ t('component.table.settingDensLarge') }}</span>
+            <span>宽松</span>
           </ElDropdownItem>
           <ElDropdownItem command="small">
-            <span>{{ t('component.table.settingDensSmall') }}</span>
+            <span>紧凑</span>
           </ElDropdownItem>
         </ElDropdownMenu>
       </template>
@@ -30,7 +30,6 @@ import type { ComponentSize } from '@/utils/types'
 
 import { defineComponent } from 'vue'
 import { ElTooltip, ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus'
-import { useI18n } from '@/hooks/web/useI18n'
 import { useTableContext } from '../../hooks/useTableContext'
 import { SvgIcon } from '@/components/Icon'
 
@@ -45,7 +44,6 @@ export default defineComponent({
   },
   setup() {
     const table = useTableContext()
-    const { t } = useI18n()
 
     function handleTitleClick(key: ComponentSize) {
       table.setProps({
@@ -55,7 +53,6 @@ export default defineComponent({
 
     return {
       handleTitleClick,
-      t,
     }
   },
 })

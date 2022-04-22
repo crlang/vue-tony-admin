@@ -1,7 +1,6 @@
 import type { AppRouteModule } from '@/router/types'
 
 import { LAYOUT } from '@/router/constant'
-import { t } from '@/hooks/web/useI18n'
 
 const setup: AppRouteModule = {
   path: '/setup',
@@ -12,7 +11,7 @@ const setup: AppRouteModule = {
     orderNo: 10,
     hideChildrenInMenu: true,
     icon: 'whh:paintroll',
-    title: t('routes.setup.page'),
+    title: '引导页',
   },
   children: [
     {
@@ -20,7 +19,7 @@ const setup: AppRouteModule = {
       name: 'SetupDemoPage',
       component: () => import('@/views/demo/setup/index.vue'),
       meta: {
-        title: t('routes.setup.page'),
+        title: '引导页',
         icon: 'whh:paintroll',
         hideMenu: true,
       },

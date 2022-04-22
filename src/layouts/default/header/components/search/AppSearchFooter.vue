@@ -4,7 +4,7 @@
       <span>
         <Icon icon="uil:enter" />
       </span>
-      <span>{{ t('component.app.toSearch') }}</span>
+      <span>确认</span>
     </div>
     <div>
       <span>
@@ -13,19 +13,17 @@
       <span>
         <Icon icon="ion:arrow-down-outline" />
       </span>
-      <span>{{ t('component.app.toNavigate') }}</span>
+      <span>切换</span>
     </div>
     <div>
       <span>
         <Icon icon="mdi:keyboard-esc" />
       </span>
-      <span>{{ t('common.closeText') }}</span>
+      <span>关闭</span>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { Icon } from '@/components/Icon'
-import { useI18n } from '@/hooks/web/useI18n'
-const { t } = useI18n()
 </script>

@@ -7,28 +7,28 @@
     <el-form-item prop="account">
       <el-input
         v-model="formData.account"
-        :placeholder="t('sys.login.userNameEg')" />
+        placeholder="账号 admin/tony" />
     </el-form-item>
     <el-form-item
       prop="password"
       class="mb-1">
       <el-input
         v-model="formData.password"
-        :placeholder="t('sys.login.passwordEg')"
+        placeholder="密码 123456"
         @keypress.enter="handleLogin" />
     </el-form-item>
     <el-row class="mt-3">
       <el-col :span="12">
         <el-checkbox
           v-model="rememberMe"
-          size="small">{{ t('sys.login.rememberMe') }}</el-checkbox>
+          size="small">	记住我</el-checkbox>
       </el-col>
       <el-col
         :span="12"
         class="text-right">
         <el-button
           type="text"
-          @click="setLoginState(LoginStateEnum.RESET_PASSWORD)">{{ t('sys.login.forgetPassword') }}</el-button>
+          @click="setLoginState(LoginStateEnum.RESET_PASSWORD)">忘记密码?</el-button>
       </el-col>
     </el-row>
     <el-form-item>
@@ -36,7 +36,7 @@
         type="primary"
         class="login--submit"
         :loading="loading"
-        @click="handleLogin">{{ t('sys.login.loginButton') }}</el-button>
+        @click="handleLogin">登录</el-button>
     </el-form-item>
   </el-form>
 
@@ -45,12 +45,10 @@
 <script lang="ts" setup>
 import { reactive, ref, toRaw, unref, computed } from 'vue'
 import { ElRow, ElCol, ElCheckbox, ElButton, ElForm, ElFormItem, ElInput } from 'element-plus'
-import { useI18n } from '@/hooks/web/useI18n'
 import { useMessage } from '@/hooks/web/useMessage'
 import { useUserStore } from '@/store/modules/user'
 import { LoginStateEnum, useLoginState, useFormRules, useFormValid } from './useLogin'
 
-const { t } = useI18n()
 const { notification } = useMessage()
 const userStore = useUserStore()
 const { setLoginState, getLoginState } = useLoginState()
@@ -61,8 +59,8 @@ const loading = ref(false)
 const rememberMe = ref(false)
 
 const formData = reactive({
-  account: '',
-  password: '',
+  account: 'admin',
+  password: '123456',
 })
 const { validForm } = useFormValid(formRef)
 
@@ -82,15 +80,15 @@ async function handleLogin() {
     )
     if (userInfo) {
       notification.success({
-        title: t('sys.login.loginSuccessTitle'),
-        message: `${t('sys.login.loginSuccessDesc')}: ${userInfo.realName}`,
+        title: '	登录成功',
+        message: `欢迎回来: ${userInfo.realName}`,
         duration: 3000,
       })
     }
   } catch (error: any) {
     notification.error({
-      title: t('sys.api.errorTip'),
-      message: error.message || t('sys.api.networkExceptionMsg'),
+      title: '错误提示',
+      message: error.message || '网络异常，请检查您的网络连接是否正常',
     })
   } finally {
     loading.value = false

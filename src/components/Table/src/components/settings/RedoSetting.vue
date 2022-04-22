@@ -1,7 +1,7 @@
 <template>
   <ElTooltip
     placement="top"
-    :content="t('common.redo')">
+    content="刷新">
     <span><Refresh @click="redo" /></span>
   </ElTooltip>
 </template>
@@ -10,7 +10,6 @@
 import { defineComponent } from 'vue'
 import { ElTooltip } from 'element-plus'
 import { Refresh } from '@element-plus/icons'
-import { useI18n } from '@/hooks/web/useI18n'
 import { useTableContext } from '../../hooks/useTableContext'
 
 export default defineComponent({
@@ -21,13 +20,12 @@ export default defineComponent({
   },
   setup() {
     const table = useTableContext()
-    const { t } = useI18n()
 
     function redo() {
       table.reload()
     }
 
-    return { redo, t }
+    return { redo }
   },
 })
 </script>

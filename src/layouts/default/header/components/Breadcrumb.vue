@@ -12,13 +12,13 @@
         class="mr-1"
         v-if="getShowBreadCrumbIcon && getIcon(route)" />
       <span v-if="!hasRedirect(routes, route)">
-        {{ t(route.name || route.meta.title) }}
+        {{ route.name || route.meta.title }}
       </span>
       <router-link
         v-else
         to=""
         @click="handleClick(route, routes, $event)">
-        {{ t(route.name || route.meta.title) }}
+        {{ route.name || route.meta.title }}
       </router-link>
     </ElBreadcrumbItem>
   </ElBreadcrumb>
@@ -37,7 +37,6 @@ import Icon from '@/components/Icon'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useRootSetting } from '@/hooks/setting/useRootSetting'
 import { useGo } from '@/hooks/web/usePage'
-import { useI18n } from '@/hooks/web/useI18n'
 
 import { isString } from '@/utils/is'
 import { filter } from '@/utils/helper/treeHelper'
@@ -57,7 +56,6 @@ export default defineComponent({
     const { getShowBreadCrumbIcon } = useRootSetting()
     const go = useGo()
 
-    const { t } = useI18n()
     watchEffect(async () => {
       if (currentRoute.value.name === REDIRECT_NAME) return
       const menus = await getMenus()
@@ -155,7 +153,6 @@ export default defineComponent({
 
     return {
       routes,
-      t,
       prefixCls,
       getIcon,
       getShowBreadCrumbIcon,

@@ -5,7 +5,7 @@
       @click="handleShowForm(false)"
       v-show="showDate">
       <Lock style="width: 1.5em;" />
-      <span>{{ t('sys.lock.unlock') }}</span>
+      <span>点击解锁</span>
     </div>
 
     <div :class="`${prefixCls}__box`">
@@ -38,7 +38,7 @@
             <el-input
               v-model="password"
               type="password"
-              :placeholder="t('sys.lock.placeholder')"
+              placeholder="请输入锁屏密码或者用户密码"
               @keypress.enter="unLock()" />
             <Loading
               v-if="loading"
@@ -48,7 +48,7 @@
           <div
             :class="`${prefixCls}-entry__extra`"
             @click="goLogin">
-            <el-tooltip :content="t('sys.lock.backToLogin')"><Icon
+            <el-tooltip content="返回登录"><Icon
               :size="32"
               icon="ion:power-outline" /></el-tooltip>
           </div>
@@ -72,7 +72,6 @@ import { ref, computed } from 'vue'
 import { ElInput, ElTooltip } from 'element-plus'
 import { useUserStore } from '@/store/modules/user'
 import { useLockStore } from '@/store/modules/lock'
-import { useI18n } from '@/hooks/web/useI18n'
 import { useNow } from './useNow'
 import { useDesign } from '@/hooks/web/useDesign'
 import { Lock, ArrowRightBold, Loading } from '@element-plus/icons'
@@ -91,8 +90,6 @@ const { createMessage } = useMessage()
 
 const { hour, month, minute, meridiem, year, day, week } = useNow(true)
 
-const { t } = useI18n()
-
 const userinfo = computed(() => {
   return userStore.getUserInfo || {}
 })
@@ -105,7 +102,7 @@ async function unLock() {
   try {
     loading.value = true
     const res = await lockStore.unLock(pwd)
-    !res && createMessage.error(t('sys.lock.alert'))
+    !res && createMessage.error('锁屏密码错误')
   } finally {
     loading.value = false
   }

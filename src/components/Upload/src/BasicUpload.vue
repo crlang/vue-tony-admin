@@ -5,13 +5,13 @@
         type="primary"
         @click="openUploadModal()"
         :icon="UploadFilled">
-        {{ t('component.upload.upload') }}
+        上传
       </ElButton>
       <ElTooltip
         placement="bottom"
         v-if="showPreview">
         <template #content>
-          {{ t('component.upload.uploaded') }}
+          已上传
           <template v-if="fileList.length">
             {{ fileList.length }}
           </template>
@@ -47,7 +47,6 @@ import UploadPreviewModal from './UploadPreviewModal.vue'
 import { Icon } from '@/components/Icon'
 import { uploadContainerProps } from './props'
 import { omit } from 'lodash-es'
-import { useI18n } from '@/hooks/web/useI18n'
 import { isArray } from '@/utils/is'
 import { UploadFilled } from '@element-plus/icons'
 import { useModal } from '@/components/Modal'
@@ -59,7 +58,6 @@ export default defineComponent({
   emits: ['change', 'delete', 'preview-delete', 'update:value'],
 
   setup(props, { emit, attrs }) {
-    const { t } = useI18n()
     const [registerUploadModal, { openModal: openUploadModal }] = useModal()
 
     const [registerPreviewModal, { openModal: openPreviewModal }] = useModal()
@@ -118,7 +116,6 @@ export default defineComponent({
       bindValue,
       handleDelete,
       handlePreviewDelete,
-      t,
     }
   },
 })

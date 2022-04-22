@@ -39,7 +39,7 @@
               :class="`${prefixCls}-module__icon`"
               :size="getCollapsed ? 24 : 16"
               :icon="item.icon || item.meta?.icon || 'blank|svg'" />
-            <p :class="`${prefixCls}-module__name`">{{ t(item.name) }}</p>
+            <p :class="`${prefixCls}-module__name`">{{ item.name || '' }}</p>
           </div>
         </li>
       </ul>
@@ -59,7 +59,7 @@
             show: openMenu
           }
         ]">
-        <span class="text">{{ activeMenu?.name && t(activeMenu.name) }}</span>
+        <span class="text">{{ activeMenu?.name && activeMenu.name }}</span>
         <span
           class="pushpin"
           @click="handleFixedMenu">
@@ -93,7 +93,6 @@ import { AppLogo } from '@/components/Application'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 // import { useGlobSetting } from '@/hooks/setting'
 import { useDesign } from '@/hooks/web/useDesign'
-import { useI18n } from '@/hooks/web/useI18n'
 import { useGo } from '@/hooks/web/usePage'
 import { SIDE_BAR_MINI_WIDTH, SIDE_BAR_SHOW_TIT_MINI_WIDTH } from '@/enums/appEnum'
 import clickOutside from '@/directives/clickOutside'
@@ -127,7 +126,6 @@ export default defineComponent({
 
     const { prefixCls } = useDesign('layout-mix-sider')
     const go = useGo()
-    const { t } = useI18n()
     const {
       getMenuWidth,
       getCanDrag,
@@ -307,7 +305,6 @@ export default defineComponent({
     }
 
     return {
-      t,
       prefixCls,
       menuModules,
       handleModuleClick,

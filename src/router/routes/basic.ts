@@ -1,5 +1,4 @@
 import type { AppRouteRecordRaw } from '@/router/types'
-import { t } from '@/hooks/web/useI18n'
 import { REDIRECT_NAME, LAYOUT, EXCEPTION_COMPONENT, PAGE_NOT_FOUND_NAME } from '@/router/constant'
 
 // 404 on a page
@@ -64,7 +63,7 @@ export const ERROR_LOG_ROUTE: AppRouteRecordRaw = {
       name: 'ErrorLogList',
       component: () => import('@/views/sys/error-log/index.vue'),
       meta: {
-        title: t('routes.basic.errorLogList'),
+        title: '错误日志列表',
         hideBreadcrumb: true,
         currentActiveMenu: '/error-log',
       },

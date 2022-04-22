@@ -35,7 +35,6 @@ import type { TabContentProps } from '../types'
 import { defineComponent, computed, unref, ref } from 'vue'
 import { ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus'
 import { Icon } from '@/components/Icon'
-import { useI18n } from '@/hooks/web/useI18n'
 import { useTabDropdown } from '../useTabDropdown'
 import { TabContentEnum } from '../types'
 
@@ -55,11 +54,10 @@ export default defineComponent({
   },
   setup(props) {
     const tabsDropdownRef = ref()
-    const { t } = useI18n()
 
     const getTitle = computed(() => {
       const { tabItem: { meta } = {} } = props
-      return meta && t(meta.title as string)
+      return meta && meta.title
     })
 
     const getIsTabs = computed(() => props.type === TabContentEnum.TAB_TYPE)

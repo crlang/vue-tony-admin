@@ -1,7 +1,6 @@
 import type { AppRouteModule } from '@/router/types'
 
 import { LAYOUT } from '@/router/constant'
-import { t } from '@/hooks/web/useI18n'
 
 const dashboard: AppRouteModule = {
   path: '/about',
@@ -11,7 +10,7 @@ const dashboard: AppRouteModule = {
   meta: {
     hideChildrenInMenu: true,
     icon: 'simple-icons:about-dot-me',
-    title: t('routes.dashboard.about'),
+    title: '关于',
     orderNo: 999,
   },
   children: [
@@ -20,7 +19,7 @@ const dashboard: AppRouteModule = {
       name: 'AboutPage',
       component: () => import('@/views/sys/about/index.vue'),
       meta: {
-        title: t('routes.dashboard.about'),
+        title: '关于',
         icon: 'simple-icons:about-dot-me',
         hideMenu: true,
       },

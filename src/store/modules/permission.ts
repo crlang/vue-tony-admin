@@ -2,7 +2,6 @@ import type { AppRouteRecordRaw, Menu } from '@/router/types'
 
 import { defineStore } from 'pinia'
 import { store } from '@/store'
-import { useI18n } from '@/hooks/web/useI18n'
 import { useUserStore } from './user'
 import { useAppStoreWithOut } from './app'
 import { toRaw } from 'vue'
@@ -97,7 +96,6 @@ export const usePermissionStore = defineStore({
       this.setPermCodeList(codeList)
     },
     async buildRoutesAction(): Promise<AppRouteRecordRaw[]> {
-      const { t } = useI18n()
       const userStore = useUserStore()
       const appStore = useAppStoreWithOut()
 
@@ -176,7 +174,7 @@ export const usePermissionStore = defineStore({
           const { createMessage } = useMessage()
 
           createMessage.loading({
-            content: t('sys.app.menuLoading'),
+            content: '菜单加载中...',
             duration: 1,
           })
 

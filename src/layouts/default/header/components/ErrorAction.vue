@@ -1,7 +1,7 @@
 <template>
   <div :class="prefixCls">
     <ElTooltip
-      :content="t('layout.header.tooltipErrorLog')"
+      content="错误日志"
       placement="bottom">
       <span @click="handleToErrorList">
         <ElBadge
@@ -19,7 +19,6 @@ import { defineComponent, computed } from 'vue'
 import { ElTooltip, ElBadge } from 'element-plus'
 import Icon from '@/components/Icon'
 
-import { useI18n } from '@/hooks/web/useI18n'
 import { useErrorLogStore } from '@/store/modules/errorLog'
 import { PageEnum } from '@/enums/pageEnum'
 import { useDesign } from '@/hooks/web/useDesign'
@@ -31,7 +30,6 @@ export default defineComponent({
   components: { ElTooltip, ElBadge, Icon },
 
   setup() {
-    const { t } = useI18n()
     const { push } = useRouter()
     const errorLogStore = useErrorLogStore()
     const { prefixCls } = useDesign('header-error-action')
@@ -45,7 +43,6 @@ export default defineComponent({
     }
 
     return {
-      t,
       prefixCls,
       getCount,
       handleToErrorList,

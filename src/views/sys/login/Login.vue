@@ -12,9 +12,9 @@
     <el-row :class="`${prefixCls}__inner`">
       <el-col :span="14">
         <div :class="`${prefixCls}__left`">
-          <h1>{{ t('sys.login.welcome') }} <span>{{ title }}</span></h1>
-          <p>{{ title }} {{ t('sys.login.sloganTitle') }}</p>
-          <p>{{ t('sys.login.sloganDesc') }}</p>
+          <h1>欢迎使用 <span>{{ title }}</span></h1>
+          <p>{{ title }} 基于 element plus ，并且使用了最新的 vue3, vite2, TypeScript 等主流技术开发，开箱即用的中后台前端解决方案。</p>
+          <p>基于 element plus ，并且使用了最新的 vue3, vite2, TypeScript 等主流技术开发，开箱即用的中后台前端解决方案。</p>
         </div>
       </el-col>
       <el-col :span="10">
@@ -30,17 +30,17 @@
 
           <div :class="`${prefixCls}__logo`">
             <AppLogo />
-            <p>{{ t('sys.login.slogan') }}</p>
+            <p>Element/Vue3/Typescript 最佳的选择</p>
           </div>
           <div :class="`${prefixCls}__form`">
             <el-tabs
               v-if="getShow"
               v-model="activeName">
               <el-tab-pane
-                :label="t('sys.login.signInFormTitle')"
+                label="账号登录"
                 name="account" />
               <el-tab-pane
-                :label="t('sys.login.mobileSignInFormTitle')"
+                label="手机号登录"
                 name="mobile" />
             </el-tabs>
             <LoginForm />
@@ -52,7 +52,7 @@
           <div
             :class="`${prefixCls}__regnew`"
             v-if="getShow">
-            {{ t('sys.login.noAccount') }} <span @click="setLoginState(LoginStateEnum.REGISTER)"> {{ t('sys.login.registerButton') }}</span>
+            没有账号？ <span @click="setLoginState(LoginStateEnum.REGISTER)">注册</span>
           </div>
         </div>
       </el-col>
@@ -73,7 +73,6 @@ import MobileForm from './MobileForm.vue'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useLocaleStore } from '@/store/modules/locale'
 import { useLoginState, LoginStateEnum } from './useLogin'
-import { useI18n } from '@/hooks/web/useI18n'
 import { useGlobSetting } from '@/hooks/setting'
 
 export default defineComponent({
@@ -101,7 +100,6 @@ export default defineComponent({
     const showLocale = localeStore.getShowPicker
     const { setLoginState, getLoginState } = useLoginState()
     const { title } = useGlobSetting()
-    const { t } = useI18n()
     const activeName = ref('account')
     const activeNameExt = {
       'account': LoginStateEnum.LOGIN,
@@ -120,7 +118,6 @@ export default defineComponent({
 
     return {
       prefixCls,
-      t,
       title,
       showLocale,
       setLoginState,

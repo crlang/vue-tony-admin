@@ -1,8 +1,6 @@
 import type { EleButtonType } from '@/components/ElementPlus'
 
-import { useI18n } from '@/hooks/web/useI18n'
 import { EleDrawerProps } from '@/components/ElementPlus'
-const { t } = useI18n()
 
 export const footerProps = {
   /**
@@ -17,7 +15,7 @@ export const footerProps = {
    */
   confirmText: {
     type: String,
-    default: t('common.confirmText'),
+    default: '确认',
   },
   /**
    * Confirm Type
@@ -44,7 +42,7 @@ export const footerProps = {
    */
   cancelText: {
     type: String,
-    default: t('common.cancelText'),
+    default: '取消',
   },
   /**
    * Cancel type

@@ -2,7 +2,6 @@ import type { AppRouteModule } from '@/router/types'
 
 import { getParentLayout, LAYOUT } from '@/router/constant'
 import { ExceptionEnum } from '@/enums/exceptionEnum'
-import { t } from '@/hooks/web/useI18n'
 
 const ExceptionPage = () => import('@/views/sys/exception/Exception.vue')
 
@@ -14,7 +13,7 @@ const page: AppRouteModule = {
   meta: {
     orderNo: 4,
     icon: 'ion:aperture-outline',
-    title: t('routes.page.page'),
+    title: '页面',
   },
   children: [
     // =============================form start=============================
@@ -24,7 +23,7 @@ const page: AppRouteModule = {
       redirect: '/page-demo/form/basic',
       component: getParentLayout('FormPage'),
       meta: {
-        title: t('routes.page.form'),
+        title: '表单页',
       },
       children: [
         {
@@ -32,7 +31,7 @@ const page: AppRouteModule = {
           name: 'FormBasicPage',
           component: () => import('@/views/demo/page/form/basic/index.vue'),
           meta: {
-            title: t('routes.page.formBasic'),
+            title: '基础表单',
           },
         },
         {
@@ -40,7 +39,7 @@ const page: AppRouteModule = {
           name: 'FormStepPage',
           component: () => import('@/views/demo/page/form/step/index.vue'),
           meta: {
-            title: t('routes.page.formStep'),
+            title: '分步表单',
           },
         },
         {
@@ -48,7 +47,7 @@ const page: AppRouteModule = {
           name: 'FormHightPage',
           component: () => import('@/views/demo/page/form/high/index.vue'),
           meta: {
-            title: t('routes.page.formHigh'),
+            title: '高级表单',
           },
         },
       ],
@@ -61,7 +60,7 @@ const page: AppRouteModule = {
       component: getParentLayout('DescPage'),
       redirect: '/page-demo/desc/basic',
       meta: {
-        title: t('routes.page.desc'),
+        title: '详情页',
       },
       children: [
         {
@@ -69,7 +68,7 @@ const page: AppRouteModule = {
           name: 'DescBasicPage',
           component: () => import('@/views/demo/page/desc/basic/index.vue'),
           meta: {
-            title: t('routes.page.descBasic'),
+            title: '基础详情页',
           },
         },
         {
@@ -77,7 +76,7 @@ const page: AppRouteModule = {
           name: 'DescHighPage',
           component: () => import('@/views/demo/page/desc/high/index.vue'),
           meta: {
-            title: t('routes.page.descHigh'),
+            title: '高级详情页',
           },
         },
       ],
@@ -92,7 +91,7 @@ const page: AppRouteModule = {
       component: getParentLayout('ResultPage'),
 
       meta: {
-        title: t('routes.page.result'),
+        title: '结果页',
       },
       children: [
         {
@@ -100,7 +99,7 @@ const page: AppRouteModule = {
           name: 'ResultSuccessPage',
           component: () => import('@/views/demo/page/result/success/index.vue'),
           meta: {
-            title: t('routes.page.resultSuccess'),
+            title: '成功页',
           },
         },
         {
@@ -108,7 +107,7 @@ const page: AppRouteModule = {
           name: 'ResultFailPage',
           component: () => import('@/views/demo/page/result/fail/index.vue'),
           meta: {
-            title: t('routes.page.resultFail'),
+            title: '失败页',
           },
         },
       ],
@@ -122,7 +121,7 @@ const page: AppRouteModule = {
       component: getParentLayout('AccountPage'),
       redirect: '/page-demo/account/setting',
       meta: {
-        title: t('routes.page.account'),
+        title: '个人页',
       },
       children: [
         {
@@ -130,7 +129,7 @@ const page: AppRouteModule = {
           name: 'AccountCenterPage',
           component: () => import('@/views/demo/page/account/center/index.vue'),
           meta: {
-            title: t('routes.page.accountCenter'),
+            title: '个人中心',
           },
         },
         {
@@ -138,7 +137,7 @@ const page: AppRouteModule = {
           name: 'AccountSettingPage',
           component: () => import('@/views/demo/page/account/setting/index.vue'),
           meta: {
-            title: t('routes.page.accountSetting'),
+            title: '个人设置',
           },
         },
       ],
@@ -151,7 +150,7 @@ const page: AppRouteModule = {
       component: getParentLayout('ExceptionPage'),
       redirect: '/page-demo/exception/404',
       meta: {
-        title: t('routes.page.exception'),
+        title: '异常页',
       },
       children: [
         {
@@ -195,7 +194,7 @@ const page: AppRouteModule = {
             status: ExceptionEnum.NET_WORK_ERROR,
           },
           meta: {
-            title: t('routes.page.netWorkError'),
+            title: '网络错误',
           },
         },
         {
@@ -206,7 +205,7 @@ const page: AppRouteModule = {
             status: ExceptionEnum.PAGE_NOT_DATA,
           },
           meta: {
-            title: t('routes.page.notData'),
+            title: '无数据',
           },
         },
       ],
@@ -219,7 +218,7 @@ const page: AppRouteModule = {
       component: getParentLayout('ListPage'),
       redirect: '/page-demo/list/card',
       meta: {
-        title: t('routes.page.list'),
+        title: '列表页',
       },
       children: [
         {
@@ -227,7 +226,7 @@ const page: AppRouteModule = {
           name: 'ListBasicPage',
           component: () => import('@/views/demo/page/list/basic/index.vue'),
           meta: {
-            title: t('routes.page.listBasic'),
+            title: '标准列表',
           },
         },
         {
@@ -235,7 +234,7 @@ const page: AppRouteModule = {
           name: 'ListCardPage',
           component: () => import('@/views/demo/page/list/card/index.vue'),
           meta: {
-            title: t('routes.page.listCard'),
+            title: '卡片列表',
           },
         },
         {
@@ -243,7 +242,7 @@ const page: AppRouteModule = {
           name: 'ListSearchPage',
           component: () => import('@/views/demo/page/list/search/index.vue'),
           meta: {
-            title: t('routes.page.listSearch'),
+            title: '搜索列表',
           },
         },
       ],
