@@ -1,3 +1,10 @@
+## [0.3.1](https://github.com/crlang/vue-tony-admin/compare/0.3.0...0.3.1) (2022-04-22)
+
+### Bug Fixes
+
+- 移除默认 svg 大小 ([3e4c048](https://github.com/crlang/vue-tony-admin/commit/3e4c048cce6b4f6604a073cbeae69c7446525e95))
+- 移除国际化支持 ([6878421](https://github.com/crlang/vue-tony-admin/commit/6878421b5bf3d269bd569895811ad4727daa760a))
+
 # [0.3.0](https://github.com/crlang/vue-tony-admin/compare/0.2.2...0.3.0) (2022-04-20)
 
 ### Bug Fixes
