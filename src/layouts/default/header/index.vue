@@ -33,12 +33,6 @@
         v-if="getShowFullScreen"
         :class="`${prefixCls}-action__item`" />
 
-      <AppLocalePicker
-        v-if="getShowLocalePicker"
-        :reload="true"
-        :showText="false"
-        :class="`${prefixCls}-action__item`" />
-
       <UserDropDown :itemClass="`${prefixCls}-action__item`" />
 
       <SettingDrawer
@@ -61,14 +55,12 @@ import { useRootSetting } from '@/hooks/setting/useRootSetting'
 
 import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum'
 import { SettingButtonPositionEnum } from '@/enums/appEnum'
-import { AppLocalePicker } from '@/components/Application'
 
 import { UserDropDown, LayoutBreadcrumb, FullScreen, Notify, ErrorAction, AppSearch } from './components'
 import { useAppInject } from '@/hooks/web/useAppInject'
 import { useDesign } from '@/hooks/web/useDesign'
 
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
-import { useLocale } from '@/locales/useLocale'
 
 export default defineComponent({
   name: 'LayoutHeader',
@@ -78,7 +70,6 @@ export default defineComponent({
     LayoutTrigger,
     LayoutBreadcrumb,
     UserDropDown,
-    AppLocalePicker,
     FullScreen,
     Notify,
     AppSearch,
@@ -106,8 +97,6 @@ export default defineComponent({
       getShowHeader,
       getShowSearch,
     } = useHeaderSetting()
-
-    const { getShowLocalePicker } = useLocale()
 
     const { getIsMobile } = useAppInject()
 
@@ -164,7 +153,6 @@ export default defineComponent({
       getSplit,
       getMenuMode,
       getShowTopMenu,
-      getShowLocalePicker,
       getShowFullScreen,
       getShowNotice,
       getUseErrorHandle,

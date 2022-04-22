@@ -20,11 +20,6 @@
       <el-col :span="10">
         <div :class="`${prefixCls}__right`">
           <div :class="`${prefixCls}__mode`">
-            <AppLocalePicker
-              class="mr-2"
-              size="24"
-              :showText="false"
-              v-if="!sessionTimeout && showLocale" />
             <AppDarkModeToggle v-if="!sessionTimeout" />
           </div>
 
@@ -65,13 +60,12 @@
 import { computed, defineComponent, ref, unref, watch } from 'vue'
 import { ElRow, ElCol, ElTabs, ElTabPane } from 'element-plus'
 import { AppLogo } from '@/components/Application'
-import { AppLocalePicker, AppDarkModeToggle } from '@/components/Application'
+import { AppDarkModeToggle } from '@/components/Application'
 import LoginForm from './LoginForm.vue'
 import ForgetPasswordForm from './ForgetPasswordForm.vue'
 import RegisterForm from './RegisterForm.vue'
 import MobileForm from './MobileForm.vue'
 import { useDesign } from '@/hooks/web/useDesign'
-import { useLocaleStore } from '@/store/modules/locale'
 import { useLoginState, LoginStateEnum } from './useLogin'
 import { useGlobSetting } from '@/hooks/setting'
 
@@ -86,7 +80,6 @@ export default defineComponent({
     RegisterForm,
     MobileForm,
     AppLogo,
-    AppLocalePicker,
     AppDarkModeToggle,
   },
   props: {
@@ -96,8 +89,6 @@ export default defineComponent({
   },
   setup() {
     const { prefixCls } = useDesign('login')
-    const localeStore = useLocaleStore()
-    const showLocale = localeStore.getShowPicker
     const { setLoginState, getLoginState } = useLoginState()
     const { title } = useGlobSetting()
     const activeName = ref('account')
@@ -119,7 +110,6 @@ export default defineComponent({
     return {
       prefixCls,
       title,
-      showLocale,
       setLoginState,
       getShow,
       LoginStateEnum,

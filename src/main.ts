@@ -10,7 +10,6 @@ import { router, setupRouter } from '@/router'
 import { setupRouterGuard } from '@/router/guard'
 import { setupStore } from '@/store'
 import { setupGlobDirectives } from '@/directives'
-import { setupI18n } from '@/locales/setupI18n'
 import { registerGlobComp } from '@/components/registerGlobComp'
 import '@/design/util.scss'
 import '@/design/index.scss'
@@ -27,10 +26,6 @@ async function bootstrap() {
 
   // Register global components
   registerGlobComp(app)
-
-  // Multilingual configuration
-  // Asynchronous case: language files may be obtained from the server side
-  await setupI18n(app)
 
   // Configure routing
   setupRouter(app)

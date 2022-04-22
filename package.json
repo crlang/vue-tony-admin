@@ -50,7 +50,6 @@
     "print-js": "^1.6.0",
     "resize-observer-polyfill": "^1.5.1",
     "vue": "^3.2.26",
-    "vue-i18n": "^9.2.0-beta.26",
     "vue-router": "^4.0.12",
     "vue-types": "^4.1.1"
   },
@@ -171,8 +170,6 @@
         "element-plus/es/components/dropdown/src/dropdown",
         "element-plus/es/components/table/src/table-column/defaults",
         "element-plus/es/components/table/src/table/defaults",
-        "element-plus/lib/locale/lang/en",
-        "element-plus/lib/locale/lang/zh-cn",
         "intro.js",
         "lodash-es",
         "nprogress",
@@ -182,7 +179,6 @@
         "qs",
         "resize-observer-polyfill",
         "vue",
-        "vue-i18n",
         "vue-router",
         "vue-types"
       ]

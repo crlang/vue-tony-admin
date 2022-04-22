@@ -10,8 +10,6 @@ import {
 
 import { CacheTypeEnum } from '@/enums/cacheEnum'
 
-export type LocaleType = 'zh_CN' | 'en' | 'ru' | 'ja' | 'ko';
-
 export interface MenuSetting {
   bgColor: string;
   fixed: boolean;
@@ -58,16 +56,6 @@ export interface HeaderSetting {
   // Show message center button
   showNotice: boolean;
   showSearch: boolean;
-}
-
-export interface LocaleSetting {
-  showPicker: boolean;
-  // Current language
-  locale: LocaleType;
-  // default language
-  fallback: LocaleType;
-  // available Locales
-  availableLocales: LocaleType[];
 }
 
 export interface TransitionSetting {

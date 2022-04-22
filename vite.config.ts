@@ -36,10 +36,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     root,
     resolve: {
       alias: [
-        {
-          find: 'vue-i18n',
-          replacement: 'vue-i18n/dist/vue-i18n.cjs.js',
-        },
         // @/xxxx => src/xxxx
         {
           find: /@\//,
@@ -102,7 +98,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       },
     },
     define: {
-      // setting vue-i18-next
       // Suppress warning
       __INTLIFY_PROD_DEVTOOLS__: false,
       __APP_INFO__: JSON.stringify(__APP_INFO__),
@@ -127,11 +122,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       // @iconify/iconify: The dependency is dynamically and virtually loaded by @purge-icons/generated, so it needs to be specified explicitly
       include: [
         '@iconify/iconify',
-        'element-plus/es/locale/lang/zh-cn',
-        'dayjs/locale/zh-cn',
-
-        'element-plus/es/locale/lang/en',
-        'dayjs/locale/en',
       ],
       exclude: ['vue-demi'],
     },

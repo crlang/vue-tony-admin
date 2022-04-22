@@ -64,14 +64,14 @@ export default defineComponent({
       return unref(statusMapRef).get(unref(getStatus)) as MapValue
     })
 
-    const backLoginI18n = '返回登录'
-    const backHomeI18n = '返回首页'
+    const backLoginText = '返回登录'
+    const backHomeText = '返回首页'
 
     unref(statusMapRef).set(ExceptionEnum.PAGE_NOT_ACCESS, {
       title: '403',
       status: `${ExceptionEnum.PAGE_NOT_ACCESS}`,
       subTitle: '抱歉，您无权访问此页面',
-      btnText: props.full ? backLoginI18n : backHomeI18n,
+      btnText: props.full ? backLoginText : backHomeText,
       handler: () => (props.full ? go(PageEnum.BASE_LOGIN) : go()),
       icon: svg403,
     })
@@ -80,7 +80,7 @@ export default defineComponent({
       title: '404',
       status: `${ExceptionEnum.PAGE_NOT_FOUND}`,
       subTitle: '抱歉，您访问的页面不存在',
-      btnText: props.full ? backLoginI18n : backHomeI18n,
+      btnText: props.full ? backLoginText : backHomeText,
       handler: () => (props.full ? go(PageEnum.BASE_LOGIN) : go()),
       icon: svg404,
     })
@@ -89,7 +89,7 @@ export default defineComponent({
       title: '500',
       status: `${ExceptionEnum.ERROR}`,
       subTitle: '抱歉，服务器报告错误',
-      btnText: backHomeI18n,
+      btnText: backHomeText,
       handler: () => go(),
       icon: svg500,
     })
