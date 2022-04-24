@@ -236,7 +236,7 @@ export function useFormEvents({
     if (!formEl) return
     try {
       await validate()
-      const res = handleFormValues(toRaw(formEl?.model))
+      const res = handleFormValues(getFieldsValue())
       emit('submit', res)
     } catch (error) {
       console.error(JSON.stringify(error))
