@@ -1,4 +1,4 @@
-import { getAllRoleList, isAccountExist } from '@/api/demo/system'
+import { isAccountExist } from '@/api/demo/system'
 import { FormSchema } from '@/components/Table'
 
 export const searchFormSchema: FormSchema[] = [
@@ -54,12 +54,8 @@ export const accountFormSchema: FormSchema[] = [
   {
     label: '角色',
     field: 'role',
-    component: 'ApiSelect',
-    componentProps: {
-      api: getAllRoleList,
-      labelField: 'roleName',
-      valueField: 'roleValue',
-    },
+    component: 'ElSelect',
+    slot: 'role',
     required: true,
   },
   {

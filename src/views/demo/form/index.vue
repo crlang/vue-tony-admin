@@ -39,6 +39,7 @@
               :value="item.value" />
           </el-select>
         </template>
+
         <template #localSearch="{ model, field }">
           <ApiSelect
             :api="optionsListApi"
@@ -48,6 +49,7 @@
             labelField="name"
             valueField="id" />
         </template>
+
         <template #remoteSearch="{ model, field }">
           <ApiSelect
             :api="optionsListApi"
@@ -68,10 +70,11 @@
 <script lang="ts">
 import { computed, defineComponent, unref, ref } from 'vue'
 import { ElSelect, ElOption } from 'element-plus'
-import { BasicForm, ApiSelect } from '@/components/Form'
+import { BasicForm } from '@/components/Form'
 import { CollapseContainer } from '@/components/Container'
 import { useMessage } from '@/hooks/web/useMessage'
 import { PageWrapper } from '@/components/Page'
+import { ApiSelect } from '@/components/ApiSelect'
 
 import { optionsListApi } from '@/api/demo/select'
 import { cloneDeep } from 'lodash-es'

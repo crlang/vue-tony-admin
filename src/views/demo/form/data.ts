@@ -1,5 +1,4 @@
 import { FormSchema } from '@/components/Form'
-import { optionsListApi } from '@/api/demo/select'
 
 export const provincesOptions = [
   {
@@ -62,7 +61,6 @@ export const basicSchemas: FormSchema[] = [
     field: 'field1',
     component: 'ElInput',
     label: '字段1',
-    required: true,
     colProps: {
       span: 8,
     },
@@ -286,42 +284,10 @@ export const basicSchemas: FormSchema[] = [
     label: '远程下拉演示',
   },
   {
-    field: 'field30',
-    component: 'ApiSelect',
-    label: '懒加载远程下拉',
-    required: true,
-    componentProps: {
-      // more details see /src/components/Form/src/components/ApiSelect.vue
-      api: optionsListApi,
-      params: {
-        id: 1,
-      },
-      resultField: 'list',
-      // use name as label
-      labelField: 'name',
-      // use id as value
-      valueField: 'id',
-      // not request untill to select
-      immediate: false,
-      onChange: (e) => {
-        console.log('selected:', e)
-      },
-      // atfer request callback
-      onOptionsChange: (options) => {
-        console.log('get options', options.length, options)
-      },
-    },
-    colProps: {
-      span: 8,
-    },
-    defaultValue: '0',
-  },
-  {
     field: 'field31',
-    component: 'ApiSelect',
-    label: '下拉本地搜索',
+    component: 'ElSelect',
+    label: '懒加载远程下拉',
     helpMessage: ['ApiSelect组件', '远程数据源本地搜索', '只发起一次请求获取所有选项'],
-    required: true,
     slot: 'localSearch',
     colProps: {
       span: 8,
@@ -330,10 +296,9 @@ export const basicSchemas: FormSchema[] = [
   },
   {
     field: 'field32',
-    component: 'ApiSelect',
+    component: 'ElSelect',
     label: '下拉远程搜索',
     helpMessage: ['ApiSelect组件', '将关键词发送到接口进行远程搜索'],
-    required: true,
     slot: 'remoteSearch',
     colProps: {
       span: 8,
@@ -423,7 +388,6 @@ export const basicSchemas: FormSchema[] = [
     field: 'field21',
     component: 'ElInputNumber',
     label: '字段21',
-    required: true,
     colProps: {
       span: 8,
     },

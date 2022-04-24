@@ -4,7 +4,16 @@
     @register="registerModal"
     :title="getTitle"
     @ok="handleSubmit">
-    <BasicForm @register="registerForm" />
+    <BasicForm @register="registerForm">
+      <template #localSearch="{ model, field }">
+        <ApiSelect
+          :api="getAllRoleList"
+          filterable
+          v-model:modelValue="model[field]"
+          labelField="roleName"
+          valueField="roleValue" />
+      </template>
+    </BasicForm>
   </BasicModal>
 </template>
 
@@ -12,11 +21,14 @@
 import { defineComponent, ref, computed, unref } from 'vue'
 import { BasicModal, useModalInner } from '@/components/Modal'
 import { BasicForm, useForm } from '@/components/Form'
+import { ApiSelect } from '@/components/ApiSelect'
+
+import { getAllRoleList } from '@/api/demo/system'
 import { accountFormSchema } from './data'
 
 export default defineComponent({
   name: 'AccountModal',
-  components: { BasicModal, BasicForm },
+  components: { BasicModal, BasicForm, ApiSelect },
   emits: ['success', 'register'],
   setup(_, { emit }) {
     const isUpdate = ref(true)
@@ -66,7 +78,7 @@ export default defineComponent({
       }
     }
 
-    return { registerModal, registerForm, getTitle, handleSubmit }
+    return { registerModal, registerForm, getTitle, handleSubmit, getAllRoleList }
   },
 })
 </script>

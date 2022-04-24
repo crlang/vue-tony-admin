@@ -20,7 +20,6 @@ import {
   ElInputNumber
 } from 'element-plus'
 
-import ApiSelect from './components/ApiSelect.vue'
 import ElDatePicker from './components/DatePicker.vue'
 import TimePicker from './components/TimePicker.vue'
 import { BasicUpload } from '@/components/Upload'
@@ -34,7 +33,6 @@ componentMap.set('StrengthMeter', StrengthMeter)
 componentMap.set('IconPicker', IconPicker)
 componentMap.set('InputCountDown', CountdownInput)
 componentMap.set('Upload', BasicUpload)
-componentMap.set('ApiSelect', ApiSelect)
 
 // Element plus
 componentMap.set('ElInput', ElInput)
