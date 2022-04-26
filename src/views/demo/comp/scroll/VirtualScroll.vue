@@ -2,22 +2,22 @@
   <PageWrapper title="虚拟滚动示例">
     <el-divider>基础滚动示例</el-divider>
     <div class="virtual-scroll-demo-wrap">
-      <VScroll
+      <VirtualScroll
         :itemHeight="60"
-        :items="data"
+        :listData="data"
         :height="300">
-        <template #default="{ item }">
+        <template #default="{ item, index}">
           <div class="virtual-scroll-demo__item">
-            {{ item.title }}
+            {{ index }} - {{ item.title }}
           </div>
         </template>
-      </VScroll>
+      </VirtualScroll>
     </div>
 
     <el-divider>即使不可见，也预先加载50条数据，防止空白</el-divider>
     <div class="virtual-scroll-demo-wrap">
-      <VScroll
-        :items="data"
+      <VirtualScroll
+        :listData="data"
         :itemHeight="60"
         :height="300"
         :bench="50">
@@ -26,7 +26,7 @@
             {{ item.title }}
           </div>
         </template>
-      </VScroll>
+      </VirtualScroll>
     </div>
   </PageWrapper>
 </template>
@@ -34,12 +34,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElDivider } from 'element-plus'
-import { VScroll } from '@/components/VirtualScroll'
+import { VirtualScroll } from '@/components/VirtualScroll'
 import { PageWrapper } from '@/components/Page'
 import { data } from './data'
 
 export default defineComponent({
-  components: { ElDivider, VScroll, PageWrapper },
+  components: { ElDivider, VirtualScroll, PageWrapper },
   setup() {
     return { data }
   },
