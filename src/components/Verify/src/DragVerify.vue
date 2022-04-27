@@ -2,17 +2,15 @@
 import type { CSSProperties, Ref } from 'vue'
 
 import { defineComponent, ref, computed, unref, reactive, watch, watchEffect } from 'vue'
-import { useTimeoutFn } from '@/hooks/core/useTimeout'
-import { useEventListener } from '@/hooks/event/useEventListener'
 import { basicProps } from './props'
 import { getSlot } from '@/utils/helper/tsxHelper'
-import { Check, DArrowRight } from '@element-plus/icons'
+import { SvgIcon } from '@/components/Icon'
 import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'BaseDargVerify',
   props: basicProps,
-  emits: ['success', 'update:value', 'change', 'start', 'move', 'end'],
+  emits: ['success', 'update:modelValue', 'change', 'start', 'move', 'end'],
   setup(props, { emit, slots, expose }) {
     const state = reactive({
       isMoving: false,
@@ -29,19 +27,21 @@ export default defineComponent({
     const actionElRef = ref(null) as Ref<HTMLDivElement | null>
     const { prefixCls } = useDesign('basic-drag-verify')
 
-    useEventListener({
-      el: document,
-      name: 'mouseup',
-      listener: () => {
-        if (state.isMoving) {
-          resume()
-        }
-      },
+    // 监听鼠标松开，重置拖动状态
+    document.addEventListener('mouseup', () => {
+      if (state.isMoving) {
+        resume()
+      }
     })
 
+    /**
+     * 拖动点样式
+     *
+     *  Drag action style
+     */
     const getActionStyleRef = computed(() => {
       const { height, actionStyle } = props
-      const h = `${parseInt(height as string)}px`
+      const h = `${height}px`
       return {
         left: 0,
         width: h,
@@ -49,11 +49,15 @@ export default defineComponent({
         ...actionStyle,
       }
     })
-
+    /**
+     * 拖动框样式
+     *
+     * Drag box style
+     */
     const getWrapStyleRef = computed(() => {
       const { height, width, circle, wrapStyle } = props
-      const h = parseInt(height as string)
-      const w = `${parseInt(width as string)}px`
+      const h = height
+      const w = `${width}px`
       return {
         width: w,
         height: `${h}px`,
@@ -62,21 +66,29 @@ export default defineComponent({
         ...wrapStyle,
       }
     })
-
+    /**
+     * 拖动条样式
+     *
+     * Drag bar style
+     */
     const getBarStyleRef = computed(() => {
       const { height, circle, barStyle } = props
-      const h = parseInt(height as string)
+      const h = height
       return {
         height: `${h}px`,
         borderRadius: circle ? h / 2 + 'px 0 0 ' + h / 2 + 'px' : 0,
         ...barStyle,
       }
     })
-
+    /**
+     * 拖动容器样式
+     *
+     * Drag content style
+     */
     const getContentStyleRef = computed(() => {
       const { height, width, contentStyle } = props
-      const h = `${parseInt(height as string)}px`
-      const w = `${parseInt(width as string)}px`
+      const h = `${height}px`
+      const w = `${width}px`
 
       return {
         height: h,
@@ -89,43 +101,66 @@ export default defineComponent({
       () => state.isPassing,
       (isPassing) => {
         if (isPassing) {
+          // 拖动成功回调
           const { startTime, endTime } = state
           const time = (endTime - startTime) / 1000
           emit('success', { isPassing, time: time.toFixed(1) })
-          emit('update:value', isPassing)
+          emit('update:modelValue', isPassing)
           emit('change', isPassing)
         }
       }
     )
 
     watchEffect(() => {
-      state.isPassing = !!props.value
+      state.isPassing = !!props.modelValue
     })
 
+    /**
+     * 获取拖动的页面距离 x
+     *
+     * Get the dragged page x
+     */
     function getEventPageX(e: MouseEvent | TouchEvent) {
       return (e as MouseEvent).pageX || (e as TouchEvent).touches[0].pageX
     }
 
+    /**
+     * 开始拖动
+     *
+     * Drag start
+     */
     function handleDragStart(e: MouseEvent | TouchEvent) {
       if (state.isPassing) {
         return
       }
       const actionEl = unref(actionElRef)
       if (!actionEl) return
+
+      // 拖动开始
       emit('start', e)
       state.moveDistance = getEventPageX(e) - parseInt(actionEl.style.left.replace('px', ''), 10)
       state.startTime = new Date().getTime()
       state.isMoving = true
     }
 
+    /**
+     * 获取拖动距离
+     *
+     * Get the drag distance
+     */
     function getOffset(el: HTMLDivElement) {
       const actionWidth = parseInt(el.style.width)
       const { width } = props
-      const widthNum = parseInt(width as string)
+      const widthNum = width
       const offset = widthNum - actionWidth - 6
       return { offset, widthNum, actionWidth }
     }
 
+    /**
+     * 拖动中处理
+     *
+     * Handling while dragging
+     */
     function handleDragMoving(e: MouseEvent | TouchEvent) {
       const { isMoving, moveDistance } = state
       if (isMoving) {
@@ -153,6 +188,11 @@ export default defineComponent({
       }
     }
 
+    /**
+     * 处理拖动结束
+     *
+     * Handle drag end
+     */
     function handleDragOver(e: MouseEvent | TouchEvent) {
       const { isMoving, isPassing, moveDistance } = state
       if (isMoving && !isPassing) {
@@ -167,7 +207,7 @@ export default defineComponent({
             resume()
           } else {
             setTimeout(() => {
-              if (!props.value) {
+              if (!props.modelValue) {
                 resume()
               } else {
                 const contentEl = unref(contentElRef)
@@ -186,16 +226,28 @@ export default defineComponent({
       }
     }
 
+    /**
+     * 检查成功状态
+     *
+     * Check success status
+     */
     function checkPass() {
+      // slot模式直接重置拖动状态
       if (props.isSlot) {
         resume()
         return
       }
+
       state.endTime = new Date().getTime()
       state.isPassing = true
       state.isMoving = false
     }
 
+    /**
+     * 重置拖动状态
+     *
+     * Reset drag state
+     */
     function resume() {
       state.isMoving = false
       state.isPassing = false
@@ -207,8 +259,9 @@ export default defineComponent({
       const barEl = unref(barElRef)
       const contentEl = unref(contentElRef)
       if (!actionEl || !barEl || !contentEl) return
+
       state.toLeft = true
-      useTimeoutFn(() => {
+      setTimeout(() => {
         state.toLeft = false
         actionEl.style.left = '0'
         barEl.style.width = '0'
@@ -216,11 +269,18 @@ export default defineComponent({
       contentEl.style.width = unref(getContentStyleRef).width as string
     }
 
+    // 暴露重置方法给外界
+    // Expose the resume method to the outside
     expose({
       resume,
     })
 
     return () => {
+      /**
+       * 渲染拖动条
+       *
+       * Render drag bar
+       */
       const renderBar = () => {
         const cls = [`${prefixCls}-bar`]
         if (state.toLeft) {
@@ -229,6 +289,11 @@ export default defineComponent({
         return <div class={cls} ref={barElRef} style={unref(getBarStyleRef)} />
       }
 
+      /**
+       * 渲染拖动容器
+       *
+       * Render the drag container
+       */
       const renderContent = () => {
         const cls = [`${prefixCls}-content`]
         const { isPassing } = state
@@ -242,7 +307,11 @@ export default defineComponent({
           </div>
         )
       }
-
+      /**
+       * 渲染拖动点
+       *
+       * Render drag action
+       */
       const renderAction = () => {
         const cls = [`${prefixCls}-action`]
         const { toLeft, isPassing } = state
@@ -256,12 +325,7 @@ export default defineComponent({
             onTouchstart={handleDragStart}
             style={unref(getActionStyleRef)}
             ref={actionElRef} >
-            {getSlot(slots, 'actionIcon', isPassing) ||
-                (isPassing ? (
-                  <Check class={`${prefixCls}-action__icon`} />
-                ) : (
-                  <DArrowRight class={`${prefixCls}-action__icon`} />
-                ))}
+            {getSlot(slots, 'actionIcon', isPassing) || (<SvgIcon class={`${prefixCls}-action__icon`} name={`${isPassing ? 'select' : 'arrow-double-right'}`} />)}
           </div>
         )
       }
@@ -295,9 +359,10 @@ $prefix-cls: '#{$tonyname}-basic-drag-verify';
   position: relative;
   overflow: hidden;
   text-align: center;
-  background-color: rgb(238, 238, 238);
-  border: 1px solid #ddd;
+  background-color: var(--background-primary-color);
+  border: 1px solid var(--border-color);
   border-radius: var(--varify-radius);
+  user-select: none;
 
   &-bar {
     position: absolute;
@@ -317,7 +382,7 @@ $prefix-cls: '#{$tonyname}-basic-drag-verify';
     top: 0;
     font-size: 12px;
     text-size-adjust: none;
-    background-color: -webkit-gradient(
+    background-image: -webkit-gradient(
       linear,
       left top,
       right top,
@@ -348,7 +413,7 @@ $prefix-cls: '#{$tonyname}-basic-drag-verify';
     justify-content: center;
     align-items: center;
     cursor: move;
-    background-color: var(--white-color);
+    background-color: var(--background-secondary-color);
     border-radius: var(--varify-radius);
 
     &__icon {
@@ -372,5 +437,12 @@ $prefix-cls: '#{$tonyname}-basic-drag-verify';
   100% {
     background-position: 120px 0;
   }
+}
+
+html[data-theme='dark'] {
+  // .#{$prefix-cls} {
+  //   background-color: #0c0c0c;
+  //   border-color: #777;
+  // }
 }
 </style>

@@ -12,7 +12,7 @@ export default defineComponent({
   name: 'ImgRotateDragVerify',
   inheritAttrs: false,
   props: rotateProps,
-  emits: ['success', 'change', 'update:value'],
+  emits: ['success', 'change', 'update:modelValue'],
   setup(props, { emit, attrs, expose }) {
     const basicRef = ref<Nullable<DragVerifyActionType>>(null)
     const state = reactive({
@@ -36,16 +36,16 @@ export default defineComponent({
           const time = (endTime - startTime) / 1000
           emit('success', { isPassing, time: time.toFixed(1) })
           emit('change', isPassing)
-          emit('update:value', isPassing)
+          emit('update:modelValue', isPassing)
         }
       }
     )
 
     const getImgWrapStyleRef = computed(() => {
-      const { imgWrapStyle, imgWidth } = props
+      const { imgWrapStyle, imgSize } = props
       return {
-        width: `${imgWidth}px`,
-        height: `${imgWidth}px`,
+        width: `${imgSize}px`,
+        height: `${imgSize}px`,
         ...imgWrapStyle,
       }
     })
@@ -63,10 +63,10 @@ export default defineComponent({
 
     function handleDragBarMove(data: MoveData) {
       state.draged = true
-      const { imgWidth, height, maxDegree } = props
+      const { imgSize, height, maxDegree } = props
       const { moveX } = data
       const currentRotate = Math.ceil(
-        (moveX / (imgWidth! - parseInt(height as string))) * maxDegree! * unref(getFactorRef)
+        (moveX / (imgSize! - height)) * maxDegree! * unref(getFactorRef)
       )
       state.currentRotate = currentRotate
       state.imgStyle = hackCss('transform', `rotateZ(${state.randomRotate - currentRotate}deg)`)
@@ -132,7 +132,7 @@ export default defineComponent({
             <img
               src={src}
               onLoad={handleImgOnLoad}
-              width={parseInt(props.width as string)}
+              width={props.width}
               class={imgCls}
               style={state.imgStyle}
               onClick={() => {
@@ -157,7 +157,7 @@ export default defineComponent({
             onStart={handleStart}
             ref={basicRef}
             {...{ ...attrs, ...props }}
-            value={isPassing}
+            modelValue={isPassing}
             isSlot={true} />
         </div>
       )

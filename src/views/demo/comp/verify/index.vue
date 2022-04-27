@@ -1,15 +1,15 @@
 <template>
   <PageWrapper title="拖动校验示例">
-
-    <div class="flex p-4">
+    <div class="demo-verify-item">
       <BasicDragVerify
         ref="el1"
         isSlot
-        @success="handleSuccess" />
-      <el-button @click="handleBtnClick(el1)">还原</el-button>
+        :modelValue="verifyState"
+        @end="handleCustomSuccess" />
+      <el-button @click="handleBtnClick(el1,'el1')">还原</el-button>
     </div>
 
-    <div class="flex p-4">
+    <div class="demo-verify-item">
       <BasicDragVerify
         ref="el2"
         @success="handleSuccess"
@@ -17,7 +17,7 @@
       <el-button @click="handleBtnClick(el2)">还原</el-button>
     </div>
 
-    <div class="flex p-4">
+    <div class="demo-verify-item">
       <BasicDragVerify
         ref="el3"
         @success="handleSuccess"
@@ -29,29 +29,28 @@
       <el-button @click="handleBtnClick(el3)">还原</el-button>
     </div>
 
-    <div class="flex p-4">
+    <div class="demo-verify-item">
       <BasicDragVerify
         ref="el4"
         @success="handleSuccess">
         <template #actionIcon="isPassing">
-          <template v-if="isPassing"><Coffee style="width: 1.45em;" /></template>
-          <template v-else><ArrowRight style="width: 1.45em;" /></template>
+          <SvgIcon
+            :name="isPassing ? 'moon' : 'sun'"
+            size="24" />
         </template>
       </BasicDragVerify>
       <el-button @click="handleBtnClick(el4)">还原</el-button>
     </div>
 
-    <div class="flex p-4">
+    <div class="demo-verify-item">
       <BasicDragVerify
         ref="el5"
         @success="handleSuccess">
         <template #text="isPassing">
-          <template v-if="isPassing">
-            <div class="demo-custom-verify is-actived"><Coffee /> 验证成功</div>
-          </template>
-          <template v-else>
-            <div class="demo-custom-verify">请拖动 <ArrowRight /></div>
-          </template>
+          <SvgIcon
+            :name="isPassing ? 'moon' : 'sun'"
+            class="mt-2"
+            size="24" />
         </template>
       </BasicDragVerify>
       <el-button @click="handleBtnClick(el5)">还原</el-button>
@@ -66,38 +65,52 @@ import { defineComponent, ref } from 'vue'
 import { ElButton } from 'element-plus'
 import { BasicDragVerify } from '@/components/Verify'
 import { useMessage } from '@/hooks/web/useMessage'
-import { Coffee, ArrowRight } from '@element-plus/icons'
 import { PageWrapper } from '@/components/Page'
+import { SvgIcon } from '@/components/Icon'
 
 export default defineComponent({
-  components: { ElButton, BasicDragVerify, Coffee, ArrowRight, PageWrapper },
+  components: { ElButton, BasicDragVerify, SvgIcon, PageWrapper },
   setup() {
-    const { createMessage } = useMessage()
+    const verifyState = ref(false)
     const el1 = ref<Nullable<DragVerifyActionType>>(null)
     const el2 = ref<Nullable<DragVerifyActionType>>(null)
     const el3 = ref<Nullable<DragVerifyActionType>>(null)
     const el4 = ref<Nullable<DragVerifyActionType>>(null)
     const el5 = ref<Nullable<DragVerifyActionType>>(null)
 
+    const { createMessage } = useMessage()
+
     function handleSuccess(data: PassingData) {
       const { time } = data
       createMessage.success(`校验成功,耗时${time}秒`)
     }
 
-    function handleBtnClick(elRef: Nullable<DragVerifyActionType>) {
+    function handleCustomSuccess(data: PassingData) {
+      console.log('data', data)
+      const { time } = data
+      verifyState.value = true
+      createMessage.success(`自定义校验成功,耗时${time}秒`)
+    }
+
+    function handleBtnClick(elRef: Nullable<DragVerifyActionType>, name = '') {
       if (!elRef) {
         return
+      }
+      if (name === 'el1') {
+        verifyState.value = false
       }
       elRef.resume()
     }
 
     return {
-      handleSuccess,
       el1,
       el2,
       el3,
       el4,
       el5,
+      verifyState,
+      handleCustomSuccess,
+      handleSuccess,
       handleBtnClick,
     }
   },
@@ -105,20 +118,30 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-  .demo-custom-verify {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.demo-verify-item {
+  display: flex;
+  margin-bottom: 24px;
 
-    > svg {
-      width: 1.3em;
-      height: 1.5em;
-      margin: 0 4px;
-    }
-
-    &.is-actived {
-      color: #fff;
-      -webkit-text-fill-color: #fff;
-    }
+  .el-button {
+    height: 40px;
+    margin-left: 12px;
   }
+}
+
+.demo-custom-verify {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > svg {
+    width: 1.3em;
+    height: 1.5em;
+    margin: 0 4px;
+  }
+
+  &.is-actived {
+    color: #fff;
+    -webkit-text-fill-color: #fff;
+  }
+}
 </style>

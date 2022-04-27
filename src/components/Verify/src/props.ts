@@ -2,27 +2,35 @@ import { CSSProperties } from 'vue'
 
 export const basicProps = {
   /**
-   * Validate value
+   * 绑定的值
+   *
+   * Bind value
    */
-  value: {
+  modelValue: {
     type: Boolean,
     default: false,
   },
   /**
-   * If it is in slot mode, the drag will not be verified successfully, you need to manually control the success or failure
+   * 如果是slot模式，需要手动设置 modelValue 为 true/false
+   *
+   * If it is in slot mode, you need to manually set modelValue to true/false
    */
   isSlot: {
     type: Boolean,
     default: false,
   },
   /**
-   * Drag the hint text
+   * 拖动默认文本
+   *
+   * Drag default text
    */
   text: {
     type: String,
-    default: '	请按住滑块拖动',
+    default: '请按住滑块拖动',
   },
   /**
+   * 拖动成功文本
+   *
    * Drag success text
    */
   successText: {
@@ -30,49 +38,63 @@ export const basicProps = {
     default: '验证通过',
   },
   /**
-   * Drag bar height
+   * 拖动盒子高度
+   *
+   * Drag box height
    */
   height: {
-    type: [Number, String] as PropType<string | number>,
+    type: Number,
     default: 40,
   },
   /**
-   * Drag bar width
+   * 拖动盒子宽度
+   *
+   * Drag box width
    */
   width: {
-    type: [Number, String] as PropType<string | number>,
+    type: Number,
     default: 220,
   },
   /**
-   * Whether to round the drag bar
+   * 是否使用圆角样式
+   *
+   * Whether to use the rounded corner style
    */
   circle: {
     type: Boolean,
     default: false,
   },
   /**
-   * Wrap container style
+   * 拖动盒子样式
+   *
+   * Drag box style
    */
   wrapStyle: {
     type: Object as PropType<CSSProperties>,
     default: {},
   },
   /**
-   * Content container style
+   * 拖动容器样式
+   *
+   * Drag container style
    */
   contentStyle: {
     type: Object as PropType<CSSProperties>,
     default: {},
   },
   /**
-   * Bar container style
+   * 拖动条样式
+   *
+   * Drag bar style
    */
   barStyle: {
     type: Object as PropType<CSSProperties>,
     default: {},
   },
   /**
-   * Action container style
+   * 拖动点样式
+   *
+   * Drag action style
    */
   actionStyle: {
     type: Object as PropType<CSSProperties>,
@@ -83,19 +105,25 @@ export const basicProps = {
 export const rotateProps = {
   ...basicProps,
   /**
-   * Verified image
+   * 图片地址
+   *
+   * Image src
    */
   src: {
     type: String,
   },
   /**
+   * 图片大小
+   *
    * Image size
    */
-  imgWidth: {
+  imgSize: {
     type: Number,
     default: 260,
   },
   /**
+   * 图片框样式
+   *
    * Picture style
    */
   imgWrapStyle: {
@@ -103,6 +131,8 @@ export const rotateProps = {
     default: {},
   },
   /**
+   * 最小转动角度
+   *
    * Minimum rotation angle
    */
   minDegree: {
@@ -110,6 +140,8 @@ export const rotateProps = {
     default: 90,
   },
   /**
+   * 最大转动角度
+   *
    * Maximum rotation angle
    */
   maxDegree: {
@@ -117,6 +149,8 @@ export const rotateProps = {
     default: 270,
   },
   /**
+   * 旋转校对角度，越小越难成功
+   *
    * Rotate the proofreading angle, the smaller it is, the harder it is to succeed
    */
   diffDegree: {
