@@ -1,6 +1,5 @@
 
 export type ComponentType =
-  | 'StrengthMeter'
   | 'IconPicker'
   | 'InputCountDown'
   | 'Upload'

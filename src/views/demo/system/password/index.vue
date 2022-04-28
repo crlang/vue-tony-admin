@@ -8,7 +8,11 @@
       <BasicForm
         @register="register"
         @submit="handleSubmit"
-        @reset="resetFields" />
+        @reset="resetFields">
+        <template #newpassword="{ model, field }">
+          <StrengthMeter v-model:modelValue="model[field]" />
+        </template>
+      </BasicForm>
     </CollapseContainer>
   </PageWrapper>
 </template>
@@ -18,13 +22,14 @@ import { defineComponent } from 'vue'
 import { PageWrapper } from '@/components/Page'
 import { BasicForm, useForm } from '@/components/Form'
 import { CollapseContainer } from '@/components/Container'
+import { StrengthMeter } from '@/components/StrengthMeter'
+import { useMessage } from '@/hooks/web/useMessage'
 
 import { formSchema } from './data'
-import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
   name: 'ChangePassword',
-  components: { BasicForm, PageWrapper, CollapseContainer },
+  components: { BasicForm, PageWrapper, CollapseContainer, StrengthMeter },
   setup() {
     const { createMessage } = useMessage()
     const [register, { validate, resetFields, getFieldsValue }] = useForm({

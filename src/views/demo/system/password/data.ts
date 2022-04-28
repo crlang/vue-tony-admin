@@ -13,7 +13,8 @@ export const formSchema: FormSchema[] = [
   {
     field: 'passwordNew',
     label: '新密码',
-    component: 'StrengthMeter',
+    component: 'ElInput',
+    slot: 'newpassword',
     componentProps: {
       placeholder: '新密码',
     },

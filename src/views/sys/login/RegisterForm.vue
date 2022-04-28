@@ -50,11 +50,12 @@
 
 <script lang="ts" setup>
 import { reactive, ref, unref, computed } from 'vue'
-import { ElCheckbox, ElButton, ElForm, ElFormItem, ElInput } from 'element-plus'
+import { ElCheckbox, ElButton, ElForm, ElFormItem, ElInput, ElNotification } from 'element-plus'
+
 import { StrengthMeter } from '@/components/StrengthMeter'
 import { CountdownInput } from '@/components/CountDown'
+
 import { useLoginState, LoginStateEnum, useFormRules, useFormValid } from './useLogin'
-import { ElNotification } from 'element-plus'
 
 const { handleBackLogin, getLoginState } = useLoginState()
 

@@ -3,22 +3,26 @@
     title="密码强度校验组件"
     content-background>
     <ElAlert
-      title="默认"
-      class="my-6" />
+      title="默认，带输入框"
+      class="mt-10 mb-4" />
     <StrengthMeter />
+
+    <hr class="my-10" />
+
     <ElAlert
-      class="my-6"
-      title="隐藏 input" />
+      class="mt-10 mb-4"
+      title="隐藏输入框，只有强度提示条" />
     <StrengthMeter
       placeholder=""
       :show-input="false"
-      value="!@#qwe12345" />
+      modelValue="!@#qwe12345" />
   </PageWrapper>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElAlert } from 'element-plus'
+
 import { StrengthMeter } from '@/components/StrengthMeter'
 import { PageWrapper } from '@/components/Page'
 

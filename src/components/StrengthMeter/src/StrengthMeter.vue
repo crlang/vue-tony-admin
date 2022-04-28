@@ -5,9 +5,8 @@
       v-bind="$attrs"
       clearable
       show-password
-      v-model="innerValueRef"
-      :disabled="disabled"
-    />
+      v-model:modelValue="innerValueRef"
+      :disabled="disabled" />
     <div :class="`${prefixCls}-bar`">
       <div
         :class="`${prefixCls}-bar--fill`"
@@ -17,25 +16,51 @@
 </template>
 
 <script lang="ts">
+import type { ZxcvbnResult } from '@zxcvbn-ts/core'
+
 import { defineComponent, computed, ref, watch, unref, watchEffect } from 'vue'
 import { ElInput } from 'element-plus'
-import { zxcvbn, ZxcvbnResult } from '@zxcvbn-ts/core'
+import { zxcvbn } from '@zxcvbn-ts/core'
+
 import { useDesign } from '@/hooks/web/useDesign'
-import { propTypes } from '@/utils/propTypes'
 
 export default defineComponent({
   name: 'StrengthMeter',
   components: { ElInput },
+  inheritAttrs: false,
   props: {
-    value: propTypes.string,
-    showInput: propTypes.bool.def(true),
-    disabled: propTypes.bool,
+  /**
+   * 绑定的值(密码)
+   *
+   * Bind value
+   */
+    modelValue: String,
+    /**
+     * 是否显示输入框
+     *
+     * Whether to display the input box
+     */
+    showInput: {
+      type: Boolean,
+      default: true,
+    },
+    /**
+     * 是否禁用
+     *
+     * Whether to disable
+     */
+    disabled: Boolean,
   },
-  emits: ['score-change', 'change'],
+  emits: ['score-change', 'change', 'update:modelValue'],
   setup(props, { emit }) {
     const innerValueRef = ref<string>('')
     const { prefixCls } = useDesign('strength-meter')
 
+    /**
+     * 监听复杂度变化
+     *
+     * Monitor complexity changes
+     */
     const getPasswordStrength = computed(() => {
       const { disabled } = props
       if (disabled) return -1
@@ -47,12 +72,13 @@ export default defineComponent({
     })
 
     watchEffect(() => {
-      innerValueRef.value = props.value || ''
+      innerValueRef.value = props.modelValue || ''
     })
 
     watch(
       () => unref(innerValueRef),
       (val) => {
+        emit('update:modelValue', val)
         emit('change', val)
       }
     )
@@ -77,7 +103,7 @@ $prefix-cls: '#{$tonyname}-strength-meter';
     position: relative;
     height: 6px;
     margin: 10px auto 6px;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--border-color);
     border-radius: 6px;
 
     &::before,
@@ -88,10 +114,11 @@ $prefix-cls: '#{$tonyname}-strength-meter';
       width: 20%;
       height: inherit;
       background-color: transparent;
-      border-color: var(--white-color);
+      border-color: var(--border-color);
       border-style: solid;
       border-width: 0 5px;
       content: '';
+      filter: brightness(1.1);
     }
 
     &::before {
@@ -112,27 +139,27 @@ $prefix-cls: '#{$tonyname}-strength-meter';
 
       &[data-score='0'] {
         width: 20%;
-        background-color: var(--el-color-primary);
+        background-color: #dc3545;
       }
 
       &[data-score='1'] {
         width: 40%;
-        background-color: var(--el-color-danger);
+        background-color: #fd7e14;
       }
 
       &[data-score='2'] {
         width: 60%;
-        background-color: var(--el-color-warning);
+        background-color: #ffc107;
       }
 
       &[data-score='3'] {
         width: 80%;
-        background-color: var(--el-color-info);
+        background-color: #198754;
       }
 
       &[data-score='4'] {
         width: 100%;
-        background-color: var(--el-color-success);
+        background-color: #20c997;
       }
     }
   }
@@ -141,7 +168,13 @@ $prefix-cls: '#{$tonyname}-strength-meter';
 html[data-theme='dark'] {
   .#{$prefix-cls} {
     &-bar {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: var(--border-color-light);
+
+      &::before,
+      &::after {
+        border-color: var(--border-color-light);
+        filter: brightness(0.8);
+      }
     }
   }
 }
