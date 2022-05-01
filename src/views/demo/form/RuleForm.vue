@@ -10,7 +10,12 @@
     <CollapseContainer title="表单校验">
       <BasicForm
         @register="register"
-        @submit="handleSubmit" />
+        @submit="handleSubmit">
+        <template #countdown="{ model, field }">
+          <CountdownInput
+            v-model:modelValue="model[field]" />
+        </template>
+      </BasicForm>
     </CollapseContainer>
   </PageWrapper>
 </template>
@@ -23,9 +28,10 @@ import { CollapseContainer } from '@/components/Container'
 import { useMessage } from '@/hooks/web/useMessage'
 import { PageWrapper } from '@/components/Page'
 import { isAccountExist } from '@/api/demo/system'
+import { CountdownInput } from '@/components/CountdownInput'
 
 export default defineComponent({
-  components: { ElButton, BasicForm, CollapseContainer, PageWrapper },
+  components: { ElButton, BasicForm, CollapseContainer, PageWrapper, CountdownInput },
   setup() {
     const { createMessage } = useMessage()
     const schemas: FormSchema[] = [
@@ -79,8 +85,9 @@ export default defineComponent({
       },
       {
         field: 'field44',
-        component: 'InputCountDown',
+        component: 'ElInput',
         label: '验证码',
+        slot: 'countdown',
         colProps: {
           span: 8,
         },

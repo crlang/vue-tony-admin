@@ -1,6 +1,5 @@
 
 export type ComponentType =
-  | 'InputCountDown'
   | 'Upload'
   | 'ElDivider'
   | 'ElInput'

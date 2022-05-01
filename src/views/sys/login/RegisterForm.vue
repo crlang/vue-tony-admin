@@ -53,7 +53,7 @@ import { reactive, ref, unref, computed } from 'vue'
 import { ElCheckbox, ElButton, ElForm, ElFormItem, ElInput, ElNotification } from 'element-plus'
 
 import { StrengthMeter } from '@/components/StrengthMeter'
-import { CountdownInput } from '@/components/CountDown'
+import { CountdownInput } from '@/components/CountdownInput'
 
 import { useLoginState, LoginStateEnum, useFormRules, useFormValid } from './useLogin'
 

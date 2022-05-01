@@ -36,7 +36,7 @@
 <script lang="ts" setup>
 import { reactive, ref, computed, unref } from 'vue'
 import { ElNotification, ElForm, ElFormItem, ElInput, ElButton } from 'element-plus'
-import { CountdownInput } from '@/components/CountDown'
+import { CountdownInput } from '@/components/CountdownInput'
 import { useLoginState, LoginStateEnum, useFormRules, useFormValid } from './useLogin'
 
 const { handleBackLogin, getLoginState } = useLoginState()
