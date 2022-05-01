@@ -23,12 +23,10 @@ import {
 import ElDatePicker from './components/DatePicker.vue'
 import TimePicker from './components/TimePicker.vue'
 import { BasicUpload } from '@/components/Upload'
-import { IconPicker } from '@/components/IconPicker'
 import { CountdownInput } from '@/components/CountDown'
 
 const componentMap = new Map<ComponentType, Component>()
 
-componentMap.set('IconPicker', IconPicker)
 componentMap.set('InputCountDown', CountdownInput)
 componentMap.set('Upload', BasicUpload)
 

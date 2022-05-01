@@ -1,6 +1,5 @@
 
 export type ComponentType =
-  | 'IconPicker'
   | 'InputCountDown'
   | 'Upload'
   | 'ElDivider'

@@ -6,21 +6,28 @@
     :title="getTitle"
     size="50%"
     @ok="handleSubmit">
-    <BasicForm @register="registerForm" />
+    <BasicForm @register="registerForm">
+
+      <template #icon="{ model, field }">
+        <IconPicker v-model:modelValue="model[field]" />
+      </template>
+    </BasicForm>
   </BasicDrawer>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, computed, unref } from 'vue'
+
 import { BasicForm, useForm } from '@/components/Form'
-import { formSchema } from './data'
 import { BasicDrawer, useDrawerInner } from '@/components/Drawer'
+import { IconPicker } from '@/components/IconPicker'
 
 import { getMenuList } from '@/api/demo/system'
+import { formSchema } from './data'
 
 export default defineComponent({
   name: 'MenuDrawer',
-  components: { BasicDrawer, BasicForm },
+  components: { BasicDrawer, BasicForm, IconPicker },
   emits: ['success', 'register'],
   setup(_, { emit }) {
     const isUpdate = ref(true)

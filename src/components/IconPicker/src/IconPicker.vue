@@ -13,7 +13,7 @@
           <ElInput
             v-model="searckKeyword"
             placeholder="搜索图标"
-            @input="debounceHandleSearchChange"
+            @input="handleSearchChange"
             clearable />
         </div>
         <div
@@ -62,15 +62,16 @@
 <script lang="ts">
 import { ref, watchEffect, watch, unref, defineComponent } from 'vue'
 import { ElInput, ElPopover, ElEmpty } from 'element-plus'
+import svgIcons from 'virtual:svg-icons-names'
+
 import { useDesign } from '@/hooks/web/useDesign'
 import { ScrollContainer } from '@/components/Container'
 import Icon from '@/components/Icon/src/Icon.vue'
 import SvgIcon from '@/components/Icon/src/SvgIcon.vue'
-import iconsData from './data'
-import { useDebounceFn } from '@vueuse/core'
 import { useCopyToClipboard } from '@/hooks/web/useCopyToClipboard'
 import { useMessage } from '@/hooks/web/useMessage'
-import svgIcons from 'virtual:svg-icons-names'
+
+import iconsData from './data'
 
 export default defineComponent({
   name: 'IconPicker',
@@ -78,13 +79,17 @@ export default defineComponent({
   inheritAttrs: false,
   props: {
     /**
-     * Default icon value
+     * 绑定的值
+     *
+     * Bind value
      */
-    value: {
+    modelValue: {
       type: String,
       default: '',
     },
     /**
+     * 输入框宽度
+     *
      * Input width
      */
     width: {
@@ -92,17 +97,14 @@ export default defineComponent({
       default: '300px',
     },
     /**
-     * Popover placement
-     */
-    // placement: {
-    //   type: String,
-    //   default: 'bottom',
-    // },
-    /**
+     * 是否点击图标就复制
+     *
      * Whether to copy when clicked
      */
     copy: { type: Boolean },
     /**
+     * 弹窗图标模式
+     *
      * Icon mode
      */
     mode: {
@@ -110,7 +112,7 @@ export default defineComponent({
       default: 'iconify',
     },
   },
-  emits: ['change', 'update:value'],
+  emits: ['change', 'update:modelValue'],
   setup(props, { emit }) {
     const isSvgMode = props.mode === 'svg'
     const icons = isSvgMode ? getSvgIcons() : getIcons()
@@ -121,22 +123,14 @@ export default defineComponent({
 
     const { prefixCls } = useDesign('icon-picker')
 
-    const debounceHandleSearchChange = useDebounceFn(handleSearchChange, 100)
-    const { clipboardRef, isSuccessRef } = useCopyToClipboard(props.value)
+    const { clipboardRef, isSuccessRef } = useCopyToClipboard(props.modelValue)
     const { createMessage } = useMessage()
 
-    watchEffect(() => {
-      currentSelect.value = props.value
-    })
-
-    watch(
-      () => currentSelect.value,
-      (v) => {
-        emit('update:value', v)
-        return emit('change', v)
-      }
-    )
-
+    /**
+     * 获取本地定义的图标列表
+     *
+     * Get a list of locally defined icons
+     */
     function getIcons() {
       const data = iconsData as any
       const prefix: string = data?.prefix ?? ''
@@ -149,10 +143,20 @@ export default defineComponent({
       return result
     }
 
+    /**
+     * 获取本地Svg文件图标
+     *
+     * Get local Svg file icon
+     */
     function getSvgIcons() {
       return svgIcons.map((icon) => icon.replace('icon-', ''))
     }
 
+    /**
+     * 处理点击图标动作
+     *
+     * Handle click icon action
+     */
     function handleClick(icon: string) {
       currentSelect.value = icon
       if (props.copy) {
@@ -163,6 +167,11 @@ export default defineComponent({
       }
     }
 
+    /**
+     * 筛选图标
+     *
+     * Filter icon
+     */
     function handleSearchChange(value: any) {
       if (!value) {
         currentList.value = icons
@@ -171,6 +180,18 @@ export default defineComponent({
       currentList.value = icons.filter((item) => item.includes(value))
     }
 
+    watchEffect(() => {
+      currentSelect.value = props.modelValue
+    })
+
+    watch(
+      () => currentSelect.value,
+      (v) => {
+        emit('update:modelValue', v)
+        return emit('change', v)
+      }
+    )
+
     return {
       prefixCls,
       currentSelect,
@@ -178,7 +199,7 @@ export default defineComponent({
       isSvgMode,
       searckKeyword,
       handleClick,
-      debounceHandleSearchChange,
+      handleSearchChange,
     }
   },
 })
@@ -204,6 +225,7 @@ $prefix-cls: '#{$tonyname}-icon-picker';
       > li {
         width: calc(20% - 24px);
         margin: 12px;
+        color: var(--text-secondary-color);
         text-align: center;
 
         > div {
@@ -220,10 +242,10 @@ $prefix-cls: '#{$tonyname}-icon-picker';
     .eleicon {
       padding: 12px;
       cursor: pointer;
-      border: 1px solid #eee;
+      border: 1px solid var(--border-color);
 
       &:hover {
-        background: #f4f7f9;
+        background: var(--background-secondary-color);
       }
     }
   }
@@ -241,7 +263,7 @@ html[data-theme='dark'] {
   .#{$prefix-cls} {
     &__list{
       .eleicon {
-        border: 1px solid #44566c;
+        border-color: var(--border-color-light);
 
         &:hover {
           background: #44566c;

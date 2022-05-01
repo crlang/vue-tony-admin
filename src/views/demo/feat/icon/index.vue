@@ -18,9 +18,9 @@
       class="my-6"
       :rows="3"
       center>
-      <CardGridItem><AddLocation :style="{ width: '2rem' }" /></CardGridItem>
-      <CardGridItem><Aim :style="{ width: '2rem' }" /></CardGridItem>
-      <CardGridItem><AlarmClock :style="{ width: '2rem' }" /></CardGridItem>
+      <CardGridItem><ArrowDownBold :style="{ width: '2rem' }" /></CardGridItem>
+      <CardGridItem><ArrowLeftBold :style="{ width: '2rem' }" /></CardGridItem>
+      <CardGridItem><ArrowRightBold :style="{ width: '2rem' }" /></CardGridItem>
     </CardGrid>
 
     <CardGrid
@@ -28,26 +28,29 @@
       :rows="3"
       center>
       <CardGridItem><Icon
-        icon="ion:layers-outline"
+        icon="ep:arrow-down"
         :size="30" /></CardGridItem>
       <CardGridItem><Icon
-        icon="ion:bar-chart-outline"
+        icon="ep:arrow-left"
         :size="30" /></CardGridItem>
       <CardGridItem><Icon
-        icon="ion:tv-outline"
+        icon="ep:arrow-right"
         :size="30" /></CardGridItem>
     </CardGrid>
 
     <CardGrid
-      header="SVG 雪碧图"
+      header="SVG 文件图标"
       class="my-6"
       :rows="3"
       center>
-      <CardGridItem
-        v-for="item in 3"
-        :key="item">
+      <CardGridItem>
         <SvgIcon
-          :name="`dynamic-avatar-${item}`"
+          name="sun"
+          size="32" />
+      </CardGridItem>
+      <CardGridItem>
+        <SvgIcon
+          name="moon"
           size="32" />
       </CardGridItem>
     </CardGrid>
@@ -57,7 +60,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElRow, ElCol, ElCard } from 'element-plus'
-import { AddLocation, Aim, AlarmClock } from '@element-plus/icons'
+import { ArrowDownBold, ArrowLeftBold, ArrowRightBold } from '@element-plus/icons'
+
 import { Icon, SvgIcon } from '@/components/Icon'
 import { IconPicker } from '@/components/IconPicker'
 import { PageWrapper } from '@/components/Page'
@@ -70,9 +74,9 @@ export default defineComponent({
     ElCard,
     PageWrapper,
     IconPicker,
-    AddLocation,
-    Aim,
-    AlarmClock,
+    ArrowDownBold,
+    ArrowLeftBold,
+    ArrowRightBold,
     Icon,
     CardGrid,
     CardGridItem,
