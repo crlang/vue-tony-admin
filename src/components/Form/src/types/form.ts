@@ -17,7 +17,7 @@ export interface RenderCallbackParams {
 
 export interface FormActionType {
   // element plus
-  submit: () => Promise<void>
+  submit: () => Promise<Recordable>
   validate: () => Promise<boolean>
   validateField: (name?: string | string[]) => Promise<boolean>
   scrollToField: (name?: string) => Promise<void>
@@ -25,7 +25,7 @@ export interface FormActionType {
   resetFields: () => Promise<void>
   // Advanced
   setFieldsValue: <T>(values: T) => Promise<void>
-  getFieldsValue: () => any
+  getFieldsValue: () => Recordable
   updateSchema: (data: Partial<FormSchema> | Partial<FormSchema>[]) => Promise<void>
   resetSchema: (data: Partial<FormSchema> | Partial<FormSchema>[]) => Promise<void>
   setProps: (formProps: Partial<FormProps>) => Promise<void>

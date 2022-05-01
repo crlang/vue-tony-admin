@@ -4,6 +4,11 @@ $elenamex: 'el-alert';
   border-style: solid;
   border-width: 1px;
 
+  &--info {
+    --el-color-info: var(--text-secondary-color);
+    --el-alert-bg-color: var(--background-secondary-color);
+  }
+
   &.is-light,
   &.is-dark {
     .el-alert__closebtn {
