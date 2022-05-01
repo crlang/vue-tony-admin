@@ -14,7 +14,18 @@ html[data-theme='dark'] {
   .#{$elenamex} {
     &-table {
       --el-border-color-lighter: var(--border-color-light);
-      --el-datepicker-off-text-color: var(--text-disabled-color)
+      --el-datepicker-off-text-color: var(--text-disabled-color);
+    }
+
+    &-editor {
+      --el-input-bg-color: var(--background-control-color);
+      --el-input-border-color: var(--border-color-light);
+      --el-text-color-regular: var(--text-secondary-color);
+      --el-text-color-primary: var(--text-secondary-color);
+
+      .el-range-input {
+        background: var(--background-control-color);
+      }
     }
   }
 }

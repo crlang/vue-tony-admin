@@ -6,5 +6,6 @@ $elenamex: 'el-dialog';
 html[data-theme='dark'] {
   .#{$elenamex} {
     --el-dialog-bg-color: var(--background-secondary-color);
+    --el-text-color-regular: var(--text-secondary-color);
   }
 }
