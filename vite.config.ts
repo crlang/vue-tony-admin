@@ -54,7 +54,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       port: VITE_PORT,
       // Load proxy configuration from .env
       proxy: createProxy(VITE_PROXY),
-      open: true,
+      open: false,
     },
     build: {
       target: 'es2015',
@@ -78,22 +78,9 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           compact: true,
           sourcemap: false,
           sourcemapExcludeSources: true,
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              const arr = id.toString().split('node_modules/')[1].split('/')
-              switch (arr[0]) {
-                case '@vue':
-                case 'mockjs':
-                case 'echarts':
-                case 'element-plus':
-                  return 'ex-pkg-' + arr[0]
-                default :
-                  return 'ex-pkg-vendor'
-              }
-            }
-          },
-          chunkFileNames: 'assets/js/[name]-[hash].js',
-          entryFileNames: 'assets/js/[name]-[hash].js',
+          // JS 分类处理
+          // chunkFileNames: 'assets/js/[name]-[hash].js',
+          // entryFileNames: 'assets/js/[name]-[hash].js',
         },
       },
     },
