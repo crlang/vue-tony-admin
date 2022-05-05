@@ -1,9 +1,5 @@
-import { on } from '@/utils/domUtils'
-import { isServer } from '@/utils/is'
 import type { ComponentPublicInstance, DirectiveBinding, ObjectDirective } from 'vue'
-
 type DocumentHandler = <T extends MouseEvent>(mouseup: T, mousedown: T) => void
-
 type FlushList = Map<
 HTMLElement,
 {
@@ -16,15 +12,22 @@ const nodeList: FlushList = new Map()
 
 let startClick: MouseEvent
 
-if (!isServer) {
-  on(document, 'mousedown', (e: MouseEvent) => (startClick = e))
-  on(document, 'mouseup', (e: MouseEvent) => {
+if (typeof window !== 'undefined') {
+  document.addEventListener('mousedown', (e: MouseEvent) => (startClick = e), false)
+  document.addEventListener('mouseup', (e: MouseEvent) => {
     for (const { documentHandler } of nodeList.values()) {
       documentHandler(e, startClick)
     }
-  })
+  }, false)
 }
 
+/**
+ * 创建文档指令监听器
+ *
+ * Create a document directive listener
+ * @param el HTMLElement
+ * @param binding DirectiveBinding
+ */
 function createDocumentHandler(el: HTMLElement, binding: DirectiveBinding): DocumentHandler {
   let excludes: HTMLElement[] = []
   if (Array.isArray(binding.arg)) {
@@ -57,6 +60,13 @@ function createDocumentHandler(el: HTMLElement, binding: DirectiveBinding): Docu
   }
 }
 
+/**
+ * 监听元素外部的点击。 对于模态弹窗或下拉菜单很有用。
+ *
+ * Listen for clicks outside of an element. Useful for modal or dropdown.
+ *
+ * @example v-click-outside="Func"
+ */
 const ClickOutside: ObjectDirective = {
   beforeMount(el, binding) {
     nodeList.set(el, {

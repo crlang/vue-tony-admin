@@ -97,7 +97,7 @@ import type {
 } from './types/table'
 
 import { defineComponent, ref, computed, unref, watchEffect, inject } from 'vue'
-import { ElTable, ElTableColumn } from 'element-plus'
+import { ElLoading, ElTable, ElTableColumn } from 'element-plus'
 import { BasicForm, useForm } from '@/components/Form'
 import { PageWrapperFixedHeightKey } from '@/components/Page'
 
@@ -131,6 +131,9 @@ export default defineComponent({
     TableRender,
     TablePagination,
     TableAction,
+  },
+  directives: {
+    loading: ElLoading.directive,
   },
   props: basicProps,
   emits: [

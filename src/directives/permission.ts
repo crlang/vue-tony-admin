@@ -1,12 +1,15 @@
-/**
- * Global authority directive
- * Used for fine-grained control of component permissions
- * @Example v-auth="RoleEnum.TEST"
- */
-import type { App, Directive, DirectiveBinding } from 'vue'
+import type { Directive, DirectiveBinding } from 'vue'
 
 import { usePermission } from '@/hooks/web/usePermission'
 
+/**
+ * 判断是否有权限
+ *
+ * Determine whether there is permission
+ *
+ * @param el Element
+ * @param binding DirectiveBinding
+ */
 function isAuth(el: Element, binding: any) {
   const { hasPermission } = usePermission()
 
@@ -17,16 +20,16 @@ function isAuth(el: Element, binding: any) {
   }
 }
 
-const mounted = (el: Element, binding: DirectiveBinding<any>) => {
-  isAuth(el, binding)
-}
-
+/**
+ * 用于组件、按钮权限等细粒度控制
+ *
+ * For fine-grained control of components, button permissions, etc.
+ * @Example v-auth="RoleEnum.TEST"
+ */
 const authDirective: Directive = {
-  mounted,
-}
-
-export function setupPermissionDirective(app: App) {
-  app.directive('auth', authDirective)
+  mounted(el: Element, binding: DirectiveBinding<any>) {
+    isAuth(el, binding)
+  },
 }
 
 export default authDirective

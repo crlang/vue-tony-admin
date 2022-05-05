@@ -47,6 +47,9 @@ import { ElLoading } from 'element-plus'
 
 export default defineComponent({
   components: { ElAlert, ElButton, PageWrapper },
+  directives: {
+    loading: ElLoading.directive,
+  },
   setup() {
     const wrapEl = ref<string | HTMLElement>()
 

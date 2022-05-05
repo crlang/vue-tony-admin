@@ -1,50 +1,25 @@
 import type { Directive } from 'vue'
-export interface RippleOptions {
+interface RippleOptions {
   event: string
   transition: number
 }
-
-export interface RippleProto {
+interface RippleProto {
   background?: string
   zIndex?: string
 }
-
-export type EventType = Event & MouseEvent & TouchEvent
+type EventType = Event & MouseEvent & TouchEvent
 
 const options: RippleOptions = {
   event: 'mousedown',
   transition: 400,
 }
 
-const RippleDirective: Directive & RippleProto = {
-  beforeMount: (el: HTMLElement, binding) => {
-    if (binding.value === false) return
-
-    const bg = el.getAttribute('ripple-background')
-    setProps(Object.keys(binding.modifiers), options)
-
-    const background = bg || RippleDirective.background
-    const zIndex = RippleDirective.zIndex
-
-    el.addEventListener(options.event, (event: EventType) => {
-      rippler({
-        event,
-        el,
-        background,
-        zIndex,
-      })
-    })
-  },
-  updated(el, binding) {
-    if (!binding.value) {
-      el?.clearRipple?.()
-      return
-    }
-    const bg = el.getAttribute('ripple-background')
-    el?.setBackground?.(bg)
-  },
-}
-
+/**
+ * 创建水波纹效果
+ *
+ * Create a water ripple effect
+ * @param el HTMLElement
+ */
 function rippler({ event, el, zIndex, background }: { event: EventType; el: HTMLElement } & RippleProto) {
   const targetBorder = parseInt(getComputedStyle(el).borderWidth.replace('px', ''))
   const clientX = event.clientX || event.touches[0].clientX
@@ -128,6 +103,11 @@ function rippler({ event, el, zIndex, background }: { event: EventType; el: HTML
     })
   }, 0)
 
+  /**
+   * 清除动画效果
+   *
+   * clear animation
+   */
   function clearRipple() {
     setTimeout(() => {
       ripple.style.backgroundColor = 'rgba(0, 0, 0, 0)'
@@ -174,6 +154,41 @@ function setProps(modifiers: Recordable, props: Recordable) {
     if (isNaN(Number(item))) props.event = item
     else props.transition = item
   })
+}
+
+/**
+ * 水波纹点击效果
+ *
+ * Water ripple click effect
+ * @example v-ripple
+ */
+const RippleDirective: Directive & RippleProto = {
+  beforeMount: (el: HTMLElement, binding) => {
+    if (binding.value === false) return
+
+    const bg = el.getAttribute('ripple-background')
+    setProps(Object.keys(binding.modifiers), options)
+
+    const background = bg || RippleDirective.background
+    const zIndex = RippleDirective.zIndex
+
+    el.addEventListener(options.event, (event: EventType) => {
+      rippler({
+        event,
+        el,
+        background,
+        zIndex,
+      })
+    })
+  },
+  updated(el, binding) {
+    if (!binding.value) {
+      el?.clearRipple?.()
+      return
+    }
+    const bg = el.getAttribute('ripple-background')
+    el?.setBackground?.(bg)
+  },
 }
 
 export default RippleDirective

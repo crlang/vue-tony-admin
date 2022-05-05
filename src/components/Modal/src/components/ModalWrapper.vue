@@ -31,10 +31,14 @@ import { ScrollContainer } from '@/components/Container'
 import { createModalContext } from '../hooks/useModalContext'
 import { useMutationObserver } from '@vueuse/core'
 import { wrapperProps } from '../props'
+import { ElLoading } from 'element-plus'
 
 export default defineComponent({
   name: 'ModalWrapper',
   components: { ScrollContainer },
+  directives: {
+    loading: ElLoading.directive,
+  },
   inheritAttrs: false,
   props: {
     modelValue: { type: Boolean }, // inherit

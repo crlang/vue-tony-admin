@@ -70,12 +70,15 @@
 
 <script lang="ts">
 import { defineComponent, nextTick, reactive, ref } from 'vue'
-import { ElRow, ElCol, ElCard, ElTree, ElButton } from 'element-plus'
+import { ElRow, ElCol, ElCard, ElTree, ElButton, ElLoading } from 'element-plus'
 import { treeData } from './data'
 import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
   components: { ElRow, ElCol, ElCard, ElTree, ElButton, PageWrapper },
+  directives: {
+    loading: ElLoading.directive,
+  },
   setup() {
     const asyncTreeRef = ref(null)
     const asyncExpandTreeRef = ref(null)
