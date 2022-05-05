@@ -1,5 +1,9 @@
 import { addClass, hasClass, removeClass } from '@/utils/domUtils'
 
+/**
+ * 更新主题暗模式
+ * @param mode 模式
+ */
 export async function updateDarkTheme(mode: string | null = 'light') {
   const htmlRoot = document.getElementById('htmlRoot')
   if (!htmlRoot) {

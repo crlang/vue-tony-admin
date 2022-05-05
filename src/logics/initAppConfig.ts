@@ -22,44 +22,45 @@ import { deepMerge } from '@/utils'
 import { ThemeEnum } from '@/enums/appEnum'
 import { primaryColor } from '@/settings/designSetting'
 
-// Initial project configuration
+/**
+ * 初始项目配置
+ *
+ * Initial project configuration
+ */
 export function initAppConfigStore() {
   const appStore = useAppStore()
+
+  updateDarkTheme(darkMode)
+
   let projCfg: ProjectConfig = Persistent.getLocal(PROJ_CFG_KEY) as ProjectConfig
   projCfg = deepMerge(projectSetting, projCfg || {})
+
   const darkMode = appStore.getDarkMode
   const {
     colorWeak,
     grayMode,
     themeColor,
-
-    headerSetting: { bgColor: headerBgColor } = {},
-    menuSetting: { bgColor } = {},
+    headerSetting,
+    menuSetting,
   } = projCfg
 
-  // Initialize various size definitions to generate custom properties
+  if (themeColor && themeColor !== primaryColor) {
+    changeTheme(themeColor)
+  }
+
   initBasicHeight()
 
-  try {
-    if (themeColor && themeColor !== primaryColor) {
-      changeTheme(themeColor)
-    }
+  grayMode && updateGrayMode(grayMode)
+  colorWeak && updateColorWeak(colorWeak)
 
-    grayMode && updateGrayMode(grayMode)
-    colorWeak && updateColorWeak(colorWeak)
-  } catch (error) {
-    // --
-  }
   appStore.setProjectConfig(projCfg)
 
-  // init dark mode
-  updateDarkTheme(darkMode)
   if (darkMode === ThemeEnum.DARK) {
     updateHeaderBgColor()
     updateSidebarBgColor()
   } else {
-    headerBgColor && updateHeaderBgColor(headerBgColor)
-    bgColor && updateSidebarBgColor(bgColor)
+    headerSetting.bgColor && updateHeaderBgColor(headerSetting.bgColor)
+    menuSetting.bgColor && updateSidebarBgColor(menuSetting.bgColor)
   }
 
   setTimeout(() => {

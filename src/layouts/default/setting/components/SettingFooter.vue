@@ -62,7 +62,7 @@ export default defineComponent({
       try {
         appStore.setProjectConfig(defaultSetting)
         const { colorWeak, grayMode } = defaultSetting
-        // updateTheme(themeColor)
+        // updateDarkTheme(themeColor)
         updateColorWeak(colorWeak)
         updateGrayMode(grayMode)
         createMessage.success('重置成功！')
