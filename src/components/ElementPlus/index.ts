@@ -3,7 +3,7 @@
  * @Date: 2021-12-24 17:24:14
  * @Description: Element Plus Type and Props
  * @LastEditors: crlang(https://www.crlang.com)
- * @LastEditTime: 2022-04-11 16:01:21
+ * @LastEditTime: 2022-05-05 16:33:08
  */
 import type { CSSProperties, ExtractPropTypes } from 'vue'
 
@@ -67,18 +67,14 @@ export type EleCard = CardProps
 export const EleTagProps = tagProps
 export type EleTag = TagProps
 
+export const ElePaginationProps = paginationProps
+export type ElePagination = PaginationProps
+
 // temporary plan
-import { dropdownProps, dropdownItemProps } from 'element-plus/es/components/dropdown/src/dropdown'
-// import type {
-//   IDescriptionsInject,
-//   IDescriptionsItemInject
-// } from 'element-plus/es/components/descriptions/src/descriptions.type'
-import { isValidComponentSize } from '@/utils/validators'
 import type { ComponentSize } from '@/utils/types'
-// import type { FormItemRule, FormRulesMap } from 'element-plus/es/components/form/src/form.type'
-import type { TableProps } from 'element-plus/es/components/table/src/table/defaults'
+import { dropdownProps, dropdownItemProps } from 'element-plus/es/components/dropdown/src/dropdown'
+import { isValidComponentSize } from '@/utils/validators'
 import TableDefault from 'element-plus/es/components/table/src/table/defaults'
-import type { TableColumnCtx } from 'element-plus/es/components/table/src/table-column/defaults'
 import TableColumn from 'element-plus/es/components/table/src/table-column/defaults'
 
 export const EleDropdownProps = dropdownProps
@@ -113,7 +109,7 @@ export const EleDescriptionsProps = {
     default: '',
   },
 }
-export type EleDescriptions = IDescriptionsInject
+export type EleDescriptions = ExtractPropTypes<typeof EleDescriptionsProps>
 
 export const EleDescriptionsItemProps = {
   label: {
@@ -149,7 +145,7 @@ export const EleDescriptionsItemProps = {
     default: '',
   },
 }
-export type EleDescriptionsItem = IDescriptionsItemInject
+export type EleDescriptionsItem = ExtractPropTypes<typeof EleDescriptionsItemProps>
 
 export type EleFormItemRule = FormItemRule
 
@@ -250,10 +246,7 @@ export interface EleFormItem {
 }
 
 export const EleTableProps = TableDefault
-export type EleTable = Partial<TableProps<Object>>
+export type EleTable = Partial<ExtractPropTypes<typeof TableDefault>>
 
 export const EleTableColumnProps = TableColumn
-export type EleTableColumn = Partial<TableColumnCtx<Object>>
-
-export const ElePaginationProps = paginationProps
-export type ElePagination = PaginationProps
+export type EleTableColumn = Partial<ExtractPropTypes<typeof TableColumn>>
