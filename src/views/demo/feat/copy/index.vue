@@ -21,11 +21,10 @@ import { ElButton, ElInput } from 'element-plus'
 import { CollapseContainer } from '@/components/Container'
 import { useCopyToClipboard } from '@/hooks/web/useCopyToClipboard'
 import { useMessage } from '@/hooks/web/useMessage'
-import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
   name: 'Copy',
-  components: { ElButton, ElInput, CollapseContainer, PageWrapper },
+  components: { ElButton, ElInput, CollapseContainer },
   setup() {
     const valueRef = ref('')
     const { createMessage } = useMessage()

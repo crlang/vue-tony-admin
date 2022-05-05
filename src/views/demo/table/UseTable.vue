@@ -21,13 +21,12 @@
 import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
 import { BasicTable, useTable } from '@/components/Table'
-import { PageWrapper } from '@/components/Page'
 import { getBasicColumns, getBasicShortColumns } from './data'
 import { useMessage } from '@/hooks/web/useMessage'
 import { demoListApi } from '@/api/demo/table'
 
 export default defineComponent({
-  components: { ElButton, PageWrapper, BasicTable },
+  components: { ElButton, BasicTable },
   setup() {
     const { createMessage } = useMessage()
     const columns = getBasicColumns()

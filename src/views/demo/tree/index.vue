@@ -72,10 +72,9 @@
 import { defineComponent, nextTick, reactive, ref } from 'vue'
 import { ElRow, ElCol, ElCard, ElTree, ElButton, ElLoading } from 'element-plus'
 import { treeData } from './data'
-import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { ElRow, ElCol, ElCard, ElTree, ElButton, PageWrapper },
+  components: { ElRow, ElCol, ElCard, ElTree, ElButton },
   directives: {
     loading: ElLoading.directive,
   },

@@ -34,13 +34,12 @@ import { BasicForm, useForm } from '@/components/Form'
 import { ElButton, ElCard } from 'element-plus'
 import { defineComponent, ref } from 'vue'
 import PersonTable from './PersonTable.vue'
-import { PageWrapper } from '@/components/Page'
 import { schemas, taskSchemas } from './data'
 import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
   name: 'FormHightPage',
-  components: { ElButton, ElCard, BasicForm, PersonTable, PageWrapper },
+  components: { ElButton, ElCard, BasicForm, PersonTable },
   setup() {
     const tableRef = ref()
 

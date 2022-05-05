@@ -21,10 +21,9 @@ import { defineComponent } from 'vue'
 import { ElSkeleton } from 'element-plus'
 import TargetContent from './TargetContent.vue'
 import { LazyContainer } from '@/components/Container'
-import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { ElSkeleton, LazyContainer, PageWrapper, TargetContent },
+  components: { ElSkeleton, LazyContainer, TargetContent },
 })
 </script>
 

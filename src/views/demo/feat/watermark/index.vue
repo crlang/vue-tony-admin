@@ -24,10 +24,9 @@ import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
 import { CollapseContainer } from '@/components/Container'
 import { useWatermark } from '@/hooks/web/useWatermark'
-import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { ElButton, CollapseContainer, PageWrapper },
+  components: { ElButton, CollapseContainer },
   setup() {
     const { setWatermark, clear } = useWatermark()
     return {

@@ -12,12 +12,11 @@
 import { defineComponent } from 'vue'
 import { BasicForm, FormSchema, useForm } from '@/components/Form'
 import { CollapseContainer } from '@/components/Container'
-import { PageWrapper } from '@/components/Page'
 
 import { UseSchemas } from './data'
 
 export default defineComponent({
-  components: { BasicForm, CollapseContainer, PageWrapper },
+  components: { BasicForm, CollapseContainer },
   setup() {
     const extraSchemas: FormSchema[] = []
     for (let i = 14; i < 30; i++) {

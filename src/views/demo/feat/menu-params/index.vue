@@ -24,11 +24,10 @@
 import { computed, defineComponent, ref, unref } from 'vue'
 import { ElButton, ElInput } from 'element-plus'
 import { useRouter } from 'vue-router'
-import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
   name: 'TestMenu',
-  components: { ElButton, ElInput, PageWrapper },
+  components: { ElButton, ElInput },
   setup() {
     const { currentRoute, replace } = useRouter()
     const value = ref<string>('')

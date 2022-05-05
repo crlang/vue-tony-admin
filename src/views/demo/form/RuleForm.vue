@@ -26,12 +26,11 @@ import { ElButton } from 'element-plus'
 import { BasicForm, FormSchema, useForm } from '@/components/Form'
 import { CollapseContainer } from '@/components/Container'
 import { useMessage } from '@/hooks/web/useMessage'
-import { PageWrapper } from '@/components/Page'
 import { isAccountExist } from '@/api/demo/system'
 import { CountdownInput } from '@/components/CountdownInput'
 
 export default defineComponent({
-  components: { ElButton, BasicForm, CollapseContainer, PageWrapper, CountdownInput },
+  components: { ElButton, BasicForm, CollapseContainer, CountdownInput },
   setup() {
     const { createMessage } = useMessage()
     const schemas: FormSchema[] = [

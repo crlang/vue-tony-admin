@@ -30,7 +30,6 @@
 <script lang="ts">
 import { defineComponent, ref, reactive, toRefs } from 'vue'
 import { ElSteps, ElStep } from 'element-plus'
-import { PageWrapper } from '@/components/Page'
 import Step1 from './Step1.vue'
 import Step2 from './Step2.vue'
 import Step3 from './Step3.vue'
@@ -43,7 +42,6 @@ export default defineComponent({
     Step1,
     Step2,
     Step3,
-    PageWrapper,
   },
   setup() {
     const current = ref(0)

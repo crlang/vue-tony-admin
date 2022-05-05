@@ -18,7 +18,6 @@
 import { defineComponent } from 'vue'
 import { ElButton, ElImage } from 'element-plus'
 import { createImgPreview } from '@/components/Preview'
-import { PageWrapper } from '@/components/Page'
 // import { PreviewActions } from '@/components/Preview/src/typing';
 
 const imgList: string[] = [
@@ -27,7 +26,7 @@ const imgList: string[] = [
   'https://picsum.photos/id/68/346/216',
 ]
 export default defineComponent({
-  components: { ElButton, ElImage, PageWrapper },
+  components: { ElButton, ElImage },
   setup() {
     function openImg() {
       const onImgLoad = ({ index, url, dom }) => {

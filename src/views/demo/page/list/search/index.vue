@@ -67,7 +67,6 @@ import { ElTag } from 'element-plus'
 import Icon from '@/components/Icon'
 import { BasicForm } from '@/components/Form'
 import { searchList as list, schemas } from './data'
-import { PageWrapper } from '@/components/Page'
 import { List, ListItem } from '@/components/List'
 import { useMessage } from '@/hooks/web/useMessage'
 
@@ -75,7 +74,6 @@ export default defineComponent({
   components: {
     ElTag,
     Icon,
-    PageWrapper,
     BasicForm,
     List,
     ListItem,

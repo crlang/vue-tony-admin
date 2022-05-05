@@ -25,10 +25,10 @@
           v-if="cropperImg" />
       </div>
       <p v-if="cropperImg">裁剪后图片信息：{{ info }}</p>
-      <Button
+      <el-button
         @click="handleCutImg"
         class="mx-4"
-        type="success">完成裁剪</Button>
+        type="success">完成裁剪</el-button>
     </CollapseContainer>
 
     <CollapseContainer title="圆形裁剪">
@@ -54,7 +54,8 @@
 import type { CropperActionType } from '@/components/Cropper'
 
 import { defineComponent, ref, unref } from 'vue'
-import { PageWrapper } from '@/components/Page'
+import { ElButton } from 'element-plus'
+
 import { CollapseContainer } from '@/components/Container'
 import { CropperImage, CropperAvatar } from '@/components/Cropper'
 import { uploadApi } from '@/api/sys/upload'
@@ -63,7 +64,7 @@ import { useUserStore } from '@/store/modules/user'
 
 export default defineComponent({
   components: {
-    PageWrapper,
+    ElButton,
     CropperImage,
     CollapseContainer,
     CropperAvatar,

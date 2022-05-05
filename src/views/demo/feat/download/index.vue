@@ -31,10 +31,9 @@ import { defineComponent } from 'vue'
 import { ElButton, ElAlert } from 'element-plus'
 import { downloadByUrl, downloadByData, downloadByBase64, downloadByOnlineUrl } from '@/utils/file/download'
 import imgBase64 from './imgBase64'
-import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { ElButton, ElAlert, PageWrapper },
+  components: { ElButton, ElAlert },
   setup() {
     function handleDownByData() {
       downloadByData('text content', 'testName.txt')

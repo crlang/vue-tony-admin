@@ -14,13 +14,12 @@
 import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
 import { BasicTable, useTable } from '@/components/Table'
-import { PageWrapper } from '@/components/Page'
 import { getBasicColumns, getFormConfig } from './data'
 import { demoListApi } from '@/api/demo/table'
 import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
-  components: { ElButton, PageWrapper, BasicTable },
+  components: { ElButton, BasicTable },
   setup() {
     const [registerTable, { getFormRef }] = useTable({
       title: '开启搜索区域',

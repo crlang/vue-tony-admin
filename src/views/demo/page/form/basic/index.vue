@@ -21,11 +21,10 @@ import { ElRow, ElCol } from 'element-plus'
 import { defineComponent } from 'vue'
 import { schemas } from './data'
 import { useMessage } from '@/hooks/web/useMessage'
-import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
   name: 'FormBasicPage',
-  components: { ElRow, ElCol, BasicForm, PageWrapper },
+  components: { ElRow, ElCol, BasicForm },
   setup() {
     const { createMessage } = useMessage()
     const [register, { validate, setProps }] = useForm({

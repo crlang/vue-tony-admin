@@ -5,12 +5,12 @@
         @register="register"
         @submit="handleSubmit">
         <template #add="{ field }">
-          <Button
+          <el-button
             v-if="Number(field) === 0"
-            @click="add">+</Button>
-          <Button
+            @click="add">+</el-button>
+          <el-button
             v-if="field > 0"
-            @click="del(field)">-</Button>
+            @click="del(field)">-</el-button>
         </template>
       </BasicForm>
     </CollapseContainer>
@@ -19,13 +19,13 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import { ElButton } from 'element-plus'
+
 import { BasicForm, useForm } from '@/components/Form'
 import { CollapseContainer } from '@/components/Container'
-import { PageWrapper } from '@/components/Page'
-import { Button } from '@/components/Button'
 
 export default defineComponent({
-  components: { CollapseContainer, PageWrapper, BasicForm, Button },
+  components: { CollapseContainer, BasicForm, ElButton },
   setup() {
     const [register, { appendSchemaByField, removeSchemaByField, validate }] = useForm({
       schemas: [

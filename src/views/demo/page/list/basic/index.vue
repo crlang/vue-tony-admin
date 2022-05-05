@@ -96,7 +96,6 @@ import { defineComponent } from 'vue'
 import { ElRow, ElCol, ElProgress } from 'element-plus'
 import Icon from '@/components/Icon'
 import { cardList } from './data'
-import { PageWrapper } from '@/components/Page'
 import { List, ListItem } from '@/components/List'
 import { CollapseContainer } from '@/components/Container'
 
@@ -106,7 +105,6 @@ export default defineComponent({
     ElCol,
     ElProgress,
     Icon,
-    PageWrapper,
     List,
     ListItem,
     CollapseContainer,

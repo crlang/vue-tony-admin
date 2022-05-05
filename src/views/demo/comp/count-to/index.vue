@@ -11,7 +11,7 @@
           ref="countRef"
           :autoplay="false"
           @finished="handleFinished" />
-        <Button @click="handleStart">Go</Button>
+        <el-button @click="handleStart">Go</el-button>
       </CardGridItem>
       <CardGridItem>
         <CountTo
@@ -44,15 +44,16 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import { ElButton } from 'element-plus'
+
 import { CountTo } from '@/components/CountTo'
-import { PageWrapper } from '@/components/Page'
 import { CardGrid, CardGridItem } from '@/components/CardGrid'
 import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
   components: {
+    ElButton,
     CountTo,
-    PageWrapper,
     CardGrid,
     CardGridItem,
   },

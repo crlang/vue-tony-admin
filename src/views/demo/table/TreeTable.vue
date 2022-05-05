@@ -17,12 +17,11 @@
 import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
 import { BasicTable, useTable } from '@/components/Table'
-import { PageWrapper } from '@/components/Page'
 import { getBasicColumns } from './data'
 import { treeDemoListApi } from '@/api/demo/tree'
 
 export default defineComponent({
-  components: { ElButton, PageWrapper, BasicTable },
+  components: { ElButton, BasicTable },
   setup() {
     const [register, { expandAll, collapseAll }] = useTable({
       title: '树形表格',

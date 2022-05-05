@@ -9,11 +9,10 @@
 <script lang="ts">
 import { computed, defineComponent, unref } from 'vue'
 import { useRouter } from 'vue-router'
-import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
   name: 'TestTab',
-  components: { PageWrapper },
+  components: {},
   setup() {
     const { currentRoute } = useRouter()
     return {

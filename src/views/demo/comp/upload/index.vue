@@ -21,11 +21,10 @@ import { defineComponent, ref } from 'vue'
 import { ElAlert } from 'element-plus'
 import { BasicUpload } from '@/components/Upload'
 import { useMessage } from '@/hooks/web/useMessage'
-import { PageWrapper } from '@/components/Page'
 import { uploadApi } from '@/api/sys/upload'
 
 export default defineComponent({
-  components: { ElAlert, BasicUpload, PageWrapper },
+  components: { ElAlert, BasicUpload },
   setup() {
     const { createMessage } = useMessage()
     const uploadList = ref<string[]>()

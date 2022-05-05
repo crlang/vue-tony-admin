@@ -6,17 +6,18 @@
       v-if="getShowheader"
       ref="headerRef"
       :class="getHeaderClass">
-      <template v-if="$slots.title">
+      <div
+        v-if="title"
+        :class="`${prefixCls}-header__title`">{{ title }}</div>
+      <template v-else>
         <slot name="title"></slot>
       </template>
-      <template v-else-if="title">
-        <div :class="`${prefixCls}-header__title`">{{ title }}</div>
-      </template>
-      <template v-if="$slots.description">
+
+      <div
+        v-if="description"
+        :class="`${prefixCls}-header__description`">{{ description }}</div>
+      <template v-else>
         <slot name="description"></slot>
-      </template>
-      <template v-else-if="description">
-        <div :class="`${prefixCls}-header__description`">{{ description }}</div>
       </template>
 
       <div
@@ -36,65 +37,63 @@
       <slot></slot>
     </div>
 
-    <PageFooter
-      v-if="getShowFooter"
-      :prefixCls="`${prefixCls}-footer`"
-      ref="footerRef">
-      <template #left>
-        <slot name="leftFooter"></slot>
-      </template>
-
-      <template #default>
+    <template v-if="$slots.footer">
+      <div :class="`${prefixCls}-footer`">
         <slot name="footer"></slot>
-      </template>
-
-      <template #right>
-        <slot name="rightFooter"></slot>
-      </template>
-    </PageFooter>
+      </div>
+    </template>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from 'vue'
-import PageFooter from './PageFooter.vue'
+import { defineComponent, computed, ref, provide } from 'vue'
 
 import { useDesign } from '@/hooks/web/useDesign'
 
+import { PageWrapperFixedHeightKey } from './helper'
+
 export default defineComponent({
   name: 'PageWrapper',
-  components: { PageFooter },
-  // inheritAttrs: false,
   props: {
     /**
+     * 页面标题(slot)
+     *
      * Page header title
      */
     title: String,
     /**
+     * 页面描述(slot)
+     *
      * Page header description
      */
     description: String,
     /**
-     * Whether the header is full
-     */
-    headerFullHeight: Boolean,
-    /**
+     * 头部是否固定
+     *
      * Whether the header is fixed
      */
     headerFixed: Boolean,
     /**
+     * 头部 class
+     *
      * Header class
      */
     headerClass: String,
     /**
+     * 内容区高度是否占满
+     *
      * Whether the content is full
      */
     contentFullHeight: Boolean,
     /**
+     * 内容区 class
+     *
      * Content class
      */
     contentClass: String,
     /**
+     * 内容区背景
+     *
      * Content background
      */
     contentBackground: Boolean,
@@ -105,6 +104,13 @@ export default defineComponent({
     const contentRef = ref<HTMLDivElement | null>(null)
     const footerRef = ref<HTMLDivElement | null>(null)
     const { prefixCls } = useDesign('page-wrapper')
+
+    // 根据提供的内容，自动判断是否高度占满
+    // According to the provided content, automatically determine whether the height is full
+    provide(
+      PageWrapperFixedHeightKey,
+      computed(() => props.contentFullHeight),
+    )
 
     const getClass = computed(() => {
       const { contentFullHeight } = props
@@ -118,30 +124,15 @@ export default defineComponent({
     })
 
     const getShowheader = computed(() => {
-      return (
-        props?.title ||
-        props?.description ||
-        slots?.title ||
-        slots?.description ||
-        slots?.extra
-      )
-    })
-
-    const getShowFooter = computed(() => {
-      return (
-        slots?.leftFooter ||
-        slots?.rightFooter ||
-        slots?.footer
-      )
+      return !!(props?.title || slots?.title)
     })
 
     const getHeaderClass = computed(() => {
-      const { headerFullHeight, headerFixed, headerClass } = props
+      const { headerFixed, headerClass } = props
       return [
         `${prefixCls}-header`,
         headerClass,
         {
-          [`${prefixCls}-header--full`]: headerFullHeight,
           [`${prefixCls}-header--fixed`]: headerFixed,
         },
       ]
@@ -167,7 +158,6 @@ export default defineComponent({
       footerRef,
       getClass,
       getShowheader,
-      getShowFooter,
       getHeaderClass,
       getContentClass,
     }
@@ -186,10 +176,6 @@ $prefix-cls: '#{$tonyname}-page-wrapper';
     padding: 16px;
     background-color: var(--background-primary-color);
     box-shadow: var(--card-shadow);
-
-    &--full {
-      padding: 0;
-    }
 
     &--fixed {
       position: sticky;
@@ -240,11 +226,6 @@ $prefix-cls: '#{$tonyname}-page-wrapper';
     border-top: 1px solid var(--border-color);
     box-shadow: 0 -6px 16px -8px rgba(0, 0, 0, 0.08), 0 -9px 28px 0 rgba(0, 0, 0, 0.05),
       0 -12px 48px 16px rgba(0, 0, 0, 0.03);
-
-    &__left,
-    &__right {
-      flex: 1;
-    }
   }
 
   &--full {

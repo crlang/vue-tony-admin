@@ -24,13 +24,11 @@ import { defineComponent } from 'vue'
 import { ElAlert } from 'element-plus'
 
 import { StrengthMeter } from '@/components/StrengthMeter'
-import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
   components: {
     ElAlert,
     StrengthMeter,
-    PageWrapper,
   },
 })
 </script>

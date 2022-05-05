@@ -20,11 +20,10 @@ import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
 import { BasicTable, useTable } from '@/components/Table'
 import { getBasicColumns } from './data'
-import { PageWrapper } from '@/components/Page'
 import { demoListApi } from '@/api/demo/table'
 
 export default defineComponent({
-  components: { ElButton, BasicTable, PageWrapper },
+  components: { ElButton, BasicTable },
   setup() {
     const [registerTable, { reload, setPagination }] = useTable({
       title: '远程加载示例',

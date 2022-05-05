@@ -28,13 +28,12 @@ import type { TableActionType } from '@/components/Table'
 import { defineComponent, ref, unref } from 'vue'
 import { ElButton } from 'element-plus'
 import { BasicTable } from '@/components/Table'
-import { PageWrapper } from '@/components/Page'
 import { getBasicColumns, getBasicShortColumns } from './data'
 import { useMessage } from '@/hooks/web/useMessage'
 import { demoListApi } from '@/api/demo/table'
 
 export default defineComponent({
-  components: { ElButton, PageWrapper, BasicTable },
+  components: { ElButton, BasicTable },
   setup() {
     const tableRef = ref<Nullable<TableActionType>>(null)
     const { createMessage } = useMessage()

@@ -23,13 +23,12 @@
 import { defineComponent } from 'vue'
 import { ElCard, ElTree, ElRow, ElCol } from 'element-plus'
 import { treeData } from './data'
-import { PageWrapper } from '@/components/Page'
 import { useContextMenu } from '@/hooks/web/useContextMenu'
 import { CreateContextOptions } from '@/components/ContextMenu'
 import { Delete, Position } from '@element-plus/icons'
 
 export default defineComponent({
-  components: { ElCard, ElTree, ElRow, ElCol, PageWrapper },
+  components: { ElCard, ElTree, ElRow, ElCol },
   setup() {
     const [createContextMenu] = useContextMenu()
 

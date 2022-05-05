@@ -44,7 +44,6 @@
 import { defineComponent } from 'vue'
 import { ElAlert, ElButton } from 'element-plus'
 import { useDrawer } from '@/components/Drawer'
-import { PageWrapper } from '@/components/Page'
 import Drawer1 from './Drawer1.vue'
 import Drawer2 from './Drawer2.vue'
 import Drawer3 from './Drawer3.vue'
@@ -55,7 +54,6 @@ export default defineComponent({
   components: {
     ElAlert,
     ElButton,
-    PageWrapper,
     Drawer1,
     Drawer2,
     Drawer3,

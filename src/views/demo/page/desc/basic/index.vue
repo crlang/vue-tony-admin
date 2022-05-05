@@ -32,7 +32,6 @@
 import { defineComponent, reactive } from 'vue'
 import { Description } from '@/components/Description'
 import { BasicTable, useTable } from '@/components/Table'
-import { PageWrapper } from '@/components/Page'
 
 import {
   refundSchema,
@@ -46,7 +45,7 @@ import {
 } from './data'
 
 export default defineComponent({
-  components: { Description, BasicTable, PageWrapper },
+  components: { Description, BasicTable },
   setup() {
     const registerRefundTableFields = reactive<any>({
       title: '退货商品',

@@ -99,7 +99,7 @@ import type {
 import { defineComponent, ref, computed, unref, watchEffect, inject } from 'vue'
 import { ElLoading, ElTable, ElTableColumn } from 'element-plus'
 import { BasicForm, useForm } from '@/components/Form'
-import { PageWrapperFixedHeightKey } from '@/components/Page'
+import { PageWrapperFixedHeightKey } from '@/components/PageWrapper'
 
 import { usePagination } from './hooks/usePagination'
 import { useColumns } from './hooks/useColumns'
@@ -164,7 +164,7 @@ export default defineComponent({
       unref(isFixedHeightPage) &&
           props.canResize &&
           warn(
-            "'canResize' of BasicTable may not work in PageWrapper with 'fixedHeight' (especially in hot updates)",
+            "'canResize' of BasicTable may not work in PageWrapper with 'contentFullHeight' (especially in hot updates)",
           )
     })
 

@@ -92,10 +92,9 @@ import { useUserStore } from '@/store/modules/user'
 import { RoleEnum } from '@/enums/roleEnum'
 import { usePermission } from '@/hooks/web/usePermission'
 import { Authority } from '@/components/Authority'
-import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { ElButton, ElDivider, ElButtonGroup, ElAlert, PageWrapper, CurrentPermissionMode, Authority },
+  components: { ElButton, ElDivider, ElButtonGroup, ElAlert, CurrentPermissionMode, Authority },
   setup() {
     const { changeRole, hasPermission } = usePermission()
     const userStore = useUserStore()

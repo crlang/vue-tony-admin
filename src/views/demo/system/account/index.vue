@@ -39,7 +39,6 @@ import { ElRow, ElCol, ElButton } from 'element-plus'
 
 import { BasicColumn, BasicTable, useTable } from '@/components/Table'
 import { getAccountList } from '@/api/demo/system'
-import { PageWrapper } from '@/components/Page'
 import DeptTree from './DeptTree.vue'
 
 import AccountModal from './AccountModal.vue'
@@ -57,7 +56,6 @@ export default defineComponent({
     ElCol,
     ElButton,
     BasicTable,
-    PageWrapper,
     DeptTree,
     AccountModal,
   },

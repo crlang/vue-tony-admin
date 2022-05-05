@@ -24,10 +24,9 @@ import { defineComponent } from 'vue'
 import { BasicTable, useTable, BasicColumn } from '@/components/Table'
 import { demoListApi } from '@/api/demo/table'
 import { ElTableColumn } from 'element-plus'
-import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { ElTableColumn, PageWrapper, BasicTable },
+  components: { ElTableColumn, BasicTable },
   setup() {
     const columns: BasicColumn[] = [
       {

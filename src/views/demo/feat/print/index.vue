@@ -15,13 +15,12 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { ElButton } from 'element-plus'
-import { PageWrapper } from '@/components/Page'
 
 import printJS from 'print-js'
 
 export default defineComponent({
   name: 'AppLogo',
-  components: { ElButton, PageWrapper },
+  components: { ElButton },
   setup() {
     const printLoading = ref(false)
     function jsonPrint() {

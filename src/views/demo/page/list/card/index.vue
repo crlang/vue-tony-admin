@@ -64,7 +64,6 @@ import { defineComponent } from 'vue'
 import { ElRow, ElCol, ElCard } from 'element-plus'
 import Icon from '@/components/Icon'
 import { cardList } from './data'
-import { PageWrapper } from '@/components/Page'
 import { List, ListItem } from '@/components/List'
 
 export default defineComponent({
@@ -73,7 +72,6 @@ export default defineComponent({
     ElCol,
     ElCard,
     Icon,
-    PageWrapper,
     List,
     ListItem,
   },

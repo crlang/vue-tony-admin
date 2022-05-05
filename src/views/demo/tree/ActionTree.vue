@@ -56,10 +56,9 @@ import { ElButton, ElInput, ElCard, ElTree } from 'element-plus'
 import { TreeType, expandTreeNode, setAllTreeNodes } from '@/components/Tree'
 import { treeData } from './data'
 import { useMessage } from '@/hooks/web/useMessage'
-import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { ElButton, ElInput, ElCard, ElTree, PageWrapper },
+  components: { ElButton, ElInput, ElCard, ElTree },
   setup() {
     const treeRef = ref<Nullable<TreeType>>(null)
     const { createMessage } = useMessage()

@@ -65,11 +65,10 @@ import { defineComponent, ref } from 'vue'
 import { ElButton } from 'element-plus'
 import { BasicDragVerify } from '@/components/Verify'
 import { useMessage } from '@/hooks/web/useMessage'
-import { PageWrapper } from '@/components/Page'
 import { SvgIcon } from '@/components/Icon'
 
 export default defineComponent({
-  components: { ElButton, BasicDragVerify, SvgIcon, PageWrapper },
+  components: { ElButton, BasicDragVerify, SvgIcon },
   setup() {
     const verifyState = ref(false)
     const el1 = ref<Nullable<DragVerifyActionType>>(null)

@@ -7,12 +7,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { BasicTable, useTable, BasicColumn } from '@/components/Table'
-import { PageWrapper } from '@/components/Page'
 import { demoListApi } from '@/api/demo/table'
 import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
-  components: { PageWrapper, BasicTable },
+  components: { BasicTable },
   setup() {
     const { createConfirm, createMessage } = useMessage()
     const columns:BasicColumn[] = [

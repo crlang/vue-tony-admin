@@ -53,10 +53,9 @@ import { ElTag, ElAvatar, ElTableColumn } from 'element-plus'
 import { BasicTable, useTable } from '@/components/Table'
 import { demoListApi } from '@/api/demo/table'
 import { getCustomCellColumns } from './data'
-import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { ElTag, ElAvatar, ElTableColumn, PageWrapper, BasicTable },
+  components: { ElTag, ElAvatar, ElTableColumn, BasicTable },
   setup() {
     const [registerTable] = useTable({
       title: '自定义列内容',

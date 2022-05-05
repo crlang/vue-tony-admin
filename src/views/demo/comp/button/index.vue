@@ -11,7 +11,7 @@
           <template #header>
             <div class="card-header"><BasicTitle
               helpMessage="suggestion: custom global component Button"
-              span>custom global component Button</BasicTitle></div>
+              span>自定义 Button 组件</BasicTitle></div>
           </template>
 
           <Button preIcon="ion:layers-outline">Default</Button>
@@ -306,12 +306,12 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { ElRow, ElCol, ElCard, ElButton, ElButtonGroup } from 'element-plus'
-import { PageWrapper } from '@/components/Page'
 import { Search, Edit, Check, Message, Star, Delete, ArrowLeft, Share, ArrowRight } from '@element-plus/icons'
 import { BasicTitle, BasicArrow, BasicHelp } from '@/components/Basic'
+import { Button } from '@/components/Button'
 
 export default defineComponent({
-  components: { ElRow, ElCol, ElCard, ElButton, ElButtonGroup, PageWrapper, BasicTitle, BasicArrow, BasicHelp },
+  components: { ElRow, ElCol, ElCard, ElButton, ElButtonGroup, BasicTitle, BasicArrow, BasicHelp, Button },
   setup() {
     const loading = ref(false)
 

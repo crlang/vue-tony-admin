@@ -43,10 +43,9 @@ import CurrentPermissionMode from '../CurrentPermissionMode.vue'
 import { useUserStore } from '@/store/modules/user'
 import { RoleEnum } from '@/enums/roleEnum'
 import { usePermission } from '@/hooks/web/usePermission'
-import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { ElButton, ElAlert, ElButtonGroup, CurrentPermissionMode, PageWrapper },
+  components: { ElButton, ElAlert, ElButtonGroup, CurrentPermissionMode },
   setup() {
     const { changeRole } = usePermission()
     const userStore = useUserStore()

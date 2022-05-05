@@ -50,12 +50,11 @@ import type { TableActionType } from '@/components/Table'
 import { defineComponent, ref, unref } from 'vue'
 import { ElButton, ElTableColumn } from 'element-plus'
 import { BasicTable } from '@/components/Table'
-import { PageWrapper } from '@/components/Page'
 import { getBasicColumns } from './data'
 import { demoListApi } from '@/api/demo/table'
 
 export default defineComponent({
-  components: { ElButton, ElTableColumn, PageWrapper, BasicTable },
+  components: { ElButton, ElTableColumn, BasicTable },
   setup() {
     const loading = ref(false)
     const stripe = ref(true)

@@ -64,7 +64,6 @@ import { ArrowDownBold, ArrowLeftBold, ArrowRightBold } from '@element-plus/icon
 
 import { Icon, SvgIcon } from '@/components/Icon'
 import { IconPicker } from '@/components/IconPicker'
-import { PageWrapper } from '@/components/Page'
 import { CardGrid, CardGridItem } from '@/components/CardGrid'
 
 export default defineComponent({
@@ -72,7 +71,6 @@ export default defineComponent({
     ElRow,
     ElCol,
     ElCard,
-    PageWrapper,
     IconPicker,
     ArrowDownBold,
     ArrowLeftBold,

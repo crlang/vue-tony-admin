@@ -73,7 +73,6 @@ import { ElSelect, ElOption } from 'element-plus'
 import { BasicForm } from '@/components/Form'
 import { CollapseContainer } from '@/components/Container'
 import { useMessage } from '@/hooks/web/useMessage'
-import { PageWrapper } from '@/components/Page'
 import { ApiSelect } from '@/components/ApiSelect'
 
 import { optionsListApi } from '@/api/demo/select'
@@ -100,7 +99,7 @@ const optionsB = computed(() => {
 })
 
 export default defineComponent({
-  components: { ElSelect, ElOption, BasicForm, CollapseContainer, PageWrapper, ApiSelect },
+  components: { ElSelect, ElOption, BasicForm, CollapseContainer, ApiSelect },
   setup() {
     const { createMessage } = useMessage()
     const keyword = ref('')

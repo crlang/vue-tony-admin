@@ -25,7 +25,6 @@
 <script lang="ts" setup>
 // import { h } from 'vue'
 // import { ElTag } from 'element-plus'
-import { PageWrapper } from '@/components/Page'
 import { Description, DescItem, useDescription } from '@/components/Description'
 import { GITHUB_URL, SITE_URL, DOC_URL } from '@/settings/siteSetting'
 

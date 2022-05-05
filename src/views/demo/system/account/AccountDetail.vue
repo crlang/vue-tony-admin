@@ -46,12 +46,11 @@
 import { defineComponent, ref } from 'vue'
 import { ElButton, ElTabs, ElTabPane } from 'element-plus'
 import { useRoute } from 'vue-router'
-import { PageWrapper } from '@/components/Page'
 import { useTabs } from '@/hooks/web/useTabs'
 
 export default defineComponent({
   name: 'AccountDetail',
-  components: { ElButton, ElTabs, ElTabPane, PageWrapper },
+  components: { ElButton, ElTabs, ElTabPane },
   setup() {
     const route = useRoute()
     const userId = ref(route.params?.id)

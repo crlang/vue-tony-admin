@@ -15,10 +15,8 @@ import { RotateDragVerify } from '@/components/Verify'
 
 import img from '@/assets/images/header.jpg'
 
-import { PageWrapper } from '@/components/Page'
-
 export default defineComponent({
-  components: { RotateDragVerify, PageWrapper },
+  components: { RotateDragVerify },
   setup() {
     const handleSuccess = () => {
       console.table('success!')

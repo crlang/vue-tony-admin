@@ -41,14 +41,12 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
-import { PageWrapper } from '@/components/Page'
 import { CardGrid, CardGridItem } from '@/components/CardGrid'
 import { CircleProgress } from '@/components/Progress'
 import { randomNumber } from '@/utils/demo'
 
 export default defineComponent({
   components: {
-    PageWrapper,
     CardGrid,
     CardGridItem,
     CircleProgress,

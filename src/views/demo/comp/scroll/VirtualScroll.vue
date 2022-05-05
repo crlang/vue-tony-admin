@@ -35,11 +35,10 @@
 import { defineComponent } from 'vue'
 import { ElDivider } from 'element-plus'
 import { VirtualScroll } from '@/components/VirtualScroll'
-import { PageWrapper } from '@/components/Page'
 import { data } from './data'
 
 export default defineComponent({
-  components: { ElDivider, VirtualScroll, PageWrapper },
+  components: { ElDivider, VirtualScroll },
   setup() {
     return { data }
   },

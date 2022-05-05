@@ -42,11 +42,10 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { ElAlert, ElButton } from 'element-plus'
-import { PageWrapper } from '@/components/Page'
 import { ElLoading } from 'element-plus'
 
 export default defineComponent({
-  components: { ElAlert, ElButton, PageWrapper },
+  components: { ElAlert, ElButton },
   directives: {
     loading: ElLoading.directive,
   },

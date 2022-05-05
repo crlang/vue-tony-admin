@@ -92,12 +92,11 @@ import { usePermission } from '@/hooks/web/usePermission'
 import { Authority } from '@/components/Authority'
 import { usePermissionStore } from '@/store/modules/permission'
 import { PermissionModeEnum } from '@/enums/appEnum'
-import { PageWrapper } from '@/components/Page'
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
 
 export default defineComponent({
-  components: { ElButton, ElDivider, PageWrapper, CurrentPermissionMode, Authority },
+  components: { ElButton, ElDivider, CurrentPermissionMode, Authority },
   setup() {
     const { hasPermission } = usePermission()
     const permissionStore = usePermissionStore()

@@ -1,12 +1,13 @@
 import type { App } from 'vue'
-import { Button } from './Button'
+import { PageWrapper } from './PageWrapper'
 
-// const compList = [compGroup]
-
+/**
+ * 注册全局组件
+ *
+ * Register global components
+ *
+ * @param app Vue App
+ */
 export function registerGlobComp(app: App) {
-  // compList.forEach((comp) => {
-  //   app.component(comp.name || comp.displayName, comp)
-  // })
-
-  app.use(Button)
+  app.use(PageWrapper)
 }

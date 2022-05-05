@@ -30,7 +30,6 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { ElSelect, ElOption, ElButton } from 'element-plus'
-import { PageWrapper } from '@/components/Page'
 import {
   FadeTransition,
   ScaleTransition,
@@ -52,7 +51,6 @@ export default defineComponent({
     ElSelect,
     ElOption,
     ElButton,
-    PageWrapper,
     FadeTransition,
     ScaleTransition,
     SlideYTransition,

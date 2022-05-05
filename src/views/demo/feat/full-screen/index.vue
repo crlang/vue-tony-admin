@@ -46,10 +46,8 @@ import { ElButton } from 'element-plus'
 import { CollapseContainer } from '@/components/Container'
 import { useFullscreen } from '@vueuse/core'
 
-import { PageWrapper } from '@/components/Page'
-
 export default defineComponent({
-  components: { ElButton, CollapseContainer, PageWrapper },
+  components: { ElButton, CollapseContainer },
   setup() {
     const domRef = ref(null)
     const { enter, toggle, exit, isFullscreen } = useFullscreen()

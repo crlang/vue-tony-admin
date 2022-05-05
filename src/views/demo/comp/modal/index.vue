@@ -47,10 +47,9 @@ import Modal1 from './Modal1.vue'
 import Modal2 from './Modal2.vue'
 import Modal3 from './Modal3.vue'
 import Modal4 from './Modal4.vue'
-import { PageWrapper } from '@/components/Page'
 
 export default defineComponent({
-  components: { ElAlert, ElButton, Modal1, Modal2, Modal3, Modal4, PageWrapper },
+  components: { ElAlert, ElButton, Modal1, Modal2, Modal3, Modal4 },
   setup() {
     const [register1, { openModal: openModal1, setModalProps }] = useModal()
     const [register2, { openModal: openModal2 }] = useModal()

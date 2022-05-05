@@ -24,10 +24,11 @@ import type { EleButton } from '@/components/ElementPlus'
 
 import { computed, unref, defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
-import Icon from '@/components/Icon/src/Icon.vue'
-import { buttonProps } from './props'
-import { omit } from 'lodash-es'
+
+import { Icon } from '@/components/Icon'
 import { useDesign } from '@/hooks/web/useDesign'
+
+import { buttonProps } from './props'
 
 export default defineComponent({
   name: 'Button',
@@ -50,12 +51,7 @@ export default defineComponent({
     const getBindValue = computed(():EleButton => {
       const opt = { ...props, ...unref(attrs) }
 
-      return omit(opt, [
-        'iconSize',
-        'preIcon',
-        'shadow',
-        'sufIcon',
-      ])
+      return opt
     })
 
     return {

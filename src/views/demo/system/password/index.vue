@@ -19,7 +19,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { PageWrapper } from '@/components/Page'
 import { BasicForm, useForm } from '@/components/Form'
 import { CollapseContainer } from '@/components/Container'
 import { StrengthMeter } from '@/components/StrengthMeter'
@@ -29,7 +28,7 @@ import { formSchema } from './data'
 
 export default defineComponent({
   name: 'ChangePassword',
-  components: { BasicForm, PageWrapper, CollapseContainer, StrengthMeter },
+  components: { BasicForm, CollapseContainer, StrengthMeter },
   setup() {
     const { createMessage } = useMessage()
     const [register, { validate, resetFields, getFieldsValue }] = useForm({

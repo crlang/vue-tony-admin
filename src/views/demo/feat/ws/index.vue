@@ -71,7 +71,6 @@
 <script lang="ts">
 import { defineComponent, reactive, watchEffect, computed, toRefs } from 'vue'
 import { ElRow, ElCol, ElInput, ElCard, ElButton, ElTag } from 'element-plus'
-import { PageWrapper } from '@/components/Page'
 import { useWebSocket } from '@vueuse/core'
 import { formatToDateTime } from '@/utils/dateUtil'
 
@@ -83,7 +82,6 @@ export default defineComponent({
     ElCard,
     ElButton,
     ElTag,
-    PageWrapper,
   },
   setup() {
     const state = reactive({

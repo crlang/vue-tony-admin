@@ -43,13 +43,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { PageWrapper } from '@/components/Page'
 import { Time } from '@/components/Time'
 import { CollapseContainer } from '@/components/Container'
 import { ElDescriptions, ElDescriptionsItem } from 'element-plus'
 
 export default defineComponent({
-  components: { ElDescriptions, ElDescriptionsItem, PageWrapper, Time, CollapseContainer },
+  components: { ElDescriptions, ElDescriptionsItem, Time, CollapseContainer },
   setup() {
     const now = new Date().getTime()
 
