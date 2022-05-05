@@ -36,7 +36,7 @@ export function getAppEnvConfig() {
   }
 
   return {
-    VITE_GLOB_APP_TITLE: VITE_GLOB_APP_TITLE?.replace(/{space}/g, ' '),
+    VITE_GLOB_APP_TITLE: VITE_GLOB_APP_TITLE,
     VITE_GLOB_API_URL,
     VITE_GLOB_APP_SHORT_NAME,
     VITE_GLOB_API_URL_PREFIX,

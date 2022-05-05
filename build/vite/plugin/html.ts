@@ -21,7 +21,7 @@ export function configHtmlPlugin(env: ViteEnv, isBuild: boolean) {
     inject: {
       // Inject data into ejs template
       data: {
-        title: VITE_GLOB_APP_TITLE?.replace(/{space}/g, ' '),
+        title: VITE_GLOB_APP_TITLE,
       },
       // Embed the generated app.config.js file
       tags: isBuild

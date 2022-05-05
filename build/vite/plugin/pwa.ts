@@ -11,7 +11,7 @@ export function configPwaConfig(env: ViteEnv) {
     // vite-plugin-pwa
     const pwaPlugin = VitePWA({
       manifest: {
-        name: VITE_GLOB_APP_TITLE?.replace(/{space}/g, ' '),
+        name: VITE_GLOB_APP_TITLE,
         short_name: VITE_GLOB_APP_SHORT_NAME,
         icons: [
           {
