@@ -22,7 +22,7 @@ export default defineComponent({
 
     const getIcon = computed(() => (unref(getIsUnFold) ? 'codicon:screen-normal' : 'codicon:screen-full'))
 
-    const getIconText = computed(() => (unref(getIsUnFold) ? '	退出全屏' : '全屏'))
+    const getIconText = computed(() => (unref(getIsUnFold) ? '退出全屏' : '全屏'))
 
     function handleFold() {
       const isUnFold = unref(getIsUnFold)

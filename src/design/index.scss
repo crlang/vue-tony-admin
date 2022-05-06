@@ -176,6 +176,7 @@ html[data-theme='light'] {
   --black-color: var(--el-color-black);
   --white-color: var(--el-color-white);
   --border-color: var(--el-border-color);
+  --border-color-light: var(--el-border-color-lighter);
 
   /* Text Color */
   --text-primary-color: var(--el-text-color-primary);
@@ -212,6 +213,7 @@ html[data-theme='dark'] {
   --black-color: var(--el-color-black);
   --white-color: var(--el-color-white);
   --border-color: var(--black-color-4);
+  --border-color-light: var(--grey-color-6);
 
   /* Text Color */
   --text-primary-color: var(--white-color);
@@ -237,7 +239,6 @@ html[data-theme='dark'] {
   // ↓↓↓ Dark Exclusive ↓↓↓
 
   // Color
-  --border-color-light: var(--grey-color-6);
 
   // Disabled
   --text-disabled-color: var(--grey-color-2);

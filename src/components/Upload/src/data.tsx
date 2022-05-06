@@ -8,7 +8,7 @@ export function createTableColumns(): BasicColumn[] {
   return [
     {
       prop: 'thumbUrl',
-      label: '	略缩图',
+      label: '略缩图',
       width: 100,
       customRender: ({ record }) => {
         const { thumbUrl } = (record as FileItem) || {}

@@ -21,7 +21,7 @@
       <el-col :span="12">
         <el-checkbox
           v-model="rememberMe"
-          size="small">	记住我</el-checkbox>
+          size="small">记住我</el-checkbox>
       </el-col>
       <el-col
         :span="12"
@@ -80,7 +80,7 @@ async function handleLogin() {
     )
     if (userInfo) {
       notification.success({
-        title: '	登录成功',
+        title: '登录成功',
         message: `欢迎回来: ${userInfo.realName}`,
         duration: 3000,
       })

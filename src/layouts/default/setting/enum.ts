@@ -117,7 +117,7 @@ export const menuTypeList = [
     type: MenuTypeEnum.SIDEBAR,
   },
   // {
-  //   title: '	顶部菜单混合模式',
+  //   title: '顶部菜单混合模式',
   //   mode: MenuModeEnum.INLINE,
   //   type: MenuTypeEnum.MIX
   // },

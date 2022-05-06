@@ -35,7 +35,7 @@ export function getLogColumns(): BasicColumn[] {
     },
     {
       prop: 'file',
-      label: '文件	',
+      label: '文件',
       width: 200,
     },
     {

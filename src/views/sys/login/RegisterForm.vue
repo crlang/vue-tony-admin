@@ -12,12 +12,12 @@
     <el-form-item prop="mobile">
       <el-input
         v-model="formData.mobile"
-        placeholder="手机号码	" />
+        placeholder="手机号码" />
     </el-form-item>
     <el-form-item prop="sms">
       <CountdownInput
         v-model="formData.sms"
-        placeholder="短信验证码	" />
+        placeholder="短信验证码" />
     </el-form-item>
     <el-form-item prop="password">
       <StrengthMeter
@@ -44,7 +44,7 @@
       :disabled="formData.policy===false">注册</el-button>
     <el-button
       @click="handleBackLogin"
-      class="login--back">	返回</el-button>
+      class="login--back">返回</el-button>
   </el-form>
 </template>
 

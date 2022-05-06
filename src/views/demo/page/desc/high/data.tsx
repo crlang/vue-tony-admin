@@ -19,7 +19,7 @@ export const refundTimeTableSchema: BasicColumn[] = [
     },
   },
   {
-    label: '操作员ID	',
+    label: '操作员ID',
     prop: 't4',
   },
   {

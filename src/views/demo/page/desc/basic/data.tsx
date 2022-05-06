@@ -79,11 +79,11 @@ export const refundTableSchema: BasicColumn[] = [
     prop: 't3',
   },
   {
-    label: '单价	',
+    label: '单价',
     prop: 't4',
   },
   {
-    label: '数量（件）	',
+    label: '数量（件）',
     prop: 't5',
   },
   {
@@ -108,7 +108,7 @@ export const refundTimeTableSchema: BasicColumn[] = [
     },
   },
   {
-    label: '操作员ID	',
+    label: '操作员ID',
     prop: 't4',
   },
   {

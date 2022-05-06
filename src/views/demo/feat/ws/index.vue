@@ -7,7 +7,7 @@
         <el-card class="mb-4">
           <template #header>
             <div class="flex items-center">
-              <span class="text-lg font-medium mr-4">连接状态:</span>
+              <span class="mr-4">连接状态:</span>
               <el-tag :type="getTagColor">{{ status }}</el-tag>
             </div>
           </template>
@@ -53,7 +53,7 @@
                 class="mt-2"
                 :key="item.time">
                 <div class="flex items-center">
-                  <span class="mr-2 text-primary font-medium">收到消息:</span>
+                  <span class="mr-2 text-primary">收到消息:</span>
                   <span>{{ formatToDateTime(item.time) }}</span>
                 </div>
                 <div>

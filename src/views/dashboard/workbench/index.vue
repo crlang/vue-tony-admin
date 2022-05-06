@@ -1,5 +1,5 @@
 <template>
-  <PageWrapper title="工作台">
+  <PageWrapper>
     <template #extra><WorkbenchHeader /></template>
     <el-row :gutter="21">
       <el-col :lg="{span: 16}">
