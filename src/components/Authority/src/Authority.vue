@@ -8,8 +8,9 @@ export default defineComponent({
   name: 'Authority',
   props: {
     /**
-     * Specified role is visible
-     * the value can pass the role value or can pass the code permission value
+     * 指定角色可见
+     *
+     * The specified role is visible
      */
     value: {
       type: [Number, Array, String] as PropType<RoleEnum | RoleEnum[] | string | string[]>,
@@ -20,20 +21,22 @@ export default defineComponent({
     const { hasPermission } = usePermission()
 
     /**
-     * Render role button
+     * 渲染插槽内容
+     *
+     * Render slot content
+     * @returns 权限不足返回 null
      */
     function renderAuth() {
       const { value } = props
+      // 为空直接返回内容
       if (!value) {
         return getSlot(slots)
       }
+
       return hasPermission(value) ? getSlot(slots) : null
     }
 
-    return () => {
-      // Role-based value control
-      return renderAuth()
-    }
+    return () => renderAuth()
   },
 })
 </script>
