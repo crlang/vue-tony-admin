@@ -4,7 +4,7 @@
       href="#main-out"
       type="primary"
       class="mb-4">跳出框架外页面</el-link>
-    <ClickOutSide
+    <ClickOutside
       @click-outside="handleClickOutside"
       class="flex justify-center">
       <div
@@ -12,17 +12,18 @@
         class="demo-box">
         {{ text }}
       </div>
-    </ClickOutSide>
+    </ClickOutside>
   </PageWrapper>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { ElLink } from 'element-plus'
-import { ClickOutSide } from '@/components/ClickOutSide'
+
+import { ClickOutside } from '@/components/ClickOutside'
 
 export default defineComponent({
-  components: { ElLink, ClickOutSide },
+  components: { ElLink, ClickOutside },
   setup() {
     const text = ref('Click')
 
@@ -47,7 +48,7 @@ export default defineComponent({
   height: 300px;
   font-size: 24px;
   color: #fff;
-  background-color: #408ede;
+  background-color: var(--primary-color);
   border-radius: 10px;
 }
 </style>

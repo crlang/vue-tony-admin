@@ -124,11 +124,11 @@ const feat: AppRouteModule = {
       },
     },
     {
-      path: 'click-out-side',
-      name: 'ClickOutSideDemo',
-      component: () => import('@/views/demo/feat/click-out-side/index.vue'),
+      path: 'click-outside',
+      name: 'ClickOutsideDemo',
+      component: () => import('@/views/demo/feat/click-outside/index.vue'),
       meta: {
-        title: 'ClickOutSide组件',
+        title: 'ClickOutside组件',
       },
     },
     {
