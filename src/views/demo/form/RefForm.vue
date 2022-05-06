@@ -35,7 +35,7 @@
 import { defineComponent, ref } from 'vue'
 import { ElButton } from 'element-plus'
 import { BasicForm, FormActionType, FormProps } from '@/components/Form'
-import { CollapseContainer } from '@/components/Container'
+import { CollapseContainer } from '@/components/CollapseContainer'
 import { useMessage } from '@/hooks/web/useMessage'
 
 import { UseSchemas as schemas } from './data'

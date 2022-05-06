@@ -11,7 +11,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { BasicForm, FormSchema, useForm } from '@/components/Form'
-import { CollapseContainer } from '@/components/Container'
+import { CollapseContainer } from '@/components/CollapseContainer'
 
 import { UseSchemas } from './data'
 

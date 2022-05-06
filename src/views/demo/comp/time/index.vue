@@ -44,7 +44,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { Time } from '@/components/Time'
-import { CollapseContainer } from '@/components/Container'
+import { CollapseContainer } from '@/components/CollapseContainer'
 import { ElDescriptions, ElDescriptionsItem } from 'element-plus'
 
 export default defineComponent({

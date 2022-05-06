@@ -1,4 +1,4 @@
-import { CollapseContainerOptions } from '@/components/Container'
+import { CollapseContainerOptions } from '@/components/CollapseContainer'
 import { EleDescriptionsItemProps, EleDescriptionsProps } from '@/components/ElementPlus'
 import { DescItem } from './typing'
 

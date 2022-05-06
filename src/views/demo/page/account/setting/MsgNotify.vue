@@ -28,7 +28,7 @@
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
 import { ElSwitch } from 'element-plus'
-import { CollapseContainer } from '@/components/Container'
+import { CollapseContainer } from '@/components/CollapseContainer'
 import { List, ListItem } from '@/components/List'
 
 import { msgNotifyList } from './data'

@@ -30,7 +30,7 @@
 import { computed, defineComponent, onMounted } from 'vue'
 import { ElRow, ElCol, ElButton } from 'element-plus'
 import { BasicForm, useForm } from '@/components/Form'
-import { CollapseContainer } from '@/components/Container'
+import { CollapseContainer } from '@/components/CollapseContainer'
 import { CropperAvatar } from '@/components/Cropper'
 
 import { useMessage } from '@/hooks/web/useMessage'

@@ -71,7 +71,7 @@
 import { computed, defineComponent, unref, ref } from 'vue'
 import { ElSelect, ElOption } from 'element-plus'
 import { BasicForm } from '@/components/Form'
-import { CollapseContainer } from '@/components/Container'
+import { CollapseContainer } from '@/components/CollapseContainer'
 import { useMessage } from '@/hooks/web/useMessage'
 import { ApiSelect } from '@/components/ApiSelect'
 

@@ -27,7 +27,7 @@ import {
   onUnmounted,
 } from 'vue'
 import { useWindowSizeFn } from '@/hooks/event/useWindowSizeFn'
-import { ScrollContainer } from '@/components/Container'
+import { ScrollContainer } from '@/components/ScrollContainer'
 import { createModalContext } from '../hooks/useModalContext'
 import { useMutationObserver } from '@vueuse/core'
 import { wrapperProps } from '../props'

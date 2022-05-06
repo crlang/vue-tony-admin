@@ -24,7 +24,7 @@
 import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
 import { BasicForm, FormSchema, useForm } from '@/components/Form'
-import { CollapseContainer } from '@/components/Container'
+import { CollapseContainer } from '@/components/CollapseContainer'
 import { useMessage } from '@/hooks/web/useMessage'
 import { isAccountExist } from '@/api/demo/system'
 import { CountdownInput } from '@/components/CountdownInput'

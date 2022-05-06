@@ -19,7 +19,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElTabs, ElTabPane } from 'element-plus'
-import { ScrollContainer } from '@/components/Container'
+import { ScrollContainer } from '@/components/ScrollContainer'
 import { settingList } from './data'
 import BaseSetting from './BaseSetting.vue'
 import SecureSetting from './SecureSetting.vue'

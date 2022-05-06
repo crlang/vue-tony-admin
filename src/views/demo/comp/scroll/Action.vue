@@ -21,11 +21,11 @@
 </template>
 
 <script lang="ts">
-import type { ScrollActionType } from '@/components/Container'
+import type { ScrollActionType } from '@/components/ScrollContainer'
 
 import { defineComponent, ref, unref } from 'vue'
 import { ElButton } from 'element-plus'
-import { ScrollContainer } from '@/components/Container'
+import { ScrollContainer } from '@/components/ScrollContainer'
 import { litdata } from './data'
 
 export default defineComponent({

@@ -9,7 +9,7 @@ import { AppLogo } from '@/components/Application'
 import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum'
 
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
-import { ScrollContainer } from '@/components/Container'
+import { ScrollContainer } from '@/components/ScrollContainer'
 
 import { useGo } from '@/hooks/web/usePage'
 import { useSplitMenu } from './useLayoutMenu'

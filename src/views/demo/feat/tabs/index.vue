@@ -51,7 +51,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { ElInput, ElAlert, ElButton } from 'element-plus'
-import { CollapseContainer } from '@/components/Container'
+import { CollapseContainer } from '@/components/CollapseContainer'
 import { useTabs } from '@/hooks/web/useTabs'
 import { useMessage } from '@/hooks/web/useMessage'
 

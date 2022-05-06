@@ -1,6 +1,6 @@
 <template>
   <transition-group
-    class="h-full w-full"
+    :class="prefixCls"
     v-bind="$attrs"
     ref="elRef"
     :name="transitionName"
@@ -23,11 +23,10 @@
 </template>
 
 <script lang="ts">
-import type { LazyState } from './typing'
-
-import { defineComponent, reactive, onMounted, ref, toRef, toRefs } from 'vue'
+import { defineComponent, onMounted, ref, toRef } from 'vue'
 import { ElSkeleton } from 'element-plus'
-import { useTimeoutFn } from '@/hooks/core/useTimeout'
+
+import { useDesign } from '@/hooks/web/useDesign'
 import { useIntersectionObserver } from '@/hooks/event/useIntersectionObserver'
 
 export default defineComponent({
@@ -36,39 +35,51 @@ export default defineComponent({
   inheritAttrs: false,
   props: {
     /**
+     * 等待时间
+     *
      * Waiting time
-     * if the time is specified, whether visible or not, it will be automatically loaded after the specified time
      */
     timeout: { type: Number },
     /**
-     * The viewport where the component is located.
-     * If the component is scrolling in the page container, the viewport is the container
+     * 组件所在的容器
+     *
+     * The viewport where the component is located
      */
     viewport: {
       type: (typeof window !== 'undefined' ? window.HTMLElement : Object) as PropType<HTMLElement>,
       default: () => null,
     },
     /**
-     * Preload threshold, css unit
+     * 预加载阈值
+     *
+     * Preload threshold
      */
     threshold: { type: String, default: '0px' },
     /**
+     * 容器的滚动方向
+     *
      * The scroll direction of the viewport
      */
     direction: {
-      type: String,
+      type: String as PropType<'vertical' | 'horizontal'>,
       default: 'vertical',
       validator: (v:string) => ['vertical', 'horizontal'].includes(v),
     },
     /**
-   * The label name of the outer container that wraps the component
-   */
+     * 包裹组件的外层容器的标签名称
+     *
+     * The label name of the outer container that wraps the component
+     */
     tag: { type: String, default: 'div' },
     /**
+     * 最长等待时间
+     *
      * maximum waiting time
      */
     maxWaitingTime: { type: Number, default: 120 },
     /**
+     * 过渡名称
+     *
      * transition name
      */
     transitionName: { type: String, default: 'lazy-container' },
@@ -76,40 +87,53 @@ export default defineComponent({
   emits: ['init'],
   setup(props, { emit }) {
     const elRef = ref()
-    const state = reactive<LazyState>({
-      isInit: false,
-      loading: false,
-      intersectionObserverInstance: null,
-    })
+    const isInit = ref(false)
+    const loading = ref(false)
+    const { prefixCls } = useDesign('lazy-container')
 
-    onMounted(() => {
-      immediateInit()
-      initIntersectionObserver()
-    })
-
-    // If there is a set delay time, it will be executed immediately
+    /**
+     * 如果设置了延迟时间，会在指定时间之后自动加载
+     *
+     * If a delay time is set, it will be loaded automatically after the specified time
+     */
     function immediateInit() {
       const { timeout } = props
       timeout &&
-        useTimeoutFn(() => {
+        setTimeout(() => {
           init()
         }, timeout)
     }
 
+    /**
+     * 初始化容器内容
+     *
+     * Initialize container contents
+     */
     function init() {
-      state.loading = true
+      loading.value = true
 
-      useTimeoutFn(() => {
-        if (state.isInit) return
-        state.isInit = true
+      setTimeout(() => {
+        if (isInit.value) return
+
+        isInit.value = true
         emit('init')
       }, props.maxWaitingTime || 120)
     }
-
+    /**
+     * 初始化加载视图容器
+     *
+     * Initialize loading view container
+     */
     function initIntersectionObserver() {
       const { timeout, direction, threshold } = props
+      // 设置了延后加载将不再触发延时加载
       if (timeout) return
-      // According to the scrolling direction to construct the viewport margin, used to load in advance
+
+      /**
+       * 提前加载距离
+       *
+       * early loading distance
+       */
       let rootMargin = '0px'
       switch (direction) {
         case 'vertical':
@@ -139,10 +163,27 @@ export default defineComponent({
         init()
       }
     }
+
+    onMounted(() => {
+      immediateInit()
+      initIntersectionObserver()
+    })
+
     return {
+      prefixCls,
       elRef,
-      ...toRefs(state),
+      isInit,
+      loading,
     }
   },
 })
 </script>
+
+<style lang="scss">
+$prefix-cls: '#{$tonyname}-lazy-container';
+
+.#{$prefix-cls} {
+  width: 100%;
+  height: 100%;
+}
+</style>

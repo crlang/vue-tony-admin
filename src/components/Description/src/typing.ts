@@ -1,4 +1,4 @@
-import type { CollapseContainerOptions } from '@/components/Container'
+import type { CollapseContainerOptions } from '@/components/CollapseContainer'
 import type { EleDescriptions, EleDescriptionsItem } from '@/components/ElementPlus'
 import { VNode } from 'vue'
 

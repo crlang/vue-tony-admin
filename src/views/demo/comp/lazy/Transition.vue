@@ -17,7 +17,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import TargetContent from './TargetContent.vue'
-import { LazyContainer } from '@/components/Container'
+import { LazyContainer } from '@/components/LazyContainer'
 
 export default defineComponent({
   components: { LazyContainer, TargetContent },

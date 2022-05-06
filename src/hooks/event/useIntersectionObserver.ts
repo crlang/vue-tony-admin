@@ -8,6 +8,11 @@ interface IntersectionObserverProps {
   threshold?: number
 }
 
+/**
+ * 定义元素是否出现在视图
+ *
+ * Defines whether the element appears in the view
+ */
 export function useIntersectionObserver({
   target,
   root,

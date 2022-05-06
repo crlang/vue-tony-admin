@@ -97,7 +97,7 @@ import { ElRow, ElCol, ElProgress } from 'element-plus'
 import Icon from '@/components/Icon'
 import { cardList } from './data'
 import { List, ListItem } from '@/components/List'
-import { CollapseContainer } from '@/components/Container'
+import { CollapseContainer } from '@/components/CollapseContainer'
 
 export default defineComponent({
   components: {

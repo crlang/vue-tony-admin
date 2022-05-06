@@ -65,7 +65,7 @@ import { ElInput, ElPopover, ElEmpty } from 'element-plus'
 import svgIcons from 'virtual:svg-icons-names'
 
 import { useDesign } from '@/hooks/web/useDesign'
-import { ScrollContainer } from '@/components/Container'
+import { ScrollContainer } from '@/components/ScrollContainer'
 import Icon from '@/components/Icon/src/Icon.vue'
 import SvgIcon from '@/components/Icon/src/SvgIcon.vue'
 import { useCopyToClipboard } from '@/hooks/web/useCopyToClipboard'

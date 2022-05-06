@@ -1,4 +1,4 @@
 import { withInstall } from '@/utils'
-import vScroll from './src/VirtualScroll.vue'
+import virtualScroll from './src/VirtualScroll.vue'
 
-export const VirtualScroll = withInstall(vScroll)
+export const VirtualScroll = withInstall(virtualScroll)

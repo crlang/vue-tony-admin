@@ -97,7 +97,7 @@ import {
   ElTooltip,
 } from 'element-plus'
 import { Icon } from '@/components/Icon'
-import { ScrollContainer } from '@/components/Container'
+import { ScrollContainer } from '@/components/ScrollContainer'
 import { useTableContext } from '../../hooks/useTableContext'
 import { useDesign } from '@/hooks/web/useDesign'
 import { Setting } from '@element-plus/icons'

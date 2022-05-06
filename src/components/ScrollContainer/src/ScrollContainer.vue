@@ -7,31 +7,34 @@
 </template>
 
 <script lang="ts">
+import type { ScrollActionType } from './typing'
+
 import { defineComponent, ref, unref, nextTick } from 'vue'
-import { Scrollbar, ScrollbarType } from '@/components/Scrollbar'
+
+import { Scrollbar } from '@/components/Scrollbar'
 import { useScrollTo } from '@/hooks/event/useScrollTo'
 import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'ScrollContainer',
   components: { Scrollbar },
-  setup() {
-    const scrollbarRef = ref<Nullable<ScrollbarType>>(null)
+  setup(_, { expose }) {
+    const scrollbarRef = ref<Nullable<ScrollActionType>>(null)
     const { prefixCls } = useDesign('scroll-container')
 
     /**
+     * 滚动到指定位置
+     *
      * Scroll to the specified position
      */
     function scrollTo(to: number, duration = 500) {
       const scrollbar = unref(scrollbarRef)
-      if (!scrollbar) {
-        return
-      }
+      if (!scrollbar) return
+
       nextTick(() => {
         const wrap = unref(scrollbar.wrap)
-        if (!wrap) {
-          return
-        }
+        if (!wrap) return
+
         const { start } = useScrollTo({
           el: wrap,
           to,
@@ -41,27 +44,32 @@ export default defineComponent({
       })
     }
 
+    /**
+     * 获取滚动容器Dom
+     *
+     * Get the scroll container Dom
+     */
     function getScrollWrap() {
       const scrollbar = unref(scrollbarRef)
-      if (!scrollbar) {
-        return null
-      }
+      if (!scrollbar) return null
+
       return scrollbar.wrap
     }
 
     /**
+     * 滚动到底部
+     *
      * Scroll to the bottom
      */
     function scrollBottom() {
       const scrollbar = unref(scrollbarRef)
-      if (!scrollbar) {
-        return
-      }
+      if (!scrollbar) return
+
       nextTick(() => {
         const wrap = unref(scrollbar.wrap) as any
-        if (!wrap) {
-          return
-        }
+        if (!wrap) return
+
+        // 获取当前容器高度，然后滚动
         const scrollHeight = wrap.scrollHeight as number
         const { start } = useScrollTo({
           el: wrap,
@@ -71,12 +79,19 @@ export default defineComponent({
       })
     }
 
-    return {
-      prefixCls,
-      scrollbarRef,
+    const scrollAction:ScrollActionType = {
+      wrap: null,
       scrollTo,
       scrollBottom,
       getScrollWrap,
+    }
+
+    expose(scrollAction)
+
+    return {
+      prefixCls,
+      scrollbarRef,
+      ...scrollAction,
     }
   },
 })

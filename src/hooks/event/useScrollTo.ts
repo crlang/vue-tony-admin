@@ -23,6 +23,10 @@ const move = (el: HTMLElement, amount: number) => {
 const position = (el: HTMLElement) => {
   return el.scrollTop
 }
+
+/**
+ * 定义-滚动到指定位置
+ */
 export function useScrollTo({ el, to, duration = 500, callback }: ScrollToParams) {
   const isActiveRef = ref(false)
   const start = position(el)

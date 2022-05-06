@@ -56,7 +56,7 @@ import type { CropperActionType } from '@/components/Cropper'
 import { defineComponent, ref, unref } from 'vue'
 import { ElButton } from 'element-plus'
 
-import { CollapseContainer } from '@/components/Container'
+import { CollapseContainer } from '@/components/CollapseContainer'
 import { CropperImage, CropperAvatar } from '@/components/Cropper'
 import { uploadApi } from '@/api/sys/upload'
 import avatarImg from '@/assets/images/header.jpg'

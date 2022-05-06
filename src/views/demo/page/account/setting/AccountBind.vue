@@ -36,7 +36,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
-import { CollapseContainer } from '@/components/Container'
+import { CollapseContainer } from '@/components/CollapseContainer'
 import Icon from '@/components/Icon'
 import { List, ListItem } from '@/components/List'
 

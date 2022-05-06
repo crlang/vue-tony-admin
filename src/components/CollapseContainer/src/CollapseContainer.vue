@@ -1,23 +1,22 @@
 <template>
   <div :class="prefixCls">
-    <CollapseHeader
-      :title="title"
-      :canExpan="canExpan"
-      :helpMessage="helpMessage"
-      :prefixCls="prefixCls"
-      :show="show"
-      @expand="handleExpand">
-      <template
-        #title
-        v-if="$slots.title">
-        <slot name="title"></slot>
-      </template>
-      <template
-        #action
-        v-if="$slots.action">
-        <slot name="action"></slot>
-      </template>
-    </CollapseHeader>
+    <div
+      :class="`${prefixCls}__header`"
+      v-if="title || $slots.title || $slots.action">
+      <BasicTitle :helpMessage="helpMessage">
+        <template v-if="title">{{ title }}</template>
+        <template v-else><slot name="title"></slot></template>
+      </BasicTitle>
+      <div :class="`${prefixCls}__action`">
+        <slot name="extra"></slot>
+        <BasicArrow
+          v-if="canExpan"
+          direction="up"
+          class="ml-2"
+          :expand="show"
+          @click="handleExpand" />
+      </div>
+    </div>
 
     <div :class="`${prefixCls}__body`">
       <CollapseTransition v-if="canExpan">
@@ -48,34 +47,16 @@
 <script lang="ts">
 import { ref, defineComponent } from 'vue'
 import { ElSkeleton } from 'element-plus'
-import { CollapseTransition } from '@/components/Transition'
-import CollapseHeader from './header.vue'
+
 import { useDesign } from '@/hooks/web/useDesign'
+import { CollapseTransition } from '@/components/Transition'
+import { BasicArrow, BasicTitle } from '@/components/Basic'
+import { basicProps } from './props'
 
 export default defineComponent({
-  components: { ElSkeleton, CollapseHeader, CollapseTransition },
-  inheritAttrs: true,
-  props: {
-    /**
-     * Collapse title
-     */
-    title: { type: String, default: '' },
-    /**
-     * Whether to show loading
-     */
-    loading: { type: Boolean },
-    /**
-     * Can it be expanded
-     */
-    canExpan: { type: Boolean, default: true },
-    /**
-     * Warm reminder on the right side of the title
-     */
-    helpMessage: {
-      type: [Array, String] as PropType<string[] | string>,
-      default: '',
-    },
-  },
+  name: 'CollapseContainer',
+  components: { ElSkeleton, CollapseTransition, BasicArrow, BasicTitle },
+  props: basicProps,
   emits: ['expand'],
   setup(_, { emit }) {
     const show = ref(true)

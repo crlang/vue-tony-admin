@@ -17,7 +17,7 @@
 <script lang="ts">
 import { defineComponent, h } from 'vue'
 import { FormSchema, useForm, BasicForm } from '@/components/Form'
-import { CollapseContainer } from '@/components/Container'
+import { CollapseContainer } from '@/components/CollapseContainer'
 import { useMessage } from '@/hooks/web/useMessage'
 import { ElInput } from 'element-plus'
 

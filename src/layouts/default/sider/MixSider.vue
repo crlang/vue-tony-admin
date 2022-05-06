@@ -86,7 +86,7 @@ import type { CSSProperties } from 'vue'
 import type { RouteLocationNormalized } from 'vue-router'
 
 import { computed, defineComponent, onMounted, ref, unref } from 'vue'
-import { ScrollContainer } from '@/components/Container'
+import { ScrollContainer } from '@/components/ScrollContainer'
 import { SimpleMenu, SimpleMenuTag } from '@/components/SimpleMenu'
 import { Icon } from '@/components/Icon'
 import { AppLogo } from '@/components/Application'
