@@ -3,41 +3,120 @@ import { RoleEnum } from '@/enums/roleEnum'
 export {}
 
 declare module 'vue-router' {
+  /**
+   * 拓展路由菜单属性
+   *
+   * Extended route menu meta
+   */
   interface RouteMeta extends Record<string | number | symbol, unknown> {
     orderNo?: number
-    // title
+    /**
+     * 标题
+     *
+     * title
+     */
     title: string
-    // Whether to ignore permissions
+    /**
+     * 是否忽略权限
+     *
+     * Whether to ignore permissions
+     */
     ignoreAuth?: boolean
-    // role info
+    /**
+     * 角色信息
+     *
+     * role info
+     */
     roles?: RoleEnum[]
-    // Whether not to cache
+    /**
+     * 是否不缓存
+     *
+     * Whether not to cache
+     */
     ignoreKeepAlive?: boolean
-    // Is it fixed on tab
+    /**
+     * 是否固定在选项卡上
+     *
+     * Is it fixed on tab
+     */
     affix?: boolean
-    // icon on tab
+    /**
+     * 选项卡上的图标
+     *
+     * icon on tab
+     */
     icon?: string
+    /**
+     * 如果为框架容器，请填写框架地址
+     *
+     * If it is a frame container, please fill in the frame url
+     */
     frameSrc?: string
-    // current page transition
+    /**
+     * 当前页面过渡动画名称
+     *
+     * current page transition name
+     */
     transitionName?: string
-    // Whether the route has been dynamically added
+    /**
+     * 从不显示在面包屑中
+     *
+     * Never show in breadcrumbs
+     */
     hideBreadcrumb?: boolean
-    // Hide submenu
+    /**
+     * 隐藏子菜单
+     *
+     * Hide submenu
+     */
     hideChildrenInMenu?: boolean
-    // Carrying parameters
+    /**
+     * 携带参数
+     *
+     * Carrying parameters
+     */
     carryParam?: boolean
-    // Used internally to mark single-level menus
+    /**
+     * 内部用于标记单级菜单
+     *
+     * Used internally to mark single-level menus
+     */
     single?: boolean
-    // Currently active menu
+    /**
+     * 当前活动菜单
+     *
+     * Currently active menu
+     */
     currentActiveMenu?: string
-    // Never show in tab
+    /**
+     * 从不显示在选项卡中
+     *
+     * Never show in tab
+     */
     hideTab?: boolean
-    // Never show in menu
+    /**
+     * 是否在菜单中隐藏
+     *
+     * Never show in menu
+     */
     hideMenu?: boolean
+    /**
+     * 是否为链接
+     *
+     * Is it a link
+     */
     isLink?: boolean
-    // only build for Menu
+    /**
+     * 是否只为菜单构建
+     *
+     * Whether to build only for menus
+     */
     ignoreRoute?: boolean
-    // Hide path for children
+    /**
+     * 隐藏子路由的路径
+     *
+     * Hide path for children
+     */
     hidePathForChildren?: boolean
   }
 }

@@ -2,7 +2,13 @@ import { Slots } from 'vue'
 import { isFunction } from '@/utils/is'
 
 /**
- * @description:  Get slot to prevent empty error
+ * 获取插槽内容
+ *
+ * Get slot content
+ *
+ * @param slots 全部插槽
+ * @param slot 当前插槽名称
+ * @param data 插槽参数
  */
 export function getSlot(slots: Slots, slot = 'default', data?: any) {
   if (!slots || !Reflect.has(slots, slot)) {
@@ -18,9 +24,11 @@ export function getSlot(slots: Slots, slot = 'default', data?: any) {
 }
 
 /**
- * extends slots
- * @param slots
- * @param excludeKeys
+ * 拓展插槽
+ *
+ * Extends slots
+ * @param slots 全部插槽
+ * @param excludeKeys 拓展插槽 key
  */
 export function extendSlots(slots: Slots, excludeKeys: string[] = []) {
   const slotKeys = Object.keys(slots)
