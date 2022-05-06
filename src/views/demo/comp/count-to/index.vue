@@ -4,15 +4,7 @@
     contentBackground>
     <CardGrid
       class="m-20"
-      :rows="4"
       center>
-      <CardGridItem>
-        <CountTo
-          ref="countRef"
-          :autoplay="false"
-          @finished="handleFinished" />
-        <el-button @click="handleStart">Go</el-button>
-      </CardGridItem>
       <CardGridItem>
         <CountTo
           suffix="$"
@@ -37,6 +29,13 @@
           :startVal="10000"
           :endVal="500000"
           :duration="8000" />
+      </CardGridItem>
+      <CardGridItem>
+        <CountTo
+          ref="countRef"
+          :autoplay="false"
+          @finished="handleFinished" />
+        <el-button @click="handleStart">Go</el-button>
       </CardGridItem>
     </CardGrid>
   </PageWrapper>

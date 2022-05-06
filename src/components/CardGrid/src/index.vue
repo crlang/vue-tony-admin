@@ -1,24 +1,20 @@
 <template>
   <ElCard
-    :shadow="shadow"
-    :class="prefixCls"
-    :body-style="{ margin: '-1px 0 0 -1px', padding: 0}">
-    <template
-      #header
-      v-if="$slots.header">
-      <slot name="header"></slot>
+    shadow="never"
+    :class="[prefixCls,{'is-center': center}]">
+    <template #header>
+      <div>{{ title || '' }}</div>
+      <slot name="extra"></slot>
     </template>
-    <div :class="getContentClass">
-      <slot></slot>
-    </div>
+    <slot></slot>
   </ElCard>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, unref } from 'vue'
+import { defineComponent } from 'vue'
 import { ElCard } from 'element-plus'
+
 import { useDesign } from '@/hooks/web/useDesign'
-import { ShadowTypes } from './types'
 
 export default defineComponent({
   name: 'CardGrid',
@@ -27,44 +23,68 @@ export default defineComponent({
   },
   props: {
     /**
-     * Number of Rows
+     * 标题
+     *
+     * Title
      */
-    rows: {
-      type: Number,
-      default: 3,
-    },
+    title: String,
     /**
-     * Whether to center the grid content
+     * 内容项是否居中
+     *
+     * Whether the content item is centered
      */
-    center: {
-      type: Boolean,
-      defalut: false,
-    },
-    /**
-     * Shadow display mode of the card
-     */
-    shadow: {
-      type: String as PropType<ShadowTypes>,
-      default: 'never',
-    },
+    center: Boolean,
   },
-  setup(props) {
+  setup() {
     const { prefixCls } = useDesign('card-grid')
-
-    const getContentClass = computed(() => [
-      prefixCls + '__container',
-      'row-span' + props.rows,
-      {
-        [`items-center`]: unref(props.center),
-      },
-    ])
 
     return {
       prefixCls,
-      getContentClass,
     }
   },
 })
 </script>
 
-<style lang="scss" src="./index.scss"></style>
+<style lang="scss">
+$prefix-cls: '#{$tonyname}-card-grid';
+
+.#{$prefix-cls} {
+  overflow: visible;
+
+  .el-card__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 24px;
+    color: var(--text-primary-color);
+  }
+
+  .el-card__body {
+    padding: 0;
+    margin: -1px 0 0 -1px;
+  }
+
+  &__item {
+    float: left;
+    width: 33.3333%;
+    padding: 24px;
+    cursor: pointer;
+    border: 0;
+    border-radius: 0;
+    box-shadow: 1px 0 var(--border-color-light), 0 1px var(--border-color-light), 1px 1px var(--border-color-light), 1px 0 var(--border-color-light) inset, 0 1px var(--border-color-light) inset;
+    transition: all 0.3s;
+
+    &:hover {
+      box-shadow: 0 1px 2px -2px rgba(0, 0, 0,0.12),0 4px 8px rgba(0, 0, 0, 0.09),0 6px 18px 4px rgba(0, 0, 0, 0.06);
+    }
+  }
+
+  &.is-center {
+    .#{$prefix-cls}__item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+}
+</style>

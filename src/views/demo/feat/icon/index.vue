@@ -14,9 +14,8 @@
     </el-row>
 
     <CardGrid
-      header="element-plus Icon使用 (直接按需引入相应组件即可)"
+      title="element-plus Icon使用 (直接按需引入相应组件即可)"
       class="my-6"
-      :rows="3"
       center>
       <CardGridItem><ArrowDownBold :style="{ width: '2rem' }" /></CardGridItem>
       <CardGridItem><ArrowLeftBold :style="{ width: '2rem' }" /></CardGridItem>
@@ -24,8 +23,7 @@
     </CardGrid>
 
     <CardGrid
-      header="IconIfy 组件使用"
-      :rows="3"
+      title="IconIfy 组件使用"
       center>
       <CardGridItem><Icon
         icon="ep:arrow-down"
@@ -39,9 +37,8 @@
     </CardGrid>
 
     <CardGrid
-      header="SVG 文件图标"
+      title="SVG 文件图标"
       class="my-6"
-      :rows="3"
       center>
       <CardGridItem>
         <SvgIcon

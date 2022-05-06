@@ -4,7 +4,6 @@
     contentBackground>
     <CardGrid
       class="m-20"
-      :rows="4"
       center>
       <CardGridItem>
         <CircleProgress

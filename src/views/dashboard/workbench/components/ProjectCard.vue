@@ -1,10 +1,9 @@
 <template>
-  <CardGrid shadow="always">
-    <template #header>
-      <div class="project-card-header">
-        <div class="el-card__header--title">项目</div>
-        <el-button type="text">更多</el-button>
-      </div>
+  <CardGrid title="项目">
+    <template #extra>
+      <el-button
+        type="text"
+        size="small">更多</el-button>
     </template>
     <CardGridItem
       v-for="(item,index) in items"
@@ -15,7 +14,7 @@
           :src="item.icon"
           width="32"
           height="32" />
-        <span class="text-lg ml-4">{{ item.title }}</span>
+        <span class="ml-4">{{ item.title }}</span>
       </span>
       <div class="project-item__desc">{{ item.desc }}</div>
       <div class="project-item__meta">
