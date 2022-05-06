@@ -5,6 +5,7 @@
 <script lang="ts">
 import { defineComponent, ref, computed, watchEffect, unref, onMounted, watch } from 'vue'
 import { useTransition, TransitionPresets } from '@vueuse/core'
+
 import { isNumber } from '@/utils/is'
 import { basicProps } from './props'
 
@@ -12,32 +13,27 @@ export default defineComponent({
   name: 'CountTo',
   props: basicProps,
   emits: ['started', 'finished'],
-  setup(props, { emit }) {
+  setup(props, { emit, expose }) {
     const source = ref(props.startVal)
     const disabled = ref(false)
     let outputValue = useTransition(source)
 
     const value = computed(() => formatNumber(unref(outputValue)))
 
-    watchEffect(() => {
-      source.value = props.startVal
-    })
-
-    watch([() => props.startVal, () => props.endVal], () => {
-      if (props.autoplay) {
-        start()
-      }
-    })
-
-    onMounted(() => {
-      props.autoplay && start()
-    })
-
+    /**
+     * 启动动画
+     *
+     * Start
+     */
     function start() {
       run()
       source.value = props.endVal
     }
-
+    /**
+     * 运行动画
+     *
+     * Run number
+     */
     function run() {
       outputValue = useTransition(source, {
         disabled,
@@ -47,7 +43,12 @@ export default defineComponent({
         ...(props.useEasing ? { transition: TransitionPresets[props.transition] } : {}),
       })
     }
-
+    /**
+     * 格式化数值
+     *
+     * format the value
+     * @param num value
+     */
     function formatNumber(num: number | string) {
       if (!num && num !== 0) {
         return ''
@@ -69,7 +70,28 @@ export default defineComponent({
       return prefix + x1 + x2 + suffix
     }
 
-    return { value, start }
+    watchEffect(() => {
+      source.value = props.startVal
+    })
+
+    watch([() => props.startVal, () => props.endVal], () => {
+      if (props.autoplay) {
+        start()
+      }
+    })
+
+    onMounted(() => {
+      props.autoplay && start()
+    })
+
+    expose({
+      start,
+    })
+
+    return {
+      value,
+      start,
+    }
   },
 })
 </script>
