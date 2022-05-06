@@ -1,5 +1,3 @@
-import { addClass, hasClass, removeClass } from '@/utils/domUtils'
-
 /**
  * 更新主题暗模式
  * @param mode 模式
@@ -9,16 +7,16 @@ export async function updateDarkTheme(mode: string | null = 'light') {
   if (!htmlRoot) {
     return
   }
-  const hasDarkClass = hasClass(htmlRoot, 'dark')
+  const hasDarkClass = htmlRoot.classList.contains('dark')
   if (mode === 'dark') {
     htmlRoot.setAttribute('data-theme', 'dark')
     if (!hasDarkClass) {
-      addClass(htmlRoot, 'dark')
+      htmlRoot.classList.add('dark')
     }
   } else {
     htmlRoot.setAttribute('data-theme', 'light')
     if (hasDarkClass) {
-      removeClass(htmlRoot, 'dark')
+      htmlRoot.classList.remove('dark')
     }
   }
 }

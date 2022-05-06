@@ -21,7 +21,6 @@ function trim(string: string) {
   return (string || '').replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g, '')
 }
 
-/* istanbul ignore next */
 export function hasClass(el: Element, cls: string) {
   if (!el || !cls) return false
   if (cls.indexOf(' ') !== -1) throw new Error('className should not contain space.')
@@ -32,7 +31,6 @@ export function hasClass(el: Element, cls: string) {
   }
 }
 
-/* istanbul ignore next */
 export function addClass(el: Element, cls: string) {
   if (!el) return
   let curClass = el.className
@@ -53,7 +51,6 @@ export function addClass(el: Element, cls: string) {
   }
 }
 
-/* istanbul ignore next */
 export function removeClass(el: Element, cls: string) {
   if (!el || !cls) return
   const classes = cls.split(' ')
@@ -132,7 +129,6 @@ export function hackCss(attr: string, value: string) {
   }
 }
 
-/* istanbul ignore next */
 export function on(
   element: Element | HTMLElement | Document | Window,
   event: string,
@@ -143,7 +139,6 @@ export function on(
   }
 }
 
-/* istanbul ignore next */
 export function off(
   element: Element | HTMLElement | Document | Window,
   event: string,
@@ -154,7 +149,6 @@ export function off(
   }
 }
 
-/* istanbul ignore next */
 export function once(el: HTMLElement, event: string, fn: EventListener): void {
   const listener = function (this: any, ...args: unknown[]) {
     if (fn) {

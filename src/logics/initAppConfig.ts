@@ -29,13 +29,11 @@ import { primaryColor } from '@/settings/designSetting'
  */
 export function initAppConfigStore() {
   const appStore = useAppStore()
-
-  updateDarkTheme(darkMode)
+  const darkMode = appStore.getDarkMode
 
   let projCfg: ProjectConfig = Persistent.getLocal(PROJ_CFG_KEY) as ProjectConfig
   projCfg = deepMerge(projectSetting, projCfg || {})
 
-  const darkMode = appStore.getDarkMode
   const {
     colorWeak,
     grayMode,
@@ -43,6 +41,8 @@ export function initAppConfigStore() {
     headerSetting,
     menuSetting,
   } = projCfg
+
+  updateDarkTheme(darkMode)
 
   if (themeColor && themeColor !== primaryColor) {
     changeTheme(themeColor)

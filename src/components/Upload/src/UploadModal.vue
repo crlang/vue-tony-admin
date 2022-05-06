@@ -64,7 +64,7 @@ import { basicProps } from './props'
 import { createTableColumns, createActionColumn } from './data'
 // utils
 import { checkFileType, checkImgType, getBase64WithFile } from './helper'
-import { buildUUID } from '@/utils/uuid'
+import { buildUUID } from '@/utils'
 import { isFunction } from '@/utils/is'
 import { warn } from '@/utils/log'
 import FileList from './FileList.vue'

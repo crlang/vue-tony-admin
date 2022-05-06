@@ -8,7 +8,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { addClass, removeClass } from '@/utils/domUtils'
 
 export default defineComponent({
   name: 'CollapseTransition',
@@ -16,7 +15,7 @@ export default defineComponent({
     return {
       on: {
         beforeEnter(el:HTMLElement) {
-          addClass(el, 'collapse-transition')
+          el.classList.add('collapse-transition')
           // if (!el.dataset) el.dataset = {}
 
           el.dataset.oldPaddingTop = el.style.paddingTop
@@ -43,7 +42,7 @@ export default defineComponent({
         },
 
         afterEnter(el:HTMLElement) {
-          removeClass(el, 'collapse-transition')
+          el.classList.remove('collapse-transition')
           el.style.height = ''
           el.style.overflow = el.dataset.oldOverflow as string
         },
@@ -60,7 +59,7 @@ export default defineComponent({
 
         leave(el:HTMLElement) {
           if (el.scrollHeight !== 0) {
-            addClass(el, 'collapse-transition')
+            el.classList.add('collapse-transition')
             el.style.height = '0'
             el.style.paddingTop = '0'
             el.style.paddingBottom = '0'
@@ -68,7 +67,7 @@ export default defineComponent({
         },
 
         afterLeave(el:HTMLElement) {
-          removeClass(el, 'collapse-transition')
+          el.classList.remove('collapse-transition')
           el.style.height = ''
           el.style.overflow = el.dataset.oldOverflow as string
           el.style.paddingTop = el.dataset.oldPaddingTop as string

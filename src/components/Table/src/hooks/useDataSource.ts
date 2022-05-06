@@ -14,7 +14,7 @@ import {
   toRaw
 } from 'vue'
 import { useTimeoutFn } from '@/hooks/core/useTimeout'
-import { buildUUID } from '@/utils/uuid'
+import { buildUUID } from '@/utils'
 import { isFunction, isBoolean } from '@/utils/is'
 import { get, cloneDeep } from 'lodash-es'
 import { FETCH_SETTING, ROW_KEY, PAGE_SIZE } from '../const'

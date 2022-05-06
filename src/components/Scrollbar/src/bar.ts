@@ -8,7 +8,6 @@ import {
   inject,
   Ref
 } from 'vue'
-import { on, off } from '@/utils/domUtils'
 
 import { renderThumbStyle, BAR_MAP } from './util'
 
@@ -56,8 +55,8 @@ export default defineComponent({
     const startDrag = (e: any) => {
       e.stopImmediatePropagation()
       cursorDown.value = true
-      on(document, 'mousemove', mouseMoveDocumentHandler)
-      on(document, 'mouseup', mouseUpDocumentHandler)
+      document.addEventListener('mousemove', mouseMoveDocumentHandler, false)
+      document.addEventListener('mouseup', mouseUpDocumentHandler, false)
       document.onselectstart = () => false
     }
 
@@ -80,12 +79,12 @@ export default defineComponent({
     function mouseUpDocumentHandler() {
       cursorDown.value = false
       barStore.value[bar.value.axis] = 0
-      off(document, 'mousemove', mouseMoveDocumentHandler)
+      document.removeEventListener('mousemove', mouseMoveDocumentHandler, false)
       document.onselectstart = null
     }
 
     onUnmounted(() => {
-      off(document, 'mouseup', mouseUpDocumentHandler)
+      document.removeEventListener('mouseup', mouseUpDocumentHandler, false)
     })
 
     return () =>

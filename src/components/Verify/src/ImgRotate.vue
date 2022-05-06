@@ -4,7 +4,6 @@ import type { MoveData, DragVerifyActionType } from './typing'
 import { defineComponent, computed, unref, reactive, watch, ref } from 'vue'
 import { useTimeoutFn } from '@/hooks/core/useTimeout'
 import BasicDragVerify from './DragVerify.vue'
-import { hackCss } from '@/utils/domUtils'
 import { rotateProps } from './props'
 import { useDesign } from '@/hooks/web/useDesign'
 
@@ -69,7 +68,7 @@ export default defineComponent({
         (moveX / (imgSize! - height)) * maxDegree! * unref(getFactorRef)
       )
       state.currentRotate = currentRotate
-      state.imgStyle = hackCss('transform', `rotateZ(${state.randomRotate - currentRotate}deg)`)
+      state.imgStyle = { 'transform': `rotateZ(${state.randomRotate - currentRotate}deg)` }
     }
 
     function handleImgOnLoad() {
@@ -77,7 +76,7 @@ export default defineComponent({
       // Generate random angles
       const ranRotate = Math.floor(minDegree! + Math.random() * (maxDegree! - minDegree!))
       state.randomRotate = ranRotate
-      state.imgStyle = hackCss('transform', `rotateZ(${ranRotate}deg)`)
+      state.imgStyle = { 'transform': `rotateZ(${ranRotate}deg)` }
     }
 
     function handleDragEnd() {
@@ -85,7 +84,7 @@ export default defineComponent({
       const { diffDegree } = props
 
       if (Math.abs(randomRotate - currentRotate) >= (diffDegree || 20)) {
-        state.imgStyle = hackCss('transform', `rotateZ(${randomRotate}deg)`)
+        state.imgStyle = { 'transform': `rotateZ(${randomRotate}deg)` }
         state.toOrigin = true
         useTimeoutFn(() => {
           state.toOrigin = false
