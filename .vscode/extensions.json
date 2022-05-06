@@ -1,11 +1,11 @@
 {
   "recommendations": [
-    "octref.vetur",
+    "vue.volar",
+    "vue.vscode-typescript-vue-plugin",
     "dbaeumer.vscode-eslint",
     "stylelint.vscode-stylelint",
     "esbenp.prettier-vscode",
     "antfu.iconify",
-    "mikestead.dotenv",
-    "heybourn.headwind"
+    "mikestead.dotenv"
   ]
 }
