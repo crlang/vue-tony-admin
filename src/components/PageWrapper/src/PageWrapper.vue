@@ -124,7 +124,14 @@ export default defineComponent({
     })
 
     const getShowheader = computed(() => {
-      return !!(props?.title || slots?.title)
+      return !!(
+        props?.title ||
+        slots?.title ||
+        props?.description ||
+        slots?.description ||
+        slots?.toolbar ||
+        slots?.extra
+      )
     })
 
     const getHeaderClass = computed(() => {
