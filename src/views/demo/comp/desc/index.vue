@@ -5,8 +5,13 @@
       :column="3"
       border
       :data="demoData"
-      :schema="schema"
-    />
+      :schema="schema">
+      <template #phone="val">
+        <div>
+          Call: <strong>{{ val }}</strong>
+        </div>
+      </template>
+    </Description>
 
     <Description
       class="my-4"
@@ -19,8 +24,7 @@
       :column="2"
       border
       :data="demoData"
-      :schema="schema"
-    />
+      :schema="schema" />
 
     <Description @register="register" />
 
@@ -36,7 +40,7 @@ export default defineComponent({
   components: { Description },
   setup() {
     const [register] = useDescription({
-      title: 'useDescription',
+      title: 'useDescription 方式',
       data: demoData,
       schema: schema,
     })

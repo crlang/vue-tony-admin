@@ -3,7 +3,7 @@
  * @Date: 2021-12-24 17:24:14
  * @Description: Element Plus Type and Props
  * @LastEditors: crlang(https://www.crlang.com)
- * @LastEditTime: 2022-05-09 14:28:19
+ * @LastEditTime: 2022-05-09 17:32:00
  */
 import type { CSSProperties, ExtractPropTypes } from 'vue'
 
@@ -146,7 +146,7 @@ export const EleDescriptionsItemProps = {
     default: '',
   },
 }
-export type EleDescriptionsItem = ExtractPropTypes<typeof EleDescriptionsItemProps>
+export type EleDescriptionsItem = Partial<ExtractPropTypes<typeof EleDescriptionsItemProps>>
 
 export type EleFormItemRule = FormItemRule
 

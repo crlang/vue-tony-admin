@@ -5,28 +5,29 @@ import type { CollapseContainerOptions } from '@/components/CollapseContainer'
 
 import { defineComponent, computed, ref, unref } from 'vue'
 import { ElDescriptions, ElDescriptionsItem } from 'element-plus'
+import { get, omit } from 'lodash-es'
+
 import { CollapseContainer } from '@/components/CollapseContainer'
 import { useDesign } from '@/hooks/web/useDesign'
 import { getSlot } from '@/utils/helper/tsxHelper'
-import { useAttrs } from '@/hooks/core/useAttrs'
-import { get } from 'lodash-es'
-import { isFunction } from '@/utils/is'
+
 import { basicProps } from './props'
 
 export default defineComponent({
   name: 'Description',
   props: basicProps,
   emits: ['register'],
-  setup(props, { slots, emit }) {
+  setup(props, { attrs, slots, emit, expose }) {
     const propsRef = ref<Partial<DescProps> | null>(null)
 
     const { prefixCls } = useDesign('basic-description')
-    const attrs = useAttrs()
 
     /**
-     * Custom title component: get title
+     * 获取更新 Props
+     *
+     * Merge Props
      */
-    const getMergeProps = computed(() => {
+    const getProps = computed(() => {
       return {
         ...props,
         ...(unref(propsRef) as Recordable),
@@ -34,61 +35,76 @@ export default defineComponent({
     })
 
     /**
-     * Hide the header of the Descriptions component
+     * 通过标题判断是否应该使用折叠组件
+     *
+     * Use the title to determine whether the collapsible component should be used
      */
-    const getProps = computed(() => {
-      const opt = {
-        ...unref(getMergeProps),
-        title: '',
-      }
-      return opt as DescProps
-    })
+    const useWrapper = computed(() => !!unref(getProps).title)
 
     /**
-     * Whether to setting title
-     */
-    const useWrapper = computed(() => !!unref(getMergeProps).title)
-
-    /**
-     * Get configuration Collapse
+     * 获取折叠组件配置
+     *
+     * Get Collapse configuration
      */
     const getCollapseOptions = computed((): CollapseContainerOptions => {
+      const { collapseOptions = {} } = unref(getProps)
       return {
         // Cannot be expanded by default
         canExpand: false,
-        ...unref(getProps).collapseOptions,
+        ...collapseOptions,
       }
     })
 
+    /**
+     * 绑定描述Props
+     *
+     * Bind description props
+     */
     const getDescriptionsProps = computed(() => {
-      return { ...unref(attrs), ...unref(getProps) } as DescProps
+      const opts = { ...unref(attrs), ...unref(getProps) }
+      // 绑定组件Porps前，移除自定义附加项
+      // Before binding component Porps, remove custom add-ons
+      const customProps = ['schema', 'data', 'useCollapse', 'collapseOptions', 'title']
+
+      return omit(opts, customProps) as DescProps
     })
 
     /**
-       * Set desc
-       */
+     * 通过实例设置 Props
+     *
+     * Setting Props by Instance
+     * @param descProps Description Props
+     */
     function setDescProps(descProps: Partial<DescProps>): void {
-      // Keep the last setDrawerProps
       propsRef.value = { ...(unref(propsRef) as Recordable), ...descProps } as Recordable
     }
 
+    /**
+     * 渲染描述项
+     *
+     * Render Description item
+     */
     function renderItem() {
       const { schema, data } = unref(getProps)
       return unref(schema)
         .map((item) => {
-          const { field, show, render, minWidth } = item
+          const { field, show, isSlot, render, minWidth } = item
 
-          if (show && isFunction(show) && !show(data)) {
+          if (show && typeof show === 'function' && !show(data)) {
             return null
           }
 
           const getContent = () => {
-            const _data = unref(getProps)?.data
-            if (!_data) {
-              return null
+            if (!data) return null
+
+            const getField = get(data, field)
+            // 是否自定义插槽，插槽名称为 field 值
+            // Custom Slot, slot name is field value
+            if (isSlot) {
+              return getSlot(slots, field, getField)
             }
-            const getField = get(_data, field)
-            return isFunction(render) ? render(getField, _data) : getField ?? ''
+            // 是否自定义渲染函数
+            return typeof render === 'function' ? render(getField, item) : getField ?? ''
           }
 
           return (
@@ -101,13 +117,19 @@ export default defineComponent({
                   minWidth: `${minWidth}px`,
                 }
                 return <div style={style}>{getContent()}</div>
-              }}
+              }
+              }
             </ElDescriptionsItem>
           )
         })
         .filter((item) => !!item)
     }
 
+    /**
+     * 渲染描述
+     *
+     * Render description
+     */
     const renderDesc = () => {
       return (
         <ElDescriptions class={`${prefixCls}`} {...(unref(getDescriptionsProps))}>
@@ -116,14 +138,20 @@ export default defineComponent({
       )
     }
 
+    /**
+     * 渲染折叠容器
+     *
+     * Render collapse container
+     */
     const renderContainer = () => {
-      // Reduce the dom level
+      // 如果 useCollapse 为 false， 不渲染折叠容器
+      // If useCollapse is false, do not render the collapsed container
       if (!props.useCollapse) {
         return renderDesc()
       }
 
       const { canExpand, helpMessage } = unref(getCollapseOptions)
-      const { title } = unref(getMergeProps)
+      const { title } = unref(getProps)
 
       return (
         <CollapseContainer title={title} canExpan={canExpand} helpMessage={helpMessage}>
@@ -140,6 +168,8 @@ export default defineComponent({
     }
 
     emit('register', methods)
+    expose(methods)
+
     return () => (unref(useWrapper) ? renderContainer() : renderDesc())
   },
 })

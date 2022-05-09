@@ -1,11 +1,11 @@
-import { h, VNode } from 'vue'
+import { h } from 'vue'
 import { ElMessage, ElIcon, ElMessageBox, ElNotification, MessageBoxData } from 'element-plus'
 import { Loading } from '@element-plus/icons'
 
 export type IconType = 'success' | 'info' | 'error' | 'warning'
 
 interface MessageBoxOptions {
-  content: string | VNode<RendererNode, RendererElement>,
+  content: string | JSX.Element<RendererNode, RendererElement>,
   title: string,
   type?: IconType,
   nextButton?: string,

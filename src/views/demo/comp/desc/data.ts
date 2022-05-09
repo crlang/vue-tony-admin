@@ -33,6 +33,7 @@ export const schema: DescItem[] = [
   {
     field: 'phone',
     label: '联系电话',
+    isSlot: true,
   },
   {
     field: 'email',
