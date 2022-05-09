@@ -36,7 +36,6 @@ import { isUrl } from '@/utils/is'
 import { openWindow } from '@/utils'
 
 import { useOpenKeys } from './useOpenKeys'
-import { GlobalThemeType } from '@/utils/types'
 export default defineComponent({
   name: 'SimpleMenu',
   components: {
@@ -52,7 +51,7 @@ export default defineComponent({
     collapse: propTypes.bool,
     mixSider: propTypes.bool,
     theme: {
-      type: String as PropType<GlobalThemeType>,
+      type: String as PropType<ThemeType>,
       default: '',
     },
     accordion: propTypes.bool.def(true),

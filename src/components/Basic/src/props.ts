@@ -1,4 +1,3 @@
-import type { GlobalThemeType } from '@/utils/types'
 import type { UsePopperCoreConfigProps } from 'element-plus'
 import type { ArrowDirection } from './typing'
 
@@ -9,7 +8,7 @@ export const basicArrowProps = {
 
 export const basicHelpProps = {
   showIndex: { type: Boolean },
-  effect: { type: String as PropType<GlobalThemeType>, default: 'dark' },
+  effect: { type: String as PropType<ThemeType>, default: 'dark' },
   placement: { type: String as PropType<UsePopperCoreConfigProps['placement']>, default: 'right' },
   text: { type: [Array, String] as PropType<string[] | string> },
 }

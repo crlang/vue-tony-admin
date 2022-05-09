@@ -61,7 +61,6 @@ import Icon from '@/components/Icon'
 import MenuItem from './components/MenuItem.vue'
 import SubMenu from './components/SubMenuItem.vue'
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
-import { GlobalThemeType } from '@/utils/types'
 
 export default defineComponent({
   name: 'SimpleSubMenu',
@@ -80,7 +79,7 @@ export default defineComponent({
     collapsedShowTitle: Boolean,
     collapse: Boolean,
     theme: {
-      type: String as PropType<GlobalThemeType>,
+      type: String as PropType<ThemeType>,
     },
   },
   setup(props) {

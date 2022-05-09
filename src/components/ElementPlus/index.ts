@@ -3,12 +3,12 @@
  * @Date: 2021-12-24 17:24:14
  * @Description: Element Plus Type and Props
  * @LastEditors: crlang(https://www.crlang.com)
- * @LastEditTime: 2022-05-05 16:33:08
+ * @LastEditTime: 2022-05-09 14:28:19
  */
 import type { CSSProperties, ExtractPropTypes } from 'vue'
 
 // baisc element-plus
-import type {
+import {
   ButtonProps,
   ButtonType,
   ButtonNativeType,
@@ -22,7 +22,9 @@ import type {
   TagProps,
   PaginationProps,
   FormItemRule,
-  FormRulesMap
+  FormRulesMap,
+  ComponentSize,
+  componentSizes
 } from 'element-plus'
 
 import {
@@ -70,10 +72,9 @@ export type EleTag = TagProps
 export const ElePaginationProps = paginationProps
 export type ElePagination = PaginationProps
 
-// temporary plan
-import type { ComponentSize } from '@/utils/types'
+// 以下为临时方案，由于 Element Plus 未全局导出 Prop ，只能自建或通过引入组件方式定义组件 Prop
+// The following is a temporary solution. Since Element Plus does not export Prop globally, it can only define component Prop by itself or by introducing components
 import { dropdownProps, dropdownItemProps } from 'element-plus/es/components/dropdown/src/dropdown'
-import { isValidComponentSize } from '@/utils/validators'
 import TableDefault from 'element-plus/es/components/table/src/table/defaults'
 import TableColumn from 'element-plus/es/components/table/src/table-column/defaults'
 
@@ -98,7 +99,7 @@ export const EleDescriptionsProps = {
   },
   size: {
     type: String as PropType<ComponentSize>,
-    validator: isValidComponentSize,
+    validator: (v:string) => componentSizes.includes(v),
   },
   title: {
     type: String,
@@ -227,7 +228,7 @@ export const EleFormItemProps = {
   },
   size: {
     type: String as PropType<ComponentSize>,
-    validator: isValidComponentSize,
+    validator: (v:string) => componentSizes.includes(v),
   },
 }
 

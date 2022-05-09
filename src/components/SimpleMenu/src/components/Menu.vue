@@ -6,7 +6,6 @@
 
 <script lang="ts">
 import type { SubMenuProvider } from './types'
-import type { GlobalThemeType } from '@/utils/types'
 
 import {
   defineComponent,
@@ -27,7 +26,7 @@ export default defineComponent({
   name: 'Menu',
   props: {
     theme: {
-      type: String as PropType<GlobalThemeType>,
+      type: String as PropType<ThemeType>,
       default: 'light',
     },
     activeName: String,

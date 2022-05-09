@@ -1,4 +1,3 @@
-import { GlobalThemeType } from '@/utils/types'
 import { UsePopperCoreConfigProps } from 'element-plus'
 
 export type ArrowDirection = 'up' | 'down' | 'left' | 'right'
@@ -22,7 +21,7 @@ export interface BasicHelpTyping {
   /**
    * Help theme
    */
-  effect: GlobalThemeType
+  effect: ThemeType
   /**
    * Help text direction
    */

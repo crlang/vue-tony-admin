@@ -16,12 +16,11 @@ import { useSplitMenu } from './useLayoutMenu'
 import { useRootSetting } from '@/hooks/setting/useRootSetting'
 import { useAppInject } from '@/hooks/web/useAppInject'
 import { useDesign } from '@/hooks/web/useDesign'
-import { GlobalThemeType } from '@/utils/types'
 
 export default defineComponent({
   name: 'LayoutMenu',
   props: {
-    theme: String as PropType<GlobalThemeType>,
+    theme: String as PropType<ThemeType>,
 
     splitType: {
       type: Number as PropType<MenuSplitTyeEnum>,
