@@ -24,12 +24,14 @@
 <script lang="ts">
 import { defineComponent, ref, computed, unref } from 'vue'
 import { ElTree } from 'element-plus'
-import { BasicForm, useForm } from '@/components/Form'
-import { formSchema } from './data'
-import { BasicDrawer, useDrawerInner } from '@/components/BasicDrawer'
-import { TreeType } from '@/components/Tree'
 
+import { BasicForm, useForm } from '@/components/Form'
+import { BasicDrawer, useDrawerInner } from '@/components/BasicDrawer'
 import { getMenuList } from '@/api/demo/system'
+
+import { formSchema } from './data'
+
+type ElTreeType = InstanceType<typeof ElTree>
 
 export default defineComponent({
   name: 'RoleDrawer',
@@ -37,7 +39,7 @@ export default defineComponent({
   emits: ['success', 'register'],
   setup(_, { emit }) {
     const isUpdate = ref(true)
-    const treeData = ref<TreeType[]>([])
+    const treeData = ref<ElTreeType[]>([])
 
     const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
       labelWidth: 90,
@@ -49,7 +51,7 @@ export default defineComponent({
       resetFields()
       changeConfirmLoading(false)
       if (unref(treeData).length === 0) {
-        treeData.value = (await getMenuList()) as any as TreeType[]
+        treeData.value = (await getMenuList()) as any as ElTreeType[]
       }
       isUpdate.value = !!data?.isUpdate
 

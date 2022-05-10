@@ -15,9 +15,10 @@
 import { defineComponent, onMounted, ref } from 'vue'
 import { ElCard, ElTree } from 'element-plus'
 
-import { TreeType } from '@/components/Tree'
 import { getDeptList } from '@/api/demo/system'
 import { DeptListItem } from '@/api/demo/model/systemModel'
+
+type ElTreeType = InstanceType<typeof ElTree>
 
 export default defineComponent({
   name: 'DeptTree',
@@ -25,10 +26,10 @@ export default defineComponent({
 
   emits: ['select'],
   setup(_, { emit }) {
-    const treeData = ref<TreeType[]>([])
+    const treeData = ref<ElTreeType[]>([])
 
     async function fetch() {
-      treeData.value = (await getDeptList()) as unknown as TreeType[]
+      treeData.value = (await getDeptList()) as unknown as ElTreeType[]
     }
 
     function handleSelect(treeNodeData:DeptListItem) {

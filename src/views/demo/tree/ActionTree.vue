@@ -53,14 +53,17 @@
 <script lang="ts">
 import { defineComponent, reactive, ref, unref, watch } from 'vue'
 import { ElButton, ElInput, ElCard, ElTree } from 'element-plus'
-import { TreeType, expandTreeNode, setAllTreeNodes } from '@/components/Tree'
-import { treeData } from './data'
+
 import { useMessage } from '@/hooks/web/useMessage'
+
+import { treeData } from './data'
+
+type ElTreeType = InstanceType<typeof ElTree>
 
 export default defineComponent({
   components: { ElButton, ElInput, ElCard, ElTree },
   setup() {
-    const treeRef = ref<Nullable<TreeType>>(null)
+    const treeRef = ref<Nullable<ElTreeType>>(null)
     const { createMessage } = useMessage()
     const filterTreeNodeKey = ref('')
 
@@ -80,11 +83,11 @@ export default defineComponent({
     }
 
     function checkAll(checked: boolean) {
-      setAllTreeNodes(getTree(), 'checked', checked)
+      setAllTreeNodes('checked', checked)
     }
 
     function expandAll(checked: boolean) {
-      setAllTreeNodes(getTree(), 'expanded', checked)
+      setAllTreeNodes('expanded', checked)
     }
 
     function handleLevel(level: number, boo:boolean) {
@@ -120,7 +123,7 @@ export default defineComponent({
     }
 
     function handleSetExpandData(boo:boolean) {
-      expandTreeNode(getTree(), '1-1-1-1', boo)
+      expandTreeNode('1-1-1-1', boo)
     }
 
     function appendNodeByKey() {
@@ -154,6 +157,38 @@ export default defineComponent({
     function filterNode(v, data) {
       if (!v) return true
       return data.label.indexOf(v) !== -1
+    }
+
+    function expandTreeNode(expandKey:string | number, checked:boolean, nodeKeyName = 'key') {
+      const nodes = getAllTreeNodes()
+      for (let i = 0; i < nodes.length; i++) {
+        if (nodes[i]?.data[nodeKeyName] === expandKey) {
+          _expandParentNode(nodes[i], checked)
+          break
+        }
+      }
+    }
+
+    function _expandParentNode(node, checked:boolean) {
+      node.expanded = checked
+      if (node.parent) {
+        _expandParentNode(node.parent, checked)
+      }
+    }
+
+    function getAllTreeNodes() {
+      const nodes = getTree().store._getAllNodes()
+      if (!nodes?.length) {
+        return []
+      }
+      return nodes
+    }
+
+    function setAllTreeNodes(nodeStoreName, checked:boolean) {
+      const nodes = getAllTreeNodes()
+      for (let i = 0; i < nodes.length; i++) {
+        nodes[i][nodeStoreName] = checked
+      }
     }
 
     return {
