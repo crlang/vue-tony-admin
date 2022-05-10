@@ -10,14 +10,14 @@ import { useDesign } from '@/hooks/web/useDesign'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 
 export default defineComponent({
-  name: 'DargBar',
+  name: 'DragBar',
   props: {
     mobile: Boolean,
   },
   setup(props) {
     const { getMiniWidthNumber, getCollapsed, getCanDrag } = useMenuSetting()
 
-    const { prefixCls } = useDesign('darg-bar')
+    const { prefixCls } = useDesign('drag-bar')
     const getDragBarStyle = computed(() => {
       if (unref(getCollapsed)) {
         return { left: `${unref(getMiniWidthNumber)}px` }
@@ -43,7 +43,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
-$prefix-cls: '#{$tonyname}-darg-bar';
+$prefix-cls: '#{$tonyname}-drag-bar';
 
 .#{$prefix-cls} {
   position: absolute;

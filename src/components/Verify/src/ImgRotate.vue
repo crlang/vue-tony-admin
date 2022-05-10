@@ -2,13 +2,15 @@
 import type { MoveData, DragVerifyActionType } from './typing'
 
 import { defineComponent, computed, unref, reactive, watch, ref } from 'vue'
+
 import { useTimeoutFn } from '@/hooks/core/useTimeout'
-import BasicDragVerify from './DragVerify.vue'
-import { rotateProps } from './props'
 import { useDesign } from '@/hooks/web/useDesign'
 
+import BasicDragVerify from './DragVerify.vue'
+import { rotateProps } from './props'
+
 export default defineComponent({
-  name: 'ImgRotateDragVerify',
+  name: 'RotateDragVerify',
   inheritAttrs: false,
   props: rotateProps,
   emits: ['success', 'change', 'update:modelValue'],
@@ -27,6 +29,126 @@ export default defineComponent({
     })
     const { prefixCls } = useDesign('basic-img-verify')
 
+    /**
+     * 获取图片外框样式
+     *
+     * Get the picture wrap style
+     */
+    const getImgWrapStyleRef = computed(() => {
+      const { imgWrapStyle, imgSize } = props
+      return {
+        width: `${imgSize}px`,
+        height: `${imgSize}px`,
+        ...imgWrapStyle,
+      }
+    })
+
+    /**
+     * 计算角度因子
+     *
+     * Calculate the angle factor
+     */
+    const getFactorRef = computed(() => {
+      const { minDegree, maxDegree } = props
+      if (minDegree === maxDegree) {
+        return Math.floor(1 + Math.random() * 1) / 10 + 1
+      }
+      return 1
+    })
+
+    /**
+     * 开始拖动时间
+     *
+     * Start dragging time
+     */
+    function handleStart() {
+      state.startTime = new Date().getTime()
+    }
+
+    /**
+     * 拖动时处理
+     *
+     * Handle while dragging
+     * @param data MoveData
+     */
+    function handleDragBarMove(data: MoveData) {
+      state.draged = true
+      const { imgSize, height, maxDegree } = props
+      const { moveX } = data
+
+      const currentRotate = Math.ceil(
+        (moveX / (imgSize! - height)) * maxDegree! * unref(getFactorRef)
+      )
+      state.currentRotate = currentRotate
+      state.imgStyle = { 'transform': `rotateZ(${state.randomRotate - currentRotate}deg)` }
+    }
+
+    /**
+     * 加载图片后初始化随机角度
+     *
+     * Initialize random angle after loading image
+     */
+    function handleImgOnLoad() {
+      const { minDegree, maxDegree } = props
+      // Generate random angles
+      const ranRotate = Math.floor(minDegree! + Math.random() * (maxDegree! - minDegree!))
+      state.randomRotate = ranRotate
+      state.imgStyle = { 'transform': `rotateZ(${ranRotate}deg)` }
+    }
+
+    /**
+     * 处理拖动结束
+     *
+     * Handle drag end
+     */
+    function handleDragEnd() {
+      const { randomRotate, currentRotate } = state
+      const { diffDegree } = props
+
+      // 拖动失败，恢复原位
+      // Failed to drag, return to original position
+      if (Math.abs(randomRotate - currentRotate) >= (diffDegree || 20)) {
+        state.imgStyle = { 'transform': `rotateZ(${randomRotate}deg)` }
+        state.toOrigin = true
+        useTimeoutFn(() => {
+          state.toOrigin = false
+          state.showTip = true
+          // 时间最好与CSS动画时间保持一致
+          //  The time is the same as the animation time
+        }, 300)
+      } else {
+        checkPass()
+      }
+      state.showTip = true
+    }
+    /**
+     * 拖动成功
+     *
+     * Drag success
+     */
+    function checkPass() {
+      state.isPassing = true
+      state.endTime = new Date().getTime()
+    }
+
+    /**
+     * 重置拖动状态
+     *
+     * Reset drag state
+     */
+    function resume() {
+      state.showTip = false
+      const basicEl = unref(basicRef)
+      if (!basicEl) return
+
+      state.isPassing = false
+
+      basicEl.resume()
+      handleImgOnLoad()
+    }
+
+    expose({ resume })
+
     watch(
       () => state.isPassing,
       (isPassing) => {
@@ -40,84 +162,8 @@ export default defineComponent({
       }
     )
 
-    const getImgWrapStyleRef = computed(() => {
-      const { imgWrapStyle, imgSize } = props
-      return {
-        width: `${imgSize}px`,
-        height: `${imgSize}px`,
-        ...imgWrapStyle,
-      }
-    })
-
-    const getFactorRef = computed(() => {
-      const { minDegree, maxDegree } = props
-      if (minDegree === maxDegree) {
-        return Math.floor(1 + Math.random() * 1) / 10 + 1
-      }
-      return 1
-    })
-    function handleStart() {
-      state.startTime = new Date().getTime()
-    }
-
-    function handleDragBarMove(data: MoveData) {
-      state.draged = true
-      const { imgSize, height, maxDegree } = props
-      const { moveX } = data
-      const currentRotate = Math.ceil(
-        (moveX / (imgSize! - height)) * maxDegree! * unref(getFactorRef)
-      )
-      state.currentRotate = currentRotate
-      state.imgStyle = { 'transform': `rotateZ(${state.randomRotate - currentRotate}deg)` }
-    }
-
-    function handleImgOnLoad() {
-      const { minDegree, maxDegree } = props
-      // Generate random angles
-      const ranRotate = Math.floor(minDegree! + Math.random() * (maxDegree! - minDegree!))
-      state.randomRotate = ranRotate
-      state.imgStyle = { 'transform': `rotateZ(${ranRotate}deg)` }
-    }
-
-    function handleDragEnd() {
-      const { randomRotate, currentRotate } = state
-      const { diffDegree } = props
-
-      if (Math.abs(randomRotate - currentRotate) >= (diffDegree || 20)) {
-        state.imgStyle = { 'transform': `rotateZ(${randomRotate}deg)` }
-        state.toOrigin = true
-        useTimeoutFn(() => {
-          state.toOrigin = false
-          state.showTip = true
-          //  The time is the same as the animation time
-        }, 300)
-      } else {
-        checkPass()
-      }
-      state.showTip = true
-    }
-    function checkPass() {
-      state.isPassing = true
-      state.endTime = new Date().getTime()
-    }
-
-    function resume() {
-      state.showTip = false
-      const basicEl = unref(basicRef)
-      if (!basicEl) {
-        return
-      }
-      state.isPassing = false
-
-      basicEl.resume()
-      handleImgOnLoad()
-    }
-
-    expose({ resume })
-
-    // handleImgOnLoad();
     return () => {
-      const { src } = props
+      const { src, width } = props
       const { toOrigin, isPassing, startTime, endTime } = state
       const imgCls: string[] = []
       if (toOrigin) {
@@ -131,7 +177,7 @@ export default defineComponent({
             <img
               src={src}
               onLoad={handleImgOnLoad}
-              width={props.width}
+              width={width}
               class={imgCls}
               style={state.imgStyle}
               onClick={() => {

@@ -2,13 +2,15 @@
 import type { CSSProperties, Ref } from 'vue'
 
 import { defineComponent, ref, computed, unref, reactive, watch, watchEffect } from 'vue'
-import { basicProps } from './props'
+
 import { getSlot } from '@/utils/helper/tsxHelper'
 import { SvgIcon } from '@/components/Icon'
 import { useDesign } from '@/hooks/web/useDesign'
 
+import { basicProps } from './props'
+
 export default defineComponent({
-  name: 'BaseDargVerify',
+  name: 'BasicDragVerify',
   props: basicProps,
   emits: ['success', 'update:modelValue', 'change', 'start', 'move', 'end'],
   setup(props, { emit, slots, expose }) {
