@@ -11,13 +11,13 @@
         </span>
       </div>
     </template>
-    <Description
+    <BasicDescription
       @register="infoRegister"
       class="enter-y" />
-    <Description
+    <BasicDescription
       @register="register"
       class="my-4 enter-y" />
-    <Description
+    <BasicDescription
       @register="registerDev"
       class="enter-y" />
   </PageWrapper>
@@ -25,7 +25,7 @@
 <script lang="ts" setup>
 // import { h } from 'vue'
 // import { ElTag } from 'element-plus'
-import { Description, DescItem, useDescription } from '@/components/Description'
+import { BasicDescription, DescItem, useDescription } from '@/components/BasicDescription'
 import { GITHUB_URL, SITE_URL, DOC_URL } from '@/settings/siteSetting'
 
 const { pkg, lastBuildTime } = __APP_INFO__

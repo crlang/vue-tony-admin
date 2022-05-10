@@ -43,7 +43,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElAlert, ElButton } from 'element-plus'
-import { useDrawer } from '@/components/Drawer'
+import { useDrawer } from '@/components/BasicDrawer'
 import Drawer1 from './Drawer1.vue'
 import Drawer2 from './Drawer2.vue'
 import Drawer3 from './Drawer3.vue'

@@ -1,4 +1,4 @@
-import { DescItem } from '@/components/Description'
+import { DescItem } from '@/components/BasicDescription'
 import { BasicColumn } from '@/components/Table/src/types/table'
 import { ElBadge, ElButton } from 'element-plus'
 

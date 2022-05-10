@@ -20,7 +20,7 @@ import { ElButton } from 'element-plus'
 import { BasicTable, useTable } from '@/components/Table'
 import { getRoleListByPage } from '@/api/demo/system'
 
-import { useDrawer } from '@/components/Drawer'
+import { useDrawer } from '@/components/BasicDrawer'
 import RoleDrawer from './RoleDrawer.vue'
 import { columns, searchFormSchema } from './data'
 

@@ -22,7 +22,7 @@ import { ElButton } from 'element-plus'
 import { BasicTable, useTable } from '@/components/Table'
 import { getMenuList } from '@/api/demo/system'
 
-import { useDrawer } from '@/components/Drawer'
+import { useDrawer } from '@/components/BasicDrawer'
 import MenuDrawer from './MenuDrawer.vue'
 
 import { columns, searchFormSchema } from './data'

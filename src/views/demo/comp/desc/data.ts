@@ -1,4 +1,4 @@
-import { DescItem } from '@/components/Description'
+import { DescItem } from '@/components/BasicDescription'
 
 export const demoData: Recordable = {
   username: 'tony',

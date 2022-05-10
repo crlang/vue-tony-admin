@@ -26,7 +26,7 @@ import { defineComponent, ref, computed, unref } from 'vue'
 import { ElTree } from 'element-plus'
 import { BasicForm, useForm } from '@/components/Form'
 import { formSchema } from './data'
-import { BasicDrawer, useDrawerInner } from '@/components/Drawer'
+import { BasicDrawer, useDrawerInner } from '@/components/BasicDrawer'
 import { TreeType } from '@/components/Tree'
 
 import { getMenuList } from '@/api/demo/system'
@@ -45,9 +45,9 @@ export default defineComponent({
       showActionButtonGroup: false,
     })
 
-    const [registerDrawer, { setDrawerProps, closeDrawer }] = useDrawerInner(async (data) => {
+    const [registerDrawer, { closeDrawer, changeConfirmLoading }] = useDrawerInner(async (data) => {
       resetFields()
-      setDrawerProps({ confirmLoading: false })
+      changeConfirmLoading(false)
       if (unref(treeData).length === 0) {
         treeData.value = (await getMenuList()) as any as TreeType[]
       }
@@ -65,11 +65,11 @@ export default defineComponent({
     async function handleSubmit() {
       try {
         await validate()
-        setDrawerProps({ confirmLoading: true })
+        changeConfirmLoading(true)
         closeDrawer()
         emit('success')
       } finally {
-        setDrawerProps({ confirmLoading: false })
+        changeConfirmLoading(false)
       }
     }
 

@@ -2,7 +2,7 @@
   <PageWrapper
     title="基础详情页"
     contentBackground>
-    <Description
+    <BasicDescription
       title="退款申请"
       size="small"
       :border="false"
@@ -10,7 +10,7 @@
       :data="refundData"
       :schema="refundSchema"
     />
-    <Description
+    <BasicDescription
       title="用户信息"
       size="small"
       class="mt-4"
@@ -30,7 +30,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
-import { Description } from '@/components/Description'
+import { BasicDescription } from '@/components/BasicDescription'
 import { BasicTable, useTable } from '@/components/Table'
 
 import {
@@ -45,7 +45,7 @@ import {
 } from './data'
 
 export default defineComponent({
-  components: { Description, BasicTable },
+  components: { BasicDescription, BasicTable },
   setup() {
     const registerRefundTableFields = reactive<any>({
       title: '退货商品',

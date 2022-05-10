@@ -14,7 +14,7 @@ import { getSlot } from '@/utils/helper/tsxHelper'
 import { basicProps } from './props'
 
 export default defineComponent({
-  name: 'Description',
+  name: 'BasicDescription',
   props: basicProps,
   emits: ['register'],
   setup(props, { attrs, slots, emit, expose }) {

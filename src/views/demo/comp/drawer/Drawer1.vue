@@ -18,7 +18,7 @@
 import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
 
-import { BasicDrawer, useDrawer } from '@/components/Drawer'
+import { BasicDrawer, useDrawer } from '@/components/BasicDrawer'
 
 export default defineComponent({
   components: { ElButton, BasicDrawer },

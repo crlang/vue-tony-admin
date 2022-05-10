@@ -1,6 +1,6 @@
 <template>
   <PageWrapper title="详情组件示例">
-    <Description
+    <BasicDescription
       title="基础示例"
       :column="3"
       border
@@ -11,9 +11,9 @@
           Call: <strong>{{ val }}</strong>
         </div>
       </template>
-    </Description>
+    </BasicDescription>
 
-    <Description
+    <BasicDescription
       class="my-4"
       title="垂直示例"
       direction="vertical"
@@ -26,18 +26,18 @@
       :data="demoData"
       :schema="schema" />
 
-    <Description @register="register" />
+    <BasicDescription @register="register" />
 
   </PageWrapper>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { Description, useDescription } from '@/components/Description'
+import { BasicDescription, useDescription } from '@/components/BasicDescription'
 import { demoData, schema } from './data'
 
 export default defineComponent({
-  components: { Description },
+  components: { BasicDescription },
   setup() {
     const [register] = useDescription({
       title: 'useDescription 方式',

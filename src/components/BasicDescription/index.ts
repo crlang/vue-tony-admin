@@ -1,6 +1,6 @@
 import { withInstall } from '@/utils'
-import description from './src/Description.vue'
+import basicDescription from './src/BasicDescription.vue'
 
 export * from './src/typing'
 export { useDescription } from './src/useDescription'
-export const Description = withInstall(description)
+export const BasicDescription = withInstall(basicDescription)
