@@ -4,7 +4,7 @@
     :isDetail="true"
     title="Drawer Title5">
     <p class="p-20">Content Message</p>
-    <template #titleToolbar>toolbar</template>
+    <template #toolbar>toolbar</template>
   </BasicDrawer>
 </template>
 
