@@ -53,13 +53,20 @@ export default defineComponent({
       type: String,
       default: 'inherit',
     },
+    /**
+     * Icon rotate
+     */
+    rotate: {
+      type: String,
+      default: '0deg',
+    },
   },
   setup(props) {
     const { prefixCls } = useDesign('svg-icon')
     const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 
     const getStyle = computed((): CSSProperties => {
-      const { size } = props
+      const { size, rotate } = props
       if (parseInt(size) === 0) {
         return {}
       }
@@ -68,6 +75,7 @@ export default defineComponent({
       return {
         width: s,
         height: s,
+        transform: `rotate(${rotate})`,
       }
     })
     return { symbolId, prefixCls, getStyle }
