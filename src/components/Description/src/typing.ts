@@ -1,5 +1,5 @@
 import type { EleDescriptions, EleDescriptionsItem } from '@/components/ElementPlus'
-import type { CollapseContainerOptions } from '@/components/CollapseContainer'
+import type { BasicProps as CollapseBasicProps } from '@/components/CollapseContainer'
 
 /**
  * 描述的数据项
@@ -41,7 +41,7 @@ export interface DescItem extends EleDescriptionsItem {
  *
  * Description Props
  */
-export interface DescProps extends EleDescriptions {
+export interface BasicProps extends EleDescriptions {
   /**
    * 描述的数据项集合
    *
@@ -65,7 +65,7 @@ export interface DescProps extends EleDescriptions {
    *
    * Collapse component configuration
    */
-  collapseOptions?: CollapseContainerOptions
+  collapseOptions?: CollapseBasicProps
 }
 
 /**
@@ -74,7 +74,7 @@ export interface DescProps extends EleDescriptions {
  * Description instance
  */
 export interface DescInstance {
-  setDescProps(descProps: Partial<DescProps>): void
+  setDescProps(descProps: Partial<BasicProps>): void
 }
 
 /**
@@ -85,8 +85,8 @@ export interface DescInstance {
 export type Register = (descInstance: DescInstance) => void
 
 /**
- * 使用描述实例回调
+ * 定义实例内容
  *
- * Use the description instance callback
+ * Define instance content
  */
 export type UseDescReturnType = [Register, DescInstance]

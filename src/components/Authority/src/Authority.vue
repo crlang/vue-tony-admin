@@ -8,9 +8,9 @@ export default defineComponent({
   name: 'Authority',
   props: {
     /**
-     * 指定角色可见
+     * 指定角色可见，可填写角色值或权限值
      *
-     * The specified role is visible
+     * The specified role is visible, you can fill in the role value or permission value
      */
     value: {
       type: [Number, Array, String] as PropType<RoleEnum | RoleEnum[] | string | string[]>,

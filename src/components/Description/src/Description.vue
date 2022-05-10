@@ -1,7 +1,7 @@
 <script lang="tsx">
-import type { DescProps, DescInstance } from './typing'
+import type { BasicProps, DescInstance } from './typing'
 import type { CSSProperties } from 'vue'
-import type { CollapseContainerOptions } from '@/components/CollapseContainer'
+import type { BasicProps as CollapseBasicProps } from '@/components/CollapseContainer'
 
 import { defineComponent, computed, ref, unref } from 'vue'
 import { ElDescriptions, ElDescriptionsItem } from 'element-plus'
@@ -18,7 +18,7 @@ export default defineComponent({
   props: basicProps,
   emits: ['register'],
   setup(props, { attrs, slots, emit, expose }) {
-    const propsRef = ref<Partial<DescProps> | null>(null)
+    const propsRef = ref<Partial<BasicProps> | null>(null)
 
     const { prefixCls } = useDesign('basic-description')
 
@@ -31,7 +31,7 @@ export default defineComponent({
       return {
         ...props,
         ...(unref(propsRef) as Recordable),
-      } as DescProps
+      } as BasicProps
     })
 
     /**
@@ -46,7 +46,7 @@ export default defineComponent({
      *
      * Get Collapse configuration
      */
-    const getCollapseOptions = computed((): CollapseContainerOptions => {
+    const getCollapseOptions = computed((): CollapseBasicProps => {
       const { collapseOptions = {} } = unref(getProps)
       return {
         // Cannot be expanded by default
@@ -60,13 +60,13 @@ export default defineComponent({
      *
      * Bind description props
      */
-    const getDescriptionsProps = computed(() => {
+    const getBindValues = computed(() => {
       const opts = { ...unref(attrs), ...unref(getProps) }
       // 绑定组件Porps前，移除自定义附加项
       // Before binding component Porps, remove custom add-ons
       const customProps = ['schema', 'data', 'useCollapse', 'collapseOptions', 'title']
 
-      return omit(opts, customProps) as DescProps
+      return omit(opts, customProps) as BasicProps
     })
 
     /**
@@ -75,7 +75,7 @@ export default defineComponent({
      * Setting Props by Instance
      * @param descProps Description Props
      */
-    function setDescProps(descProps: Partial<DescProps>): void {
+    function setDescProps(descProps: Partial<BasicProps>): void {
       propsRef.value = { ...(unref(propsRef) as Recordable), ...descProps } as Recordable
     }
 
@@ -132,7 +132,7 @@ export default defineComponent({
      */
     const renderDesc = () => {
       return (
-        <ElDescriptions class={`${prefixCls}`} {...(unref(getDescriptionsProps))}>
+        <ElDescriptions class={`${prefixCls}`} {...(unref(getBindValues))}>
           {renderItem()}
         </ElDescriptions>
       )

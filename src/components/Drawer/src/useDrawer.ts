@@ -133,6 +133,12 @@ export function useDrawer(): UseDrawerReturnType {
   return [register, methods]
 }
 
+/**
+ * 定义内部实例
+ *
+ * Define inner use instance
+ * @param callbackFn 回调方法，回调实例传递的数据
+ */
 export const useDrawerInner = (callbackFn?: Fn): UseDrawerInnerReturnType => {
   const drawerInstanceRef = ref<Nullable<DrawerInstance>>(null)
   const currentInstance = getCurrentInstance()
@@ -221,6 +227,7 @@ export const useDrawerInner = (callbackFn?: Fn): UseDrawerInnerReturnType => {
   watchEffect(() => {
     const data = dataTransferRef[unref(uidRef)]
     if (!data) return
+    // Callback method, the data passed by the callback instance
     if (!callbackFn || !isFunction(callbackFn)) return
     nextTick(() => {
       callbackFn(data)

@@ -1,4 +1,4 @@
-import { CollapseContainerOptions } from '@/components/CollapseContainer'
+import { BasicProps as CollapseBasicProps } from '@/components/CollapseContainer'
 import { EleDescriptionsProps } from '@/components/ElementPlus'
 import { DescItem } from './typing'
 
@@ -34,7 +34,7 @@ export const basicProps = {
    * Collapse component configuration
    */
   collapseOptions: {
-    type: Object as PropType<CollapseContainerOptions>,
+    type: Object as PropType<CollapseBasicProps>,
     default: null,
   },
 }
