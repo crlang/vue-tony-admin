@@ -18,14 +18,37 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+
 import { useDesign } from '@/hooks/web/useDesign'
+
 import ListMeta from './meta.vue'
-import { itemProps } from './props'
 
 export default defineComponent({
   name: 'ListItem',
   components: { ListMeta },
-  props: itemProps,
+  props: {
+    /**
+   * Thumbnail address
+   */
+    thumb: {
+      type: String,
+      default: '',
+    },
+    /**
+   * List title
+   */
+    title: {
+      type: String,
+      default: '',
+    },
+    /**
+   * List description
+   */
+    description: {
+      type: String,
+      default: '',
+    },
+  },
   setup() {
     const { prefixCls } = useDesign('basic-list-item')
 

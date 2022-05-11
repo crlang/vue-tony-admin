@@ -1,50 +1,29 @@
-// import type { ListTypes } from './types'
-// import type { EleCard } from '@/components/ElementPlus'
-
 export const basicProps = {
-  // type: {
-  //   type: String as PropType<ListTypes>,
-  //   default: 'list',
-  // },
-  // cardRows: {
-  //   type: Number,
-  //   default: 4,
-  // },
-  // cardSpace: {
-  //   type: Number,
-  //   default: 16,
-  // },
 }
 
 export const itemProps = {
-  // cardClass: {
-  //   type: String,
-  //   default: '',
-  // },
-  // cardStyle: {
-  //   type: Object,
-  //   default: () => { return { 'padding': 0 } },
-  // },
-  // cardShadow: {
-  //   type: String as PropType<EleCard['shadow']>,
-  //   default: 'hover',
-  // },
   /**
-   * Thumbnail address
+   * 缩略图
+   *
+   * Thumbnail url
    */
   thumb: {
     type: String,
     default: '',
   },
   /**
-   * List title
+   * 标题
+   *
+   * Title
    */
   title: {
     type: String,
     default: '',
   },
   /**
-   * List description
+   * 描述
+   *
+   * Description
    */
   description: {
     type: String,
