@@ -11,13 +11,15 @@
           :size="14"
           :class="`${prefixCls}-title-icon`" />
       </div>
-      <CollapseTransition>
+      <transition
+        name="submenu-expand"
+        mode="out-in">
         <ul
           :class="prefixCls"
           v-show="opened">
           <slot></slot>
         </ul>
-      </CollapseTransition>
+      </transition>
     </template>
 
     <ElPopover
@@ -77,7 +79,6 @@ import { useDesign } from '@/hooks/web/useDesign'
 import { propTypes } from '@/utils/propTypes'
 import { useMenuItem } from './useMenu'
 import { useSimpleRootMenuContext } from './useSimpleMenuContext'
-import { CollapseTransition } from '@/components/Transition'
 import Icon from '@/components/Icon'
 import { isBoolean, isObject } from '@/utils/is'
 import mitt from '@/utils/mitt'
@@ -88,7 +89,6 @@ export default defineComponent({
   components: {
     ElPopover,
     Icon,
-    CollapseTransition,
   },
   props: {
     name: {

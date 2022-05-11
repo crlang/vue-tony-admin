@@ -172,3 +172,22 @@ $simple-submenu: '#{$tonyname}-simple-submenu';
     }
   }
 }
+
+.submenu-expand {
+  &-enter-active,
+  &-leave-active {
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  &-move {
+    transition: transform 0.4s;
+  }
+
+  &-enter-from,
+  &-leave-to {
+    height: 0;
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+}

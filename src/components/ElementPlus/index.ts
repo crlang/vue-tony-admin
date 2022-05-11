@@ -1,9 +1,5 @@
 /*
- * @Author: crlang
- * @Date: 2021-12-24 17:24:14
  * @Description: Element Plus Type and Props
- * @LastEditors: crlang(https://www.crlang.com)
- * @LastEditTime: 2022-05-09 17:32:00
  */
 import type { CSSProperties, ExtractPropTypes } from 'vue'
 

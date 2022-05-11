@@ -1,4 +1,5 @@
-.slide-y-transition {
+/* slide */
+.slide {
   @include transition-default();
 
   &-enter-from,
@@ -6,34 +7,37 @@
     opacity: 0;
     transform: translateY(-15px);
   }
-}
 
-.slide-y-reverse-transition {
-  @include transition-default();
+  /* slide-reverse */
+  &-reverse {
+    @include transition-default();
 
-  &-enter-from,
-  &-leave-to {
-    opacity: 0;
-    transform: translateY(15px);
+    &-enter-from,
+    &-leave-to {
+      opacity: 0;
+      transform: translateY(15px);
+    }
   }
-}
 
-.slide-x-transition {
-  @include transition-default();
+  /* slide-x */
+  &-x {
+    @include transition-default();
 
-  &-enter-from,
-  &-leave-to {
-    opacity: 0;
-    transform: translateX(-15px);
-  }
-}
+    &-enter-from,
+    &-leave-to {
+      opacity: 0;
+      transform: translateX(-15px);
+    }
 
-.slide-x-reverse-transition {
-  @include transition-default();
+    /* slide-x-reverse */
+    &-reverse {
+      @include transition-default();
 
-  &-enter-from,
-  &-leave-to {
-    opacity: 0;
-    transform: translateX(15px);
+      &-enter-from,
+      &-leave-to {
+        opacity: 0;
+        transform: translateX(15px);
+      }
+    }
   }
 }

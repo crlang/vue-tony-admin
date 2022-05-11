@@ -1,27 +1,34 @@
-import { createSimpleTransition, createJavascriptTransition } from './src/CreateTransition'
+import { createSimpleTransition, createJavascriptTransition, createExpandFunc } from './src/Transition'
 
-import ExpandTransitionGenerator from './src/ExpandTransition'
+// Fade
+export const FadeTransition = createSimpleTransition('fade')
+export const FadeSlideTransition = createSimpleTransition('fade-slide')
+export const FadeBottomTransition = createSimpleTransition('fade-bottom')
+export const FadeScaleTransition = createSimpleTransition('fade-scale')
+export const FadeTopTransition = createSimpleTransition('fade-top')
 
-export { default as CollapseTransition } from './src/CollapseTransition.vue'
+// Scale
+export const ScaleTransition = createSimpleTransition('scale')
+export const ScaleRotateTransition = createSimpleTransition('scale-rotate')
 
-export const FadeTransition = createSimpleTransition('fade-transition')
-export const ScaleTransition = createSimpleTransition('scale-transition')
-export const SlideYTransition = createSimpleTransition('slide-y-transition')
-export const ScrollYTransition = createSimpleTransition('scroll-y-transition')
-export const SlideYReverseTransition = createSimpleTransition('slide-y-reverse-transition')
-export const ScrollYReverseTransition = createSimpleTransition('scroll-y-reverse-transition')
-export const SlideXTransition = createSimpleTransition('slide-x-transition')
-export const ScrollXTransition = createSimpleTransition('scroll-x-transition')
-export const SlideXReverseTransition = createSimpleTransition('slide-x-reverse-transition')
-export const ScrollXReverseTransition = createSimpleTransition('scroll-x-reverse-transition')
-export const ScaleRotateTransition = createSimpleTransition('scale-rotate-transition')
+// Slide
+export const SlideTransition = createSimpleTransition('slide')
+export const SlideXTransition = createSimpleTransition('slide-x')
+export const SlideReverseTransition = createSimpleTransition('slide-reverse')
+export const SlideXReverseTransition = createSimpleTransition('slide-x-reverse')
 
-export const ExpandXTransition = createJavascriptTransition(
-  'expand-x-transition',
-  ExpandTransitionGenerator('', true)
-)
+// Scroll
+export const ScrollTransition = createSimpleTransition('scroll')
+export const ScrollXTransition = createSimpleTransition('scroll-x')
+export const ScrollReverseTransition = createSimpleTransition('scroll-reverse')
+export const ScrollXReverseTransition = createSimpleTransition('scroll-x-reverse')
 
-export const ExpandTransition = createJavascriptTransition(
-  'expand-transition',
-  ExpandTransitionGenerator('')
-)
+// Zoom
+export const ZoomFadeTransition = createSimpleTransition('zoom-fade')
+export const ZoomOutTransition = createSimpleTransition('zoom-out')
+
+// JS 方式创建
+
+// Expand
+export const ExpandTransition = createJavascriptTransition('expand', createExpandFunc())
+export const ExpandXTransition = createJavascriptTransition('expand-x', createExpandFunc(true))

@@ -1,4 +1,5 @@
-.scroll-y-transition {
+/* scroll */
+.scroll {
   @include transition-default();
 
   &-enter-from,
@@ -13,55 +14,58 @@
   &-leave-to {
     transform: translateY(15px);
   }
-}
 
-.scroll-y-reverse-transition {
-  @include transition-default();
+  /* scroll-reverse */
+  &-reverse {
+    @include transition-default();
 
-  &-enter-from,
-  &-leave-to {
-    opacity: 0;
+    &-enter-from,
+    &-leave-to {
+      opacity: 0;
+    }
+
+    &-enter-from {
+      transform: translateY(15px);
+    }
+
+    &-leave-to {
+      transform: translateY(-15px);
+    }
   }
 
-  &-enter-from {
-    transform: translateY(15px);
-  }
+  /* scroll-x */
+  &-x {
+    @include transition-default();
 
-  &-leave-to {
-    transform: translateY(-15px);
-  }
-}
+    &-enter-from,
+    &-leave-to {
+      opacity: 0;
+    }
 
-.scroll-x-transition {
-  @include transition-default();
+    &-enter-from {
+      transform: translateX(-15px);
+    }
 
-  &-enter-from,
-  &-leave-to {
-    opacity: 0;
-  }
+    &-leave-to {
+      transform: translateX(15px);
+    }
 
-  &-enter-from {
-    transform: translateX(-15px);
-  }
+    /* scroll-x-reverse */
+    &-reverse {
+      @include transition-default();
 
-  &-leave-to {
-    transform: translateX(15px);
-  }
-}
+      &-enter-from,
+      &-leave-to {
+        opacity: 0;
+      }
 
-.scroll-x-reverse-transition {
-  @include transition-default();
+      &-enter-from {
+        transform: translateX(15px);
+      }
 
-  &-enter-from,
-  &-leave-to {
-    opacity: 0;
-  }
-
-  &-enter-from {
-    transform: translateX(15px);
-  }
-
-  &-leave-to {
-    transform: translateX(-15px);
+      &-leave-to {
+        transform: translateX(-15px);
+      }
+    }
   }
 }

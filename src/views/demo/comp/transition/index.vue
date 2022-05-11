@@ -1,110 +1,116 @@
 <template>
   <PageWrapper title="动画组件示例">
-    <el-select
-      v-model="value"
-      placeholder="选择动画"
-      :style="{ width: '150px' }">
-      <el-option
-        v-for="item in options"
-        :key="item.key"
-        :label="item.label"
-        :value="item.value" />
-    </el-select>
-    <el-button
-      type="primary"
-      class="ml-4"
-      @click="start">start</el-button>
-    <component :is="`${value}Transition`">
-      <div
-        class="box"
-        v-show="show"></div>
-    </component>
-    <ScaleTransition>
-      <div
-        class="box my-4"
-        v-show="show">单个示例</div>
-    </ScaleTransition>
+    <el-row :gutter="16">
+      <el-col
+        :span="6"
+        v-for="item in transitionList"
+        :key="item">
+        <component :is="`${item}Transition`">
+          <div
+            class="box"
+            v-show="show"><div>{{ item }}</div></div>
+        </component>
+      </el-col>
+    </el-row>
+
   </PageWrapper>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { ElSelect, ElOption, ElButton } from 'element-plus'
+import { ElRow, ElCol, ElButton } from 'element-plus'
 import {
   FadeTransition,
+  FadeSlideTransition,
+  FadeBottomTransition,
+  FadeScaleTransition,
+  FadeTopTransition,
   ScaleTransition,
-  SlideYTransition,
-  ScrollYTransition,
-  SlideYReverseTransition,
-  ScrollYReverseTransition,
-  SlideXTransition,
-  ScrollXTransition,
-  SlideXReverseTransition,
-  ScrollXReverseTransition,
   ScaleRotateTransition,
+  SlideTransition,
+  SlideXTransition,
+  SlideReverseTransition,
+  SlideXReverseTransition,
+  ScrollTransition,
+  ScrollXTransition,
+  ScrollReverseTransition,
+  ScrollXReverseTransition,
+  ZoomFadeTransition,
+  ZoomOutTransition,
+  ExpandTransition,
   ExpandXTransition,
-  ExpandTransition
 } from '@/components/Transition'
 
 export default defineComponent({
   components: {
-    ElSelect,
-    ElOption,
+    ElRow,
+    ElCol,
     ElButton,
+
     FadeTransition,
+    FadeSlideTransition,
+    FadeBottomTransition,
+    FadeScaleTransition,
+    FadeTopTransition,
     ScaleTransition,
-    SlideYTransition,
-    ScrollYTransition,
-    SlideYReverseTransition,
-    ScrollYReverseTransition,
-    SlideXTransition,
-    ScrollXTransition,
-    SlideXReverseTransition,
-    ScrollXReverseTransition,
     ScaleRotateTransition,
-    ExpandXTransition,
+    SlideTransition,
+    SlideXTransition,
+    SlideReverseTransition,
+    SlideXReverseTransition,
+    ScrollTransition,
+    ScrollXTransition,
+    ScrollReverseTransition,
+    ScrollXReverseTransition,
+    ZoomFadeTransition,
+    ZoomOutTransition,
     ExpandTransition,
+    ExpandXTransition,
   },
   setup() {
-    const value = ref('Fade')
     const show = ref(true)
     const transitionList = [
       'Fade',
+      'FadeSlide',
+      'FadeBottom',
+      'FadeScale',
+      'FadeTop',
       'Scale',
-      'SlideY',
-      'ScrollY',
-      'SlideYReverse',
-      'ScrollYReverse',
-      'SlideX',
-      'ScrollX',
-      'SlideXReverse',
-      'ScrollXReverse',
       'ScaleRotate',
-      'ExpandX',
+      'Slide',
+      'SlideX',
+      'SlideReverse',
+      'SlideXReverse',
+      'Scroll',
+      'ScrollX',
+      'ScrollReverse',
+      'ScrollXReverse',
+      'ZoomFade',
+      'ZoomOut',
       'Expand',
+      'ExpandX',
     ]
-    const options = transitionList.map((item) => ({
-      label: item,
-      value: item,
-      key: item,
-    }))
 
     function start() {
-      show.value = false
-      setTimeout(() => {
-        show.value = true
-      }, 300)
+      show.value = !show.value
     }
-    return { options, value, start, show }
+
+    setInterval(start, 3e3)
+    return { transitionList, show }
   },
 })
 </script>
 
 <style lang="scss" scoped>
 .box {
-  width: 236px;
-  height: 236px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
   margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
   background-color: #7eaaec;
 }
 </style>

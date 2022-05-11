@@ -19,14 +19,14 @@
     </div>
 
     <div :class="`${prefixCls}__body`">
-      <CollapseTransition v-if="canExpan">
+      <ExpandTransition v-if="canExpan">
         <ElSkeleton v-if="loading" />
         <div
           v-else
           v-show="show">
           <slot></slot>
         </div>
-      </CollapseTransition>
+      </ExpandTransition>
       <template v-else>
         <ElSkeleton v-if="loading" />
         <div
@@ -49,13 +49,13 @@ import { ref, defineComponent } from 'vue'
 import { ElSkeleton } from 'element-plus'
 
 import { useDesign } from '@/hooks/web/useDesign'
-import { CollapseTransition } from '@/components/Transition'
+import { ExpandTransition } from '@/components/Transition'
 import { BasicArrow, BasicTitle } from '@/components/Basic'
 import { basicProps } from './props'
 
 export default defineComponent({
   name: 'CollapseContainer',
-  components: { ElSkeleton, CollapseTransition, BasicArrow, BasicTitle },
+  components: { ElSkeleton, ExpandTransition, BasicArrow, BasicTitle },
   props: basicProps,
   emits: ['expand'],
   setup(_, { emit }) {
