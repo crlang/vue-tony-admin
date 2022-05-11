@@ -242,14 +242,6 @@ const comp: AppRouteModule = {
       },
     },
     {
-      path: 'progress',
-      name: 'Progress',
-      component: () => import('@/views/demo/comp/progress/index.vue'),
-      meta: {
-        title: '进度条动画',
-      },
-    },
-    {
       path: 'tree',
       name: 'TreeDemo',
       redirect: '/comp/tree/basic',

@@ -15,7 +15,7 @@
               <div
                 class="ana-card--compare"
                 :class="[{'is-down':item.scale<0,'is-up':item.scale>0}]">
-                <span class="t1"><CountTo :endVal="item.value" /></span>
+                <span class="t1">{{ item.value }}</span>
                 <SvgIcon
                   class="t2"
                   :name="item.scale > 0 ? 'rise':(item.scale < 0 ? 'fall':'line')" />
@@ -23,15 +23,21 @@
               </div>
             </div>
             <div class="ana-card--chart">
-              <CircleProgress
-                :size="112"
-                :width="5"
-                :color="getBarColor(item.mix)"
-                :progress="item.mix" />
-              <div class="ana-card--chart-inner">
-                <div><CountTo :endVal="item.mix" /><span>%</span></div>
-                <span>{{ item.desc }}</span>
-              </div>
+              <el-progress
+                type="circle"
+                :percentage="item.mix"
+                :width="112"
+                :circlePathStyle="[{color:'#f00'}]"
+                :stroke-width="5"
+                indeterminate
+                :color="getBarColor(item.mix)">
+                <template #default>
+                  <div class="ana-card--chart-inner">
+                    <div><span>{{ item.mix }}</span> <span>%</span></div>
+                    <span>{{ item.desc }}</span>
+                  </div>
+                </template>
+              </el-progress>
             </div>
           </div>
         </el-card>
@@ -41,13 +47,12 @@
 </template>
 
 <script lang="ts" setup>
-import { ElRow, ElCol, ElCard } from 'element-plus'
-import { CountTo } from '@/components/CountTo'
-import { SvgIcon } from '@/components/Icon'
-import { CardList } from '../data'
-import { CircleProgress } from '@/components/Progress'
+import { ElRow, ElCol, ElCard, ElProgress } from 'element-plus'
 
-//
+import { SvgIcon } from '@/components/Icon'
+
+import { CardList } from '../data'
+
 defineProps({
   loading: {
     type: Boolean,
@@ -149,9 +154,13 @@ function getBarColor(v:number) {
       }
 
       > div {
-        font-size: 1.875rem;
-        font-weight: bold;
+        font-size: 0;
         line-height: 1;
+
+        > span:first-child {
+          font-size: 1.875rem;
+          font-weight: bold;
+        }
 
         > span:last-child {
           margin-left: 0.125rem;
