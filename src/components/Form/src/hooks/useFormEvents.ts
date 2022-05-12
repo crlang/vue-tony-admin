@@ -225,7 +225,7 @@ export function useFormEvents({
   /**
    * Form submission
    */
-  async function handleSubmit(e?: Event): Promise<void> {
+  async function handleSubmit(e?: Event): Promise<Recordable> {
     e && e.preventDefault()
     const { submitFunc } = unref(getProps)
     if (submitFunc && isFunction(submitFunc)) {

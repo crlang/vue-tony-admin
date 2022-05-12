@@ -4,7 +4,7 @@ import { createContext, useContext } from '@/hooks/core/useContext'
 
 export interface FormContextProps {
   resetAction: () => Promise<void>
-  submitAction: () => Promise<void>
+  submitAction: () => Promise<Recordable>
 }
 
 const key: InjectionKey<FormContextProps> = Symbol()
