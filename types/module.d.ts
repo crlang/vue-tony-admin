@@ -1,7 +1,9 @@
 declare module '*.vue' {
-  import { DefineComponent } from 'vue'
-  const Component: DefineComponent<{}, {}, any>
-  export default Component
+  import type { App, DefineComponent } from 'vue'
+  const component: DefineComponent<{}, {}, any> & {
+    install(app: App): void
+  }
+  export default component
 }
 
 declare module 'virtual:*' {

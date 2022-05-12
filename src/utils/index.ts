@@ -1,9 +1,10 @@
 import type { RouteLocationNormalized, RouteRecordNormalized } from 'vue-router'
-import type { App, Plugin } from 'vue'
+import type { App } from 'vue'
 import { NOOP } from '@vue/shared'
 
 import { unref } from 'vue'
 import { isObject } from '@/utils/is'
+import { SFCInstallWithContext, SFCWithInstall } from '#/utils'
 
 export const noop = () => {}
 
@@ -13,7 +14,6 @@ export const noop = () => {}
 export function getPopupContainer(node?: HTMLElement): HTMLElement {
   return (node?.parentNode as HTMLElement) ?? document.body
 }
-
 /**
  * Add the object as a parameter to the URL
  * @param baseUrl url
@@ -76,29 +76,58 @@ export function getRawRoute(route: RouteLocationNormalized): RouteLocationNormal
   }
 }
 
-export const withInstall = <T>(component: T, alias?: string) => {
-  const comp = component as any
-  comp.install = (app: App) => {
-    app.component(comp.name || comp.displayName, component)
-    if (alias) {
-      app.config.globalProperties[alias] = component
+/**
+ * 注册组件
+ *
+ * Install component
+ * @param main component
+ * @param extra alias
+ */
+export const withInstall = <T, E extends Record<string, any>>(
+  main: T,
+  extra?: E
+) => {
+  (main as SFCWithInstall<T>).install = (app): void => {
+    for (const comp of [main, ...Object.values(extra ?? {})]) {
+      app.component(comp.name, comp)
     }
   }
-  return component as T & Plugin
+
+  if (extra) {
+    for (const [key, comp] of Object.entries(extra)) {
+      (main as any)[key] = comp
+    }
+  }
+  return main as SFCWithInstall<T> & E
 }
 
+/**
+ * 注册函数式组件
+ *
+ * Register functional components
+ * @param fn function
+ * @param name alias
+ * @returns
+ */
 export const withInstallFunction = <T>(fn: T, name: string) => {
-  (fn as T & Plugin).install = (app) => {
+  (fn as SFCWithInstall<T>).install = (app: App) => {
+    (fn as SFCInstallWithContext<T>)._context = app._context
     app.config.globalProperties[name] = fn
   }
 
-  return fn as T & Plugin
+  return fn as SFCInstallWithContext<T>
 }
 
+/**
+ * 注册循环组件
+ *
+ * Register the loop component
+ * @param component component
+ */
 export const withNoopInstall = <T>(component: T) => {
-  (component as T & Plugin).install = NOOP
+  (component as SFCWithInstall<T>).install = NOOP
 
-  return component as T & Plugin
+  return component as SFCWithInstall<T>
 }
 
 export function buildUUID(): string {

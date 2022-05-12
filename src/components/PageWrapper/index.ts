@@ -8,3 +8,4 @@ export { PageWrapperFixedHeightKey } from './src/helper'
  * Component is registered globally
  */
 export const PageWrapper = withInstall(pageWrapper)
+export default PageWrapper

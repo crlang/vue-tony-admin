@@ -1,5 +1,3 @@
-import { PageWrapper } from '@/components/PageWrapper'
-
 /**
  * 定义全局组件的智能提示
  *
@@ -7,7 +5,7 @@ import { PageWrapper } from '@/components/PageWrapper'
  */
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    PageWrapper: typeof PageWrapper
+    PageWrapper: typeof import('@/components/PageWrapper')
   }
 }
 

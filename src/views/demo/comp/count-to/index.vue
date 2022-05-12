@@ -37,7 +37,7 @@
 import { defineComponent, ref } from 'vue'
 import { ElButton } from 'element-plus'
 
-import { CountTo } from '@/components/CountTo/index'
+import { CountTo } from '@/components/CountTo'
 import { CardGrid, CardGridItem } from '@/components/CardGrid'
 import { useMessage } from '@/hooks/web/useMessage'
 
