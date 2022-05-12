@@ -30,9 +30,11 @@
 
 <script lang="ts">
 import { defineComponent, toRefs } from 'vue'
-import { BasicTitle } from '@/components/Basic'
 import { ElTooltip } from 'element-plus'
-import { SvgIcon } from '@/components/Icon'
+
+import { BasicTitle } from '@/components/Basic'
+import { SvgIcon } from '@/components/SvgIcon'
+
 import { useModalDragMove } from '../hooks/useModalDrag'
 import { headerProps } from '../props'
 

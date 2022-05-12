@@ -65,7 +65,7 @@ import { defineComponent, ref } from 'vue'
 import { ElButton } from 'element-plus'
 import { BasicDragVerify } from '@/components/Verify'
 import { useMessage } from '@/hooks/web/useMessage'
-import { SvgIcon } from '@/components/Icon'
+import { SvgIcon } from '@/components/SvgIcon'
 
 export default defineComponent({
   components: { ElButton, BasicDragVerify, SvgIcon },

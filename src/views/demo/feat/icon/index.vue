@@ -42,13 +42,11 @@
       center>
       <CardGridItem>
         <SvgIcon
-          name="sun"
-          size="32" />
+          name="sun" />
       </CardGridItem>
       <CardGridItem>
         <SvgIcon
-          name="moon"
-          size="32" />
+          name="moon" />
       </CardGridItem>
     </CardGrid>
   </PageWrapper>
@@ -59,9 +57,10 @@ import { defineComponent } from 'vue'
 import { ElRow, ElCol, ElCard } from 'element-plus'
 import { ArrowDownBold, ArrowLeftBold, ArrowRightBold } from '@element-plus/icons'
 
-import { Icon, SvgIcon } from '@/components/Icon'
+import { Icon } from '@/components/Icon'
 import { IconPicker } from '@/components/IconPicker'
 import { CardGrid, CardGridItem } from '@/components/CardGrid'
+import { SvgIcon } from '@/components/SvgIcon'
 
 export default defineComponent({
   components: {

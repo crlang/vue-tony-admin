@@ -1,6 +1,5 @@
-import Icon from './src/Icon.vue'
-import SvgIcon from './src/SvgIcon.vue'
+import { withInstall } from '@/utils'
+import icon from './src/Icon.vue'
 
-export { Icon, SvgIcon }
-
+export const Icon = withInstall(icon)
 export default Icon

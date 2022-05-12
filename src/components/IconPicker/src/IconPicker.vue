@@ -66,8 +66,8 @@ import svgIcons from 'virtual:svg-icons-names'
 
 import { useDesign } from '@/hooks/web/useDesign'
 import { ScrollContainer } from '@/components/ScrollContainer'
-import Icon from '@/components/Icon/src/Icon.vue'
-import SvgIcon from '@/components/Icon/src/SvgIcon.vue'
+import Icon from '@/components/Icon'
+import SvgIcon from '@/components/SvgIcon'
 import { useCopyToClipboard } from '@/hooks/web/useCopyToClipboard'
 import { useMessage } from '@/hooks/web/useMessage'
 

@@ -17,8 +17,10 @@
 import { defineComponent } from 'vue'
 import { ElTooltip } from 'element-plus'
 import { useFullscreen } from '@vueuse/core'
+
+import { SvgIcon } from '@/components/SvgIcon'
+
 import { useTableContext } from '../../hooks/useTableContext'
-import { SvgIcon } from '@/components/Icon'
 
 export default defineComponent({
   name: 'FullScreenSetting',

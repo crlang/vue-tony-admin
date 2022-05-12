@@ -22,7 +22,7 @@ import { defineComponent, computed, unref } from 'vue'
 import { ElTooltip } from 'element-plus'
 import { useFullscreen } from '@vueuse/core'
 
-import { SvgIcon } from '@/components/Icon'
+import { SvgIcon } from '@/components/SvgIcon'
 
 export default defineComponent({
   name: 'FullScreen',

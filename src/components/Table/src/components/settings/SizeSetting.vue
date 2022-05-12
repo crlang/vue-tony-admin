@@ -28,8 +28,10 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElTooltip, ElDropdown, ElDropdownItem, ElDropdownMenu, ComponentSize } from 'element-plus'
+
+import { SvgIcon } from '@/components/SvgIcon'
+
 import { useTableContext } from '../../hooks/useTableContext'
-import { SvgIcon } from '@/components/Icon'
 
 export default defineComponent({
   name: 'SizeSetting',

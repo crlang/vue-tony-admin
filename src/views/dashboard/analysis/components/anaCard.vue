@@ -49,7 +49,7 @@
 <script lang="ts" setup>
 import { ElRow, ElCol, ElCard, ElProgress } from 'element-plus'
 
-import { SvgIcon } from '@/components/Icon'
+import { SvgIcon } from '@/components/SvgIcon'
 
 import { CardList } from '../data'
 

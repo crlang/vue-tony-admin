@@ -4,7 +4,7 @@ import type { CSSProperties, Ref } from 'vue'
 import { defineComponent, ref, computed, unref, reactive, watch, watchEffect } from 'vue'
 
 import { getSlot } from '@/utils/helper/tsxHelper'
-import { SvgIcon } from '@/components/Icon'
+import { SvgIcon } from '@/components/SvgIcon'
 import { useDesign } from '@/hooks/web/useDesign'
 
 import { basicProps } from './props'

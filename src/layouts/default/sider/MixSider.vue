@@ -36,9 +36,10 @@
             dot />
           <div :class="`${prefixCls}-module__item-inner`">
             <Icon
+              v-if="item.icon || item.meta?.icon"
               :class="`${prefixCls}-module__icon`"
               :size="getCollapsed ? 24 : 16"
-              :icon="item.icon || item.meta?.icon || 'blank|svg'" />
+              :icon="item.icon || item.meta?.icon || ''" />
             <p :class="`${prefixCls}-module__name`">{{ item.name || '' }}</p>
           </div>
         </li>
@@ -63,7 +64,7 @@
         <span
           class="pushpin"
           @click="handleFixedMenu">
-          <Icon :icon="getMixSideFixed ? 'pushpin-fill|svg' : 'pushpin-line|svg'" />
+          <SvgIcon :name="getMixSideFixed ? 'pushpin-fill' : 'pushpin-line'" />
         </span>
       </div>
       <ScrollContainer :class="`${prefixCls}-menu-list__content`">
@@ -89,6 +90,7 @@ import { computed, defineComponent, onMounted, ref, unref } from 'vue'
 import { ScrollContainer } from '@/components/ScrollContainer'
 import { SimpleMenu, SimpleMenuTag } from '@/components/SimpleMenu'
 import { Icon } from '@/components/Icon'
+import { SvgIcon } from '@/components/SvgIcon'
 import { AppLogo } from '@/components/Application'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 // import { useGlobSetting } from '@/hooks/setting'
@@ -108,6 +110,7 @@ export default defineComponent({
     AppLogo,
     SimpleMenu,
     Icon,
+    SvgIcon,
     LayoutTrigger,
     SimpleMenuTag,
   },

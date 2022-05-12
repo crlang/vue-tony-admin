@@ -80,7 +80,7 @@ import { useDesign } from '@/hooks/web/useDesign'
 import { omit } from 'lodash-es'
 import { EleDrawer } from '@/components/ElementPlus'
 import { BasicTitle } from '@/components/Basic'
-import { SvgIcon } from '@/components/Icon'
+import { SvgIcon } from '@/components/SvgIcon'
 
 export default defineComponent({
   name: 'BasicDrawer',

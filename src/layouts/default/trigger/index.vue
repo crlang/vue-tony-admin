@@ -6,8 +6,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
-import { SvgIcon } from '@/components/Icon'
+import { SvgIcon } from '@/components/SvgIcon'
 
 export default defineComponent({
   name: 'LayoutTrigger',

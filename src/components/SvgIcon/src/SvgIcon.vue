@@ -1,12 +1,15 @@
 <template>
-  <svg
+  <span
     :class="[prefixCls, $attrs.class, spin && 'svg-icon-spin']"
-    :style="getStyle"
-    aria-hidden="true">
-    <use
-      :xlink:href="symbolId"
-      :fill="color" />
-  </svg>
+    :style="getStyle">
+    <svg
+
+      aria-hidden="true">
+      <use
+        :xlink:href="symbolId"
+        :fill="color" />
+    </svg>
+  </span>
 </template>
 
 <script lang="ts">
@@ -16,7 +19,6 @@ import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'SvgIcon',
-  // inheritAttrs: false,
   props: {
     /**
      * Icon name
@@ -66,15 +68,16 @@ export default defineComponent({
     const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 
     const getStyle = computed((): CSSProperties => {
-      const { size, rotate } = props
-      if (parseInt(size) === 0) {
-        return {}
+      const { size, rotate = '0deg' } = props
+      let s = parseInt(size) || ''
+      if (!s) {
+        s = '1rem'
+      } else {
+        s = `${s}px`
       }
-      let s = `${size}`
-      s = `${s.replace('px', '')}px`
       return {
-        width: s,
-        height: s,
+        fontSize: s,
+        lineHeight: s,
         transform: `rotate(${rotate})`,
       }
     })
@@ -87,10 +90,15 @@ export default defineComponent({
 $prefix-cls: '#{$tonyname}-svg-icon';
 
 .#{$prefix-cls} {
-  display: inline-block;
   overflow: hidden;
-  vertical-align: -0.15em;
-  fill: currentColor;
+
+  svg {
+    display: block;
+    width: 1em;
+    height: 1em;
+    overflow: hidden;
+    fill: currentColor;
+  }
 }
 
 .svg-icon-spin {

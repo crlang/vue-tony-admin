@@ -40,11 +40,13 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue'
 import { ElPopover, ElBadge, ElTabs, ElTabPane } from 'element-plus'
-import { tabListData, ListItem } from './data'
-import NoticeList from './NoticeList.vue'
+
 import { useDesign } from '@/hooks/web/useDesign'
-import { SvgIcon } from '@/components/Icon'
+import { SvgIcon } from '@/components/SvgIcon'
 import { useMessage } from '@/hooks/web/useMessage'
+
+import NoticeList from './NoticeList.vue'
+import { tabListData, ListItem } from './data'
 
 export default defineComponent({
   components: { ElPopover, ElBadge, ElTabs, ElTabPane, SvgIcon, NoticeList },
