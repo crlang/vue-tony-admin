@@ -7,7 +7,7 @@
         <ElBadge
           :value="getCount"
           :max="99">
-          <Icon icon="ion:bug-outline" />
+          <Icon name="ion:bug-outline" />
         </ElBadge>
       </span>
     </ElTooltip>

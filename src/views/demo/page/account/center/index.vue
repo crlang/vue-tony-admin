@@ -20,7 +20,7 @@
                 v-for="detail in details"
                 :key="detail.title">
                 <p class="mb-3">
-                  <Icon :icon="detail.icon" />
+                  <Icon :name="detail.icon" />
                   {{ detail.title }}
                 </p>
               </template>
@@ -55,7 +55,7 @@
             :key="index"
             :class="`${prefixCls}-top__team-item`">
             <Icon
-              :icon="team.icon"
+              :name="team.icon"
               :color="team.color" />
             <span>{{ team.title }}</span>
           </div>

@@ -46,7 +46,7 @@
                     <Icon
                       v-if="action.icon"
                       :class="`${prefixCls}__action-icon`"
-                      :icon="action.icon"
+                      :name="action.icon"
                       :color="action.color" />
                     {{ action.text }}
                   </div>

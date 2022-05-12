@@ -7,7 +7,7 @@
         type="text"
         v-bind="action.buttonProps"
         @click="action?.callback!(scopes)"><Icon
-          :icon="action?.preIcon"
+          :name="action?.preIcon"
           v-if="action?.preIcon" />{{ action.buttonProps?.text || '' }}</el-button>
     </template>
   </div>

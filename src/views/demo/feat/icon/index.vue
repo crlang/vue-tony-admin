@@ -26,13 +26,14 @@
       title="IconIfy 组件使用"
       center>
       <CardGridItem><Icon
-        icon="ep:arrow-down"
+        name="ep:arrow-down"
         :size="30" /></CardGridItem>
       <CardGridItem><Icon
-        icon="ep:arrow-left"
+        name="ep:arrow-left"
+        spin
         :size="30" /></CardGridItem>
       <CardGridItem><Icon
-        icon="ep:arrow-right"
+        name="ep:arrow-right"
         :size="30" /></CardGridItem>
     </CardGrid>
 
@@ -42,11 +43,20 @@
       center>
       <CardGridItem>
         <SvgIcon
-          name="sun" />
+          name="sun"
+          size="36" />
       </CardGridItem>
       <CardGridItem>
         <SvgIcon
-          name="moon" />
+          name="moon"
+          spin
+          size="36" />
+      </CardGridItem>
+      <CardGridItem>
+        <SvgIcon
+          name="notices"
+          size="36"
+          color="#f00" />
       </CardGridItem>
     </CardGrid>
   </PageWrapper>

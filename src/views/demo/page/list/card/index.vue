@@ -7,19 +7,19 @@
       <div :class="`${prefixCls}__link`">
         <a>
           <Icon
-            icon="bx:bx-paper-plane"
+            name="bx:bx-paper-plane"
             color="#1890ff" />
           <span>开始</span>
         </a>
         <a>
           <Icon
-            icon="carbon:warning"
+            name="carbon:warning"
             color="#1890ff" />
           <span>简介</span>
         </a>
         <a>
           <Icon
-            icon="ion:document-text-outline"
+            name="ion:document-text-outline"
             color="#1890ff" />
           <span>文档</span>
         </a>
@@ -42,7 +42,7 @@
                       class="icon"
                       size="50"
                       v-if="item.icon"
-                      :icon="item.icon"
+                      :name="item.icon"
                       :color="item.color" />
                     <span>{{ item.title }}</span>
                   </div>

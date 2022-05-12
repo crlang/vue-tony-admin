@@ -2,22 +2,22 @@
   <div>
     <div>
       <span>
-        <Icon icon="uil:enter" />
+        <Icon name="uil:enter" />
       </span>
       <span>确认</span>
     </div>
     <div>
       <span>
-        <Icon icon="ion:arrow-up-outline" />
+        <Icon name="ion:arrow-up-outline" />
       </span>
       <span>
-        <Icon icon="ion:arrow-down-outline" />
+        <Icon name="ion:arrow-down-outline" />
       </span>
       <span>切换</span>
     </div>
     <div>
       <span>
-        <Icon icon="mdi:keyboard-esc" />
+        <Icon name="mdi:keyboard-esc" />
       </span>
       <span>关闭</span>
     </div>

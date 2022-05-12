@@ -18,7 +18,7 @@
         </template>
         <ElButton @click="openPreviewModal()">
           <Icon
-            icon="bi:eye"
+            name="bi:eye"
             size="12" /> <template v-if="fileList.length && showPreviewNumber"> {{ fileList.length }}</template>
         </ElButton>
       </ElTooltip>

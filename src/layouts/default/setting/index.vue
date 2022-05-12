@@ -2,7 +2,7 @@
   <div>
     <span
       style="width: 100%;text-align: center;"
-      @click="openDrawer(true)"><Icon icon="ion:settings-outline" /></span>
+      @click="openDrawer(true)"><Icon name="ion:settings-outline" /></span>
     <SettingDrawer @register="register" />
   </div>
 </template>

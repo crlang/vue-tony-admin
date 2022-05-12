@@ -6,12 +6,12 @@
     <template #default="data">
       <div :class="`${prefixCls}__inner`">
         <Icon
-          :icon="preIcon"
+          :name="preIcon"
           v-if="preIcon"
           :size="iconSize" />
         <slot v-bind="data || {}"></slot>
         <Icon
-          :icon="sufIcon"
+          :name="sufIcon"
           v-if="sufIcon"
           :size="iconSize" />
       </div>

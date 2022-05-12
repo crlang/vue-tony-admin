@@ -1,10 +1,8 @@
 <template>
   <span
-    :class="[prefixCls, $attrs.class, spin && 'svg-icon-spin']"
+    :class="[`${prefixCls}`, spin&&`${prefixCls}-spin`]"
     :style="getStyle">
-    <svg
-
-      aria-hidden="true">
+    <svg aria-hidden="true">
       <use
         :xlink:href="symbolId"
         :fill="color" />
@@ -21,13 +19,17 @@ export default defineComponent({
   name: 'SvgIcon',
   props: {
     /**
-     * Icon name
+     * 图标名称，来源于 src/assets/icons 下的svg文件名
+     *
+     * Icon name, derived from the svg file name under src/assets/icons
      */
     name: {
       type: String,
       required: true,
     },
     /**
+     * 图标大小
+     *
      * Icon size
      */
     size: {
@@ -35,6 +37,8 @@ export default defineComponent({
       default: 0,
     },
     /**
+     * 是否旋转
+     *
      * Whether the icon is turned on rotation
      */
     spin: {
@@ -42,13 +46,8 @@ export default defineComponent({
       default: false,
     },
     /**
-     * Icon prefix
-     */
-    prefix: {
-      type: String,
-      default: 'icon',
-    },
-    /**
+     * 图标颜色
+     *
      * Icon color
      */
     color: {
@@ -56,17 +55,34 @@ export default defineComponent({
       default: 'inherit',
     },
     /**
-     * Icon rotate
+     * 图标旋转角度(deg)
+     *
+     * Icon rotate (deg)
      */
     rotate: {
       type: String,
       default: '0deg',
     },
+    /**
+     * SymbolId 命名前缀，如无特殊使用，可不予理会
+     *
+     * SymbolId naming prefix, if there is no special use, it can be ignored
+     */
+    prefix: {
+      type: String,
+      default: 'icon',
+    },
   },
   setup(props) {
     const { prefixCls } = useDesign('svg-icon')
+    // svg symbolId
     const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 
+    /**
+     * 获取图标外框样式
+     *
+     * Get svg wrap style
+     */
     const getStyle = computed((): CSSProperties => {
       const { size, rotate = '0deg' } = props
       let s = parseInt(size) || ''
@@ -99,10 +115,14 @@ $prefix-cls: '#{$tonyname}-svg-icon';
     overflow: hidden;
     fill: currentColor;
   }
-}
 
-.svg-icon-spin {
-  animation: svgLoadingCircle 1s infinite linear;
+  &-spin {
+
+    svg {
+      animation: svgLoadingCircle 1s infinite linear;
+
+    }
+  }
 }
 
 @keyframes svgLoadingCircle {

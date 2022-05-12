@@ -6,7 +6,7 @@
   <span
     :class="`${prefixCls}`"
     v-else
-    @mouseenter="handleOpenDropdown()"><Icon icon="ion:chevron-down" /></span>
+    @mouseenter="handleOpenDropdown()"><Icon name="ion:chevron-down" /></span>
   <ElDropdown
     ref="tabsDropdownRef"
     :trigger="getTrigger"
@@ -21,7 +21,7 @@
           :command="item.command"
           :disabled="item.disabled"
           :divided="item.divided"> <Icon
-            :icon="item.icon"
+            :name="item.icon"
             class="mr-2" /> {{ item.text }}</ElDropdownItem>
       </ElDropdownMenu>
     </template>

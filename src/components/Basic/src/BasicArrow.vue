@@ -1,6 +1,6 @@
 <template>
   <span :class="getClass">
-    <Icon icon="ion:chevron-forward" />
+    <Icon name="ion:chevron-forward" />
   </span>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <span
     @click="handleRedo"
-    title="重新加载"><Icon icon="codicon:debug-restart" /></span>
+    title="重新加载"><Icon name="codicon:debug-restart" /></span>
 </template>
 
 <script lang="ts">

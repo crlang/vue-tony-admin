@@ -35,7 +35,7 @@
               content="固定到左侧">
               <span @click="handleColumnFixed(item, 'left')">
                 <Icon
-                  icon="line-md:arrow-align-left"
+                  name="line-md:arrow-align-left"
                   :class="[
                     `${prefixCls}__fixed-left`,
                     {
@@ -50,7 +50,7 @@
               content="固定到右侧">
               <span @click="handleColumnFixed(item, 'right')">
                 <Icon
-                  icon="line-md:arrow-align-left"
+                  name="line-md:arrow-align-left"
                   :class="[
                     `${prefixCls}__fixed-right`,
                     {

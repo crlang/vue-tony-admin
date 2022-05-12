@@ -39,7 +39,7 @@
               v-if="item.icon || item.meta?.icon"
               :class="`${prefixCls}-module__icon`"
               :size="getCollapsed ? 24 : 16"
-              :icon="item.icon || item.meta?.icon || ''" />
+              :name="item.icon || item.meta?.icon || ''" />
             <p :class="`${prefixCls}-module__name`">{{ item.name || '' }}</p>
           </div>
         </li>

@@ -7,7 +7,7 @@
         :style="getItemStyle">
         <slot name="title"></slot>
         <Icon
-          icon="eva:arrow-ios-downward-outline"
+          name="eva:arrow-ios-downward-outline"
           :size="14"
           :class="`${prefixCls}-title-icon`" />
       </div>
@@ -45,7 +45,7 @@
           </div>
           <Icon
             v-if="getParentSubMenu"
-            icon="eva:arrow-ios-downward-outline"
+            name="eva:arrow-ios-downward-outline"
             :size="14"
             :class="`${prefixCls}-title-icon`"
           />

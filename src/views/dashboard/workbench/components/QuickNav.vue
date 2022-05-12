@@ -7,7 +7,7 @@
       v-for="(item,index) in navItems"
       :key="index">
       <Icon
-        :icon="item.icon"
+        :name="item.icon"
         :color="item.color"
         size="20" />
       <span class="text-md mt-2">{{ item.title }}</span>

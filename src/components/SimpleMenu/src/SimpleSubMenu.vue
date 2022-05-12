@@ -6,7 +6,7 @@
     :class="getLevelClass">
     <Icon
       v-if="getIcon"
-      :icon="getIcon"
+      :name="getIcon"
       :size="16" />
     <div
       v-if="collapsedShowTitle && getIsCollapseParent"
@@ -26,7 +26,7 @@
     <template #title>
       <Icon
         v-if="getIcon"
-        :icon="getIcon"
+        :name="getIcon"
         :size="16" />
       <div
         v-if="collapsedShowTitle && getIsCollapseParent"

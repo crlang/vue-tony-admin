@@ -16,18 +16,18 @@
           command="doc"
           v-if="getShowDoc"><Icon
             class="mr-2"
-            icon="ion:document-text-outline" />文档</ElDropdownItem>
+            name="ion:document-text-outline" />文档</ElDropdownItem>
         <ElDropdownItem
           v-if="getUseLockPage"
           :divided="getShowDoc"
           command="lock"><Icon
             class="mr-2"
-            icon="ion:lock-closed-outline" />锁定屏幕</ElDropdownItem>
+            name="ion:lock-closed-outline" />锁定屏幕</ElDropdownItem>
         <ElDropdownItem
           command="logout"
           divided><Icon
             class="mr-2"
-            icon="ion:power-outline" />退出系统</ElDropdownItem>
+            name="ion:power-outline" />退出系统</ElDropdownItem>
       </ElDropdownMenu>
     </template>
   </ElDropdown>

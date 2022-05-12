@@ -36,7 +36,7 @@
                 <Icon
                   class="icon"
                   v-if="item.icon"
-                  :icon="item.icon"
+                  :name="item.icon"
                   :color="item.color" />
               </template>
               <template #title>

@@ -34,7 +34,7 @@ const ItemContent: FunctionalComponent<ItemContentProps> = (props) => {
     <div
       class={`${prefixCls}__text`}
       onClick={props.handler.bind(null, item)} >
-      {props.showIcon && item.icon && <Icon class='mr-2' icon={item.icon} />}
+      {props.showIcon && item.icon && <Icon class='mr-2' name={item.icon} />}
       <span>{item.label}</span>
     </div>
   )

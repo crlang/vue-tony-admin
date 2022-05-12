@@ -31,7 +31,7 @@
                   v-if="isSvgMode"
                   :name="icon" />
                 <Icon
-                  :icon="icon"
+                  :name="icon"
                   size="36"
                   v-else />
                 <div>{{ icon }}</div>
@@ -51,7 +51,7 @@
           </span>
           <span
             :class="`${prefixCls}__search`"
-            v-else><Icon :icon="currentSelect || 'ion:apps-outline'" /></span>
+            v-else><Icon :name="currentSelect || 'ion:apps-outline'" /></span>
         </template>
 
       </ElPopover>

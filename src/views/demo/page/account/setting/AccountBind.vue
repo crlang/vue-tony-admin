@@ -11,7 +11,7 @@
             <Icon
               v-if="item.avatar"
               class="avatar"
-              :icon="item.avatar"
+              :name="item.avatar"
               :color="item.color" />
           </template>
           <template #title>

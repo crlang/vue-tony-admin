@@ -1,7 +1,7 @@
 <template>
   <span
     @click="handleFold"
-    :title="getIconText"><Icon :icon="getIcon" /></span>
+    :title="getIconText"><Icon :name="getIcon" /></span>
 </template>
 
 <script lang="ts">

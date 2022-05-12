@@ -28,7 +28,7 @@
               content="selectImage"
               placement="bottom">
               <ElButton
-                type="success"><Icon icon="ep:upload-filled" /></ElButton>
+                type="success"><Icon name="ep:upload-filled" /></ElButton>
             </ElTooltip>
           </ElUpload>
           <ElSpace>
@@ -39,7 +39,7 @@
                 type="primary"
                 size="small"
                 :disabled="!src"
-                @click="handlerToolbar('reset')"><Icon icon="ep:refresh-right" /></ElButton>
+                @click="handlerToolbar('reset')"><Icon name="ep:refresh-right" /></ElButton>
             </ElTooltip>
             <ElTooltip
               content="逆时针旋转"
@@ -48,7 +48,7 @@
                 type="primary"
                 size="small"
                 :disabled="!src"
-                @click="handlerToolbar('rotate', -45)"><Icon icon="ic:baseline-rotate-90-degrees-ccw" /></ElButton>
+                @click="handlerToolbar('rotate', -45)"><Icon name="ic:baseline-rotate-90-degrees-ccw" /></ElButton>
             </ElTooltip>
             <ElTooltip
               content="顺时针旋转"
@@ -57,7 +57,7 @@
                 type="primary"
                 size="small"
                 :disabled="!src"
-                @click="handlerToolbar('rotate', 45)"><Icon icon="ic:baseline-rotate-90-degrees-ccw" /></ElButton>
+                @click="handlerToolbar('rotate', 45)"><Icon name="ic:baseline-rotate-90-degrees-ccw" /></ElButton>
             </ElTooltip>
             <ElTooltip
               content="水平翻转"
@@ -66,7 +66,7 @@
                 type="primary"
                 size="small"
                 :disabled="!src"
-                @click="handlerToolbar('scaleX')"><Icon icon="vaadin:arrows-long-h" /></ElButton>
+                @click="handlerToolbar('scaleX')"><Icon name="vaadin:arrows-long-h" /></ElButton>
             </ElTooltip>
             <ElTooltip
               content="垂直翻转"
@@ -75,7 +75,7 @@
                 type="primary"
                 size="small"
                 :disabled="!src"
-                @click="handlerToolbar('scaleY')"><Icon icon="vaadin:arrows-long-v" /></ElButton>
+                @click="handlerToolbar('scaleY')"><Icon name="vaadin:arrows-long-v" /></ElButton>
             </ElTooltip>
             <ElTooltip
               content="放大"
@@ -84,7 +84,7 @@
                 type="primary"
                 size="small"
                 :disabled="!src"
-                @click="handlerToolbar('zoom', 0.1)"><Icon icon="ep:zoom-in" /></ElButton>
+                @click="handlerToolbar('zoom', 0.1)"><Icon name="ep:zoom-in" /></ElButton>
             </ElTooltip>
             <ElTooltip
               content="缩小"
@@ -93,7 +93,7 @@
                 type="primary"
                 size="small"
                 :disabled="!src"
-                @click="handlerToolbar('zoom', -0.1)"><Icon icon="ep:zoom-out" /></ElButton>
+                @click="handlerToolbar('zoom', -0.1)"><Icon name="ep:zoom-out" /></ElButton>
             </ElTooltip>
           </ElSpace>
         </div>

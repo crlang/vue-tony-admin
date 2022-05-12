@@ -52,7 +52,7 @@
               ]">
               <div :class="`${prefixCls}-list__item-icon`">
                 <Icon
-                  :icon="item.icon || 'mdi:form-select'"
+                  :name="item.icon || 'mdi:form-select'"
                   :size="20" />
               </div>
               <div :class="`${prefixCls}-list__item-text`">
@@ -60,7 +60,7 @@
               </div>
               <div :class="`${prefixCls}-list__item-enter`">
                 <Icon
-                  icon="uil:enter"
+                  name="uil:enter"
                   :size="20" />
               </div>
             </li>

@@ -2,7 +2,7 @@
   <span :class="prefixCls">
     <Icon
       v-if="getIcon"
-      :icon="getIcon"
+      :name="getIcon"
       :size="18"
       :class="`${prefixCls}-wrapper__icon mr-2`" />
     {{ getName }}

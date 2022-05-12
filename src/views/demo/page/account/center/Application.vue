@@ -13,7 +13,7 @@
                 <Icon
                   class="icon"
                   v-if="item.icon"
-                  :icon="item.icon"
+                  :name="item.icon"
                   size="24"
                   :color="item.color" />
                 {{ item.title }}
@@ -31,7 +31,7 @@
                 :class="`${prefixCls}__card-download`"
                 v-if="item.download"
                 size="20"
-                :icon="item.download" />
+                :name="item.download" />
             </el-card>
           </ListItem>
         </el-col>

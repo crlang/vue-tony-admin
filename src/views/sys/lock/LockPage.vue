@@ -50,7 +50,7 @@
             @click="goLogin">
             <el-tooltip content="返回登录"><Icon
               :size="32"
-              icon="ion:power-outline" /></el-tooltip>
+              name="ion:power-outline" /></el-tooltip>
           </div>
 
         </div>
