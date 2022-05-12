@@ -59,11 +59,12 @@
 </template>
 
 <script lang="ts">
-import type { DragVerifyActionType, PassingData } from '@/components/Verify'
+import type { DragVerifyActionType, PassingData } from '@/components/DragVerify'
 
 import { defineComponent, ref } from 'vue'
 import { ElButton } from 'element-plus'
-import { BasicDragVerify } from '@/components/Verify'
+
+import { BasicDragVerify } from '@/components/DragVerify'
 import { useMessage } from '@/hooks/web/useMessage'
 import { SvgIcon } from '@/components/SvgIcon'
 

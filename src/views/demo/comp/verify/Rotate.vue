@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { RotateDragVerify } from '@/components/Verify'
+import { RotateDragVerify } from '@/components/DragVerify'
 
 import img from '@/assets/images/header.jpg'
 
