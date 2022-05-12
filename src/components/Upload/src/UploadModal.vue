@@ -54,7 +54,7 @@
 <script lang="ts">
 import { defineComponent, reactive, ref, toRefs, unref, computed, PropType } from 'vue'
 import { ElButton, ElUpload, ElAlert } from 'element-plus'
-import { BasicModal, useModalInner } from '@/components/Modal'
+import { BasicModal, useModalInner } from '@/components/BasicModal'
 // hooks
 import { useUploadType } from './useUpload'
 import { useMessage } from '@/hooks/web/useMessage'

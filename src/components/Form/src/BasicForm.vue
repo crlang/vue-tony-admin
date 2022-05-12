@@ -66,7 +66,7 @@ import useAdvanced from './hooks/useAdvanced'
 import { useFormEvents } from './hooks/useFormEvents'
 import { createFormContext } from './hooks/useFormContext'
 import { useAutoFocus } from './hooks/useAutoFocus'
-import { useModalContext } from '@/components/Modal'
+import { useModalContext } from '@/components/BasicModal'
 
 import { basicProps } from './props'
 import { useDesign } from '@/hooks/web/useDesign'

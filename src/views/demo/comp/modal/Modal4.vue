@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, nextTick } from 'vue'
-import { BasicModal, useModalInner } from '@/components/Modal'
+import { BasicModal, useModalInner } from '@/components/BasicModal'
 import { BasicForm, FormSchema, useForm } from '@/components/Form'
 export default defineComponent({
   components: { BasicModal, BasicForm },

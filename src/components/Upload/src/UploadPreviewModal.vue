@@ -16,7 +16,7 @@
 <script lang="ts">
 import { defineComponent, watch, ref } from 'vue'
 import FileList from './FileList.vue'
-import { BasicModal, useModalInner } from '@/components/Modal'
+import { BasicModal, useModalInner } from '@/components/BasicModal'
 import { previewProps } from './props'
 import { PreviewFileItem } from './typing'
 import { downloadByUrl } from '@/utils/file/download'

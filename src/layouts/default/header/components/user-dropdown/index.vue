@@ -43,7 +43,7 @@ import { DOC_URL } from '@/settings/siteSetting'
 import { useUserStore } from '@/store/modules/user'
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
 import { useDesign } from '@/hooks/web/useDesign'
-import { useModal } from '@/components/Modal'
+import { useModal } from '@/components/BasicModal'
 
 import headerImg from '@/assets/images/header.jpg'
 import { openWindow } from '@/utils'

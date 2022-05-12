@@ -22,7 +22,7 @@ import { isEqual } from 'lodash-es'
 import { isProdMode } from '@/utils/env'
 import { isFunction } from '@/utils/is'
 import { error } from '@/utils/log'
-import { ReturnInnerMethods } from '@/components/Modal'
+import { ReturnInnerMethods } from '@/components/BasicModal'
 
 const dataTransferRef = reactive<any>({})
 

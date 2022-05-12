@@ -42,7 +42,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElAlert, ElButton } from 'element-plus'
-import { useModal } from '@/components/Modal'
+import { useModal } from '@/components/BasicModal'
 import Modal1 from './Modal1.vue'
 import Modal2 from './Modal2.vue'
 import Modal3 from './Modal3.vue'

@@ -20,7 +20,7 @@ import { ElButton } from 'element-plus'
 import { BasicTable, useTable } from '@/components/Table'
 import { getDeptList } from '@/api/demo/system'
 
-import { useModal } from '@/components/Modal'
+import { useModal } from '@/components/BasicModal'
 import DeptModal from './DeptModal.vue'
 import { columns, searchFormSchema } from './data'
 

@@ -47,7 +47,7 @@ import { useGo } from '@/hooks/web/usePage'
 import { DeptListItem } from '@/api/demo/model/systemModel'
 import { useMessage } from '@/hooks/web/useMessage'
 import { searchFormSchema } from './data'
-import { useModal } from '@/components/Modal'
+import { useModal } from '@/components/BasicModal'
 
 export default defineComponent({
   name: 'AccountManagement',

@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { BasicModal } from '@/components/Modal'
+import { BasicModal } from '@/components/BasicModal'
 export default defineComponent({
   components: { BasicModal },
   setup() {

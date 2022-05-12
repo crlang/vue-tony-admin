@@ -49,7 +49,7 @@ import { uploadContainerProps } from './props'
 import { omit } from 'lodash-es'
 import { isArray } from '@/utils/is'
 import { UploadFilled } from '@element-plus/icons'
-import { useModal } from '@/components/Modal'
+import { useModal } from '@/components/BasicModal'
 
 export default defineComponent({
   name: 'BasicUpload',

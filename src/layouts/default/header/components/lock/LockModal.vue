@@ -33,7 +33,7 @@
 import { defineComponent, computed } from 'vue'
 import { ElButton } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
-import { BasicModal, useModalInner } from '@/components/Modal'
+import { BasicModal, useModalInner } from '@/components/BasicModal'
 import { useUserStore } from '@/store/modules/user'
 import { useLockStore } from '@/store/modules/lock'
 import headerImg from '@/assets/images/header.jpg'
