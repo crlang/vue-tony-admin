@@ -2,6 +2,7 @@
   <BasicModal
     v-bind="$attrs"
     destroyOnClose
+    draggable
     @register="register"
     title="Modal Title"
     :helpMessage="['提示1', '提示2']"

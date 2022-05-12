@@ -85,10 +85,6 @@ export const basicProps = {
    */
   modelValue: { type: Boolean },
   /**
-   * Whether the head can be dragged
-   */
-  draggable: { type: Boolean, default: true },
-  /**
    * Whether to scroll back to the top after closing
    */
   scrollTop: { type: Boolean, default: true },

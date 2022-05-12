@@ -171,6 +171,7 @@
         "element-plus/es/components/table/src/table-column/defaults",
         "element-plus/es/components/table/src/table/defaults",
         "intro.js",
+        "lodash",
         "lodash-es",
         "nprogress",
         "path-to-regexp",

@@ -31,7 +31,7 @@ export default defineComponent({
     const getBindValue = computed(() => {
       const propsData = { ...unref(attrs), ...props }
       const propx = omit(propsData, [
-        'showFullscreen', 'helpMessage', 'useWrapper', 'footerOffset', 'loading', 'scrollTop', 'loadingTip', 'modalHeaderHeight', 'modalFooterHeight', 'showFooter', 'showCancel', 'cancelText', 'showConfirm', 'confirmText', 'closeFunc', 'draggable', 'confirmButton', 'cancelButton',
+        'showFullscreen', 'helpMessage', 'useWrapper', 'footerOffset', 'loading', 'scrollTop', 'loadingTip', 'modalHeaderHeight', 'modalFooterHeight', 'showFooter', 'showCancel', 'cancelText', 'showConfirm', 'confirmText', 'closeFunc', 'confirmButton', 'cancelButton',
       ])
       // Force hide the built-in close button
       propx.showClose = false

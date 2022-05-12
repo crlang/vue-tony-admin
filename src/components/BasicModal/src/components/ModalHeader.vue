@@ -29,13 +29,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs } from 'vue'
+import { defineComponent } from 'vue'
 import { ElTooltip } from 'element-plus'
 
 import { BasicTitle } from '@/components/Basic'
 import { SvgIcon } from '@/components/SvgIcon'
 
-import { useModalDragMove } from '../hooks/useModalDrag'
 import { headerProps } from '../props'
 
 export default defineComponent({
@@ -46,20 +45,12 @@ export default defineComponent({
     modelValue: { type: Boolean }, // inherit
     destroyOnClose: { type: Boolean }, // inherit
     fullscreen: { type: Boolean }, // inherit
-    draggable: { type: Boolean }, // inherit
     customClass: { type: String },
     customTitle: { type: String },
     ...headerProps,
   },
   emits: ['cancel', 'fullscreen'],
   setup(props, { emit }) {
-    const { modelValue, draggable, destroyOnClose } = toRefs(props)
-    useModalDragMove({
-      modelValue,
-      destroyOnClose,
-      draggable,
-    })
-
     function handleTitleDbClick(e) {
       if (!props.showFullscreen) return
       e.stopPropagation()

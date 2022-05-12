@@ -81,7 +81,6 @@ export default defineComponent({
     const modalWrapperRef = ref<any>(null)
     const { prefixCls } = useDesign('basic-modal')
     const fullscreenRef = ref(false)
-    const draggableRef = ref(false)
 
     // modal   Bottom and top height
     const extHeightRef = ref(0)
@@ -113,7 +112,6 @@ export default defineComponent({
       const attr = {
         ...unref(getMergeProps),
         fullscreen: unref(fullscreenRef),
-        draggable: unref(draggableRef),
         customClass: prefixCls,
       } as ModalProps
       return attr
@@ -124,7 +122,6 @@ export default defineComponent({
         ...unref(getMergeProps),
         fullscreen: unref(fullscreenRef),
         modelValue: unref(visibleRef),
-        draggable: unref(draggableRef),
         customClass: `${prefixCls}__header`,
         customTitle: unref(getMergeProps).title,
       } as ModalCustomHeader
@@ -157,7 +154,6 @@ export default defineComponent({
     watchEffect(() => {
       visibleRef.value = !!props.modelValue
       fullscreenRef.value = !!props.fullscreen
-      draggableRef.value = !!props.draggable
     })
 
     watch(
@@ -228,7 +224,6 @@ export default defineComponent({
       getMergeProps,
       handleOk,
       visibleRef,
-      draggableRef,
       omit,
       modalWrapperRef,
       handleExtHeight,

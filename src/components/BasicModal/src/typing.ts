@@ -4,7 +4,6 @@ import type { EleDialog, EleButton } from '@/components/ElementPlus'
 export interface ModalCustomHeader {
   showClose?: boolean
   showFullscreen?: boolean
-  draggable?: boolean
   helpMessage?: string | string[]
 }
 
