@@ -29,7 +29,7 @@ import { Icon } from '@/components/Icon'
 import { useDesign } from '@/hooks/web/useDesign'
 
 import { basicProps, customProps } from './props'
-import { omit } from 'lodash'
+import { omit } from 'lodash-es'
 
 export default defineComponent({
   name: 'Button',

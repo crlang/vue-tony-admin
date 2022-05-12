@@ -4,7 +4,6 @@ import type { ComponentType } from './index'
 import type { TableActionType } from '@/components/Table/src/types/table'
 import type { CSSProperties } from 'vue'
 import type { EleButton, EleCol, EleForm, EleFormItemRule, EleRow } from '@/components/ElementPlus'
-import type { BasicHelpTyping } from '@/components/Basic'
 
 export type FieldMapToTime = [string, [string, string], string?][]
 
@@ -161,10 +160,6 @@ export interface FormSchema {
    * Help text on the right side of the text
    */
   helpMessage?: string | string[] | ((rcp: RenderCallbackParams) => string | string[])
-  /**
-   * BaseHelp component props
-   */
-  helpComponentProps?: Partial<BasicHelpTyping>
   /**
    * Label width
    */

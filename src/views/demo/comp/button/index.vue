@@ -8,12 +8,6 @@
         <el-card
           class="box-card"
           shadow="hover">
-          <template #header>
-            <div class="card-header"><BasicTitle
-              helpMessage="suggestion: custom global component Button"
-              span>自定义 Button 组件</BasicTitle></div>
-          </template>
-
           <Button preIcon="ion:layers-outline">Default</Button>
           <Button
             type="primary"
@@ -37,12 +31,6 @@
         <el-card
           class="box-card"
           shadow="hover">
-          <template #header>
-            <div class="card-header">basic button <BasicArrow
-              direction="up"
-              :expand="true" /></div>
-          </template>
-
           <el-button>Default</el-button>
           <el-button type="primary">Primary</el-button>
           <el-button type="success">Success</el-button>
@@ -57,10 +45,6 @@
         <el-card
           class="box-card"
           shadow="hover">
-          <template #header>
-            <div class="card-header">plain button <BasicHelp :text="['提示1', '提示2']" /></div>
-          </template>
-
           <el-button plain>Default</el-button>
           <el-button
             type="primary"
@@ -307,11 +291,10 @@
 import { defineComponent, ref } from 'vue'
 import { ElRow, ElCol, ElCard, ElButton, ElButtonGroup } from 'element-plus'
 import { Search, Edit, Check, Message, Star, Delete, ArrowLeft, Share, ArrowRight } from '@element-plus/icons'
-import { BasicTitle, BasicArrow, BasicHelp } from '@/components/Basic'
 import { Button } from '@/components/Button'
 
 export default defineComponent({
-  components: { ElRow, ElCol, ElCard, ElButton, ElButtonGroup, BasicTitle, BasicArrow, BasicHelp, Button },
+  components: { ElRow, ElCol, ElCard, ElButton, ElButtonGroup, Button },
   setup() {
     const loading = ref(false)
 

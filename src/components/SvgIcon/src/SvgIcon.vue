@@ -2,7 +2,9 @@
   <span
     :class="[`${prefixCls}`, spin&&`${prefixCls}-spin`]"
     :style="getStyle">
-    <svg aria-hidden="true">
+    <svg
+      aria-hidden="true"
+      :style="getSvgStyle">
       <use
         :xlink:href="symbolId"
         :fill="color" />
@@ -84,7 +86,7 @@ export default defineComponent({
      * Get svg wrap style
      */
     const getStyle = computed((): CSSProperties => {
-      const { size, rotate = '0deg' } = props
+      const { size } = props
       let s = parseInt(size) || ''
       if (!s) {
         s = '1rem'
@@ -94,10 +96,23 @@ export default defineComponent({
       return {
         fontSize: s,
         lineHeight: s,
+      }
+    })
+    /**
+     * 获取图标样式
+     *
+     * Get svg style
+     */
+    const getSvgStyle = computed((): CSSProperties => {
+      const { rotate = '' } = props
+      if (!rotate) return {}
+
+      return {
         transform: `rotate(${rotate})`,
       }
     })
-    return { symbolId, prefixCls, getStyle }
+
+    return { symbolId, prefixCls, getStyle, getSvgStyle }
   },
 })
 </script>
@@ -114,6 +129,7 @@ $prefix-cls: '#{$tonyname}-svg-icon';
     height: 1em;
     overflow: hidden;
     fill: currentColor;
+    transition: transform 0.25s linear;
   }
 
   &-spin {

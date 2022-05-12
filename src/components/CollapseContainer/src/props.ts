@@ -29,7 +29,7 @@ export const basicProps = {
    * Warm reminder on the right side of the title
    */
   helpMessage: {
-    type: [Array, String] as PropType<string[] | string>,
+    type: [Array, String] as PropType<string | string[]>,
     default: '',
   },
 }

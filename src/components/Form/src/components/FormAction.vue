@@ -32,11 +32,10 @@
           size="small"
           @click="toggleAdvanced"
           v-if="showAdvancedButton && !hideAdvanceBtn">
-          {{ isAdvanced ? '收起' : '展开' }}
-          <BasicArrow
-            class="ml-1"
-            :expand="!isAdvanced"
-            direction="up" />
+          {{ isAdvanced ? '收起 ' : '展开 ' }}
+          <SvgIcon
+            :rotate="isAdvanced ? '-90deg' : '90deg'"
+            name="arrow-right-bold" />
         </ElButton>
         <slot name="advanceAfter"></slot>
       </ElFormItem>
@@ -49,7 +48,9 @@ import type { EleCol } from '@/components/ElementPlus'
 
 import { defineComponent, computed } from 'vue'
 import { ElFormItem, ElCol, ElButton } from 'element-plus'
-import { BasicArrow } from '@/components/Basic'
+
+import SvgIcon from '@/components/SvgIcon'
+
 import { useFormContext } from '../hooks/useFormContext'
 import { formActionProps } from '../props'
 
@@ -59,7 +60,7 @@ export default defineComponent({
     ElFormItem,
     ElCol,
     ElButton,
-    BasicArrow,
+    SvgIcon,
   },
   props: formActionProps,
   emits: ['toggle-advanced'],

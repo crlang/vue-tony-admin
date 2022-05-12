@@ -9,12 +9,11 @@
       </BasicTitle>
       <div :class="`${prefixCls}__action`">
         <slot name="extra"></slot>
-        <BasicArrow
+        <SvgIcon
           v-if="canExpan"
-          direction="up"
-          class="ml-2"
-          :expand="show"
-          @click="handleExpand" />
+          @click="handleExpand"
+          :rotate="show ? '-90deg' : '90deg'"
+          name="arrow-right-bold" />
       </div>
     </div>
 
@@ -50,12 +49,14 @@ import { ElSkeleton } from 'element-plus'
 
 import { useDesign } from '@/hooks/web/useDesign'
 import { ExpandTransition } from '@/components/Transition'
-import { BasicArrow, BasicTitle } from '@/components/Basic'
+import { BasicTitle } from '@/components/Basic'
+import SvgIcon from '@/components/SvgIcon'
+
 import { basicProps } from './props'
 
 export default defineComponent({
   name: 'CollapseContainer',
-  components: { ElSkeleton, ExpandTransition, BasicArrow, BasicTitle },
+  components: { ElSkeleton, ExpandTransition, BasicTitle, SvgIcon },
   props: basicProps,
   emits: ['expand'],
   setup(_, { emit }) {

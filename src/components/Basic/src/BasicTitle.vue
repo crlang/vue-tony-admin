@@ -8,21 +8,52 @@
   </span>
 </template>
 
-<script lang="ts" setup>
-import { useSlots, computed } from 'vue'
-import BasicHelp from './BasicHelp.vue'
+<script lang="ts">
+import { computed, defineComponent } from 'vue'
+
 import { useDesign } from '@/hooks/web/useDesign'
-import { basicTitleProps } from './props'
 
-const props = defineProps(basicTitleProps)
+import BasicHelp from './BasicHelp.vue'
 
-const { prefixCls } = useDesign('basic-title')
-const slots = useSlots()
-const getClass = computed(() => [
-  prefixCls,
-  { [`${prefixCls}--span`]: props.span && slots.default },
-  { [`${prefixCls}--bold`]: props.bold },
-])
+export default defineComponent({
+  name: 'BasicTitle',
+  components: { BasicHelp },
+  props: {
+    /**
+     * 标题字体是否加粗
+     *
+     * Whether the title font is bold
+     */
+    bold: Boolean,
+    /**
+     * 标题字体左侧是否添加色块
+     *
+     * Whether to add a color block to the left of the title font
+     */
+    span: Boolean,
+    /**
+     * 帮助文本
+     *
+     * Help text
+     */
+    helpMessage: {
+      type: [String, Array] as PropType<string | string[]>,
+      default: '',
+    },
+  },
+  setup(props, { slots }) {
+    const { prefixCls } = useDesign('basic-title')
+
+    const getClass = computed(() => [
+      prefixCls,
+      { [`${prefixCls}--span`]: props.span && slots.default },
+      { [`${prefixCls}--bold`]: props.bold },
+    ])
+
+    return { prefixCls, getClass }
+  },
+})
+
 </script>
 
 <style lang="scss">

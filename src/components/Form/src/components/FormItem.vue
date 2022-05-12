@@ -316,7 +316,7 @@ export default defineComponent({
     }
 
     function renderLabelHelpMessage() {
-      const { label, helpMessage, helpComponentProps, subLabel } = props.schema
+      const { label, helpMessage, subLabel } = props.schema
       const renderLabel = subLabel ? (
         <span>
           {label} <span>{subLabel}</span>
@@ -332,7 +332,7 @@ export default defineComponent({
       }
       return (
         <span>
-          {renderLabel}<BasicHelp placement='top' class='mx-1' text={getHelpMessage} {...helpComponentProps} />
+          {renderLabel}<BasicHelp placement='top' class='mx-1' text={getHelpMessage} />
         </span>
       )
     }
