@@ -11,7 +11,7 @@ import { CollapseContainer } from '@/components/CollapseContainer'
 import { useDesign } from '@/hooks/web/useDesign'
 import { getSlot } from '@/utils/helper/tsxHelper'
 
-import { basicProps } from './props'
+import { basicProps, customProps } from './props'
 
 export default defineComponent({
   name: 'BasicDescription',
@@ -64,9 +64,9 @@ export default defineComponent({
       const opts = { ...unref(attrs), ...unref(getProps) }
       // 绑定组件Porps前，移除自定义附加项
       // Before binding component Porps, remove custom add-ons
-      const customProps = ['schema', 'data', 'useCollapse', 'collapseOptions', 'title']
+      const customOpts = Object.keys(customProps)
 
-      return omit(opts, customProps) as BasicProps
+      return omit(opts, customOpts) as BasicProps
     })
 
     /**

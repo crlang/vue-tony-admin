@@ -1,6 +1,6 @@
 <template>
   <ElButton
-    v-bind="getBindValue"
+    v-bind="getBindValues"
     :class="getButtonClass"
     @click="onClick">
     <template #default="data">
@@ -28,12 +28,13 @@ import { ElButton } from 'element-plus'
 import { Icon } from '@/components/Icon'
 import { useDesign } from '@/hooks/web/useDesign'
 
-import { buttonProps } from './props'
+import { basicProps, customProps } from './props'
+import { omit } from 'lodash'
 
 export default defineComponent({
   name: 'Button',
   components: { Icon, ElButton },
-  props: buttonProps,
+  props: basicProps,
   setup(props, { attrs }) {
     const { prefixCls } = useDesign('basic-button')
 
@@ -48,16 +49,19 @@ export default defineComponent({
       ]
     })
 
-    const getBindValue = computed(():EleButton => {
-      const opt = { ...props, ...unref(attrs) }
+    const getBindValues = computed(() => {
+      const opts = { ...props, ...unref(attrs) }
+      // 绑定组件Porps前，移除自定义附加项
+      // Before binding component Porps, remove custom add-ons
+      const customOpts = Object.keys(customProps)
 
-      return opt
+      return omit(opts, customOpts) as EleButton
     })
 
     return {
       prefixCls,
       getButtonClass,
-      getBindValue,
+      getBindValues,
     }
   },
 })

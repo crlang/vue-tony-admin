@@ -74,13 +74,15 @@ import type { DrawerInstance, BasicProps } from './typing'
 
 import { defineComponent, ref, computed, watch, unref, nextTick, getCurrentInstance } from 'vue'
 import { ElDrawer, ElLoading, ElButton } from 'element-plus'
-import { ScrollContainer } from '@/components/ScrollContainer'
-import { basicProps } from './props'
-import { useDesign } from '@/hooks/web/useDesign'
 import { omit } from 'lodash-es'
+
+import { ScrollContainer } from '@/components/ScrollContainer'
+import { useDesign } from '@/hooks/web/useDesign'
 import { EleDrawer } from '@/components/ElementPlus'
 import { BasicTitle } from '@/components/Basic'
 import { SvgIcon } from '@/components/SvgIcon'
+
+import { basicProps, customProps } from './props'
 
 export default defineComponent({
   name: 'BasicDrawer',
@@ -144,10 +146,11 @@ export default defineComponent({
      */
     const getBindValues = computed(() => {
       const opts = { ...unref(attrs), ...unref(getProps) }
+      // 绑定组件Porps前，移除自定义附加项
+      // Before binding component Porps, remove custom add-ons
+      const customOpts = Object.keys(customProps)
 
-      const customProps = ['isDetail', 'loading', 'loadingText', 'closeFunc', 'showFooter', 'showConfirmBtn', 'confirmOptions', 'showCancelBtn', 'cancelOptions']
-
-      return omit(opts, customProps) as EleDrawer
+      return omit(opts, customOpts) as EleDrawer
     })
 
     /**
