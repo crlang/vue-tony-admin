@@ -75,7 +75,7 @@ export interface BasicProps extends EleDrawer {
  *
  * Drawer instance methods
  */
-export interface DrawerInstance {
+export interface DrawerInstanceMethods {
   /**
    * 设置抽屉props
    *
@@ -95,7 +95,7 @@ export interface DrawerInstance {
  *
  * Instance Supported Methods
  */
-export interface ReturnMethods extends DrawerInstance {
+export interface ReturnMethods extends DrawerInstanceMethods {
   /**
    * 打开抽屉
    *
@@ -121,14 +121,14 @@ export interface ReturnMethods extends DrawerInstance {
  *
  * Register instance function
  */
-export type RegisterFn = (drawerInstance: DrawerInstance, uuid?: string) => void
+export type RegisterFn = (drawerInstance: DrawerInstanceMethods, uuid?: string) => void
 
 /**
  * 内部实例支持的方法
  *
  * Methods supported by inner instances
  */
-export interface ReturnInnerMethods extends DrawerInstance {
+export interface ReturnInnerMethods extends DrawerInstanceMethods {
   /**
    * 关闭抽屉
    *

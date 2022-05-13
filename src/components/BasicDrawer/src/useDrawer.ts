@@ -1,6 +1,6 @@
 import type {
   UseDrawerReturnType,
-  DrawerInstance,
+  DrawerInstanceMethods,
   ReturnMethods,
   BasicProps,
   UseDrawerInnerReturnType
@@ -20,7 +20,6 @@ import { tryOnUnmounted } from '@vueuse/core'
 import { isEqual } from 'lodash-es'
 
 import { isProdMode } from '@/utils/env'
-import { isFunction } from '@/utils/is'
 import { error } from '@/utils/log'
 import { ReturnInnerMethods } from '@/components/BasicModal'
 
@@ -37,7 +36,7 @@ export function useDrawer(): UseDrawerReturnType {
   if (!getCurrentInstance()) {
     error('useDrawer() can only be used inside setup() or functional components!')
   }
-  const drawer = ref<DrawerInstance | null>(null)
+  const drawer = ref<DrawerInstanceMethods | null>(null)
   const loaded = ref<Nullable<boolean>>(false)
   const uid = ref<string>('')
   /**
@@ -47,7 +46,7 @@ export function useDrawer(): UseDrawerReturnType {
    * @param drawerInstance Drawer instance
    * @param uuid Drawer instance uuid
    */
-  function register(drawerInstance: DrawerInstance, uuid: string) {
+  function register(drawerInstance: DrawerInstanceMethods, uuid: string) {
     isProdMode() &&
       tryOnUnmounted(() => {
         drawer.value = null
@@ -80,29 +79,21 @@ export function useDrawer(): UseDrawerReturnType {
     return instance
   }
 
+  /**
+   * 定义实例方法
+   *
+   * Define instance methods
+   */
   const methods: ReturnMethods = {
-    /**
-     * 设置抽屉props
-     *
-     * Set drawer props
-     * @param props DrawerProps
-     */
+
     setDrawerProps: (props: Partial<BasicProps>): void => {
       getInstance()?.setDrawerProps(props)
     },
-    /**
-     * 获取抽屉状态
-     *
-     * Get drawer visible status
-     */
+
     getVisible: computed((): boolean => {
       return visibleData[~~unref(uid)]
     }),
-    /**
-     * 打开抽屉
-     *
-     * Open drawer
-     */
+
     openDrawer: <T = any>(visible = true, data?: T, openOnSet = true): void => {
       getInstance()?.setDrawerProps({
         modelValue: visible,
@@ -120,11 +111,7 @@ export function useDrawer(): UseDrawerReturnType {
         dataTransferRef[unref(uid)] = toRaw(data)
       }
     },
-    /**
-     * 关闭抽屉
-     *
-     * Close drawer
-     */
+
     closeDrawer: () => {
       getInstance()?.setDrawerProps({ modelValue: false })
     },
@@ -140,7 +127,7 @@ export function useDrawer(): UseDrawerReturnType {
  * @param callbackFn 回调方法，回调实例传递的数据
  */
 export const useDrawerInner = (callbackFn?: Fn): UseDrawerInnerReturnType => {
-  const drawerInstanceRef = ref<Nullable<DrawerInstance>>(null)
+  const drawerInstanceRef = ref<Nullable<DrawerInstanceMethods>>(null)
   const currentInstance = getCurrentInstance()
   const uidRef = ref<string>('')
 
@@ -167,7 +154,7 @@ export const useDrawerInner = (callbackFn?: Fn): UseDrawerInnerReturnType => {
    * @param modalInstance Drawer inner instance
    * @param uuid Drawer instance uuid
    */
-  const register = (modalInstance: DrawerInstance, uuid: string) => {
+  const register = (modalInstance: DrawerInstanceMethods, uuid: string) => {
     isProdMode() &&
       tryOnUnmounted(() => {
         drawerInstanceRef.value = null
@@ -178,47 +165,29 @@ export const useDrawerInner = (callbackFn?: Fn): UseDrawerInnerReturnType => {
     currentInstance?.emit('register', modalInstance, uuid)
   }
 
+  /**
+   * 定义内部实例方法
+   *
+   * Define inner instance methods
+   */
   const methods: ReturnInnerMethods = {
-    /**
-     * 获取可见状态
-     *
-     * Get visible state
-     */
+
     getVisible: computed((): boolean => {
       return visibleData[~~unref(uidRef)]
     }),
-    /**
-     * 修改Loading状态
-     *
-     * Change loading
-     * @param loading
-     */
+
     changeLoading: (loading = true) => {
       getInstance()?.setDrawerProps({ loading })
     },
-    /**
-     * 修改提交按钮loading状态
-     *
-     * Change confirm loading
-     * @param loading
-     */
+
     changeConfirmLoading: (loading = true) => {
       getInstance()?.setDrawerProps({ confirmOptions: { loading } })
     },
-    /**
-     * 关闭抽屉
-     *
-     * Close drawer
-     */
+
     closeDrawer: () => {
       getInstance()?.setDrawerProps({ modelValue: false })
     },
-    /**
-     * 设置抽屉props
-     *
-     * Set drawer props
-     * @param props DrawerProps
-     */
+
     setDrawerProps: (props: Partial<BasicProps>) => {
       getInstance()?.setDrawerProps(props)
     },
@@ -227,8 +196,11 @@ export const useDrawerInner = (callbackFn?: Fn): UseDrawerInnerReturnType => {
   watchEffect(() => {
     const data = dataTransferRef[unref(uidRef)]
     if (!data) return
+
+    if (!callbackFn || typeof callbackFn !== 'function') return
+
+    // 回调方法，回调实例传递的数据
     // Callback method, the data passed by the callback instance
-    if (!callbackFn || !isFunction(callbackFn)) return
     nextTick(() => {
       callbackFn(data)
     })

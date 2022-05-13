@@ -49,7 +49,7 @@
           @click="handleClose"
           v-bind="cancelOptions"
           v-if="showCancelBtn">
-          {{ cancelOptions.text || '取消' }}
+          {{ cancelOptions.text || 'Cancel' }}
         </ElButton>
         <slot
           name="centerFooter"
@@ -59,7 +59,7 @@
           v-bind="confirmOptions"
           :loading="getProps.confirmOptions?.loading"
           v-if="showConfirmBtn">
-          {{ confirmOptions.text || '确定' }}
+          {{ confirmOptions.text || 'Ok' }}
         </ElButton>
         <slot
           name="appendFooter"
@@ -70,7 +70,7 @@
 </template>
 
 <script lang="ts">
-import type { DrawerInstance, BasicProps } from './typing'
+import type { DrawerInstanceMethods, BasicProps } from './typing'
 
 import { defineComponent, ref, computed, watch, unref, nextTick, getCurrentInstance } from 'vue'
 import { ElDrawer, ElLoading, ElButton } from 'element-plus'
@@ -100,27 +100,21 @@ export default defineComponent({
     const { prefixCls } = useDesign('basic-drawer')
 
     /**
-     * 定义内部实例
+     * 定义内部实例方法
      *
-     * Define inner instance
+     * Define inner instance func
      */
-    const drawerInstance: DrawerInstance = {
+    const drawerInstance: DrawerInstanceMethods = {
       setDrawerProps: setDrawerProps,
       emitVisible: undefined,
     }
 
     /**
-     * 获取当前实例
+     * 获取并注册当前实例
      *
      * Get current instance
      */
     const instance = getCurrentInstance()
-
-    /**
-     * 获取当前实例
-     *
-     * Register current instance
-     */
     instance && emit('register', drawerInstance, instance.uid)
 
     /**
@@ -185,8 +179,8 @@ export default defineComponent({
       const { closeFunc } = unref(getProps)
 
       if (closeFunc && typeof closeFunc === 'function') {
-        const res = await closeFunc()
-        visibleRef.value = !res
+        const isClose:boolean = await closeFunc()
+        visibleRef.value = !isClose
         return
       } else {
         visibleRef.value = false
