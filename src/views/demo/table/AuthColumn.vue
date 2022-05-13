@@ -69,14 +69,13 @@ export default defineComponent({
       columns,
       border: true,
     })
-    function handleEdit({ row }) {
-      console.table('点击了编辑', row)
+    function handleEdit() {
+      // do something
     }
     function handleDelete({ row }) {
-      console.table('点击了删除', row)
       createConfirm({
         title: '温馨提示',
-        content: '是否删除当前文件？',
+        content: '是否删除当前文件' + (row?.name || '') + '？',
         type: 'warning',
       })
         .then(() => {
@@ -86,8 +85,8 @@ export default defineComponent({
           createMessage.info('取消删除')
         })
     }
-    function handleOpen({ row }) {
-      console.table('点击了启用', row)
+    function handleOpen() {
+      // do something
     }
     return { registerTable }
   },

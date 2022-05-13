@@ -52,8 +52,8 @@ export default defineComponent({
   setup() {
     const now = new Date().getTime()
 
-    function handleExpand(v:boolean) {
-      console.table(v)
+    function handleExpand() {
+      // do something
     }
     return {
       now,

@@ -86,8 +86,8 @@ export default defineComponent({
     }
 
     // todo
-    function handleColumnChange(data) {
-      console.table('table column change', data)
+    function handleColumnChange() {
+      // do something
     }
 
     return {

@@ -97,8 +97,8 @@ export default defineComponent({
       },
     ])
 
-    function handleCheck(checkedKeys, e) {
-      console.log('onChecked', checkedKeys, e)
+    function handleCheck() {
+      // do something
     }
 
     function loadTreeData() {

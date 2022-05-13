@@ -45,7 +45,7 @@ export default defineComponent({
 
     const { createMessage } = useMessage()
 
-    const [register, { validate, getFieldsValue }] = useForm({
+    const [register, { validate }] = useForm({
       labelWidth: 120,
       colProps: {
         span: 6,
@@ -54,7 +54,7 @@ export default defineComponent({
       showActionButtonGroup: false,
     })
 
-    const [registerTask, { validate: validateTaskForm, getFieldsValue: getFieldsValue2 }] = useForm({
+    const [registerTask, { validate: validateTaskForm }] = useForm({
       labelWidth: 120,
       colProps: {
         span: 6,
@@ -65,12 +65,7 @@ export default defineComponent({
 
     async function submitAll() {
       try {
-        if (tableRef.value) {
-          console.log('table data:', tableRef.value.getDataSource())
-        }
-
         await Promise.all([validate(), validateTaskForm()])
-        console.log('form data:', getFieldsValue(), getFieldsValue2())
       } catch (error) {
         // continue regardless of error
         createMessage.error('请填写完整再提交')

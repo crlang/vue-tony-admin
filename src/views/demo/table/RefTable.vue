@@ -62,21 +62,21 @@ export default defineComponent({
     }
     function getColumn() {
       createMessage.info('请在控制台查看！')
-      console.table(getTable().getColumns())
+      console.info(getTable().getColumns())
     }
 
     function getTableData() {
       createMessage.info('请在控制台查看！')
-      console.table(getTable().getDataSource())
+      console.info(getTable().getDataSource())
     }
     function getTableRawData() {
       createMessage.info('请在控制台查看！')
-      console.table(getTable().getRawDataSource())
+      console.info(getTable().getRawDataSource())
     }
 
     function getPagination() {
       createMessage.info('请在控制台查看！')
-      console.table(getTable().getPagination())
+      console.info(getTable().getPagination())
     }
 
     function setPaginationInfo() {

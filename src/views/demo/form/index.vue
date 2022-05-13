@@ -124,8 +124,7 @@ export default defineComponent({
       handleReset: () => {
         keyword.value = ''
       },
-      handleSubmit: (values: any) => {
-        console.table('form submit', values)
+      handleSubmit: () => {
         createMessage.success('submit success!')
       },
     }

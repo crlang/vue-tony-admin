@@ -82,8 +82,8 @@ export default defineComponent({
     function deleteField() {
       removeSchemaByField('field11')
     }
-    function handleSubmit(values: any) {
-      console.table('form submit', values)
+    function handleSubmit() {
+      // do something
     }
 
     return {

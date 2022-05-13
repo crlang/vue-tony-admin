@@ -234,10 +234,9 @@ export default defineComponent({
     })
     async function validateForm() {
       try {
-        const res = await validateField(['field1', 'field2'])
-        console.log('passing', res)
+        await validateField(['field1', 'field2'])
       } catch (error) {
-        console.log('not passing', error)
+        console.error('not passing', error)
       }
     }
     async function resetValidate() {

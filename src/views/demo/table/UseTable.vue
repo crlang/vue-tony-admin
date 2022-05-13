@@ -50,12 +50,12 @@ export default defineComponent({
       columns,
       rowKey: 'id',
       showTableSetting: true,
-      onSelectionChange: (selection) => {
-        console.table('SelectionChange', selection)
+      onSelectionChange: () => {
+        // do something
       },
       showCheckboxColumn: true,
-      onColumnsChange: (data) => {
-        console.table('ColumnsChange', data)
+      onColumnsChange: () => {
+        // do something
       },
     })
     function changeLoading() {
@@ -74,22 +74,22 @@ export default defineComponent({
     }
     function getColumn() {
       createMessage.info('请在控制台查看！')
-      console.table(getColumns())
+      console.info(getColumns())
     }
 
     function getTableData() {
       createMessage.info('请在控制台查看！')
-      console.table(getDataSource())
+      console.info(getDataSource())
     }
 
     function getTableRawData() {
       createMessage.info('请在控制台查看！')
-      console.table(getRawDataSource())
+      console.info(getRawDataSource())
     }
 
     function getPagination2() {
       createMessage.info('请在控制台查看！')
-      console.table(getPagination())
+      console.info(getPagination())
     }
 
     function setPaginationInfo() {

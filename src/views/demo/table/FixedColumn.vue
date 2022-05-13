@@ -98,11 +98,11 @@ export default defineComponent({
       showCheckboxColumn: true,
       border: true,
     })
-    function handleDelete({ row }) {
-      console.table('点击了删除', row)
+    function handleDelete() {
+      // do something
     }
-    function handleOpen({ row }) {
-      console.table('点击了启用', row)
+    function handleOpen() {
+      // do something
     }
 
     return {

@@ -31,7 +31,7 @@ export default defineComponent({
   components: { BasicForm, CollapseContainer, StrengthMeter },
   setup() {
     const { createMessage } = useMessage()
-    const [register, { validate, resetFields, getFieldsValue }] = useForm({
+    const [register, { validate, resetFields }] = useForm({
       size: 'large',
       labelWidth: 100,
       colProps: { span: 16 },
@@ -47,9 +47,6 @@ export default defineComponent({
     async function handleSubmit() {
       try {
         await validate()
-        const { passwordOld, passwordNew } = getFieldsValue()
-
-        console.table(passwordOld, passwordNew)
         createMessage.success('重置成功')
       } catch (error) {
         // continue regardless of error

@@ -169,9 +169,8 @@ export default defineComponent({
      * @param drawerProps Drawer Props
      */
     function setDrawerProps(drawerProps: Partial<BasicProps>): void {
-      console.log('drawerProps', drawerProps)
       propsRef.value = { ...(unref(propsRef) as Recordable), ...drawerProps } as Recordable
-      console.log('propsRef', propsRef)
+
       if (Reflect.has(drawerProps, 'modelValue')) {
         visibleRef.value = !!drawerProps.modelValue
       }

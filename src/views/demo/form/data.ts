@@ -68,8 +68,8 @@ export const basicSchemas: FormSchema[] = [
     componentProps: () => {
       return {
         placeholder: '自定义placeholder',
-        onChange: (e: any) => {
-          console.log(e)
+        onChange: () => {
+          // do something
         },
       }
     },
@@ -90,8 +90,8 @@ export const basicSchemas: FormSchema[] = [
       span: 8,
     },
     componentProps: {
-      onChange: (e: any) => {
-        console.log(e)
+      onChange: () => {
+        // do something
       },
     },
     prepend: '第',
@@ -434,8 +434,8 @@ export const UseSchemas: FormSchema[] = [
     },
     componentProps: {
       placeholder: '自定义placeholder',
-      onChange: (e: any) => {
-        console.log(e)
+      onChange: () => {
+        // do something
       },
     },
   },

@@ -15,7 +15,6 @@ export default defineComponent({
   components: { BasicTable },
   setup() {
     function handleSummary(tableData) {
-      console.log('summary table', tableData)
       const { columns, data } = tableData
       const sums: string[] = []
       columns.forEach((column, index) => {
@@ -23,7 +22,7 @@ export default defineComponent({
           sums[index] = '统计'
           return
         }
-        console.log('column++++++', column, column.property)
+
         const values = data.map((item) => Number(item[column.property]))
         if (!values.every((value) => Number.isNaN(value)) && column.property !== 'sex') {
           sums[index] = `${values.reduce((prev, curr) => {

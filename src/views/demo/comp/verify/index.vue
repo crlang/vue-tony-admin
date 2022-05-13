@@ -86,7 +86,6 @@ export default defineComponent({
     }
 
     function handleCustomSuccess(data: PassingData) {
-      console.log('data', data)
       const { time } = data
       verifyState.value = true
       createMessage.success(`自定义校验成功,耗时${time}秒`)

@@ -19,7 +19,7 @@ export default defineComponent({
   components: { RotateDragVerify },
   setup() {
     const handleSuccess = () => {
-      console.table('success!')
+      // do something
     }
     return {
       handleSuccess,

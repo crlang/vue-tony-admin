@@ -32,25 +32,23 @@ export default defineComponent({
   setup() {
     const [createContextMenu] = useContextMenu()
 
-    function handleSend(node: any, data:any, store:any) {
-      console.log('click send', node, data, store)
+    function handleSend() {
+      // do something
     }
 
-    function getRightMenuList(event:MouseEvent, nodeData:any, node:any, nodeInstance:any) {
-      console.log(event, nodeData, node, nodeInstance)
-
+    function getRightMenuList(event:MouseEvent) {
       const MenuItems = [
         {
           label: '新增',
           handler: () => {
-            console.table('点击了新增', node)
+            // do something
           },
           icon: 'bi:plus',
         },
         {
           label: '删除',
           handler: () => {
-            console.table('点击了删除', node)
+            // do something
           },
           icon: 'bx:bxs-folder-open',
         },
