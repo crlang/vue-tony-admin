@@ -1,15 +1,15 @@
 <template>
-  <ScrollContainer
-    ref="wrapperRef"
-    :class="customClass">
-    <div
-      ref="spinRef"
-      :style="spinStyle"
-      v-loading="loading"
-      :element-loading-text="loadingTip">
-      <slot></slot>
-    </div>
-  </ScrollContainer>
+  <div
+    ref="spinRef"
+    :style="spinStyle"
+    v-loading="loading"
+    :element-loading-text="loadingText">
+    <ScrollContainer
+      ref="wrapperRef"
+      :class="prefixCls">
+      <div ref="innerRef"><slot></slot></div>
+    </ScrollContainer>
+  </div>
 </template>
 
 <script lang="ts">
@@ -22,16 +22,16 @@ import {
   watchEffect,
   unref,
   watch,
-  onMounted,
   nextTick,
-  onUnmounted,
 } from 'vue'
+import { ElLoading } from 'element-plus'
+// import { useMutationObserver } from '@vueuse/core'
+
 import { useWindowSizeFn } from '@/hooks/event/useWindowSizeFn'
 import { ScrollContainer } from '@/components/ScrollContainer'
-import { createModalContext } from '../hooks/useModalContext'
-import { useMutationObserver } from '@vueuse/core'
+
+import { createModalContext } from '../useModalContext'
 import { wrapperProps } from '../props'
-import { ElLoading } from 'element-plus'
 
 export default defineComponent({
   name: 'ModalWrapper',
@@ -41,70 +41,35 @@ export default defineComponent({
   },
   inheritAttrs: false,
   props: {
-    modelValue: { type: Boolean }, // inherit
-    fullscreen: { type: Boolean }, // inherit
-    customClass: { type: String },
+    modelValue: Boolean, // inherit
+    fullscreen: Boolean, // inherit
+    prefixCls: String, // inherit
     ...wrapperProps,
   },
-  emits: ['height-change', 'ext-height'],
+  emits: ['height-change'],
   setup(props, { emit }) {
     const wrapperRef = ref<ComponentRef>(null)
     const spinRef = ref<ElRef>(null)
+    const innerRef = ref<ElRef>(null)
     const realHeightRef = ref(0)
-    const minRealHeightRef = ref(0)
-
-    let realHeight = 0
-
-    const stopElResizeFn: Fn = () => {}
-
-    useWindowSizeFn(setModalHeight.bind(null, false))
-
-    useMutationObserver(
-      spinRef,
-      () => {
-        setModalHeight()
-      },
-      {
-        attributes: true,
-        subtree: true,
-      },
-    )
-
-    createModalContext({
-      redoModalHeight: setModalHeight,
-    })
-
+    /**
+     * 获取内容区样式
+     *
+     * Get spin style
+     */
     const spinStyle = computed((): CSSProperties => {
       return {
-        [props.fullscreen ? 'height' : 'maxHeight']: `${unref(realHeightRef)}px`,
+        // 动态获取内容区高度
+        // Dynamically get the height of the content area
+        'height': props.dyncHeight ? `${unref(realHeightRef)}px` : 'auto',
       }
     })
 
-    watchEffect(() => {
-      props.useWrapper && setModalHeight()
-    })
-
-    watch(
-      () => props.fullscreen,
-      (v) => {
-        setModalHeight()
-        if (!v) {
-          realHeightRef.value = minRealHeightRef.value
-        } else {
-          minRealHeightRef.value = realHeightRef.value
-        }
-      },
-    )
-
-    onMounted(() => {
-      const { modalHeaderHeight, modalFooterHeight } = props
-      emit('ext-height', modalHeaderHeight + modalFooterHeight)
-    })
-
-    onUnmounted(() => {
-      stopElResizeFn && stopElResizeFn()
-    })
-
+    /**
+     * 滚动区滚动到顶部
+     *
+     * scroll area scroll to top
+     */
     async function scrollTop() {
       nextTick(() => {
         const wrapperRefDom = unref(wrapperRef)
@@ -113,14 +78,33 @@ export default defineComponent({
       })
     }
 
+    /**
+     * 设置内容区高度
+     *
+     * Set the content area height
+     */
     async function setModalHeight() {
+      // 为 false 时不操作
+      // No action when false
       if (!props.modelValue) return
 
-      const wrapperRefDom = unref(wrapperRef)
-      if (!wrapperRefDom) return
+      // 内容区
+      // content area
+      const spinDom = unref(spinRef)
+      if (!spinDom) return
 
-      const bodyDom = wrapperRefDom.$el.parentElement
+      await nextTick()
+
+      // 弹窗中心
+      // modal body
+      const bodyDom = spinDom.parentElement
       if (!bodyDom) return
+
+      // 插槽内容
+      // inner content
+      const innerRefDom = unref(innerRef)
+      if (!innerRefDom) return
+      const modalInnerHeight = innerRefDom?.clientHeight || 0
 
       await nextTick()
 
@@ -128,39 +112,76 @@ export default defineComponent({
         const modalDom = bodyDom.parentElement
         if (!modalDom) return
 
+        // 弹窗头部高度
+        // modal header height
+        const modalHeaderHeight = modalDom.querySelector('.el-dialog__header')?.clientHeight || 0
+        // 弹窗脚部高度
+        // modal footer height
+        const modalFooterHeight = modalDom.querySelector('.el-dialog__footer')?.clientHeight || 0
+
         const modalTop = modalDom.offsetTop
 
+        // 计算合适的内容区高度
+        // Calculate proper content area height
         let maxHeight =
-            window.innerHeight -
-            modalTop * 2 +
-            (props.footerOffset! || 0) -
-            props.modalFooterHeight -
-            props.modalHeaderHeight
+            window.innerHeight - // window height
+            modalTop * 2 - // modal offset top/bottom
+            modalFooterHeight - // modal footer height
+           modalHeaderHeight // modal header height
 
-        if (modalTop < 40) {
-          maxHeight -= 26
+        // 如果插槽内容高度低于计算的高度，直接拿插槽内容高度
+        // If the inner content height is lower than the calculated height, directly take the slot content height
+        if (modalInnerHeight < maxHeight) {
+          maxHeight = modalInnerHeight
         }
-        await nextTick()
-        const spinEl = unref(spinRef)
 
-        if (!spinEl) return
-        await nextTick()
-
-        realHeight = spinEl.scrollHeight
-
-        if (props.fullscreen) {
-          realHeightRef.value =
-              window.innerHeight - props.modalFooterHeight - props.modalHeaderHeight - 28
-        } else {
-          realHeightRef.value = realHeight > maxHeight ? maxHeight : realHeight
-        }
+        // 至少保留 100px 的内容区高度
+        // Keep content area height of at least 100px
+        realHeightRef.value = maxHeight > 100 ? maxHeight : 100
         emit('height-change', unref(realHeightRef))
       } catch (error) {
         console.error(error)
       }
     }
 
-    return { wrapperRef, spinRef, spinStyle, scrollTop, setModalHeight }
+    // 窗口变化是更新高度
+    // window change is update height
+    useWindowSizeFn(setModalHeight.bind(null, false))
+
+    // useMutationObserver(
+    //   innerRef,
+    //   () => {
+    //     setModalHeight()
+    //   },
+    //   {
+    //     attributes: true,
+    //     subtree: true,
+    //   },
+    // )
+
+    createModalContext({
+      redoModalHeight: setModalHeight,
+    })
+
+    watchEffect(() => {
+      props.dyncHeight && setModalHeight()
+    })
+
+    watch(
+      () => props.fullscreen,
+      () => {
+        setModalHeight()
+      },
+    )
+
+    return {
+      wrapperRef,
+      spinRef,
+      innerRef,
+      spinStyle,
+      scrollTop,
+      setModalHeight,
+    }
   },
 })
 </script>

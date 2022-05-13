@@ -1,28 +1,39 @@
 <template>
   <div
-    :class="customClass"
+    :class="prefixCls"
     @dblclick="handleTitleDbClick">
-    <BasicTitle :helpMessage="helpMessage">{{ customTitle }}</BasicTitle>
-    <div :class="`${customClass}__extra`">
+    <BasicTitle :helpMessage="helpMessage">
+      <template v-if="title">{{ title }}</template>
+      <slot
+        name="title"
+        v-else></slot>
+    </BasicTitle>
+    <div :class="`${prefixCls}__extra`">
       <template v-if="showFullscreen">
         <ElTooltip
           content="还原"
           placement="bottom"
           v-if="fullscreen">
-          <span @click="handleFullscreen"><SvgIcon name="fullscreen-exit" /></span>
+          <SvgIcon
+            @click="handleFullscreen"
+            name="fullscreen-exit" />
         </ElTooltip>
         <ElTooltip
           content="最大化"
           placement="bottom"
           v-else>
-          <span @click="handleFullscreen"><SvgIcon name="fullscreen" /></span>
+          <SvgIcon
+            @click="handleFullscreen"
+            name="fullscreen" />
         </ElTooltip>
       </template>
       <ElTooltip
         v-if="showClose"
         content="关闭"
         placement="bottom">
-        <span @click="handleCancel"><SvgIcon name="close" /></span>
+        <SvgIcon
+          @click="handleCancel"
+          name="close" />
       </ElTooltip>
     </div>
   </div>
@@ -42,26 +53,42 @@ export default defineComponent({
   components: { ElTooltip, BasicTitle, SvgIcon },
   inheritAttrs: false,
   props: {
-    modelValue: { type: Boolean }, // inherit
-    destroyOnClose: { type: Boolean }, // inherit
-    fullscreen: { type: Boolean }, // inherit
-    customClass: { type: String },
-    customTitle: { type: String },
+    fullscreen: Boolean, // inherit
+    prefixCls: String, // inherit
+    title: String, // inherit
     ...headerProps,
   },
   emits: ['cancel', 'fullscreen'],
   setup(props, { emit }) {
-    function handleTitleDbClick(e) {
+    /**
+     * 双击标题栏全屏
+     *
+     * Double click on title bar to go full screen
+     * @param e
+     */
+    function handleTitleDbClick(e: Event) {
       if (!props.showFullscreen) return
       e.stopPropagation()
 
       handleFullscreen(e)
     }
 
+    /**
+     * 点击关闭
+     *
+     * Handle cancel
+     * @param e
+     */
     function handleCancel(e: Event) {
       emit('cancel', e)
     }
 
+    /**
+     * 点击全屏
+     *
+     * Handle fullscreen
+     * @param e
+     */
     function handleFullscreen(e: Event) {
       e?.stopPropagation()
       e?.preventDefault()

@@ -66,16 +66,8 @@ export default defineComponent({
     function openModalLoading() {
       openModal1(true)
       setModalProps({
-        loading: true,
-        confirmText: '1234',
+        confirmOptions: { text: 'New Btn' },
       })
-      setTimeout(() => {
-        setModalProps({
-          loading: false,
-          confirmText: '12345',
-
-        })
-      }, 2000)
     }
 
     return {

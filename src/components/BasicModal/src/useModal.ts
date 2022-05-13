@@ -1,10 +1,12 @@
 import type {
   UseModalReturnType,
-  ModalMethods,
-  ModalProps,
+  ModalInstanceMethods,
+  BasicProps,
   ReturnMethods,
+  ReturnInnerMethods,
   UseModalInnerReturnType,
-} from '../typing'
+} from './typing'
+
 import {
   ref,
   onUnmounted,
@@ -14,46 +16,61 @@ import {
   watchEffect,
   nextTick,
   toRaw,
+  computed
 } from 'vue'
-import { isProdMode } from '@/utils/env'
-import { isFunction } from '@/utils/is'
 import { isEqual } from 'lodash-es'
 import { tryOnUnmounted } from '@vueuse/core'
+
+import { isProdMode } from '@/utils/env'
 import { error } from '@/utils/log'
-import { computed } from 'vue'
 
 const dataTransfer = reactive<any>({})
 
 const visibleData = reactive<{ [key: number]: boolean }>({})
 
 /**
- * @description: Applicable to independent modal and call outside
+ * 定义使用实例
+ *
+ * Define use instance
  */
 export function useModal(): UseModalReturnType {
-  const modal = ref<Nullable<ModalMethods>>(null)
+  const modal = ref<Nullable<ModalInstanceMethods>>(null)
   const loaded = ref<Nullable<boolean>>(false)
   const uid = ref<string>('')
-
-  function register(modalMethod: ModalMethods, uuid: string) {
+  /**
+   * 注册实例
+   *
+   * Register instance
+   * @param modalMethod Modal instance
+   * @param uuid Modal instance uuid
+   */
+  function register(modalMethod: ModalInstanceMethods, uuid: string) {
     if (!getCurrentInstance()) {
-      throw new Error('useModal() can only be used inside setup() or functional components!')
+      error('useModal() can only be used inside setup() or functional components!')
     }
     uid.value = uuid
+
     isProdMode() &&
       onUnmounted(() => {
         modal.value = null
         loaded.value = false
         dataTransfer[unref(uid)] = null
       })
+
     if (unref(loaded) && isProdMode() && modalMethod === unref(modal)) return
 
     modal.value = modalMethod
     loaded.value = true
+
     modalMethod.emitVisible = (visible: boolean, uid: number) => {
       visibleData[uid] = visible
     }
   }
-
+  /**
+   * 获取实例
+   *
+   * Get instance
+   */
   const getInstance = () => {
     const instance = unref(modal)
     if (!instance) {
@@ -62,8 +79,13 @@ export function useModal(): UseModalReturnType {
     return instance
   }
 
+  /**
+   * 定义实例方法
+   *
+   * Define instance methods
+   */
   const methods: ReturnMethods = {
-    setModalProps: (props: Partial<ModalProps>): void => {
+    setModalProps: (props: Partial<BasicProps>): void => {
       getInstance()?.setModalProps(props)
     },
 
@@ -100,11 +122,22 @@ export function useModal(): UseModalReturnType {
   return [register, methods]
 }
 
+/**
+ * 定义内部使用实例
+ *
+ * Define inner use instance
+ * @param callbackFn 回调方法，回调实例传递的数据
+ */
 export const useModalInner = (callbackFn?: Fn): UseModalInnerReturnType => {
-  const modalInstanceRef = ref<Nullable<ModalMethods>>(null)
+  const modalInstanceRef = ref<Nullable<ModalInstanceMethods>>(null)
   const currentInstance = getCurrentInstance()
   const uidRef = ref<string>('')
 
+  /**
+   * 获取实例
+   *
+   * Get instance
+   */
   const getInstance = () => {
     const instance = unref(modalInstanceRef)
     if (!instance) {
@@ -113,7 +146,14 @@ export const useModalInner = (callbackFn?: Fn): UseModalInnerReturnType => {
     return instance
   }
 
-  const register = (modalInstance: ModalMethods, uuid: string) => {
+  /**
+   * 注册内部实例
+   *
+   * Register inner instance
+   * @param modalInstance Modal inner instance
+   * @param uuid Modal instance uuid
+   */
+  const register = (modalInstance: ModalInstanceMethods, uuid: string) => {
     isProdMode() &&
       tryOnUnmounted(() => {
         modalInstanceRef.value = null
@@ -123,41 +163,51 @@ export const useModalInner = (callbackFn?: Fn): UseModalInnerReturnType => {
     currentInstance?.emit('register', modalInstance, uuid)
   }
 
+  /**
+   * 定义内部实例方法
+   *
+   * Define inner instance methods
+   */
+  const methods: ReturnInnerMethods = {
+
+    changeLoading: (loading = true) => {
+      getInstance()?.setModalProps({ loading })
+    },
+
+    getVisible: computed((): boolean => {
+      return visibleData[~~unref(uidRef)]
+    }),
+
+    changeConfirmLoading: (loading = true) => {
+      getInstance()?.setModalProps({ confirmButton: { loading } })
+    },
+
+    closeModal: () => {
+      getInstance()?.setModalProps({ modelValue: false })
+    },
+
+    setModalProps: (props: Partial<BasicProps>) => {
+      getInstance()?.setModalProps(props)
+    },
+
+    redoModalHeight: () => {
+      const callRedo = getInstance()?.redoModalHeight
+      callRedo && callRedo()
+    },
+  }
+
   watchEffect(() => {
     const data = dataTransfer[unref(uidRef)]
     if (!data) return
-    if (!callbackFn || !isFunction(callbackFn)) return
+
+    if (!callbackFn || typeof callbackFn !== 'function') return
+
+    // 回调方法，回调实例传递的数据
+    // Callback method, the data passed by the callback instance
     nextTick(() => {
       callbackFn(data)
     })
   })
 
-  return [
-    register,
-    {
-      changeLoading: (loading = true) => {
-        getInstance()?.setModalProps({ loading })
-      },
-      getVisible: computed((): boolean => {
-        return visibleData[~~unref(uidRef)]
-      }),
-
-      changeConfirmLoading: (loading = true) => {
-        getInstance()?.setModalProps({ confirmButton: { loading } })
-      },
-
-      closeModal: () => {
-        getInstance()?.setModalProps({ modelValue: false })
-      },
-
-      setModalProps: (props: Partial<ModalProps>) => {
-        getInstance()?.setModalProps(props)
-      },
-
-      redoModalHeight: () => {
-        const callRedo = getInstance()?.redoModalHeight
-        callRedo && callRedo()
-      },
-    },
-  ]
+  return [register, methods]
 }

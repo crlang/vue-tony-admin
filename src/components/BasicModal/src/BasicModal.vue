@@ -1,90 +1,85 @@
 <template>
-  <Modal
-    v-bind="getBaiscBindValue"
+  <ElDialog
+    v-bind="getBindValues"
+    :showClose="false"
     v-model:modelValue="visibleRef">
-    <template
-      #title
-      v-if="$slots.title">
-      <slot name="title"></slot>
-    </template>
-
-    <template
-      #title
-      v-else>
+    <template #title>
       <ModalHeader
-        v-bind="getHeaderBindValue"
+        v-bind="getHeaderBindValues"
         @fullscreen="handleFullscreen"
-        @cancel="handleCancel" />
-    </template>
-
-    <template
-      #footer
-      v-if="$slots.footer">
-      <slot name="footer"></slot>
-    </template>
-    <template
-      #footer
-      v-else>
-      <ModalFooter
-        v-bind="getFooterBindValue"
-        @ok="handleOk"
         @cancel="handleCancel">
-        <template
-          #[item]="data"
-          v-for="item in Object.keys($slots)">
-          <slot
-            :name="item"
-            v-bind="data || {}"></slot>
+        <template #title>
+          <slot name="title"></slot>
         </template>
-      </ModalFooter>
+      </ModalHeader>
     </template>
 
     <ModalWrapper
       ref="modalWrapperRef"
       v-bind="getWrapperBindValue"
-      @ext-height="handleExtHeight"
       @height-change="handleHeightChange">
       <slot></slot>
     </ModalWrapper>
-  </Modal>
+
+    <template
+      #footer
+      v-if="showFooter">
+      <div :class="`${prefixCls}-footer`">
+        <template v-if="$slots.footer">
+          <slot name="footer"></slot>
+        </template>
+
+        <template v-else>
+          <slot name="prependFooter"></slot>
+          <ElButton
+            v-bind="cancelOptions"
+            @click="handleCancel"
+            v-if="showCancelBtn">{{ cancelOptions?.text || 'Cancel' }}</ElButton>
+          <slot name="centerFooter"></slot>
+          <ElButton
+            v-bind="confirmOptions"
+            :loading="getProps.confirmOptions?.loading"
+            @click="handleConfirm"
+            v-if="showCancelBtn">{{ confirmOptions?.text || 'OK' }}</ElButton>
+          <slot name="appendFooter"></slot>
+        </template>
+      </div>
+    </template>
+  </ElDialog>
 </template>
 
 <script lang="ts">
-import type { ModalProps, ModalMethods, ModalCustomHeader, ModalCustomContent, ModalCustomFooter } from './typing'
+import type { BasicProps, ModalInstanceMethods, ModalCustomHeader, ModalCustomContent } from './typing'
 
 import { defineComponent, computed, ref, watch, unref, watchEffect, getCurrentInstance, nextTick } from 'vue'
-import Modal from './components/Modal.vue'
-import ModalWrapper from './components/ModalWrapper.vue'
-import ModalFooter from './components/ModalFooter.vue'
-import ModalHeader from './components/ModalHeader.vue'
-import { isFunction } from '@/utils/is'
-import { deepMerge } from '@/utils'
-import { basicProps } from './props'
+import { ElDialog, ElButton } from 'element-plus'
 import { omit } from 'lodash-es'
+
 import { useDesign } from '@/hooks/web/useDesign'
+
+import { basicProps, customProps } from './props'
+import ModalHeader from './components/ModalHeader.vue'
+import ModalWrapper from './components/ModalWrapper.vue'
 
 export default defineComponent({
   name: 'BasicModal',
-  components: { Modal, ModalWrapper, ModalFooter, ModalHeader },
+  components: { ElDialog, ElButton, ModalWrapper, ModalHeader },
   inheritAttrs: false,
   props: basicProps,
-  emits: [
-    'visible-change',
-    'height-change',
-    'cancel',
-    'ok',
-    'register',
-    'update:modelValue'],
+  emits: ['visible-change', 'height-change', 'cancel', 'confirm', 'register', 'update:modelValue'],
   setup(props, { emit }) {
     const visibleRef = ref(false)
-    const propsRef = ref<Partial<ModalProps> | null>(null)
+    const propsRef = ref<Partial<BasicProps> | null>(null)
     const modalWrapperRef = ref<any>(null)
     const { prefixCls } = useDesign('basic-modal')
     const fullscreenRef = ref(false)
 
-    // modal   Bottom and top height
-    const extHeightRef = ref(0)
-    const modalMethods: ModalMethods = {
+    /**
+     * 定义内部实例方法
+     *
+     * Define inner instance func
+     */
+    const modalInstance: ModalInstanceMethods = {
       setModalProps,
       emitVisible: undefined,
       redoModalHeight: () => {
@@ -96,60 +91,150 @@ export default defineComponent({
       },
     }
 
+    /**
+     * 获取并注册当前实例
+     *
+     * Get current instance
+     */
     const instance = getCurrentInstance()
-    if (instance) {
-      emit('register', modalMethods, instance.uid)
-    }
+    instance && emit('register', modalInstance, instance.uid)
 
-    const getMergeProps = computed(() => {
+    /**
+     * 获取更新 Props
+     *
+     * Merge Props
+     */
+    const getProps = computed(() => {
       return {
         ...props,
-        ...unref(propsRef),
-      }
+        ...(unref(propsRef) as Recordable),
+      } as BasicProps
     })
 
-    const getBaiscBindValue = computed(() => {
-      const attr = {
-        ...unref(getMergeProps),
+    /**
+     * 绑定弹窗Props
+     *
+     * Bind modal props
+     */
+    const getBindValues = computed(() => {
+      const opts = {
+        ...unref(getProps),
         fullscreen: unref(fullscreenRef),
         customClass: prefixCls,
-      } as ModalProps
-      return attr
+      }
+      // 绑定组件Porps前，移除自定义附加项
+      // Before binding component Porps, remove custom add-ons
+      const customOpts = Object.keys(customProps)
+
+      return omit(opts, customOpts)
     })
 
-    const getHeaderBindValue = computed(() => {
-      const attr = {
-        ...unref(getMergeProps),
+    /**
+     * 绑定弹窗头部
+     *
+     * Bind header props
+     */
+    const getHeaderBindValues = computed(() => {
+      const { showFullscreen, showClose, helpMessage, title } = unref(getProps)
+      const opts = {
+        title,
+        showFullscreen,
+        showClose,
+        helpMessage,
         fullscreen: unref(fullscreenRef),
-        modelValue: unref(visibleRef),
-        customClass: `${prefixCls}__header`,
-        customTitle: unref(getMergeProps).title,
+        prefixCls: `${prefixCls}-header`,
       } as ModalCustomHeader
-      return attr
+      return opts
     })
 
+    /**
+     * 绑定弹窗内容区
+     *
+     * Bind content props
+     */
     const getWrapperBindValue = computed(() => {
-      const attr = {
-        ...unref(getMergeProps),
+      const {
+        dyncHeight,
+        loading,
+        loadingText,
+      } = unref(getProps)
+
+      const opts = {
+        dyncHeight,
+        loading,
+        loadingText,
         fullscreen: unref(fullscreenRef),
         modelValue: unref(visibleRef),
-        customClass: `${prefixCls}__body`,
+        prefixCls: `${prefixCls}__body`,
       } as ModalCustomContent
-      return attr
+      return opts
     })
 
-    const getFooterBindValue = computed(() => {
-      const attr = {
-        ...unref(getMergeProps),
-        customClass: `${prefixCls}__footer`,
-      } as ModalCustomFooter
-      return attr
-    })
+    /**
+     * 通过实例设置 Props
+     *
+     * Setting Props by Instance
+     * @param modalProps Modal Props
+     */
+    function setModalProps(modalProps: Partial<BasicProps>): void {
+      propsRef.value = { ...(unref(propsRef) as Recordable), ...modalProps } as Recordable
 
-    // const getWrapperHeight = computed(() => {
-    //   if (unref(fullscreenRef)) return undefined
-    //   return unref(getProps).height
-    // })
+      if (Reflect.has(modalProps, 'modelValue')) {
+        visibleRef.value = !!modalProps.modelValue
+      }
+
+      if (Reflect.has(modalProps, 'fullscreen')) {
+        fullscreenRef.value = !!modalProps.fullscreen
+      }
+    }
+
+    /**
+     * 处理点击关闭或取消
+     *
+     * Handling clicks to close or cancel
+     * @param e
+     */
+    async function handleCancel(e: Event) {
+      e?.stopPropagation()
+
+      // 如果存在关闭函数
+      // If there is a close function
+      if (props.closeFunc && typeof props.closeFunc === 'function') {
+        const isClose: boolean = await props.closeFunc()
+        visibleRef.value = !isClose
+        return
+      }
+
+      emit('cancel', e)
+    }
+
+    /**
+     * 点击确认，弹窗未主动关闭
+     *
+     * Click to confirm, the pop-up window is not automatically closed
+     */
+    function handleConfirm(e: Event) {
+      emit('confirm', e)
+    }
+
+    /**
+     * 弹窗内容高度变化时回调
+     *
+     * Callback when the height of the popup content changes
+     * @param height
+     */
+    function handleHeightChange(height: number) {
+      emit('height-change', height)
+    }
+
+    /**
+     * 点击全屏图标执行全屏
+     *
+     * Click the full screen icon to perform full screen
+     */
+    function handleFullscreen() {
+      setModalProps({ fullscreen: !unref(fullscreenRef) })
+    }
 
     watchEffect(() => {
       visibleRef.value = !!props.modelValue
@@ -161,10 +246,14 @@ export default defineComponent({
       (v) => {
         emit('visible-change', v)
         emit('update:modelValue', v)
-        instance && modalMethods.emitVisible?.(v, instance.uid)
+
+        instance && modalInstance.emitVisible?.(v, instance.uid)
+
         nextTick(() => {
+          // 如果 scrollTop 为 true，弹窗显示时会尝试滚动内容到顶部
+          // If scrollTop is true, the popup will try to scroll the content to the top when displayed
           if (props?.scrollTop && v && unref(modalWrapperRef)) {
-            (unref(modalWrapperRef) as any).scrollTop()
+            (unref(modalWrapperRef))?.scrollTop(0)
           }
         })
       },
@@ -173,63 +262,99 @@ export default defineComponent({
       },
     )
 
-    async function handleCancel(e: Event) {
-      e?.stopPropagation()
-
-      if (props.closeFunc && isFunction(props.closeFunc)) {
-        const isClose: boolean = await props.closeFunc()
-        visibleRef.value = !isClose
-        return
-      }
-
-      visibleRef.value = false
-      emit('cancel', e)
-    }
-
-    function setModalProps(props: Partial<ModalProps>): void {
-      propsRef.value = deepMerge(unref(propsRef) || {}, props)
-
-      if (Reflect.has(props, 'modelValue')) {
-        visibleRef.value = !!props.modelValue
-      }
-      if (Reflect.has(props, 'fullscreen')) {
-        fullscreenRef.value = !!props.fullscreen
-      }
-    }
-
-    function handleOk(e: Event) {
-      emit('ok', e)
-    }
-
-    function handleHeightChange(height: string) {
-      emit('height-change', height)
-    }
-
-    function handleExtHeight(height: number) {
-      extHeightRef.value = height
-    }
-    function handleFullscreen() {
-      setModalProps({ fullscreen: !unref(fullscreenRef) })
-    }
-
     return {
       prefixCls,
-      handleCancel,
-      getBaiscBindValue,
-      getHeaderBindValue,
+      getBindValues,
+      getHeaderBindValues,
       getWrapperBindValue,
-      getFooterBindValue,
-      handleFullscreen,
-      fullscreenRef,
-      getMergeProps,
-      handleOk,
       visibleRef,
-      omit,
+      fullscreenRef,
+      getProps,
       modalWrapperRef,
-      handleExtHeight,
+      handleFullscreen,
+      handleCancel,
+      handleConfirm,
       handleHeightChange,
     }
   },
 })
 </script>
-<style lang="scss" src="./index.scss"></style>
+<style lang="scss">
+$prefix-cls: '#{$tonyname}-basic-modal';
+
+.#{$prefix-cls} {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .el-dialog {
+    &__header {
+      padding: 0;
+      margin: 0;
+      flex-shrink: 0;
+    }
+
+    &__body {
+      padding: 0;
+      flex-grow: 1;
+      overflow: hidden;
+    }
+
+    &__footer {
+      flex-shrink: 0;
+      padding: 0;
+    }
+  }
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 16px;
+    font-size: 16px;
+
+    &__extra {
+      display: flex;
+      align-items: center;
+
+      > span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 56px;
+        height: 56px;
+        color: var(--text-secondary-color);
+        cursor: pointer;
+
+        &:hover {
+          color: var(--primary-color);
+          background: rgba(0,0,0,0.05);
+        }
+
+        > svg {
+          width: 1em;
+          height: 1em;
+        }
+      }
+    }
+  }
+
+  &__body {
+    padding: 0 16px;
+
+    .scrollbar__wrap {
+      margin-bottom: 0;
+    }
+
+    // .scrollbar__view {
+    //   height: 100%;
+    //   overflow: hidden;
+    // }
+  }
+
+  &-footer {
+    width: 100%;
+    padding: 10px 20px 20px;
+  }
+}
+</style>

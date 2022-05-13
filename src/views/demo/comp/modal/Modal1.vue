@@ -4,10 +4,10 @@
     destroyOnClose
     draggable
     @register="register"
-    title="Modal Title"
     :helpMessage="['提示1', '提示2']"
     @visible-change="handleShow">
-    <template #insertFooter>
+    <template #title>Modal slot title</template>
+    <template #prependFooter>
       <el-button
         type="danger"
         @click="setLines"
@@ -36,8 +36,8 @@ export default defineComponent({
     modalValue: Boolean,
   },
   setup() {
-    const loading = ref(true)
-    const lines = ref(10)
+    const loading = ref(false)
+    const lines = ref(0)
     const [register, { setModalProps, redoModalHeight }] = useModalInner()
 
     watch(
@@ -49,18 +49,16 @@ export default defineComponent({
 
     function handleShow(visible: boolean) {
       if (visible) {
-        loading.value = true
-        setModalProps({ loading: true, confirmButton: { loading: true } })
+        setModalProps({ loading: true, confirmOptions: { loading: true } })
         setTimeout(() => {
-          lines.value = Math.round(Math.random() * 30 + 5)
-          loading.value = false
-          setModalProps({ loading: false, confirmButton: { loading: false } })
+          setLines()
+          setModalProps({ loading: false, confirmOptions: { loading: false } })
         }, 3000)
       }
     }
 
     function setLines() {
-      lines.value = Math.round(Math.random() * 20 + 10)
+      lines.value = Math.round(Math.random() * 10 + 10)
     }
     return { register, loading, handleShow, lines, setLines }
   },
