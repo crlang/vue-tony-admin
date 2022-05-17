@@ -19,7 +19,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { ElAlert } from 'element-plus'
-import { BasicUpload } from '@/components/Upload'
+import { BasicUpload } from '@/components/BasicUpload'
 import { useMessage } from '@/hooks/web/useMessage'
 import { uploadApi } from '@/api/sys/upload'
 
