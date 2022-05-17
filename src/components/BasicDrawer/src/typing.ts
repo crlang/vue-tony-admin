@@ -55,7 +55,7 @@ export interface BasicProps extends EleDrawer {
    *
    * Confirm button configuration, same as ElButton
    */
-  confirmOptions?: Partial<EleButton>
+  confirmOptions?: EleButton
   /**
    * 是否显示取消按钮
    *
@@ -67,7 +67,7 @@ export interface BasicProps extends EleDrawer {
    *
    * Confirm button configuration, same as ElButton
    */
-  cancelOptions?: Partial<EleButton>
+  cancelOptions?: EleButton
 }
 
 /**

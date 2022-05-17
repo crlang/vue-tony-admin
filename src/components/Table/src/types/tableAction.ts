@@ -6,7 +6,7 @@ import { Component } from 'vue'
 
 export type ScopeInfo = RenderRowData<Object>
 
-export interface ActionItem extends Partial<EleButton> {
+export interface ActionItem extends EleButton {
   callback?: (rowInfo:ScopeInfo)=>void
   popConfirm?: PopConfirm
   preIcon?: string

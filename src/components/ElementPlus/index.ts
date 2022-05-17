@@ -37,7 +37,7 @@ import {
 } from 'element-plus'
 
 export const EleButtonProps = buttonProps
-export type EleButton = ButtonProps & { text?: string }
+export type EleButton = Partial<ButtonProps> & { text?: string }
 export type EleButtonType = ButtonType
 export type EleButtonNativeType = ButtonNativeType
 

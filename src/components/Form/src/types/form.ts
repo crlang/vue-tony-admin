@@ -56,7 +56,7 @@ export interface basicFormAction {
   /**
    * Confirm button configuration
    */
-  submitButtonOptions?: Partial<EleButton>
+  submitButtonOptions?: EleButton
   /**
    * Show reset button
    */
@@ -64,7 +64,7 @@ export interface basicFormAction {
   /**
    * Reset button configuration
    */
-  resetButtonOptions?: Partial<EleButton>
+  resetButtonOptions?: EleButton
   /**
    * Whether to show collapse and expand buttons
    */

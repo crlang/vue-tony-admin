@@ -20,7 +20,7 @@ export const basicFormActionProps = {
     default: true,
   },
   submitButtonOptions: {
-    type: Object as PropType<Partial<EleButton>>,
+    type: Object as PropType<EleButton>,
     default: () => {},
   },
   showResetButton: {
@@ -28,7 +28,7 @@ export const basicFormActionProps = {
     default: true,
   },
   resetButtonOptions: {
-    type: Object as PropType<Partial<EleButton>>,
+    type: Object as PropType<EleButton>,
     default: () => {},
   },
   showAdvancedButton: { type: Boolean },

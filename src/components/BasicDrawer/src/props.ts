@@ -58,7 +58,7 @@ export const customProps = {
     * Confirm button configuration, same as ElButton
     */
   confirmOptions: {
-    type: Object as PropType<Partial<EleButton>>,
+    type: Object as PropType<EleButton>,
     default: {
       text: '确认',
       type: 'primary',
@@ -79,7 +79,7 @@ export const customProps = {
     * Confirm button configuration, same as ElButton
     */
   cancelOptions: {
-    type: Object as PropType<Partial<EleButton>>,
+    type: Object as PropType<EleButton>,
     default: {
       text: '取消',
       type: 'default',
