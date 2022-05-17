@@ -1,5 +1,8 @@
 /**
- * @description: base64 to blob
+ * 转换base64为blob
+ *
+ * Convert base64 to blob
+ * @param base64Buf base64 string
  */
 export function dataURLtoBlob(base64Buf: string): Blob {
   const arr = base64Buf.split(',')
@@ -15,16 +18,19 @@ export function dataURLtoBlob(base64Buf: string): Blob {
 }
 
 /**
- * img url to base64
- * @param url
+ * 图片url转base64
+ *
+ * Image url to base64
+ * @param url image url
+ * @param mineType image type
  */
-export function urlToBase64(url: string, mineType?: string): Promise<string> {
+export function imgurlToBase64(url: string, mineType?: string): Promise<string> {
   return new Promise((resolve, reject) => {
-    let canvas = document.createElement('CANVAS') as Nullable<HTMLCanvasElement>
+    let canvas = document.createElement('canvas') as Nullable<HTMLCanvasElement>
     const ctx = canvas!.getContext('2d')
 
     const img = new Image()
-    img.crossOrigin = ''
+    img.crossOrigin = 'anonymous'
     img.onload = function () {
       if (!canvas || !ctx) {
         return reject()

@@ -39,25 +39,21 @@ export default defineComponent({
       downloadByData('text content', 'testName.txt')
     }
     function handleDownloadByUrl() {
-      downloadByUrl({
-        url: 'https://www.dundeecity.gov.uk/sites/default/files/publications/civic_renewal_forms.zip',
-        target: '_self',
-      })
-
-      downloadByUrl({
-        url: 'https://file-examples-com.github.io/uploads/2017/10/file_example_JPG_100kB.jpg',
-        target: '_self',
-      })
+      downloadByUrl(
+        'https://www.7-zip.org/a/7z2107-x64.exe',
+        '7z2107-x64.exe',
+        '_self',
+      )
     }
 
     function handleDownloadByBase64() {
-      downloadByBase64(imgBase64, 'logo.png')
+      downloadByBase64(imgBase64, 'moon.svg')
     }
 
     function handleDownloadByOnlineUrl() {
       downloadByOnlineUrl(
-        'https://file-examples-com.github.io/uploads/2017/10/file_example_JPG_1MB.jpg',
-        'file_example_JPG_1MB.png'
+        'https://img-blog.csdnimg.cn/2eb16a7d1ea1418f8e0569331abbfc86.png',
+        '2eb16a7d1ea1418f8e0569331abbfc86.png'
       )
     }
     return {

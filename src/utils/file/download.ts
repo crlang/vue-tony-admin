@@ -1,25 +1,29 @@
-import { openWindow } from '..'
-import { dataURLtoBlob, urlToBase64 } from './base64Conver'
+import { openWindow } from '../index'
+import { dataURLtoBlob, imgurlToBase64 } from './base64Conver'
 
 /**
- * Download online pictures
- * @param url
- * @param filename
- * @param mime
+ * 下载远程图片到本地
+ *
+ * Download remote image to local
+ * @param url image url
+ * @param filename download name
+ * @param mime image type, eg: image/png
  * @param bom
  */
 export function downloadByOnlineUrl(url: string, filename: string, mime?: string, bom?: BlobPart) {
-  urlToBase64(url).then((base64) => {
+  imgurlToBase64(url).then((base64) => {
     downloadByBase64(base64, filename, mime, bom)
   })
 }
 
 /**
- * Download pictures based on base64
- * @param buf
- * @param filename
- * @param mime
- * @param bom
+ * 下载 Base64 文件到本地
+ *
+ * Download base64 file to local
+ * @param buf base64
+ * @param filename download name
+ * @param mime file type
+ * @param bom blob info
  */
 export function downloadByBase64(buf: string, filename: string, mime?: string, bom?: BlobPart) {
   const base64Buf = dataURLtoBlob(buf)
@@ -27,11 +31,13 @@ export function downloadByBase64(buf: string, filename: string, mime?: string, b
 }
 
 /**
- * Download according to the background interface file stream
- * @param {*} data
- * @param {*} filename
- * @param {*} mime
- * @param {*} bom
+ * 根据接口URL文件流下载到本地
+ *
+ * Download the file stream to the local according to the interface URL
+ * @param data file data
+ * @param filename download name
+ * @param mime file type
+ * @param bom blob info
  */
 export function downloadByData(data: BlobPart, filename: string, mime?: string, bom?: BlobPart) {
   const blobData = typeof bom !== 'undefined' ? [bom, data] : [data]
@@ -55,18 +61,15 @@ export function downloadByData(data: BlobPart, filename: string, mime?: string, 
 }
 
 /**
- * Download file according to file address
- * @param {*} sUrl
+ * 根据文件URL下载到本地
+ *
+ * Download to local according to file URL
+ * @param url file url
+ * @param fileName download name
+ * @param target "_self" | "_blank"
+ * @returns
  */
-export function downloadByUrl({
-  url,
-  target = '_blank',
-  fileName,
-}: {
-  url: string
-  target?: TargetContext
-  fileName?: string
-}): boolean {
+export function downloadByUrl(url:string, fileName?: string, target?:TargetContext = '_blank'): boolean {
   const isChrome = window.navigator.userAgent.toLowerCase().indexOf('chrome') > -1
   const isSafari = window.navigator.userAgent.toLowerCase().indexOf('safari') > -1
 
