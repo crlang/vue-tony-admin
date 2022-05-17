@@ -40,7 +40,7 @@
             v-bind="confirmOptions"
             :loading="getProps.confirmOptions?.loading"
             @click="handleConfirm"
-            v-if="showCancelBtn">{{ confirmOptions?.text || 'OK' }}</ElButton>
+            v-if="showConfirmBtn">{{ confirmOptions?.text || 'OK' }}</ElButton>
           <slot name="appendFooter"></slot>
         </template>
       </div>
@@ -196,13 +196,14 @@ export default defineComponent({
      */
     async function handleCancel(e: Event) {
       e?.stopPropagation()
+      const { closeFunc } = unref(getProps)
 
-      // 如果存在关闭函数
-      // If there is a close function
-      if (props.closeFunc && typeof props.closeFunc === 'function') {
-        const isClose: boolean = await props.closeFunc()
+      if (closeFunc && typeof closeFunc === 'function') {
+        const isClose:boolean = await closeFunc()
         visibleRef.value = !isClose
         return
+      } else {
+        visibleRef.value = false
       }
 
       emit('cancel', e)
