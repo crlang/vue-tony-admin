@@ -144,14 +144,15 @@ export default defineComponent({
      * Render collapse container
      */
     const renderContainer = () => {
+      const { title, useCollapse } = unref(getProps)
+
       // 如果 useCollapse 为 false， 不渲染折叠容器
       // If useCollapse is false, do not render the collapsed container
-      if (!props.useCollapse) {
+      if (!useCollapse) {
         return renderDesc()
       }
 
       const { canExpand, helpMessage } = unref(getCollapseOptions)
-      const { title } = unref(getProps)
 
       return (
         <CollapseContainer title={title} canExpan={canExpand} helpMessage={helpMessage}>
