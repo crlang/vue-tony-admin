@@ -1,79 +1,200 @@
 <template>
-  <div>
-    <ElButtonGroup>
-      <ElButton
-        type="primary"
-        @click="openUploadModal()"
-        :icon="UploadFilled">
-        上传
-      </ElButton>
-      <ElTooltip
-        placement="bottom"
-        v-if="showPreview">
-        <template #content>
-          已上传
-          <template v-if="fileList.length">
-            {{ fileList.length }}
-          </template>
-        </template>
-        <ElButton @click="openPreviewModal()">
-          <Icon
-            name="bi:eye"
-            size="12" /> <template v-if="fileList.length && showPreviewNumber"> {{ fileList.length }}</template>
-        </ElButton>
-      </ElTooltip>
-    </ElButtonGroup>
-
-    <UploadModal
-      v-bind="bindValue"
-      :previewFileList="fileList"
-      @register="registerUploadModal"
-      @change="handleChange"
-      @delete="handleDelete" />
-
-    <UploadPreviewModal
-      :value="fileList"
-      @register="registerPreviewModal"
-      @list-change="handlePreviewChange"
-      @delete="handlePreviewDelete" />
+  <div
+    v-if="showThumb"
+    :style="getThumbStyle"
+    :class="`${prefixCls}-entry-thumb`">
+    <template v-if="fileList?.length">
+      <div :class="`${prefixCls}-entry-thumb__img`">
+        <img
+          :src="fileList[0]"
+          :alt="fileList[0]" />
+        <div :class="`${prefixCls}-entry-thumb__img-inner`">
+          <div
+            :class="`${prefixCls}-entry-thumb__img--upload`"
+            @click="openUpload()">
+            <SvgIcon name="cloud-upload" /> 上传
+          </div>
+          <div
+            :class="`${prefixCls}-entry-thumb__img--preview`"
+            @click="openPreview()">
+            <SvgIcon name="eye" /> 预览 <template v-if="fileList.length && showPreviewNumber"> ({{ fileList.length }})</template>
+          </div>
+        </div>
+      </div>
+    </template>
+    <template v-else>
+      <div
+        :class="`${prefixCls}-entry-thumb__btn`"
+        @click="openUpload()">
+        <SvgIcon
+          name="cloud-upload" />
+      </div>
+    </template>
   </div>
+  <ElButtonGroup
+    :class="`${prefixCls}-entry-simple`"
+    v-else>
+    <ElButton
+      type="primary"
+      @click="openUpload()">
+      <SvgIcon
+        name="cloud-upload"
+        class="mr-1" /> <span>上传</span>
+    </ElButton>
+    <ElTooltip
+      placement="bottom"
+      v-if="showPreview">
+      <template #content>
+        已上传
+        <template v-if="fileList.length">
+          {{ fileList.length }}
+        </template>
+      </template>
+      <ElButton @click="openPreview()">
+        <SvgIcon name="eye" /> <template v-if="fileList.length && showPreviewNumber"> {{ fileList.length }}</template>
+      </ElButton>
+    </ElTooltip>
+  </ElButtonGroup>
+
+  <UploadModal
+    v-bind="getBindValues"
+    :prefixCls="`${prefixCls}-upload-modal`"
+    @register="registerUploadModal"
+    @change="handleChange"
+    @delete="handleDelete" />
+
+  <UploadPreviewModal
+    :prefixCls="`${prefixCls}-preview-modal`"
+    @register="registerPreviewModal"
+    @list-change="handlePreviewChange"
+    @delete="handlePreviewDelete" />
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch, unref, computed } from 'vue'
+import { defineComponent, ref, watch, unref, computed, CSSProperties } from 'vue'
 import { ElButton, ElButtonGroup, ElTooltip } from 'element-plus'
-import UploadModal from './UploadModal.vue'
-import UploadPreviewModal from './UploadPreviewModal.vue'
-import { Icon } from '@/components/Icon'
-import { uploadContainerProps } from './props'
 import { omit } from 'lodash-es'
 import { isArray } from '@/utils/is'
-import { UploadFilled } from '@element-plus/icons'
+
 import { useModal } from '@/components/BasicModal'
+import { SvgIcon } from '@/components/SvgIcon'
+import { useDesign } from '@/hooks/web/useDesign'
+
+import UploadModal from './components/UploadModal.vue'
+import UploadPreviewModal from './components/PreviewModal.vue'
+import { basicProps, customProps } from './props'
 
 export default defineComponent({
   name: 'BasicUpload',
-  components: { ElTooltip, ElButton, ElButtonGroup, UploadModal, UploadPreviewModal, Icon },
-  props: uploadContainerProps,
-  emits: ['change', 'delete', 'preview-delete', 'update:value'],
+  components: { ElTooltip, ElButton, ElButtonGroup, UploadModal, UploadPreviewModal, SvgIcon },
+  props: basicProps,
+  emits: ['change', 'delete', 'preview-delete', 'update:modelValue'],
 
   setup(props, { emit, attrs }) {
-    const [registerUploadModal, { openModal: openUploadModal }] = useModal()
+    const fileList = ref<string[]>([])
+    const { prefixCls } = useDesign('basic-upload')
 
+    const [registerUploadModal, { openModal: openUploadModal }] = useModal()
     const [registerPreviewModal, { openModal: openPreviewModal }] = useModal()
 
-    const fileList = ref<string[]>([])
-
+    /**
+     * 是否显示预览按钮入口
+     *
+     * Whether to show the preview button entry
+     */
     const showPreview = computed(() => {
       const { emptyHidePreview } = props
       if (!emptyHidePreview) return true
       return emptyHidePreview ? fileList.value.length > 0 : true
     })
 
-    const bindValue = computed(() => {
-      const value = { ...attrs, ...props }
-      return omit(value, 'onChange', 'modelValue')
+    /**
+     * 获取预览图的样式
+     *
+     * Get thumb style
+     */
+    const getThumbStyle = computed(():CSSProperties => {
+      const { thumbSize } = props
+
+      return {
+        ['--thumb-size' as any]: `${thumbSize}px`,
+      }
     })
+    /**
+     * 绑定上传弹窗Props
+     *
+     * Bind upload modal props
+     */
+    const getBindValues = computed(() => {
+      const opts = {
+        ...attrs, ...props,
+      }
+
+      // 绑定组件Porps前，移除自定义附加项
+      // Before binding component Porps, remove custom add-ons
+      const customOpts = Object.keys(customProps)
+
+      return omit(opts, customOpts)
+    })
+
+    /**
+     * 打开上传
+     *
+     * Open upload modal
+     */
+    function openUpload() {
+      openUploadModal(true, unref(fileList))
+    }
+    /**
+     * 打开预览弹窗
+     *
+     * Open preview modal
+     */
+    function openPreview() {
+      openPreviewModal(true, unref(fileList))
+    }
+    /**
+     * 上传弹窗文件列表改变时回调
+     *
+     * Callback when upload popup file list changes
+     */
+    function handleChange(urls: string[]) {
+      fileList.value = [...unref(fileList), ...(urls || [])]
+      emit('update:modelValue', fileList.value)
+      emit('change', fileList.value)
+    }
+
+    /**
+     * 预览弹窗文件列表改变时回调
+     *
+     * Callback when the preview popup file list changes
+     * @param urls
+     */
+    function handlePreviewChange(urls: string[]) {
+      fileList.value = [...(urls || [])]
+      emit('update:modelValue', fileList.value)
+      emit('change', fileList.value)
+    }
+
+    /**
+     * 上传弹窗列表删除文件回调
+     *
+     * Upload popup list delete file
+     * @param record FileItem
+     */
+    function handleDelete(record: Recordable) {
+      emit('delete', record)
+    }
+
+    /**
+     * 上传弹窗列表删除文件回调
+     *
+     * Preview popup list delete file
+     * @param url
+     */
+    function handlePreviewDelete(url: string) {
+      emit('preview-delete', url)
+    }
 
     watch(
       () => props.modelValue,
@@ -83,40 +204,122 @@ export default defineComponent({
       { immediate: true },
     )
 
-    function handleChange(urls: string[]) {
-      fileList.value = [...unref(fileList), ...(urls || [])]
-      emit('update:value', fileList.value)
-      emit('change', fileList.value)
-    }
-
-    function handlePreviewChange(urls: string[]) {
-      fileList.value = [...(urls || [])]
-      emit('update:value', fileList.value)
-      emit('change', fileList.value)
-    }
-
-    function handleDelete(record: Recordable) {
-      emit('delete', record)
-    }
-
-    function handlePreviewDelete(url: string) {
-      emit('preview-delete', url)
-    }
-
     return {
+      prefixCls,
+      fileList,
+      showPreview,
+      getBindValues,
+      getThumbStyle,
       registerUploadModal,
-      openUploadModal,
+      openUpload,
       handleChange,
       handlePreviewChange,
       registerPreviewModal,
-      openPreviewModal,
-      UploadFilled,
-      fileList,
-      showPreview,
-      bindValue,
+      openPreview,
       handleDelete,
       handlePreviewDelete,
     }
   },
 })
 </script>
+
+<style lang="scss">
+$prefix-cls: '#{$tonyname}-basic-upload';
+
+.#{$prefix-cls} {
+  &-entry-thumb {
+    &__img ,
+    &__btn {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: var(--thumb-size);
+      height: var(--thumb-size);
+      overflow: hidden;
+      color: var(--text-primary-color);
+      cursor: pointer;
+      background: var(--white-color);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-base);
+      transition: all 0.15s;
+
+      &:hover {
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+        opacity: 0.75;
+      }
+    }
+
+    &__btn {
+      > span {
+        font-size: calc(var(--thumb-size) / 2) !important;
+      }
+    }
+
+    &__img {
+      &-inner {
+        position: absolute;
+        top: 50%;
+        right: 10%;
+        left: 10%;
+        z-index: 3;
+        color: var(--text-primary-reverse);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-50%);
+        transition: all 0.15s;
+      }
+
+      &--upload ,
+      &--preview {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 44px;
+        margin-bottom: 8px;
+        color: #fff;
+        background: var(--primary-color);
+        border-radius: var(--radius-base);
+
+        &:hover {
+          opacity: 0.9;
+        }
+
+        >span {
+          margin-right: 8px;
+        }
+      }
+
+      &--preview {
+        color: var(--primary-color);
+        background: #fff;
+      }
+
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.35);
+        content: '';
+        visibility: hidden;
+      }
+
+      &:hover {
+        &::after {
+          visibility: visible;
+        }
+
+        .#{$prefix-cls}-entry-thumb__img-inner {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+  }
+}
+
+</style>

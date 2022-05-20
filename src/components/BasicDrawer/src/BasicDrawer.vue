@@ -128,7 +128,7 @@ export default defineComponent({
         ...(unref(propsRef) as Recordable),
       } as BasicProps
 
-      opts.customClass = `${prefixCls} ${opts?.customClass} basic-drawer-${instance?.uid}`
+      opts.customClass = `${prefixCls} ${opts?.customClass || ''} ${prefixCls}-${instance?.uid}`
 
       return opts
     })

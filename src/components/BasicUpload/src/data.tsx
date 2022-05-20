@@ -1,18 +1,27 @@
-import type { BasicColumn } from '@/components/Table'
-import { FileItem, PreviewFileItem, UploadResultStatus } from './typing'
-import { isImgTypeByName } from './helper'
-import ThumbUrl from './ThumbUrl.vue'
+import type { FileBasicColumn, FileItem, PreviewFileItem } from './typing'
+
+import { UploadResultStatus } from './typing'
+
 import { ElButton, ElButtonGroup, ElProgress, ElTag } from 'element-plus'
 
-export function createTableColumns(): BasicColumn[] {
+import { isImgTypeByName } from './helper'
+import UploadThumb from './components/UploadThumb.vue'
+
+/**
+ * 创建上传列
+ *
+ * Create an upload column
+ */
+export function createTableColumns(): FileBasicColumn[] {
   return [
     {
       prop: 'thumbUrl',
       label: '略缩图',
       width: 100,
       customRender: ({ record }) => {
+        console.log('record,record', record)
         const { thumbUrl } = (record as FileItem) || {}
-        return thumbUrl && <ThumbUrl fileUrl={thumbUrl} />
+        return thumbUrl && <UploadThumb url={thumbUrl} />
       },
     },
     {
@@ -60,24 +69,35 @@ export function createTableColumns(): BasicColumn[] {
           return <ElTag>{() => '上传中'}</ElTag>
         }
 
-        return text
+        return <ElTag type='info'>{() => '待上传'}</ElTag>
       },
     },
   ]
 }
-export function createActionColumn(handleRemove: Function): BasicColumn {
+
+/**
+ * 创建上传操作列
+ *
+ * Create an upload action column
+ */
+export function createActionColumn(handleRemove: Fn): FileBasicColumn {
   return {
     width: 120,
     label: '操作',
     prop: 'action',
     fixed: false,
     customRender: ({ record }) => {
-      return <ElButton type='danger' onClick={handleRemove.bind(null, record)}>{() => '操作'}</ElButton>
+      return <ElButton type='danger' onClick={handleRemove.bind(null, record)}>{() => '删除'}</ElButton>
     },
   }
 }
 
-export function createPreviewColumns(): BasicColumn[] {
+/**
+ * 创建预览列
+ *
+ * Create a preview column
+ */
+export function createPreviewColumns(): FileBasicColumn[] {
   return [
     {
       prop: 'url',
@@ -85,7 +105,7 @@ export function createPreviewColumns(): BasicColumn[] {
       width: 100,
       customRender: ({ record }) => {
         const { url } = (record as PreviewFileItem) || {}
-        return isImgTypeByName(url) && <ThumbUrl fileUrl={url} />
+        return isImgTypeByName(url) && <UploadThumb url={url} />
       },
     },
     {
@@ -96,13 +116,18 @@ export function createPreviewColumns(): BasicColumn[] {
   ]
 }
 
+/**
+ * 创建预览操作列
+ *
+ * Create a preview action column
+ */
 export function createPreviewActionColumn({
   handleRemove,
   handleDownload,
 }: {
   handleRemove: Fn
   handleDownload: Fn
-}): BasicColumn {
+}): FileBasicColumn {
   return {
     width: 200,
     label: '操作',

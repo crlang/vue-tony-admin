@@ -120,8 +120,9 @@ export default defineComponent({
       const opts = {
         ...unref(getProps),
         fullscreen: unref(fullscreenRef),
-        customClass: prefixCls,
       }
+      opts.customClass = `${prefixCls} ${opts?.customClass || ''} ${prefixCls}-${instance?.uid}`
+
       // 绑定组件Porps前，移除自定义附加项
       // Before binding component Porps, remove custom add-ons
       const customOpts = Object.keys(customProps)
