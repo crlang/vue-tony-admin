@@ -9,14 +9,16 @@
       <el-col :span="10">
         <div class="change-avatar">
           <div class="mb-2">头像</div>
-          <CropperAvatar
-            :uploadApi="uploadApi"
-            :value="avatar"
-            btnText="更换头像"
-            :btnProps="{ preIcon: 'ep:upload-filled' }"
+          <BasicUpload
             @change="updateAvatar"
-            width="150"
-          />
+            :api="uploadApi"
+            :modelValue="avatar"
+            uploadName="file"
+            :showPreview="false"
+            :maxSize="5"
+            :maxNumber="3"
+            showThumb
+            :accept="['png','jpg','jpeg','webp']" />
         </div>
       </el-col>
     </el-row>
@@ -31,9 +33,9 @@ import { computed, defineComponent, onMounted } from 'vue'
 import { ElRow, ElCol, ElButton } from 'element-plus'
 import { BasicForm, useForm } from '@/components/Form'
 import { CollapseContainer } from '@/components/CollapseContainer'
-import { CropperAvatar } from '@/components/Cropper'
 
 import { useMessage } from '@/hooks/web/useMessage'
+import { BasicUpload } from '@/components/BasicUpload'
 
 import headerImg from '@/assets/images/header.jpg'
 import { accountInfoApi } from '@/api/demo/account'
@@ -48,7 +50,7 @@ export default defineComponent({
     ElButton,
     BasicForm,
     CollapseContainer,
-    CropperAvatar,
+    BasicUpload,
   },
   setup() {
     const { createMessage } = useMessage()
@@ -67,7 +69,7 @@ export default defineComponent({
 
     const avatar = computed(() => {
       const { avatar } = userStore.getUserInfo
-      return avatar || headerImg
+      return [avatar || headerImg]
     })
 
     function updateAvatar(src: string) {

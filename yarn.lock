@@ -4154,11 +4154,6 @@ create-require@^1.1.0:
   resolved "https://registry.nlark.com/create-require/download/create-require-1.1.1.tgz#c1d7e8f1e5f6cfc9ff65f9cd352d37348756c333"
   integrity sha1-wdfo8eX2z8n/ZfnNNS03NIdWwzM=
 
-cropperjs@^1.5.12:
-  version "1.5.12"
-  resolved "https://registry.nlark.com/cropperjs/download/cropperjs-1.5.12.tgz"
-  integrity sha1-2cDbK/uMDXadUXOej5FrvEThD1A=
-
 cross-env@^7.0.3:
   version "7.0.3"
   resolved "https://registry.nlark.com/cross-env/download/cross-env-7.0.3.tgz"

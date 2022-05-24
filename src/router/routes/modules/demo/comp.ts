@@ -217,15 +217,6 @@ const comp: AppRouteModule = {
       },
     },
     {
-      path: 'cropper',
-      name: 'CropperDemo',
-      component: () => import('@/views/demo/comp/cropper/index.vue'),
-      meta: {
-        title: '图片裁剪',
-      },
-    },
-
-    {
       path: 'timestamp',
       name: 'TimeDemo',
       component: () => import('@/views/demo/comp/time/index.vue'),
