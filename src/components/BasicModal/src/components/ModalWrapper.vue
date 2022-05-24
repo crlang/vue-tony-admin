@@ -6,9 +6,11 @@
     :element-loading-text="loadingText">
     <ScrollContainer
       ref="wrapperRef"
+      v-if="dyncHeight"
       :class="prefixCls">
       <div ref="innerRef"><slot></slot></div>
     </ScrollContainer>
+    <template v-else><slot></slot></template>
   </div>
 </template>
 
@@ -58,10 +60,14 @@ export default defineComponent({
      * Get spin style
      */
     const spinStyle = computed((): CSSProperties => {
-      return {
+      const { dyncHeight } = props
+      return dyncHeight ? {
         // 动态获取内容区高度
         // Dynamically get the height of the content area
-        'height': props.dyncHeight ? `${unref(realHeightRef)}px` : 'auto',
+        'height': `${unref(realHeightRef)}px`,
+      } : {
+        'height': 'auto',
+        'padding': '1rem',
       }
     })
 
@@ -87,6 +93,10 @@ export default defineComponent({
       // 为 false 时不操作
       // No action when false
       if (!props.modelValue) return
+
+      // 不再动态高度
+      // no longer dynamic height
+      if (!props.dyncHeight) return
 
       // 内容区
       // content area
