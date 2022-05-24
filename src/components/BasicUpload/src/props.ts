@@ -143,6 +143,15 @@ export const customProps = {
     default: 200,
   },
   /**
+   * 是否显示预览
+   *
+   * Whether the preview button
+   */
+  showPreview: {
+    type: Boolean,
+    default: true,
+  },
+  /**
    * 是否显示预览数量
    *
    * Whether the upload button shows the number

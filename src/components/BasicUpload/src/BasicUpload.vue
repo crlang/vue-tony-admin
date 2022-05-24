@@ -16,6 +16,7 @@
           </div>
           <div
             :class="`${prefixCls}-entry-thumb__img--preview`"
+            v-if="getProps.showPreview"
             @click="openPreview()">
             <SvgIcon name="eye" /> 预览 <template v-if="fileList.length && showPreviewNumber"> ({{ fileList.length }})</template>
           </div>
@@ -50,7 +51,9 @@
           {{ fileList.length }}
         </template>
       </template>
-      <ElButton @click="openPreview()">
+      <ElButton
+        @click="openPreview()"
+        v-if="getProps.showPreview">
         <SvgIcon name="eye" /> <template v-if="fileList.length && showPreviewNumber"> {{ fileList.length }}</template>
       </ElButton>
     </ElTooltip>
@@ -121,13 +124,23 @@ export default defineComponent({
       }
     })
     /**
+     * 获取更新 Props
+     *
+     * Merge Props
+     */
+    const getProps = computed(() => {
+      return {
+        ...props,
+      }
+    })
+    /**
      * 绑定上传弹窗Props
      *
      * Bind upload modal props
      */
     const getBindValues = computed(() => {
       const opts = {
-        ...attrs, ...props,
+        ...attrs, ...unref(getProps),
       }
 
       // 绑定组件Porps前，移除自定义附加项
@@ -199,6 +212,7 @@ export default defineComponent({
     watch(
       () => props.modelValue,
       (value = []) => {
+        console.log('value', value)
         fileList.value = isArray(value) ? value : []
       },
       { immediate: true },
@@ -208,6 +222,7 @@ export default defineComponent({
       prefixCls,
       fileList,
       showPreview,
+      getProps,
       getBindValues,
       getThumbStyle,
       registerUploadModal,
