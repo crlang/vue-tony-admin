@@ -5,7 +5,7 @@
     <div
       :class="`${prefixCls}-image-wrapper`"
       :style="getImageWrapperStyle"
-      @click="openModal=true">
+      @click="openModal(true)">
       <div
         :class="`${prefixCls}-image-mask`"
         :style="getImageWrapperStyle">
@@ -22,13 +22,13 @@
     </div>
     <ElButton
       :class="`${prefixCls}-upload-btn`"
-      @click="openModal=true"
+      @click="openModal(true)"
       :type="btnType"
       v-if="showBtn">
       {{ btnText || '选择图片' }}
     </ElButton>
     <CopperModal
-      v-model:visible="openModal"
+      @register="register"
       @success="handleUploadSuccess"
       :uploadApi="uploadApi" />
   </div>
@@ -45,6 +45,7 @@ import CopperModal from './CopperModal.vue'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useMessage } from '@/hooks/web/useMessage'
 import Icon from '@/components/Icon'
+import { useModal } from '@/components/BasicModal'
 
 export default defineComponent({
   name: 'CropperAvatar',
@@ -88,8 +89,8 @@ export default defineComponent({
   setup(props, { emit }) {
     const sourceValue = ref(props.value || '')
     const { prefixCls } = useDesign('cropper-avatar')
-    const openModal = ref(false)
     const { createMessage } = useMessage()
+    const [register, { openModal }] = useModal()
 
     const getClass = computed(() => [prefixCls])
 
@@ -123,12 +124,13 @@ export default defineComponent({
 
     return {
       prefixCls,
-      openModal,
       getIconWidth,
       sourceValue,
       getClass,
       getImageWrapperStyle,
       getStyle,
+      register,
+      openModal,
       handleUploadSuccess,
     }
   },

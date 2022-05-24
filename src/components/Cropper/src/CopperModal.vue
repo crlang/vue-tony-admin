@@ -1,11 +1,13 @@
 <template>
-  <ElDialog
-    v-model="sourceVisible"
+  <BasicModal
+    v-bind="$attrs"
+    @register="register"
     title="头像上传"
-    destroy-on-close
-    :show-close="false"
+    width="800px"
     :close-on-click-modal="false"
-    :close-on-press-escape="false">
+    :close-on-press-escape="false"
+    :dync-height="false"
+    @confirm="handleConfirm">
     <div :class="prefixCls">
       <div :class="`${prefixCls}-left`">
         <div :class="`${prefixCls}-cropper`">
@@ -123,35 +125,27 @@
         </template>
       </div>
     </div>
-    <template #footer>
-      <span class="dialog-footer">
-        <ElButton @click="handleClose()">取消</ElButton>
-        <ElButton
-          type="primary"
-          :disabled="!previewSource"
-          @click="handleOk()">确认并上传</ElButton>
-      </span>
-    </template>
-  </ElDialog>
+  </BasicModal>
 </template>
 
 <script lang="ts">
 import type { UploadFileParams } from '#/axios'
 import type { CropendResult, Cropper } from './typing'
 
-import { defineComponent, ref, watchEffect, watch } from 'vue'
-import { ElDialog, ElUpload, ElTooltip, ElButton, ElAvatar, ElSpace } from 'element-plus'
-import CropperImage from './Cropper.vue'
+import { defineComponent, ref } from 'vue'
+import { ElUpload, ElTooltip, ElButton, ElAvatar, ElSpace } from 'element-plus'
+
 import { useDesign } from '@/hooks/web/useDesign'
 import { dataURLtoBlob } from '@/utils/file/base64Conver'
-import { isFunction } from '@/utils/is'
 import { Icon } from '@/components/Icon'
-import { FileHandler } from 'element-plus/es/components/upload/src/upload.type'
+import { BasicModal, useModalInner } from '@/components/BasicModal'
+
+import CropperImage from './Cropper.vue'
 
 export default defineComponent({
   name: 'CropperModal',
   components: {
-    ElDialog,
+    BasicModal,
     ElUpload,
     ElTooltip,
     ElButton,
@@ -175,36 +169,22 @@ export default defineComponent({
       type: String,
       default: 'file',
     },
-    visible: {
-      type: Boolean,
-      default: false,
-    },
   },
-  emits: ['update:visible', 'fail', 'success'],
+  emits: ['fail', 'success', 'register'],
   setup(props, { emit }) {
     let filename = ''
     const src = ref('')
     const previewSource = ref('')
     const cropper = ref<Cropper>()
     let scaleX = 1
-    const sourceVisible = ref(props.visible || false)
     let scaleY = 1
 
     const { prefixCls } = useDesign('cropper-am')
 
-    watchEffect(() => {
-      sourceVisible.value = props.visible || false
-    })
-
-    watch(
-      () => sourceVisible.value,
-      (v: boolean) => {
-        emit('update:visible', v)
-      }
-    )
+    const [register, { closeModal }] = useModalInner()
 
     // Block upload
-    function handleBeforeUpload(file: File):FileHandler<void> {
+    function handleBeforeUpload(file: File) {
       const reader = new FileReader()
       reader.readAsDataURL(file)
       src.value = ''
@@ -234,9 +214,9 @@ export default defineComponent({
       cropper?.value?.[event]?.(arg)
     }
 
-    async function handleOk() {
+    async function handleConfirm() {
       const uploadApi = props.uploadApi
-      if (uploadApi && isFunction(uploadApi)) {
+      if (uploadApi && typeof uploadApi === 'function') {
         const blob = dataURLtoBlob(previewSource.value)
         try {
           const result = await uploadApi({ name: props.uploadName, file: blob, filename })
@@ -244,24 +224,20 @@ export default defineComponent({
         } catch (e) {
           console.error('Upload Fail', e)
         }
-        handleClose()
+        closeModal()
       }
-    }
-    function handleClose() {
-      sourceVisible.value = false
     }
 
     return {
       prefixCls,
       src,
       previewSource,
-      sourceVisible,
+      register,
       handleBeforeUpload,
       handleCropend,
       handleReady,
       handlerToolbar,
-      handleClose,
-      handleOk,
+      handleConfirm,
     }
   },
 })
