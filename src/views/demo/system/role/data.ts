@@ -1,7 +1,7 @@
 import { h } from 'vue'
 import { setRoleStatus } from '@/api/demo/system'
-import { BasicColumn } from '@/components/Table'
-import { FormSchema } from '@/components/Table'
+import { BasicColumn } from '@/components/BasicTable'
+import { FormSchema } from '@/components/Form'
 import { useMessage } from '@/hooks/web/useMessage'
 import { ElSwitch } from 'element-plus'
 

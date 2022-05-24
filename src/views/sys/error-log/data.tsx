@@ -1,5 +1,5 @@
 import { ElTag } from 'element-plus'
-import { BasicColumn } from '@/components/Table'
+import { BasicColumn } from '@/components/BasicTable'
 import { ErrorTypeEnum } from '@/enums/exceptionEnum'
 
 export function getLogColumns(): BasicColumn[] {

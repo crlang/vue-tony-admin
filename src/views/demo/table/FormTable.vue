@@ -13,7 +13,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
-import { BasicTable, useTable } from '@/components/Table'
+import { BasicTable, useTable } from '@/components/BasicTable'
 import { getBasicColumns, getFormConfig } from './data'
 import { demoListApi } from '@/api/demo/table'
 import { useMessage } from '@/hooks/web/useMessage'

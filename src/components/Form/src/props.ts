@@ -1,6 +1,6 @@
 import type { FormSchema, FormActionType, FormProps } from './types/form'
 import type { CSSProperties } from 'vue'
-import type { TableActionType } from '@/components/Table'
+import type { TableActionType } from '@/components/BasicTable'
 import type { EleButton, EleCol, EleRow } from '@/components/ElementPlus'
 import type dayjs from 'dayjs'
 

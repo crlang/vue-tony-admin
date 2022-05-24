@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { BasicTable, useTable, BasicColumn } from '@/components/Table'
+import { BasicTable, useTable, BasicColumn } from '@/components/BasicTable'
 import { demoListApi } from '@/api/demo/table'
 import { useMessage } from '@/hooks/web/useMessage'
 

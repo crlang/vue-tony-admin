@@ -16,7 +16,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
-import { BasicTable, useTable } from '@/components/Table'
+import { BasicTable, useTable } from '@/components/BasicTable'
 import { getBasicColumns } from './data'
 import { treeDemoListApi } from '@/api/demo/tree'
 

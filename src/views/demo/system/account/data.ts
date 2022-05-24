@@ -1,5 +1,5 @@
 import { isAccountExist } from '@/api/demo/system'
-import { FormSchema } from '@/components/Table'
+import { FormSchema } from '@/components/Form'
 
 export const searchFormSchema: FormSchema[] = [
   {

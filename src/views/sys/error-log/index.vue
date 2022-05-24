@@ -38,7 +38,7 @@ import { useMessage } from '@/hooks/web/useMessage'
 import { useErrorLogStore } from '@/store/modules/errorLog'
 import { fireErrorApi } from '@/api/demo/error'
 import { getLogColumns } from './data'
-import { BasicTable, useTable } from '@/components/Table'
+import { BasicTable, useTable } from '@/components/BasicTable'
 import { cloneDeep } from 'lodash-es'
 
 const imgList = ref<string[]>([])

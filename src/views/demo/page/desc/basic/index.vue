@@ -31,7 +31,7 @@
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
 import { BasicDescription } from '@/components/BasicDescription'
-import { BasicTable, useTable } from '@/components/Table'
+import { BasicTable, useTable } from '@/components/BasicTable'
 
 import {
   refundSchema,

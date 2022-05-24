@@ -45,11 +45,11 @@
 </template>
 
 <script lang="ts">
-import type { TableActionType } from '@/components/Table'
+import type { TableActionType } from '@/components/BasicTable'
 
 import { defineComponent, ref, unref } from 'vue'
 import { ElButton, ElTableColumn } from 'element-plus'
-import { BasicTable } from '@/components/Table'
+import { BasicTable } from '@/components/BasicTable'
 import { getBasicColumns } from './data'
 import { demoListApi } from '@/api/demo/table'
 

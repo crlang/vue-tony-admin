@@ -23,11 +23,11 @@
 </template>
 
 <script lang="ts">
-import type { TableActionType } from '@/components/Table'
+import type { TableActionType } from '@/components/BasicTable'
 
 import { defineComponent, ref, unref } from 'vue'
 import { ElButton } from 'element-plus'
-import { BasicTable } from '@/components/Table'
+import { BasicTable } from '@/components/BasicTable'
 import { getBasicColumns, getBasicShortColumns } from './data'
 import { useMessage } from '@/hooks/web/useMessage'
 import { demoListApi } from '@/api/demo/table'

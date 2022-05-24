@@ -37,7 +37,7 @@
 import { defineComponent, reactive } from 'vue'
 import { ElRow, ElCol, ElButton } from 'element-plus'
 
-import { BasicColumn, BasicTable, useTable } from '@/components/Table'
+import { BasicColumn, BasicTable, useTable } from '@/components/BasicTable'
 import { getAccountList } from '@/api/demo/system'
 import DeptTree from './DeptTree.vue'
 

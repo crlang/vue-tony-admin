@@ -17,7 +17,7 @@
 import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
 
-import { BasicTable, useTable } from '@/components/Table'
+import { BasicTable, useTable } from '@/components/BasicTable'
 import { getRoleListByPage } from '@/api/demo/system'
 
 import { useDrawer } from '@/components/BasicDrawer'

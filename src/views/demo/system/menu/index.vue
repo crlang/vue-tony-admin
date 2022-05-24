@@ -19,7 +19,7 @@
 import { defineComponent, nextTick } from 'vue'
 import { ElButton } from 'element-plus'
 
-import { BasicTable, useTable } from '@/components/Table'
+import { BasicTable, useTable } from '@/components/BasicTable'
 import { getMenuList } from '@/api/demo/system'
 
 import { useDrawer } from '@/components/BasicDrawer'

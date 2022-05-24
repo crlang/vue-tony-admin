@@ -1,5 +1,5 @@
 import { DescItem } from '@/components/BasicDescription'
-import { BasicColumn } from '@/components/Table/src/types/table'
+import { BasicColumn } from '@/components/BasicTable'
 import { ElBadge, ElButton } from 'element-plus'
 
 export const refundData = {
