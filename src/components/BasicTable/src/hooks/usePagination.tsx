@@ -5,27 +5,29 @@ import { computed, unref, ref, ComputedRef, watchEffect } from 'vue'
 import { isBoolean } from '@/utils/is'
 import { PAGE_SIZE, PAGE_SIZE_OPTIONS, PAGE_LAYOUT_OPTIONS } from '../const'
 
-export function usePagination(refProps: ComputedRef<BasicTableProps>) {
+/**
+ * 使用分页实例
+ *
+ * Use pagination
+ * @param propsRef
+ */
+export function usePagination(propsRef: ComputedRef<BasicTableProps>) {
   const configRef = ref<ElePagination>({})
 
-  watchEffect(() => {
-    const { pagination } = unref(refProps)
-    if (!isBoolean(pagination) && pagination) {
-      configRef.value = {
-        ...unref(configRef),
-        ...(pagination ?? {}),
-      }
-    }
-  })
+  /**
+   * 获取分页信息
+   *
+   * Get pagination info
+   */
+  const getTablePagination = computed((): ElePagination => {
+    const { pagination } = unref(propsRef)
 
-  const getPaginationInfo = computed((): ElePagination => {
-    const { pagination } = unref(refProps)
-
-    if ((isBoolean(pagination) && !pagination)) {
+    if (isBoolean(pagination) || !pagination) {
       return false
     }
 
     return {
+      // Default
       currentPage: 1,
       defaultCurrentPage: 1,
       pageSize: PAGE_SIZE,
@@ -33,22 +35,45 @@ export function usePagination(refProps: ComputedRef<BasicTableProps>) {
       pageSizes: PAGE_SIZE_OPTIONS,
       layout: PAGE_LAYOUT_OPTIONS,
       background: true,
-      ...(pagination ?? {}),
+      // init
+      ...pagination,
+      // dync
       ...unref(configRef),
     }
   })
 
+  /**
+   * 更新分页信息
+   *
+   * Set pagination
+   * @param info ElePagination
+   */
   function setPagination(info: Partial<ElePagination>) {
-    const paginationInfo = unref(getPaginationInfo)
+    const paginationInfo = unref(getTablePagination)
     configRef.value = {
-      ...(!isBoolean(paginationInfo) ? paginationInfo : {}),
+      ...(paginationInfo || {}),
       ...info,
     }
   }
-
+  /**
+   * 获取分页信息
+   *
+   * Get pagination
+   */
   function getPagination() {
-    return unref(getPaginationInfo)
+    return unref(getTablePagination)
   }
 
-  return { getPagination, getPaginationInfo, setPagination }
+  watchEffect(() => {
+    const { pagination } = unref(propsRef)
+    console.log('pagination', pagination)
+    if (!isBoolean(pagination) && pagination) {
+      configRef.value = {
+        ...unref(configRef),
+        ...pagination,
+      }
+    }
+  })
+
+  return { getTablePagination, getPagination, setPagination }
 }

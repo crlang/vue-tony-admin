@@ -1,34 +1,41 @@
 <template>
-  <ElPagination
-    v-if="total"
-    v-bind="getBindValue"
-    v-model:current-page="pageRef"
-    v-model:page-size="sizeRef" />
+  <div :class="prefixCls">
+    <el-config-provider :locale="locale">
+      <ElPagination
+        v-if="total"
+        v-bind="getBindValues"
+        v-model:current-page="pageRef"
+        v-model:page-size="sizeRef" />
+    </el-config-provider>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed, ref, unref, watch, watchEffect } from 'vue'
-import { ElPagination } from 'element-plus'
-import { useDesign } from '@/hooks/web/useDesign'
-import { PAGE_SIZE } from '../const'
+import { ElPagination, ElConfigProvider } from 'element-plus'
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 import { omit } from 'lodash-es'
-import { ElePaginationProps } from '@/components/ElementPlus'
+
+import { PAGE_SIZE } from '../const'
+import { paginationProps } from '../props'
 
 export default defineComponent({
   name: 'TablePagination',
-  components: { ElPagination },
+  components: { ElPagination, ElConfigProvider },
   inheritAttrs: false,
-  props: ElePaginationProps,
+  props: paginationProps,
   emits: ['pageChange', 'sizeChange'],
-  setup(props, { attrs, emit }) {
-    const { prefixCls } = useDesign('basic-table-pagination')
+  setup(props, { emit }) {
     const pageRef = ref(1)
     const sizeRef = ref(PAGE_SIZE)
 
-    const getBindValue = computed(() => {
-      const p = { ...unref(attrs), ...props }
-      const attr = omit(p, ['pageSize', 'currentPage'])
-      return attr
+    /**
+     * 绑定的值
+     *
+     * Bind value
+     */
+    const getBindValues = computed(() => {
+      return omit(props, ['pageSize', 'currentPage'])
     })
 
     watchEffect(() => {
@@ -43,6 +50,7 @@ export default defineComponent({
         v && emit('pageChange', v)
       },
     )
+
     watch(
       () => unref(sizeRef),
       (v) => {
@@ -51,8 +59,10 @@ export default defineComponent({
     )
 
     return {
-      prefixCls,
-      getBindValue,
+      // 设置分页导航语言为中文
+      // Set the pagination language to Chinese
+      locale: zhCn,
+      getBindValues,
       pageRef,
       sizeRef,
     }

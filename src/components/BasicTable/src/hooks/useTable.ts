@@ -44,7 +44,7 @@ export function useTable(tableProps?: Props): [
 
     tableRef.value = instance
     formRef.value = formInstance
-    tableProps && instance.setProps(getDynamicProps(tableProps))
+    tableProps && instance.setTableProps(getDynamicProps(tableProps))
     loadedRef.value = true
 
     stopWatch?.()
@@ -52,7 +52,7 @@ export function useTable(tableProps?: Props): [
     stopWatch = watch(
       () => tableProps,
       () => {
-        tableProps && instance.setProps(getDynamicProps(tableProps))
+        tableProps && instance.setTableProps(getDynamicProps(tableProps))
       },
       {
         immediate: true,
@@ -107,8 +107,8 @@ export function useTable(tableProps?: Props): [
     reload: async (opt?: FetchParams) => {
       getTableInstance().reload(opt)
     },
-    setProps: (props: Partial<BasicTableProps>) => {
-      getTableInstance().setProps(props)
+    setTableProps: (props: Partial<BasicTableProps>) => {
+      getTableInstance().setTableProps(props)
     },
     getColumns: ({ ignoreIndex = false }:GetColumnsParams = {}) => {
       const columns = getTableInstance().getColumns({ ignoreIndex }) || []

@@ -10,7 +10,7 @@
       <el-button @click="setPaginationInfo">跳转到第2页</el-button>
     </div>
     <div class="mb-4">
-      <el-button @click="getPagination">获取分页信息</el-button>
+      <el-button @click="getPaginationInfo">获取分页信息</el-button>
     </div>
     <BasicTable
       title="RefTable示例"
@@ -74,7 +74,7 @@ export default defineComponent({
       console.info(getTable().getRawDataSource())
     }
 
-    function getPagination() {
+    function getPaginationInfo() {
       createMessage.info('请在控制台查看！')
       console.info(getTable().getPagination())
     }
@@ -96,7 +96,7 @@ export default defineComponent({
       getColumn,
       getTableData,
       getTableRawData,
-      getPagination,
+      getPaginationInfo,
       setPaginationInfo,
     }
   },

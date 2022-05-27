@@ -4,6 +4,8 @@
     :class="getWrapperClass">
     <BasicForm
       submitOnReset
+      :autoAdvancedLine="1"
+      :alwaysShowLines="1"
       v-bind="getFormProps"
       v-if="getBindValues.useSearchForm"
       :tableAction="tableAction"
@@ -27,14 +29,19 @@
         <slot name="toolbar"></slot>
       </template>
       <template
-        #tableTitle
-        v-if="$slots.tableTitle">
-        <slot name="tableTitle"></slot>
+        #title
+        v-if="$slots.title">
+        <slot name="title"></slot>
       </template>
       <template
         #headerTop
         v-if="$slots.headerTop">
         <slot name="headerTop"></slot>
+      </template>
+      <template
+        #headerBottom
+        v-if="$slots.headerBottom">
+        <slot name="headerBottom"></slot>
       </template>
     </TableHeader>
     <ElTable
@@ -78,14 +85,12 @@
       </template>
     </ElTable>
 
-    <div
-      :class="`${prefixCls}__pagination`"
-      v-if="getBindValues.pagination !== false ">
-      <TablePagination
-        v-bind="getBindValues.pagination"
-        @page-change="handlePageChange"
-        @size-change="handlePageSizeChange" />
-    </div>
+    <TablePagination
+      v-if="getBindValues.pagination !== false"
+      :prefixCls="`${prefixCls}__pagination`"
+      v-bind="getBindValues.pagination"
+      @page-change="handlePageChange"
+      @size-change="handlePageSizeChange" />
   </div>
 </template>
 
@@ -116,9 +121,8 @@ import TableRender from './components/TableRender'
 import TablePagination from './components/TablePagination.vue'
 import TableAction from './components/TableAction.vue'
 
-import { omit } from 'lodash-es'
+import { omit, isString } from 'lodash-es'
 import { basicProps, ElTableBasicEmits } from './props'
-import { isString } from '@/utils/is'
 import { warn } from '@/utils/log'
 import { useBasicTableFn } from './hooks/useBasic'
 
@@ -150,13 +154,13 @@ export default defineComponent({
     const tableData = ref<Recordable[]>([])
 
     const wrapRef = ref(null)
-    const innerPropsRef = ref<Partial<BasicTableProps>>()
+    const propsRef = ref<Partial<BasicTableProps>>()
 
     const { prefixCls } = useDesign('basic-table')
     const [registerForm, formActions] = useForm()
 
     const getProps = computed(() => {
-      return { ...props, ...unref(innerPropsRef) } as BasicTableProps
+      return { ...props, ...unref(propsRef) } as BasicTableProps
     })
 
     const isFixedHeightPage = inject(PageWrapperFixedHeightKey, false)
@@ -174,7 +178,7 @@ export default defineComponent({
     } = useLoading(getProps)
 
     const {
-      getPaginationInfo,
+      getTablePagination,
       getPagination,
       setPagination,
     } = usePagination(getProps)
@@ -210,7 +214,7 @@ export default defineComponent({
       getProps,
       {
         tableData,
-        getPaginationInfo,
+        paginationRef: getTablePagination,
         setLoading,
         setPagination,
         getFieldsValue: formActions.getFieldsValue,
@@ -224,7 +228,7 @@ export default defineComponent({
       setColumns,
       getColumnsRef,
       getCacheColumns,
-    } = useColumns(getProps, getPaginationInfo)
+    } = useColumns(getProps, getTablePagination)
 
     const {
       redoHeight,
@@ -245,29 +249,42 @@ export default defineComponent({
       collapseAll,
     } = useTableExpand(getProps, tableData, emit)
 
+    const {
+      getFormProps,
+      replaceFormSlotKey,
+      getFormSlotKeys,
+      handleSearchInfoChange,
+    } = useTableForm(getProps, slots, fetch, getLoading)
+
+    /**
+     * 获取头部Props
+     *
+     * Get header props
+     */
     const getHeaderProps = computed(() => {
       const { title, showTableSetting, titleHelpMessage, tableSetting } = unref(getProps)
-      const hideTitle = !slots.tableTitle && !title && !slots.toolbar && !showTableSetting
-      if (hideTitle && !isString(title)) {
+
+      const hideTitle = !slots.title && !title && !slots.toolbar && !showTableSetting
+      if (hideTitle) {
         return {}
       }
 
-      const propsData: Recordable = {
+      if (!isString(title)) {
+        warn('Table title must be a string')
+      }
+
+      return {
         title,
-        tableSetting,
+        prefixCls: `${prefixCls}-header`,
         showTableSetting,
+        tableSetting,
         titleHelpMessage,
         onColumnsChange: (data: ColumnChangeParam[]) => {
           emit('columns-change', data)
           doLayout()
         },
       }
-
-      return propsData
     })
-
-    const { getFormProps, replaceFormSlotKey, getFormSlotKeys, handleSearchInfoChange } =
-        useTableForm(getProps, slots, fetch, getLoading)
 
     const getBindValues = computed(() => {
       const dataSource = unref(getDataSourceRef)
@@ -277,7 +294,7 @@ export default defineComponent({
         ...unref(getProps),
         loading: unref(getLoading),
         rowKey: unref(getRowKey),
-        pagination: unref(getPaginationInfo),
+        pagination: unref(getTablePagination),
         data: dataSource,
         ...unref(getExpandOption),
       }
@@ -295,20 +312,24 @@ export default defineComponent({
       ]
     })
 
-    function setProps(props: Partial<BasicTableProps>) {
-      innerPropsRef.value = { ...unref(innerPropsRef), ...props }
+    /**
+     * 通过实例设置 Props
+     *
+     * Setting Props by Instance
+     * @param tableProps Table Props
+     */
+    function setTableProps(tableProps: Partial<BasicTableProps>): void {
+      propsRef.value = { ...(unref(propsRef) as Recordable), ...tableProps } as Recordable
     }
 
     function handlePageChange(currentPage:number) {
-      setPagination({ currentPage })
-      emit('pagination', unref(getBindValues).pagination, 'currentPage', currentPage)
-      handleTableChange(unref(getBindValues).pagination)
+      emit('pagination', unref(getTablePagination), 'currentPage', currentPage)
+      handleTableChange({ currentPage })
     }
 
     function handlePageSizeChange(pageSize:number) {
-      setPagination({ pageSize })
-      emit('pagination', unref(getBindValues).pagination, 'pageSize', pageSize)
-      handleTableChange(unref(getBindValues).pagination)
+      emit('pagination', unref(getTablePagination), 'pageSize', pageSize)
+      handleTableChange({ pageSize })
     }
 
     const tableAction: TableActionType = {
@@ -324,7 +345,7 @@ export default defineComponent({
       sort,
       // Advanced
       reload,
-      setProps,
+      setTableProps,
       getColumns,
       setColumns,
       setLoading,
@@ -354,6 +375,7 @@ export default defineComponent({
     return {
       prefixCls,
       tableElRef,
+      getProps,
       getBindValues,
       getLoading,
       registerForm,
@@ -382,6 +404,49 @@ $prefix-cls: '#{$tonyname}-basic-table';
   max-width: 100%;
   padding: 16px;
   background: var(--background-primary-color);
+
+  &-header {
+    &__top {
+      margin-bottom: 12px;
+    }
+
+    &__bottom {
+      margin-top: 12px;
+    }
+
+    &__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    &__toolbar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex: 1;
+
+      > * {
+        margin-right: 8px;
+      }
+
+      &-setting {
+        display: flex;
+        align-items: center;
+
+        > * {
+          margin-right: 12px;
+          cursor: pointer;
+        }
+
+        svg {
+          width: 1.3em;
+          height: 1.3em;
+        }
+      }
+    }
+  }
 
   &--full {
     height: 100%;

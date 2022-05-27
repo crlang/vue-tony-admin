@@ -25,6 +25,7 @@ export default defineComponent({
       title: '开启搜索区域',
       api: demoListApi,
       columns: getBasicColumns(),
+      pagination: {},
       useSearchForm: true,
       formConfig: getFormConfig(),
       rowKey: 'id',

@@ -50,7 +50,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, ref, watch, unref } from 'vue'
+import { computed, defineComponent, PropType, ref, watch } from 'vue'
 import { ElAvatar, ElTag } from 'element-plus'
 import { ListItem as ListItemType } from './data'
 import { useDesign } from '@/hooks/web/useDesign'
@@ -89,7 +89,7 @@ export default defineComponent({
     },
   },
   emits: ['update:page'],
-  setup(props, { emit }) {
+  setup(props) {
     const { prefixCls } = useDesign('header-notify-list')
     const current = ref(props.page || 1)
     watch(
@@ -99,28 +99,12 @@ export default defineComponent({
       }
     )
     const isTitleClickable = computed(() => !!props.onTitleClick)
-    const getPagination = computed(() => {
-      const { list, pageSize } = props
-      if (pageSize > 0 && list && list.length > pageSize) {
-        return {
-          total: list.length,
-          pageSize,
-          current: unref(current),
-          onChange(page) {
-            current.value = page
-            emit('update:page', page)
-          },
-        }
-      } else {
-        return false
-      }
-    })
 
     function handleTitleClick(item: ListItemType) {
       props.onTitleClick && props.onTitleClick(item)
     }
 
-    return { prefixCls, getPagination, handleTitleClick, isTitleClickable }
+    return { prefixCls, handleTitleClick, isTitleClickable }
   },
 })
 </script>

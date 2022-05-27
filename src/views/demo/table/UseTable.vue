@@ -11,7 +11,7 @@
     </div>
     <div class="mb-4">
       <el-button @click="toggleSelectedRows">切换选中行</el-button>
-      <el-button @click="getPagination2">获取分页信息</el-button>
+      <el-button @click="getPaginationInfo">获取分页信息</el-button>
     </div>
     <BasicTable @register="registerTable" />
   </PageWrapper>
@@ -87,7 +87,7 @@ export default defineComponent({
       console.info(getRawDataSource())
     }
 
-    function getPagination2() {
+    function getPaginationInfo() {
       createMessage.info('请在控制台查看！')
       console.info(getPagination())
     }
@@ -111,7 +111,7 @@ export default defineComponent({
       getColumn,
       getTableData,
       getTableRawData,
-      getPagination2,
+      getPaginationInfo,
       setPaginationInfo,
       toggleSelectedRows,
     }

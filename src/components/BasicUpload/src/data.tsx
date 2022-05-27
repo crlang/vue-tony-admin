@@ -19,7 +19,6 @@ export function createTableColumns(): FileBasicColumn[] {
       label: '略缩图',
       width: 100,
       customRender: ({ record }) => {
-        console.log('record,record', record)
         const { thumbUrl } = (record as FileItem) || {}
         return thumbUrl && <UploadThumb url={thumbUrl} />
       },

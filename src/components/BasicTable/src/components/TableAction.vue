@@ -7,8 +7,8 @@
         type="text"
         v-bind="action.buttonProps"
         @click="action?.callback!(scopes)"><Icon
-          :name="action?.preIcon"
-          v-if="action?.preIcon" />{{ action.buttonProps?.text || '' }}</el-button>
+          :name="action?.icon"
+          v-if="action?.icon" />{{ action.buttonProps?.text || '' }}</el-button>
     </template>
   </div>
 </template>
@@ -20,9 +20,10 @@ import type { ActionItem } from '../types/tableAction'
 
 import { defineComponent, computed } from 'vue'
 import { ElButton } from 'element-plus'
+import { isBoolean, isFunction } from '@vueuse/core'
+
 import { useTableContext } from '../hooks/useTableContext'
 import { usePermission } from '@/hooks/web/usePermission'
-import { isBoolean, isFunction } from '@/utils/is'
 import { Icon } from '@/components/Icon'
 
 export default defineComponent({

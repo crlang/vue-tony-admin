@@ -49,11 +49,11 @@ function handleIndexColumn(
     label: '序号',
     prop: 'columnIndex',
     customRender: ({ index }) => {
-      const getPagination = unref(getPaginationRef)
-      if (isBoolean(getPagination)) {
+      const paginationInfo = unref(getPaginationRef)
+      if (isBoolean(paginationInfo)) {
         return `${index + 1}`
       }
-      const { currentPage = 1, pageSize = PAGE_SIZE } = getPagination
+      const { currentPage = 1, pageSize = PAGE_SIZE } = paginationInfo
       return ((currentPage < 1 ? 1 : currentPage) - 1) * pageSize + index + 1
     },
     ...(isFixedLeft

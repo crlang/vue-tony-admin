@@ -212,7 +212,6 @@ export default defineComponent({
     watch(
       () => props.modelValue,
       (value = []) => {
-        console.log('value', value)
         fileList.value = isArray(value) ? value : []
       },
       { immediate: true },

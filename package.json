@@ -168,6 +168,7 @@
         "element-plus/es/components/dropdown/src/dropdown",
         "element-plus/es/components/table/src/table-column/defaults",
         "element-plus/es/components/table/src/table/defaults",
+        "element-plus/lib/locale/lang/zh-cn",
         "intro.js",
         "lodash",
         "lodash-es",

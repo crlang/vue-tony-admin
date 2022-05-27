@@ -20,7 +20,7 @@ import { get, cloneDeep } from 'lodash-es'
 import { FETCH_SETTING, ROW_KEY, PAGE_SIZE } from '../const'
 
 interface ActionType {
-  getPaginationInfo: ComputedRef<ElePagination>;
+  paginationRef: ComputedRef<ElePagination>;
   setPagination: (info: Partial<ElePagination>) => void;
   setLoading: (loading: boolean) => void;
   getFieldsValue: () => Recordable;
@@ -34,7 +34,7 @@ interface SearchState {
 export function useDataSource(
   propsRef: ComputedRef<BasicTableProps>,
   {
-    getPaginationInfo,
+    paginationRef,
     setPagination,
     setLoading,
     getFieldsValue,
@@ -228,12 +228,12 @@ export function useDataSource(
       )
       let pageParams: Recordable = {}
 
-      const { currentPage = 1, pageSize = PAGE_SIZE } = (unref(getPaginationInfo) as ElePagination) ?? {}
+      const { currentPage = 1, pageSize = PAGE_SIZE } = (unref(paginationRef) as ElePagination) ?? {}
 
-      if ((isBoolean(pagination) && !pagination) || isBoolean(getPaginationInfo)) {
+      if ((isBoolean(pagination) && !pagination) || isBoolean(paginationRef)) {
         pageParams = {}
       } else {
-        pageParams[pageField] = (opt && opt.page) || currentPage
+        pageParams[pageField] = opt?.page || currentPage
         pageParams[sizeField] = pageSize
       }
 

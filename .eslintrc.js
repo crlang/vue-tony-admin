@@ -50,13 +50,7 @@ module.exports = defineConfig({
       },
     ],
     '@typescript-eslint/indent': ['error', 2],
-    'no-unused-vars': [
-      'error',
-      {
-        argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_',
-      },
-    ],
+    'no-unused-vars': 0,
     'vue/attributes-order': 'off',
     'vue/one-component-per-file': 'off',
     'vue/html-closing-bracket-newline': 'off',

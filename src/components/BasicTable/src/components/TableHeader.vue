@@ -8,12 +8,13 @@
     <div :class="`${prefixCls}__inner`">
       <div :class="`${prefixCls}__title`">
         <slot
-          v-if="$slots.tableTitle"
-          name="tableTitle"></slot>
-        <TableTitle
-          :helpMessage="titleHelpMessage"
-          :title="title"
-          v-else-if="title" />
+          v-if="$slots.title"
+          name="title"></slot>
+        <BasicTitle
+          v-else-if="title"
+          :helpMessage="titleHelpMessage">
+          {{ title }}
+        </BasicTitle>
       </div>
       <div :class="`${prefixCls}__toolbar`">
         <slot name="toolbar"></slot>
@@ -24,89 +25,51 @@
           :class="`${prefixCls}__toolbar-setting`"
           :setting="tableSetting"
           v-if="showTableSetting"
-          @columns-change="handleColumnChange"
-        />
+          @columns-change="handleColumnChange" />
       </div>
+    </div>
+    <div
+      v-if="$slots.headerBottom"
+      :class="`${prefixCls}__bottom`">
+      <slot name="headerBottom"></slot>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import type { TableSetting, BasicColumn } from '../types/table'
+import type { BasicColumn } from '../types/table'
 
 import { defineComponent } from 'vue'
 import { ElDivider } from 'element-plus'
-import TableSettingComponent from './settings/index.vue'
-import TableTitle from './TableTitle.vue'
-import { useDesign } from '@/hooks/web/useDesign'
+
+import { BasicTitle } from '@/components/Basic'
+
+import TableSetting from './TableSetting.vue'
+import { headerProps } from '../props'
 
 export default defineComponent({
   name: 'BasicTableHeader',
   components: {
     ElDivider,
-    TableTitle,
-    TableSetting: TableSettingComponent,
+    BasicTitle,
+    TableSetting,
   },
   props: {
-    title: {
-      type: [Function, String] as PropType<string | ((data: Recordable) => string)>,
-    },
-    tableSetting: {
-      type: Object as PropType<TableSetting>,
-    },
-    showTableSetting: {
-      type: Boolean,
-    },
-    titleHelpMessage: {
-      type: [String, Array] as PropType<string | string[]>,
-      default: '',
-    },
+    ...headerProps,
+    prefixCls: String,
   },
   emits: ['columns-change'],
   setup(_, { emit }) {
-    const { prefixCls } = useDesign('basic-table-header')
+    /**
+     * 处理列改变的回调
+     *
+     * Callback for handling column changes
+     */
     function handleColumnChange(data: BasicColumn[]) {
       emit('columns-change', data)
     }
-    return { prefixCls, handleColumnChange }
+
+    return { handleColumnChange }
   },
 })
 </script>
-<style lang="scss">
-$prefix-cls: '#{$tonyname}-basic-table-header';
-
-.#{$prefix-cls} {
-  &__inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-
-  &__toolbar {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex: 1;
-
-    > * {
-      margin-right: 8px;
-    }
-
-    &-setting {
-      display: flex;
-      align-items: center;
-
-      > * {
-        margin-right: 12px;
-        cursor: pointer;
-      }
-
-      svg {
-        width: 1.3em;
-        height: 1.3em;
-      }
-    }
-  }
-}
-</style>
