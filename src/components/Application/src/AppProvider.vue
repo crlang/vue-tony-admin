@@ -1,8 +1,8 @@
 <script lang="ts">
-import { defineComponent, toRefs, ref, unref } from 'vue'
+import { defineComponent, ref, unref } from 'vue'
 import { createAppProviderContext } from './useAppContext'
 import { createBreakpointListen } from '@/hooks/event/useBreakpoint'
-import { prefixCls } from '@/settings/designSetting'
+// import { prefixCls } from '@/settings/designSetting'
 import { useAppStore } from '@/store/modules/app'
 import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum'
 
@@ -10,14 +10,14 @@ const props = {
   /**
    * class style prefix
    */
-  prefixCls: { type: String, default: prefixCls },
+  // prefixCls: { type: String, default: prefixCls },
 }
 
 export default defineComponent({
   name: 'AppProvider',
   inheritAttrs: false,
   props,
-  setup(props, { slots }) {
+  setup(_, { slots }) {
     const isMobile = ref(false)
     const isSetState = ref(false)
 
@@ -32,10 +32,13 @@ export default defineComponent({
       handleRestoreState()
     })
 
-    const { prefixCls } = toRefs(props)
+    // const { prefixCls } = toRefs(props)
 
     // Inject variables into the global
-    createAppProviderContext({ prefixCls, isMobile })
+    createAppProviderContext({
+      // prefixCls,
+      isMobile,
+    })
 
     /**
      * Used to maintain the state before the window changes
