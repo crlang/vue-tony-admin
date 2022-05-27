@@ -4,7 +4,7 @@
 import type { CSSProperties, ExtractPropTypes } from 'vue'
 
 // baisc element-plus
-import {
+import type {
   ButtonProps,
   ButtonType,
   ButtonNativeType,
@@ -20,7 +20,10 @@ import {
   FormItemRule,
   FormRulesMap,
   ComponentSize,
-  componentSizes
+  componentSizes,
+  PopconfirmProps,
+  ElMessageBoxOptions,
+  NotificationOptions,
 } from 'element-plus'
 
 import {
@@ -33,7 +36,9 @@ import {
   messageProps,
   cardProps,
   tagProps,
-  paginationProps
+  paginationProps,
+  popconfirmProps,
+  notificationProps
 } from 'element-plus'
 
 export const EleButtonProps = buttonProps
@@ -67,6 +72,15 @@ export type EleTag = TagProps
 
 export const ElePaginationProps = paginationProps
 export type ElePagination = PaginationProps
+
+export const ElePopconfirmProps = popconfirmProps
+export type ElePopconfirm = PopconfirmProps
+
+// export const EleElMessageBoxProps = // todo
+export type EleElMessageBox = ElMessageBoxOptions
+
+export const EleNotificationProps = notificationProps
+export type EleNotification = NotificationOptions
 
 // 以下为临时方案，由于 Element Plus 未全局导出 Prop ，只能自建或通过引入组件方式定义组件 Prop
 // The following is a temporary solution. Since Element Plus does not export Prop globally, it can only define component Prop by itself or by introducing components

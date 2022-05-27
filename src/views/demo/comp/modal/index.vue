@@ -9,6 +9,14 @@
       @click="openModalLoading"> 打开弹窗 </el-button>
 
     <el-alert
+      title="使用 createConfirm 进行弹窗操作，是一个简易友好的弹窗"
+      show-icon />
+    <el-button
+      type="primary"
+      class="my-4"
+      @click="openMsgPopup()"> 打开消息弹窗 </el-button>
+
+    <el-alert
       title="内外同时同时显示隐藏"
       show-icon />
     <el-button
@@ -36,6 +44,7 @@
     <Modal2 @register="register2" />
     <Modal3 @register="register3" />
     <Modal4 @register="register4" />
+
   </PageWrapper>
 </template>
 
@@ -47,6 +56,7 @@ import Modal1 from './Modal1.vue'
 import Modal2 from './Modal2.vue'
 import Modal3 from './Modal3.vue'
 import Modal4 from './Modal4.vue'
+import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
   components: { ElAlert, ElButton, Modal1, Modal2, Modal3, Modal4 },
@@ -55,7 +65,7 @@ export default defineComponent({
     const [register2, { openModal: openModal2 }] = useModal()
     const [register3, { openModal: openModal3 }] = useModal()
     const [register4, { openModal: openModal4 }] = useModal()
-
+    const { createMessage, createConfirm } = useMessage()
     function send() {
       openModal4(true, {
         data: 'content',
@@ -70,7 +80,16 @@ export default defineComponent({
       })
     }
 
+    function openMsgPopup() {
+      createConfirm({ title: '是否删除？', content: '注意：删除后将无法找回内容！', type: 'warning' }).then((act) => {
+        createMessage.success('点击了 ' + act)
+      }).catch((act) => {
+        createMessage.info('点击了 ' + act)
+      })
+    }
+
     return {
+      openMsgPopup,
       register1,
       register2,
       openModal2,

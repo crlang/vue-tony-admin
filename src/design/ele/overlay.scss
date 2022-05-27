@@ -2,4 +2,9 @@ $elenamex: 'el-overlay';
 
 .#{$elenamex} {
   backdrop-filter: blur(4px);
+  --el-overlay-color-lighter: rgba(0,0,0,0.35);
+
+  &.is-message-box {
+    --el-overlay-color-lighter: rgba(0,0,0,0.15);
+  }
 }

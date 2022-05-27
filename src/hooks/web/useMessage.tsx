@@ -1,98 +1,249 @@
+import type { EleElMessageBox, EleNotification } from '@/components/ElementPlus'
+import type { Action } from 'element-plus'
+
 import { h } from 'vue'
-import { ElMessage, ElIcon, ElMessageBox, ElNotification, MessageBoxData } from 'element-plus'
-import { Loading } from '@element-plus/icons'
+import { ElMessage, ElMessageBox, ElNotification } from 'element-plus'
 
-export type IconType = 'success' | 'info' | 'error' | 'warning'
+import { SvgIcon } from '@/components/SvgIcon'
 
-interface MessageBoxOptions {
-  content: string | JSX.Element<RendererNode, RendererElement>,
-  title: string,
-  type?: IconType,
-  nextButton?: string,
-  cancelButton?: string
+import { useDesign } from './useDesign'
+
+/**
+ * 基础信息选项
+ *
+ * Basic message options
+ */
+interface BasicMessageOptions {
+  /**
+   * 标题
+   *
+   * Title
+   */
+  title: string
+  /**
+   * 内容，支持 VNode
+   *
+   * Content, support VNode
+   */
+  content: string | JSX.Element
+  /**
+   * 自定义消息类
+   *
+   * Custom popup class
+   */
+  customClass?: string
+  /**
+   * 消息支持的类型
+   *
+   * Message box type
+   */
+  type?: EleElMessageBox['type']
 }
 
 /**
- * @description: Create confirmation box
+ * 提示信息选项
+ *
+ * Message box options
  */
-function createConfirm(options: MessageBoxOptions): Promise<MessageBoxData> {
-  return ElMessageBox.confirm(
-    options.content,
-    options.title,
-    {
-      confirmButtonText: options.nextButton || '确认',
-      cancelButtonText: options.cancelButton || '取消',
-      type: options.type,
-    }
-  ) as unknown as MessageBoxOptions
+interface MessageBoxOptions extends BasicMessageOptions {
+  /**
+   * 确定文本
+   *
+   * Confirm text
+   */
+  confirmText?: string
+  /**
+   * 取消文本
+   *
+   * Cancel text
+   */
+  cancelText?: string
 }
 
-function createModalOptions(options: MessageBoxOptions, icon: IconType): Promise<MessageBoxData> {
-  return ElMessageBox.alert(
-    options.content,
-    options.title,
-    {
-      confirmButtonText: options.nextButton || '确认',
-      cancelButtonText: options.cancelButton || '取消',
-      type: icon,
-    }
-  ) as unknown as MessageBoxOptions
+/**
+ * 通知信息选项
+ *
+ * Notification options
+ */
+interface NotificationOptions extends BasicMessageOptions {
+  /**
+   * 通知延迟关闭
+   *
+   * Notification duration
+   */
+  duration?: EleNotification['duration']
+  /**
+   * 通知方位
+   *
+   * Notification position
+   */
+  position?: EleNotification['position']
 }
 
+/**
+ * 创建通知消息
+ *
+ * Create notification messages
+ * @param options NotificationOptions
+ */
+function createNotification(options: NotificationOptions): Promise<Action> {
+  const { title, content, position = 'top-right', customClass, type, duration = 4500 } = options
+
+  return ElNotification({
+    title,
+    message: content,
+    customClass,
+    type,
+    position,
+    duration,
+  })
+}
+
+/**
+ * 创建确认弹窗
+ *
+ * Create confirmation box
+ *
+ * @param options MessageBoxOptions
+ */
+function createConfirm(options: MessageBoxOptions): Promise<Action> {
+  const { title, content, confirmText = '确认', cancelText = '取消', customClass = '', type } = options
+  const { prefixCls } = useDesign('confirm-popup')
+
+  return ElMessageBox.confirm(content, title, {
+    confirmButtonText: confirmText,
+    cancelButtonText: cancelText,
+    showClose: false,
+    customClass: `${prefixCls} ${prefixCls}__${type} ${customClass}`,
+  })
+}
+
+/**
+ * 创建简易弹窗信息
+ *
+ * Create simple popup content
+ * @param options MessageBoxOptions
+ * @param type EleElMessageBox['type']
+ */
+function createModalOptions(options: MessageBoxOptions, type: EleElMessageBox['type']): Promise<Action> {
+  const { title, content, confirmText, cancelText, customClass } = options
+
+  return ElMessageBox.alert(content, title, {
+    confirmButtonText: confirmText || '确认',
+    cancelButtonText: cancelText || '取消',
+    type,
+    customClass,
+  })
+}
+
+/**
+ * 创建成功弹窗信息
+ *
+ * Create success popup content
+ * @param options MessageBoxOptions
+ */
 function createSuccessModal(options: MessageBoxOptions) {
   return createModalOptions(options, 'success')
 }
 
+/**
+ * 创建成功弹窗信息
+ *
+ * Create success popup content
+ * @param options MessageBoxOptions
+ */
 function createErrorModal(options: MessageBoxOptions) {
   return createModalOptions(options, 'error')
 }
 
+/**
+ * 创建信息弹窗信息
+ *
+ * Create info popup content
+ * @param options MessageBoxOptions
+ */
 function createInfoModal(options: MessageBoxOptions) {
   return createModalOptions(options, 'info')
 }
 
+/**
+ * 创建警告弹窗信息
+ *
+ * Create warning popup content
+ * @param options MessageBoxOptions
+ */
 function createWarningModal(options: MessageBoxOptions) {
   return createModalOptions(options, 'warning')
 }
 
-const createMessage = {
-  info: ElMessage.info,
-  success: ElMessage.success,
-  warning: ElMessage.warning,
-  error: ElMessage.error,
-  loading: (title:string, duration = 0) => ElMessage({
+/**
+ * 创建加载消息
+ *
+ * Create loading message
+ * @param title msg
+ * @param duration 如果为0，则需要执行 ElMessage.closeAll() 关闭
+ */
+const createLoading = (title: string, duration = 0) =>
+  ElMessage({
     type: 'info',
     customClass: 'el-message--loading',
-    duration,
-    message: h(
-      'div',
-      { style: 'display:flex;align-items:center;' },
-      [
-        h(
-          ElIcon,
-          { class: 'is-loading' },
-          {
-            default: () => h(Loading),
-            content: () => {},
-          }
-        ),
-        h(
-          'span',
-          { style: 'margin-left: 12px' },
-          title
-        ),
-      ]
-    ),
-  }),
+    duration, // If 0, you need to run ElMessage.closeAll() to close
+    message: h('div', { style: 'display:flex;align-items:center;' }, [
+      h(
+        SvgIcon,
+        { name: 'loading', spin: true },
+      ),
+      h('span', { style: 'margin-left: 12px' }, title),
+    ]),
+  })
+
+/**
+ * 创建消息提示中心
+ *
+ * Create a message center
+ */
+const createMessage = {
+  /**
+   * 普通消息
+   *
+   * Info message
+   */
+  info: ElMessage.info,
+  /**
+   * 成功消息
+   *
+   * Success message
+   */
+  success: ElMessage.success,
+  /**
+   * 警告消息
+   *
+   * Warning message
+   */
+  warning: ElMessage.warning,
+  /**
+   * 错误消息
+   *
+   * Error message
+   */
+  error: ElMessage.error,
+  /**
+   * 加载消息
+   *
+   * Loading message
+   */
+  loading: createLoading,
 }
 
 /**
- * @description: message
+ * 定义轻消息提示中心
+ *
+ * Define a light message center
  */
 export function useMessage() {
   return {
     createMessage,
-    notification: ElNotification,
+    createNotification,
     createConfirm,
     createSuccessModal,
     createErrorModal,
