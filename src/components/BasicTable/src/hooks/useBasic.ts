@@ -1,4 +1,4 @@
-import type { BasicTableProps, TableActionType } from '../types/table'
+import type { BasicTableProps, TableActionType } from '../typing'
 import { ComputedRef, nextTick, Ref, unref } from 'vue'
 import { error } from '@/utils/log'
 

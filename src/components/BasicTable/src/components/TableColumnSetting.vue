@@ -67,7 +67,7 @@
 </template>
 
 <script lang="ts">
-import type { BasicColumn } from '../types/table'
+import type { BasicColumn } from '../typing'
 
 import { defineComponent, ref, watchEffect, unref, computed } from 'vue'
 import { ElPopover, ElCheckbox, ElCheckboxGroup, ElButton, ElTooltip } from 'element-plus'

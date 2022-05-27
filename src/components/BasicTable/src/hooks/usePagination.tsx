@@ -1,4 +1,4 @@
-import type { BasicTableProps } from '../types/table'
+import type { BasicTableProps } from '../typing'
 import type { ElePagination } from '@/components/ElementPlus'
 
 import { computed, unref, ref, ComputedRef, watchEffect } from 'vue'

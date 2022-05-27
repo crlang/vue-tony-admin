@@ -4,7 +4,7 @@ import type {
   TableSetting,
   // SorterResult,
   // TableCustomRecord
-} from './types/table'
+} from './typing'
 import type { FormProps } from '@/components/Form'
 import type { ElePagination } from '@/components/ElementPlus'
 

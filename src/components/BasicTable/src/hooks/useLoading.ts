@@ -1,4 +1,4 @@
-import type { BasicTableProps } from '../types/table'
+import type { BasicTableProps } from '../typing'
 
 import { ref, ComputedRef, unref, computed, watch } from 'vue'
 

@@ -1,4 +1,4 @@
-import type { BasicTableProps, FetchParams } from '../types/table'
+import type { BasicTableProps, FetchParams } from '../typing'
 import type { ElePagination } from '@/components/ElementPlus'
 
 import {

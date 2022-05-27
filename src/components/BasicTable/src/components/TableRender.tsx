@@ -1,5 +1,5 @@
 import type { EleTableColumn } from '@/components/ElementPlus'
-import type { tableColumnRender, scopeInfo } from '../types/table'
+import type { tableColumnRender, scopeInfo } from '../typing'
 
 import { computed, defineComponent, toRaw, unref } from 'vue'
 

@@ -4,7 +4,7 @@ import type {
   FetchParams,
   BasicColumn,
   GetColumnsParams
-} from '../types/table'
+} from '../typing'
 import type { DynamicProps } from '#/utils'
 import type { FormActionType } from '@/components/Form'
 import type { WatchStopHandle } from 'vue'

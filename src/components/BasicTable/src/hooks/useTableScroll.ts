@@ -1,4 +1,4 @@
-import type { BasicTableProps, BasicColumn } from '../types/table'
+import type { BasicTableProps, BasicColumn } from '../typing'
 import { Ref, ComputedRef, watch } from 'vue'
 import { computed, unref, ref, nextTick } from 'vue'
 import { getViewportOffset } from '@/utils/domUtils'

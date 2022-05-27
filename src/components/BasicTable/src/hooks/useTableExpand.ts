@@ -1,5 +1,5 @@
 import type { ComputedRef, Ref } from 'vue'
-import type { BasicTableProps } from '../types/table'
+import type { BasicTableProps } from '../typing'
 import { computed, unref, ref, toRaw } from 'vue'
 import { ROW_KEY } from '../const'
 

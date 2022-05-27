@@ -37,7 +37,7 @@
 </template>
 
 <script lang="ts">
-import type { BasicColumn } from '../types/table'
+import type { BasicColumn } from '../typing'
 
 import { defineComponent } from 'vue'
 import { ElDivider } from 'element-plus'

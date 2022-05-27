@@ -218,3 +218,36 @@ export function getTotalColumns(): BasicColumn[] {
     },
   ]
 }
+
+export function getAuthColumns(): BasicColumn[] {
+  return [
+    {
+      label: '编号',
+      prop: 'no',
+      width: 100,
+    },
+    {
+      label: '姓名',
+      prop: 'name',
+      auth: 'test', // 根据权限控制是否显示: 无权限，不显示
+    },
+    {
+      label: '状态',
+      prop: 'status',
+    },
+    {
+      label: '地址',
+      prop: 'address',
+      auth: 'admin', // 同时根据权限和业务控制是否显示
+      ifShow: true,
+    },
+    {
+      label: '开始时间',
+      prop: 'beginTime',
+    },
+    {
+      label: '结束时间',
+      prop: 'endTime',
+    },
+  ]
+}

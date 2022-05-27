@@ -15,8 +15,7 @@
 
 <script lang="ts">
 import type { EleButton } from '@/components/ElementPlus'
-import type { TableActionType } from '../types/table'
-import type { ActionItem } from '../types/tableAction'
+import type { TableActionType, ActionItem } from '../typing'
 
 import { defineComponent, computed } from 'vue'
 import { ElButton } from 'element-plus'
@@ -73,7 +72,6 @@ export default defineComponent({
               ...action,
               callback: undefined, // purify
               popConfirm: undefined, // purify
-              icon: '', // purify
             } as EleButton,
           }
 

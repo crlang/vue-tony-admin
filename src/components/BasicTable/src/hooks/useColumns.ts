@@ -1,4 +1,4 @@
-import type { BasicColumn, BasicTableProps, GetColumnsParams } from '../types/table'
+import type { BasicColumn, BasicTableProps, GetColumnsParams } from '../typing'
 import type { ComputedRef } from 'vue'
 import type { ElePagination } from '@/components/ElementPlus'
 

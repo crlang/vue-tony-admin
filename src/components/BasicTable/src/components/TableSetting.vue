@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import type { TableSetting, ColumnChangeParam } from '../types/table'
+import type { TableSetting, ColumnChangeParam } from '../typing'
 
 import { defineComponent, computed, ref } from 'vue'
 import { ComponentSize, ElTooltip } from 'element-plus'

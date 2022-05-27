@@ -99,7 +99,7 @@ import type {
   BasicTableProps,
   TableActionType,
   ColumnChangeParam,
-} from './types/table'
+} from './typing'
 
 import { defineComponent, ref, computed, unref, watchEffect, inject } from 'vue'
 import { ElLoading, ElTable, ElTableColumn } from 'element-plus'
