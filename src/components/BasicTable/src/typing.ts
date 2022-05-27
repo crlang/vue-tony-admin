@@ -198,16 +198,32 @@ export interface tableColumnRender {
   column: BasicColumn
 }
 
-export interface ActionItem extends EleButton {
-  text?: string
+/**
+ * 表格的操作列
+ *
+ * Table action column
+ */
+export interface TableActionItem extends EleButton {
+  /**
+   * Svg 图标的名称
+   *
+   * Svg name
+   */
   svgName?: string
-  callback?: (info: scopeInfo) => void
+  /**
+   *
+   */
   popConfirm?: MessageBoxOptions
-  buttonOptions?: EleButton
   // Whether the permission code control is displayed
   auth?: RoleEnum | RoleEnum[] | string | string[]
   // Whether the business control is displayed
-  ifShow?: boolean | ((action: ActionItem) => boolean)
+  ifShow?: boolean | ((action: TableActionItem) => boolean)
+  /**
+   * 操作列的点击回调
+   *
+   * Click callback for action column
+   */
+  callback?: (info: scopeInfo) => void
 }
 
 /**
@@ -218,7 +234,7 @@ export interface BasicColumn extends EleTableColumn {
   isSlot?: boolean
   defaultHidden?: boolean
   customRender?: (info: tableColumnRender) => void
-  actions?: ActionItem[]
+  actions?: TableActionItem[]
   auth?: RoleEnum | RoleEnum[] | string | string[]
   ifShow?: boolean
 }

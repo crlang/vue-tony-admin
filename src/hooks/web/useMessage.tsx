@@ -19,7 +19,7 @@ interface BasicMessageOptions {
    *
    * Title
    */
-  title: string
+  title?: string
   /**
    * 内容，支持 VNode
    *
@@ -45,7 +45,7 @@ interface BasicMessageOptions {
  *
  * Message box options
  */
-interface MessageBoxOptions extends BasicMessageOptions {
+export interface MessageBoxOptions extends BasicMessageOptions {
   /**
    * 确定文本
    *
@@ -65,7 +65,7 @@ interface MessageBoxOptions extends BasicMessageOptions {
  *
  * Notification options
  */
-interface NotificationOptions extends BasicMessageOptions {
+export interface NotificationOptions extends BasicMessageOptions {
   /**
    * 通知延迟关闭
    *

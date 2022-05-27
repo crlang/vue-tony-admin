@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import type { EleButton } from '@/components/ElementPlus'
-import type { TableActionType, ActionItem } from '../typing'
+import type { TableActionType, TableActionItem } from '../typing'
 
 import { defineComponent, computed } from 'vue'
 import { ElButton } from 'element-plus'
@@ -43,7 +43,7 @@ export default defineComponent({
     const table: Partial<TableActionType> = useTableContext()
 
     const { hasPermission } = usePermission()
-    function isIfShow(action: ActionItem): boolean {
+    function isIfShow(action: TableActionItem): boolean {
       const ifShow = action.ifShow
 
       let isIfShow = true
@@ -62,7 +62,7 @@ export default defineComponent({
       const opts = actions.filter((action) => {
         return hasPermission(action.auth) && isIfShow(action)
       })
-        .map((action:ActionItem) => {
+        .map((action:TableActionItem) => {
           const opt = {
             callback: action?.callback,
             popConfirm: action?.popConfirm,
