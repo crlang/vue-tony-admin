@@ -1,3 +1,4 @@
+import type { Action } from 'element-plus'
 import type { ElePagination, EleTable, EleTableColumn, EleButton } from '@/components/ElementPlus'
 import type { FormActionType, FormProps } from '@/components/Form'
 import type { MessageBoxOptions } from '@/hooks/web/useMessage'
@@ -223,7 +224,7 @@ export interface TableActionItem extends EleButton {
    *
    * Click callback for action column
    */
-  callback?: (info: scopeInfo) => void
+  callback?: (info: scopeInfo, action?: Action) => void
 }
 
 /**

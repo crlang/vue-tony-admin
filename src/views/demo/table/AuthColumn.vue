@@ -14,7 +14,7 @@ import { getAuthColumns } from './data'
 export default defineComponent({
   components: { BasicTable },
   setup() {
-    const { createConfirm, createMessage } = useMessage()
+    const { createMessage } = useMessage()
     const columns:BasicColumn[] = [
       ...getAuthColumns(),
       {
@@ -32,6 +32,10 @@ export default defineComponent({
           {
             text: '删除',
             callback: handleDelete,
+            popConfirm: {
+              title: '是否删除？',
+              type: 'error',
+            },
             auth: 'admin', // 根据权限控制是否显示: 有权限，会显示
           },
         ],
@@ -46,18 +50,9 @@ export default defineComponent({
     function handleEdit() {
       // do something
     }
-    function handleDelete({ row }) {
-      createConfirm({
-        title: '温馨提示',
-        content: '是否删除当前文件' + (row?.name || '') + '？',
-        type: 'warning',
-      })
-        .then(() => {
-          createMessage.success('删除完成')
-        })
-        .catch(() => {
-          createMessage.info('取消删除')
-        })
+    function handleDelete(info, type) {
+      console.info(info, type)
+      createMessage.info('点击了', type)
     }
     function handleOpen() {
       // do something

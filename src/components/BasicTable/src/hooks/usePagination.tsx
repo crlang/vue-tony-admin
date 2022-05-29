@@ -66,7 +66,6 @@ export function usePagination(propsRef: ComputedRef<BasicTableProps>) {
 
   watchEffect(() => {
     const { pagination } = unref(propsRef)
-    console.log('pagination', pagination)
     if (!isBoolean(pagination) && pagination) {
       configRef.value = {
         ...unref(configRef),

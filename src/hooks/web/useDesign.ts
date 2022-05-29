@@ -4,7 +4,6 @@ import { prefixCls } from '@/settings/designSetting'
 // import { lowerFirst } from 'lodash-es';
 export function useDesign(scope: string) {
   // const values = useAppProviderContext()
-  // console.log('ggggg', values)
   // const $style = cssModule ? useCssModule() : {};
 
   // const style: Record<string, string> = {};

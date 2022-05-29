@@ -25,7 +25,7 @@ interface BasicMessageOptions {
    *
    * Content, support VNode
    */
-  content: string | JSX.Element
+  content?: string | JSX.Element
   /**
    * 自定义消息类
    *
