@@ -1,6 +1,6 @@
 import type { FormSchema, FormActionType, FormProps } from './types/form'
 import type { CSSProperties } from 'vue'
-import type { TableActionType } from '@/components/BasicTable'
+import type { TableActionMethods } from '@/components/BasicTable'
 import type { EleButton, EleCol, EleRow } from '@/components/ElementPlus'
 import type dayjs from 'dayjs'
 
@@ -84,7 +84,7 @@ export const basicProps = {
     },
   },
   tableAction: {
-    type: Object as PropType<TableActionType>,
+    type: Object as PropType<TableActionMethods>,
   },
 }
 
@@ -120,7 +120,7 @@ export const basicFormItemProps = {
     default: null,
   },
   tableAction: {
-    type: Object as PropType<TableActionType>,
+    type: Object as PropType<TableActionMethods>,
   },
   formActionType: {
     type: Object as PropType<FormActionType>,

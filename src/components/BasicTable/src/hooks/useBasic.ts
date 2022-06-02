@@ -1,57 +1,53 @@
-import type { BasicTableProps, TableActionType } from '../typing'
-import { ComputedRef, nextTick, Ref, unref } from 'vue'
+import type { BasicTableProps, TableActionMethods } from '../typing'
+import { ComputedRef, Ref, unref } from 'vue'
 import { error } from '@/utils/log'
 
+/**
+ * 方法使用请参考 Element Plus 文档
+ *
+ * Please refer to Element Plus documentation for method usage
+ */
 export function useBasicTableFn(
   propsRef: ComputedRef<BasicTableProps>,
-  tableRef: Ref<ComponentRef>,
+  tableRef: Ref<TableActionMethods>,
+  handleTableChange: (...arg: any[]) => void,
   emit: EmitType
 ) {
-  async function getTable() {
+  function getTable() {
     const table = unref(tableRef)
     if (!table) {
       error(
         'The table instance has not been obtained, please make sure that the table has been rendered when performing the table operation!'
       )
     }
-    await nextTick()
-    return table as TableActionType
+    return table as TableActionMethods
   }
-  async function clearSelection(): Promise<Recordable> {
-    const table = await getTable()
-    return table.clearSelection()
+  function clearSelection(): Promise<Recordable> {
+    return getTable().clearSelection()
   }
-  async function toggleRowSelection(row: any, selected: boolean): Promise<Recordable> {
-    const table = await getTable()
-    return table.toggleRowSelection(row, selected)
+  function toggleRowSelection(row: any, selected: boolean): Promise<Recordable> {
+    return getTable().toggleRowSelection(row, selected)
   }
-  async function toggleAllSelection(): Promise<Recordable> {
-    const table = await getTable()
-    return table.toggleAllSelection()
+  function toggleAllSelection(): Promise<Recordable> {
+    return getTable().toggleAllSelection()
   }
-  async function toggleRowExpansion(row: any, expanded: boolean): Promise<Recordable> {
-    const table = await getTable()
-    return table.toggleRowExpansion(row, expanded)
+  function toggleRowExpansion(row: any, expanded: boolean): Promise<Recordable> {
+    return getTable().toggleRowExpansion(row, expanded)
   }
-  async function setCurrentRow(row: any): Promise<Recordable> {
-    const table = await getTable()
-    return table.setCurrentRow(row)
+  function setCurrentRow(row: any): Promise<Recordable> {
+    return getTable().setCurrentRow(row)
   }
-  async function clearSort(): Promise<Recordable> {
-    const table = await getTable()
-    return table.clearSort()
+  function clearSort(): Promise<Recordable> {
+    return getTable().clearSort()
   }
-  async function clearFilter(columnKeys: string[]): Promise<Recordable> {
-    const table = await getTable()
-    return table.clearFilter(columnKeys)
+  function clearFilter(columnKeys: string[]): Promise<Recordable> {
+    return getTable().clearFilter(columnKeys)
   }
-  async function doLayout(): Promise<Recordable> {
-    const table = await getTable()
-    return table.doLayout()
+  function doLayout(): Promise<Recordable> {
+    return getTable().doLayout()
   }
-  async function sort(prop: string, order: string): Promise<Recordable> {
-    const table = await getTable()
-    return table.sort(prop, order)
+  function sort(prop: string, order: string): Promise<Recordable> {
+    return getTable().sort(prop, order)
   }
 
   const getBasicEmits = {
@@ -94,10 +90,12 @@ export function useBasicTableFn(
     onHeaderContextmenu: (column, event) => {
       emit('header-contextmenu', column, event)
     },
-    onSortChange: ({ column, prop, order }) => {
-      emit('sort-change', { column, prop, order })
+    onSortChange: (sorts) => {
+      handleTableChange(null, sorts)
+      emit('sort-change', { ...sorts })
     },
     onFilterChange: (filters) => {
+      handleTableChange(null, null, filters)
       emit('filter-change', filters)
     },
     onCurrentChange: (currentRow, oldCurrentRow) => {
@@ -112,9 +110,9 @@ export function useBasicTableFn(
   }
 
   return {
-    // events
+    // Element plus Events
     getBasicEmits,
-    // methods
+    // Element plus Methods
     clearSelection,
     toggleRowSelection,
     toggleAllSelection,

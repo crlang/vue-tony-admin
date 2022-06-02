@@ -18,6 +18,7 @@ export default defineComponent({
     const columns:BasicColumn[] = [
       ...getAuthColumns(),
       {
+        align: 'right',
         actions: [
           {
             text: '启用',

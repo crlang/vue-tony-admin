@@ -23,6 +23,7 @@ export function getBasicColumns(): BasicColumn[] {
         { text: '男', value: '1' },
         { text: '女', value: '2' },
       ],
+      // filterMultiple: false,
       customRender: ({ record }) => {
         const color = record.sex === 1 ? 'success' : 'danger'
         const text = record.sex === 1 ? '男' : '女'

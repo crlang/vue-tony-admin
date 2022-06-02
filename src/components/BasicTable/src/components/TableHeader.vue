@@ -21,11 +21,13 @@
         <ElDivider
           direction="vertical"
           v-if="$slots.toolbar && showTableSetting" />
-        <TableSetting
+        <div
           :class="`${prefixCls}__toolbar-setting`"
-          :setting="tableSetting"
-          v-if="showTableSetting"
-          @columns-change="handleColumnChange" />
+          v-if="showTableSetting">
+          <TableSetting
+            :setting="tableSetting"
+            @columns-change="handleColumnChange" />
+        </div>
       </div>
     </div>
     <div

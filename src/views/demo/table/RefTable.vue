@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts">
-import type { TableActionType } from '@/components/BasicTable'
+import type { TableActionMethods } from '@/components/BasicTable'
 
 import { defineComponent, ref, unref } from 'vue'
 import { ElButton } from 'element-plus'
@@ -35,7 +35,7 @@ import { demoListApi } from '@/api/demo/table'
 export default defineComponent({
   components: { ElButton, BasicTable },
   setup() {
-    const tableRef = ref<Nullable<TableActionType>>(null)
+    const tableRef = ref<Nullable<TableActionMethods>>(null)
     const { createMessage } = useMessage()
 
     function getTable() {

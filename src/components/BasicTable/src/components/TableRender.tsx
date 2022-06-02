@@ -1,5 +1,5 @@
 import type { EleTableColumn } from '@/components/ElementPlus'
-import type { tableColumnRender, scopeInfo } from '../typing'
+import type { TableColumnRender, scopeInfo } from '../typing'
 
 import { computed, defineComponent, toRaw, unref } from 'vue'
 
@@ -12,7 +12,7 @@ export default defineComponent({
      * Custom render function content
      */
     customRender: {
-      type: Function as PropType<(info:tableColumnRender) => void>,
+      type: Function as PropType<(info: TableColumnRender) => void>,
     },
     /**
      * 官方自带行列、索引数据
@@ -28,7 +28,7 @@ export default defineComponent({
     column: { type: Object as PropType<EleTableColumn> },
   },
   setup(props) {
-    const res = computed(():tableColumnRender => {
+    const res = computed((): TableColumnRender => {
       const { scope, column } = props
       if (column?.prop && scope?.row) {
         return {

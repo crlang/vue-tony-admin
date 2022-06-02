@@ -1,16 +1,16 @@
-import type {
-  BasicColumn,
-  FetchSetting,
-  TableSetting,
-  // SorterResult,
-  // TableCustomRecord
-} from './typing'
+import type { BasicColumn, FetchSetting, TableSetting, ColumnSorterResult } from './typing'
 import type { FormProps } from '@/components/Form'
 import type { ElePagination } from '@/components/ElementPlus'
 
 import { EleTableProps, ElePaginationProps } from '@/components/ElementPlus'
-import { FETCH_SETTING } from './const'
 
+import { DEFAULT_FILTER_FN, DEFAULT_SORT_FN, FETCH_SETTING } from './const'
+
+/**
+ * 头部Props
+ *
+ * Header props
+ */
 export const headerProps = {
   /**
    * 表格头部标题
@@ -51,82 +51,211 @@ export const headerProps = {
    * Trigger callback when a column in settings changes
    */
   onColumnsChange: {
-    type: Function as PropType<(data) => void>,
+    type: Function as PropType<(data: TableColumnChange[]) => void>,
   },
 }
+
+/**
+ * 自定义Props
+ *
+ * Custom props
+ */
 export const customProps = {
   ...headerProps,
+  /**
+   * 表格数据源，当存在 api 函数时，可为空
+   *
+   * Table data source, nullable when there is an api function
+   */
   dataSource: {
     type: Array as PropType<Recordable[]>,
     default: null,
   },
+  /**
+   * 表格列配置
+   *
+   * Table column configuration
+   */
   columns: {
-    type: [Array] as PropType<BasicColumn[]>,
+    type: Array as PropType<BasicColumn[]>,
     default: () => [],
   },
+  /**
+   * api 函数，请求后台数据
+   *
+   * api function, requesting data from the server
+   */
   api: {
     type: Function as PropType<(...arg: any[]) => Promise<any>>,
     default: null,
   },
-  autoCreateKey: {
-    type: Boolean,
-    default: true,
-  },
-  beforeFetch: {
-    type: Function as PropType<Fn>,
-    default: null,
-  },
-  afterFetch: {
-    type: Function as PropType<Fn>,
-    default: null,
-  },
-  handleSearchInfoFn: {
-    type: Function as PropType<Fn>,
-    default: null,
-  },
+  /**
+   * 接口结果字段匹配
+   *
+   * Interface result field match
+   */
   fetchSetting: {
     type: Object as PropType<FetchSetting>,
     default: () => {
       return FETCH_SETTING
     },
   },
+  /**
+   * 是否自动创建key
+   *
+   * Whether to automatically create a key
+   */
+  autoCreateKey: {
+    type: Boolean,
+    default: true,
+  },
+  /**
+   * 请求列表之前请求
+   *
+   * Request list before request
+   */
+  beforeFetch: {
+    type: Function as PropType<(...arg: any[]) => Promise<any>>,
+    default: null,
+  },
+  /**
+   * 请求列表之后请求
+   *
+   * Request list after request
+   */
+  afterFetch: {
+    type: Function as PropType<(...arg: any[]) => Promise<any>>,
+    default: null,
+  },
+  /**
+   * 搜索时的请求
+   *
+   * request when searching
+   */
+  searchFetch: {
+    type: Function as PropType<(...arg: any[]) => Promise<any>>,
+    default: null,
+  },
+  /**
+   * 排序某列时触发的函数，根据点击的列，返回合法的筛选字段并向服务端发起请求
+   *
+   * The function triggered when a column is sorted, according to the clicked column, returns a valid filter field and initiates a request to the server
+   */
+  sortFn: {
+    type: Function as PropType<(sortInfo: ColumnSorterResult) => any>,
+    default: DEFAULT_SORT_FN,
+  },
+  /**
+   * 筛选某列时触发的函数，根据点击的列，返回合法的筛选字段并向服务端发起请求
+   *
+   * The function triggered when a column is filtered, according to the clicked column, return the valid filter field and initiate a request to the server
+   */
+  filterFn: {
+    type: Function as PropType<(data: Partial<Recordable<string[]>>) => any>,
+    default: DEFAULT_FILTER_FN,
+  },
+  /**
+   * 是否立即请求
+   *
+   * whether to request now
+   */
   immediate: {
     type: Boolean,
     default: true,
   },
+  /**
+   * 额外的搜索参数
+   *
+   * Additional search parameters
+   */
   searchInfo: {
     type: Object as PropType<Recordable>,
     default: null,
   },
+  /**
+   * 是否使用搜索表单
+   *
+   * Whether to use a search form
+   */
   useSearchForm: { type: Boolean },
+  /**
+   * 搜索表单配置
+   *
+   * Search form configuration
+   */
   formConfig: {
     type: Object as PropType<Partial<FormProps>>,
     default: null,
   },
-  showIndexColumn: { type: Boolean },
-  showCheckboxColumn: { type: Boolean },
-  canResize: { type: Boolean },
+  /**
+   * 是否显示序号列
+   *
+   * Whether to show the serial number column
+   */
+  showIndexColumn: Boolean,
+  /**
+   * 是否显示选择列
+   *
+   * whether to show checkbox columns
+   */
+  showCheckboxColumn: Boolean,
+  /**
+   * 是否自动调整表格大小
+   *
+   * Whether to automatically adjust the table size
+   */
+  canResize: Boolean,
+  /**
+   * 分页导航配置
+   *
+   * Pagination Configuration
+   */
   pagination: {
     type: [Object, Boolean] as PropType<Partial<ElePagination> | boolean>,
     default: null,
   },
-  loading: { type: Boolean },
+  /**
+   * 是否加载状态
+   *
+   * Whether the status is being loaded
+   */
+  loading: Boolean,
+  /**
+   * 子项的所在的字段名称，一般用在展开表格
+   *
+   * The name of the field where the child item is located, generally used to expand the table
+   */
   childrenColumnName: {
     type: String,
     default: 'children',
   },
 }
 
+/**
+ * 分页Props
+ *
+ * Pagination props
+ */
 export const paginationProps = {
   ...ElePaginationProps,
   prefixCls: String,
 }
 
+/**
+ * 组件Props
+ *
+ * Component props
+ */
 export const basicProps = {
   ...EleTableProps,
   ...customProps,
 }
 
+/**
+ * ElTable 自带的 emit
+ *
+ *  ElTable emits
+ */
 export const ElTableBasicEmits = [
   'select',
   'select-all',

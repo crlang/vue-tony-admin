@@ -30,6 +30,26 @@ $elenamex: 'el-table';
       background: var(--background-secondary-color);
     }
   }
+
+  &__column {
+    &-filter-trigger {
+      margin-left: 4px;
+    }
+  }
+
+  &-filter__bottom {
+    display: flex;
+    padding: 0;
+
+    button {
+      flex: 1;
+      padding: 8px 12px;
+
+      &:nth-child(1) {
+        color: var(--success-color);
+      }
+    }
+  }
 }
 
 html[data-theme='dark'] {

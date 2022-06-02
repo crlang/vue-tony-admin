@@ -1,6 +1,6 @@
 // Used to configure the general configuration of some components without modifying the components
 
-// import type { SorterResult } from '../components/Table'
+import type { ColumnSorterResult } from '../components/BasicTable'
 
 export default {
   // basic-table setting
@@ -23,19 +23,19 @@ export default {
     // Default display quantity on one page
     defaultPageSize: 20,
     // Custom general sort function
-    // defaultSortFn: (sortInfo: SorterResult) => {
-    //   const { field, order } = sortInfo
-    //   return {
-    //     // The sort field passed to the backend you
-    //     field,
-    //     // Sorting method passed to the background asc/desc
-    //     order
-    //   }
-    // },
+    defaultSortFn: (sortInfo: ColumnSorterResult) => {
+      const { prop, order } = sortInfo
+      return {
+        // The sort field passed to the backend you
+        order,
+        // Sorting method passed to the background asc/desc
+        prop,
+      }
+    },
     // Custom general filter function
-    // defaultFilterFn: (data: Partial<Recordable<string[]>>) => {
-    //   return data
-    // }
+    defaultFilterFn: (data: Partial<Recordable<string[]>>) => {
+      return data
+    },
   },
   // scrollbar setting
   scrollbar: {

@@ -45,7 +45,7 @@
 </template>
 
 <script lang="ts">
-import type { TableActionType } from '@/components/BasicTable'
+import type { TableActionMethods } from '@/components/BasicTable'
 
 import { defineComponent, ref, unref } from 'vue'
 import { ElButton, ElTableColumn } from 'element-plus'
@@ -59,14 +59,14 @@ export default defineComponent({
     const loading = ref(false)
     const stripe = ref(true)
     const border = ref(true)
-    const tableRef = ref<Nullable<TableActionType>>(null) // 定义table ref，记得在末尾 return
+    const tableRef = ref<Nullable<TableActionMethods>>(null) // 定义table ref，记得在末尾 return
 
     function getTable() {
       const table = unref(tableRef)
       if (!table) {
         throw new Error('tableAction is null')
       }
-      return table as TableActionType
+      return table as TableActionMethods
     }
 
     function toggleSelection() {

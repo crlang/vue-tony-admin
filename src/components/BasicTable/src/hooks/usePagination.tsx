@@ -6,9 +6,9 @@ import { isBoolean } from '@/utils/is'
 import { PAGE_SIZE, PAGE_SIZE_OPTIONS, PAGE_LAYOUT_OPTIONS } from '../const'
 
 /**
- * 使用分页实例
+ * 处理表格分页
  *
- * Use pagination
+ * Handling table pagination
  * @param propsRef
  */
 export function usePagination(propsRef: ComputedRef<BasicTableProps>) {

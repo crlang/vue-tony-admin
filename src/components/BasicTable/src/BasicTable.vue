@@ -44,50 +44,51 @@
         <slot name="headerBottom"></slot>
       </template>
     </TableHeader>
-    <ElTable
-      ref="tableElRef"
-      v-bind="getBindValues"
-      v-loading="getBindValues.loading"
-      :rowClassName="getRowClassName">
-      <template
-        v-for="column in columns"
-        :key="column.prop">
-        <template v-if="column.customRender">
-          <ElTableColumn v-bind="column">
-            <template #default="scope">
-              <TableRender
-                :customRender="column.customRender"
-                :scope="scope"
-                :column="column" />
-            </template>
-          </ElTableColumn>
-        </template>
-        <template v-else-if="column.type==='action'">
-          <ElTableColumn v-bind="column">
-            <template #default="scope">
-              <TableAction
-                :prefixCls="`${prefixCls}-action`"
-                :column="column"
-                :scopes="scope" />
-            </template>
-          </ElTableColumn>
-        </template>
-        <template v-else-if="column.isSlot">
-          <slot
-            :name="column.prop"
-            v-bind="column"></slot>
-        </template>
+    <el-config-provider :locale="zhLocale">
+      <ElTable
+        ref="tableElRef"
+        v-bind="getBindValues"
+        v-loading="getBindValues.loading"
+        :rowClassName="getRowClassName">
+        <template
+          v-for="column in columns"
+          :key="column.prop">
+          <template v-if="column.customRender">
+            <ElTableColumn v-bind="column">
+              <template #default="scope">
+                <TableRender
+                  :customRender="column.customRender"
+                  :scope="scope"
+                  :column="column" />
+              </template>
+            </ElTableColumn>
+          </template>
+          <template v-else-if="column.type === 'action'">
+            <ElTableColumn v-bind="column">
+              <template #default="scope">
+                <TableAction
+                  :prefixCls="`${prefixCls}-action`"
+                  :column="column"
+                  :scopes="scope" />
+              </template>
+            </ElTableColumn>
+          </template>
+          <template v-else-if="column.isSlot">
+            <slot
+              :name="column.prop"
+              v-bind="column"></slot>
+          </template>
 
-        <ElTableColumn
-          v-bind="column"
-          v-else />
+          <ElTableColumn
+            v-bind="column"
+            v-else />
 
-      </template>
-    </ElTable>
-
+        </template>
+      </ElTable>
+    </el-config-provider>
     <TablePagination
       v-if="getBindValues.pagination !== false"
-      :prefixCls="`${prefixCls}__pagination`"
+      :prefixCls="`${prefixCls}-pagination`"
       v-bind="getBindValues.pagination"
       @page-change="handlePageChange"
       @size-change="handlePageSizeChange" />
@@ -97,12 +98,14 @@
 <script lang="ts">
 import type {
   BasicTableProps,
-  TableActionType,
-  ColumnChangeParam,
+  TableActionMethods,
+  TableColumnChange,
 } from './typing'
 
 import { defineComponent, ref, computed, unref, watchEffect, inject } from 'vue'
-import { ElLoading, ElTable, ElTableColumn } from 'element-plus'
+import { ElLoading, ElTable, ElTableColumn, ElConfigProvider } from 'element-plus'
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
+
 import { BasicForm, useForm } from '@/components/Form'
 import { PageWrapperFixedHeightKey } from '@/components/PageWrapper'
 
@@ -130,6 +133,7 @@ export default defineComponent({
   components: {
     ElTable,
     ElTableColumn,
+    ElConfigProvider,
     BasicForm,
     TableHeader,
     TableRender,
@@ -166,10 +170,10 @@ export default defineComponent({
     const isFixedHeightPage = inject(PageWrapperFixedHeightKey, false)
     watchEffect(() => {
       unref(isFixedHeightPage) &&
-          props.canResize &&
-          warn(
-            "'canResize' of BasicTable may not work in PageWrapper with 'contentFullHeight' (especially in hot updates)",
-          )
+        props.canResize &&
+        warn(
+          "'canResize' of BasicTable may not work in PageWrapper with 'contentFullHeight' (especially in hot updates)",
+        )
     })
 
     const {
@@ -182,19 +186,6 @@ export default defineComponent({
       getPagination,
       setPagination,
     } = usePagination(getProps)
-
-    const {
-      getBasicEmits,
-      clearSelection,
-      toggleRowSelection,
-      toggleAllSelection,
-      toggleRowExpansion,
-      setCurrentRow,
-      clearSort,
-      clearFilter,
-      doLayout,
-      sort,
-    } = useBasicTableFn(getProps, tableElRef, emit)
 
     const {
       handleTableChange,
@@ -212,15 +203,26 @@ export default defineComponent({
       updateTableData,
     } = useDataSource(
       getProps,
-      {
-        tableData,
-        paginationRef: getTablePagination,
-        setLoading,
-        setPagination,
-        getFieldsValue: formActions.getFieldsValue,
-      },
+      tableData,
+      getTablePagination,
+      setPagination,
+      setLoading,
+      formActions.getFieldsValue,
       emit,
     )
+
+    const {
+      getBasicEmits,
+      clearSelection,
+      toggleRowSelection,
+      toggleAllSelection,
+      toggleRowExpansion,
+      setCurrentRow,
+      clearSort,
+      clearFilter,
+      doLayout,
+      sort,
+    } = useBasicTableFn(getProps, tableElRef, handleTableChange, emit)
 
     const {
       getViewColumns,
@@ -279,7 +281,7 @@ export default defineComponent({
         showTableSetting,
         tableSetting,
         titleHelpMessage,
-        onColumnsChange: (data: ColumnChangeParam[]) => {
+        onColumnsChange: (data: TableColumnChange[]) => {
           emit('columns-change', data)
           doLayout()
         },
@@ -322,17 +324,17 @@ export default defineComponent({
       propsRef.value = { ...(unref(propsRef) as Recordable), ...tableProps } as Recordable
     }
 
-    function handlePageChange(currentPage:number) {
+    function handlePageChange(currentPage: number) {
       emit('pagination', unref(getTablePagination), 'currentPage', currentPage)
       handleTableChange({ currentPage })
     }
 
-    function handlePageSizeChange(pageSize:number) {
+    function handlePageSizeChange(pageSize: number) {
       emit('pagination', unref(getTablePagination), 'pageSize', pageSize)
       handleTableChange({ pageSize })
     }
 
-    const tableAction: TableActionType = {
+    const tableAction: TableActionMethods = {
       // Element Plus
       clearSelection,
       toggleRowSelection,
@@ -375,6 +377,9 @@ export default defineComponent({
     return {
       prefixCls,
       tableElRef,
+      // 修改表格自带翻译内容为中文
+      // Modify the form's own translation content to Chinese
+      zhLocale: zhCn,
       getProps,
       getBindValues,
       getLoading,
@@ -427,7 +432,7 @@ $prefix-cls: '#{$tonyname}-basic-table';
       align-items: center;
       flex: 1;
 
-      > * {
+      >* {
         margin-right: 8px;
       }
 
@@ -435,7 +440,7 @@ $prefix-cls: '#{$tonyname}-basic-table';
         display: flex;
         align-items: center;
 
-        > * {
+        >* {
           margin-right: 12px;
           cursor: pointer;
         }
@@ -468,7 +473,7 @@ $prefix-cls: '#{$tonyname}-basic-table';
       justify-content: flex-end;
     }
 
-    .el-button  {
+    .el-button {
       display: flex;
       align-items: center;
 
@@ -478,7 +483,7 @@ $prefix-cls: '#{$tonyname}-basic-table';
     }
   }
 
-  &__pagination {
+  &-pagination {
     padding: 1rem 0;
   }
 }

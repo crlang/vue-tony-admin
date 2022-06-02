@@ -33,9 +33,9 @@ export function useTableForm(
   }
 
   function handleSearchInfoChange(info: Recordable) {
-    const { handleSearchInfoFn } = unref(propsRef)
-    if (handleSearchInfoFn && isFunction(handleSearchInfoFn)) {
-      info = handleSearchInfoFn(info) || info
+    const { searchFetch } = unref(propsRef)
+    if (searchFetch && isFunction(searchFetch)) {
+      info = searchFetch(info) || info
     }
     fetch({ searchInfo: info, page: 1 })
   }

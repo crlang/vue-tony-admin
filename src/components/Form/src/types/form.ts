@@ -1,7 +1,7 @@
 import type { VNode } from 'vue'
 import type { FormItem } from './formItem'
 import type { ComponentType } from './index'
-import type { TableActionType } from '@/components/BasicTable'
+import type { TableActionMethods } from '@/components/BasicTable'
 import type { CSSProperties } from 'vue'
 import type { EleButton, EleCol, EleForm, EleFormItemRule, EleRow } from '@/components/ElementPlus'
 
@@ -174,7 +174,7 @@ export interface FormSchema {
   componentProps?:
   | ((opt: {
     schema: FormSchema
-    tableAction: TableActionType
+    tableAction: TableActionMethods
     formActionType: FormActionType
     formModel: Recordable
   }) => Recordable)

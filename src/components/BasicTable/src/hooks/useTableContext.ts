@@ -1,10 +1,10 @@
 import type { Ref } from 'vue'
-import type { BasicTableProps, TableActionType } from '../typing'
+import type { BasicTableProps, TableActionMethods } from '../typing'
 import { provide, inject, ComputedRef } from 'vue'
 
 const key = Symbol('basic-table')
 
-type Instance = TableActionType & {
+type Instance = TableActionMethods & {
   wrapRef: Ref<Nullable<HTMLElement>>;
   getBindValues: ComputedRef<Recordable>;
 };

@@ -1,39 +1,37 @@
 <template>
-  <div>
-    <ElTooltip
-      v-if="getSetting.redo"
-      placement="top"
-      content="刷新">
-      <SvgIcon
-        name="redo"
-        @click="handleRedo" />
-    </ElTooltip>
-    <ElTooltip
-      v-if="getSetting.size"
-      placement="top"
-      content="密度">
-      <SvgIcon
-        :name="`size-${sizeRef}`"
-        @click="handleSize" />
-    </ElTooltip>
+  <ElTooltip
+    v-if="getSetting.redo"
+    placement="top"
+    content="刷新">
+    <SvgIcon
+      name="redo"
+      @click="handleRedo" />
+  </ElTooltip>
+  <ElTooltip
+    v-if="getSetting.size"
+    placement="top"
+    content="密度">
+    <SvgIcon
+      :name="`size-${sizeRef}`"
+      @click="handleSize" />
+  </ElTooltip>
 
-    <ElTooltip
-      v-if="getSetting.fullScreen"
-      placement="top"
-      content="全屏">
-      <SvgIcon
-        @click="toggle"
-        :name="isFullscreen ? 'fullscreen-exit': 'fullscreen'" />
-    </ElTooltip>
+  <ElTooltip
+    v-if="getSetting.fullScreen"
+    placement="top"
+    content="全屏">
+    <SvgIcon
+      @click="toggle"
+      :name="isFullscreen ? 'fullscreen-exit': 'fullscreen'" />
+  </ElTooltip>
 
-    <TableColumnSetting
-      v-if="getSetting.setting"
-      @columns-change="handleColumnChange" />
-  </div>
+  <TableColumnSetting
+    v-if="getSetting.setting"
+    @columns-change="handleColumnChange" />
 </template>
 
 <script lang="ts">
-import type { TableSetting, ColumnChangeParam } from '../typing'
+import type { TableSetting, TableColumnChange } from '../typing'
 
 import { defineComponent, computed, ref } from 'vue'
 import { ComponentSize, ElTooltip } from 'element-plus'
@@ -71,7 +69,7 @@ export default defineComponent({
         size: true,
         setting: true,
         fullScreen: true,
-        ...props.setting,
+        ...(props.setting || {}),
       }
     })
 
@@ -79,9 +77,9 @@ export default defineComponent({
      * 回调列的改变
      *
      * Callback column changes
-     * @param data ColumnChangeParam[]
+     * @param data TableColumnChange[]
      */
-    function handleColumnChange(data: ColumnChangeParam[]) {
+    function handleColumnChange(data: TableColumnChange[]) {
       emit('columns-change', data)
     }
 

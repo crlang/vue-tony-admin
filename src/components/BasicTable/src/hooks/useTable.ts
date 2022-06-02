@@ -1,6 +1,6 @@
 import type {
   BasicTableProps,
-  TableActionType,
+  TableActionMethods,
   FetchParams,
   BasicColumn,
   GetColumnsParams
@@ -17,23 +17,23 @@ import { error } from '@/utils/log'
 
 type Props = Partial<DynamicProps<BasicTableProps>>;
 
-type UseTableMethod = TableActionType & {
+type UseTableMethod = TableActionMethods & {
   getFormRef: () => FormActionType;
 };
 
 export function useTable(tableProps?: Props): [
-  (instance: TableActionType, formInstance: UseTableMethod) => void,
-  TableActionType & {
+  (instance: TableActionMethods, formInstance: UseTableMethod) => void,
+  TableActionMethods & {
     getFormRef: () => FormActionType;
   },
 ] {
-  const tableRef = ref<Nullable<TableActionType>>(null)
+  const tableRef = ref<Nullable<TableActionMethods>>(null)
   const loadedRef = ref<Nullable<boolean>>(false)
   const formRef = ref<Nullable<UseTableMethod>>(null)
 
   let stopWatch: WatchStopHandle
 
-  function register(instance: TableActionType, formInstance: UseTableMethod) {
+  function register(instance: TableActionMethods, formInstance: UseTableMethod) {
     isProdMode() &&
       onUnmounted(() => {
         tableRef.value = null
@@ -61,17 +61,17 @@ export function useTable(tableProps?: Props): [
     )
   }
 
-  function getTableInstance(): TableActionType {
+  function getTableInstance(): TableActionMethods {
     const table = unref(tableRef)
     if (!table) {
       error(
         'The table instance has not been obtained yet, please make sure the table is presented when performing the table operation!'
       )
     }
-    return table as TableActionType
+    return table as TableActionMethods
   }
 
-  const methods: TableActionType & {
+  const methods: TableActionMethods & {
     getFormRef: () => FormActionType;
   } = {
     // Element Plus

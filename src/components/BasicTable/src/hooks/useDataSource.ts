@@ -1,51 +1,26 @@
-import type { BasicTableProps, FetchParams } from '../typing'
 import type { ElePagination } from '@/components/ElementPlus'
+import type { BasicTableProps, FetchParams, ColumnSorterResult } from '../typing'
 
-import {
-  ref,
-  unref,
-  ComputedRef,
-  computed,
-  onMounted,
-  watch,
-  reactive,
-  Ref,
-  watchEffect,
-  toRaw
-} from 'vue'
-import { useTimeoutFn } from '@/hooks/core/useTimeout'
-import { buildUUID } from '@/utils'
-import { isFunction, isBoolean } from '@/utils/is'
+import { ref, unref, ComputedRef, computed, onMounted, watch, Ref, watchEffect, toRaw } from 'vue'
+import { isFunction, isBoolean, useTimeoutFn } from '@vueuse/core'
 import { get, cloneDeep } from 'lodash-es'
+
+import { buildUUID } from '@/utils'
+
 import { FETCH_SETTING, ROW_KEY, PAGE_SIZE } from '../const'
 
-interface ActionType {
-  paginationRef: ComputedRef<ElePagination>;
-  setPagination: (info: Partial<ElePagination>) => void;
-  setLoading: (loading: boolean) => void;
-  getFieldsValue: () => Recordable;
-  tableData: Ref<Recordable[]>;
-}
-
-interface SearchState {
-  sortInfo: Recordable;
-  filterInfo: Record<string, string[]>;
-}
 export function useDataSource(
   propsRef: ComputedRef<BasicTableProps>,
-  {
-    paginationRef,
-    setPagination,
-    setLoading,
-    getFieldsValue,
-    tableData,
-  }: ActionType,
+  tableData: Ref<Recordable[]>,
+  paginationRef:ComputedRef<ElePagination>,
+  setPagination: (info: Partial<ElePagination>) => void,
+  setLoading: (loading: boolean) => void,
+  getFieldsValue:() => Recordable,
   emit: EmitType
 ) {
-  const searchState = reactive<SearchState>({
-    sortInfo: {},
-    filterInfo: {},
-  })
+  const sortInfo = ref<Recordable>({})
+  const filterInfo = ref<Recordable>({})
+
   const dataSourceRef = ref<Recordable[]>([])
   const rawDataSourceRef = ref<Recordable>({})
 
@@ -65,25 +40,30 @@ export function useDataSource(
   )
 
   function handleTableChange(
-    pagination: PaginationProps,
+    pagination: Partial<ElePagination>,
+    sorter?: ColumnSorterResult,
     filters?: Partial<Recordable<string[]>>,
-    sorter?: SorterResult,
   ) {
     const { sortFn, filterFn } = unref(propsRef)
+    console.log('handleTableChange++++++++', pagination, filters, sorter)
+    console.log('handleTableChange++++++++2', sortFn, filterFn)
+    console.log('filtersfiltersfilters', filters, toRaw(filters))
 
-    setPagination(pagination)
-
+    // 更新了分页
+    // Pagination updated
+    if (pagination) {
+      setPagination(pagination)
+    }
+    // 更新了排序
+    // Sort updated
     const params: Recordable = {}
     if (sorter && isFunction(sortFn)) {
-      const sortInfo = sortFn(sorter)
-      searchState.sortInfo = sortInfo
-      params.sortInfo = sortInfo
+      params.sortInfo = sortInfo.value = sortFn(sorter)
     }
-
+    // 更新了筛选
+    // Filter updated
     if (filters && isFunction(filterFn)) {
-      const filterInfo = filterFn(filters)
-      searchState.filterInfo = filterInfo
-      params.filterInfo = filterInfo
+      params.filterInfo = filterInfo.value = filterFn(filters)
     }
     fetch(params)
   }
@@ -214,6 +194,7 @@ export function useDataSource(
   }
 
   async function fetch(opt?: FetchParams) {
+    console.log('optopt-----------+++', opt)
     const { api, searchInfo, fetchSetting, beforeFetch, afterFetch, useSearchForm, pagination } =
       unref(propsRef)
 
@@ -237,15 +218,13 @@ export function useDataSource(
         pageParams[sizeField] = pageSize
       }
 
-      const { sortInfo = {}, filterInfo } = searchState
-
       let params: Recordable = {
         ...pageParams,
         ...(useSearchForm ? getFieldsValue() : {}),
         ...searchInfo,
         ...(opt?.searchInfo ?? {}),
-        ...sortInfo,
-        ...filterInfo,
+        ...unref(sortInfo),
+        ...unref(filterInfo),
         ...(opt?.sortInfo ?? {}),
         ...(opt?.filterInfo ?? {}),
       }

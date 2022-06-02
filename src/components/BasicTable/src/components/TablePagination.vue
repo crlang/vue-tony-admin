@@ -1,18 +1,16 @@
 <template>
   <div :class="prefixCls">
-    <el-config-provider :locale="locale">
-      <ElPagination
-        v-if="total"
-        v-bind="getBindValues"
-        v-model:current-page="pageRef"
-        v-model:page-size="sizeRef" />
-    </el-config-provider>
+    <ElPagination
+      v-if="total"
+      v-bind="getBindValues"
+      v-model:current-page="pageRef"
+      v-model:page-size="sizeRef" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed, ref, unref, watch, watchEffect } from 'vue'
-import { ElPagination, ElConfigProvider } from 'element-plus'
+import { ElPagination } from 'element-plus'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 import { omit } from 'lodash-es'
 
@@ -21,7 +19,7 @@ import { paginationProps } from '../props'
 
 export default defineComponent({
   name: 'TablePagination',
-  components: { ElPagination, ElConfigProvider },
+  components: { ElPagination },
   inheritAttrs: false,
   props: paginationProps,
   emits: ['pageChange', 'sizeChange'],
