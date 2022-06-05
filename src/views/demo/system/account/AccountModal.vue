@@ -3,7 +3,7 @@
     v-bind="$attrs"
     @register="registerModal"
     :title="getTitle"
-    @ok="handleSubmit">
+    @confirm="handleSubmit">
     <BasicForm @register="registerForm">
       <template #localSearch="{ model, field }">
         <ApiSelect
@@ -45,7 +45,7 @@ export default defineComponent({
 
     const [registerModal, { setModalProps, closeModal }] = useModalInner(async (data) => {
       resetFields()
-      setModalProps({ confirmButton: { loading: false } })
+      setModalProps({ confirmOptions: { loading: false } })
       isUpdate.value = !!data?.isUpdate
 
       if (unref(isUpdate)) {
@@ -70,11 +70,11 @@ export default defineComponent({
       try {
         await validate()
         const values = getFieldsValue()
-        setModalProps({ confirmButton: { loading: true } })
+        setModalProps({ confirmOptions: { loading: true } })
         closeModal()
         emit('success', { isUpdate: unref(isUpdate), values: { ...values, id: rowId.value } })
       } finally {
-        setModalProps({ confirmButton: { loading: false } })
+        setModalProps({ confirmOptions: { loading: false } })
       }
     }
 

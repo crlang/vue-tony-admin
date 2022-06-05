@@ -10,6 +10,7 @@ import { BasicTable, useTable, BasicColumn } from '@/components/BasicTable'
 import { demoListApi } from '@/api/demo/table'
 import { useMessage } from '@/hooks/web/useMessage'
 import { getAuthColumns } from './data'
+import { EleActionPopconfirmAction } from '@/components/ElementPlus'
 
 export default defineComponent({
   components: { BasicTable },
@@ -42,7 +43,7 @@ export default defineComponent({
         ],
       },
     ]
-    const [registerTable] = useTable({
+    const [registerTable, { deleteTableDataRecord }] = useTable({
       title: 'TableAction组件及固定列示例',
       api: demoListApi,
       columns,
@@ -51,9 +52,11 @@ export default defineComponent({
     function handleEdit() {
       // do something
     }
-    function handleDelete(info, type) {
-      console.info(info, type)
-      createMessage.info('点击了', type)
+    function handleDelete({ row }, type: EleActionPopconfirmAction) {
+      if (type === 'confirm') {
+        deleteTableDataRecord(row.key)
+        createMessage.success('删除成功')
+      }
     }
     function handleOpen() {
       // do something

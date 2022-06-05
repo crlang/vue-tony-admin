@@ -150,8 +150,8 @@ export function useTable(tableProps?: Props): [
     collapseAll: () => {
       getTableInstance().collapseAll()
     },
-    deleteTableDataRecord: (record: Recordable | Recordable[]) => {
-      return getTableInstance().deleteTableDataRecord(record)
+    deleteTableDataRecord: (rowKey: string | number) => {
+      return getTableInstance().deleteTableDataRecord(rowKey)
     },
     insertTableDataRecord: (record: Recordable | Recordable[], index?: number) => {
       return getTableInstance().insertTableDataRecord(record, index)

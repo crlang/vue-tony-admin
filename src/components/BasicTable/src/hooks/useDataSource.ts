@@ -9,6 +9,18 @@ import { buildUUID } from '@/utils'
 
 import { FETCH_SETTING, ROW_KEY, PAGE_SIZE } from '../const'
 
+/**
+ * 处理表格数据
+ *
+ * Process tabular data
+ * @param propsRef
+ * @param tableData
+ * @param paginationRef
+ * @param setPagination
+ * @param setLoading
+ * @param getFieldsValue
+ * @param emit
+ */
 export function useDataSource(
   propsRef: ComputedRef<BasicTableProps>,
   tableData: Ref<Recordable[]>,
@@ -24,30 +36,78 @@ export function useDataSource(
   const dataSourceRef = ref<Recordable[]>([])
   const rawDataSourceRef = ref<Recordable>({})
 
-  watchEffect(() => {
-    tableData.value = unref(dataSourceRef)
+  /**
+   * 判断是否自动创建 key
+   *
+   * Determine whether to automatically create a key
+   */
+  const getAutoCreateKey = computed(() => {
+    return unref(propsRef).autoCreateKey && !unref(propsRef).rowKey
+  })
+  /**
+   * 获取行记录的 key
+   *
+   * Get the key of the row record
+   */
+  const getRowKey = computed(() => {
+    const { rowKey } = unref(propsRef)
+    const keyName = unref(getAutoCreateKey) ? ROW_KEY : rowKey
+    if (typeof keyName === 'function') {
+      return rowKeyName(r) as string
+    }
+    return keyName
+  })
+  /**
+   * 统一处理表格数据
+   *
+   * Unified processing of tabular data
+   */
+  const getDataSourceRef = computed(() => {
+    const dataSource = unref(dataSourceRef)
+    if (!dataSource || dataSource.length === 0) {
+      return []
+    }
+
+    // auto create key
+    if (unref(getAutoCreateKey)) {
+      const firstItem = dataSource[0]
+      const lastItem = dataSource[dataSource.length - 1]
+      const keyName = unref(getRowKey)
+
+      if (firstItem && lastItem) {
+        if (!firstItem[keyName] || !lastItem[keyName]) {
+          const data = cloneDeep(unref(dataSourceRef))
+          data.forEach((item) => {
+            if (!item[keyName]) {
+              item[keyName] = buildUUID()
+            }
+            if (item.children && item.children.length) {
+              setTableKey(item.children)
+            }
+          })
+          dataSourceRef.value = data
+        }
+      }
+    }
+
+    return unref(dataSourceRef)
   })
 
-  watch(
-    () => unref(propsRef).dataSource,
-    () => {
-      const { dataSource, api } = unref(propsRef)
-      !api && dataSource && (dataSourceRef.value = dataSource)
-    },
-    {
-      immediate: true,
-    }
-  )
-
+  /**
+   * 表格导航、筛选、排序等内容改变时触发
+   *
+   * Triggered when table navigation, filtering, sorting, etc. change
+   *
+   * @param pagination ElePagination
+   * @param sorter ColumnSorterResult
+   * @param filters
+   */
   function handleTableChange(
     pagination: Partial<ElePagination>,
     sorter?: ColumnSorterResult,
     filters?: Partial<Recordable<string[]>>,
   ) {
     const { sortFn, filterFn } = unref(propsRef)
-    console.log('handleTableChange++++++++', pagination, filters, sorter)
-    console.log('handleTableChange++++++++2', sortFn, filterFn)
-    console.log('filtersfiltersfilters', filters, toRaw(filters))
 
     // 更新了分页
     // Pagination updated
@@ -56,18 +116,22 @@ export function useDataSource(
     }
     // 更新了排序
     // Sort updated
-    const params: Recordable = {}
     if (sorter && isFunction(sortFn)) {
-      params.sortInfo = sortInfo.value = sortFn(sorter)
+      sortInfo.value = sortFn(sorter)
     }
     // 更新了筛选
     // Filter updated
     if (filters && isFunction(filterFn)) {
-      params.filterInfo = filterInfo.value = filterFn(filters)
+      filterInfo.value = filterFn(filters)
     }
-    fetch(params)
+    fetch()
   }
-
+  /**
+   * 设置表格项 Key
+   *
+   * Set the table item Key
+   * @param items
+   */
   function setTableKey(items: any[]) {
     if (!items || !Array.isArray(items)) return
     items.forEach((item) => {
@@ -80,43 +144,15 @@ export function useDataSource(
     })
   }
 
-  const getAutoCreateKey = computed(() => {
-    return unref(propsRef).autoCreateKey && !unref(propsRef).rowKey
-  })
-
-  const getRowKey = computed(() => {
-    const { rowKey } = unref(propsRef)
-    return unref(getAutoCreateKey) ? ROW_KEY : rowKey
-  })
-
-  const getDataSourceRef = computed(() => {
-    const dataSource = unref(dataSourceRef)
-    if (!dataSource || dataSource.length === 0) {
-      return unref(dataSourceRef)
-    }
-    if (unref(getAutoCreateKey)) {
-      const firstItem = dataSource[0]
-      const lastItem = dataSource[dataSource.length - 1]
-
-      if (firstItem && lastItem) {
-        if (!firstItem[ROW_KEY] || !lastItem[ROW_KEY]) {
-          const data = cloneDeep(unref(dataSourceRef))
-          data.forEach((item) => {
-            if (!item[ROW_KEY]) {
-              item[ROW_KEY] = buildUUID()
-            }
-            if (item.children && item.children.length) {
-              setTableKey(item.children)
-            }
-          })
-          dataSourceRef.value = data
-        }
-      }
-    }
-    return unref(dataSourceRef)
-  })
-
-  async function updateTableData(index: number, key: string, value: any) {
+  /**
+   * 更新表格数据，与 updateTableDataRecord 不同的是，这个可以单独修改某行的某个字段
+   *
+   * Update table data, unlike updateTableDataRecord, this one can modify a field of a row individually
+   * @param index 所在行的索引
+   * @param prop 需要修改的 prop
+   * @param value 修改后的值
+   */
+  function updateTableData(index: number, prop: string, value: any) {
     const record = dataSourceRef.value[index]
     if (record) {
       dataSourceRef.value[index][key] = value
@@ -124,6 +160,13 @@ export function useDataSource(
     return dataSourceRef.value[index]
   }
 
+  /**
+   * 根据 key 更新指定行的整行的记录，key必须存在
+   *
+   * Update the record of the entire row of the specified row according to the key, key must exist
+   * @param rowKey
+   * @param record 新记录
+   */
   function updateTableDataRecord(
     rowKey: string | number,
     record: Recordable
@@ -137,32 +180,50 @@ export function useDataSource(
       return row
     }
   }
-
-  function deleteTableDataRecord(record: Recordable | Recordable[]): Recordable | undefined {
+  /**
+   * 根据 key 删除指定行记录，key必须存在
+   *
+   * Delete the specified row record according to the key, the key must exist
+   * @param rowKey
+   */
+  function deleteTableDataRecord(rowKey: string | number): Recordable | undefined {
     if (!dataSourceRef.value || dataSourceRef.value.length === 0) return
-    const records = !Array.isArray(record) ? [record] : record
-    const recordIndex = records
-      .map((item) => dataSourceRef.value.findIndex((s) => s.key === item.key))
-      .filter((item) => item !== undefined)
-      .sort((a, b) => b - a)
-    for (const index of recordIndex) {
-      unref(dataSourceRef).splice(index, 1)
-      unref(propsRef).dataSource?.splice(index, 1)
+
+    const recordIndex = dataSourceRef.value.findIndex((s) => s.key === rowKey)
+    if (recordIndex > -1) {
+      unref(dataSourceRef).splice(recordIndex, 1)
     }
+
+    const total = (unref(paginationRef)?.total || 0)
     setPagination({
-      total: unref(propsRef).dataSource?.length,
+      total: total > 0 ? (total - 1) : 0,
     })
-    return unref(propsRef).dataSource
+
+    return unref(dataSourceRef)
   }
 
+  /**
+   * 插入一条记录，如果索引存在，则插入索引的位置
+   *
+   * Insert a record, if the index exists, insert the position of the index
+   * @param record 插入的记录
+   * @param index 索引
+   */
   function insertTableDataRecord(record: Recordable, index: number): Recordable | undefined {
     if (!dataSourceRef.value || dataSourceRef.value.length === 0) return
+
     index = index ?? dataSourceRef.value?.length
     unref(dataSourceRef).splice(index, 0, record)
-    unref(propsRef).dataSource?.splice(index, 0, record)
-    return unref(propsRef).dataSource
+
+    return unref(dataSourceRef)
   }
 
+  /**
+   * 根据 key 查找所在行记录
+   *
+   * Find the row record based on the key
+   * @param rowKey
+   */
   function findTableDataRecord(rowKey: string | number) {
     if (!dataSourceRef.value || dataSourceRef.value.length === 0) return
 
@@ -174,17 +235,11 @@ export function useDataSource(
     const findRow = (array: any[]) => {
       let ret
       array.some(function iter(r) {
-        if (typeof rowKeyName === 'function') {
-          if ((rowKeyName(r) as string) === rowKey) {
-            ret = r
-            return true
-          }
-        } else {
-          if (Reflect.has(r, rowKeyName) && r[rowKeyName] === rowKey) {
-            ret = r
-            return true
-          }
+        if (Reflect.has(r, rowKeyName) && r[rowKeyName] === rowKey) {
+          ret = r
+          return true
         }
+
         return r[childrenColumnName] && r[childrenColumnName].some(iter)
       })
       return ret
@@ -193,11 +248,46 @@ export function useDataSource(
     return findRow(dataSourceRef.value)
   }
 
+  /**
+   * 更新表格数据
+   *
+   * Set table data
+   * @param values
+   */
+  function setTableData<T = Recordable>(values: T[]) {
+    dataSourceRef.value = values
+  }
+
+  /**
+   * 获取处理后的表格数据
+   *
+   * Get the processed table data
+   */
+  function getDataSource<T = Recordable>() {
+    return toRaw(getDataSourceRef.value as T[])
+  }
+
+  /**
+   * 获取未处理的原始的接口数据
+   *
+   * Get unprocessed raw api data
+   */
+  function getRawDataSource<T = Recordable>() {
+    return toRaw(rawDataSourceRef.value as T)
+  }
+
+  /**
+   * 获取服务端数据
+   *
+   * Get server api data
+   * @param opt FetchParams
+   */
   async function fetch(opt?: FetchParams) {
-    console.log('optopt-----------+++', opt)
     const { api, searchInfo, fetchSetting, beforeFetch, afterFetch, useSearchForm, pagination } =
       unref(propsRef)
 
+    // api 必须为函数
+    // 'api' must be a function
     if (!api || !isFunction(api)) return
 
     try {
@@ -225,9 +315,10 @@ export function useDataSource(
         ...(opt?.searchInfo ?? {}),
         ...unref(sortInfo),
         ...unref(filterInfo),
-        ...(opt?.sortInfo ?? {}),
-        ...(opt?.filterInfo ?? {}),
       }
+
+      // 前置请求，参数随服务端内容变化而变化
+      // Pre-request, the parameters change with the content of the server
       if (beforeFetch && isFunction(beforeFetch)) {
         params = (await beforeFetch(params)) || params
       }
@@ -243,6 +334,8 @@ export function useDataSource(
 
       if (resultTotal) {
         const currentTotalPage = Math.ceil(resultTotal / pageSize)
+        // 如果请求页码大于最大页码，则进行最后一次请求，请求内容为最大页码的内容
+        // If the requested page number is greater than the maximum page number, make the last request, and the requested content is the content of the maximum page number
         if (currentPage > currentTotalPage) {
           setPagination({
             currentPage: currentTotalPage,
@@ -251,6 +344,8 @@ export function useDataSource(
         }
       }
 
+      // 结果作为参数，第二次请求才是正确的结果
+      // The result is used as a parameter, and the second request is the correct result
       if (afterFetch && isFunction(afterFetch)) {
         resultItems = (await afterFetch(resultItems)) || resultItems
       }
@@ -259,6 +354,7 @@ export function useDataSource(
         total: resultTotal || 0,
       })
 
+      console.info('===fetch info===', resultItems)
       emit('fetch-success', {
         items: unref(resultItems),
         page: resultPage,
@@ -269,6 +365,7 @@ export function useDataSource(
       emit('fetch-error', error)
       dataSourceRef.value = []
       setPagination({
+        currentPage: 1,
         total: 0,
       })
     } finally {
@@ -276,18 +373,12 @@ export function useDataSource(
     }
   }
 
-  function setTableData<T = Recordable>(values: T[]) {
-    dataSourceRef.value = values
-  }
-
-  function getDataSource<T = Recordable>() {
-    return toRaw(getDataSourceRef.value as T[])
-  }
-
-  function getRawDataSource<T = Recordable>() {
-    return toRaw(rawDataSourceRef.value as T)
-  }
-
+  /**
+   * 重新载入最后一次请求
+   *
+   * Reload last request
+   * @param opt FetchParams
+   */
   async function reload(opt?: FetchParams) {
     await fetch(opt)
   }
@@ -295,16 +386,33 @@ export function useDataSource(
   onMounted(() => {
     useTimeoutFn(() => {
       unref(propsRef).immediate && fetch()
-    }, 16)
+    }, 50)
   })
+
+  watchEffect(() => {
+    tableData.value = unref(dataSourceRef)
+  })
+
+  watch(
+    () => unref(propsRef).dataSource,
+    () => {
+      const { dataSource, api } = unref(propsRef)
+      if (!api && dataSource) {
+        dataSourceRef.value = dataSource
+      }
+    },
+    {
+      immediate: true,
+    }
+  )
 
   return {
     getDataSourceRef,
+    getRowKey,
+    getAutoCreateKey,
     getDataSource,
     getRawDataSource,
-    getRowKey,
     setTableData,
-    getAutoCreateKey,
     fetch,
     reload,
     updateTableData,

@@ -1,5 +1,4 @@
-import type { EleElMessageBox, EleNotification } from '@/components/ElementPlus'
-import type { Action } from 'element-plus'
+import type { EleElMessageBox, EleNotification, EleActionPopconfirmAction } from '@/components/ElementPlus'
 
 import { h } from 'vue'
 import { ElMessage, ElMessageBox, ElNotification } from 'element-plus'
@@ -86,7 +85,7 @@ export interface NotificationOptions extends BasicMessageOptions {
  * Create notification messages
  * @param options NotificationOptions
  */
-function createNotification(options: NotificationOptions): Promise<Action> {
+function createNotification(options: NotificationOptions): Promise<EleActionPopconfirmAction> {
   const { title, content, position = 'top-right', customClass, type, duration = 4500 } = options
 
   return ElNotification({
@@ -106,7 +105,7 @@ function createNotification(options: NotificationOptions): Promise<Action> {
  *
  * @param options MessageBoxOptions
  */
-function createConfirm(options: MessageBoxOptions): Promise<Action> {
+function createConfirm(options: MessageBoxOptions): Promise<EleActionPopconfirmAction> {
   const { title, content, confirmText = '确认', cancelText = '取消', customClass = '', type } = options
   const { prefixCls } = useDesign('confirm-popup')
 
@@ -125,7 +124,7 @@ function createConfirm(options: MessageBoxOptions): Promise<Action> {
  * @param options MessageBoxOptions
  * @param type EleElMessageBox['type']
  */
-function createModalOptions(options: MessageBoxOptions, type: EleElMessageBox['type']): Promise<Action> {
+function createModalOptions(options: MessageBoxOptions, type: EleElMessageBox['type']): Promise<EleActionPopconfirmAction> {
   const { title, content, confirmText, cancelText, customClass } = options
 
   return ElMessageBox.alert(content, title, {

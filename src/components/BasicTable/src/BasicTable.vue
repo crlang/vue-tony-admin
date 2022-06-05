@@ -82,7 +82,6 @@
           <ElTableColumn
             v-bind="column"
             v-else />
-
         </template>
       </ElTable>
     </el-config-provider>
@@ -96,11 +95,7 @@
 </template>
 
 <script lang="ts">
-import type {
-  BasicTableProps,
-  TableActionMethods,
-  TableColumnChange,
-} from './typing'
+import type { BasicTableProps, TableActionMethods, TableColumnChange } from './typing'
 
 import { defineComponent, ref, computed, unref, watchEffect, inject } from 'vue'
 import { ElLoading, ElTable, ElTableColumn, ElConfigProvider } from 'element-plus'
@@ -432,7 +427,7 @@ $prefix-cls: '#{$tonyname}-basic-table';
       align-items: center;
       flex: 1;
 
-      >* {
+      > * {
         margin-right: 8px;
       }
 
@@ -440,7 +435,7 @@ $prefix-cls: '#{$tonyname}-basic-table';
         display: flex;
         align-items: center;
 
-        >* {
+        > * {
           margin-right: 12px;
           cursor: pointer;
         }

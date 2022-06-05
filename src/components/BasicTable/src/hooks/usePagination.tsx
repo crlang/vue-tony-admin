@@ -20,9 +20,9 @@ export function usePagination(propsRef: ComputedRef<BasicTableProps>) {
    * Get pagination info
    */
   const getTablePagination = computed((): ElePagination => {
-    const { pagination } = unref(propsRef)
+    const { pagination, api } = unref(propsRef)
 
-    if (isBoolean(pagination) || !pagination) {
+    if (isBoolean(pagination) || !pagination && (!api || typeof api !== 'function')) {
       return false
     }
 

@@ -1,5 +1,4 @@
-import type { Action } from 'element-plus'
-import type { ElePagination, EleTable, EleTableColumn, EleButton } from '@/components/ElementPlus'
+import type { ElePagination, EleTable, EleTableColumn, EleButton, EleActionPopconfirmAction } from '@/components/ElementPlus'
 import type { FormActionType, FormProps } from '@/components/Form'
 import type { MessageBoxOptions } from '@/hooks/web/useMessage'
 
@@ -54,10 +53,10 @@ export interface TableActionMethods {
   expandAll: () => void
   collapseAll: () => void
   updateTableDataRecord: (rowKey: string | number, record: Recordable) => Recordable | void
-  deleteTableDataRecord: (record: Recordable | Recordable[]) => Recordable | void
+  deleteTableDataRecord: (rowKey: string | number) => Recordable | void
   insertTableDataRecord: (record: Recordable, index?: number) => Recordable | void
   findTableDataRecord: (rowKey: string | number) => Recordable | void
-  updateTableData: (index: number, key: string, value: any) => Recordable
+  updateTableData: (index: number, prop: string, value: any) => Recordable
 
   emit?: EmitType
   // Element Plus Table func
@@ -524,7 +523,7 @@ export interface TableActionItem extends EleButton {
    *
    * Click callback for action column, when it is in the confirmation button mode, the callback will be triggered after confirming the popup operation
    */
-  callback?: (info: scopeInfo, action?: Action) => void
+  callback?: (info: scopeInfo, action?: EleActionPopconfirmAction) => void
 }
 
 /**
