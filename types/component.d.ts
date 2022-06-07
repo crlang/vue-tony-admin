@@ -3,9 +3,11 @@
  *
  * Intellitips for defining global components
  */
-declare module '@vue/runtime-core' {
+declare module 'vue' {
   export interface GlobalComponents {
-    PageWrapper: typeof import('@/components/PageWrapper')
+    // PageWrapper 全局组件类型声明
+    // PageWrapper global component type declaration
+    PageWrapper: typeof import('@/components/PageWrapper')['default']
   }
 }
 
