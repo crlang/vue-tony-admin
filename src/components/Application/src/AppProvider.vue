@@ -6,17 +6,17 @@ import { createBreakpointListen } from '@/hooks/event/useBreakpoint'
 import { useAppStore } from '@/store/modules/app'
 import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum'
 
-const props = {
-  /**
+// const props = {
+/**
    * class style prefix
    */
-  // prefixCls: { type: String, default: prefixCls },
-}
+// prefixCls: { type: String, default: prefixCls },
+// }
 
 export default defineComponent({
   name: 'AppProvider',
   inheritAttrs: false,
-  props,
+  // props,
   setup(_, { slots }) {
     const isMobile = ref(false)
     const isSetState = ref(false)
