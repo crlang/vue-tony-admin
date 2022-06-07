@@ -3,7 +3,8 @@ import type {
   TableActionMethods,
   FetchParams,
   BasicColumn,
-  GetColumnsParams
+  GetColumnsParams,
+  UseTableMethod
 } from '../typing'
 import type { DynamicProps } from '#/utils'
 import type { FormActionType } from '@/components/Form'
@@ -14,18 +15,14 @@ import { getDynamicProps } from '@/utils'
 import { ref, onUnmounted, unref, watch } from 'vue'
 import { isProdMode } from '@/utils/env'
 import { error } from '@/utils/log'
-
-type Props = Partial<DynamicProps<BasicTableProps>>;
-
-type UseTableMethod = TableActionMethods & {
-  getFormRef: () => FormActionType;
-};
-
-export function useTable(tableProps?: Props): [
+/**
+ * 定义使用实例
+ *
+ * Define use instance
+ */
+export function useTable(tableProps?: Partial<DynamicProps<BasicTableProps>>): [
   (instance: TableActionMethods, formInstance: UseTableMethod) => void,
-  TableActionMethods & {
-    getFormRef: () => FormActionType;
-  },
+  UseTableMethod,
 ] {
   const tableRef = ref<Nullable<TableActionMethods>>(null)
   const loadedRef = ref<Nullable<boolean>>(false)

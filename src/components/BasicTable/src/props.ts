@@ -45,14 +45,6 @@ export const headerProps = {
     type: Object as PropType<TableSetting>,
     default: () => {},
   },
-  /**
-   * 设置中列的更改时触发回调
-   *
-   * Trigger callback when a column in settings changes
-   */
-  onColumnsChange: {
-    type: Function as PropType<(data: TableColumnChange[]) => void>,
-  },
 }
 
 /**
@@ -128,30 +120,30 @@ export const customProps = {
     default: null,
   },
   /**
-   * 搜索时的请求
+   * 搜索时的参数过滤
    *
-   * request when searching
+   * Parameter filtering when searching
    */
-  searchFetch: {
-    type: Function as PropType<(...arg: any[]) => Promise<any>>,
+  searchFn: {
+    type: Function as PropType<(data: Recordable) => any>,
     default: null,
   },
   /**
-   * 排序某列时触发的函数，根据点击的列，返回合法的筛选字段并向服务端发起请求
+   * 排序时的参数过滤
    *
-   * The function triggered when a column is sorted, according to the clicked column, returns a valid filter field and initiates a request to the server
+   * Parameter filtering when sorting
    */
   sortFn: {
     type: Function as PropType<(sortInfo: ColumnSorterResult) => any>,
     default: DEFAULT_SORT_FN,
   },
   /**
-   * 筛选某列时触发的函数，根据点击的列，返回合法的筛选字段并向服务端发起请求
+   * 筛选时的参数过滤
    *
-   * The function triggered when a column is filtered, according to the clicked column, return the valid filter field and initiate a request to the server
+   * Parameter filtering when filtering
    */
   filterFn: {
-    type: Function as PropType<(data: Partial<Recordable<string[]>>) => any>,
+    type: Function as PropType<(data: Recordable) => any>,
     default: DEFAULT_FILTER_FN,
   },
   /**

@@ -1,4 +1,4 @@
-import type { BasicTableProps, BasicColumn } from '../typing'
+import type { BasicTableProps } from '../typing'
 import { Ref, ComputedRef, watch } from 'vue'
 import { computed, unref, ref, nextTick } from 'vue'
 import { getViewportOffset } from '@/utils/domUtils'
@@ -11,7 +11,6 @@ import { useDebounceFn } from '@vueuse/core'
 export function useTableScroll(
   propsRef: ComputedRef<BasicTableProps>,
   tableElRef: Ref<ComponentRef>,
-  columnsRef: ComputedRef<BasicColumn[]>,
   getDataSourceRef: ComputedRef<Recordable[]>
 ) {
   const tableHeightRef: Ref<Nullable<number>> = ref(null)

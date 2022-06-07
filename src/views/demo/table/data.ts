@@ -170,9 +170,10 @@ export function getFormConfig(): Partial<FormProps> {
     schemas: [
       ...getAdvanceSchema(5),
       {
-        field: `field11`,
-        label: `Slot示例`,
-        component: 'ElSelect',
+        field: `field10`,
+        label: `Slot示例10`,
+        component: 'ElInput',
+        slot: 'field10',
         colProps: {
           lg: 12,
           xl: 8,

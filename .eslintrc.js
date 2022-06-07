@@ -21,11 +21,10 @@ module.exports = defineConfig({
       tsx: true,
     },
   },
-  plugins: ['@typescript-eslint', /* 'prettier',*/ 'import'],
+  // plugins: ['@typescript-eslint', /* 'prettier',*/ 'import'],
   extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
     'plugin:vue/vue3-recommended',
+    'plugin:@typescript-eslint/recommended',
     // 'prettier'
   ],
   rules: {

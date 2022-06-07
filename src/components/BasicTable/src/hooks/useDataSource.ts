@@ -108,7 +108,7 @@ export function useDataSource(
     filters?: Partial<Recordable<string[]>>,
   ) {
     const { sortFn, filterFn } = unref(propsRef)
-
+    console.log('filters', filters)
     // 更新了分页
     // Pagination updated
     if (pagination) {
@@ -299,7 +299,7 @@ export function useDataSource(
       )
       let pageParams: Recordable = {}
 
-      const { currentPage = 1, pageSize = PAGE_SIZE } = (unref(paginationRef) as ElePagination) ?? {}
+      const { currentPage = 1, pageSize = PAGE_SIZE } = unref(paginationRef) ?? {}
 
       if ((isBoolean(pagination) && !pagination) || isBoolean(paginationRef)) {
         pageParams = {}

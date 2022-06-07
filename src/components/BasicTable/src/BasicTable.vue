@@ -11,9 +11,9 @@
       :tableAction="tableAction"
       @register="registerForm"
       @advanced-change="redoHeight"
-      @submit="handleSearchInfoChange">
+      @submit="handleSearchSubmit">
       <template
-        #[replaceFormSlotKey(item)]="data"
+        #[item]="data"
         v-for="item in getFormSlotKeys">
         <slot
           :name="item"
@@ -84,18 +84,18 @@
             v-else />
         </template>
       </ElTable>
+      <TablePagination
+        v-if="getBindValues.pagination !== false"
+        :prefixCls="`${prefixCls}-pagination`"
+        v-bind="getBindValues.pagination"
+        @page-change="handlePageChange"
+        @size-change="handlePageSizeChange" />
     </el-config-provider>
-    <TablePagination
-      v-if="getBindValues.pagination !== false"
-      :prefixCls="`${prefixCls}-pagination`"
-      v-bind="getBindValues.pagination"
-      @page-change="handlePageChange"
-      @size-change="handlePageSizeChange" />
   </div>
 </template>
 
 <script lang="ts">
-import type { BasicTableProps, TableActionMethods, TableColumnChange } from './typing'
+import type { BasicTableProps, TableActionMethods } from './typing'
 
 import { defineComponent, ref, computed, unref, watchEffect, inject } from 'vue'
 import { ElLoading, ElTable, ElTableColumn, ElConfigProvider } from 'element-plus'
@@ -144,7 +144,6 @@ export default defineComponent({
     'fetch-success',
     'fetch-error',
     'register',
-    'columns-change',
     'pagination',
   ],
 
@@ -223,7 +222,6 @@ export default defineComponent({
       getViewColumns,
       getColumns,
       setColumns,
-      getColumnsRef,
       getCacheColumns,
     } = useColumns(getProps, getTablePagination)
 
@@ -232,7 +230,6 @@ export default defineComponent({
     } = useTableScroll(
       getProps,
       tableElRef,
-      getColumnsRef,
       getDataSourceRef,
     )
 
@@ -241,16 +238,20 @@ export default defineComponent({
     } = useTableStyle(getProps)
 
     const {
-      getExpandOption,
+      getExpandOptions,
       expandAll,
       collapseAll,
-    } = useTableExpand(getProps, tableData, emit)
+    } = useTableExpand(
+      getProps,
+      getDataSourceRef,
+      getRowKey
+    )
 
     const {
       getFormProps,
       replaceFormSlotKey,
       getFormSlotKeys,
-      handleSearchInfoChange,
+      handleSearchSubmit,
     } = useTableForm(getProps, slots, fetch, getLoading)
 
     /**
@@ -276,10 +277,6 @@ export default defineComponent({
         showTableSetting,
         tableSetting,
         titleHelpMessage,
-        onColumnsChange: (data: TableColumnChange[]) => {
-          emit('columns-change', data)
-          doLayout()
-        },
       }
     })
 
@@ -293,9 +290,10 @@ export default defineComponent({
         rowKey: unref(getRowKey),
         pagination: unref(getTablePagination),
         data: dataSource,
-        ...unref(getExpandOption),
+        ...unref(getExpandOptions),
       }
       propsData = omit(propsData, ['title', 'columns', 'dataSource', 'api', 'showCheckboxColumn', 'showIndexColumn'])
+      console.log('propsData', propsData)
       return propsData
     })
 
@@ -379,7 +377,7 @@ export default defineComponent({
       getBindValues,
       getLoading,
       registerForm,
-      handleSearchInfoChange,
+      handleSearchSubmit,
       getRowClassName,
       handlePageChange,
       handlePageSizeChange,

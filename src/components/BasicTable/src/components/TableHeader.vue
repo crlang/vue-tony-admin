@@ -24,9 +24,7 @@
         <div
           :class="`${prefixCls}__toolbar-setting`"
           v-if="showTableSetting">
-          <TableSetting
-            :setting="tableSetting"
-            @columns-change="handleColumnChange" />
+          <TableSetting :setting="tableSetting" />
         </div>
       </div>
     </div>
@@ -39,8 +37,6 @@
 </template>
 
 <script lang="ts">
-import type { BasicColumn } from '../typing'
-
 import { defineComponent } from 'vue'
 import { ElDivider } from 'element-plus'
 
@@ -59,19 +55,6 @@ export default defineComponent({
   props: {
     ...headerProps,
     prefixCls: String,
-  },
-  emits: ['columns-change'],
-  setup(_, { emit }) {
-    /**
-     * 处理列改变的回调
-     *
-     * Callback for handling column changes
-     */
-    function handleColumnChange(data: BasicColumn[]) {
-      emit('columns-change', data)
-    }
-
-    return { handleColumnChange }
   },
 })
 </script>

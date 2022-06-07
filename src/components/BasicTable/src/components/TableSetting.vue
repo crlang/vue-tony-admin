@@ -24,14 +24,10 @@
       @click="toggle"
       :name="isFullscreen ? 'fullscreen-exit': 'fullscreen'" />
   </ElTooltip>
-
-  <TableColumnSetting
-    v-if="getSetting.setting"
-    @columns-change="handleColumnChange" />
 </template>
 
 <script lang="ts">
-import type { TableSetting, TableColumnChange } from '../typing'
+import type { TableSetting } from '../typing'
 
 import { defineComponent, computed, ref } from 'vue'
 import { ComponentSize, ElTooltip } from 'element-plus'
@@ -40,20 +36,17 @@ import { useFullscreen } from '@vueuse/core'
 import SvgIcon from '@/components/SvgIcon'
 
 import { useTableContext } from '../hooks/useTableContext'
-import TableColumnSetting from './TableColumnSetting.vue'
 
 export default defineComponent({
   name: 'TableSetting',
   components: {
     ElTooltip,
     SvgIcon,
-    TableColumnSetting,
   },
   props: {
     setting: Object as PropType<TableSetting>,
   },
-  emits: ['columns-change'],
-  setup(props, { emit }) {
+  setup(props) {
     const table = useTableContext()
     const sizeRef = ref<ComponentSize>('default')
     const { toggle, isFullscreen } = useFullscreen(table.wrapRef)
@@ -72,16 +65,6 @@ export default defineComponent({
         ...(props.setting || {}),
       }
     })
-
-    /**
-     * 回调列的改变
-     *
-     * Callback column changes
-     * @param data TableColumnChange[]
-     */
-    function handleColumnChange(data: TableColumnChange[]) {
-      emit('columns-change', data)
-    }
 
     /**
      * 刷新当前页
@@ -116,7 +99,6 @@ export default defineComponent({
       sizeRef,
       isFullscreen,
       toggle,
-      handleColumnChange,
       handleRedo,
       handleSize,
     }

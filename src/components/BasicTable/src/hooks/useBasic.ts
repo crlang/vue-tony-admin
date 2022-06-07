@@ -104,9 +104,9 @@ export function useBasicTableFn(
     onHeaderDragend: (newWidth, oldWidth, column, event) => {
       emit('header-dragend', newWidth, oldWidth, column, event)
     },
-    onExpandChange: (row, expandedRows_or_expanded) => {
-      emit('expand-change', row, expandedRows_or_expanded)
-    },
+    // onExpandChange: (row, expandedRows_or_expanded) => {
+    //   emit('expand-change', row, expandedRows_or_expanded)
+    // },
   }
 
   return {

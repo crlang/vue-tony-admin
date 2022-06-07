@@ -32,16 +32,10 @@ export default defineComponent({
       pagination: { pageSize: 30 },
       showIndexColumn: true,
       showTableSetting: true,
-      onColumnsChange: handleColumnChange,
       columns: getBasicColumns(),
     })
     function handleReloadCurrent() {
       reload()
-    }
-
-    // todo
-    function handleColumnChange() {
-      // do something
     }
 
     function handleReload() {

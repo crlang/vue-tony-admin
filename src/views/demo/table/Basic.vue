@@ -10,8 +10,7 @@
       :api="demoListApi"
       showIndexColumn
       showCheckboxColumn
-      :border="border"
-      @columns-change="handleColumnChange">
+      :border="border">
       <template #address="{label,prop}">
         <el-table-column
           :label="label"
@@ -85,11 +84,6 @@ export default defineComponent({
       border.value = !border.value
     }
 
-    // todo
-    function handleColumnChange() {
-      // do something
-    }
-
     return {
       tableRef,
       columns: getBasicColumns(),
@@ -100,7 +94,6 @@ export default defineComponent({
       toggleStripe,
       toggleLoading,
       toggleBorder,
-      handleColumnChange,
       demoListApi,
     }
   },

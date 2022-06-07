@@ -1,4 +1,10 @@
-import type { ElePagination, EleTable, EleTableColumn, EleButton, EleActionPopconfirmAction } from '@/components/ElementPlus'
+import type {
+  ElePagination,
+  EleTable,
+  EleTableColumn,
+  EleButton,
+  EleActionPopconfirmAction
+} from '@/components/ElementPlus'
 import type { FormActionType, FormProps } from '@/components/Form'
 import type { MessageBoxOptions } from '@/hooks/web/useMessage'
 
@@ -11,23 +17,99 @@ export interface TableCustomRecord<T = Recordable> {
   index?: number
 }
 
+/**
+ * 列排序的回调结果
+ *
+ * Column sort callback result
+ */
 export interface ColumnSorterResult {
+  /**
+   * 当前列数据
+   *
+   * Column data
+   */
   column: EleTableColumn
+  /**
+   * 排序
+   *
+   * Order
+   */
   order: ColumnSortOrder
+  /**
+   * Prop 字段
+   *
+   * Prop
+   */
   prop: string
 }
 
+/**
+ * 请求接口数据函数支持的参数
+ *
+ * Parameters supported by the request interface data function
+ */
 export interface FetchParams {
+  /**
+   * 当前页码
+   *
+   * Current page
+   */
+  page?: number,
+  /**
+   * 搜索参数
+   *
+   * Search params
+   */
   searchInfo?: Recordable
+  /**
+   * 排序参数
+   *
+   * Sort params
+   */
   sortInfo?: Recordable
+  /**
+   * 筛选参数
+   *
+   * Filter params
+   */
   filterInfo?: Recordable
 }
 
+/**
+ * 获取表格参数
+ *
+ * Get columns params
+ */
 export interface GetColumnsParams {
+  /**
+   * 是否忽略索引列
+   *
+   * whether to ignore index column
+   */
   ignoreIndex?: boolean
+  /**
+   * 是否忽略操作列
+   *
+   * whether to ignore action column
+   */
   ignoreAction?: boolean
+  /**
+   * 是否忽略复选框列
+   *
+   * whether to ignore checkbox column
+   */
   ignoreCheckbox?: boolean
+  /**
+   * 是否忽略展开列
+   *
+   * whether to ignore expand column
+   */
   ignoreExpand?: boolean
+  /**
+   * 是否需要重新排序
+   *
+   * Does it need to be reordered
+   */
   sort?: boolean
 }
 
@@ -101,6 +183,10 @@ export interface TableActionMethods {
    * 手动排序表格。 参数 prop 属性指定排序列，order 指定排序顺序。
    */
   sort: (prop: string, order: string) => void
+}
+
+export type UseTableMethod = TableActionMethods & {
+  getFormRef: () => FormActionType
 }
 
 /**
@@ -193,12 +279,6 @@ export interface BasicTableProps extends EleTable {
    * Setting item
    */
   tableSetting?: TableSetting
-  /**
-   * 设置中列的更改时触发回调
-   *
-   * Trigger callback when a column in settings changes
-   */
-  onColumnsChange?: (data: TableColumnChange) => void
   // main
   /**
    * 表格数据源，当存在 api 函数时，可为空
@@ -243,23 +323,23 @@ export interface BasicTableProps extends EleTable {
    */
   afterFetch?: (...arg: any) => Promise<any>
   /**
-   * 搜索时的请求
+   * 搜索时的参数过滤
    *
-   * request when searching
+   * Parameter filtering when searching
    */
-  searchFetch?: (...arg: any) => Promise<any>
+  searchFn?: (...arg: any) => Recordable | Recordable[]
   /**
-   * 搜索时的请求
+   * 排序时的参数过滤
    *
-   * request when searching
+   * Parameter filtering when sorting
    */
-  sortFn?: (...arg: any) => Recordable[]
+  sortFn?: (...arg: any) => Recordable | Recordable[]
   /**
-   * 搜索时的请求
+   * 筛选时的参数过滤
    *
-   * request when searching
+   * Parameter filtering when filtering
    */
-  filterFn?: (...arg: any) => Recordable[]
+  filterFn?: (...arg: any) => Recordable | Recordable[]
   /**
    * 是否立即请求
    *
@@ -422,32 +502,6 @@ export interface scopeInfo {
    * Current index
    */
   $index: number
-}
-
-/**
- * 列改变时的返回数据
- *
- * Return data when column is changed
- */
-export type TableColumnChange = {
-  /**
-   * 列 Prop
-   *
-   * Column prop
-   */
-  prop: string
-  /**
-   * 是否固定
-   *
-   * Is it fixed
-   */
-  fixed: boolean | 'left' | 'right' | undefined
-  /**
-   * 是否显示
-   *
-   * whether to display
-   */
-  visible: boolean
 }
 
 /**

@@ -138,7 +138,7 @@ export default defineComponent({
       useSearchForm: true,
       border: true,
       pagination: { pageSize: 5 },
-      searchFetch(info) {
+      searchFn(info) {
         return info
       },
     })

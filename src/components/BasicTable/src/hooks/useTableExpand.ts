@@ -1,49 +1,77 @@
-import type { ComputedRef, Ref } from 'vue'
+import type { ComputedRef } from 'vue'
 import type { BasicTableProps } from '../typing'
-import { computed, unref, ref, toRaw } from 'vue'
-import { ROW_KEY } from '../const'
 
+import { computed, unref, ref, toRaw } from 'vue'
+import { warn } from '@/utils/log'
+
+/**
+ * 处理展开表格
+ *
+ * Handle expand table
+ * @param propsRef
+ * @param tableData
+ * @param emit
+ */
 export function useTableExpand(
   propsRef: ComputedRef<BasicTableProps>,
-  tableData: Ref<Recordable[]>,
-  emit: EmitType
+  getDataSourceRef: ComputedRef<Recordable[]>,
+  getRowKey: ComputedRef<string | undefined>,
 ) {
+  /**
+   * 展开的key
+   *
+   * Expand keys
+   */
   const expandRowKeys = ref<string[]>([])
 
-  const getAutoCreateKey = computed(() => {
-    return unref(propsRef).autoCreateKey && !unref(propsRef).rowKey
-  })
-
-  const getRowKey = computed(() => {
-    const { rowKey } = unref(propsRef)
-    return unref(getAutoCreateKey) ? ROW_KEY : rowKey
-  })
-
-  const getExpandOption = computed(() => {
+  /**
+   * 获取展开选项
+   *
+   * Get expand option
+   */
+  const getExpandOptions = computed(() => {
     return {
       expandRowKeys: unref(expandRowKeys),
-      onExpandChange: (row, expand) => {
-        if (expand) {
-          expandRowKeys.value = [...unref(expandRowKeys), ...getAllKeys([row])]
-        } else {
-          const rowKeys = getAllKeys([row])
-          expandRowKeys.value = unref(expandRowKeys).finter(k => rowKeys.includes(k))
-        }
-        emit('expand-change', row, expand)
-      },
     }
   })
 
+  /**
+   * 展开全部
+   *
+   * Expand all
+   */
   function expandAll() {
-    const keys = getAllKeys()
+    const keys = getTableDataKeys()
     expandRowKeys.value = keys
   }
 
-  function getAllKeys(data?: Recordable[]) {
+  /**
+   * 收起全部
+   *
+   * Collapse all
+   */
+  function collapseAll() {
+    expandRowKeys.value = []
+  }
+
+  /**
+   * 获取表格数据 key
+   *
+   * Get table data keys
+   * @param data Recordable[]
+   */
+  function getTableDataKeys(data?: Recordable[]) {
     const keys: string[] = []
     const { childrenColumnName } = unref(propsRef)
-    toRaw(data || unref(tableData)).forEach((item) => {
-      keys.push(item[unref(getRowKey) as string])
+    const keyName = unref(getRowKey)
+    if (!keyName) {
+      warn('cannot execute expand/collapse, "rowKey" must exist')
+      return
+    }
+
+    toRaw(data || unref(getDataSourceRef)).forEach((item) => {
+      keys.push(item[keyName as string])
+
       const children = item[childrenColumnName || 'children']
       if (children?.length) {
         keys.push(...getAllKeys(children))
@@ -53,9 +81,5 @@ export function useTableExpand(
     return keys
   }
 
-  function collapseAll() {
-    expandRowKeys.value = []
-  }
-
-  return { getExpandOption, expandAll, collapseAll }
+  return { getExpandOptions, expandAll, collapseAll }
 }

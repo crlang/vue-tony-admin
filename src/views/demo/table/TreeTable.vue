@@ -1,6 +1,8 @@
 <template>
   <PageWrapper>
-    <BasicTable @register="register">
+    <BasicTable
+      @register="register"
+      @expand-change="handleExpand">
       <template #toolbar>
         <el-button
           type="primary"
@@ -14,15 +16,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, toRaw } from 'vue'
 import { ElButton } from 'element-plus'
 import { BasicTable, useTable } from '@/components/BasicTable'
 import { getBasicColumns } from './data'
 import { treeDemoListApi } from '@/api/demo/tree'
+import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
   components: { ElButton, BasicTable },
   setup() {
+    const { createMessage } = useMessage()
+
     const [register, { expandAll, collapseAll }] = useTable({
       title: '树形表格',
       titleHelpMessage: '树形组件不能和序列号列同时存在',
@@ -30,9 +35,16 @@ export default defineComponent({
       api: treeDemoListApi,
       searchInfo: { type: 2 },
       rowKey: 'code',
+      onExpandChange: (row, rowKey) => {
+        console.log('555', row, rowKey)
+      },
     })
 
-    return { register, expandAll, collapseAll }
+    function handleExpand(row, expand) {
+      createMessage.info(`点击了 - ${toRaw(row)?.id} - ${expand}`)
+    }
+
+    return { register, expandAll, collapseAll, handleExpand }
   },
 })
 </script>

@@ -50,13 +50,11 @@ export default defineComponent({
       columns,
       rowKey: 'id',
       showTableSetting: true,
-      onSelectionChange: () => {
+      onSelectionChange: (selection) => {
+        console.log('selection', selection)
         // do something
       },
       showCheckboxColumn: true,
-      onColumnsChange: () => {
-        // do something
-      },
     })
     function changeLoading() {
       setLoading(true)
@@ -65,6 +63,7 @@ export default defineComponent({
       }, 1000)
     }
     function changeColumns() {
+      // setColumns(['id', 'name', 'address'])
       setColumns(getBasicShortColumns())
     }
     function reloadTable() {

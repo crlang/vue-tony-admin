@@ -6,20 +6,25 @@
           type="primary"
           @click="getFormValues">获取表单数据</el-button>
       </template>
+      <template #form-field10="{ model, field }">
+        <el-input
+          v-model:modelValue="model[field]"
+          placeholder="自定义slot" />
+      </template>
     </BasicTable>
   </PageWrapper>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ElButton } from 'element-plus'
+import { ElButton, ElInput } from 'element-plus'
 import { BasicTable, useTable } from '@/components/BasicTable'
 import { getBasicColumns, getFormConfig } from './data'
 import { demoListApi } from '@/api/demo/table'
 import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
-  components: { ElButton, BasicTable },
+  components: { ElButton, ElInput, BasicTable },
   setup() {
     const [registerTable, { getFormRef }] = useTable({
       title: '开启搜索区域',
