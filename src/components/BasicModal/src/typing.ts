@@ -122,7 +122,7 @@ export interface ModalInstanceMethods {
  *
  * Instance Supported Methods
  */
-export interface ReturnMethods extends ModalInstanceMethods {
+export interface ModalActionMethods extends ModalInstanceMethods {
   /**
    * 打开弹窗
    *
@@ -193,7 +193,7 @@ export interface ReturnInnerMethods extends ModalInstanceMethods {
  *
  * Define instance content
  */
-export type UseModalReturnType = [RegisterFn, ReturnMethods]
+export type UseModalReturnType = [RegisterFn, ModalActionMethods]
 
 /**
  * 定义内部实例返回内容

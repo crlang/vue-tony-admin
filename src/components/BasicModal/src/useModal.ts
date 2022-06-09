@@ -2,7 +2,7 @@ import type {
   UseModalReturnType,
   ModalInstanceMethods,
   BasicProps,
-  ReturnMethods,
+  ModalActionMethods,
   ReturnInnerMethods,
   UseModalInnerReturnType,
 } from './typing'
@@ -74,7 +74,7 @@ export function useModal(): UseModalReturnType {
   const getInstance = () => {
     const instance = unref(modal)
     if (!instance) {
-      error('useModal instance is undefined!')
+      error('The modal instance has not been obtained, please make sure the instance is rendered when performing the instance operation!')
     }
     return instance
   }
@@ -84,7 +84,7 @@ export function useModal(): UseModalReturnType {
    *
    * Define instance methods
    */
-  const methods: ReturnMethods = {
+  const methods: ModalActionMethods = {
     setModalProps: (props: Partial<BasicProps>): void => {
       getInstance()?.setModalProps(props)
     },

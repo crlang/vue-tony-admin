@@ -74,12 +74,7 @@ export default defineComponent({
     const { prefixCls } = useDesign('basic-modal')
     const fullscreenRef = ref(false)
 
-    /**
-     * 定义内部实例方法
-     *
-     * Define inner instance func
-     */
-    const modalInstance: ModalInstanceMethods = {
+    const modalMethod: ModalInstanceMethods = {
       setModalProps,
       emitVisible: undefined,
       redoModalHeight: () => {
@@ -97,7 +92,7 @@ export default defineComponent({
      * Get current instance
      */
     const instance = getCurrentInstance()
-    instance && emit('register', modalInstance, instance.uid)
+    instance && emit('register', modalMethod, instance.uid)
 
     /**
      * 获取更新 Props
@@ -249,7 +244,7 @@ export default defineComponent({
         emit('visible-change', v)
         emit('update:modelValue', v)
 
-        instance && modalInstance.emitVisible?.(v, instance.uid)
+        instance && modalMethod.emitVisible?.(v, instance.uid)
 
         nextTick(() => {
           // 如果 scrollTop 为 true，弹窗显示时会尝试滚动内容到顶部

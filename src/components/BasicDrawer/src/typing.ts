@@ -95,7 +95,7 @@ export interface DrawerInstanceMethods {
  *
  * Instance Supported Methods
  */
-export interface ReturnMethods extends DrawerInstanceMethods {
+export interface DrawerActionMethods extends DrawerInstanceMethods {
   /**
    * 打开抽屉
    *
@@ -160,7 +160,7 @@ export interface ReturnInnerMethods extends DrawerInstanceMethods {
  *
  * Define instance content
  */
-export type UseDrawerReturnType = [RegisterFn, ReturnMethods]
+export type UseDrawerReturnType = [RegisterFn, DrawerActionMethods]
 
 /**
  * 定义内部实例返回内容

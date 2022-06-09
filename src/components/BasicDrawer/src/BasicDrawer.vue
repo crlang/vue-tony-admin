@@ -100,22 +100,11 @@ export default defineComponent({
     const { prefixCls } = useDesign('basic-drawer')
 
     /**
-     * 定义内部实例方法
-     *
-     * Define inner instance func
-     */
-    const drawerInstance: DrawerInstanceMethods = {
-      setDrawerProps: setDrawerProps,
-      emitVisible: undefined,
-    }
-
-    /**
-     * 获取并注册当前实例
+     * 获取当前实例
      *
      * Get current instance
      */
     const instance = getCurrentInstance()
-    instance && emit('register', drawerInstance, instance.uid)
 
     /**
      * 获取更新 Props
@@ -197,6 +186,17 @@ export default defineComponent({
     function handleOk() {
       emit('confirm')
     }
+    /**
+     * 定义实例方法
+     *
+     * Define instance func
+     */
+    const drawerMethods: DrawerInstanceMethods = {
+      setDrawerProps: setDrawerProps,
+      emitVisible: undefined,
+    }
+
+    instance && emit('register', drawerMethods)
 
     watch(
       () => props.modelValue,
@@ -212,7 +212,7 @@ export default defineComponent({
         nextTick(() => {
           emit('visible-change', visible)
           emit('update:modelValue', visible)
-          instance && drawerInstance.emitVisible?.(visible, instance.uid)
+          instance && drawerMethods.emitVisible?.(visible, instance.uid)
         })
       }
     )

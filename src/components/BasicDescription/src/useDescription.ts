@@ -1,4 +1,4 @@
-import type { BasicProps, DescInstance, UseDescReturnType } from './typing'
+import type { BasicProps, DescActionMethods, UseDescReturnType } from './typing'
 
 import { ref, getCurrentInstance, unref } from 'vue'
 
@@ -15,7 +15,7 @@ export function useDescription(props?: Partial<BasicProps>): UseDescReturnType {
   if (!getCurrentInstance()) {
     error('useDescription() can only be used inside setup() or functional components!')
   }
-  const desc = ref<Nullable<DescInstance>>(null)
+  const desc = ref<Nullable<DescActionMethods>>(null)
   const loaded = ref(false)
   /**
    * 注册实例
@@ -23,7 +23,7 @@ export function useDescription(props?: Partial<BasicProps>): UseDescReturnType {
    * Register instance
    * @param instance Description instance
    */
-  function register(instance: DescInstance) {
+  function register(instance: DescActionMethods) {
     if (unref(loaded) && isProdMode()) {
       return
     }
@@ -32,7 +32,7 @@ export function useDescription(props?: Partial<BasicProps>): UseDescReturnType {
     loaded.value = true
   }
 
-  const methods: DescInstance = {
+  const methods: DescActionMethods = {
     /**
      * 设置描述props
      *

@@ -69,11 +69,11 @@ export interface BasicProps extends EleDescriptions {
 }
 
 /**
- * 描述实例
+ * 实例支持的方法
  *
- * Description instance
+ * Instance Supported Methods
  */
-export interface DescInstance {
+export interface DescActionMethods {
   setDescProps(descProps: Partial<BasicProps>): void
 }
 
@@ -82,11 +82,11 @@ export interface DescInstance {
  *
  * Register description instance
  */
-export type Register = (descInstance: DescInstance) => void
+export type Register = (descInstance: DescActionMethods) => void
 
 /**
  * 定义实例内容
  *
  * Define instance content
  */
-export type UseDescReturnType = [Register, DescInstance]
+export type UseDescReturnType = [Register, DescActionMethods]

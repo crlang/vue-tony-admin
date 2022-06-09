@@ -1,5 +1,5 @@
 <script lang="tsx">
-import type { BasicProps, DescInstance } from './typing'
+import type { BasicProps, DescActionMethods } from './typing'
 import type { CSSProperties } from 'vue'
 import type { BasicProps as CollapseBasicProps } from '@/components/CollapseContainer'
 
@@ -164,12 +164,13 @@ export default defineComponent({
       )
     }
 
-    const methods: DescInstance = {
+    const descMethods: DescActionMethods = {
       setDescProps,
     }
 
-    emit('register', methods)
-    expose(methods)
+    expose(descMethods)
+
+    emit('register', descMethods)
 
     return () => (unref(useWrapper) ? renderContainer() : renderDesc())
   },
