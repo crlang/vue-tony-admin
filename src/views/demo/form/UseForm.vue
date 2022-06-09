@@ -30,7 +30,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
-import { BasicForm, useForm } from '@/components/Form'
+import { BasicForm, useForm } from '@/components/BasicForm'
 import { CollapseContainer } from '@/components/CollapseContainer'
 import { useMessage } from '@/hooks/web/useMessage'
 import { UseSchemas as schemas } from './data'

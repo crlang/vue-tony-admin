@@ -102,7 +102,7 @@ import { ElLoading, ElTable, ElTableColumn, ElConfigProvider } from 'element-plu
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 import { omit, isString } from 'lodash-es'
 
-import { BasicForm, useForm } from '@/components/Form'
+import { BasicForm, useForm } from '@/components/BasicForm'
 import { PageWrapperFixedHeightKey } from '@/components/PageWrapper'
 import { useDesign } from '@/hooks/web/useDesign'
 import { warn } from '@/utils/log'

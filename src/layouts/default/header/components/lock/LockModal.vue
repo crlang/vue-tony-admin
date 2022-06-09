@@ -37,7 +37,7 @@ import { BasicModal, useModalInner } from '@/components/BasicModal'
 import { useUserStore } from '@/store/modules/user'
 import { useLockStore } from '@/store/modules/lock'
 import headerImg from '@/assets/images/header.jpg'
-import { BasicForm, useForm } from '@/components/Form'
+import { BasicForm, useForm } from '@/components/BasicForm'
 
 export default defineComponent({
   name: 'LockModal',

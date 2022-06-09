@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { BasicForm, useForm } from '@/components/Form'
+import { BasicForm, useForm } from '@/components/BasicForm'
 import { CollapseContainer } from '@/components/CollapseContainer'
 import { StrengthMeter } from '@/components/StrengthMeter'
 import { useMessage } from '@/hooks/web/useMessage'

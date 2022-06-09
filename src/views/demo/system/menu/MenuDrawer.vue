@@ -18,7 +18,7 @@
 <script lang="ts">
 import { defineComponent, ref, computed, unref } from 'vue'
 
-import { BasicForm, useForm } from '@/components/Form'
+import { BasicForm, useForm } from '@/components/BasicForm'
 import { BasicDrawer, useDrawerInner } from '@/components/BasicDrawer'
 import { IconPicker } from '@/components/IconPicker'
 

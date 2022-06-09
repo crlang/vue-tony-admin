@@ -1,4 +1,4 @@
-import { FormSchema } from '@/components/Form'
+import { FormSchema } from '@/components/BasicForm'
 
 export const step1Schemas: FormSchema[] = [
   {

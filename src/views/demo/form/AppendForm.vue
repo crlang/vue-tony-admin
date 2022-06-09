@@ -21,7 +21,7 @@
 import { defineComponent, ref } from 'vue'
 import { ElButton } from 'element-plus'
 
-import { BasicForm, useForm } from '@/components/Form'
+import { BasicForm, useForm } from '@/components/BasicForm'
 import { CollapseContainer } from '@/components/CollapseContainer'
 
 export default defineComponent({

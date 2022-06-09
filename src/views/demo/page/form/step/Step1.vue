@@ -29,7 +29,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElInput, ElSelect, ElOption, ElDivider } from 'element-plus'
-import { BasicForm, useForm } from '@/components/Form'
+import { BasicForm, useForm } from '@/components/BasicForm'
 import { step1Schemas } from './data'
 
 export default defineComponent({

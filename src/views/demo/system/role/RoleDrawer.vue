@@ -25,7 +25,7 @@
 import { defineComponent, ref, computed, unref } from 'vue'
 import { ElTree } from 'element-plus'
 
-import { BasicForm, useForm } from '@/components/Form'
+import { BasicForm, useForm } from '@/components/BasicForm'
 import { BasicDrawer, useDrawerInner } from '@/components/BasicDrawer'
 import { getMenuList } from '@/api/demo/system'
 

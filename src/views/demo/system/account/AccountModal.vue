@@ -20,7 +20,7 @@
 <script lang="ts">
 import { defineComponent, ref, computed, unref } from 'vue'
 import { BasicModal, useModalInner } from '@/components/BasicModal'
-import { BasicForm, useForm } from '@/components/Form'
+import { BasicForm, useForm } from '@/components/BasicForm'
 import { ApiSelect } from '@/components/ApiSelect'
 
 import { getAllRoleList } from '@/api/demo/system'

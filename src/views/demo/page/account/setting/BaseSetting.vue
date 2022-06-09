@@ -31,7 +31,7 @@
 <script lang="ts">
 import { computed, defineComponent, onMounted } from 'vue'
 import { ElRow, ElCol, ElButton } from 'element-plus'
-import { BasicForm, useForm } from '@/components/Form'
+import { BasicForm, useForm } from '@/components/BasicForm'
 import { CollapseContainer } from '@/components/CollapseContainer'
 
 import { useMessage } from '@/hooks/web/useMessage'

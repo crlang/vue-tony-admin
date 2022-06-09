@@ -5,7 +5,7 @@ import type {
   EleButton,
   EleActionPopconfirmAction
 } from '@/components/ElementPlus'
-import type { FormActionType, FormProps } from '@/components/Form'
+import type { FormActionType, FormProps } from '@/components/BasicForm'
 import type { MessageBoxOptions } from '@/hooks/web/useMessage'
 
 import { RoleEnum } from '@/enums/roleEnum'

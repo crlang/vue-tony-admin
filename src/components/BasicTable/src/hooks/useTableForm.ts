@@ -1,5 +1,5 @@
 import type { ComputedRef, Slots } from 'vue'
-import type { FormProps } from '@/components/Form'
+import type { FormProps } from '@/components/BasicForm'
 import type { BasicProps, FetchParams } from '../typing'
 
 import { unref, computed } from 'vue'

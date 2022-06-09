@@ -11,7 +11,7 @@
 <script lang="ts">
 import { defineComponent, ref, computed, unref } from 'vue'
 import { BasicModal, useModalInner } from '@/components/BasicModal'
-import { BasicForm, useForm } from '@/components/Form'
+import { BasicForm, useForm } from '@/components/BasicForm'
 import { formSchema } from './data'
 import { getDeptList } from '@/api/demo/system'
 

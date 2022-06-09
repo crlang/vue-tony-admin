@@ -34,7 +34,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { ElButton } from 'element-plus'
-import { BasicForm, FormActionType, FormProps } from '@/components/Form'
+import { BasicForm, FormActionType, FormProps } from '@/components/BasicForm'
 import { CollapseContainer } from '@/components/CollapseContainer'
 import { useMessage } from '@/hooks/web/useMessage'
 

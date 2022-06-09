@@ -1,6 +1,6 @@
 import type { WatchStopHandle } from 'vue'
 import type { DynamicProps } from '#/utils'
-import type { FormActionType } from '@/components/Form'
+import type { FormActionType } from '@/components/BasicForm'
 import type { ElePagination } from '@/components/ElementPlus'
 import type { BasicProps, TableActionMethods, FetchParams, BasicColumn, GetColumnsParams, UseTableMethod } from '../typing'
 

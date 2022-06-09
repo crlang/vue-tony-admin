@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { BasicForm, useForm } from '@/components/Form'
+import { BasicForm, useForm } from '@/components/BasicForm'
 import { ElRow, ElCol } from 'element-plus'
 import { defineComponent } from 'vue'
 import { schemas } from './data'

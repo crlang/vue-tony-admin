@@ -65,7 +65,7 @@
 import { defineComponent } from 'vue'
 import { ElTag } from 'element-plus'
 import Icon from '@/components/Icon'
-import { BasicForm } from '@/components/Form'
+import { BasicForm } from '@/components/BasicForm'
 import { searchList as list, schemas } from './data'
 import { List, ListItem } from '@/components/List'
 import { useMessage } from '@/hooks/web/useMessage'

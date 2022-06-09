@@ -1,4 +1,4 @@
-import { FormProps, FormSchema } from '@/components/Form'
+import { FormProps, FormSchema } from '@/components/BasicForm'
 import { BasicColumn } from '@/components/BasicTable'
 import { ElTag } from 'element-plus'
 import { h } from 'vue'

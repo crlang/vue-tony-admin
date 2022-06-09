@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { BasicForm, useForm } from '@/components/Form'
+import { BasicForm, useForm } from '@/components/BasicForm'
 import { ElButton, ElCard } from 'element-plus'
 import { defineComponent, ref } from 'vue'
 import PersonTable from './PersonTable.vue'

@@ -19,7 +19,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElAlert, ElDescriptions, ElDescriptionsItem, ElDivider } from 'element-plus'
-import { BasicForm, useForm } from '@/components/Form'
+import { BasicForm, useForm } from '@/components/BasicForm'
 import { step2Schemas } from './data'
 
 export default defineComponent({
