@@ -186,9 +186,9 @@ export interface TableActionMethods {
    */
   updateTableDataRecord: (rowKey: string | number, record: Recordable) => Recordable | void
   /**
-   * 根据 key 删除指定行记录
+   * 根据 rowKey 删除指定行记录
    *
-   * Delete the specified row record according to the key
+   * Delete the specified row record according to the rowKey
    */
   deleteTableDataRecord: (rowKey: string | number) => Recordable | void
   /**
@@ -200,9 +200,9 @@ export interface TableActionMethods {
    */
   insertTableDataRecord: (record: Recordable, index?: number) => Recordable | void
   /**
-   * 根据 key 查找所在行记录
+   * 根据 rowKey 查找所在行记录
    *
-   * Find the row record based on the key
+   * Find the row record based on the rowKey
    */
   findTableDataRecord: (rowKey: string | number) => Recordable | void
   /**
@@ -231,7 +231,7 @@ export interface TableActionMethods {
    */
   expandAll: () => void
   /**
-   * 收起全部
+   * 收起全部-树形表格
    *
    * Collapse all
    */
@@ -344,12 +344,6 @@ export interface TableSetting {
    */
   size?: boolean
   /**
-   * 设置列
-   *
-   * Change column
-   */
-  setting?: boolean
-  /**
    * 全屏
    *
    * full screen
@@ -419,31 +413,31 @@ export interface BasicProps extends EleTable {
    *
    * Request list before request
    */
-  beforeFetch?: (...arg: any) => Promise<any>
+  beforeFetchFn?: (data: Recordable) => Recordable
   /**
    * 请求列表之后请求
    *
    * Request list after request
    */
-  afterFetch?: (...arg: any) => Promise<any>
+  afterFetchFn?: (data: Recordable[]) => Recordable[]
   /**
    * 搜索时的参数过滤
    *
    * Parameter filtering when searching
    */
-  searchFn?: (...arg: any) => Recordable | Recordable[]
+  searchFn?: (data: Recordable) => Recordable
   /**
    * 排序时的参数过滤
    *
    * Parameter filtering when sorting
    */
-  sortFn?: (...arg: any) => Recordable | Recordable[]
+  sortFn?: (data: ColumnSorterResult) => Recordable
   /**
    * 筛选时的参数过滤
    *
    * Parameter filtering when filtering
    */
-  filterFn?: (...arg: any) => Recordable | Recordable[]
+  filterFn?: (data: Recordable[]) => Recordable[]
   /**
    * 是否立即请求
    *

@@ -102,21 +102,21 @@ export const customProps = {
     default: true,
   },
   /**
-   * 请求列表之前请求
+   * 请求之前对参数进行处理
    *
-   * Request list before request
+   * Handle parameters before requesting
    */
   beforeFetch: {
-    type: Function as PropType<(...arg: any[]) => Promise<any>>,
+    type: Function as PropType<(data: Recordable) => any>,
     default: null,
   },
   /**
-   * 请求列表之后请求
+   * 请求之后对返回值进行处理
    *
-   * Request list after request
+   * Process the return value after the request
    */
   afterFetch: {
-    type: Function as PropType<(...arg: any[]) => Promise<any>>,
+    type: Function as PropType<(data: Recordable) => any>,
     default: null,
   },
   /**

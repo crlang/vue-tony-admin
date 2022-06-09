@@ -282,7 +282,7 @@ export function useDataSource(
    * @param opt FetchParams
    */
   async function fetch(opt?: FetchParams) {
-    const { api, searchInfo, fetchSetting, beforeFetch, afterFetch, useSearchForm, pagination } =
+    const { api, searchInfo, fetchSetting, beforeFetchFn, afterFetchFn, useSearchForm, pagination } =
       unref(propsRef)
 
     // api 必须为函数
@@ -318,8 +318,8 @@ export function useDataSource(
 
       // 前置请求，参数随服务端内容变化而变化
       // Pre-request, the parameters change with the content of the server
-      if (beforeFetch && isFunction(beforeFetch)) {
-        params = (await beforeFetch(params)) || params
+      if (beforeFetchFn && isFunction(beforeFetchFn)) {
+        params = beforeFetchFn(params) || params
       }
 
       const res = await api(params)
@@ -345,8 +345,8 @@ export function useDataSource(
 
       // 结果作为参数，第二次请求才是正确的结果
       // The result is used as a parameter, and the second request is the correct result
-      if (afterFetch && isFunction(afterFetch)) {
-        resultItems = (await afterFetch(resultItems)) || resultItems
+      if (afterFetchFn && isFunction(afterFetchFn)) {
+        resultItems = afterFetchFn(resultItems) || resultItems
       }
       dataSourceRef.value = resultItems
       setPagination({
