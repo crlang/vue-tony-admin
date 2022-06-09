@@ -291,7 +291,7 @@ export default defineComponent({
      */
     const getBindValues = computed(() => {
       const opts = {
-        ...unref(attrs),
+        ...attrs,
         ...getBasicEmits,
         ...unref(getProps),
         rowKey: unref(getRowKey),

@@ -61,7 +61,7 @@ export default defineComponent({
      * Bind description props
      */
     const getBindValues = computed(() => {
-      const opts = { ...unref(attrs), ...unref(getProps) }
+      const opts = { ...attrs, ...unref(getProps) }
       // 绑定组件Porps前，移除自定义附加项
       // Before binding component Porps, remove custom add-ons
       const customOpts = Object.keys(customProps)
