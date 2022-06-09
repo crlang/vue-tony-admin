@@ -53,7 +53,9 @@
           v-for="column in columns"
           :key="column.prop">
           <template v-if="column.customRender">
-            <ElTableColumn v-bind="column">
+            <ElTableColumn
+              v-bind="column"
+              :customRender="null">
               <template #default="scope">
                 <TableRender
                   :customRender="column.customRender"
