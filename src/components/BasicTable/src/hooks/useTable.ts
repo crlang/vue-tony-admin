@@ -1,26 +1,21 @@
-import type {
-  BasicTableProps,
-  TableActionMethods,
-  FetchParams,
-  BasicColumn,
-  GetColumnsParams,
-  UseTableMethod
-} from '../typing'
+import type { WatchStopHandle } from 'vue'
 import type { DynamicProps } from '#/utils'
 import type { FormActionType } from '@/components/Form'
-import type { WatchStopHandle } from 'vue'
 import type { ElePagination } from '@/components/ElementPlus'
+import type { BasicProps, TableActionMethods, FetchParams, BasicColumn, GetColumnsParams, UseTableMethod } from '../typing'
+
+import { ref, onUnmounted, unref, watch } from 'vue'
 
 import { getDynamicProps } from '@/utils'
-import { ref, onUnmounted, unref, watch } from 'vue'
 import { isProdMode } from '@/utils/env'
 import { error } from '@/utils/log'
+
 /**
  * 定义使用实例
  *
  * Define use instance
  */
-export function useTable(tableProps?: Partial<DynamicProps<BasicTableProps>>): [
+export function useTable(tableProps?: Partial<DynamicProps<BasicProps>>): [
   (instance: TableActionMethods, formInstance: UseTableMethod) => void,
   UseTableMethod,
 ] {
@@ -29,7 +24,13 @@ export function useTable(tableProps?: Partial<DynamicProps<BasicTableProps>>): [
   const formRef = ref<Nullable<UseTableMethod>>(null)
 
   let stopWatch: WatchStopHandle
-
+  /**
+   * 注册实例
+   *
+   * Register instance
+   * @param instance Table instance
+   * @param formInstance Form instance
+   */
   function register(instance: TableActionMethods, formInstance: UseTableMethod) {
     isProdMode() &&
       onUnmounted(() => {
@@ -41,8 +42,8 @@ export function useTable(tableProps?: Partial<DynamicProps<BasicTableProps>>): [
 
     tableRef.value = instance
     formRef.value = formInstance
-    tableProps && instance.setTableProps(getDynamicProps(tableProps))
     loadedRef.value = true
+    tableProps && instance.setTableProps(getDynamicProps(tableProps))
 
     stopWatch?.()
 
@@ -57,17 +58,26 @@ export function useTable(tableProps?: Partial<DynamicProps<BasicTableProps>>): [
       }
     )
   }
-
-  function getTableInstance(): TableActionMethods {
-    const table = unref(tableRef)
-    if (!table) {
+  /**
+   * 获取实例
+   *
+   * Get instance
+   */
+  function getTableInstance() {
+    const instance = unref(tableRef)
+    if (!instance) {
       error(
-        'The table instance has not been obtained yet, please make sure the table is presented when performing the table operation!'
+        'The table instance has not been obtained, please make sure the instance is rendered when performing the instance operation!'
       )
     }
-    return table as TableActionMethods
+    return instance
   }
 
+  /**
+   * 定义实例方法
+   *
+   * Define instance methods
+   */
   const methods: TableActionMethods & {
     getFormRef: () => FormActionType;
   } = {
@@ -104,7 +114,7 @@ export function useTable(tableProps?: Partial<DynamicProps<BasicTableProps>>): [
     reload: async (opt?: FetchParams) => {
       getTableInstance().reload(opt)
     },
-    setTableProps: (props: Partial<BasicTableProps>) => {
+    setTableProps: (props: Partial<BasicProps>) => {
       getTableInstance().setTableProps(props)
     },
     getColumns: ({ ignoreIndex = false }:GetColumnsParams = {}) => {

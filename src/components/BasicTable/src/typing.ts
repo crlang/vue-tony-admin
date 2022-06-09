@@ -113,44 +113,143 @@ export interface GetColumnsParams {
   sort?: boolean
 }
 
+/**
+ * 实例支持的方法
+ *
+ * Instance Supported Methods
+ */
 export interface TableActionMethods {
+  /**
+   * 更新表格props
+   *
+   * Set table props
+   */
+  setTableProps: (props: Partial<BasicProps>) => void
+  /**
+   * 获取表格列
+   *
+   * Get table columns
+   */
+  getColumns: (opt?: GetColumnsParams) => BasicColumn[]
+  /**
+   * 更新列，支持列数据或者prop字段集
+   *
+   * Set columns, Support column data or prop field set
+   */
+  setColumns: (columns: BasicColumn[] | string[]) => void
+  /**
+   * 获取缓存列
+   *
+   * Get cache columns
+   */
+  getCacheColumns: () => BasicColumn[]
+  /**
+   * 更新加载状态
+   *
+   * Set loading state
+   */
+  setLoading: (loading: boolean) => void
   /**
    * 重载表格数据
    *
    * Reload table data
    */
   reload: (opt?: FetchParams) => Promise<void>
-  setTableProps: (props: Partial<BasicTableProps>) => void
-  getColumns: (opt?: GetColumnsParams) => BasicColumn[]
-  setColumns: (columns: BasicColumn[] | string[]) => void
-  setLoading: (loading: boolean) => void
+  /**
+   * 处理表格数据
+   *
+   * Handling of tabular data
+   */
   getDataSource: <T = Recordable>() => T[]
+  /**
+   * 获取未处理的原始的接口数据
+   *
+   * Get unprocessed raw api data
+   */
   getRawDataSource: <T = Recordable>() => T
+  /**
+   * 更新表格数据
+   *
+   * Set table data
+   */
   setTableData: <T = Recordable>(values: T[]) => void
-  getCacheColumns: () => BasicColumn[]
-  redoHeight: () => void
-  setPagination: (info: Partial<ElePagination>) => void
-  getPagination: () => Partial<ElePagination> | boolean
-  getFormRef: () => FormActionType
-  expandAll: () => void
-  collapseAll: () => void
-  updateTableDataRecord: (rowKey: string | number, record: Recordable) => Recordable | void
-  deleteTableDataRecord: (rowKey: string | number) => Recordable | void
-  insertTableDataRecord: (record: Recordable, index?: number) => Recordable | void
-  findTableDataRecord: (rowKey: string | number) => Recordable | void
+  /**
+   * 更新表格数据，与 updateTableDataRecord 不同的是，这个可以单独修改某行的某个字段
+   *
+   * Update table data, unlike updateTableDataRecord, this one can modify a field of a row individually
+   */
   updateTableData: (index: number, prop: string, value: any) => Recordable
+  /**
+   * 根据 key 更新指定行的整行的记录，key必须存在
+   *
+   * Update the record of the entire row of the specified row according to the key, key must exist
+   */
+  updateTableDataRecord: (rowKey: string | number, record: Recordable) => Recordable | void
+  /**
+   * 根据 key 删除指定行记录
+   *
+   * Delete the specified row record according to the key
+   */
+  deleteTableDataRecord: (rowKey: string | number) => Recordable | void
+  /**
+   * 插入一条记录，如果索引存在，则插入索引的位置，否则插入最后的位置
+   *
+   * Insert a record, if the index exists, insert the position of the index, otherwise insert at the last position
+   * @param record 插入的记录
+   * @param index 索引
+   */
+  insertTableDataRecord: (record: Recordable, index?: number) => Recordable | void
+  /**
+   * 根据 key 查找所在行记录
+   *
+   * Find the row record based on the key
+   */
+  findTableDataRecord: (rowKey: string | number) => Recordable | void
+  /**
+   * 刷新高度-重新计算表格高度
+   *
+   * Redo height - recalculates table height
+   */
+  redoHeight: () => void
+  /**
+   * 更新分页信息
+   *
+   * Set pagination
+   * @param info ElePagination
+   */
+  setPagination: (info: Partial<ElePagination>) => void
+  /**
+   * 获取分页信息
+   *
+   * Get pagination
+   */
+  getPagination: () => Partial<ElePagination> | boolean
+  /**
+   * 展开全部-树形表格
+   *
+   * Expand all
+   */
+  expandAll: () => void
+  /**
+   * 收起全部
+   *
+   * Collapse all
+   */
+  collapseAll: () => void
 
   emit?: EmitType
+
   // Element Plus Table func
   // 请查看官方使用文档
   // Please check the official documentation
   /**
    * 用于多选表格，清空用户的选择
    */
+  clearSelection: () => void
   /**
    * 返回当前选中的行
    */
-  clearSelection: () => void
+  getSelectionRows: () => void
   /**
    * 用于多选表格，切换某一行的选中状态， 如果使用了第二个参数，则可直接设置这一行选中与否
    */
@@ -186,6 +285,11 @@ export interface TableActionMethods {
 }
 
 export type UseTableMethod = TableActionMethods & {
+  /**
+   * 获取表单实例方法
+   *
+   * Get form instance func
+   */
   getFormRef: () => FormActionType
 }
 
@@ -253,7 +357,7 @@ export interface TableSetting {
   fullScreen?: boolean
 }
 
-export interface BasicTableProps extends EleTable {
+export interface BasicProps extends EleTable {
   // header
   /**
    * 表格头部标题

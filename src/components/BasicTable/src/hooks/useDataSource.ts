@@ -1,5 +1,5 @@
 import type { ElePagination } from '@/components/ElementPlus'
-import type { BasicTableProps, FetchParams, ColumnSorterResult } from '../typing'
+import type { BasicProps, FetchParams, ColumnSorterResult } from '../typing'
 
 import { ref, unref, ComputedRef, computed, onMounted, watch, Ref, watchEffect, toRaw } from 'vue'
 import { isFunction, isBoolean, useTimeoutFn } from '@vueuse/core'
@@ -22,7 +22,7 @@ import { FETCH_SETTING, ROW_KEY, PAGE_SIZE } from '../const'
  * @param emit
  */
 export function useDataSource(
-  propsRef: ComputedRef<BasicTableProps>,
+  propsRef: ComputedRef<BasicProps>,
   tableData: Ref<Recordable[]>,
   paginationRef:ComputedRef<ElePagination>,
   setPagination: (info: Partial<ElePagination>) => void,
@@ -108,7 +108,6 @@ export function useDataSource(
     filters?: Partial<Recordable<string[]>>,
   ) {
     const { sortFn, filterFn } = unref(propsRef)
-    console.log('filters', filters)
     // 更新了分页
     // Pagination updated
     if (pagination) {
@@ -203,9 +202,9 @@ export function useDataSource(
   }
 
   /**
-   * 插入一条记录，如果索引存在，则插入索引的位置
+   * 插入一条记录，如果索引存在，则插入索引的位置，否则插入最后的位置
    *
-   * Insert a record, if the index exists, insert the position of the index
+   * Insert a record, if the index exists, insert the position of the index, otherwise insert at the last position
    * @param record 插入的记录
    * @param index 索引
    */
@@ -252,7 +251,7 @@ export function useDataSource(
    * 更新表格数据
    *
    * Set table data
-   * @param values
+   * @param values T[]
    */
   function setTableData<T = Recordable>(values: T[]) {
     dataSourceRef.value = values

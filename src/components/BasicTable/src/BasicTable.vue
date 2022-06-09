@@ -8,12 +8,12 @@
       :alwaysShowLines="1"
       v-bind="getFormProps"
       v-if="getBindValues.useSearchForm"
-      :tableAction="tableAction"
+      :tableAction="tableMethods"
       @register="registerForm"
       @advanced-change="redoHeight"
       @submit="handleSearchSubmit">
       <template
-        #[item]="data"
+        #[replaceFormSlotKey(item)]="data"
         v-for="item in getFormSlotKeys">
         <slot
           :name="item"
@@ -48,8 +48,7 @@
       <ElTable
         ref="tableElRef"
         v-bind="getBindValues"
-        v-loading="getBindValues.loading"
-        :rowClassName="getRowClassName">
+        v-loading="getLoading">
         <template
           v-for="column in columns"
           :key="column.prop">
@@ -85,9 +84,9 @@
         </template>
       </ElTable>
       <TablePagination
-        v-if="getBindValues.pagination !== false"
+        v-if="getPaginationProps !== false"
         :prefixCls="`${prefixCls}-pagination`"
-        v-bind="getBindValues.pagination"
+        v-bind="getPaginationProps"
         @page-change="handlePageChange"
         @size-change="handlePageSizeChange" />
     </el-config-provider>
@@ -95,34 +94,33 @@
 </template>
 
 <script lang="ts">
-import type { BasicTableProps, TableActionMethods } from './typing'
+import type { ElePagination } from '@/components/ElementPlus'
+import type { BasicProps, TableActionMethods } from './typing'
 
 import { defineComponent, ref, computed, unref, watchEffect, inject } from 'vue'
 import { ElLoading, ElTable, ElTableColumn, ElConfigProvider } from 'element-plus'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
+import { omit, isString } from 'lodash-es'
 
 import { BasicForm, useForm } from '@/components/Form'
 import { PageWrapperFixedHeightKey } from '@/components/PageWrapper'
+import { useDesign } from '@/hooks/web/useDesign'
+import { warn } from '@/utils/log'
 
 import { usePagination } from './hooks/usePagination'
 import { useColumns } from './hooks/useColumns'
 import { useDataSource } from './hooks/useDataSource'
 import { useLoading } from './hooks/useLoading'
 import { useTableScroll } from './hooks/useTableScroll'
-import { useTableStyle } from './hooks/useTableStyle'
 import { useTableExpand } from './hooks/useTableExpand'
 import { createTableContext } from './hooks/useTableContext'
 import { useTableForm } from './hooks/useTableForm'
-import { useDesign } from '@/hooks/web/useDesign'
 import TableHeader from './components/TableHeader.vue'
 import TableRender from './components/TableRender'
 import TablePagination from './components/TablePagination.vue'
 import TableAction from './components/TableAction.vue'
-
-import { omit, isString } from 'lodash-es'
-import { basicProps, ElTableBasicEmits } from './props'
-import { warn } from '@/utils/log'
 import { useBasicTableFn } from './hooks/useBasic'
+import { basicProps, customProps, ElTableBasicEmits } from './props'
 
 export default defineComponent({
   components: {
@@ -152,22 +150,20 @@ export default defineComponent({
     const tableData = ref<Recordable[]>([])
 
     const wrapRef = ref(null)
-    const propsRef = ref<Partial<BasicTableProps>>()
+    const propsRef = ref<Partial<BasicProps>>({})
 
     const { prefixCls } = useDesign('basic-table')
     const [registerForm, formActions] = useForm()
 
-    const getProps = computed(() => {
-      return { ...props, ...unref(propsRef) } as BasicTableProps
-    })
-
     const isFixedHeightPage = inject(PageWrapperFixedHeightKey, false)
-    watchEffect(() => {
-      unref(isFixedHeightPage) &&
-        props.canResize &&
-        warn(
-          "'canResize' of BasicTable may not work in PageWrapper with 'contentFullHeight' (especially in hot updates)",
-        )
+
+    /**
+     * 获取 Props
+     *
+     * Get props
+     */
+    const getProps = computed(() => {
+      return { ...props, ...unref(propsRef) } as BasicProps
     })
 
     const {
@@ -208,6 +204,7 @@ export default defineComponent({
     const {
       getBasicEmits,
       clearSelection,
+      getSelectionRows,
       toggleRowSelection,
       toggleAllSelection,
       toggleRowExpansion,
@@ -230,12 +227,8 @@ export default defineComponent({
     } = useTableScroll(
       getProps,
       tableElRef,
-      getDataSourceRef,
+      getDataSourceRef
     )
-
-    const {
-      getRowClassName,
-    } = useTableStyle(getProps)
 
     const {
       getExpandOptions,
@@ -255,7 +248,7 @@ export default defineComponent({
     } = useTableForm(getProps, slots, fetch, getLoading)
 
     /**
-     * 获取头部Props
+     * 获取头部 Props
      *
      * Get header props
      */
@@ -280,29 +273,45 @@ export default defineComponent({
       }
     })
 
-    const getBindValues = computed(() => {
-      const dataSource = unref(getDataSourceRef)
-      let propsData: Recordable = {
-        ...attrs,
-        ...getBasicEmits,
-        ...unref(getProps),
-        loading: unref(getLoading),
-        rowKey: unref(getRowKey),
-        pagination: unref(getTablePagination),
-        data: dataSource,
-        ...unref(getExpandOptions),
-      }
-      propsData = omit(propsData, ['title', 'columns', 'dataSource', 'api', 'showCheckboxColumn', 'showIndexColumn'])
-      console.log('propsData', propsData)
-      return propsData
+    /**
+     * 获取分页 Props
+     *
+     * Get pagination props
+     */
+    const getPaginationProps = computed((): ElePagination | boolean => {
+      return unref(getTablePagination)
     })
 
+    /**
+     * 绑定表格Props
+     *
+     * Bind table props
+     */
+    const getBindValues = computed(() => {
+      const opts = {
+        ...unref(attrs),
+        ...getBasicEmits,
+        ...unref(getProps),
+        rowKey: unref(getRowKey),
+        data: unref(getDataSourceRef),
+        ...unref(getExpandOptions),
+      }
+      // 绑定组件Porps前，移除自定义附加项
+      // Before binding component Porps, remove custom add-ons
+      const customOpts = Object.keys(customProps)
+
+      return omit(opts, customOpts) as BasicProps
+    })
+    /**
+     * 获取表格外框类
+     *
+     * Get wrapper class
+     */
     const getWrapperClass = computed(() => {
-      const values = unref(getBindValues)
       return [
         prefixCls,
         {
-          [`${prefixCls}--full`]: values.canResize,
+          [`${prefixCls}--full`]: unref(getProps).canResize,
         },
       ]
     })
@@ -313,23 +322,61 @@ export default defineComponent({
      * Setting Props by Instance
      * @param tableProps Table Props
      */
-    function setTableProps(tableProps: Partial<BasicTableProps>): void {
+    function setTableProps(tableProps: Partial<BasicProps>): void {
       propsRef.value = { ...(unref(propsRef) as Recordable), ...tableProps } as Recordable
     }
 
+    /**
+     * 处理分页页码变化
+     *
+     * Handling pagination page changes
+     */
     function handlePageChange(currentPage: number) {
-      emit('pagination', unref(getTablePagination), 'currentPage', currentPage)
+      const opts = unref(getTablePagination)
+      opts.currentPage = (opts.currentPage || 0) + currentPage
+
+      emit('pagination', opts)
       handleTableChange({ currentPage })
     }
 
+    /**
+     * 处理分页大小变化
+     *
+     * Handling pagination size changes
+     */
     function handlePageSizeChange(pageSize: number) {
-      emit('pagination', unref(getTablePagination), 'pageSize', pageSize)
+      const opts = unref(getTablePagination)
+      opts.pageSize = (opts.pageSize || 0) + pageSize
+
+      emit('pagination', opts)
       handleTableChange({ pageSize })
     }
 
-    const tableAction: TableActionMethods = {
+    const tableMethods: TableActionMethods = {
+      // Advanced
+      reload,
+      setTableProps,
+      getColumns,
+      setColumns,
+      getCacheColumns,
+      setLoading,
+      getDataSource,
+      getRawDataSource,
+      setTableData,
+      updateTableData,
+      updateTableDataRecord,
+      deleteTableDataRecord,
+      insertTableDataRecord,
+      findTableDataRecord,
+      redoHeight,
+      setPagination,
+      getPagination,
+      expandAll,
+      collapseAll,
+      emit,
       // Element Plus
       clearSelection,
+      getSelectionRows,
       toggleRowSelection,
       toggleAllSelection,
       toggleRowExpansion,
@@ -338,53 +385,39 @@ export default defineComponent({
       clearFilter,
       doLayout,
       sort,
-      // Advanced
-      reload,
-      setTableProps,
-      getColumns,
-      setColumns,
-      setLoading,
-      getDataSource,
-      getRawDataSource,
-      setTableData,
-      getCacheColumns,
-      redoHeight,
-      setPagination,
-      getPagination,
-      getFormRef: () => void (0) as any, // No definition needed
-      expandAll,
-      collapseAll,
-      updateTableDataRecord,
-      deleteTableDataRecord,
-      insertTableDataRecord,
-      findTableDataRecord,
-      updateTableData,
-      emit,
     }
-    createTableContext({ ...tableAction, wrapRef, getBindValues })
+    createTableContext({ ...tableMethods, wrapRef, getBindValues })
 
-    expose(tableAction)
+    expose(tableMethods)
 
-    emit('register', tableAction, formActions)
+    emit('register', tableMethods, formActions)
+
+    watchEffect(() => {
+      unref(isFixedHeightPage) &&
+        props.canResize &&
+        warn(
+          "'canResize' of BasicTable may not work in PageWrapper with 'contentFullHeight' (especially in hot updates)",
+        )
+    })
 
     return {
       prefixCls,
       tableElRef,
-      // 修改表格自带翻译内容为中文
-      // Modify the form's own translation content to Chinese
+      // 修改表格i18n内容为中文
+      // Modify the content of table i18n to Chinese
       zhLocale: zhCn,
       getProps,
       getBindValues,
       getLoading,
       registerForm,
       handleSearchSubmit,
-      getRowClassName,
       handlePageChange,
       handlePageSizeChange,
       wrapRef,
-      tableAction,
+      tableMethods,
       redoHeight,
       getHeaderProps,
+      getPaginationProps,
       getFormProps,
       replaceFormSlotKey,
       getFormSlotKeys,
@@ -477,7 +510,24 @@ $prefix-cls: '#{$tonyname}-basic-table';
   }
 
   &-pagination {
+    position: relative;
+    display: flex;
+    align-items: center;
     padding: 1rem 0;
+
+    &--align {
+      &-left {
+        justify-content: left;
+      }
+
+      &-center {
+        justify-content: center;
+      }
+
+      &-right {
+        justify-content: right;
+      }
+    }
   }
 }
 </style>

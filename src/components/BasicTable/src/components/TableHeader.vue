@@ -24,7 +24,7 @@
         <div
           :class="`${prefixCls}__toolbar-setting`"
           v-if="showTableSetting">
-          <TableSetting :setting="tableSetting" />
+          <TableSetting v-bind="getSettingProps" />
         </div>
       </div>
     </div>
@@ -37,13 +37,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { ElDivider } from 'element-plus'
 
 import { BasicTitle } from '@/components/Basic'
 
 import TableSetting from './TableSetting.vue'
 import { headerProps } from '../props'
+import { TableSetting as TableSettingType } from '../typing'
 
 export default defineComponent({
   name: 'BasicTableHeader',
@@ -55,6 +56,18 @@ export default defineComponent({
   props: {
     ...headerProps,
     prefixCls: String,
+  },
+  setup(props) {
+    const getSettingProps = computed(() => {
+      return {
+        redo: true,
+        fullScreen: true,
+        size: false,
+        ...(props.tableSetting || {}),
+      } as TableSettingType
+    })
+
+    return { getSettingProps }
   },
 })
 </script>

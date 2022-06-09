@@ -35,9 +35,6 @@ export default defineComponent({
       api: treeDemoListApi,
       searchInfo: { type: 2 },
       rowKey: 'code',
-      onExpandChange: (row, rowKey) => {
-        console.log('555', row, rowKey)
-      },
     })
 
     function handleExpand(row, expand) {

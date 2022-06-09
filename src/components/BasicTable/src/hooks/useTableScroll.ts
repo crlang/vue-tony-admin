@@ -1,58 +1,61 @@
-import type { BasicTableProps } from '../typing'
-import { Ref, ComputedRef, watch } from 'vue'
-import { computed, unref, ref, nextTick } from 'vue'
+import type { Ref, ComputedRef } from 'vue'
+import type { BasicProps } from '../typing'
+
+import { computed, unref, watch, nextTick } from 'vue'
+import { useDebounceFn, isBoolean } from '@vueuse/core'
+
 import { getViewportOffset } from '@/utils/domUtils'
-import { isBoolean } from '@/utils/is'
 import { useWindowSizeFn } from '@/hooks/event/useWindowSizeFn'
 import { useModalContext } from '@/components/BasicModal'
 import { onMountedOrActivated } from '@/hooks/core/onMountedOrActivated'
-import { useDebounceFn } from '@vueuse/core'
 
+/**
+ * 处理表格高度变化及滚动
+ *
+ * Handling table height changes and scrolling
+ * @param propsRef
+ * @param tableElRef
+ * @param getDataSourceRef
+ */
 export function useTableScroll(
-  propsRef: ComputedRef<BasicTableProps>,
+  propsRef: ComputedRef<BasicProps>,
   tableElRef: Ref<ComponentRef>,
-  getDataSourceRef: ComputedRef<Recordable[]>
+  getDataSourceRef: ComputedRef<Recordable[]>,
 ) {
-  const tableHeightRef: Ref<Nullable<number>> = ref(null)
-
-  const resizeLimit = ref(0)
-
+  let paginationEl: HTMLElement | null
+  let bodyEl: HTMLElement | null
   const modalFn = useModalContext()
 
-  // Greater than animation time 280
-  const debounceRedoHeight = useDebounceFn(redoHeight, 100)
+  // 高度刷新防抖
+  // Debounce when height changes
+  const debounceRedoHeight = useDebounceFn(redoHeight, 200)
 
+  /**
+   * 获取自适应高度状态
+   *
+   * Get adaptive height state
+   */
   const getCanResize = computed(() => {
     const { canResize } = unref(propsRef)
-    return canResize
+    return !!canResize
   })
 
-  watch(
-    () => [unref(getCanResize), unref(getDataSourceRef)?.length],
-    () => {
-      debounceRedoHeight()
-    },
-    {
-      flush: 'post',
-    },
-  )
-
+  /**
+   * 刷新高度-重新计算表格高度
+   *
+   * Redo height - recalculates table height
+   */
   function redoHeight() {
     nextTick(() => {
       calcTableHeight()
     })
   }
 
-  function setHeight(heigh: number) {
-    tableHeightRef.value = heigh
-    //  Solve the problem of modal adaptive height calculation when the form is placed in the modal
-    modalFn?.redoModalHeight?.()
-  }
-
-  // No need to repeat queries
-  let paginationEl: HTMLElement | null
-  let bodyEl: HTMLElement | null
-
+  /**
+   * 计算表格高度
+   *
+   * Calculate table height
+   */
   async function calcTableHeight() {
     const { pagination, maxHeight } = unref(propsRef)
     const tableData = unref(getDataSourceRef)
@@ -63,44 +66,21 @@ export function useTableScroll(
     const tableEl: Element = table.$el
     if (!tableEl) return
 
-    if (!unref(getCanResize) || tableData.length === 0) {
-      // if (resizeLimit.value > 4) return
-
-      if (document.createEvent) {
-        const event = document.createEvent('HTMLEvents')
-        event.initEvent('resize', true, true)
-        window.dispatchEvent(event)
-      } else if (document.createEventObject) {
-        window.fireEvent('onresize')
-      }
-      resizeLimit.value = resizeLimit.value + 1
-      return
-    }
-
     if (!bodyEl) {
       bodyEl = tableEl.querySelector('.el-scrollbar__view')
       if (!bodyEl) return
     }
-    const hasScrollBarY = bodyEl.scrollHeight > bodyEl.clientHeight
-    const hasScrollBarX = bodyEl.scrollWidth > bodyEl.clientWidth
 
-    if (hasScrollBarY) {
-      tableEl.classList.contains('hide-scrollbar-y') &&
-        tableEl.classList.remove('hide-scrollbar-y')
-    } else {
-      !tableEl.classList.contains('hide-scrollbar-y') && tableEl.classList.add('hide-scrollbar-y')
+    // 不需要进行计算
+    // No calculations required
+    if (!unref(getCanResize) || tableData.length === 0) {
+      const event = document.createEvent('HTMLEvents')
+      event.initEvent('resize', true, true)
+      window.dispatchEvent(event)
+      return
     }
 
-    if (hasScrollBarX) {
-      tableEl.classList.contains('hide-scrollbar-x') &&
-        tableEl.classList.remove('hide-scrollbar-x')
-    } else {
-      !tableEl.classList.contains('hide-scrollbar-x') && tableEl.classList.add('hide-scrollbar-x')
-    }
-
-    bodyEl!.style.height = 'unset'
-
-    if (!unref(getCanResize) || tableData.length === 0) return
+    bodyEl.style.height = 'unset'
 
     await nextTick()
     // Add a delay to get the correct bottomIncludeBody paginationHeight headerHeight
@@ -126,6 +106,7 @@ export function useTableScroll(
       paginationHeight = 0
     }
 
+    // Header table height
     let headerHeight = 0
     if (headEl) {
       headerHeight = (headEl as HTMLElement).offsetHeight
@@ -136,17 +117,33 @@ export function useTableScroll(
       paginationHeight -
       headerHeight
 
+    // 如果给出了最大高度
+    // If maxHeight is given
     height = (height > maxHeight! ? (maxHeight as number) : height) ?? height
-    setHeight(height)
 
-    bodyEl!.style.height = `${height}px`
+    bodyEl.style.height = `${height}px`
+
+    try {
+      modalFn?.redoModalHeight()
+    } catch (error) {
+      // try redo modal height
+    }
   }
-  useWindowSizeFn(calcTableHeight, 280)
+
+  useWindowSizeFn(debounceRedoHeight, 280)
+
   onMountedOrActivated(() => {
-    calcTableHeight()
-    nextTick(() => {
-      debounceRedoHeight()
-    })
+    debounceRedoHeight()
   })
+
+  watch(
+    () => [unref(getCanResize), unref(getDataSourceRef)?.length],
+    () => {
+      debounceRedoHeight()
+    },
+    {
+      flush: 'post',
+    },
+  )
   return { redoHeight }
 }

@@ -1,8 +1,8 @@
 import type { ComputedRef, Slots } from 'vue'
-import type { BasicTableProps, FetchParams } from '../typing'
-import { unref, computed } from 'vue'
 import type { FormProps } from '@/components/Form'
-import { isFunction } from '@/utils/is'
+import type { BasicProps, FetchParams } from '../typing'
+
+import { unref, computed } from 'vue'
 
 /**
  * 处理表格表单
@@ -14,7 +14,7 @@ import { isFunction } from '@/utils/is'
  * @param getLoading
  */
 export function useTableForm(
-  propsRef: ComputedRef<BasicTableProps>,
+  propsRef: ComputedRef<BasicProps>,
   slots: Slots,
   fetch: (opt?: FetchParams | undefined) => Promise<void>,
   getLoading: ComputedRef<boolean | undefined>
@@ -36,11 +36,9 @@ export function useTableForm(
    */
   const getFormSlotKeys: ComputedRef<string[]> = computed(() => {
     const keys = Object.keys(slots)
-    const res = keys
+    return keys
       .map((item) => (item.startsWith('form-') ? item : null))
       .filter((item) => !!item) as string[]
-    console.log('kkk', k)
-    return res.map(k => replaceFormSlotKey(k))
   })
 
   /**
@@ -51,7 +49,6 @@ export function useTableForm(
    */
   function replaceFormSlotKey(key: string) {
     if (!key) return ''
-    console.log('key', key)
 
     return key?.replace?.(/form\-/, '') || ''
   }
@@ -64,7 +61,7 @@ export function useTableForm(
    */
   function handleSearchSubmit(info: Recordable) {
     const { searchFn } = unref(propsRef)
-    if (searchFn && isFunction(searchFn)) {
+    if (searchFn && typeof searchFn === 'function') {
       info = searchFn(info) || info
     }
     fetch({ searchInfo: info, page: 1 })

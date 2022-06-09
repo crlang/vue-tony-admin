@@ -1,4 +1,4 @@
-import type { BasicColumn, BasicTableProps, GetColumnsParams } from '../typing'
+import type { BasicColumn, BasicProps, GetColumnsParams } from '../typing'
 import type { ComputedRef } from 'vue'
 import type { ElePagination } from '@/components/ElementPlus'
 
@@ -17,7 +17,7 @@ import { PAGE_SIZE } from '../const'
  * @param getPaginationRef
  */
 export function useColumns(
-  propsRef: ComputedRef<BasicTableProps>,
+  propsRef: ComputedRef<BasicProps>,
   getPaginationRef: ComputedRef<boolean | ElePagination>
 ) {
   let cacheColumns = unref(propsRef).columns
@@ -39,11 +39,9 @@ export function useColumns(
     showCheckboxColumn && handleCheckboxColumn(columns)
     handleActionColumn(columns)
 
-    console.log('columns2', columns)
     columns.forEach((item) => {
       handleItem(item)
     })
-    console.log('columns', columns)
     return columns
   })
 
@@ -111,15 +109,15 @@ export function useColumns(
             cacheKeys.indexOf(next.prop as string))
         })
       }
-      console.log('newColumns', newColumns, isEqual(cacheKeys, columns))
       columnsRef.value = newColumns
     }
   }
 
   /**
+   * 获取表格列
    *
-   * @param opt
-   * @returns
+   * Get table columns
+   * @param opt GetColumnsParams
    */
   function getColumns(opt?: GetColumnsParams) {
     const { ignoreIndex, ignoreAction, ignoreCheckbox, ignoreExpand, sort } = opt || {}

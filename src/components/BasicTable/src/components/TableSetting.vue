@@ -1,6 +1,6 @@
 <template>
   <ElTooltip
-    v-if="getSetting.redo"
+    v-if="redo"
     placement="top"
     content="刷新">
     <SvgIcon
@@ -8,7 +8,7 @@
       @click="handleRedo" />
   </ElTooltip>
   <ElTooltip
-    v-if="getSetting.size"
+    v-if="size"
     placement="top"
     content="密度">
     <SvgIcon
@@ -17,7 +17,7 @@
   </ElTooltip>
 
   <ElTooltip
-    v-if="getSetting.fullScreen"
+    v-if="fullScreen"
     placement="top"
     content="全屏">
     <SvgIcon
@@ -27,9 +27,7 @@
 </template>
 
 <script lang="ts">
-import type { TableSetting } from '../typing'
-
-import { defineComponent, computed, ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { ComponentSize, ElTooltip } from 'element-plus'
 import { useFullscreen } from '@vueuse/core'
 
@@ -44,27 +42,15 @@ export default defineComponent({
     SvgIcon,
   },
   props: {
-    setting: Object as PropType<TableSetting>,
+    redo: Boolean,
+    size: Boolean,
+    setting: Boolean,
+    fullScreen: Boolean,
   },
-  setup(props) {
+  setup() {
     const table = useTableContext()
     const sizeRef = ref<ComponentSize>('default')
     const { toggle, isFullscreen } = useFullscreen(table.wrapRef)
-
-    /**
-     * 获取最新设置
-     *
-     * Get table setting
-     */
-    const getSetting = computed((): TableSetting => {
-      return {
-        redo: true,
-        size: true,
-        setting: true,
-        fullScreen: true,
-        ...(props.setting || {}),
-      }
-    })
 
     /**
      * 刷新当前页
@@ -95,7 +81,6 @@ export default defineComponent({
     }
 
     return {
-      getSetting,
       sizeRef,
       isFullscreen,
       toggle,

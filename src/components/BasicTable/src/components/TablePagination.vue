@@ -1,5 +1,5 @@
 <template>
-  <div :class="prefixCls">
+  <div :class="getWrapperClass">
     <ElPagination
       v-if="total"
       v-bind="getBindValues"
@@ -14,7 +14,7 @@ import { ElPagination } from 'element-plus'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 import { omit } from 'lodash-es'
 
-import { PAGE_SIZE } from '../const'
+import { PAGE_SIZE, PAGE_POSITION_ALIGN } from '../const'
 import { paginationProps } from '../props'
 
 export default defineComponent({
@@ -33,7 +33,20 @@ export default defineComponent({
      * Bind value
      */
     const getBindValues = computed(() => {
-      return omit(props, ['pageSize', 'currentPage'])
+      return omit(props, ['pageSize', 'currentPage', 'prefixCls'])
+    })
+
+    /**
+     * 获取表格外框类
+     *
+     * Get wrapper class
+     */
+    const getWrapperClass = computed(() => {
+      const { prefixCls } = props
+      return [
+        prefixCls,
+        `${prefixCls}--align-${PAGE_POSITION_ALIGN}`,
+      ]
     })
 
     watchEffect(() => {
@@ -60,6 +73,7 @@ export default defineComponent({
       // 设置分页导航语言为中文
       // Set the pagination language to Chinese
       locale: zhCn,
+      getWrapperClass,
       getBindValues,
       pageRef,
       sizeRef,
@@ -67,11 +81,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style lang="scss">
-$prefix-cls: '#{$tonyname}-basic-table-pagination';
-
-.#{$prefix-cls} {
-  position: relative;
-}
-</style>

@@ -1,5 +1,6 @@
 import type { Ref } from 'vue'
-import type { BasicTableProps, TableActionMethods } from '../typing'
+import type { BasicProps, TableActionMethods } from '../typing'
+
 import { provide, inject, ComputedRef } from 'vue'
 
 const key = Symbol('basic-table')
@@ -10,7 +11,7 @@ type Instance = TableActionMethods & {
 };
 
 type RetInstance = Omit<Instance, 'getBindValues'> & {
-  getBindValues: ComputedRef<BasicTableProps>;
+  getBindValues: ComputedRef<BasicProps>;
 };
 
 /**

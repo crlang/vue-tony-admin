@@ -51,8 +51,8 @@ export default defineComponent({
       rowKey: 'id',
       showTableSetting: true,
       onSelectionChange: (selection) => {
-        console.log('selection', selection)
         // do something
+        console.info(selection)
       },
       showCheckboxColumn: true,
     })

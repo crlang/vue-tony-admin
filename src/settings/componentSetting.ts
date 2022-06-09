@@ -1,28 +1,80 @@
-// Used to configure the general configuration of some components without modifying the components
-
 import type { ColumnSorterResult } from '../components/BasicTable'
 
+/**
+ * 用于在不修改组件的情况下配置部分组件的通用配置
+ *
+ * Generic configuration for configuring some components without modifying the components
+ */
 export default {
-  // basic-table setting
+  /**
+   * 表格组件的配置
+   *
+   * BasicTable setting
+   */
   table: {
-    // Form interface request general configuration
-    // support xxx.xxx.xxx
+    /**
+     * 请求接口的相关字段，支持嵌套格式 xxx.xxx.xxx
+     *
+     * Basic configuration of the request interface, support xxx.xxx.xxx
+     */
     fetchSetting: {
-      // The field name of the current page passed to the background
+      /**
+       * 服务端接收的页码字段
+       *
+       * The page number field received by the server
+       */
       pageField: 'page',
-      // The number field name of each page displayed in the background
+      /**
+       * 服务端接收的页码大小字段
+       *
+       * The page size field received by the server
+       */
       sizeField: 'pageSize',
-      // Field name of the form data returned by the interface
+      /**
+       * 服务端返回的列表字段，可能存在嵌套模式，如 'data.list'
+       *
+       * The list field returned by the server, there may be nested patterns, such as 'data.list'
+       */
       listField: 'items',
-      // Total number of tables returned by the interface field name
+      /**
+       * 服务端返回的数据总数字段，可能存在嵌套模式，如 'data.totalRow'
+       *
+       * The field of the total number of data returned by the server, there may be nested patterns, such as 'data.totalRow'
+       */
       totalField: 'total',
     },
-    // Number of pages that can be selected
-    pageSizeOptions: ['10', '20', '30', '50', '100'],
-    pageLayoutOptions: 'total, sizes, prev, pager, next, jumper',
-    // Default display quantity on one page
+    /**
+     * 分页导航的对齐方式，可选 'left/center/right'
+     *
+     * Pagination alignment position, optional 'left/center/right'
+     */
+    defaultPageAlign: 'left',
+    /**
+     * 分页的页码大小
+     *
+     * Page size for pagination
+     */
     defaultPageSize: 20,
-    // Custom general sort function
+    /**
+     * 分页导航的分页切换大小的数组
+     *
+     * Array of pagination toggle sizes for pagination
+     */
+    pageSizeOptions: ['10', '20', '30', '50', '100'],
+    /**
+     * 根据字段显示哪些分页内容
+     *
+     * Which paginated content to display based on fields
+     *
+     * All optional: 'total, sizes, prev, pager, next, jumper'
+     */
+    pageLayoutOptions: 'total, prev, pager, next, jumper',
+    /**
+     * 默认的排序方法
+     *
+     * Default sort method
+     * @param sortInfo ColumnSorterResult
+     */
     defaultSortFn: (sortInfo: ColumnSorterResult) => {
       const { prop, order } = sortInfo
       return {
@@ -32,15 +84,27 @@ export default {
         prop,
       }
     },
-    // Custom general filter function
+    /**
+     * 默认的筛选方法
+     *
+     * Default filter method
+     * @param data
+     */
     defaultFilterFn: (data: Partial<Recordable<string[]>>) => {
       return data
     },
   },
-  // scrollbar setting
+  /**
+   * 滚动组件的配置
+   *
+   * Scrollbar setting
+   */
   scrollbar: {
-    // Whether to use native scroll bar
-    // After opening, the menu, modal, drawer will change the pop-up scroll bar to native
+    /**
+     * 是否使用原生滚动条
+     *
+     * Whether to use native scrollbar
+     */
     native: false,
   },
 }

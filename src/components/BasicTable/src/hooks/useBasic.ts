@@ -1,4 +1,4 @@
-import type { BasicTableProps, TableActionMethods } from '../typing'
+import type { BasicProps, TableActionMethods } from '../typing'
 import { ComputedRef, Ref, unref } from 'vue'
 import { error } from '@/utils/log'
 
@@ -8,7 +8,7 @@ import { error } from '@/utils/log'
  * Please refer to Element Plus documentation for method usage
  */
 export function useBasicTableFn(
-  propsRef: ComputedRef<BasicTableProps>,
+  propsRef: ComputedRef<BasicProps>,
   tableRef: Ref<TableActionMethods>,
   handleTableChange: (...arg: any[]) => void,
   emit: EmitType
@@ -24,6 +24,9 @@ export function useBasicTableFn(
   }
   function clearSelection(): Promise<Recordable> {
     return getTable().clearSelection()
+  }
+  function getSelectionRows(): Promise<Recordable> {
+    return getTable().getSelectionRows()
   }
   function toggleRowSelection(row: any, selected: boolean): Promise<Recordable> {
     return getTable().toggleRowSelection(row, selected)
@@ -114,6 +117,7 @@ export function useBasicTableFn(
     getBasicEmits,
     // Element plus Methods
     clearSelection,
+    getSelectionRows,
     toggleRowSelection,
     toggleAllSelection,
     toggleRowExpansion,
