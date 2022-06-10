@@ -14,12 +14,12 @@
 import { defineComponent } from 'vue'
 import { BasicDrawer, useDrawerInner } from '@/components/BasicDrawer'
 
-import { BasicForm, FormSchema, useForm } from '@/components/BasicForm'
+import { BasicForm, BasicFormSchema, useForm } from '@/components/BasicForm'
 
 export default defineComponent({
   components: { BasicDrawer, BasicForm },
   setup() {
-    const schemas: FormSchema[] = [
+    const schemas: BasicFormSchema[] = [
       {
         field: 'field1',
         component: 'ElInput',

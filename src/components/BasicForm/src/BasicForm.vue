@@ -1,7 +1,7 @@
 <template>
   <ElForm
-    v-bind="getBindValue"
-    :class="getFormClass"
+    v-bind="getBindValues"
+    :class="prefixCls"
     ref="formElRef"
     :model="formModel"
     @keypress.enter="handleEnterPress">
@@ -29,7 +29,7 @@
       </template>
 
       <FormAction
-        v-bind="getFormActionBindProps"
+        v-bind="getActionProps"
         @toggle-advanced="handleToggleAdvanced">
         <template
           #[item]="data"
@@ -45,7 +45,7 @@
 </template>
 
 <script lang="ts">
-import type { FormActionType, FormProps, FormSchema } from './types/form'
+import type { FormActionMethods, BasicProps, BasicFormSchema } from './types/form'
 import type { AdvanceState } from './types/hooks'
 import type { Ref } from 'vue'
 import type dayjs from 'dayjs'
@@ -68,8 +68,9 @@ import { createFormContext } from './hooks/useFormContext'
 import { useAutoFocus } from './hooks/useAutoFocus'
 import { useModalContext } from '@/components/BasicModal'
 
-import { basicProps } from './props'
+import { basicProps, customProps } from './props'
 import { useDesign } from '@/hooks/web/useDesign'
+import { omit } from 'lodash-es'
 
 export default defineComponent({
   name: 'BasicForm',
@@ -77,9 +78,15 @@ export default defineComponent({
   props: basicProps,
   emits: ['advanced-change', 'reset', 'submit', 'register'],
   setup(props, { emit, attrs }) {
+    const formElRef = ref<Nullable<FormActionMethods>>(null)
     const formModel = reactive<Recordable>({})
+    const propsRef = ref<Partial<BasicProps>>({})
+    const schemaRef = ref<BasicFormSchema[]>([])
     const modalFn = useModalContext()
+    const isInitedDefaultRef = ref(false)
+    const defaultValueRef = ref<Recordable>({})
 
+    const { prefixCls } = useDesign('basic-form')
     const advanceState = reactive<AdvanceState>({
       isAdvanced: true,
       hideAdvanceBtn: false,
@@ -87,23 +94,18 @@ export default defineComponent({
       actionSpan: 6,
     })
 
-    const defaultValueRef = ref<Recordable>({})
-    const isInitedDefaultRef = ref(false)
-    const propsRef = ref<Partial<FormProps>>({})
-    const schemaRef = ref<Nullable<FormSchema[]>>(null)
-    const formElRef = ref<Nullable<FormActionType>>(null)
+    /**
+     * 获取更新 Props
+     *
+     * Merge Props
+     */
+    const getProps = computed(() => {
+      const opts = {
+        ...props,
+        ...(unref(propsRef) as Recordable),
+      } as BasicProps
 
-    const { prefixCls } = useDesign('basic-form')
-
-    // Get the basic configuration of the form
-    const getProps = computed((): FormProps => {
-      return { ...props, ...unref(propsRef) } as FormProps
-    })
-
-    const getFormClass = computed(() => {
-      return [
-        prefixCls,
-      ]
+      return opts
     })
 
     // Get uniform row style and Row configuration for the entire form
@@ -114,13 +116,32 @@ export default defineComponent({
         ...rowProps,
       }
     })
+    const getActionProps = computed((): Recordable => {
+      return {
+        ...unref(getProps),
+        ...advanceState,
+      }
+    })
+    /**
+     * 绑定表单Props
+     *
+     * Bind form props
+     */
+    const getBindValues = computed(() => {
+      const opts = {
+        ...attrs,
+        ...unref(getProps),
+      }
 
-    const getBindValue = computed(
-      () => ({ ...attrs, ...props, ...unref(getProps) } as Recordable)
-    )
+      // 绑定组件Porps前，移除自定义附加项
+      // Before binding component Porps, remove custom add-ons
+      const customOpts = Object.keys(customProps)
 
-    const getSchema = computed((): FormSchema[] => {
-      const schemas = (unref(schemaRef) || (unref(getProps).schemas)) as FormSchema[]
+      return omit(opts, customOpts)
+    })
+
+    const getSchema = computed((): BasicFormSchema[] => {
+      const schemas = unref(schemaRef)?.length ? unref(schemaRef) : (unref(getProps).schemas || [])
       for (const schema of schemas) {
         const { defaultValue, component } = schema
         // handle date type
@@ -137,9 +158,9 @@ export default defineComponent({
         }
       }
       if (unref(getProps).showAdvancedButton) {
-        return schemas.filter((schema) => schema.component !== 'ElDivider') as FormSchema[]
+        return schemas.filter((schema) => schema.component !== 'ElDivider') as BasicFormSchema[]
       } else {
-        return schemas as FormSchema[]
+        return schemas as BasicFormSchema[]
       }
     })
 
@@ -162,8 +183,8 @@ export default defineComponent({
     useAutoFocus({
       getSchema,
       getProps,
-      isInitedDefault: isInitedDefaultRef,
-      formElRef: formElRef as Ref<FormActionType>,
+      isInitedDefaultRef,
+      formElRef: formElRef as Ref<FormActionMethods>,
     })
 
     const {
@@ -185,8 +206,8 @@ export default defineComponent({
       formModel,
       getSchema,
       defaultValueRef,
-      formElRef: formElRef as Ref<FormActionType>,
-      schemaRef: schemaRef as Ref<FormSchema[]>,
+      formElRef: formElRef as Ref<FormActionMethods>,
+      schemaRef,
       handleFormValues,
     })
 
@@ -195,52 +216,17 @@ export default defineComponent({
       submitAction: handleSubmit,
     })
 
-    watch(
-      () => unref(getProps).model,
-      () => {
-        const { model } = unref(getProps)
-        if (!model) return
-        setFieldsValue(model)
-      },
-      // {
-      //   immediate: true,
-      // }
-    )
-
-    watch(
-      () => unref(getProps).schemas,
-      (schemas) => {
-        resetSchema(schemas ?? [])
-      }
-    )
-
-    watch(
-      () => getSchema.value,
-      (schema) => {
-        nextTick(() => {
-          //  Solve the problem of modal adaptive height calculation when the form is placed in the modal
-          modalFn?.redoModalHeight?.()
-        })
-        if (unref(isInitedDefaultRef)) {
-          return
-        }
-        if (schema?.length) {
-          initDefault()
-          isInitedDefaultRef.value = true
-        }
-      }
-    )
-
-    async function setProps(formProps: Partial<FormProps>): Promise<void> {
+    async function setProps(formProps: Partial<BasicProps>): Promise<void> {
       propsRef.value = deepMerge(unref(propsRef) || {}, formProps)
     }
 
     function setFormModel(key: string, value: any) {
       formModel[key] = value
-      const { validateTrigger } = unref(getBindValue)
-      if (!validateTrigger || validateTrigger === 'change') {
-        validateField([key]).catch((_) => {})
-      }
+      // const { validateTrigger } = unref(getBindValues)
+      // if (!validateTrigger || validateTrigger === 'change') {
+      //   console.log('validateTrigger+++++', validateTrigger, key)
+      //   validateField([key]).catch((_) => {})
+      // }
     }
 
     function handleEnterPress(e: KeyboardEvent) {
@@ -255,7 +241,7 @@ export default defineComponent({
       }
     }
 
-    const formActionType: Partial<FormActionType> = {
+    const formActionType: Partial<FormActionMethods> = {
       getFieldsValue,
       setFieldsValue,
       resetFields,
@@ -276,20 +262,52 @@ export default defineComponent({
       emit('register', formActionType)
     })
 
+    // watch(
+    //   () => unref(getProps).model,
+    //   (v) => {
+    //     v && setFieldsValue(v)
+    //   }
+    // )
+
+    // watch(
+    //   () => unref(getProps).schemas,
+    //   (schemas) => {
+    //     resetSchema(schemas ?? [])
+    //   }
+    // )
+
+    watch(
+      () => getSchema.value,
+      (schema) => {
+        if (!unref(isInitedDefaultRef) && schema?.length) {
+          initDefault()
+          isInitedDefaultRef.value = true
+        }
+
+        nextTick(() => {
+          try {
+            modalFn?.redoModalHeight()
+          } catch (error) {
+            // try redo modal height
+          }
+        })
+      }
+    )
+
     return {
-      getBindValue,
+      getBindValues,
       handleToggleAdvanced,
       handleEnterPress,
       formModel,
       defaultValueRef,
-      advanceState,
       getRow,
       getProps,
       formElRef,
       getSchema,
-      formActionType: formActionType as any,
+      formActionType,
       setFormModel,
-      getFormClass,
+      prefixCls,
+      getActionProps,
       getFormActionBindProps: computed(
         (): Recordable => ({ ...getProps.value, ...advanceState })
       ),

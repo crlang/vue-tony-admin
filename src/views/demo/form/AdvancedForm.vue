@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { BasicForm, FormSchema, useForm } from '@/components/BasicForm'
+import { BasicForm, BasicFormSchema, useForm } from '@/components/BasicForm'
 import { CollapseContainer } from '@/components/CollapseContainer'
 
 import { UseSchemas } from './data'
@@ -18,7 +18,7 @@ import { UseSchemas } from './data'
 export default defineComponent({
   components: { BasicForm, CollapseContainer },
   setup() {
-    const extraSchemas: FormSchema[] = []
+    const extraSchemas: BasicFormSchema[] = []
     for (let i = 14; i < 30; i++) {
       extraSchemas.push({
         field: 'field' + i,

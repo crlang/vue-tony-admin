@@ -1,4 +1,4 @@
-import { FormProps, FormSchema } from '@/components/BasicForm'
+import { BasicProps, BasicFormSchema } from '@/components/BasicForm'
 import { BasicColumn } from '@/components/BasicTable'
 import { ElTag } from 'element-plus'
 import { h } from 'vue'
@@ -145,7 +145,7 @@ export function getCustomCellColumns(): BasicColumn[] {
   ]
 }
 
-export const getAdvanceSchema = (itemNumber = 6): FormSchema[] => {
+export const getAdvanceSchema = (itemNumber = 6): BasicFormSchema[] => {
   const arr: any = []
   for (let index = 0; index < itemNumber; index++) {
     arr.push({
@@ -161,7 +161,7 @@ export const getAdvanceSchema = (itemNumber = 6): FormSchema[] => {
   return arr
 }
 
-export function getFormConfig(): Partial<FormProps> {
+export function getFormConfig(): Partial<BasicProps> {
   return {
     labelWidth: 100,
     showAdvancedButton: true,

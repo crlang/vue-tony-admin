@@ -1,4 +1,4 @@
-import type { FormSchema, FormActionType, FormProps } from './types/form'
+import type { BasicFormSchema, FormActionMethods, BasicProps } from './types/form'
 import type { CSSProperties } from 'vue'
 import type { TableActionMethods } from '@/components/BasicTable'
 import type { EleButton, EleCol, EleRow } from '@/components/ElementPlus'
@@ -34,11 +34,10 @@ export const basicFormActionProps = {
   showAdvancedButton: { type: Boolean },
 }
 
-export const basicProps = {
-  ...EleFormProps,
+export const customProps = {
   ...basicFormActionProps,
   schemas: {
-    type: [Array] as PropType<FormSchema[]>,
+    type: [Array] as PropType<BasicFormSchema[]>,
     default: () => [],
   },
   rowProps: Object as PropType<Partial<EleRow>>,
@@ -88,6 +87,11 @@ export const basicProps = {
   },
 }
 
+export const basicProps = {
+  ...EleFormProps,
+  ...customProps,
+}
+
 export const formActionProps = {
   ...basicFormActionProps,
   actionSpan: {
@@ -100,11 +104,11 @@ export const formActionProps = {
 
 export const basicFormItemProps = {
   schema: {
-    type: Object as PropType<FormSchema>,
+    type: Object as PropType<BasicFormSchema>,
     default: () => ({}),
   },
   formProps: {
-    type: Object as PropType<FormProps>,
+    type: Object as PropType<BasicProps>,
     default: () => ({}),
   },
   defaultValues: {
@@ -123,6 +127,6 @@ export const basicFormItemProps = {
     type: Object as PropType<TableActionMethods>,
   },
   formActionType: {
-    type: Object as PropType<FormActionType>,
+    type: Object as PropType<FormActionMethods>,
   },
 }

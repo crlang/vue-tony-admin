@@ -1,5 +1,5 @@
 import type { Ref, ComputedRef } from 'vue'
-import type { FormProps, FormSchema } from '../types/form'
+import type { BasicProps, BasicFormSchema } from '../types/form'
 
 import { isArray, isFunction, isObject, isString, isNullOrUnDef } from '@/utils/is'
 import { unref } from 'vue'
@@ -8,8 +8,8 @@ import dayjs from 'dayjs'
 
 interface UseFormValuesContext {
   defaultValueRef: Ref<any>
-  getSchema: ComputedRef<FormSchema[]>
-  getProps: ComputedRef<FormProps>
+  getSchema: ComputedRef<BasicFormSchema[]>
+  getProps: ComputedRef<BasicProps>
   formModel: Recordable
 }
 export function useFormValues({

@@ -1,6 +1,6 @@
-import { FormSchema } from '@/components/BasicForm'
+import { BasicFormSchema } from '@/components/BasicForm'
 
-export const step1Schemas: FormSchema[] = [
+export const step1Schemas: BasicFormSchema[] = [
   {
     field: 'account',
     component: 'ElSelect',
@@ -52,7 +52,7 @@ export const step1Schemas: FormSchema[] = [
   },
 ]
 
-export const step2Schemas: FormSchema[] = [
+export const step2Schemas: BasicFormSchema[] = [
   {
     field: 'pwd',
     component: 'ElInput',

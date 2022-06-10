@@ -1,7 +1,7 @@
 import { isAccountExist } from '@/api/demo/system'
-import { FormSchema } from '@/components/BasicForm'
+import { BasicFormSchema } from '@/components/BasicForm'
 
-export const searchFormSchema: FormSchema[] = [
+export const searchFormSchema: BasicFormSchema[] = [
   {
     field: 'account',
     label: '用户名',
@@ -16,7 +16,7 @@ export const searchFormSchema: FormSchema[] = [
   },
 ]
 
-export const accountFormSchema: FormSchema[] = [
+export const accountFormSchema: BasicFormSchema[] = [
   {
     field: 'account',
     label: '用户名',

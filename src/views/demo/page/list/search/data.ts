@@ -1,4 +1,4 @@
-import { FormSchema } from '@/components/BasicForm'
+import { BasicFormSchema } from '@/components/BasicForm'
 import { Search } from '@element-plus/icons'
 
 export const searchList = (() => {
@@ -15,7 +15,7 @@ export const searchList = (() => {
   return result
 })()
 
-export const schemas: FormSchema[] = [
+export const schemas: BasicFormSchema[] = [
   {
     field: 'field1',
     component: 'ElInput',

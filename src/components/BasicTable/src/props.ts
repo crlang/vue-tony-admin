@@ -1,5 +1,5 @@
 import type { BasicColumn, FetchSetting, TableSetting, ColumnSorterResult } from './typing'
-import type { FormProps } from '@/components/BasicForm'
+import type { BasicProps as BasicFormProps } from '@/components/BasicForm'
 import type { ElePagination } from '@/components/ElementPlus'
 
 import { EleTableProps, ElePaginationProps } from '@/components/ElementPlus'
@@ -176,7 +176,7 @@ export const customProps = {
    * Search form configuration
    */
   formConfig: {
-    type: Object as PropType<Partial<FormProps>>,
+    type: Object as PropType<Partial<BasicFormProps>>,
     default: null,
   },
   /**

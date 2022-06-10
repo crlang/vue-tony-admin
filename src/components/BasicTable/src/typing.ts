@@ -5,7 +5,7 @@ import type {
   EleButton,
   EleActionPopconfirmAction
 } from '@/components/ElementPlus'
-import type { FormActionType, FormProps } from '@/components/BasicForm'
+import type { FormActionMethods, BasicProps as BasicFormProps } from '@/components/BasicForm'
 import type { MessageBoxOptions } from '@/hooks/web/useMessage'
 
 import { RoleEnum } from '@/enums/roleEnum'
@@ -290,7 +290,7 @@ export type UseTableMethod = TableActionMethods & {
    *
    * Get form instance func
    */
-  getFormRef: () => FormActionType
+  getFormRef: () => FormActionMethods
 }
 
 /**
@@ -461,7 +461,7 @@ export interface BasicProps extends EleTable {
    *
    * Search form configuration
    */
-  formConfig?: Partial<FormProps>
+  formConfig?: Partial<BasicFormProps>
   /**
    * 是否显示序号列
    *

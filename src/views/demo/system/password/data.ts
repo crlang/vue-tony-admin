@@ -1,6 +1,6 @@
-import { FormSchema } from '@/components/BasicForm'
+import { BasicFormSchema } from '@/components/BasicForm'
 
-export const formSchema: FormSchema[] = [
+export const formSchema: BasicFormSchema[] = [
   {
     field: 'passwordOld',
     label: '当前密码',

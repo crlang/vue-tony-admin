@@ -1,7 +1,7 @@
 import { h } from 'vue'
 import { setRoleStatus } from '@/api/demo/system'
 import { BasicColumn } from '@/components/BasicTable'
-import { FormSchema } from '@/components/BasicForm'
+import { BasicFormSchema } from '@/components/BasicForm'
 import { useMessage } from '@/hooks/web/useMessage'
 import { ElSwitch } from 'element-plus'
 
@@ -65,7 +65,7 @@ export const columns: BasicColumn[] = [
   },
 ]
 
-export const searchFormSchema: FormSchema[] = [
+export const searchFormSchema: BasicFormSchema[] = [
   {
     field: 'roleNme',
     label: '角色名称',
@@ -86,7 +86,7 @@ export const searchFormSchema: FormSchema[] = [
   },
 ]
 
-export const formSchema: FormSchema[] = [
+export const formSchema: BasicFormSchema[] = [
   {
     field: 'roleName',
     label: '角色名称',

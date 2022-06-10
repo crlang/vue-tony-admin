@@ -1,4 +1,4 @@
-import { FormSchema } from '@/components/BasicForm'
+import { BasicFormSchema } from '@/components/BasicForm'
 
 export const provincesOptions = [
   {
@@ -51,7 +51,7 @@ export const citiesOptionsData = {
   ],
 }
 
-export const basicSchemas: FormSchema[] = [
+export const basicSchemas: BasicFormSchema[] = [
   {
     field: 'divider-basic',
     component: 'ElDivider',
@@ -424,7 +424,7 @@ export const basicSchemas: FormSchema[] = [
   },
 ]
 
-export const UseSchemas: FormSchema[] = [
+export const UseSchemas: BasicFormSchema[] = [
   {
     field: 'field1',
     component: 'ElInput',
@@ -525,7 +525,7 @@ export const UseSchemas: FormSchema[] = [
   },
 ]
 
-export const dyncSchemas: FormSchema[] = [
+export const dyncSchemas: BasicFormSchema[] = [
   {
     field: 'field5',
     component: 'ElSwitch',
@@ -630,7 +630,7 @@ export const dyncSchemas: FormSchema[] = [
   },
 ]
 
-export const dyncSchemas1: FormSchema[] = [
+export const dyncSchemas1: BasicFormSchema[] = [
   {
     field: 'f1',
     component: 'ElInput',

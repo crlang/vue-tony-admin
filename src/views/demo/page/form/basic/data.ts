@@ -1,6 +1,6 @@
-import { FormSchema } from '@/components/BasicForm'
+import { BasicFormSchema } from '@/components/BasicForm'
 
-export const schemas: FormSchema[] = [
+export const schemas: BasicFormSchema[] = [
   {
     field: 'title',
     component: 'ElInput',

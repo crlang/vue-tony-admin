@@ -23,7 +23,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElButton } from 'element-plus'
-import { BasicForm, FormSchema, useForm } from '@/components/BasicForm'
+import { BasicForm, BasicFormSchema, useForm } from '@/components/BasicForm'
 import { CollapseContainer } from '@/components/CollapseContainer'
 import { useMessage } from '@/hooks/web/useMessage'
 import { isAccountExist } from '@/api/demo/system'
@@ -33,7 +33,7 @@ export default defineComponent({
   components: { ElButton, BasicForm, CollapseContainer, CountdownInput },
   setup() {
     const { createMessage } = useMessage()
-    const schemas: FormSchema[] = [
+    const schemas: BasicFormSchema[] = [
       {
         field: 'field1',
         component: 'ElInput',

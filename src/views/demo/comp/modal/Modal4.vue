@@ -15,7 +15,7 @@
 <script lang="ts">
 import { defineComponent, ref, nextTick } from 'vue'
 import { BasicModal, useModalInner } from '@/components/BasicModal'
-import { BasicForm, FormSchema, useForm } from '@/components/BasicForm'
+import { BasicForm, BasicFormSchema, useForm } from '@/components/BasicForm'
 export default defineComponent({
   components: { BasicModal, BasicForm },
   props: {
@@ -23,7 +23,7 @@ export default defineComponent({
   },
   setup(props) {
     const modelRef = ref({})
-    const schemas: FormSchema[] = [
+    const schemas: BasicFormSchema[] = [
       {
         field: 'field1',
         component: 'ElInput',

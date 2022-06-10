@@ -1,5 +1,5 @@
 import type { ComputedRef, Ref } from 'vue'
-import type { FormProps, FormSchema, FormActionType } from '../types/form'
+import type { BasicProps, BasicFormSchema, FormActionMethods } from '../types/form'
 import { unref, toRaw } from 'vue'
 import { isArray, isFunction, isObject, isString } from '@/utils/is'
 import { deepMerge } from '@/utils'
@@ -9,12 +9,12 @@ import { error } from '@/utils/log'
 
 interface UseFormActionContext {
   emit: EmitType
-  getProps: ComputedRef<FormProps>
-  getSchema: ComputedRef<FormSchema[]>
+  getProps: ComputedRef<BasicProps>
+  getSchema: ComputedRef<BasicFormSchema[]>
   formModel: Recordable
   defaultValueRef: Ref<Recordable>
-  formElRef: Ref<FormActionType>
-  schemaRef: Ref<FormSchema[]>
+  formElRef: Ref<FormActionMethods>
+  schemaRef: Ref<BasicFormSchema[]>
   handleFormValues: Fn
 }
 export function useFormEvents({
@@ -86,7 +86,7 @@ export function useFormEvents({
    * Delete based on field name
    */
   async function removeSchemaByField(fields: string | string[]): Promise<void> {
-    const schemaList: FormSchema[] = cloneDeep(unref(getSchema))
+    const schemaList: BasicFormSchema[] = cloneDeep(unref(getSchema))
     if (!fields) {
       return
     }
@@ -104,7 +104,7 @@ export function useFormEvents({
   /**
    * Delete based on field name
    */
-  function _removeSchemaByField(field: string, schemaList: FormSchema[]): void {
+  function _removeSchemaByField(field: string, schemaList: BasicFormSchema[]): void {
     if (isString(field)) {
       const index = schemaList.findIndex((schema) => schema.field === field)
       if (index !== -1) {
@@ -117,8 +117,8 @@ export function useFormEvents({
   /**
    * Insert after a certain field, if not insert the last
    */
-  async function appendSchemaByField(schema: FormSchema, prefixField?: string, first = false) {
-    const schemaList: FormSchema[] = cloneDeep(unref(getSchema))
+  async function appendSchemaByField(schema: BasicFormSchema, prefixField?: string, first = false) {
+    const schemaList: BasicFormSchema[] = cloneDeep(unref(getSchema))
 
     const index = schemaList.findIndex((schema) => schema.field === prefixField)
     const hasInList = schemaList.some((item) => item.field === prefixField || schema.field)
@@ -136,10 +136,10 @@ export function useFormEvents({
     schemaRef.value = schemaList
   }
 
-  async function resetSchema(data: Partial<FormSchema> | Partial<FormSchema>[]) {
-    let updateData: Partial<FormSchema>[] = []
+  async function resetSchema(data: Partial<BasicFormSchema> | Partial<BasicFormSchema>[]) {
+    let updateData: Partial<BasicFormSchema>[] = []
     if (isObject(data)) {
-      updateData.push(data as FormSchema)
+      updateData.push(data as BasicFormSchema)
     }
     if (isArray(data)) {
       updateData = [...data]
@@ -155,13 +155,13 @@ export function useFormEvents({
       )
       return
     }
-    schemaRef.value = updateData as FormSchema[]
+    schemaRef.value = updateData as BasicFormSchema[]
   }
 
-  async function updateSchema(data: Partial<FormSchema> | Partial<FormSchema>[]) {
-    let updateData: Partial<FormSchema>[] = []
+  async function updateSchema(data: Partial<BasicFormSchema> | Partial<BasicFormSchema>[]) {
+    let updateData: Partial<BasicFormSchema>[] = []
     if (isObject(data)) {
-      updateData.push(data as FormSchema)
+      updateData.push(data as BasicFormSchema)
     }
     if (isArray(data)) {
       updateData = [...data]
@@ -177,12 +177,12 @@ export function useFormEvents({
       )
       return
     }
-    const schema: FormSchema[] = []
+    const schema: BasicFormSchema[] = []
     updateData.forEach((item) => {
       unref(getSchema).forEach((val) => {
         if (val.field === item.field) {
           const newSchema = deepMerge(val, item)
-          schema.push(newSchema as FormSchema)
+          schema.push(newSchema as BasicFormSchema)
         } else {
           schema.push(val)
         }

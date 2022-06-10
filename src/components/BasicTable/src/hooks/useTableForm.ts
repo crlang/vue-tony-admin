@@ -1,5 +1,5 @@
 import type { ComputedRef, Slots } from 'vue'
-import type { FormProps } from '@/components/BasicForm'
+import type { BasicProps as BasicFormProps } from '@/components/BasicForm'
 import type { BasicProps, FetchParams } from '../typing'
 
 import { unref, computed } from 'vue'
@@ -19,7 +19,7 @@ export function useTableForm(
   fetch: (opt?: FetchParams | undefined) => Promise<void>,
   getLoading: ComputedRef<boolean | undefined>
 ) {
-  const getFormProps = computed((): Partial<FormProps> => {
+  const getFormProps = computed((): Partial<BasicFormProps> => {
     const { formConfig } = unref(propsRef)
     const { submitButtonOptions } = formConfig || {}
     return {

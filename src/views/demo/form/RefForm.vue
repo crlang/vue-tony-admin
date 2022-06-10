@@ -34,7 +34,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { ElButton } from 'element-plus'
-import { BasicForm, FormActionType, FormProps } from '@/components/BasicForm'
+import { BasicForm, FormActionMethods, BasicProps } from '@/components/BasicForm'
 import { CollapseContainer } from '@/components/CollapseContainer'
 import { useMessage } from '@/hooks/web/useMessage'
 
@@ -43,12 +43,12 @@ import { UseSchemas as schemas } from './data'
 export default defineComponent({
   components: { ElButton, BasicForm, CollapseContainer },
   setup() {
-    const formElRef = ref<Nullable<FormActionType>>(null)
+    const formElRef = ref<Nullable<FormActionMethods>>(null)
     const { createMessage } = useMessage()
     function handleSubmit(values: any) {
       createMessage.success('click search,values:' + JSON.stringify(values))
     }
-    function setProps(props: Partial<FormProps>) {
+    function setProps(props: Partial<BasicProps>) {
       const formEl = formElRef.value
       if (!formEl) return
       formEl.setProps(props)

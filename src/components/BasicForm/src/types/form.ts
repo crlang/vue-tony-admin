@@ -8,13 +8,13 @@ import type { EleButton, EleCol, EleForm, EleFormItemRule, EleRow } from '@/comp
 export type FieldMapToTime = [string, [string, string], string?][]
 
 export interface RenderCallbackParams {
-  schema: FormSchema
+  schema: BasicFormSchema
   values: Recordable
   model: Recordable
   field: string
 }
 
-export interface FormActionType {
+export interface FormActionMethods {
   // element plus
   submit: () => Promise<Recordable>
   validate: () => Promise<boolean>
@@ -25,20 +25,20 @@ export interface FormActionType {
   // Advanced
   setFieldsValue: <T>(values: T) => Promise<void>
   getFieldsValue: () => Recordable
-  updateSchema: (data: Partial<FormSchema> | Partial<FormSchema>[]) => Promise<void>
-  resetSchema: (data: Partial<FormSchema> | Partial<FormSchema>[]) => Promise<void>
-  setProps: (formProps: Partial<FormProps>) => Promise<void>
+  updateSchema: (data: Partial<BasicFormSchema> | Partial<BasicFormSchema>[]) => Promise<void>
+  resetSchema: (data: Partial<BasicFormSchema> | Partial<BasicFormSchema>[]) => Promise<void>
+  setProps: (formProps: Partial<BasicFormSchema>) => Promise<void>
   removeSchemaByField: (field: string | string[]) => Promise<void>
   appendSchemaByField: (
-    schema: FormSchema,
+    schema: BasicFormSchema,
     prefixField: string | undefined,
     first?: boolean | undefined
   ) => Promise<void>
 }
 
-export type RegisterFn = (formInstance: FormActionType) => void
+export type RegisterFn = (formInstance: FormActionMethods) => void
 
-export type UseFormReturnType = [RegisterFn, FormActionType]
+export type UseFormReturnType = [RegisterFn, FormActionMethods]
 
 export interface basicFormAction {
   /**
@@ -71,11 +71,11 @@ export interface basicFormAction {
   showAdvancedButton?: boolean
 }
 
-export interface FormProps extends EleForm, basicFormAction {
+export interface BasicProps extends EleForm, basicFormAction {
   /**
    * Array of form configuration items
    */
-  schemas?: FormSchema[]
+  schemas?: BasicFormSchema[]
   /**
    * Row configuration for the entire form
    */
@@ -129,7 +129,7 @@ export interface FormProps extends EleForm, basicFormAction {
   transformDateFunc?: (date: any) => string
 }
 
-export interface FormSchema {
+export interface BasicFormSchema {
   /**
    * Field name
    */
@@ -173,9 +173,9 @@ export interface FormSchema {
    */
   componentProps?:
   | ((opt: {
-    schema: FormSchema
+    schema: BasicFormSchema
     tableAction: TableActionMethods
-    formActionType: FormActionType
+    formActionType: FormActionMethods
     formModel: Recordable
   }) => Recordable)
   | object

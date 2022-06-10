@@ -62,6 +62,7 @@ export default defineComponent({
     ElButton,
     SvgIcon,
   },
+  inheritAttrs: false,
   props: formActionProps,
   emits: ['toggle-advanced'],
   setup(props, { emit }) {

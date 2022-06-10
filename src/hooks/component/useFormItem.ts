@@ -1,15 +1,17 @@
 import type { UnwrapRef } from 'vue'
-import {
-  reactive,
-  readonly,
-  computed,
-  getCurrentInstance,
-  watchEffect,
-  nextTick
-} from 'vue'
 
+import { reactive, readonly, computed, getCurrentInstance, watchEffect, nextTick } from 'vue'
 import { isEqual } from 'lodash-es'
 
+/**
+ * 嵌入到表单中，子组件只需使用钩子绑定即可进行表单验证
+ *
+ * Embed into a form, subcomponents just need to use hook binding for form validation
+ * @param props
+ * @param key
+ * @param changeEvent
+ * @param emitValue
+ */
 export function useRuleFormItem<T extends Recordable>(
   props: T,
   key: keyof T = 'modelValue',
@@ -29,10 +31,6 @@ export function useRuleFormItem<T extends Recordable>(
     innerState.value = val as T[keyof T]
   }
 
-  watchEffect(() => {
-    innerState.value = props[key]
-  })
-
   const state: any = computed({
     get() {
       return innerState.value
@@ -45,6 +43,10 @@ export function useRuleFormItem<T extends Recordable>(
         emit?.(changeEvent, value, emitValue)
       })
     },
+  })
+
+  watchEffect(() => {
+    innerState.value = props[key]
   })
 
   return [state, setState, defaultState]

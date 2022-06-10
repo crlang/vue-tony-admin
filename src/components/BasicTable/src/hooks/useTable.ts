@@ -1,6 +1,6 @@
 import type { WatchStopHandle } from 'vue'
 import type { DynamicProps } from '#/utils'
-import type { FormActionType } from '@/components/BasicForm'
+import type { FormActionMethods } from '@/components/BasicForm'
 import type { ElePagination } from '@/components/ElementPlus'
 import type { BasicProps, TableActionMethods, FetchParams, BasicColumn, GetColumnsParams, UseTableMethod } from '../typing'
 
@@ -79,7 +79,7 @@ export function useTable(tableProps?: Partial<DynamicProps<BasicProps>>): [
    * Define instance methods
    */
   const methods: TableActionMethods & {
-    getFormRef: () => FormActionType;
+    getFormRef: () => FormActionMethods;
   } = {
     // Element Plus
     clearSelection: () => {
@@ -149,7 +149,7 @@ export function useTable(tableProps?: Partial<DynamicProps<BasicProps>>): [
       return getTableInstance().getPagination()
     },
     getFormRef: () => {
-      return unref(formRef) as unknown as FormActionType
+      return unref(formRef) as unknown as FormActionMethods
     },
     expandAll: () => {
       getTableInstance().expandAll()

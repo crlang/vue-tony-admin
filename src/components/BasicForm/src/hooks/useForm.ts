@@ -1,4 +1,4 @@
-import type { FormProps, FormActionType, UseFormReturnType, FormSchema } from '../types/form'
+import type { BasicProps, FormActionMethods, UseFormReturnType, BasicFormSchema } from '../types/form'
 import type { DynamicProps } from '#/utils'
 
 import { ref, onUnmounted, unref, nextTick, watch } from 'vue'
@@ -6,10 +6,10 @@ import { isProdMode } from '@/utils/env'
 import { error } from '@/utils/log'
 import { getDynamicProps } from '@/utils'
 
-type Props = Partial<DynamicProps<FormProps>>
+type Props = Partial<DynamicProps<BasicProps>>
 
 export function useForm(props?: Props): UseFormReturnType {
-  const formRef = ref<Nullable<FormActionType>>(null)
+  const formRef = ref<Nullable<FormActionMethods>>(null)
   const loadedRef = ref<Nullable<boolean>>(false)
 
   async function getForm() {
@@ -20,10 +20,10 @@ export function useForm(props?: Props): UseFormReturnType {
       )
     }
     await nextTick()
-    return form as FormActionType
+    return form as FormActionMethods
   }
 
-  function register(instance: FormActionType) {
+  function register(instance: FormActionMethods) {
     isProdMode() &&
       onUnmounted(() => {
         formRef.value = null
@@ -46,7 +46,7 @@ export function useForm(props?: Props): UseFormReturnType {
     )
   }
 
-  const methods: FormActionType = {
+  const methods: FormActionMethods = {
     // Element Plus
     submit: async (): Promise<any> => {
       const form = await getForm()
@@ -74,17 +74,17 @@ export function useForm(props?: Props): UseFormReturnType {
       form.scrollToField(name)
     },
     // Advanced
-    setProps: async (formProps: Partial<FormProps>) => {
+    setProps: async (formProps: Partial<BasicProps>) => {
       const form = await getForm()
       form.setProps(formProps)
     },
 
-    updateSchema: async (data: Partial<FormSchema> | Partial<FormSchema>[]) => {
+    updateSchema: async (data: Partial<BasicFormSchema> | Partial<BasicFormSchema>[]) => {
       const form = await getForm()
       form.updateSchema(data)
     },
 
-    resetSchema: async (data: Partial<FormSchema> | Partial<FormSchema>[]) => {
+    resetSchema: async (data: Partial<BasicFormSchema> | Partial<BasicFormSchema>[]) => {
       const form = await getForm()
       form.resetSchema(data)
     },
@@ -104,7 +104,7 @@ export function useForm(props?: Props): UseFormReturnType {
     },
 
     appendSchemaByField: async (
-      schema: FormSchema,
+      schema: BasicFormSchema,
       prefixField: string | undefined,
       first: boolean
     ) => {

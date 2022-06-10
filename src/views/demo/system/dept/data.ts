@@ -1,5 +1,5 @@
 import { BasicColumn } from '@/components/BasicTable'
-import { FormSchema } from '@/components/BasicForm'
+import { BasicFormSchema } from '@/components/BasicForm'
 import { h } from 'vue'
 import { ElTag } from 'element-plus'
 
@@ -38,7 +38,7 @@ export const columns: BasicColumn[] = [
   },
 ]
 
-export const searchFormSchema: FormSchema[] = [
+export const searchFormSchema: BasicFormSchema[] = [
   {
     field: 'deptName',
     label: '部门名称',
@@ -59,7 +59,7 @@ export const searchFormSchema: FormSchema[] = [
   },
 ]
 
-export const formSchema: FormSchema[] = [
+export const formSchema: BasicFormSchema[] = [
   {
     field: 'deptName',
     label: '部门名称',

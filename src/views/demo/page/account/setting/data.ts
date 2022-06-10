@@ -1,4 +1,4 @@
-import { FormSchema } from '@/components/BasicForm'
+import { BasicFormSchema } from '@/components/BasicForm'
 
 export interface ListItem {
   key: string
@@ -35,7 +35,7 @@ export const settingList = [
 ]
 
 // 基础设置 form
-export const baseSetschemas: FormSchema[] = [
+export const baseSetschemas: BasicFormSchema[] = [
   {
     field: 'email',
     component: 'ElInput',

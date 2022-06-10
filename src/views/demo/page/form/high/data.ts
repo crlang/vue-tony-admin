@@ -1,4 +1,4 @@
-import { FormSchema } from '@/components/BasicForm'
+import { BasicFormSchema } from '@/components/BasicForm'
 
 const basicOptions: LabelValueOptions = [
   {
@@ -22,7 +22,7 @@ const storeTypeOptions: LabelValueOptions = [
   },
 ]
 
-export const schemas: FormSchema[] = [
+export const schemas: BasicFormSchema[] = [
   {
     field: 'f1',
     component: 'ElInput',
@@ -88,7 +88,7 @@ export const schemas: FormSchema[] = [
     },
   },
 ]
-export const taskSchemas: FormSchema[] = [
+export const taskSchemas: BasicFormSchema[] = [
   {
     field: 't1',
     component: 'ElInput',

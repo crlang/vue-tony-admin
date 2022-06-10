@@ -1,5 +1,5 @@
 import { BasicColumn } from '@/components/BasicTable'
-import { FormSchema } from '@/components/BasicForm'
+import { BasicFormSchema } from '@/components/BasicForm'
 import { h } from 'vue'
 import { Icon } from '@/components/Icon'
 import { ElTag } from 'element-plus'
@@ -56,7 +56,7 @@ const isDir = (type: string) => type === '0'
 const isMenu = (type: string) => type === '1'
 const isButton = (type: string) => type === '2'
 
-export const searchFormSchema: FormSchema[] = [
+export const searchFormSchema: BasicFormSchema[] = [
   {
     field: 'menuName',
     label: '菜单名称',
@@ -77,7 +77,7 @@ export const searchFormSchema: FormSchema[] = [
   },
 ]
 
-export const formSchema: FormSchema[] = [
+export const formSchema: BasicFormSchema[] = [
   {
     field: 'type',
     label: '菜单类型',
