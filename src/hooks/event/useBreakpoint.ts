@@ -15,6 +15,11 @@ export interface CreateCallbackParams {
   sizeEnum: typeof sizeEnum
 }
 
+/**
+ * 处理屏幕断点，即屏幕窗口大小的变化
+ *
+ * Handling screen breakpoints, i.e. changes in the size of the screen window
+ */
 export function useBreakpoint() {
   return {
     screenRef: computed(() => unref(globalScreenRef)),

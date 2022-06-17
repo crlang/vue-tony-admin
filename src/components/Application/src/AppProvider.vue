@@ -23,6 +23,7 @@ export default defineComponent({
 
     const appStore = useAppStore()
 
+    // 监控屏幕断点信息变化
     // Monitor screen breakpoint information changes
     createBreakpointListen(({ screenMap, sizeEnum, width }) => {
       const lgWidth = screenMap.get(sizeEnum.LG)

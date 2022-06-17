@@ -1,3 +1,8 @@
+/**
+ * 屏幕尺寸
+ *
+ * Screen size
+ */
 export enum sizeEnum {
   XS = 'XS',
   SM = 'SM',
@@ -7,6 +12,11 @@ export enum sizeEnum {
   XXL = 'XXL',
 }
 
+/**
+ * 屏幕像素大小
+ *
+ * Screen width
+ */
 export enum screenEnum {
   XS = 480,
   SM = 576,
@@ -16,8 +26,12 @@ export enum screenEnum {
   XXL = 1600,
 }
 
+/**
+ * 定义屏幕断点大小
+ *
+ * Define screen breakpoint size
+ */
 const screenMap = new Map<sizeEnum, number>()
-
 screenMap.set(sizeEnum.XS, screenEnum.XS)
 screenMap.set(sizeEnum.SM, screenEnum.SM)
 screenMap.set(sizeEnum.MD, screenEnum.MD)
