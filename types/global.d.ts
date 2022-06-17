@@ -1,9 +1,4 @@
-import type {
-  VNodeChild,
-  ComponentPublicInstance,
-  FunctionalComponent,
-  PropType as VuePropType
-} from 'vue'
+import type { VNodeChild, ComponentPublicInstance, FunctionalComponent, PropType as VuePropType } from 'vue'
 
 declare global {
   const __APP_INFO__: {
@@ -29,6 +24,9 @@ declare global {
   }
 
   declare type Nullable<T> = T | null
+  declare type Arrayable<T> = T | T[]
+  declare type Awaitable<T> = Promise<T> | T
+
   declare type NonNullable<T> = T extends null | undefined ? never : T
   declare type Recordable<T = any> = Record<string, T>
   declare type ReadonlyRecordable<T = any> = {

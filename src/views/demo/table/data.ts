@@ -166,7 +166,6 @@ export function getFormConfig(): Partial<BasicProps> {
     labelWidth: 100,
     showAdvancedButton: true,
     alwaysShowLines: 1,
-    autoAdvancedLine: 1,
     schemas: [
       ...getAdvanceSchema(5),
       {

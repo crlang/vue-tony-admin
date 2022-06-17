@@ -47,28 +47,21 @@
 <script lang="ts">
 import type { FormActionMethods, BasicProps, BasicFormSchema } from './types/form'
 import type { AdvanceState } from './types/hooks'
-import type { Ref } from 'vue'
-import type dayjs from 'dayjs'
 
 import { defineComponent, reactive, ref, computed, unref, onMounted, watch, nextTick } from 'vue'
 import { ElForm, ElRow } from 'element-plus'
 import FormItem from './components/FormItem.vue'
 import FormAction from './components/FormAction.vue'
 
-import { dateItemType } from './helper'
-import { dateUtil } from '@/utils/dateUtil'
-
-// import { cloneDeep } from 'lodash-es';
-import { deepMerge } from '@/utils'
-
 import { useFormValues } from './hooks/useFormValues'
-import useAdvanced from './hooks/useAdvanced'
+import { useAdvanced } from './hooks/useAdvanced'
+import { useBasicFormFn } from './hooks/useBasic'
 import { useFormEvents } from './hooks/useFormEvents'
 import { createFormContext } from './hooks/useFormContext'
-import { useAutoFocus } from './hooks/useAutoFocus'
 import { useModalContext } from '@/components/BasicModal'
 
 import { basicProps, customProps } from './props'
+import { BASIC_ROW_GUTTER } from './const'
 import { useDesign } from '@/hooks/web/useDesign'
 import { omit } from 'lodash-es'
 
@@ -76,7 +69,7 @@ export default defineComponent({
   name: 'BasicForm',
   components: { ElForm, FormItem, FormAction, ElRow },
   props: basicProps,
-  emits: ['advanced-change', 'reset', 'submit', 'register'],
+  emits: ['advanced-change', 'reset', 'submit', 'register', 'validate'],
   setup(props, { emit, attrs }) {
     const formElRef = ref<Nullable<FormActionMethods>>(null)
     const formModel = reactive<Recordable>({})
@@ -88,10 +81,21 @@ export default defineComponent({
 
     const { prefixCls } = useDesign('basic-form')
     const advanceState = reactive<AdvanceState>({
-      isAdvanced: true,
+      isAdvanced: false,
       hideAdvanceBtn: false,
-      isLoad: false,
       actionSpan: 6,
+    })
+
+    const {
+      validate,
+      validateField,
+      resetFields,
+      scrollToField,
+      clearValidate,
+      getBasicEmits,
+    } = useBasicFormFn({
+      formElRef,
+      emit,
     })
 
     /**
@@ -107,15 +111,25 @@ export default defineComponent({
 
       return opts
     })
-
-    // Get uniform row style and Row configuration for the entire form
+    /**
+     * 表单全局的行的配置
+     *
+     * Form global row configuration
+     */
     const getRow = computed((): Recordable => {
-      const { rowStyle = {}, rowProps } = unref(getProps)
-      return {
+      const { rowStyle = {}, rowProps = {} } = unref(getProps)
+      const opts = {
+        gutter: BASIC_ROW_GUTTER,
         style: rowStyle,
         ...rowProps,
       }
+      return opts
     })
+    /**
+     * 绑定表单操作项Props
+     *
+     * Bind form action props
+     */
     const getActionProps = computed((): Recordable => {
       return {
         ...unref(getProps),
@@ -130,6 +144,7 @@ export default defineComponent({
     const getBindValues = computed(() => {
       const opts = {
         ...attrs,
+        ...getBasicEmits,
         ...unref(getProps),
       }
 
@@ -139,28 +154,18 @@ export default defineComponent({
 
       return omit(opts, customOpts)
     })
-
+    /**
+     * 获取并处理表单数据结构
+     *
+     * Get and process the form data structure
+     */
     const getSchema = computed((): BasicFormSchema[] => {
       const schemas = unref(schemaRef)?.length ? unref(schemaRef) : (unref(getProps).schemas || [])
-      for (const schema of schemas) {
-        const { defaultValue, component } = schema
-        // handle date type
-        if (defaultValue && dateItemType.includes(component)) {
-          if (!Array.isArray(defaultValue)) {
-            schema.defaultValue = dateUtil(defaultValue)
-          } else {
-            const def: dayjs.ConfigType[] = []
-            defaultValue.forEach((item) => {
-              def.push(dateUtil(item))
-            })
-            schema.defaultValue = def
-          }
-        }
-      }
+
       if (unref(getProps).showAdvancedButton) {
-        return schemas.filter((schema) => schema.component !== 'ElDivider') as BasicFormSchema[]
+        return schemas.filter((schema) => schema.component !== 'ElDivider')
       } else {
-        return schemas as BasicFormSchema[]
+        return schemas
       }
     })
 
@@ -180,51 +185,47 @@ export default defineComponent({
       formModel,
     })
 
-    useAutoFocus({
-      getSchema,
-      getProps,
-      isInitedDefaultRef,
-      formElRef: formElRef as Ref<FormActionMethods>,
-    })
-
     const {
       handleSubmit,
+      handleReset,
       setFieldsValue,
-      clearValidate,
-      validate,
-      validateField,
       getFieldsValue,
       updateSchema,
       resetSchema,
       appendSchemaByField,
       removeSchemaByField,
-      resetFields,
-      scrollToField,
     } = useFormEvents({
       emit,
       getProps,
       formModel,
       getSchema,
       defaultValueRef,
-      formElRef: formElRef as Ref<FormActionMethods>,
+      formElRef,
       schemaRef,
+      validate,
+      clearValidate,
       handleFormValues,
     })
 
     createFormContext({
-      resetAction: resetFields,
+      resetAction: handleReset,
       submitAction: handleSubmit,
     })
 
-    async function setProps(formProps: Partial<BasicProps>): Promise<void> {
-      propsRef.value = deepMerge(unref(propsRef) || {}, formProps)
+    /**
+     * 通过实例设置 Props
+     *
+     * Setting Props by Instance
+     * @param formProps Form Props
+     */
+    function setFormProps(formProps: Partial<BasicProps>): void {
+      propsRef.value = { ...(unref(propsRef) as Recordable), ...formProps } as Recordable
     }
 
     function setFormModel(key: string, value: any) {
       formModel[key] = value
       // const { validateTrigger } = unref(getBindValues)
       // if (!validateTrigger || validateTrigger === 'change') {
-      //   console.log('validateTrigger+++++', validateTrigger, key)
       //   validateField([key]).catch((_) => {})
       // }
     }
@@ -241,13 +242,14 @@ export default defineComponent({
       }
     }
 
-    const formActionType: Partial<FormActionMethods> = {
+    const formActionType: FormActionMethods | undefined = {
       getFieldsValue,
       setFieldsValue,
       resetFields,
+      reset: handleReset,
       updateSchema,
       resetSchema,
-      setProps,
+      setFormProps,
       removeSchemaByField,
       appendSchemaByField,
       clearValidate,
@@ -322,5 +324,11 @@ $prefix-cls: '#{$tonyname}-basic-form';
 
 .#{$prefix-cls} {
   position: relative;
+
+  .el-col {
+    .el-input {
+      width: 100%;
+    }
+  }
 }
 </style>

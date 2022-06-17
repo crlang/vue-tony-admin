@@ -18,10 +18,6 @@ export function createPlaceholderMessage(component: ComponentType) {
 
 const DATE_TYPE = ['ElDatePicker', 'ElTimePicker']
 
-function genType() {
-  return [...DATE_TYPE, 'ElDateRangePicker', 'ElDateTimeRangePicker']
-}
-
 // export function setComponentRuleType(
 //   rule: FormItemRule,
 //   component: ComponentType,
@@ -45,4 +41,4 @@ function genType() {
 //   }
 // }
 
-export const dateItemType = genType()
+export const dateItemType = DATE_TYPE

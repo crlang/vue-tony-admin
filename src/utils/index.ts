@@ -1,10 +1,13 @@
 import type { RouteLocationNormalized, RouteRecordNormalized } from 'vue-router'
-import type { App } from 'vue'
-import { NOOP } from '@vue/shared'
+import type { App, Ref } from 'vue'
+import type { SFCInstallWithContext, SFCWithInstall } from '#/utils'
 
 import { unref } from 'vue'
+import { NOOP } from '@vue/shared'
+
 import { isObject } from '@/utils/is'
-import { SFCInstallWithContext, SFCWithInstall } from '#/utils'
+
+import { error } from './log'
 
 export const noop = () => {}
 
@@ -149,4 +152,22 @@ export function buildUUID(): string {
     }
   }
   return uuid.replace(/-/g, '')
+}
+
+/**
+ * 获取使用示例
+ *
+ * Get use instance
+ * @param instanceRef Ref<T>
+ * @param name instance name
+ * @returns
+ */
+export function getUseInstance<T>(instanceRef: Ref<T> | null, name:string): T | null {
+  const instance = unref(instanceRef)
+  if (!instance) {
+    error(
+      `The ${name} instance has not been obtained, please make sure the instance is rendered when performing the instance operation!`
+    )
+  }
+  return instance
 }

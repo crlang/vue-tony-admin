@@ -4,7 +4,6 @@
     :class="getWrapperClass">
     <BasicForm
       submitOnReset
-      :autoAdvancedLine="1"
       :alwaysShowLines="1"
       v-bind="getFormProps"
       v-if="getBindValues.useSearchForm"

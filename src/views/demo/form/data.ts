@@ -429,9 +429,9 @@ export const UseSchemas: BasicFormSchema[] = [
     field: 'field1',
     component: 'ElInput',
     label: '字段1',
-    colProps: {
-      span: 8,
-    },
+    // colProps: {
+    //   span: 24,
+    // },
     componentProps: {
       placeholder: '自定义placeholder',
       onChange: () => {
@@ -443,17 +443,17 @@ export const UseSchemas: BasicFormSchema[] = [
     field: 'field2',
     component: 'ElInput',
     label: '字段2',
-    colProps: {
-      span: 8,
-    },
+    // colProps: {
+    //   span: 24,
+    // },
   },
   {
     field: 'field3',
     component: 'ElDatePicker',
     label: '字段3',
-    colProps: {
-      span: 8,
-    },
+    // colProps: {
+    //   span: 8,
+    // },
     componentProps: {
       type: 'date',
       // ,onChange: (e: any) => {
@@ -464,9 +464,9 @@ export const UseSchemas: BasicFormSchema[] = [
     field: 'field4',
     component: 'ElSelect',
     label: '字段4',
-    colProps: {
-      span: 8,
-    },
+    // colProps: {
+    //   span: 8,
+    // },
     componentProps: {
       options: [
         {
@@ -487,9 +487,9 @@ export const UseSchemas: BasicFormSchema[] = [
     component: 'ElCheckboxGroup',
     defaultValue: [],
     label: '字段5',
-    colProps: {
-      span: 8,
-    },
+    // colProps: {
+    //   span: 8,
+    // },
     componentProps: {
       options: [
         {
@@ -507,9 +507,9 @@ export const UseSchemas: BasicFormSchema[] = [
     field: 'field7',
     component: 'ElRadioGroup',
     label: '字段7',
-    colProps: {
-      span: 8,
-    },
+    // colProps: {
+    //   span: 8,
+    // },
     componentProps: {
       options: [
         {

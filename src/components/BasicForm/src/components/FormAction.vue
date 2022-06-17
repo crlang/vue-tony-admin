@@ -78,6 +78,7 @@ export default defineComponent({
         ...advancedSpanObj,
         ...actionColOptions,
       }
+      console.log('actionColOptactionColOpt', actionColOpt)
       return actionColOpt
     })
 

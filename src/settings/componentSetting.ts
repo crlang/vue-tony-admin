@@ -94,6 +94,25 @@ export default {
       return data
     },
   },
+  form: {
+    /**
+     * 每行显示的表单项数量
+     *
+     * Number of form items displayed per row
+     */
+    defaultItemSize: 4,
+    /**
+     * 表单项的间隔(px)
+     *
+     * Spacing of form items (px)
+     */
+    defaultItemGutter: 16,
+    /**
+      * 行的列数，一般不需要修改
+      * The number of columns in the row, generally do not need to be modified
+      */
+    fullColumnSize: 24,
+  },
   /**
    * 滚动组件的配置
    *

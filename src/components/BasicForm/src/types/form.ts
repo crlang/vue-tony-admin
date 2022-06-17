@@ -4,9 +4,15 @@ import type { ComponentType } from './index'
 import type { TableActionMethods } from '@/components/BasicTable'
 import type { CSSProperties } from 'vue'
 import type { EleButton, EleCol, EleForm, EleFormItemRule, EleRow } from '@/components/ElementPlus'
+import { FormItemProp } from 'element-plus'
 
 export type FieldMapToTime = [string, [string, string], string?][]
 
+/**
+ * 渲染函数的回调参数
+ *
+ * The callback parameter of the render function
+ */
 export interface RenderCallbackParams {
   schema: BasicFormSchema
   values: Recordable
@@ -14,26 +20,51 @@ export interface RenderCallbackParams {
   field: string
 }
 
+/**
+ * 实例支持的方法
+ *
+ * Instance Supported Methods
+ */
 export interface FormActionMethods {
-  // element plus
+  // Custom
   submit: () => Promise<Recordable>
-  validate: () => Promise<boolean>
-  validateField: (name?: string | string[]) => Promise<boolean>
-  scrollToField: (name?: string) => Promise<void>
-  clearValidate: (name?: string | string[]) => Promise<void>
-  resetFields: () => Promise<void>
-  // Advanced
+  reset: () => Promise<void>
   setFieldsValue: <T>(values: T) => Promise<void>
   getFieldsValue: () => Recordable
   updateSchema: (data: Partial<BasicFormSchema> | Partial<BasicFormSchema>[]) => Promise<void>
   resetSchema: (data: Partial<BasicFormSchema> | Partial<BasicFormSchema>[]) => Promise<void>
-  setProps: (formProps: Partial<BasicFormSchema>) => Promise<void>
+  setFormProps: (formProps: Partial<BasicFormSchema>) => void
   removeSchemaByField: (field: string | string[]) => Promise<void>
   appendSchemaByField: (
     schema: BasicFormSchema,
     prefixField: string | undefined,
     first?: boolean | undefined
   ) => Promise<void>
+
+  // Element Plus
+  /**
+   * 对整个表单的内容进行验证。 接收一个回调函数，或返回 Promise。
+   */
+  validate: (callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void) => Promise<void>
+  /**
+   * 验证具体的某个字段。
+   */
+  validateField: (
+    props?: Arrayable<FormItemProp>,
+    callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void
+  ) => Promise<void>
+  /**
+   * 重置该表单项，将其值重置为初始值，并移除校验结果
+   */
+  resetFields: (props?: Arrayable<FormItemProp>) => void
+  /**
+   * 滚动到指定的字段
+   */
+  scrollToField: (prop: FormItemProp) => void
+  /**
+   * 清理某个字段的表单验证信息。
+   */
+  clearValidate: (props?: Arrayable<FormItemProp>) => void
 }
 
 export type RegisterFn = (formInstance: FormActionMethods) => void
@@ -66,6 +97,8 @@ export interface basicFormAction {
    */
   resetButtonOptions?: EleButton
   /**
+   * 是否显示展开/收起按钮
+   *
    * Whether to show collapse and expand buttons
    */
   showAdvancedButton?: boolean
@@ -77,11 +110,15 @@ export interface BasicProps extends EleForm, basicFormAction {
    */
   schemas?: BasicFormSchema[]
   /**
+   * 整个表单的行配置
+   *
    * Row configuration for the entire form
    */
   rowProps?: Partial<EleRow>
   /**
-   * General row style
+   * 整个表单的行样式
+   *
+   * Row style for the entire form
    */
   rowStyle?: CSSProperties
   /**
@@ -105,30 +142,23 @@ export interface BasicProps extends EleForm, basicFormAction {
    */
   submitOnReset?: boolean
   /**
-   * Blank line span
-   */
-  emptySpan?: number | Partial<EleCol>
-  /**
    * Check whether the information is added to the label
    */
   rulesMessageJoinLabel?: boolean
   /**
-   * Automatically collapse over the specified number of rows
-   */
-  autoAdvancedLine?: number
-  /**
    * Always show lines
    */
   alwaysShowLines?: number
-  /**
-   * Whether to focus on the first input box, only works when the first form item is input
-   */
-  autoFocusFirstItem?: boolean
   resetFunc?: () => Promise<void>
   submitFunc?: () => Promise<void>
   transformDateFunc?: (date: any) => string
 }
 
+/**
+ * 表单的数据架构
+ *
+ * Form data schema
+ */
 export interface BasicFormSchema {
   /**
    * Field name

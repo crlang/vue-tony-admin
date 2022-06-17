@@ -3,12 +3,13 @@ import { defineComponent, computed, unref, isProxy, toRaw } from 'vue'
 import { ElOption, ElCheckbox, ElRadio, ElRadioButton, ElDivider, ElCol } from 'element-plus'
 import { componentMap } from '../componentMap'
 import { BasicHelp } from '@/components/Basic'
-import { isBoolean, isFunction, isNull } from '@/utils/is'
+import { isBoolean, isFunction } from '@/utils/is'
 import { getSlot } from '@/utils/helper/tsxHelper'
 import { createPlaceholderMessage } from '../helper'
 import { upperFirst, cloneDeep } from 'lodash-es'
 import { ElFormItem } from 'element-plus'
 import { basicFormItemProps } from '../props'
+import { BASIC_COL_SIZE } from '../const'
 import { EleFormItemRule } from '@/components/ElementPlus'
 export declare type SyncErrorType = Error | string;
 export declare type SyncValidateResult = boolean | SyncErrorType | SyncErrorType[];
@@ -97,14 +98,13 @@ export default defineComponent({
         rulesMessageJoinLabel,
         label,
         dynamicRules,
-        required,
       } = props.schema
 
       if (isFunction(dynamicRules)) {
         return dynamicRules(unref(getValues)) as EleFormItemRule[]
       }
 
-      let rules: EleFormItemRule[] = cloneDeep(defRules) as EleFormItemRule[]
+      const rules: EleFormItemRule[] = cloneDeep(defRules) as EleFormItemRule[]
       const { rulesMessageJoinLabel: globalRulesMessageJoinLabel } = props.formProps
 
       const joinLabel = Reflect.has(props.schema, 'rulesMessageJoinLabel')
@@ -112,37 +112,37 @@ export default defineComponent({
         : globalRulesMessageJoinLabel
       const defaultMsg = createPlaceholderMessage(component) + `${joinLabel ? label : ''}`
 
-      function validator(rule: any, value: any, callback:any) {
-        const msg = rule.message || defaultMsg
-        if (value === undefined || isNull(value)) {
-          // null
-          callback(new Error(msg))
-        } else if (Array.isArray(value) && value.length === 0) {
-          // array
-          callback(new Error(msg))
-        } else if (typeof value === 'string' && value.trim() === '') {
-          // empty string
-          callback(new Error(msg))
-        } else if (
-          typeof value === 'object' &&
-            Reflect.has(value, 'checked') &&
-            Reflect.has(value, 'halfChecked') &&
-            Array.isArray(value.checked) &&
-            Array.isArray(value.halfChecked) &&
-            value.checked.length === 0 &&
-            value.halfChecked.length === 0
-        ) {
-          callback(new Error(msg))
-        }
-        return callback()
-      }
+      // function validator(rule: any, value: any, callback:any) {
+      //   const msg = rule.message || defaultMsg
+      //   if (value === undefined || isNull(value)) {
+      //     // null
+      //     callback(new Error(msg))
+      //   } else if (Array.isArray(value) && value.length === 0) {
+      //     // array
+      //     callback(new Error(msg))
+      //   } else if (typeof value === 'string' && value.trim() === '') {
+      //     // empty string
+      //     callback(new Error(msg))
+      //   } else if (
+      //     typeof value === 'object' &&
+      //       Reflect.has(value, 'checked') &&
+      //       Reflect.has(value, 'halfChecked') &&
+      //       Array.isArray(value.checked) &&
+      //       Array.isArray(value.halfChecked) &&
+      //       value.checked.length === 0 &&
+      //       value.halfChecked.length === 0
+      //   ) {
+      //     callback(new Error(msg))
+      //   }
+      //   return callback()
+      // }
 
-      const getRequired = isFunction(required) ? required(unref(getValues)) : required
+      // const getRequired = isFunction(required) ? required(unref(getValues)) : required
 
-      if ((!rules || rules.length === 0) && getRequired) {
-        // rules = [{ required: getRequired, trigger: 'blur', message: '此为必填项' }]
-        rules = [{ required: getRequired, validator }]
-      }
+      // if ((!rules || rules.length === 0) && required) {
+      // rules = [{ required: getRequired, trigger: 'blur', message: '此为必填项' }]
+      // rules = [{ required: required, validator }]
+      // }
 
       const requiredRuleIndex: number = rules.findIndex(
         (rule) => Reflect.has(rule, 'required') && !Reflect.has(rule, 'validator')
@@ -378,7 +378,11 @@ export default defineComponent({
       }
 
       const { colProps = {} } = props.formProps
-      const realColProps = { ...colProps, ...itemColProps }
+      const realColProps = {
+        span: BASIC_COL_SIZE,
+        ...colProps,
+        ...itemColProps,
+      }
       const { isIfShow, isShow } = getShow()
       const values = unref(getValues)
 

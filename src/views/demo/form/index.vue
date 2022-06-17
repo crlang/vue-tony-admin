@@ -4,7 +4,6 @@
     contentFullHeight>
     <CollapseContainer title="基础示例">
       <BasicForm
-        autoFocusFirstItem
         :labelWidth="200"
         :schemas="basicSchemas"
         :actionColOptions="{ span: 24 }"

@@ -36,11 +36,14 @@ export const basicFormActionProps = {
 
 export const customProps = {
   ...basicFormActionProps,
+
   schemas: {
     type: [Array] as PropType<BasicFormSchema[]>,
     default: () => [],
   },
-  rowProps: Object as PropType<Partial<EleRow>>,
+  rowProps: {
+    type: Object as PropType<Partial<EleRow>>,
+  },
   rowStyle: {
     type: Object as PropType<CSSProperties>,
   },
@@ -57,23 +60,14 @@ export const customProps = {
   },
   autoSubmitOnEnter: { type: Boolean },
   submitOnReset: { type: Boolean },
-  emptySpan: {
-    type: [Number, Object] as PropType<number | Partial<EleCol>>,
-    default: 0,
-  },
   rulesMessageJoinLabel: {
     type: Boolean,
     default: true,
-  },
-  autoAdvancedLine: {
-    type: Number,
-    default: 3,
   },
   alwaysShowLines: {
     type: Number,
     default: 1,
   },
-  autoFocusFirstItem: { type: Boolean },
   resetFunc: Function as PropType<() => Promise<void>>,
   submitFunc: Function as PropType<() => Promise<void>>,
   transformDateFunc: {

@@ -19,28 +19,28 @@ export default defineComponent({
   components: { BasicForm, CollapseContainer },
   setup() {
     const extraSchemas: BasicFormSchema[] = []
-    for (let i = 14; i < 30; i++) {
+    for (let i = 14; i < 31; i++) {
       extraSchemas.push({
         field: 'field' + i,
         component: 'ElInput',
         label: '字段' + i,
-        colProps: {
-          span: 8,
-        },
+        // colProps: {
+        //   span: 24,
+        // },
       })
     }
     const [register] = useForm({
-      labelWidth: 120,
+      // labelWidth: 80,
       schemas: [
         ...UseSchemas,
         { field: '', component: 'ElDivider', label: '更多字段' },
         ...extraSchemas,
       ],
-      actionColOptions: {
-        span: 24,
-      },
+      // actionColOptions: {
+      //   span: 24,
+      // },
       showAdvancedButton: true,
-      alwaysShowLines: 1,
+      // alwaysShowLines: 2,
     })
     return {
       register,

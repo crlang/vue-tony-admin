@@ -6,6 +6,7 @@ import { deepMerge } from '@/utils'
 // import { dateUtil } from '@/utils/dateUtil'
 import { cloneDeep, uniqBy } from 'lodash-es'
 import { error } from '@/utils/log'
+import dayjs from 'dayjs'
 
 interface UseFormActionContext {
   emit: EmitType
@@ -13,10 +14,13 @@ interface UseFormActionContext {
   getSchema: ComputedRef<BasicFormSchema[]>
   formModel: Recordable
   defaultValueRef: Ref<Recordable>
-  formElRef: Ref<FormActionMethods>
+  formElRef: Ref<FormActionMethods | null>
   schemaRef: Ref<BasicFormSchema[]>
+  validate: (callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void) => Promise<void>
+  clearValidate: (props?: Arrayable<FormItemProp>) => void
   handleFormValues: Fn
 }
+
 export function useFormEvents({
   emit,
   getProps,
@@ -26,22 +30,9 @@ export function useFormEvents({
   formElRef,
   schemaRef,
   handleFormValues,
+  validate,
+  clearValidate,
 }: UseFormActionContext) {
-  async function resetFields(): Promise<void> {
-    const { resetFunc, submitOnReset } = unref(getProps)
-    resetFunc && isFunction(resetFunc) && (await resetFunc())
-
-    const formEl = unref(formElRef)
-    if (!formEl) return
-
-    Object.keys(formModel).forEach((key) => {
-      formModel[key] = defaultValueRef.value[key]
-    })
-    clearValidate()
-    emit('reset', toRaw(formModel))
-    submitOnReset && handleSubmit()
-  }
-
   /**
    * Set form value
    */
@@ -56,27 +47,27 @@ export function useFormEvents({
 
       const hasKey = Reflect.has(values, key)
 
-      // 0| '' is allow
       if (hasKey && fields.includes(key)) {
+        // 时间类型
         // time type
-        // if (itemIsDateType(key)) {
-        //   if (Array.isArray(value)) {
-        //     const arr: any[] = []
-        //     for (const ele of value) {
-        //       arr.push(ele ? dateUtil(ele) : null)
-        //     }
-        //     formModel[key] = arr
-        //   } else {
-        //     const { componentProps } = schema || {}
-        //     let _props = componentProps as any
-        //     if (typeof componentProps === 'function') {
-        //       _props = _props({ formModel })
-        //     }
-        //     formModel[key] = value ? (_props?.valueFormat ? value : dateUtil(value)) : null
-        //   }
-        // } else {
-        formModel[key] = value
-        // }
+        if (key instanceof dayjs) {
+          if (Array.isArray(value)) {
+            const arr = []
+            for (const ele of value) {
+              arr.push(ele instanceof dayjs ? dayjs(ele) : ele)
+            }
+            formModel[key] = arr
+          } else {
+            const { componentProps } = unref(schemaRef) || {}
+            let _props = componentProps as any
+            if (typeof componentProps === 'function') {
+              _props = _props({ formModel })
+            }
+            formModel[key] = value instanceof dayjs ? (_props?.valueFormat ? value : dayjs(value)) : value
+          }
+        } else {
+          formModel[key] = value
+        }
         validKeys.push(key)
       }
     })
@@ -198,31 +189,6 @@ export function useFormEvents({
   }
 
   /**
-   * Is it time
-   */
-  // function itemIsDateType(key: string) {
-  //   return unref(getSchema).some((item) => {
-  //     return item.field === key ? dateItemType.includes(item.component) : false
-  //   })
-  // }
-
-  async function validateField(nameList?: string | string[]) {
-    return nameList ? unref(formElRef)?.validateField(nameList) : validate()
-  }
-
-  async function validate() {
-    return await unref(formElRef)?.validate()
-  }
-
-  async function clearValidate(name?: string | string[]) {
-    await unref(formElRef)?.clearValidate(name)
-  }
-
-  async function scrollToField(name?: string) {
-    await unref(formElRef)?.scrollToField(name)
-  }
-
-  /**
    * Form submission
    */
   async function handleSubmit(e?: Event): Promise<Recordable> {
@@ -244,18 +210,29 @@ export function useFormEvents({
     }
   }
 
+  async function handleReset(): Promise<void> {
+    const { resetFunc, submitOnReset } = unref(getProps)
+    resetFunc && isFunction(resetFunc) && (await resetFunc())
+
+    const formEl = unref(formElRef)
+    if (!formEl) return
+
+    Object.keys(formModel).forEach((key) => {
+      formModel[key] = defaultValueRef.value[key]
+    })
+    clearValidate()
+    emit('reset', toRaw(formModel))
+    submitOnReset && handleSubmit()
+  }
+
   return {
     handleSubmit,
-    clearValidate,
-    validate,
-    validateField,
+    handleReset,
+    setFieldsValue,
     getFieldsValue,
     updateSchema,
     resetSchema,
     appendSchemaByField,
     removeSchemaByField,
-    resetFields,
-    setFieldsValue,
-    scrollToField,
   }
 }

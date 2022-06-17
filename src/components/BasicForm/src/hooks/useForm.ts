@@ -1,27 +1,19 @@
 import type { BasicProps, FormActionMethods, UseFormReturnType, BasicFormSchema } from '../types/form'
 import type { DynamicProps } from '#/utils'
 
-import { ref, onUnmounted, unref, nextTick, watch } from 'vue'
+import { ref, onUnmounted, unref, watch, WatchStopHandle } from 'vue'
 import { isProdMode } from '@/utils/env'
-import { error } from '@/utils/log'
-import { getDynamicProps } from '@/utils'
+import { getDynamicProps, getUseInstance } from '@/utils'
+import { ValidateFieldsError } from 'async-validator'
+import { FormItemProp } from 'element-plus'
 
 type Props = Partial<DynamicProps<BasicProps>>
 
-export function useForm(props?: Props): UseFormReturnType {
+export function useForm(formProps?: Props): UseFormReturnType {
   const formRef = ref<Nullable<FormActionMethods>>(null)
   const loadedRef = ref<Nullable<boolean>>(false)
 
-  async function getForm() {
-    const form = unref(formRef)
-    if (!form) {
-      error(
-        'The form instance has not been obtained, please make sure that the form has been rendered when performing the form operation!'
-      )
-    }
-    await nextTick()
-    return form as FormActionMethods
-  }
+  let stopWatch: WatchStopHandle
 
   function register(instance: FormActionMethods) {
     isProdMode() &&
@@ -34,10 +26,13 @@ export function useForm(props?: Props): UseFormReturnType {
     formRef.value = instance
     loadedRef.value = true
 
-    watch(
-      () => props,
+    stopWatch?.()
+
+    stopWatch = watch(
+      () => formProps,
       () => {
-        props && instance.setProps(getDynamicProps(props))
+        console.log('formProps +++++++++', formProps)
+        formProps && instance.setFormProps(getDynamicProps(formProps))
       },
       {
         immediate: true,
@@ -48,68 +43,56 @@ export function useForm(props?: Props): UseFormReturnType {
 
   const methods: FormActionMethods = {
     // Element Plus
-    submit: async (): Promise<any> => {
-      const form = await getForm()
-      return form.submit()
+    validate: (callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void) => {
+      return getUseInstance<FormActionMethods>(formRef, 'form')?.validate(callback)
     },
-    validate: async (): Promise<Recordable> => {
-      const form = await getForm()
-      return form.validate()
+    validateField: (
+      props?: Arrayable<FormItemProp>,
+      callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void
+    ) => {
+      return getUseInstance<FormActionMethods>(formRef, 'form')?.validateField(props, callback)
     },
-    validateField: async (name?: string | string[]): Promise<Recordable> => {
-      const form = await getForm()
-      return form.validateField(name)
+    resetFields: (props?: Arrayable<FormItemProp>) => {
+      return getUseInstance<FormActionMethods>(formRef, 'form')?.resetFields(props)
     },
-    resetFields: async () => {
-      getForm().then(async (form) => {
-        await form.resetFields()
-      })
+    scrollToField: (prop: FormItemProp) => {
+      return getUseInstance<FormActionMethods>(formRef, 'form')?.scrollToField(prop)
     },
-    clearValidate: async (name?: string | string[]) => {
-      const form = await getForm()
-      form.clearValidate(name)
-    },
-    scrollToField: async (name: string) => {
-      const form = await getForm()
-      form.scrollToField(name)
+    clearValidate: (props?: Arrayable<FormItemProp>) => {
+      return getUseInstance<FormActionMethods>(formRef, 'form')?.clearValidate(props)
     },
     // Advanced
-    setProps: async (formProps: Partial<BasicProps>) => {
-      const form = await getForm()
-      form.setProps(formProps)
+    setFormProps: (formProps: Partial<BasicProps>) => {
+      return getUseInstance<FormActionMethods>(formRef, 'form')?.setFormProps(formProps)
     },
 
-    updateSchema: async (data: Partial<BasicFormSchema> | Partial<BasicFormSchema>[]) => {
-      const form = await getForm()
-      form.updateSchema(data)
+    updateSchema: (data: Partial<BasicFormSchema> | Partial<BasicFormSchema>[]) => {
+      return getUseInstance<FormActionMethods>(formRef, 'form')?.updateSchema(data)
     },
 
-    resetSchema: async (data: Partial<BasicFormSchema> | Partial<BasicFormSchema>[]) => {
-      const form = await getForm()
-      form.resetSchema(data)
+    resetSchema: (data: Partial<BasicFormSchema> | Partial<BasicFormSchema>[]) => {
+      return getUseInstance<FormActionMethods>(formRef, 'form')?.resetSchema(data)
     },
 
-    removeSchemaByField: async (field: string | string[]) => {
-      unref(formRef)?.removeSchemaByField(field)
+    removeSchemaByField: (field: string | string[]) => {
+      return getUseInstance<FormActionMethods>(formRef, 'form')?.removeSchemaByField(field)
     },
 
     // TODO promisify
     getFieldsValue: <T>() => {
-      return unref(formRef)?.getFieldsValue() as T
+      return getUseInstance<FormActionMethods>(formRef, 'form')?.getFieldsValue() as T
     },
 
-    setFieldsValue: async <T>(values: T) => {
-      const form = await getForm()
-      form.setFieldsValue<T>(values)
+    setFieldsValue: <T>(values: T) => {
+      return getUseInstance<FormActionMethods>(formRef, 'form')?.setFieldsValue<T>(values)
     },
 
-    appendSchemaByField: async (
+    appendSchemaByField: (
       schema: BasicFormSchema,
       prefixField: string | undefined,
       first: boolean
     ) => {
-      const form = await getForm()
-      form.appendSchemaByField(schema, prefixField, first)
+      return getUseInstance<FormActionMethods>(formRef, 'form')?.appendSchemaByField(schema, prefixField, first)
     },
   }
 

@@ -3,12 +3,11 @@ import type { ComputedRef, Ref } from 'vue'
 import type { BasicProps, BasicFormSchema } from '../types/form'
 import type { EleCol } from '@/components/ElementPlus'
 
-import { computed, unref, watch } from 'vue'
-import { isBoolean, isFunction, isNumber, isObject } from '@/utils/is'
-import { useBreakpoint } from '@/hooks/event/useBreakpoint'
-import { useDebounceFn } from '@vueuse/core'
+import { unref, watch } from 'vue'
 
-const BASIC_COL_LEN = 24
+import { useBreakpoint } from '@/hooks/event/useBreakpoint'
+
+import { BASIC_COL_LEN, BASIC_COL_SIZE } from '../const'
 
 interface UseAdvancedContext {
   advanceState: AdvanceState;
@@ -19,7 +18,12 @@ interface UseAdvancedContext {
   defaultValueRef: Ref<Recordable>;
 }
 
-export default function ({
+/**
+ * 处理展开收起
+ *
+ * Handle Expand Collapse Information
+ */
+export function useAdvanced({
   advanceState,
   emit,
   getProps,
@@ -27,54 +31,34 @@ export default function ({
   formModel,
   defaultValueRef,
 }: UseAdvancedContext) {
-  const { realWidthRef, screenEnum, screenRef } = useBreakpoint()
+  const { realWidthRef, screenEnum } = useBreakpoint()
+  let firstLoad = false
 
-  const getEmptySpan = computed((): number => {
-    if (!advanceState.isAdvanced) {
-      return 0
-    }
-    // For some special cases, you need to manually specify additional blank lines
-    const emptySpan = unref(getProps).emptySpan || 0
-
-    if (isNumber(emptySpan)) {
-      return emptySpan
-    }
-    if (isObject(emptySpan)) {
-      const { span = 0 } = emptySpan
-      const screen = unref(screenRef) as string
-
-      const screenSpan = (emptySpan as any)[screen.toLowerCase()]
-      return screenSpan || span || 0
-    }
-    return 0
-  })
-
-  const debounceUpdateAdvanced = useDebounceFn(updateAdvanced, 30)
-
-  watch(
-    [() => unref(getSchema), () => advanceState.isAdvanced, () => unref(realWidthRef)],
-    () => {
-      const { showAdvancedButton } = unref(getProps)
-      if (showAdvancedButton) {
-        debounceUpdateAdvanced()
-      }
-    },
-    { immediate: true }
-  )
-
-  function getAdvanced(itemCol: Partial<EleCol>, itemColSum = 0, isLastAction = false) {
+  /**
+   * 获取展开收缩信息
+   *
+   * Get Expand Collapse Information
+   * @param itemCol EleCol
+   * @param itemColSum
+   */
+  function getAdvanced(itemCol: Partial<EleCol>, itemColSum = 0) {
     const width = unref(realWidthRef)
 
+    // 默认列宽
+    // Default col size
     const mdWidth =
-      parseInt(itemCol.md as string) ||
-      parseInt(itemCol.xs as string) ||
-      parseInt(itemCol.sm as string) ||
-      (itemCol.span as number) ||
-      BASIC_COL_LEN
+      parseInt(itemCol.md) ||
+      parseInt(itemCol.xs) ||
+      parseInt(itemCol.sm) ||
+      parseInt(itemCol.span) ||
+      BASIC_COL_SIZE
 
-    const lgWidth = parseInt(itemCol.lg as string) || mdWidth
-    const xlWidth = parseInt(itemCol.xl as string) || lgWidth
-    const xxlWidth = parseInt(itemCol.xxl as string) || xlWidth
+    // 尝试查找是否存在自定义列宽
+    // Try to find if there is a custom column width
+    const lgWidth = parseInt(itemCol.lg) || mdWidth
+    const xlWidth = parseInt(itemCol.xl) || lgWidth
+    const xxlWidth = parseInt(itemCol.xxl) || xlWidth
+
     if (width <= screenEnum.LG) {
       itemColSum += mdWidth
     } else if (width < screenEnum.XL) {
@@ -85,33 +69,31 @@ export default function ({
       itemColSum += xxlWidth
     }
 
-    if (isLastAction) {
-      advanceState.hideAdvanceBtn = false
-      if (itemColSum <= BASIC_COL_LEN * 2) {
-        // When less than or equal to 2 lines, the collapse and expand buttons are not displayed
-        advanceState.hideAdvanceBtn = true
-        advanceState.isAdvanced = true
-      } else if (
-        itemColSum > BASIC_COL_LEN * 2 &&
-        itemColSum <= BASIC_COL_LEN * (unref(getProps).autoAdvancedLine || 3)
-      ) {
-        advanceState.hideAdvanceBtn = false
+    const { alwaysShowLines = 1 } = unref(getProps)
+    if (itemColSum >= BASIC_COL_LEN * alwaysShowLines) {
+      let alwayShow = false
 
-        // More than 3 lines collapsed by default
-      } else if (!advanceState.isLoad) {
-        advanceState.isLoad = true
-        advanceState.isAdvanced = !advanceState.isAdvanced
+      // 恰好第一行是满行时候的处理
+      // It happens that the first line is the processing of the full line
+      if (!firstLoad) {
+        firstLoad = true
+        alwayShow = itemColSum === BASIC_COL_LEN
       }
-      return { isAdvanced: advanceState.isAdvanced, itemColSum }
-    }
-    if (itemColSum > BASIC_COL_LEN * (unref(getProps).alwaysShowLines || 1)) {
-      return { isAdvanced: advanceState.isAdvanced, itemColSum }
+
+      return { isAdvanced: alwayShow || advanceState.isAdvanced, itemColSum }
     } else {
+      // 始终显示第一行
       // The first line is always displayed
+      firstLoad = true
       return { isAdvanced: true, itemColSum }
     }
   }
 
+  /**
+   * 获取展开收缩信息
+   *
+   * Update Expand Collapse
+   */
   function updateAdvanced() {
     let itemColSum = 0
     let realItemColSum = 0
@@ -122,11 +104,11 @@ export default function ({
       const { show, colProps } = schema
       let isShow = true
 
-      if (isBoolean(show)) {
+      if (typeof show === 'boolean') {
         isShow = show
       }
 
-      if (isFunction(show)) {
+      if (typeof show === 'function') {
         isShow = show({
           schema: schema,
           model: formModel,
@@ -152,16 +134,30 @@ export default function ({
       }
     }
 
-    advanceState.actionSpan = (realItemColSum % BASIC_COL_LEN) + unref(getEmptySpan)
-
-    getAdvanced(unref(getProps).actionColOptions || { span: BASIC_COL_LEN }, itemColSum, true)
+    advanceState.actionSpan = realItemColSum % BASIC_COL_LEN
 
     emit('advanced-change')
   }
 
+  /**
+   * 切换展开收缩
+   *
+   * Toggle Expand Collapse
+   */
   function handleToggleAdvanced() {
     advanceState.isAdvanced = !advanceState.isAdvanced
   }
+
+  watch(
+    [() => unref(getSchema), () => advanceState.isAdvanced, () => unref(realWidthRef)],
+    () => {
+      const { showAdvancedButton } = unref(getProps)
+      if (showAdvancedButton) {
+        updateAdvanced()
+      }
+    },
+    { immediate: true }
+  )
 
   return { handleToggleAdvanced }
 }
