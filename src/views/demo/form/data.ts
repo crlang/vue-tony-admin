@@ -1,4 +1,5 @@
 import { BasicFormSchema } from '@/components/BasicForm'
+import dayjs from 'dayjs'
 
 export const provincesOptions = [
   {
@@ -101,6 +102,19 @@ export const basicSchemas: BasicFormSchema[] = [
     field: 'field3',
     component: 'ElDatePicker',
     label: '字段3',
+    defaultValue: dayjs(new Date()),
+    colProps: {
+      span: 8,
+    },
+    componentProps: {
+      type: 'date',
+    },
+  },
+  {
+    field: 'field33',
+    component: 'ElDatePicker',
+    label: '字段33',
+    defaultValue: new Date(),
     colProps: {
       span: 8,
     },

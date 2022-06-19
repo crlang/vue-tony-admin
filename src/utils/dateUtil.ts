@@ -17,4 +17,14 @@ export function formatToDate(date: dayjs.ConfigType = undefined, format = DATE_F
   return dayjs(date).format(format)
 }
 
+/**
+ * 是否为时间类型或Dayjs类型
+ *
+ * Whether it is a date type or a Dayjs type
+ * @param val
+ */
+export function isDateValue(val) {
+  return val instanceof dayjs
+}
+
 export const dateUtil = dayjs

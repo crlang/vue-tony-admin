@@ -202,17 +202,17 @@ export default defineComponent({
       } = props.schema
 
       const bindInput = component && ['ElInput', 'ElSlider'].includes(component)
-      const bindDefInput = () => {
-        const isNum = component && ['ElInputNumber'].includes(component)
-        if (isNum) {
-          return 0
-        }
-        const isArr = component && ['ElCheckboxGroup'].includes(component)
-        if (isArr) {
-          return []
-        }
-        return false
-      }
+      // const bindDefInput = () => {
+      // const isNum = component && ['ElInputNumber'].includes(component)
+      // if (isNum) {
+      //   return 0
+      // }
+      // const isArr = component && ['ElCheckboxGroup'].includes(component)
+      // if (isArr) {
+      //   return []
+      // }
+      // return false
+      // }
 
       const eventKey = `on${upperFirst(changeEvent ?? (bindInput ? 'input' : 'change'))}`
       const on = {
@@ -251,7 +251,7 @@ export default defineComponent({
       const componentVal = isProxy(props.formModel[field]) ? toRaw(props.formModel[field]) : props.formModel[field]
 
       const bindValue: Recordable = {
-        [valueField || 'modelValue']: componentVal ?? (bindDefInput() === false ? undefined : bindDefInput()),
+        [valueField || 'modelValue']: componentVal ?? undefined,
       }
 
       const compAttr: Recordable = {

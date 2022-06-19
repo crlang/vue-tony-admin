@@ -33,7 +33,7 @@ import { dyncSchemas as schemas, dyncSchemas1 as schemas1 } from './data'
 export default defineComponent({
   components: { ElButton, CollapseContainer, BasicForm },
   setup() {
-    const [register, { setProps, updateSchema, appendSchemaByField, removeSchemaByField }] = useForm({
+    const [register, { setFormProps, updateSchema, appendSchemaByField, removeSchemaByField }] = useForm({
       labelWidth: 120,
       schemas,
       actionColOptions: {
@@ -90,7 +90,7 @@ export default defineComponent({
       register,
       register1,
       schemas,
-      setProps,
+      setFormProps,
       changeLabel3,
       changeLabel34,
       appendField,

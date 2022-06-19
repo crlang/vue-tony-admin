@@ -2,7 +2,7 @@ import type { BasicFormSchema, FormActionMethods, BasicProps } from './types/for
 import type { CSSProperties } from 'vue'
 import type { TableActionMethods } from '@/components/BasicTable'
 import type { EleButton, EleCol, EleRow } from '@/components/ElementPlus'
-import type dayjs from 'dayjs'
+import type { Dayjs } from 'dayjs'
 
 import { EleFormProps } from '@/components/ElementPlus'
 
@@ -72,8 +72,8 @@ export const customProps = {
   submitFunc: Function as PropType<() => Promise<void>>,
   transformDateFunc: {
     type: Function as PropType<Fn>,
-    default: (date: any) => {
-      return date instanceof dayjs ? date?.format('YYYY-MM-DD HH:mm:ss') : date
+    default: (date: Dayjs) => {
+      return date?.format('YYYY-MM-DD HH:mm:ss')
     },
   },
   tableAction: {

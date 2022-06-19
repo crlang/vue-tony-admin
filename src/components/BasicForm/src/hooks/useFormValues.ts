@@ -23,6 +23,9 @@ export function useFormValues({
   formModel,
   getProps,
 }: UseFormValuesContext) {
+  // check dayjs
+  const isDayjsVal = (v) => v instanceof dayjs
+
   /**
    * 处理表单项值
    *
@@ -45,26 +48,29 @@ export function useFormValues({
         continue
       }
 
-      // 尝试处理时间值
-      // try processing time value
-      const { transformDateFunc } = unref(getProps)
-      if (Array.isArray(value)) {
-        for (let i = 0; i < value.length; i++) {
-          if (value[i] instanceof dayjs) {
-            value[i] = transformDateFunc?.(item)
-          }
-        }
-      } else {
-        if (value instanceof dayjs) {
-          value = transformDateFunc?.(value)
-        }
-      }
-
       // 移除空格
       // Remove spaces
       if (typeof value === 'string') {
         value = value.trim()
       }
+
+      // 尝试处理时间值
+      // try processing time value
+      const { transformDateFunc } = unref(getProps)
+      if (typeof transformDateFunc === 'function') {
+        if (Array.isArray(value)) {
+          for (let i = 0; i < value.length; i++) {
+            value[i] = isDayjsVal(value[i])
+              ? transformDateFunc?.(value[i])
+              : value[i]
+          }
+        } else {
+          value = isDayjsVal(value)
+            ? transformDateFunc?.(value)
+            : value
+        }
+      }
+
       set(res, key, value)
     }
     return res
@@ -78,24 +84,52 @@ export function useFormValues({
   function initDefault() {
     const schemas = unref(getSchema)
     const obj: Recordable = {}
-    schemas.forEach((item) => {
+    for (let i = 0; i < schemas.length; i++) {
+      const item = schemas[i]
       const { defaultValue, component } = item
-      if (!defaultValue || defaultValue === 0) {
-        obj[item.field] = defaultValue
-        formModel[item.field] = defaultValue
+      obj[item.field] = item.defaultValue
 
-        // 如果是日期组件，尝试格式化默认内容
-        // If it is a date component, try to format the defaultValue
-        const dateComponent = ['ElDatePicker', 'ElTimePicker']
-        if (defaultValue && dateComponent.includes(component)) {
+      if (component === 'ElDivider') {
+        continue
+      }
+
+      // array
+      const arrayComponent = ['ElCheckboxGroup']
+      if (arrayComponent.includes(component)) {
+        if (!Array.isArray(defaultValue)) {
+          item.defaultValue = []
+        }
+      }
+
+      // number
+      const numberComponent = ['ElInputNumber']
+      if (numberComponent.includes(component)) {
+        if (!defaultValue || defaultValue !== 0) {
+          item.defaultValue = 0
+        }
+      }
+
+      // date - dayjs
+      const dateComponent = ['ElDatePicker', 'ElTimePicker']
+      if (dateComponent.includes(component)) {
+        const { transformDateFunc } = unref(getProps)
+        if (typeof transformDateFunc === 'function') {
           if (Array.isArray(defaultValue)) {
-            schema.defaultValue = defaultValue.map(k => dayjs(k))
+            for (let i = 0; i < defaultValue.length; i++) {
+              item.defaultValue[i] = isDayjsVal(defaultValue[i])
+                ? transformDateFunc?.(defaultValue[i])
+                : defaultValue[i]
+            }
           } else {
-            schema.defaultValue = dayjs(defaultValue)
+            item.defaultValue = isDayjsVal(defaultValue)
+              ? transformDateFunc?.(defaultValue)
+              : defaultValue
           }
         }
       }
-    })
+
+      formModel[item.field] = item.defaultValue
+    }
 
     defaultValueRef.value = obj
   }

@@ -31,7 +31,6 @@ export function useForm(formProps?: Props): UseFormReturnType {
     stopWatch = watch(
       () => formProps,
       () => {
-        console.log('formProps +++++++++', formProps)
         formProps && instance.setFormProps(getDynamicProps(formProps))
       },
       {

@@ -106,23 +106,26 @@ export interface basicFormAction {
 
 export interface BasicProps extends EleForm, basicFormAction {
   /**
+   * 表单配置项的数组
    * Array of form configuration items
    */
   schemas?: BasicFormSchema[]
   /**
-   * 整个表单的行配置
+   * 整个表单的行的配置
    *
    * Row configuration for the entire form
    */
   rowProps?: Partial<EleRow>
   /**
-   * 整个表单的行样式
+   * 整个表单的行的样式
    *
    * Row style for the entire form
    */
   rowStyle?: CSSProperties
   /**
-   * General col configuration
+   * 整个表单的列的样式
+   *
+   * Column configuration for the entire form
    */
   colProps?: Partial<EleCol>
   /**
@@ -151,7 +154,12 @@ export interface BasicProps extends EleForm, basicFormAction {
   alwaysShowLines?: number
   resetFunc?: () => Promise<void>
   submitFunc?: () => Promise<void>
-  transformDateFunc?: (date: any) => string
+  /**
+   * 格式化表单的全部的时间的方法
+   *
+   * Method to format the entire time of the form
+   */
+  transformDateFunc?: (date: number | string | object) => string
 }
 
 /**
@@ -161,10 +169,14 @@ export interface BasicProps extends EleForm, basicFormAction {
  */
 export interface BasicFormSchema {
   /**
+   * 字段名称
+   *
    * Field name
    */
   field: string
   /**
+   * 标签名称
+   *
    * Label name
    */
   label: string

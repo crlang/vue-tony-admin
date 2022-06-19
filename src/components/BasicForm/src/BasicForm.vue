@@ -108,7 +108,6 @@ export default defineComponent({
         ...props,
         ...(unref(propsRef) as Recordable),
       } as BasicProps
-
       return opts
     })
     /**

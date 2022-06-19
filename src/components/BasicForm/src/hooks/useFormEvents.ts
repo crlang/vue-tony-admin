@@ -21,6 +21,11 @@ interface UseFormActionContext {
   handleFormValues: Fn
 }
 
+/**
+ * 处理表单的事件、方法
+ *
+ * Handling form events and methods
+ */
 export function useFormEvents({
   emit,
   getProps,
@@ -51,20 +56,20 @@ export function useFormEvents({
         // 时间类型
         // time type
         if (key instanceof dayjs) {
-          if (Array.isArray(value)) {
-            const arr = []
-            for (const ele of value) {
-              arr.push(ele instanceof dayjs ? dayjs(ele) : ele)
-            }
-            formModel[key] = arr
-          } else {
-            const { componentProps } = unref(schemaRef) || {}
-            let _props = componentProps as any
-            if (typeof componentProps === 'function') {
-              _props = _props({ formModel })
-            }
-            formModel[key] = value instanceof dayjs ? (_props?.valueFormat ? value : dayjs(value)) : value
-          }
+          // if (Array.isArray(value)) {
+          //   const arr = []
+          //   for (const ele of value) {
+          //     arr.push(ele instanceof dayjs ? dayjs(ele) : ele)
+          //   }
+          //   formModel[key] = arr
+          // } else {
+          //   const { componentProps } = unref(schemaRef) || {}
+          //   let _props = componentProps as any
+          //   if (typeof componentProps === 'function') {
+          //     _props = _props({ formModel })
+          //   }
+          //   formModel[key] = value instanceof dayjs ? (_props?.valueFormat ? value : dayjs(value)) : value
+          // }
         } else {
           formModel[key] = value
         }
@@ -73,6 +78,13 @@ export function useFormEvents({
     })
     validateField(validKeys).catch((_) => {})
   }
+
+  function getFieldsValue(): Recordable {
+    const formEl = unref(formElRef)
+    if (!formEl) return {}
+    return handleFormValues(toRaw(unref(formModel)))
+  }
+
   /**
    * Delete based on field name
    */
@@ -180,12 +192,6 @@ export function useFormEvents({
       })
     })
     schemaRef.value = uniqBy(schema, 'field')
-  }
-
-  function getFieldsValue(): Recordable {
-    const formEl = unref(formElRef)
-    if (!formEl) return {}
-    return handleFormValues(toRaw(unref(formModel)))
   }
 
   /**
