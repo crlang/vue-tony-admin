@@ -82,7 +82,7 @@ export default defineComponent({
       const { sendCodeApi } = props
       // 如果有api方法，先请求后再启动
       // If there is an api method, first request and then start
-      if (sendCodeApi && typeof sendCodeApi === 'function') {
+      if (typeof sendCodeApi === 'function') {
         loading.value = true
         try {
           const canStart = await sendCodeApi()

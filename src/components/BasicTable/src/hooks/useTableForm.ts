@@ -61,7 +61,7 @@ export function useTableForm(
    */
   function handleSearchSubmit(info: Recordable) {
     const { searchFn } = unref(propsRef)
-    if (searchFn && typeof searchFn === 'function') {
+    if (typeof searchFn === 'function') {
       info = searchFn(info) || info
     }
     fetch({ searchInfo: info, page: 1 })

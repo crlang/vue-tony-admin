@@ -90,7 +90,7 @@ export default defineComponent({
         .map((item) => {
           const { field, show, isSlot, render, minWidth } = item
 
-          if (show && typeof show === 'function' && !show(data)) {
+          if (typeof show === 'function' && !show(data)) {
             return null
           }
 

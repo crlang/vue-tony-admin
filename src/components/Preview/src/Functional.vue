@@ -103,9 +103,9 @@ export default defineComponent({
       if (!wrapEl) {
         return
       }
-      (wrapEl as any).onmousewheel = scrollFunc
+      (wrapEl as any).onmousewheel = scrollFn
       // Firefox has no onmousewheel event, use DOMMouseScroll instead
-      document.body.addEventListener('DOMMouseScroll', scrollFunc)
+      document.body.addEventListener('DOMMouseScroll', scrollFn)
       // Disable the default event of dragging images in Firefox
       document.ondragstart = function () {
         return false
@@ -121,26 +121,26 @@ export default defineComponent({
       }
     })
 
-    function scrollFunc(e: any) {
+    function scrollFn(e: any) {
       e = e || window.event
       e.delta = e.wheelDelta || -e.detail
 
       e.preventDefault()
       if (e.delta > 0) {
         // Up
-        scaleFunc(getScaleStep.value)
+        scaleFn(getScaleStep.value)
       }
       if (e.delta < 0) {
         // Down
-        scaleFunc(-getScaleStep.value)
+        scaleFn(-getScaleStep.value)
       }
     }
-    function scaleFunc(num: number) {
+    function scaleFn(num: number) {
       if (imgState.imgScale <= 0.2 && num < 0) return
       imgState.imgScale += num
     }
 
-    function rotateFunc(deg: number) {
+    function rotateFn(deg: number) {
       imgState.imgRotate += deg
     }
 
@@ -212,7 +212,7 @@ export default defineComponent({
     function close() {
       imgState.show = false
       // Remove mouse scroll event under Firefox
-      document.body.removeEventListener('DOMMouseScroll', scrollFunc)
+      document.body.removeEventListener('DOMMouseScroll', scrollFn)
       // Restore drag and drop images in Firefox and Safari browsers
       document.ondragstart = null
     }
@@ -258,11 +258,11 @@ export default defineComponent({
       imgState.moveY = e.clientY
       const imgEl = unref(imgElRef)
       if (imgEl) {
-        imgEl.onmousemove = moveFunc
+        imgEl.onmousemove = moveFn
       }
     }
 
-    function moveFunc(e: MouseEvent) {
+    function moveFn(e: MouseEvent) {
       e = e || window.event
       e.preventDefault()
       const movementX = e.clientX - imgState.moveX
@@ -333,21 +333,21 @@ export default defineComponent({
         <div class={`${prefixCls}__controller`}>
           <div
             class={`${prefixCls}__controller-item`}
-            onClick={() => scaleFunc(-getScaleStep.value)} >
+            onClick={() => scaleFn(-getScaleStep.value)} >
             <img src={unScaleSvg} />
           </div>
           <div
             class={`${prefixCls}__controller-item`}
-            onClick={() => scaleFunc(getScaleStep.value)} >
+            onClick={() => scaleFn(getScaleStep.value)} >
             <img src={scaleSvg} />
           </div>
           <div class={`${prefixCls}__controller-item`} onClick={resume}>
             <img src={resumeSvg} />
           </div>
-          <div class={`${prefixCls}__controller-item`} onClick={() => rotateFunc(-90)}>
+          <div class={`${prefixCls}__controller-item`} onClick={() => rotateFn(-90)}>
             <img src={unRotateSvg} />
           </div>
-          <div class={`${prefixCls}__controller-item`} onClick={() => rotateFunc(90)}>
+          <div class={`${prefixCls}__controller-item`} onClick={() => rotateFn(90)}>
             <img src={rotateSvg} />
           </div>
         </div>

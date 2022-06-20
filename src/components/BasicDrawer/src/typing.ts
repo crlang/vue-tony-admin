@@ -37,7 +37,7 @@ export interface BasicProps extends EleDrawer {
    *
    * Method triggered before closing
    */
-  closeFunc?: () => Promise<boolean>
+  closeFn?: () => Promise<boolean>
   /**
    * 是否显示脚部
    *

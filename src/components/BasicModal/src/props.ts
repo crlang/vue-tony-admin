@@ -131,7 +131,7 @@ export const customProps = {
    *
    * Execute the function before closing, return true before closing
    */
-  closeFunc: Function as PropType<() => Promise<boolean>>,
+  closeFn: Function as PropType<() => Promise<boolean>>,
 }
 
 export const basicProps = {

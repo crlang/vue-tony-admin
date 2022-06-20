@@ -192,10 +192,10 @@ export default defineComponent({
      */
     async function handleCancel(e: Event) {
       e?.stopPropagation()
-      const { closeFunc } = unref(getProps)
+      const { closeFn } = unref(getProps)
 
-      if (closeFunc && typeof closeFunc === 'function') {
-        const isClose:boolean = await closeFunc()
+      if (typeof closeFn === 'function') {
+        const isClose:boolean = await closeFn()
         visibleRef.value = !isClose
         return
       } else {

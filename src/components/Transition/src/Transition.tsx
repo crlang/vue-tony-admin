@@ -114,7 +114,7 @@ export function createJavascriptTransition(name: string, functions: Recordable, 
  * Define expand JS transition methods
  * @param x Is it horizontal?
  */
-export function createExpandFunc(x = false) {
+export function createExpandFn(x = false) {
   let a = 'height'
   let b = 'paddingTop'
   let c = 'paddingBottom'

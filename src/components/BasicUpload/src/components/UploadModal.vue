@@ -7,7 +7,7 @@
     custom-class="upload-modal"
     @register="register"
     @confirm="handleConfirm"
-    :closeFunc="handleCloseFunc"
+    :closeFn="handleCloseFn"
     :confirm-options="getConfirmProps"
     :cancel-options="getCancelProps">
 
@@ -330,7 +330,7 @@ export default defineComponent({
      *
      * The function to execute before closing the upload popup
      */
-    async function handleCloseFunc() {
+    async function handleCloseFn() {
       // 已全部上传完毕
       // All uploaded
       if (!isUploadingRef.value) {
@@ -359,7 +359,7 @@ export default defineComponent({
       isUploadingRef,
       handleStartUpload,
       handleConfirm,
-      handleCloseFunc,
+      handleCloseFn,
       getIsSelectFile,
       getUploadBtnText,
     }

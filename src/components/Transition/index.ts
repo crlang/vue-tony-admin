@@ -1,4 +1,4 @@
-import { createSimpleTransition, createJavascriptTransition, createExpandFunc } from './src/Transition'
+import { createSimpleTransition, createJavascriptTransition, createExpandFn } from './src/Transition'
 
 // Fade
 export const FadeTransition = createSimpleTransition('tyani-fade')
@@ -30,5 +30,5 @@ export const ZoomOutTransition = createSimpleTransition('tyani-zoom-out')
 // JS 方式创建
 
 // Expand
-export const ExpandTransition = createJavascriptTransition('tyani-expand', createExpandFunc())
-export const ExpandXTransition = createJavascriptTransition('tyani-expand-x', createExpandFunc(true))
+export const ExpandTransition = createJavascriptTransition('tyani-expand', createExpandFn())
+export const ExpandXTransition = createJavascriptTransition('tyani-expand-x', createExpandFn(true))

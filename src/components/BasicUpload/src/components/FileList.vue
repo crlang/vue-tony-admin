@@ -81,7 +81,7 @@ export default defineComponent({
                 <tr key={`${index + record.name || ''}`}>
                   {columnList.map((item) => {
                     const { prop = '', customRender, align = 'center' } = item
-                    const render = customRender && typeof customRender === 'function'
+                    const render = typeof customRender === 'function'
                     return (
                       <td class={align} key={prop}>
                         {render

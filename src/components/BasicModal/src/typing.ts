@@ -88,7 +88,7 @@ export interface BasicProps extends EleDialog, ModalCustomHeader, ModalCustomCon
    *
    * Execute the function before closing, return true before closing
    */
-  closeFunc?: () => Promise<boolean>
+  closeFn?: () => Promise<boolean>
 }
 
 /**

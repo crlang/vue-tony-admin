@@ -33,7 +33,7 @@ export const customProps = {
     *
     * Method triggered before closing
     */
-  closeFunc: {
+  closeFn: {
     type: Function as PropType<(arg?: Recordable) => Promise<boolean>>,
     default: null,
   },
