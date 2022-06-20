@@ -1,5 +1,5 @@
-import type { BasicProps, FormActionMethods, UseFormReturnType, BasicFormSchema } from '../types/form'
 import type { DynamicProps } from '#/utils'
+import type { BasicProps, FormActionMethods, UseFormReturnType, BasicFormSchema } from '../typing'
 
 import { ref, onUnmounted, unref, watch, WatchStopHandle } from 'vue'
 import { isProdMode } from '@/utils/env'
@@ -65,33 +65,32 @@ export function useForm(formProps?: Props): UseFormReturnType {
       return getUseInstance<FormActionMethods>(formRef, 'form')?.setFormProps(formProps)
     },
 
-    updateSchema: (data: Partial<BasicFormSchema> | Partial<BasicFormSchema>[]) => {
-      return getUseInstance<FormActionMethods>(formRef, 'form')?.updateSchema(data)
+    updateSchema: (schema: Partial<BasicFormSchema>) => {
+      return getUseInstance<FormActionMethods>(formRef, 'form')?.updateSchema(schema)
     },
 
-    resetSchema: (data: Partial<BasicFormSchema> | Partial<BasicFormSchema>[]) => {
-      return getUseInstance<FormActionMethods>(formRef, 'form')?.resetSchema(data)
+    resetSchema: (schemas: BasicFormSchema[]) => {
+      return getUseInstance<FormActionMethods>(formRef, 'form')?.resetSchema(schemas)
     },
 
     removeSchemaByField: (field: string | string[]) => {
       return getUseInstance<FormActionMethods>(formRef, 'form')?.removeSchemaByField(field)
     },
 
-    // TODO promisify
-    getFieldsValue: <T>() => {
-      return getUseInstance<FormActionMethods>(formRef, 'form')?.getFieldsValue() as T
+    getFieldsValue: () => {
+      return getUseInstance<FormActionMethods>(formRef, 'form')?.getFieldsValue()
     },
 
-    setFieldsValue: <T>(values: T) => {
-      return getUseInstance<FormActionMethods>(formRef, 'form')?.setFieldsValue<T>(values)
+    setFieldsValue: (values: Recordable) => {
+      return getUseInstance<FormActionMethods>(formRef, 'form')?.setFieldsValue(values)
     },
 
     appendSchemaByField: (
       schema: BasicFormSchema,
-      prefixField: string | undefined,
-      first: boolean
+      beforeField?: string,
+      first?: boolean
     ) => {
-      return getUseInstance<FormActionMethods>(formRef, 'form')?.appendSchemaByField(schema, prefixField, first)
+      return getUseInstance<FormActionMethods>(formRef, 'form')?.appendSchemaByField(schema, beforeField, first)
     },
   }
 

@@ -27,29 +27,29 @@ export default defineComponent({
   components: { ElRow, ElCol, BasicForm },
   setup() {
     const { createMessage } = useMessage()
-    const [register, { validate, setProps }] = useForm({
+    const [register, { validate, setFormProps }] = useForm({
       labelWidth: 160,
       schemas: schemas,
-      actionColOptions: {
+      actionColProps: {
         offset: 8,
         span: 12,
       },
       submitButtonOptions: {
         text: '提交',
       },
-      submitFunc: customSubmitFunc,
+      submitFn: customSubmitFunc,
     })
 
     async function customSubmitFunc() {
       try {
         await validate()
-        setProps({
+        setFormProps({
           submitButtonOptions: {
             loading: true,
           },
         })
         setTimeout(() => {
-          setProps({
+          setFormProps({
             submitButtonOptions: {
               loading: false,
             },

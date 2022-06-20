@@ -1,5 +1,5 @@
 import type { Ref, ComputedRef } from 'vue'
-import type { BasicProps, BasicFormSchema } from '../types/form'
+import type { BasicProps, BasicFormSchema } from '../typing'
 
 import { unref } from 'vue'
 import { set } from 'lodash-es'
@@ -56,17 +56,17 @@ export function useFormValues({
 
       // 尝试处理时间值
       // try processing time value
-      const { transformDateFunc } = unref(getProps)
-      if (typeof transformDateFunc === 'function') {
+      const { transformDateFn } = unref(getProps)
+      if (typeof transformDateFn === 'function') {
         if (Array.isArray(value)) {
           for (let i = 0; i < value.length; i++) {
             value[i] = isDayjsVal(value[i])
-              ? transformDateFunc?.(value[i])
+              ? transformDateFn?.(value[i])
               : value[i]
           }
         } else {
           value = isDayjsVal(value)
-            ? transformDateFunc?.(value)
+            ? transformDateFn?.(value)
             : value
         }
       }
@@ -87,7 +87,7 @@ export function useFormValues({
     for (let i = 0; i < schemas.length; i++) {
       const item = schemas[i]
       const { defaultValue, component } = item
-      obj[item.field] = item.defaultValue
+      obj[item.field] = defaultValue
 
       if (component === 'ElDivider') {
         continue
@@ -112,17 +112,17 @@ export function useFormValues({
       // date - dayjs
       const dateComponent = ['ElDatePicker', 'ElTimePicker']
       if (dateComponent.includes(component)) {
-        const { transformDateFunc } = unref(getProps)
-        if (typeof transformDateFunc === 'function') {
+        const { transformDateFn } = unref(getProps)
+        if (typeof transformDateFn === 'function') {
           if (Array.isArray(defaultValue)) {
             for (let i = 0; i < defaultValue.length; i++) {
               item.defaultValue[i] = isDayjsVal(defaultValue[i])
-                ? transformDateFunc?.(defaultValue[i])
+                ? transformDateFn?.(defaultValue[i])
                 : defaultValue[i]
             }
           } else {
             item.defaultValue = isDayjsVal(defaultValue)
-              ? transformDateFunc?.(defaultValue)
+              ? transformDateFn?.(defaultValue)
               : defaultValue
           }
         }

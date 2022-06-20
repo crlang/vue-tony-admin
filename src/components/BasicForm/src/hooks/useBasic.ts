@@ -1,10 +1,10 @@
 import type { FormItemProp } from 'element-plus'
 import type { ValidateFieldsError } from 'async-validator'
-import type { FormActionMethods } from '../types/form'
+import type { FormActionMethods } from '../typing'
 
-import { Ref, unref } from 'vue'
+import { Ref } from 'vue'
 
-import { error } from '@/utils/log'
+import { getUseInstance } from '@/utils'
 
 interface UseBasicFnContext {
   formElRef: Ref<FormActionMethods | null>
@@ -20,32 +20,23 @@ export function useBasicFormFn({
   formElRef,
   emit,
 }: UseBasicFnContext) {
-  function getForm() {
-    const form = unref(formElRef)
-    if (!form) {
-      error(
-        'The form instance has not been obtained, please make sure that the form has been rendered when performing the form operation!'
-      )
-    }
-    return form as FormActionMethods
-  }
   function validate(callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void): Promise<void> {
-    return getForm().validate(callback)
+    return getUseInstance<FormActionMethods>(formElRef, 'form')?.validate(callback)
   }
   function validateField(
     props?: Arrayable<FormItemProp>,
     callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void
   ): Promise<void> {
-    return getForm().validateField(props, callback)
+    return getUseInstance<FormActionMethods>(formElRef, 'form')?.validateField(props, callback)
   }
   function resetFields(props?: Arrayable<FormItemProp>): void {
-    return getForm().resetFields(props)
+    return getUseInstance<FormActionMethods>(formElRef, 'form')?.resetFields(props)
   }
   function scrollToField(prop: FormItemProp): void {
-    return getForm().scrollToField(prop)
+    return getUseInstance<FormActionMethods>(formElRef, 'form')?.scrollToField(prop)
   }
   function clearValidate(props?: Arrayable<FormItemProp>): void {
-    return getForm().clearValidate(props)
+    return getUseInstance<FormActionMethods>(formElRef, 'form')?.clearValidate(props)
   }
 
   const getBasicEmits = {

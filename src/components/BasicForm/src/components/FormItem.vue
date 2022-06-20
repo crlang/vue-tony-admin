@@ -21,16 +21,10 @@ export default defineComponent({
   props: basicFormItemProps,
   setup(props, { slots }) {
     const getValues = computed(() => {
-      const { defaultValues, formModel, schema } = props
-      const { mergeDynamicData } = props.formProps
+      const { formModel, schema } = props
       return {
         field: schema.field,
-        model: formModel,
-        values: {
-          ...mergeDynamicData,
-          ...defaultValues,
-          ...formModel,
-        } as Recordable,
+        model: toRaw(formModel),
         schema: schema,
       }
     })
@@ -92,24 +86,24 @@ export default defineComponent({
     }
 
     function handleRules(): EleFormItemRule[] {
+      const { schema, formProps } = props
       const {
         rules: defRules = [],
         component,
         rulesMessageJoinLabel,
         label,
         dynamicRules,
-      } = props.schema
+      } = schema
 
       if (isFunction(dynamicRules)) {
         return dynamicRules(unref(getValues)) as EleFormItemRule[]
       }
 
       const rules: EleFormItemRule[] = cloneDeep(defRules) as EleFormItemRule[]
-      const { rulesMessageJoinLabel: globalRulesMessageJoinLabel } = props.formProps
 
       const joinLabel = Reflect.has(props.schema, 'rulesMessageJoinLabel')
         ? rulesMessageJoinLabel
-        : globalRulesMessageJoinLabel
+        : formProps.rulesMessageJoinLabel
       const defaultMsg = createPlaceholderMessage(component) + `${joinLabel ? label : ''}`
 
       // function validator(rule: any, value: any, callback:any) {

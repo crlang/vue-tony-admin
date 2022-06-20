@@ -41,7 +41,7 @@ export default defineComponent({
     const [registerForm, { setFieldsValue }] = useForm({
       schemas,
       showActionButtonGroup: false,
-      actionColOptions: {
+      actionColProps: {
         span: 24,
       },
     })

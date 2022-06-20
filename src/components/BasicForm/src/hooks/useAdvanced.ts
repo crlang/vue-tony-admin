@@ -1,7 +1,6 @@
-import type { AdvanceState } from '../types/hooks'
 import type { ComputedRef, Ref } from 'vue'
-import type { BasicProps, BasicFormSchema } from '../types/form'
 import type { EleCol } from '@/components/ElementPlus'
+import type { BasicProps, BasicFormSchema, AdvanceState } from '../typing'
 
 import { unref, watch } from 'vue'
 
@@ -19,9 +18,9 @@ interface UseAdvancedContext {
 }
 
 /**
- * 处理展开收起
+ * 处理展开/收起
  *
- * Handle Expand Collapse Information
+ * Handle Expand/Collapse Information
  */
 export function useAdvanced({
   advanceState,
@@ -35,9 +34,9 @@ export function useAdvanced({
   let firstLoad = false
 
   /**
-   * 获取展开收缩信息
+   * 获取展开/收起信息
    *
-   * Get Expand Collapse Information
+   * Get Expand/Collapse Information
    * @param itemCol EleCol
    * @param itemColSum
    */
@@ -90,9 +89,9 @@ export function useAdvanced({
   }
 
   /**
-   * 获取展开收缩信息
+   * 获取展开/收起信息
    *
-   * Update Expand Collapse
+   * Update Expand/Collapse
    */
   function updateAdvanced() {
     let itemColSum = 0
@@ -140,9 +139,9 @@ export function useAdvanced({
   }
 
   /**
-   * 切换展开收缩
+   * 切换展开/收起
    *
-   * Toggle Expand Collapse
+   * Toggle Expand/Collapse
    */
   function handleToggleAdvanced() {
     advanceState.isAdvanced = !advanceState.isAdvanced

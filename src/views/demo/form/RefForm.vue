@@ -7,7 +7,7 @@
       <el-button @click="setFormProps({ size: 'default' })">还原Size</el-button>
       <el-button @click="setFormProps({ disabled: true })">禁用表单</el-button>
       <el-button @click="setFormProps({ disabled: false })">解除禁用</el-button>
-      <el-button @click="setFormProps({ actionColOptions: { span: 8 } })">操作按钮位置</el-button>
+      <el-button @click="setFormProps({ actionColProps: { span: 8 } })">操作按钮位置</el-button>
     </div>
     <div class="mb-4">
       <el-button @click="setFormProps({ showActionButtonGroup: false })">隐藏操作按钮</el-button>
@@ -26,7 +26,7 @@
         ref="formElRef"
         :labelWidth="100"
         @submit="handleSubmit"
-        :actionColOptions="{ span: 24 }" />
+        :actionColProps="{ span: 24 }" />
     </CollapseContainer>
   </PageWrapper>
 </template>

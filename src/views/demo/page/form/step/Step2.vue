@@ -32,10 +32,10 @@ export default defineComponent({
   },
   emits: ['next', 'prev'],
   setup(_, { emit }) {
-    const [register, { validate, setProps }] = useForm({
+    const [register, { validate, setFormProps }] = useForm({
       labelWidth: 80,
       schemas: step2Schemas,
-      actionColOptions: {
+      actionColProps: {
         span: 14,
       },
       resetButtonOptions: {
@@ -44,8 +44,8 @@ export default defineComponent({
       submitButtonOptions: {
         text: '提交',
       },
-      resetFunc: customResetFunc,
-      submitFunc: customSubmitFunc,
+      resetFn: customResetFunc,
+      submitFn: customSubmitFunc,
     })
 
     async function customResetFunc() {
@@ -55,13 +55,13 @@ export default defineComponent({
     async function customSubmitFunc() {
       try {
         const values = await validate()
-        setProps({
+        setFormProps({
           submitButtonOptions: {
             loading: true,
           },
         })
         setTimeout(() => {
-          setProps({
+          setFormProps({
             submitButtonOptions: {
               loading: false,
             },

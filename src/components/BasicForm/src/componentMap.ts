@@ -1,8 +1,10 @@
 import type { Component } from 'vue'
-import type { ComponentType } from './types'
+import type { ComponentType } from './typing'
 
 /**
- * Component list, register here to setting it in the form
+ * 导入支持的官方表单项组件
+ *
+ * Import supported official form item components
  */
 import {
   ElInput,
@@ -20,9 +22,19 @@ import {
   ElInputNumber
 } from 'element-plus'
 
+/**
+ * 导入自定义的表单项组件
+ *
+ * Import custom form item components
+ */
 import DatePicker from './components/DatePicker.vue'
 import TimePicker from './components/TimePicker.vue'
 
+/**
+ * 注册导入的组件
+ *
+ * Register imported components
+ */
 const componentMap = new Map<ComponentType, Component>()
 
 // Element plus
@@ -43,10 +55,23 @@ componentMap.set('ElInputNumber', ElInputNumber)
 componentMap.set('ElTimePicker', TimePicker)
 componentMap.set('ElDatePicker', DatePicker)
 
+/**
+ * 注册新的表单项组件
+ *
+ * Register a new form item component
+ * @param compName ComponentType
+ * @param component Component
+ */
 export function add(compName: ComponentType, component: Component) {
   componentMap.set(compName, component)
 }
 
+/**
+ * 移除表单项组件
+ *
+ * Remove form item component
+ * @param compName ComponentType
+ */
 export function del(compName: ComponentType) {
   componentMap.delete(compName)
 }

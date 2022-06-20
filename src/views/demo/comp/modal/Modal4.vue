@@ -47,7 +47,7 @@ export default defineComponent({
       labelWidth: 120,
       schemas,
       showActionButtonGroup: false,
-      actionColOptions: {
+      actionColProps: {
         span: 24,
       },
     })

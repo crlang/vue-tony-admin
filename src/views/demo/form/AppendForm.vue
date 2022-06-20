@@ -58,7 +58,7 @@ export default defineComponent({
         },
       ],
       labelWidth: 100,
-      actionColOptions: { span: 24 },
+      actionColProps: { span: 24 },
     })
 
     async function handleSubmit() {

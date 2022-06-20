@@ -73,7 +73,7 @@ export default defineComponent({
     const [register] = useForm({
       labelWidth: 120,
       schemas,
-      actionColOptions: {
+      actionColProps: {
         span: 24,
       },
     })

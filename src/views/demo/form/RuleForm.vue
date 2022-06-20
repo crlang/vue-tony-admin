@@ -191,7 +191,7 @@ export default defineComponent({
           {
             required: true,
             message: '覆盖默认生成的校验信息',
-            type: 'array',
+            type: 'string',
           },
         ],
       },
@@ -232,7 +232,7 @@ export default defineComponent({
     ] = useForm({
       labelWidth: 140,
       schemas,
-      actionColOptions: {
+      actionColProps: {
         span: 24,
       },
     })

@@ -38,7 +38,7 @@ export default defineComponent({
       labelWidth: 100,
       schemas: accountFormSchema,
       showActionButtonGroup: false,
-      actionColOptions: {
+      actionColProps: {
         span: 23,
       },
     })
@@ -55,13 +55,13 @@ export default defineComponent({
         })
       }
 
-      updateSchema([
+      updateSchema(
         {
           field: 'pwd',
           show: !unref(isUpdate),
           ifShow: !unref(isUpdate),
         },
-      ])
+      )
     })
 
     const getTitle = computed(() => (!unref(isUpdate) ? '新增账号' : '编辑账号'))

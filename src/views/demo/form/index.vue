@@ -6,7 +6,7 @@
       <BasicForm
         :labelWidth="200"
         :schemas="basicSchemas"
-        :actionColOptions="{ span: 24 }"
+        :actionColProps="{ span: 24 }"
         @submit="handleSubmit"
         @reset="handleReset">
         <template #selectA="{ model, field }">

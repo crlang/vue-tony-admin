@@ -45,14 +45,14 @@ export default defineComponent({
     const [register, { validate }] = useForm({
       labelWidth: 100,
       schemas: step1Schemas,
-      actionColOptions: {
+      actionColProps: {
         span: 14,
       },
       showResetButton: false,
       submitButtonOptions: {
         text: '下一步',
       },
-      submitFunc: customSubmitFunc,
+      submitFn: customSubmitFunc,
     })
 
     async function customSubmitFunc() {

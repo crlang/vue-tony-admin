@@ -2,9 +2,9 @@
   <PageWrapper title="动态表单示例">
     <div class="mb-4">
       <el-button @click="changeLabel3">更改字段3label</el-button>
-      <el-button @click="changeLabel34">同时更改字段3,4label</el-button>
       <el-button @click="appendField">往字段3后面插入字段10</el-button>
       <el-button @click="deleteField">删除字段11</el-button>
+      <el-button @click="resetField">重置表单字段</el-button>
     </div>
     <CollapseContainer title="动态表单示例,动态根据表单内其他值改变">
       <BasicForm
@@ -33,17 +33,17 @@ import { dyncSchemas as schemas, dyncSchemas1 as schemas1 } from './data'
 export default defineComponent({
   components: { ElButton, CollapseContainer, BasicForm },
   setup() {
-    const [register, { setFormProps, updateSchema, appendSchemaByField, removeSchemaByField }] = useForm({
+    const [register, { setFormProps, updateSchema, appendSchemaByField, removeSchemaByField, resetSchema }] = useForm({
       labelWidth: 120,
       schemas,
-      actionColOptions: {
+      actionColProps: {
         span: 24,
       },
     })
     const [register1] = useForm({
       labelWidth: 120,
       schemas: schemas1,
-      actionColOptions: {
+      actionColProps: {
         span: 24,
       },
     })
@@ -52,18 +52,6 @@ export default defineComponent({
         field: 'field3',
         label: '字段3 New',
       })
-    }
-    function changeLabel34() {
-      updateSchema([
-        {
-          field: 'field3',
-          label: '字段3 New++',
-        },
-        {
-          field: 'field4',
-          label: '字段4 New++',
-        },
-      ])
     }
 
     function appendField() {
@@ -82,6 +70,9 @@ export default defineComponent({
     function deleteField() {
       removeSchemaByField('field11')
     }
+    function resetField() {
+      resetSchema(schemas)
+    }
     function handleSubmit() {
       // do something
     }
@@ -92,9 +83,9 @@ export default defineComponent({
       schemas,
       setFormProps,
       changeLabel3,
-      changeLabel34,
       appendField,
       deleteField,
+      resetField,
       handleSubmit,
     }
   },

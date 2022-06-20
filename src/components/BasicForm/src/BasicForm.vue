@@ -15,7 +15,6 @@
           :formActionType="formActionType"
           :schema="schema"
           :formProps="getProps"
-          :defaultValues="defaultValueRef"
           :formModel="formModel"
           :setFormModel="setFormModel">
           <template
@@ -30,6 +29,7 @@
 
       <FormAction
         v-bind="getActionProps"
+        v-if="showActionButtonGroup"
         @toggle-advanced="handleToggleAdvanced">
         <template
           #[item]="data"
@@ -45,25 +45,23 @@
 </template>
 
 <script lang="ts">
-import type { FormActionMethods, BasicProps, BasicFormSchema } from './types/form'
-import type { AdvanceState } from './types/hooks'
+import type { FormActionMethods, BasicProps, BasicFormSchema, AdvanceState } from './typing'
 
 import { defineComponent, reactive, ref, computed, unref, onMounted, watch, nextTick } from 'vue'
 import { ElForm, ElRow } from 'element-plus'
+import { omit } from 'lodash-es'
+import { useDesign } from '@/hooks/web/useDesign'
+import { useModalContext } from '@/components/BasicModal'
+
 import FormItem from './components/FormItem.vue'
 import FormAction from './components/FormAction.vue'
-
 import { useFormValues } from './hooks/useFormValues'
 import { useAdvanced } from './hooks/useAdvanced'
 import { useBasicFormFn } from './hooks/useBasic'
 import { useFormEvents } from './hooks/useFormEvents'
 import { createFormContext } from './hooks/useFormContext'
-import { useModalContext } from '@/components/BasicModal'
-
 import { basicProps, customProps } from './props'
 import { BASIC_ROW_GUTTER } from './const'
-import { useDesign } from '@/hooks/web/useDesign'
-import { omit } from 'lodash-es'
 
 export default defineComponent({
   name: 'BasicForm',
@@ -202,7 +200,8 @@ export default defineComponent({
       formElRef,
       schemaRef,
       validate,
-      clearValidate,
+      resetFields,
+      validateField,
       handleFormValues,
     })
 
@@ -221,41 +220,51 @@ export default defineComponent({
       propsRef.value = { ...(unref(propsRef) as Recordable), ...formProps } as Recordable
     }
 
-    function setFormModel(key: string, value: any) {
-      formModel[key] = value
-      // const { validateTrigger } = unref(getBindValues)
-      // if (!validateTrigger || validateTrigger === 'change') {
-      //   validateField([key]).catch((_) => {})
-      // }
+    /**
+     * 更新表单数据，并尝试验证
+     *
+     * Update the form data and try to validate
+     */
+    function setFormModel(field: string, value: any) {
+      formModel[field] = value
+
+      // try validate the field
+      validateField([field]).catch((_) => {})
     }
 
+    /**
+     * 按回车是否提交表单
+     *
+     * Whether to submit the form by pressing enter
+     */
     function handleEnterPress(e: KeyboardEvent) {
       const { autoSubmitOnEnter } = unref(getProps)
       if (!autoSubmitOnEnter) return
+      const { target, key } = e
 
-      if (e.key === 'Enter' && e.target && e.target instanceof HTMLElement) {
-        const target: HTMLElement = e.target as HTMLElement
-        if (target && target.tagName && target.tagName.toUpperCase() === 'INPUT') {
+      if (key === 'Enter' && target instanceof HTMLElement) {
+        if (target?.tagName?.toUpperCase() === 'INPUT') {
           handleSubmit()
         }
       }
     }
 
     const formActionType: FormActionMethods | undefined = {
+      submit: handleSubmit,
+      reset: handleReset,
+      setFormProps,
       getFieldsValue,
       setFieldsValue,
-      resetFields,
-      reset: handleReset,
       updateSchema,
       resetSchema,
-      setFormProps,
       removeSchemaByField,
       appendSchemaByField,
-      clearValidate,
-      validateField,
+      // Element Plus
       validate,
-      submit: handleSubmit,
+      validateField,
+      resetFields,
       scrollToField,
+      clearValidate,
     }
 
     onMounted(() => {
@@ -263,42 +272,29 @@ export default defineComponent({
       emit('register', formActionType)
     })
 
-    // watch(
-    //   () => unref(getProps).model,
-    //   (v) => {
-    //     v && setFieldsValue(v)
-    //   }
-    // )
-
-    // watch(
-    //   () => unref(getProps).schemas,
-    //   (schemas) => {
-    //     resetSchema(schemas ?? [])
-    //   }
-    // )
-
     watch(
-      () => getSchema.value,
+      () => unref(getSchema),
       (schema) => {
         if (!unref(isInitedDefaultRef) && schema?.length) {
           initDefault()
           isInitedDefaultRef.value = true
-        }
 
-        nextTick(() => {
-          try {
-            modalFn?.redoModalHeight()
-          } catch (error) {
+          nextTick(() => {
+            try {
+              modalFn?.redoModalHeight()
+            } catch (error) {
             // try redo modal height
-          }
-        })
+            }
+          })
+        }
       }
     )
 
     return {
-      getBindValues,
       handleToggleAdvanced,
       handleEnterPress,
+      setFormModel,
+      getBindValues,
       formModel,
       defaultValueRef,
       getRow,
@@ -306,13 +302,9 @@ export default defineComponent({
       formElRef,
       getSchema,
       formActionType,
-      setFormModel,
       prefixCls,
       getActionProps,
-      getFormActionBindProps: computed(
-        (): Recordable => ({ ...getProps.value, ...advanceState })
-      ),
-      ...formActionType,
+      // ...formActionType,
     }
   },
 })

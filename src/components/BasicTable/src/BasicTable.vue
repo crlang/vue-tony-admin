@@ -3,7 +3,7 @@
     ref="wrapRef"
     :class="getWrapperClass">
     <BasicForm
-      submitOnReset
+      submitAfterReset
       :alwaysShowLines="1"
       v-bind="getFormProps"
       v-if="getBindValues.useSearchForm"

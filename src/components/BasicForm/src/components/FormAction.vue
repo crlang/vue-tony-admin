@@ -1,7 +1,5 @@
 <template>
-  <ElCol
-    v-bind="actionColOpt"
-    v-if="showActionButtonGroup">
+  <ElCol v-bind="actionColOpt">
     <div
       style="width: 100%"
       :style="{ textAlign: actionColOpt?.style?.textAlign }">
@@ -67,7 +65,7 @@ export default defineComponent({
   emits: ['toggle-advanced'],
   setup(props, { emit }) {
     const actionColOpt = computed(() => {
-      const { showAdvancedButton, actionSpan: span, actionColOptions } = props
+      const { showAdvancedButton, actionSpan: span, actionColProps } = props
       const actionSpan = 24 - span
       const advancedSpanObj = showAdvancedButton
         ? { span: actionSpan < 6 ? 24 : actionSpan }
@@ -76,7 +74,7 @@ export default defineComponent({
         style: { textAlign: 'right' },
         span: showAdvancedButton ? 6 : 24,
         ...advancedSpanObj,
-        ...actionColOptions,
+        ...actionColProps,
       }
       return actionColOpt
     })

@@ -36,11 +36,11 @@ export default defineComponent({
         { field: '', component: 'ElDivider', label: '更多字段' },
         ...extraSchemas,
       ],
-      // actionColOptions: {
+      // actionColProps: {
       //   span: 24,
       // },
       showAdvancedButton: true,
-      // alwaysShowLines: 2,
+      alwaysShowLines: 2,
     })
     return {
       register,

@@ -1,12 +1,9 @@
 import type { ComputedRef, Ref } from 'vue'
-import type { BasicProps, BasicFormSchema, FormActionMethods } from '../types/form'
+import type { BasicProps, BasicFormSchema, FormActionMethods } from '../typing'
+
 import { unref, toRaw } from 'vue'
-import { isArray, isFunction, isObject, isString } from '@/utils/is'
-import { deepMerge } from '@/utils'
-// import { dateUtil } from '@/utils/dateUtil'
-import { cloneDeep, uniqBy } from 'lodash-es'
+
 import { error } from '@/utils/log'
-import dayjs from 'dayjs'
 
 interface UseFormActionContext {
   emit: EmitType
@@ -16,8 +13,9 @@ interface UseFormActionContext {
   defaultValueRef: Ref<Recordable>
   formElRef: Ref<FormActionMethods | null>
   schemaRef: Ref<BasicFormSchema[]>
-  validate: (callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void) => Promise<void>
-  clearValidate: (props?: Arrayable<FormItemProp>) => void
+  validate: FormActionMethods['validate']
+  resetFields: FormActionMethods['resetFields']
+  validateField: FormActionMethods['validateField']
   handleFormValues: Fn
 }
 
@@ -36,12 +34,16 @@ export function useFormEvents({
   schemaRef,
   handleFormValues,
   validate,
-  clearValidate,
+  validateField,
+  resetFields,
 }: UseFormActionContext) {
   /**
-   * Set form value
+   * 更新表单内容
+   *
+   * Set form field values
+   * @param values
    */
-  async function setFieldsValue(values: Recordable): Promise<void> {
+  function setFieldsValue(values: Recordable): void {
     const fields = unref(getSchema)
       .map((item) => item.field)
       .filter(Boolean)
@@ -53,182 +55,183 @@ export function useFormEvents({
       const hasKey = Reflect.has(values, key)
 
       if (hasKey && fields.includes(key)) {
-        // 时间类型
-        // time type
-        if (key instanceof dayjs) {
-          // if (Array.isArray(value)) {
-          //   const arr = []
-          //   for (const ele of value) {
-          //     arr.push(ele instanceof dayjs ? dayjs(ele) : ele)
-          //   }
-          //   formModel[key] = arr
-          // } else {
-          //   const { componentProps } = unref(schemaRef) || {}
-          //   let _props = componentProps as any
-          //   if (typeof componentProps === 'function') {
-          //     _props = _props({ formModel })
-          //   }
-          //   formModel[key] = value instanceof dayjs ? (_props?.valueFormat ? value : dayjs(value)) : value
-          // }
-        } else {
-          formModel[key] = value
-        }
+        formModel[key] = value
         validKeys.push(key)
       }
     })
-    validateField(validKeys).catch((_) => {})
+    // 同时验证字段值
+    // Also validate field values
+    validateField(validKeys).catch(() => {})
   }
 
+  /**
+   * 获取表单内容
+   *
+   * Get form field values
+   */
   function getFieldsValue(): Recordable {
     const formEl = unref(formElRef)
     if (!formEl) return {}
+
     return handleFormValues(toRaw(unref(formModel)))
   }
 
   /**
-   * Delete based on field name
+   * 根据字段删除表单架构内容
+   *
+   * Delete form schema content based on fields
    */
-  async function removeSchemaByField(fields: string | string[]): Promise<void> {
-    const schemaList: BasicFormSchema[] = cloneDeep(unref(getSchema))
-    if (!fields) {
-      return
+  function removeSchemaByField(fields: string | string[]): void {
+    const schemaList: BasicFormSchema[] = [...unref(getSchema)]
+    if (!fields || fields.length === 0) {
+      return []
     }
 
-    let fieldList: string[] = isString(fields) ? [fields] : fields
-    if (isString(fields)) {
-      fieldList = [fields]
-    }
-    for (const field of fieldList) {
-      _removeSchemaByField(field, schemaList)
-    }
-    schemaRef.value = schemaList
-  }
-
-  /**
-   * Delete based on field name
-   */
-  function _removeSchemaByField(field: string, schemaList: BasicFormSchema[]): void {
-    if (isString(field)) {
-      const index = schemaList.findIndex((schema) => schema.field === field)
-      if (index !== -1) {
-        delete formModel[field]
-        schemaList.splice(index, 1)
+    const fieldList: string[] = typeof fields === 'string' ? [fields] : fields
+    for (let i = 0; i < fieldList.length; i++) {
+      const fieldItem = fieldList[i]
+      if (typeof fieldItem === 'string') {
+        const index = schemaList.findIndex((schema) => schema.field === fieldItem)
+        if (index !== -1) {
+          delete formModel[fieldItem]
+          schemaList.splice(index, 1)
+        }
       }
     }
+    schemaRef.value = schemaList
+    return schemaList
   }
 
   /**
-   * Insert after a certain field, if not insert the last
+   * 插入一个结构到表单架构中
+   *
+   * Insert a structure into the form schema
+   * @param schema
+   * @param beforeField 插入定位的字段
+   * @param first 是否插入到第一条
    */
-  async function appendSchemaByField(schema: BasicFormSchema, prefixField?: string, first = false) {
-    const schemaList: BasicFormSchema[] = cloneDeep(unref(getSchema))
+  function appendSchemaByField(schema: BasicFormSchema, beforeField?: string, first = false): void {
+    const schemaList: BasicFormSchema[] = [...unref(getSchema)]
+    const hasInList = schemaList.some((item) => item.field === schema.field)
 
-    const index = schemaList.findIndex((schema) => schema.field === prefixField)
-    const hasInList = schemaList.some((item) => item.field === prefixField || schema.field)
+    if (hasInList) {
+      return error('Operation failed, field already exists')
+    }
+    // Insert positioned fields
+    const index = schemaList.findIndex((item) => item.field === beforeField)
 
-    if (!hasInList) return
-
-    if (!prefixField || index === -1 || first) {
+    if (!beforeField || index === -1 || first) {
+      // whether to insert into the first
       first ? schemaList.unshift(schema) : schemaList.push(schema)
       schemaRef.value = schemaList
+      formModel[schema.field] = schema?.defaultValue
       return
     }
+
     if (index !== -1) {
       schemaList.splice(index + 1, 0, schema)
     }
+
     schemaRef.value = schemaList
   }
 
-  async function resetSchema(data: Partial<BasicFormSchema> | Partial<BasicFormSchema>[]) {
-    let updateData: Partial<BasicFormSchema>[] = []
-    if (isObject(data)) {
-      updateData.push(data as BasicFormSchema)
-    }
-    if (isArray(data)) {
-      updateData = [...data]
+  /**
+   * 重置表单数据架构，需要传入重置的架构数据
+   *
+   * To reset the form data schema, the reset schema data needs to be passed in
+   * @param schemaData  BasicFormSchema[]
+   */
+  function resetSchema(schemaData: BasicFormSchema[]): void {
+    let schemaList: BasicFormSchema[] = []
+    if (Array.isArray(schemaData) && schemaData.length) {
+      schemaList = [...schemaData]
     }
 
-    const hasField = updateData.every(
+    const hasField = schemaList.every(
       (item) => item.component === 'ElDivider' || (Reflect.has(item, 'field') && item.field)
     )
 
     if (!hasField) {
-      error(
-        'All children of the form Schema array that need to be updated must contain the `field` field'
-      )
+      error('All form items must have a `field` field present')
       return
     }
-    schemaRef.value = updateData as BasicFormSchema[]
-  }
-
-  async function updateSchema(data: Partial<BasicFormSchema> | Partial<BasicFormSchema>[]) {
-    let updateData: Partial<BasicFormSchema>[] = []
-    if (isObject(data)) {
-      updateData.push(data as BasicFormSchema)
-    }
-    if (isArray(data)) {
-      updateData = [...data]
-    }
-
-    const hasField = updateData.every(
-      (item) => item.component === 'ElDivider' || (Reflect.has(item, 'field') && item.field)
-    )
-
-    if (!hasField) {
-      error(
-        'All children of the form Schema array that need to be updated must contain the `field` field'
-      )
-      return
-    }
-    const schema: BasicFormSchema[] = []
-    updateData.forEach((item) => {
-      unref(getSchema).forEach((val) => {
-        if (val.field === item.field) {
-          const newSchema = deepMerge(val, item)
-          schema.push(newSchema as BasicFormSchema)
-        } else {
-          schema.push(val)
-        }
-      })
-    })
-    schemaRef.value = uniqBy(schema, 'field')
+    schemaRef.value = schemaList
   }
 
   /**
-   * Form submission
+   * 更新表单架构数据
+   *
+   * Update form schema data
+   * @param schema BasicFormSchema
+   */
+  function updateSchema(schema: Partial<BasicFormSchema>): boolean {
+    if (!schema.field) {
+      error(
+        'The `field` of schema data must exist'
+      )
+      return false
+    }
+
+    const schemaList: BasicFormSchema[] = [...unref(getSchema)]
+    for (let i = 0; i < schemaList.length; i++) {
+      if (schemaList[i].field === schema?.field) {
+        schemaList[i] = { ...(schemaList[i]), ...schema }
+        schemaRef.value = schemaList
+        return true
+      }
+    }
+
+    return false
+  }
+
+  /**
+   * 提交表单
+   *
+   * Submit form
    */
   async function handleSubmit(e?: Event): Promise<Recordable> {
     e && e.preventDefault()
-    const { submitFunc } = unref(getProps)
-    if (submitFunc && isFunction(submitFunc)) {
-      await submitFunc()
-      return
-    }
+    const { submitFn } = unref(getProps)
     const formEl = unref(formElRef)
-    if (!formEl) return
-    try {
-      await validate()
-      const res = handleFormValues(getFieldsValue())
-      emit('submit', res)
-    } catch (error) {
-      console.error(JSON.stringify(error))
-      throw new Error(error)
+    if (!formEl) {
+      return error('Operation failed, form instance does not exist!')
     }
+
+    await validate()
+
+    const values = getFieldsValue()
+    if (typeof submitFn === 'function') {
+      return submitFn(values)
+    }
+
+    emit('submit', values)
   }
 
-  async function handleReset(): Promise<void> {
-    const { resetFunc, submitOnReset } = unref(getProps)
-    resetFunc && isFunction(resetFunc) && (await resetFunc())
-
+  /**
+   * 重置表单
+   *
+   * Reset form
+   */
+  function handleReset(): void {
+    const { resetFn, submitAfterReset } = unref(getProps)
     const formEl = unref(formElRef)
-    if (!formEl) return
+    if (!formEl) {
+      return error('Operation failed, form instance does not exist!')
+    }
 
     Object.keys(formModel).forEach((key) => {
       formModel[key] = defaultValueRef.value[key]
     })
-    clearValidate()
-    emit('reset', toRaw(formModel))
-    submitOnReset && handleSubmit()
+
+    resetFields()
+
+    submitAfterReset && handleSubmit()
+
+    if (typeof resetFn === 'function') {
+      return resetFn()
+    }
+
+    emit('reset')
   }
 
   return {
