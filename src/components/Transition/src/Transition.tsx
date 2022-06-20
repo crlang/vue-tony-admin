@@ -109,7 +109,7 @@ export function createJavascriptTransition(name: string, functions: Recordable, 
 }
 
 /**
- * 定义展开收缩JS过渡方法
+ * 定义展开/收起JS过渡方法
  *
  * Define expand JS transition methods
  * @param x Is it horizontal?

@@ -160,7 +160,6 @@ export function buildUUID(): string {
  * Get use instance
  * @param instanceRef Ref<T>
  * @param name instance name
- * @returns
  */
 export function getUseInstance<T>(instanceRef: Ref<T> | null, name:string): T | null {
   const instance = unref(instanceRef)

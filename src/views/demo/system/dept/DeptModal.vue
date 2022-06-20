@@ -30,7 +30,7 @@ export default defineComponent({
 
     const [registerModal, { setModalProps, closeModal }] = useModalInner(async (data) => {
       resetFields()
-      setModalProps({ confirmButton: { loading: false } })
+      setModalProps({ confirmOptions: { loading: false } })
       isUpdate.value = !!data?.isUpdate
 
       if (unref(isUpdate)) {
@@ -50,11 +50,11 @@ export default defineComponent({
     async function handleSubmit() {
       try {
         await validate()
-        setModalProps({ confirmButton: { loading: true } })
+        setModalProps({ confirmOptions: { loading: true } })
         closeModal()
         emit('success')
       } finally {
-        setModalProps({ confirmButton: { loading: false } })
+        setModalProps({ confirmOptions: { loading: false } })
       }
     }
 
