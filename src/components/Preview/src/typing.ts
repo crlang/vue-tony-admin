@@ -1,4 +1,4 @@
-export interface Options {
+export interface PreviewOptions {
   show?: boolean
   imageList: string[]
   index?: number
@@ -10,7 +10,7 @@ export interface Options {
   onImgError?: ({ index: number, url: string, dom: HTMLImageElement }) => void
 }
 
-export interface Props {
+export interface BasicProps {
   show: boolean
   instance: Props
   imageList: string[]
@@ -19,4 +19,17 @@ export interface Props {
   defaultWidth: number
   maskClosable: boolean
   rememberState: boolean
+}
+
+export interface ImgState {
+  currentUrl: string;
+  imgScale: number;
+  imgRotate: number;
+  imgTop: number;
+  imgLeft: number;
+  currentIndex: number;
+  status: StatueEnum;
+  moveX: number;
+  moveY: number;
+  show: boolean;
 }

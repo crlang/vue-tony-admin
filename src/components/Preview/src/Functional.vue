@@ -1,29 +1,16 @@
 <script lang="tsx">
+import type { ImgState } from './typing'
+
 import { defineComponent, ref, unref, computed, reactive, watchEffect } from 'vue'
-import { Close, ArrowLeft, ArrowRight } from '@element-plus/icons'
-import resumeSvg from '@/assets/svg/preview/resume.svg'
-import rotateSvg from '@/assets/svg/preview/p-rotate.svg'
-import scaleSvg from '@/assets/svg/preview/scale.svg'
-import unScaleSvg from '@/assets/svg/preview/unscale.svg'
-import unRotateSvg from '@/assets/svg/preview/unrotate.svg'
+
+import { resumeSvg, rotateSvg, unrotateSvg, scaleSvg, unscaleSvg, closeSvg, arrowSvg } from './iconData'
 
 enum StatueEnum {
   LOADING,
   DONE,
   FAIL,
 }
-interface ImgState {
-  currentUrl: string;
-  imgScale: number;
-  imgRotate: number;
-  imgTop: number;
-  imgLeft: number;
-  currentIndex: number;
-  status: StatueEnum;
-  moveX: number;
-  moveY: number;
-  show: boolean;
-}
+
 const props = {
   show: {
     type: Boolean as PropType<boolean>,
@@ -136,8 +123,12 @@ export default defineComponent({
       }
     }
     function scaleFn(num: number) {
-      if (imgState.imgScale <= 0.2 && num < 0) return
-      imgState.imgScale += num
+      const { imgScale } = imgState
+      let newScale = imgScale + num
+      if (newScale <= 0.2) newScale = 0.2
+      if (newScale > 10) newScale = 10
+
+      imgState.imgScale = newScale
     }
 
     function rotateFn(deg: number) {
@@ -310,7 +301,7 @@ export default defineComponent({
     const renderClose = () => {
       return (
         <div class={`${prefixCls}__close`} onClick={handleClose}>
-          <Close class={`${prefixCls}__close-icon`} />
+          <img src={closeSvg} class={`${prefixCls}__close-icon`} />
         </div>
       )
     }
@@ -334,7 +325,7 @@ export default defineComponent({
           <div
             class={`${prefixCls}__controller-item`}
             onClick={() => scaleFn(-getScaleStep.value)} >
-            <img src={unScaleSvg} />
+            <img src={unscaleSvg} />
           </div>
           <div
             class={`${prefixCls}__controller-item`}
@@ -345,7 +336,7 @@ export default defineComponent({
             <img src={resumeSvg} />
           </div>
           <div class={`${prefixCls}__controller-item`} onClick={() => rotateFn(-90)}>
-            <img src={unRotateSvg} />
+            <img src={unrotateSvg} />
           </div>
           <div class={`${prefixCls}__controller-item`} onClick={() => rotateFn(90)}>
             <img src={rotateSvg} />
@@ -359,8 +350,8 @@ export default defineComponent({
         return null
       }
       return (
-        <div class={[`${prefixCls}__arrow`, direction]} onClick={() => handleChange(direction)}>
-          {direction === 'left' ? <ArrowLeft /> : <ArrowRight />}
+        <div class={[`${prefixCls}__arrow`, `${prefixCls}__arrow-${direction}`]} onClick={() => handleChange(direction)}>
+          <img src={arrowSvg} />
         </div>
       )
     }
@@ -399,131 +390,135 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-  .img-preview {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: $preview-comp-z-index;
-    background: rgba(0, 0, 0, 0.5);
-    user-select: none;
+.img-preview {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $preview-comp-z-index;
+  background: rgba(0, 0, 0, 0.5);
+  user-select: none;
 
-    &-content {
+  &-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: var(--white-color);
+  }
+
+  &-image {
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+
+  &__close {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    color: var(--white-color);
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    transition: all 0.2s;
+
+    &-icon {
+      position: absolute;
+      top: 44px;
+      right: 42px;
+      width: 24px;
+      height: 24px;
+      /* stylelint-disable-next-line scss/no-global-function-names */
+      filter: invert(1);
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  }
+
+  &__index {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    padding: 0 22px;
+    font-size: 16px;
+    background: rgba(109, 109, 109, 0.6);
+    border-radius: 15px;
+    transform: translateX(-50%);
+  }
+
+  &__controller {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    width: 260px;
+    height: 44px;
+    padding: 0 22px;
+    margin-left: -139px;
+    background: rgba(109, 109, 109, 0.6);
+    border-radius: 22px;
+
+    &-item {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
       height: 100%;
-      color: var(--white-color);
-    }
-
-    &-image {
+      padding: 0 9px;
+      font-size: 24px;
       cursor: pointer;
-      transition: transform 0.3s;
-    }
-
-    &__close {
-      position: absolute;
-      top: -40px;
-      right: -40px;
-      width: 80px;
-      height: 80px;
-      overflow: hidden;
-      color: var(--white-color);
-      cursor: pointer;
-      background-color: rgba(0, 0, 0, 0.5);
-      border-radius: 50%;
       transition: all 0.2s;
 
-      &-icon {
-        position: absolute;
-        top: 44px;
-        right: 42px;
-        width: 24px;
-        height: 24px;
-      }
-
       &:hover {
-        background-color: rgba(0, 0, 0, 0.8);
-      }
-    }
-
-    &__index {
-      position: absolute;
-      bottom: 5%;
-      left: 50%;
-      padding: 0 22px;
-      font-size: 16px;
-      background: rgba(109, 109, 109, 0.6);
-      border-radius: 15px;
-      transform: translateX(-50%);
-    }
-
-    &__controller {
-      position: absolute;
-      bottom: 10%;
-      left: 50%;
-      display: flex;
-      justify-content: center;
-      width: 260px;
-      height: 44px;
-      padding: 0 22px;
-      margin-left: -139px;
-      background: rgba(109, 109, 109, 0.6);
-      border-radius: 22px;
-
-      &-item {
-        display: flex;
-        height: 100%;
-        padding: 0 9px;
-        font-size: 24px;
-        cursor: pointer;
-        transition: all 0.2s;
-
-        &:hover {
-          transform: scale(1.2);
-        }
-
-        img {
-          width: 1em;
-          /* stylelint-disable-next-line scss/no-global-function-names */
-          filter: invert(1);
-        }
-      }
-    }
-
-    &__arrow {
-      position: absolute;
-      top: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 50px;
-      height: 50px;
-      font-size: 28px;
-      cursor: pointer;
-      background-color: rgba(0, 0, 0, 0.5);
-      border-radius: 50%;
-      transition: all 0.2s;
-
-      > svg {
-        width: 32px;
-        height: 32px;
-        color: #fff;
+        transform: scale(1.2);
       }
 
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.8);
-      }
-
-      &.left {
-        left: 50px;
-      }
-
-      &.right {
-        right: 50px;
+      img {
+        width: 1em;
+        /* stylelint-disable-next-line scss/no-global-function-names */
+        filter: invert(1);
       }
     }
   }
+
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    font-size: 28px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    transition: all 0.2s;
+
+    > img {
+      width: 32px;
+      height: 32px;
+      /* stylelint-disable-next-line scss/no-global-function-names */
+      filter: invert(1);
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    &-left {
+      left: 50px;
+      transform: rotate(-180deg);
+    }
+
+    &-right {
+      right: 50px;
+    }
+  }
+}
 </style>
