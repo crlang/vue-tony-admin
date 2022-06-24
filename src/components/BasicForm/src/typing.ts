@@ -13,10 +13,10 @@ export type ComponentType =
   | 'ElSelect'
   | 'ElDatePicker'
   | 'ElTimePicker'
-  | 'ElRadio'
+  // | 'ElRadio'
   | 'ElRadioGroup'
-  | 'ElRadioButton'
-  | 'ElCheckbox'
+  // | 'ElRadioButton'
+  // | 'ElCheckbox'
   | 'ElCheckboxGroup'
   | 'ElSwitch'
   | 'ElCascader'
@@ -36,12 +36,6 @@ export interface AdvanceState {
    * Expand/Collapse button state
    */
   isAdvanced: boolean
-  /**
-   * 是否隐藏展开/收起按钮
-   *
-   * Whether to hide the expand/collapse button
-   */
-  hideAdvanceBtn: boolean
   /**
    * 操作项的列的大小
    *
@@ -318,104 +312,148 @@ export interface BasicFormSchema {
    */
   label: string
   /**
-   * Auxiliary text
+   * 标签右侧的副标签
+   *
+   * Sublabel to the right of the label
    */
   subLabel?: string
   /**
-   * Event name triggered by internal value change
-   * @default change
+   * 组件值发生变化时触发的事件名称
+   *
+   * The name of the event that fires when the value of the component changes
    */
   changeEvent?: string
   /**
+   * 绑定到 v-model 的变量名
+   *
    * Variable name bound to v-model
-   * @default modelValue
    */
   valueField?: string
   /**
+   * 默认值
+   *
    * Default Value
    */
   defaultValue?: any
   /**
-   * Help text on the right side of the text
+   * 标签右侧的帮助提示
+   *
+   * Help tip text to the right of the label
    */
   helpMessage?: string | string[] | ((rcp: RenderCallbackParams) => string | string[])
   /**
+   * 标签宽度
+   *
    * Label width
    */
   labelWidth?: string | number
   /**
-   * Render component
+   * 支持渲染的表单组件
+   *
+   * Form components that support rendering
    */
   component: ComponentType
   /**
-   * Component parameters
+   * 渲染的表单组件的参数
+   *
+   * Parameters of the rendered form component
    */
   componentProps?:
   | ((opt: {
     schema: BasicFormSchema
-    tableAction: TableActionMethods
-    formActionType: FormActionMethods
+    tableAction?: TableActionMethods
+    formAction: FormActionMethods
     formModel: Recordable
   }) => Recordable)
   | object
   /**
-   * Is it required
+   * 是否必填，当 rules 为空时生效
+   *
+   * Required or not, it takes effect when rules is empty
    */
   required?: boolean | ((rcp: RenderCallbackParams) => boolean)
   /**
-   * Validation rules
+   * 表单组件验证规则
+   *
+   * Form Component Validation Rules
    */
   rules?: EleFormItemRule[]
   /**
-   * Check whether the information is added to the label
+   * 验证信息是否加入标签，具有高优先级
+   *
+   * Verify message is add to the label, with high priority
    */
   rulesMessageJoinLabel?: boolean
   /**
-   * Reference formModelItem
+   * 表单项的Props
+   *
+   * Form item props
    */
   itemProps?: Partial<EleFormItem>
   /**
-   * Column configuration outside formModelItem
+   * 表单项所在列的Props
+   *
+   * Props of the column where the form item is located
    */
   colProps?: Partial<EleCol>
   /**
-   * Expanded contracted state
+   * 展开/收起状态，当 showAdvancedButton 为 true 时生效
+   *
+   * Expand/collapse state, the premise is that showAdvancedButton is true
    */
   isAdvanced?: boolean
   /**
+   * 动态判断当前组件是否显示，css 控制显示
+   *
    * Dynamically determine whether the current component is displayed, in css
    */
   ifShow?: boolean | ((rcp: RenderCallbackParams) => boolean)
   /**
+   * 动态判断当前组件是否显示，js 控制显示
+   *
    * Dynamically determine whether the current component is displayed, in js
    */
   show?: boolean | ((rcp: RenderCallbackParams) => boolean)
   /**
-   * Render the content in the form-item tag
-   */
-  render?: (rcp: RenderCallbackParams) => VNode | VNode[] | string
-  /**
-   * Rendering col content requires outer wrapper form-item
+   * 自定义渲染表单项
+   *
+   * Custom rendered form items
    */
   renderColContent?: (rcp: RenderCallbackParams) => VNode | VNode[] | string
   /**
-   * Render the component content
-   */
-  renderComponentContent?: ((rcp: RenderCallbackParams) => any) | VNode | VNode[] | string
-  /**
-   * Custom slot, in from-item
-   */
-  slot?: string
-  /**
-   * Custom slot, similar to renderColContent
+   * 自定义渲染表单项插槽
+   *
+   * Custom rendered form item slot
    */
   colSlot?: string
   /**
-   * Dynamically disable an item based on conditions
+   * 自定义渲染表单项组件
+   *
+   * Custom components that render form items
+   */
+  render?: (rcp: RenderCallbackParams) => VNode | VNode[] | string
+  /**
+   * 自定义渲染表单项组件插槽
+   *
+   * Custom rendered form item component slot
+   */
+  slot?: string
+  /**
+   * 自定义渲染表单项组件内容
+   *
+   * Custom rendering form item component content
+   */
+  renderComponentContent?: ((rcp: RenderCallbackParams) => any) | VNode | VNode[] | string
+  /**
+   * 是否禁用当前表单项
+   *
+   * Whether to disable the current form item
    */
   dynamicDisabled?: boolean | ((rcp: RenderCallbackParams) => boolean)
   /**
-   * Dynamic validation rules based on conditions
+   * 动态返回当前表单项的校验规则
+   *
+   * Dynamically returns the validation rules for the current form item
    */
   dynamicRules?: (rcp: RenderCallbackParams) => EleFormItemRule[]
 }

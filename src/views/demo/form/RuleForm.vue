@@ -104,12 +104,10 @@ export default defineComponent({
             {
               label: '选项1',
               value: '1',
-              key: '1',
             },
             {
               label: '选项2',
               value: '2',
-              key: '2',
             },
           ],
         },
@@ -167,7 +165,6 @@ export default defineComponent({
         },
         // rules: [{ required: true }],
       },
-
       {
         field: 'field7',
         component: 'ElRadioGroup',

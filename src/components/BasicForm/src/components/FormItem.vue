@@ -1,18 +1,17 @@
 <script lang="tsx">
-import { defineComponent, computed, unref, isProxy, toRaw } from 'vue'
-import { ElOption, ElCheckbox, ElRadio, ElRadioButton, ElDivider, ElCol } from 'element-plus'
-import { componentMap } from '../componentMap'
-import { BasicHelp } from '@/components/Basic'
-import { isBoolean, isFunction } from '@/utils/is'
+import type { InternalRuleItem } from 'async-validator'
+import type { EleFormItemRule } from '@/components/ElementPlus'
+
+import { defineComponent, computed, unref, toRaw } from 'vue'
+import { ElOption, ElCheckbox, ElFormItem, ElRadio, ElRadioButton, ElDivider, ElCol } from 'element-plus'
+
 import { getSlot } from '@/utils/helper/tsxHelper'
-import { createPlaceholderMessage } from '../helper'
-import { upperFirst, cloneDeep } from 'lodash-es'
-import { ElFormItem } from 'element-plus'
+import { BasicHelp } from '@/components/Basic'
+
 import { basicFormItemProps } from '../props'
 import { BASIC_COL_SIZE } from '../const'
-import { EleFormItemRule } from '@/components/ElementPlus'
-export declare type SyncErrorType = Error | string;
-export declare type SyncValidateResult = boolean | SyncErrorType | SyncErrorType[];
+import { componentMap } from '../componentMap'
+import { ComponentType } from '../typing'
 
 export default defineComponent({
   name: 'BasicFormItem',
@@ -20,195 +19,244 @@ export default defineComponent({
   inheritAttrs: false,
   props: basicFormItemProps,
   setup(props, { slots }) {
+    /**
+     * 获取表单项绑定值
+     *
+     * Get the value bound to the form item
+     */
     const getValues = computed(() => {
       const { formModel, schema } = props
       return {
         field: schema.field,
-        model: toRaw(formModel),
-        schema: schema,
+        model: formModel,
+        schema,
       }
     })
-
+    /**
+     * 获取表单项组件绑定值
+     *
+     * Get the value bound by the form item component
+     */
     const getComponentsProps = computed(() => {
-      const { schema, tableAction, formModel, formActionType } = props
+      const { schema, tableAction, formModel, formAction } = props
       let { componentProps = {} } = schema
-      if (isFunction(componentProps)) {
-        componentProps = componentProps({ schema, tableAction, formModel, formActionType }) ?? {}
+      if (typeof componentProps === 'function') {
+        componentProps = componentProps({ schema, tableAction, formModel, formAction }) ?? {}
       }
       if (schema.component === 'ElDivider') {
-        componentProps = Object.assign({ direction: 'horizontal' }, componentProps, {
+        componentProps = {
+          direction: 'horizontal',
           contentPosition: 'left',
-        })
+          ...componentProps,
+        } as Recordable
       }
       return componentProps as Recordable
     })
 
+    /**
+     * 创建表单项占位符
+     *
+     * Create form item placeholders
+     * @param component ComponentType
+     */
+    function createPlaceholderMessage(component: ComponentType) {
+      if (['ElInput', 'ElInputNumber'].includes(component)) {
+        return '请输入'
+      }
+      if (['ElSelect', 'ElCascader', 'ElDatePicker', 'ElTimePicker', 'ElTimeSelect', 'ElSelectV2'].includes(component)) {
+        return '请选择'
+      }
+      return ''
+    }
+
+    /**
+     * 转换事件名称首字母大写
+     *
+     * Convert event names to uppercase
+     */
+    function upperEventFirstStr(str: string) {
+      if (!str) {
+        return 'Change'
+      }
+      return str.trim().toLowerCase().replace(str[0], str[0].toUpperCase())
+    }
+
+    /**
+     * 获取表单项组件禁用状态
+     *
+     * Get the disabled state of the form item component
+     */
     const getDisable = computed(() => {
       const { disabled: globDisabled } = props.formProps
       const { dynamicDisabled } = props.schema
-      const { disabled: itemDisabled = false } = unref(getComponentsProps)
-      let disabled = !!globDisabled || itemDisabled
-      if (isBoolean(dynamicDisabled)) {
-        disabled = dynamicDisabled
+      const { disabled: itemDisabled } = unref(getComponentsProps)
+      const disabled = !!globDisabled || !!itemDisabled
+
+      if (typeof dynamicDisabled === 'boolean') {
+        return dynamicDisabled
       }
-      if (isFunction(dynamicDisabled)) {
-        disabled = dynamicDisabled(unref(getValues))
+
+      if (typeof dynamicDisabled === 'function') {
+        return dynamicDisabled(unref(getValues))
       }
+
       return disabled
     })
 
+    /**
+     * 获取表单项组件展示状态
+     *
+     * Get the display state of the form item component
+     */
     function getShow(): { isShow: boolean; isIfShow: boolean } {
-      const { show, ifShow } = props.schema
+      const { show, ifShow, isAdvanced } = props.schema
       const { showAdvancedButton } = props.formProps
-      const itemIsAdvanced = showAdvancedButton
-        ? isBoolean(props.schema.isAdvanced)
-          ? props.schema.isAdvanced
-          : true
-        : true
+      let itemIsAdvanced = true
+      if (showAdvancedButton && typeof isAdvanced === 'boolean') {
+        itemIsAdvanced = isAdvanced
+      }
 
       let isShow = true
       let isIfShow = true
 
-      if (isBoolean(show)) {
+      if (typeof show === 'boolean') {
         isShow = show
       }
-      if (isBoolean(ifShow)) {
+      if (typeof ifShow === 'boolean') {
         isIfShow = ifShow
       }
-      if (isFunction(show)) {
+      if (typeof show === 'function') {
         isShow = show(unref(getValues))
       }
-      if (isFunction(ifShow)) {
+      if (typeof ifShow === 'function') {
         isIfShow = ifShow(unref(getValues))
       }
       isShow = isShow && itemIsAdvanced
       return { isShow, isIfShow }
     }
 
+    /**
+     * 获取表单项校验规则
+     *
+     * Get form item validation rules
+     */
     function handleRules(): EleFormItemRule[] {
       const { schema, formProps } = props
       const {
-        rules: defRules = [],
         component,
         rulesMessageJoinLabel,
         label,
         dynamicRules,
+        required,
       } = schema
 
-      if (isFunction(dynamicRules)) {
-        return dynamicRules(unref(getValues)) as EleFormItemRule[]
+      if (typeof dynamicRules === 'function') {
+        return dynamicRules(unref(getValues))
       }
 
-      const rules: EleFormItemRule[] = cloneDeep(defRules) as EleFormItemRule[]
-
-      const joinLabel = Reflect.has(props.schema, 'rulesMessageJoinLabel')
-        ? rulesMessageJoinLabel
-        : formProps.rulesMessageJoinLabel
+      let rules = [...(schema.rules || [])]
+      const joinLabel = rulesMessageJoinLabel || formProps.rulesMessageJoinLabel || false
       const defaultMsg = createPlaceholderMessage(component) + `${joinLabel ? label : ''}`
 
-      // function validator(rule: any, value: any, callback:any) {
-      //   const msg = rule.message || defaultMsg
-      //   if (value === undefined || isNull(value)) {
-      //     // null
-      //     callback(new Error(msg))
-      //   } else if (Array.isArray(value) && value.length === 0) {
-      //     // array
-      //     callback(new Error(msg))
-      //   } else if (typeof value === 'string' && value.trim() === '') {
-      //     // empty string
-      //     callback(new Error(msg))
-      //   } else if (
-      //     typeof value === 'object' &&
-      //       Reflect.has(value, 'checked') &&
-      //       Reflect.has(value, 'halfChecked') &&
-      //       Array.isArray(value.checked) &&
-      //       Array.isArray(value.halfChecked) &&
-      //       value.checked.length === 0 &&
-      //       value.halfChecked.length === 0
-      //   ) {
-      //     callback(new Error(msg))
-      //   }
-      //   return callback()
-      // }
-
-      // const getRequired = isFunction(required) ? required(unref(getValues)) : required
-
-      // if ((!rules || rules.length === 0) && required) {
-      // rules = [{ required: getRequired, trigger: 'blur', message: '此为必填项' }]
-      // rules = [{ required: required, validator }]
-      // }
-
-      const requiredRuleIndex: number = rules.findIndex(
-        (rule) => Reflect.has(rule, 'required') && !Reflect.has(rule, 'validator')
-      )
-
-      if (requiredRuleIndex !== -1) {
-        const rule = rules[requiredRuleIndex]
-        const { isShow } = getShow()
-        if (!isShow) {
-          rule.required = false
+      /**
+       * 处理必填的时的校验规则
+       *
+       * Validation rules when processing required fields
+       */
+      function validator(rule: InternalRuleItem, value: any, callback:any) {
+        const msg = (rule.message || defaultMsg) as string
+        if (value === undefined || value === null) {
+          // null
+          callback(new Error(msg))
+        } else if (Array.isArray(value) && value.length === 0) {
+          // array
+          callback(new Error(msg))
+        } else if (typeof value === 'string' && value.trim() === '') {
+          // empty string
+          callback(new Error(msg))
         }
-        if (component) {
-          if (!Reflect.has(rule, 'type')) {
-            if (component === 'ElInputNumber') {
-              rule.type = 'number'
-            } else if (
-              component === 'ElSelect' ||
-              component === 'ElCheckboxGroup' ||
-              component === 'ElRadioGroup'
-            ) {
-              rule.type = 'array'
-            } else {
-              rule.type = 'string'
+        return callback()
+      }
+
+      const getRequired = typeof required === 'function' ? required(unref(getValues)) : required
+
+      if (rules?.length === 0) {
+        rules = getRequired ? [{ required: getRequired, validator, trigger: 'blur' }] : []
+      } else {
+        for (let i = 0; i < rules.length; i++) {
+          const rule = rules[i]
+          // 处理 required 规则的内容
+          // Process the content of the 'required' rule
+          if (Reflect.has(rule, 'required') && !rule.validator) {
+            const { isShow } = getShow()
+            const componentProp = unref(getComponentsProps)
+            // 不显示的组件，强制非必填
+            // Components not displayed, mandatory non-required
+            if (!isShow) {
+              rule.required = false
+            }
+            if (component) {
+              if (!Reflect.has(rule, 'type')) {
+                if (component === 'ElInputNumber') {
+                  rule.type = 'number'
+                } else if (
+                  (component === 'ElSelect' && componentProp?.multiple) ||
+               component === 'ElCheckboxGroup'
+                ) {
+                  rule.type = 'array'
+                }
+              }
+
+              rule.message = rule.message || defaultMsg
+
+              if (component === 'ElInput') {
+                rule.whitespace = true
+              }
             }
           }
-
-          rule.message = rule.message || defaultMsg
-
-          if (component.includes('Input') || component.includes('Textarea')) {
-            rule.whitespace = true
+          // 处理 min 规则的内容
+          // Process the content of the 'min' rule
+          if (Reflect.has(rule, 'min') && !rule.validator) {
+            rule.message = rule.message || `内容长度必须大于 ${rule.min} 位`
           }
-          // const valueFormat = unref(getComponentsProps)?.valueFormat
-          // setComponentRuleType(rule, component, valueFormat)
+          // 处理 max 规则的内容
+          // Process the content of the 'max' rule
+          if (Reflect.has(rule, 'max') && !rule.validator) {
+            rule.message = rule.message || `内容长度必须小于 ${rule.max} 位`
+          }
+          // 处理 len 规则的内容
+          // Process the content of the 'len' rule
+          if (Reflect.has(rule, 'len') && !rule.validator) {
+            rule.message = rule.message || `内容长度必须为 ${rule.len} 位`
+          }
         }
       }
 
-      // Maximum input length rule check
-      const characterInx = rules.findIndex((val) => val.max)
-      if (characterInx !== -1 && !rules[characterInx].validator) {
-        rules[characterInx].message = rules[characterInx].message || `字符数应小于${rules[characterInx].max}位`
-      }
       return rules
     }
 
+    /**
+     * 渲染表单项组件
+     *
+     * Render the form item component
+     */
     function renderComponent() {
       const {
         renderComponentContent,
         component,
         field,
-        // prepend,
-        // append,
-        // prefix,
-        // empty,
-        // suffix,
         changeEvent,
         valueField,
       } = props.schema
 
-      const bindInput = component && ['ElInput', 'ElSlider'].includes(component)
-      // const bindDefInput = () => {
-      // const isNum = component && ['ElInputNumber'].includes(component)
-      // if (isNum) {
-      //   return 0
-      // }
-      // const isArr = component && ['ElCheckboxGroup'].includes(component)
-      // if (isArr) {
-      //   return []
-      // }
-      // return false
-      // }
+      if (!component) {
+        return null
+      }
+      // input mode
+      const bindInput = ['ElInput', 'ElSlider'].includes(component)
 
-      const eventKey = `on${upperFirst(changeEvent ?? (bindInput ? 'input' : 'change'))}`
+      // input event
+      const eventKey = `on${upperEventFirstStr(changeEvent || (bindInput ? 'input' : 'change'))}`
       const on = {
         [eventKey]: (...args: Nullable<Recordable>[]) => {
           const [e] = args
@@ -220,80 +268,57 @@ export default defineComponent({
           props.setFormModel(field, value)
         },
       }
-      let componentvs = component
-      if (component === 'ElRadio' || component === 'ElRadioButton') {
-        componentvs = 'ElRadioGroup'
-      }
-      const Comp = componentMap.get(componentvs) as ReturnType<typeof defineComponent>
 
+      // input component
+      const Comp = componentMap.get(component) as ReturnType<typeof defineComponent>
+
+      // input props
       const { autoSetPlaceHolder, size = 'default' } = props.formProps
       const propsData: Recordable = {
         clearable: true,
-        // getPopupContainer: (trigger: Element) => trigger.parentNode,
+        filterable: true,
         size,
         ...unref(getComponentsProps),
         disabled: unref(getDisable),
       }
 
+      // input placeholder
       const isCreatePlaceholder = !propsData.disabled && autoSetPlaceHolder
-      // RangePicker place is an array
-      if (isCreatePlaceholder && component) {
+      if (isCreatePlaceholder) {
         propsData.placeholder =
             unref(getComponentsProps)?.placeholder || createPlaceholderMessage(component)
       }
 
-      const componentVal = isProxy(props.formModel[field]) ? toRaw(props.formModel[field]) : props.formModel[field]
-
+      // input value
       const bindValue: Recordable = {
-        [valueField || 'modelValue']: componentVal ?? undefined,
+        [valueField || 'modelValue']: toRaw(props.formModel[field]) ?? undefined,
       }
 
+      // input attr
       const compAttr: Recordable = {
         ...propsData,
         ...on,
         ...bindValue,
       }
-      // compAttr.modelValue = compAttr?.value
 
+      // input component set
       if (!renderComponentContent) {
-        // element input text
-        const compSlot:any = {}
-        // input slots [append,prepend,prefix,suffix]
-        // if (component === 'ElInput') {
-        //   append && (compSlot.append = () => isFunction(append) ? append(unref(getValues)) : append)
-        //   prepend && (compSlot.prepend = () => isFunction(prepend) ? prepend(unref(getValues)) : prepend)
-        //   prefix && (compSlot.prefix = () => isFunction(prefix) ? prefix(unref(getValues)) : prefix)
-        //   suffix && (compSlot.suffix = () => isFunction(suffix) ? suffix(unref(getValues)) : suffix)
-        // }
+        const compSlot = {} as any
 
-        if (compAttr?.options) {
-        // select slots [prefix,empty]
+        // 尝试设置具有选项的表单项组件
+        // Trying to set a form item component with options
+        if (compAttr?.options?.length) {
           if (component === 'ElSelect') {
-            // prefix && (compSlot.prefix = () => isFunction(prefix) ? prefix(unref(getValues)) : prefix)
-            // empty && (compSlot.empty = () => isFunction(empty) ? empty(unref(getValues)) : empty)
-            compSlot.default = () => compAttr?.options.map(k => {
-              return <ElOption label={k.label} value={k.value} />
+            compSlot.default = () => compAttr.options.map((k: any) => {
+              return <ElOption {...k} />
             })
-          }
-
-          if (component === 'ElCheckboxGroup') {
-            compSlot.default = () => compAttr?.options.map(k => {
-              return <ElCheckbox label={k.value}>{k.label}</ElCheckbox>
+          } else if (component === 'ElCheckboxGroup') {
+            compSlot.default = () => compAttr.options.map((k: any) => {
+              return <ElCheckbox {...k} label={k.value}>{k.label}</ElCheckbox>
             })
-          }
-          if (component === 'ElRadioGroup') {
-            compSlot.default = () => compAttr?.options.map(k => {
-              return <ElRadio label={k.value}>{k.label}</ElRadio>
-            })
-          }
-          if (component === 'ElRadio') {
-            compSlot.default = () => compAttr?.options.map(k => {
-              return <ElRadio label={k.value}>{k.label}</ElRadio>
-            })
-          }
-          if (component === 'ElRadioButton') {
-            compSlot.default = () => compAttr?.options.map(k => {
-              return <ElRadioButton label={k.value}>{k.label}</ElRadioButton>
+          } else if (component === 'ElRadioGroup') {
+            compSlot.default = () => compAttr.options.map((k: any) => {
+              return <ElRadio {...k} label={k.value}>{k.label}</ElRadio>
             })
           }
         }
@@ -301,47 +326,69 @@ export default defineComponent({
         return <Comp {...compAttr} >{compSlot}</Comp>
       }
 
-      const compSlot = isFunction(renderComponentContent)
-        ? { ...renderComponentContent(unref(getValues)) }
+      // input component custom set
+      const compSlot = typeof renderComponentContent === 'function'
+        ? {
+          ...renderComponentContent(unref(getValues)),
+        }
         : {
           default: () => renderComponentContent,
         }
       return <Comp {...compAttr}>{compSlot}</Comp>
     }
 
+    /**
+     * 渲染表单项标签
+     *
+     * Render the form item label
+     */
     function renderLabelHelpMessage() {
       const { label, helpMessage, subLabel } = props.schema
       const renderLabel = subLabel ? (
-        <span>
-          {label} <span>{subLabel}</span>
-        </span>
+        <span>{label} <span>{subLabel}</span></span>
       ) : (
         label
       )
-      const getHelpMessage = isFunction(helpMessage)
+      // no help message
+      const getHelpMessage = typeof helpMessage === 'function'
         ? helpMessage(unref(getValues))
         : helpMessage
       if (!getHelpMessage || (Array.isArray(getHelpMessage) && getHelpMessage.length === 0)) {
         return renderLabel
       }
+
+      // has help message
       return (
-        <span>
-          {renderLabel}<BasicHelp placement='top' class='mx-1' text={getHelpMessage} />
-        </span>
+        <span>{renderLabel} <BasicHelp placement='top' class='mx-1' text={getHelpMessage} /></span>
       )
     }
 
+    /**
+     * 渲染表单项
+     *
+     * Render the form item
+     */
     function renderItem() {
       const { itemProps, slot, render, field, component } = props.schema
 
+      // render ElDivider
       if (component === 'ElDivider') {
         return (
           <ElDivider {...unref(getComponentsProps)}>{renderLabelHelpMessage()}</ElDivider>
         )
       } else {
+        /**
+         * 获取表单项内容
+         *
+         * Get form item content
+         */
         const getContent = () => {
+          // 插槽
+          // slot
           if (slot) {
             return getSlot(slots, slot, unref(getValues))
+          // 自定义渲染
+          // custom render
           } else if (render) {
             return render(unref(getValues))
           }
@@ -381,8 +428,12 @@ export default defineComponent({
       const values = unref(getValues)
 
       const getContent = () => {
+        // 插槽
+        // slot
         if (colSlot) {
           return getSlot(slots, colSlot, values)
+        // 自定义渲染表单项及其组件
+        // custom render form item and input components
         } else if (renderColContent) {
           return renderColContent(values)
         }

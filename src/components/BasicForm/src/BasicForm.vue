@@ -12,7 +12,7 @@
         :key="schema.field">
         <FormItem
           :tableAction="tableAction"
-          :formActionType="formActionType"
+          :formAction="formActionType"
           :schema="schema"
           :formProps="getProps"
           :formModel="formModel"
@@ -61,14 +61,14 @@ import { useBasicFormFn } from './hooks/useBasic'
 import { useFormEvents } from './hooks/useFormEvents'
 import { createFormContext } from './hooks/useFormContext'
 import { basicProps, customProps } from './props'
-import { BASIC_ROW_GUTTER } from './const'
+import { BASIC_ROW_GUTTER, BASIC_COL_SIZE } from './const'
 
 export default defineComponent({
   name: 'BasicForm',
   components: { ElForm, FormItem, FormAction, ElRow },
   props: basicProps,
   emits: ['advanced-change', 'reset', 'submit', 'register', 'validate'],
-  setup(props, { emit, attrs }) {
+  setup(props, { emit, attrs, expose }) {
     const formElRef = ref<Nullable<FormActionMethods>>(null)
     const formModel = reactive<Recordable>({})
     const propsRef = ref<Partial<BasicProps>>({})
@@ -80,8 +80,7 @@ export default defineComponent({
     const { prefixCls } = useDesign('basic-form')
     const advanceState = reactive<AdvanceState>({
       isAdvanced: false,
-      hideAdvanceBtn: false,
-      actionSpan: 6,
+      actionSpan: BASIC_COL_SIZE,
     })
 
     const {
@@ -249,7 +248,7 @@ export default defineComponent({
       }
     }
 
-    const formActionType: FormActionMethods | undefined = {
+    const formActionType: FormActionMethods = {
       submit: handleSubmit,
       reset: handleReset,
       setFormProps,
@@ -269,6 +268,7 @@ export default defineComponent({
 
     onMounted(() => {
       initDefault()
+      expose(formActionType)
       emit('register', formActionType)
     })
 
@@ -304,7 +304,7 @@ export default defineComponent({
       formActionType,
       prefixCls,
       getActionProps,
-      // ...formActionType,
+      ...formActionType,
     }
   },
 })

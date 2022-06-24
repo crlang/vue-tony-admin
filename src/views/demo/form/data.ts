@@ -331,7 +331,7 @@ export const basicSchemas: BasicFormSchema[] = [
     colProps: {
       span: 8,
     },
-    componentProps: ({ formModel, formActionType }) => {
+    componentProps: ({ formModel, formAction }) => {
       return {
         options: provincesOptions,
         placeholder: '省份与城市联动',
@@ -344,7 +344,7 @@ export const basicSchemas: BasicFormSchema[] = [
             citiesOptions = []
           }
           formModel.city = undefined //  reset city value
-          const { updateSchema } = formActionType
+          const { updateSchema } = formAction
           updateSchema({
             field: 'city',
             componentProps: {
@@ -680,11 +680,11 @@ export const dyncSchemas1: BasicFormSchema[] = [
       span: 12,
     },
     labelWidth: 200,
-    componentProps: ({ formActionType }) => {
+    componentProps: ({ formAction }) => {
       return {
         placeholder: '值改变时执行查询,查看控制台',
         onChange: async () => {
-          const { validate } = formActionType
+          const { validate } = formAction
           await validate()
         },
       }

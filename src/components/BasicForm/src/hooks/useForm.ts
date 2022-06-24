@@ -1,11 +1,10 @@
+import type { ValidateFieldsError } from 'async-validator'
 import type { DynamicProps } from '#/utils'
-import type { BasicProps, FormActionMethods, UseFormReturnType, BasicFormSchema } from '../typing'
+import type { BasicProps, FormActionMethods, UseFormReturnType, BasicFormSchema, FormItemProp } from '../typing'
 
 import { ref, onUnmounted, unref, watch, WatchStopHandle } from 'vue'
 import { isProdMode } from '@/utils/env'
 import { getDynamicProps, getUseInstance } from '@/utils'
-import { ValidateFieldsError } from 'async-validator'
-import { FormItemProp } from 'element-plus'
 
 type Props = Partial<DynamicProps<BasicProps>>
 

@@ -1,43 +1,37 @@
 <template>
-  <ElCol v-bind="actionColOpt">
-    <div
-      style="width: 100%"
-      :style="{ textAlign: actionColOpt?.style?.textAlign }">
-      <ElFormItem>
-        <slot name="resetBefore"></slot>
-        <ElButton
-          type="default"
-          class="mr-2"
-          v-bind="getResetBtnOptions"
-          @click="resetAction"
-          v-if="showResetButton">
-          {{ getResetBtnOptions.text }}
-        </ElButton>
-        <slot name="submitBefore"></slot>
+  <ElCol v-bind="actionColOptions">
+    <ElFormItem>
+      <slot name="resetBefore"></slot>
+      <ElButton
+        type="default"
+        v-bind="resetBtnOptions"
+        @click="resetAction"
+        v-if="showResetButton">
+        {{ resetBtnOptions.text }}
+      </ElButton>
 
-        <ElButton
-          type="primary"
-          class="mr-2"
-          v-bind="getSubmitBtnOptions"
-          @click="submitAction"
-          v-if="showSubmitButton">
-          {{ getSubmitBtnOptions.text }}
-        </ElButton>
+      <slot name="submitBefore"></slot>
+      <ElButton
+        type="primary"
+        v-bind="submitBtnOptions"
+        @click="submitAction"
+        v-if="showSubmitButton">
+        {{ submitBtnOptions.text }}
+      </ElButton>
 
-        <slot name="advanceBefore"></slot>
-        <ElButton
-          type="text"
-          size="small"
-          @click="toggleAdvanced"
-          v-if="showAdvancedButton && !hideAdvanceBtn">
-          {{ isAdvanced ? '收起 ' : '展开 ' }}
-          <SvgIcon
-            :rotate="isAdvanced ? '-90deg' : '90deg'"
-            name="arrow-right-bold" />
-        </ElButton>
-        <slot name="advanceAfter"></slot>
-      </ElFormItem>
-    </div>
+      <slot name="advanceBefore"></slot>
+      <ElButton
+        type="text"
+        size="small"
+        @click="toggleAdvanced"
+        v-if="showAdvancedButton">
+        {{ isAdvanced ? '收起 ' : '展开 ' }}
+        <SvgIcon
+          :rotate="isAdvanced ? '-90deg' : '90deg'"
+          name="arrow-right-bold" />
+      </ElButton>
+      <slot name="advanceAfter"></slot>
+    </ElFormItem>
   </ElCol>
 </template>
 
@@ -51,6 +45,7 @@ import SvgIcon from '@/components/SvgIcon'
 
 import { useFormContext } from '../hooks/useFormContext'
 import { formActionProps } from '../props'
+import { BASIC_COL_LEN, BASIC_COL_SIZE } from '../const'
 
 export default defineComponent({
   name: 'BasicFormAction',
@@ -64,47 +59,59 @@ export default defineComponent({
   props: formActionProps,
   emits: ['toggle-advanced'],
   setup(props, { emit }) {
-    const actionColOpt = computed(() => {
-      const { showAdvancedButton, actionSpan: span, actionColProps } = props
-      const actionSpan = 24 - span
+    /**
+     * 操作列配置
+     *
+     * Action column configuration
+     */
+    const actionColOptions = computed((): Partial<EleCol> => {
+      const { showAdvancedButton, actionSpan, actionColProps } = props
+      const actSpan = BASIC_COL_LEN - actionSpan
       const advancedSpanObj = showAdvancedButton
-        ? { span: actionSpan < 6 ? 24 : actionSpan }
+        ? { span: actSpan < BASIC_COL_SIZE ? BASIC_COL_LEN : actSpan }
         : {}
-      const actionColOpt: Partial<EleCol> = {
-        style: { textAlign: 'right' },
-        span: showAdvancedButton ? 6 : 24,
+
+      return {
         ...advancedSpanObj,
         ...actionColProps,
       }
-      return actionColOpt
+    })
+    /**
+     * 重置按钮配置
+     *
+     * Reset button configuration
+     */
+    const resetBtnOptions = computed(() => {
+      return {
+        text: '重置',
+        ...props.resetButtonOptions,
+      }
+    })
+    /**
+     * 提交按钮配置
+     *
+     * Submit button configuration
+     */
+    const submitBtnOptions = computed(() => {
+      return {
+        text: '查询',
+        ...props.submitButtonOptions,
+      }
     })
 
-    const getResetBtnOptions = computed(() => {
-      return Object.assign(
-        {
-          text: '重置',
-        },
-        props.resetButtonOptions
-      )
-    })
-
-    const getSubmitBtnOptions = computed(() => {
-      return Object.assign(
-        {
-          text: '查询',
-        },
-        props.submitButtonOptions
-      )
-    })
-
+    /**
+     * 切换展开/收起
+     *
+     * Toggle expand/collapse
+     */
     function toggleAdvanced() {
       emit('toggle-advanced')
     }
 
     return {
-      actionColOpt,
-      getResetBtnOptions,
-      getSubmitBtnOptions,
+      actionColOptions,
+      resetBtnOptions,
+      submitBtnOptions,
       toggleAdvanced,
       ...useFormContext(),
     }

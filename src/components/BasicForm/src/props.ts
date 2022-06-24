@@ -226,12 +226,6 @@ export const formActionProps = {
    * Expand/Collapse button state
    */
   isAdvanced: Boolean,
-  /**
-   * 是否隐藏展开/收起按钮
-   *
-   * Whether to hide the expand/collapse button
-   */
-  hideAdvanceBtn: Boolean,
 }
 
 /**
@@ -273,7 +267,7 @@ export const basicFormItemProps = {
    * Update the form data and try to validate
    */
   setFormModel: {
-    type: Function as PropType<(key: string, value: any) => void>,
+    type: Function as PropType<(field: string, value: any) => void>,
     default: null,
   },
   /**
@@ -289,7 +283,8 @@ export const basicFormItemProps = {
    *
    * Instance Supported Methods
    */
-  formActionType: {
+  formAction: {
     type: Object as PropType<FormActionMethods>,
+    default: null,
   },
 }
