@@ -132,14 +132,6 @@ const feat: AppRouteModule = {
       },
     },
     {
-      path: 'img-preview',
-      name: 'ImgPreview',
-      component: () => import('@/views/demo/feat/img-preview/index.vue'),
-      meta: {
-        title: '图片预览',
-      },
-    },
-    {
       path: 'copy',
       name: 'CopyDemo',
       component: () => import('@/views/demo/feat/copy/index.vue'),
