@@ -4,7 +4,7 @@
       <template #toolbar>
         <el-button
           type="primary"
-          @click="handleCreate"> 新增部门 </el-button>
+          @click="handleCreate">新增部门</el-button>
       </template>
     </BasicTable>
     <DeptModal

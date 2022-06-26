@@ -1,6 +1,6 @@
 <template>
   <span
-    :class="[`${prefixCls}`, spin&&`${prefixCls}-spin`]"
+    :class="[`${prefixCls}`, spin && `${prefixCls}-spin`]"
     :style="getStyle">
     <svg
       aria-hidden="true"
@@ -133,10 +133,8 @@ $prefix-cls: '#{$tonyname}-svg-icon';
   }
 
   &-spin {
-
     svg {
       animation: svgLoadingCircle 1s infinite linear;
-
     }
   }
 }

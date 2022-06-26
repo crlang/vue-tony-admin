@@ -41,7 +41,7 @@ export function updateHeaderBgColor(color?: string) {
 
   appStore.setProjectConfig({
     headerSetting: {
-      theme: (isDark || darkMode) ? ThemeEnum.DARK : ThemeEnum.LIGHT,
+      theme: isDark || darkMode ? ThemeEnum.DARK : ThemeEnum.LIGHT,
     },
   })
 }
@@ -85,7 +85,7 @@ export function updateSidebarBgColor(color?: string) {
  * Dynamically generate text color
  * @param color
  */
-function dyncGenerateColor(color?:string) {
+function dyncGenerateColor(color?: string) {
   const isDark = colorIsDark(color)
 
   return {

@@ -20,7 +20,7 @@ import { onMountedOrActivated } from '@/hooks/core/onMountedOrActivated'
 export function useTableScroll(
   propsRef: ComputedRef<BasicProps>,
   tableElRef: Ref<ComponentRef>,
-  getDataSourceRef: ComputedRef<Recordable[]>,
+  getDataSourceRef: ComputedRef<Recordable[]>
 ) {
   let paginationEl: HTMLElement | null
   let bodyEl: HTMLElement | null
@@ -112,10 +112,7 @@ export function useTableScroll(
       headerHeight = (headEl as HTMLElement).offsetHeight
     }
 
-    let height =
-      bottomIncludeBody -
-      paginationHeight -
-      headerHeight
+    let height = bottomIncludeBody - paginationHeight - headerHeight
 
     // 如果给出了最大高度
     // If maxHeight is given
@@ -143,7 +140,7 @@ export function useTableScroll(
     },
     {
       flush: 'post',
-    },
+    }
   )
   return { redoHeight }
 }

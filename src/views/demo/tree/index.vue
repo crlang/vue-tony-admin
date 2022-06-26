@@ -8,7 +8,7 @@
           <el-tree
             :data="treeData"
             node-key="key"
-            :default-expanded-keys="['0-0', '1-1','2-2']" />
+            :default-expanded-keys="['0-0', '1-1', '2-2']" />
         </el-card>
       </el-col>
       <el-col :span="8">
@@ -123,10 +123,12 @@ export default defineComponent({
         if (node.data.leaf || node.level > 5) {
           return resolve([])
         } else {
-          return resolve([{
-            title: 'zone' + node.data.key,
-            key: node.data.key + '-1',
-          }])
+          return resolve([
+            {
+              title: 'zone' + node.data.key,
+              key: node.data.key + '-1',
+            },
+          ])
         }
       }
 
@@ -164,7 +166,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-  .el-card {
-    height: 100%;
-  }
+.el-card {
+  height: 100%;
+}
 </style>

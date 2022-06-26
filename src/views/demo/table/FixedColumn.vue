@@ -1,7 +1,7 @@
 <template>
   <PageWrapper contentFullHeight>
     <BasicTable @register="registerTable">
-      <template #imgs="{label,width,prop}">
+      <template #imgs="{ label, width, prop }">
         <el-table-column
           :label="label"
           :width="width"
@@ -11,7 +11,7 @@
               :src="item"
               :key="index"
               width="80"
-              v-for="(item,index) in scope.row.imgs" />
+              v-for="(item, index) in scope.row.imgs" />
           </template>
         </el-table-column>
       </template>

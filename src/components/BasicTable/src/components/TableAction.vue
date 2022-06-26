@@ -10,7 +10,8 @@
         @click="handleClick(action)">
         <SvgIcon
           :name="action.svgName"
-          v-if="action?.svgName" />{{ action.buttonProps?.text || '' }}
+          v-if="action?.svgName" />
+        {{ action.buttonProps?.text || '' }}
       </el-button>
     </template>
   </div>
@@ -68,10 +69,11 @@ export default defineComponent({
     const getActions = computed(() => {
       const { actions = [] } = props.column
 
-      const opts = actions.filter((action) => {
-        // 过滤权限
-        return hasPermission(action.auth) && isIfShow(action)
-      })
+      const opts = actions
+        .filter((action) => {
+          // 过滤权限
+          return hasPermission(action.auth) && isIfShow(action)
+        })
         .map((action: TableActionItem) => {
           const opt = {
             callback: action?.callback || null,
@@ -127,10 +129,11 @@ export default defineComponent({
       // 如果存在确认按钮时
       // If there is a confirmation
       if (action.popConfirm) {
-        createConfirm({ ...action.popConfirm }).then(res => {
-          action?.callback!(props.scopes, res)
-        })
-          .catch(err => {
+        createConfirm({ ...action.popConfirm })
+          .then((res) => {
+            action?.callback!(props.scopes, res)
+          })
+          .catch((err) => {
             action?.callback!(props.scopes, err)
           })
       } else {

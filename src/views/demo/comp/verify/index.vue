@@ -6,7 +6,7 @@
         isSlot
         :modelValue="verifyState"
         @end="handleCustomSuccess" />
-      <el-button @click="handleBtnClick(el1,'el1')">还原</el-button>
+      <el-button @click="handleBtnClick(el1, 'el1')">还原</el-button>
     </div>
 
     <div class="demo-verify-item">

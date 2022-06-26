@@ -84,11 +84,7 @@ export function useForm(formProps?: Props): UseFormReturnType {
       return getUseInstance<FormActionMethods>(formRef, 'form')?.setFieldsValue(values)
     },
 
-    appendSchemaByField: (
-      schema: BasicFormSchema,
-      beforeField?: string,
-      first?: boolean
-    ) => {
+    appendSchemaByField: (schema: BasicFormSchema, beforeField?: string, first?: boolean) => {
       return getUseInstance<FormActionMethods>(formRef, 'form')?.appendSchemaByField(schema, beforeField, first)
     },
   }

@@ -42,14 +42,7 @@ export default defineComponent({
     const dragBarRef = ref<ElRef>(null)
     const sideRef = ref<ElRef>(null)
 
-    const {
-      getSplit,
-      getMenuTheme,
-      getRealWidth,
-      getMenuHidden,
-      getMenuFixed,
-      getIsMixMode,
-    } = useMenuSetting()
+    const { getSplit, getMenuTheme, getRealWidth, getMenuHidden, getMenuFixed, getIsMixMode } = useMenuSetting()
 
     const { prefixCls } = useDesign('layout-sideBar')
 

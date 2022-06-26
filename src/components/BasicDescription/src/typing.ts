@@ -30,10 +30,7 @@ export interface DescItem extends EleDescriptionsItem {
    *
    * Custom rendering description item content (VNode)
    */
-  render?: (
-    val: any,
-    data: Recordable,
-  ) => JSX.Element | undefined | Element | string | number
+  render?: (val: any, data: Recordable) => JSX.Element | undefined | Element | string | number
 }
 
 /**

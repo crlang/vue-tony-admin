@@ -17,15 +17,7 @@
 <script lang="ts">
 import type { CSSProperties } from 'vue'
 
-import {
-  defineComponent,
-  computed,
-  ref,
-  watchEffect,
-  unref,
-  watch,
-  nextTick,
-} from 'vue'
+import { defineComponent, computed, ref, watchEffect, unref, watch, nextTick } from 'vue'
 import { ElLoading } from 'element-plus'
 // import { useMutationObserver } from '@vueuse/core'
 
@@ -61,14 +53,16 @@ export default defineComponent({
      */
     const spinStyle = computed((): CSSProperties => {
       const { dyncHeight } = props
-      return dyncHeight ? {
-        // 动态获取内容区高度
-        // Dynamically get the height of the content area
-        'height': `${unref(realHeightRef)}px`,
-      } : {
-        'height': 'auto',
-        'padding': '1rem',
-      }
+      return dyncHeight
+        ? {
+          // 动态获取内容区高度
+          // Dynamically get the height of the content area
+          height: `${unref(realHeightRef)}px`,
+        }
+        : {
+          height: 'auto',
+          padding: '1rem',
+        }
     })
 
     /**
@@ -79,8 +73,8 @@ export default defineComponent({
     async function scrollTop() {
       nextTick(() => {
         const wrapperRefDom = unref(wrapperRef)
-        if (!wrapperRefDom) return;
-        (wrapperRefDom as any)?.scrollTo?.(0)
+        if (!wrapperRefDom) return
+        ;(wrapperRefDom as any)?.scrollTo?.(0)
       })
     }
 
@@ -134,10 +128,10 @@ export default defineComponent({
         // 计算合适的内容区高度
         // Calculate proper content area height
         let maxHeight =
-            window.innerHeight - // window height
-            modalTop * 2 - // modal offset top/bottom
-            modalFooterHeight - // modal footer height
-           modalHeaderHeight // modal header height
+          window.innerHeight - // window height
+          modalTop * 2 - // modal offset top/bottom
+          modalFooterHeight - // modal footer height
+          modalHeaderHeight // modal header height
 
         // 如果插槽内容高度低于计算的高度，直接拿插槽内容高度
         // If the inner content height is lower than the calculated height, directly take the slot content height
@@ -181,7 +175,7 @@ export default defineComponent({
       () => props.fullscreen,
       () => {
         setModalHeight()
-      },
+      }
     )
 
     return {

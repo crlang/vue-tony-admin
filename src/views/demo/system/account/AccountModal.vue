@@ -55,13 +55,11 @@ export default defineComponent({
         })
       }
 
-      updateSchema(
-        {
-          field: 'pwd',
-          show: !unref(isUpdate),
-          ifShow: !unref(isUpdate),
-        },
-      )
+      updateSchema({
+        field: 'pwd',
+        show: !unref(isUpdate),
+        ifShow: !unref(isUpdate),
+      })
     })
 
     const getTitle = computed(() => (!unref(isUpdate) ? '新增账号' : '编辑账号'))

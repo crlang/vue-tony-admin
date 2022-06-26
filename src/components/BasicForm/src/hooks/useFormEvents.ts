@@ -166,16 +166,14 @@ export function useFormEvents({
    */
   function updateSchema(schema: Partial<BasicFormSchema>): boolean {
     if (!schema.field) {
-      error(
-        'The `field` of schema data must exist'
-      )
+      error('The `field` of schema data must exist')
       return false
     }
 
     const schemaList: BasicFormSchema[] = [...unref(getSchema)]
     for (let i = 0; i < schemaList.length; i++) {
       if (schemaList[i].field === schema?.field) {
-        schemaList[i] = { ...(schemaList[i]), ...schema }
+        schemaList[i] = { ...schemaList[i], ...schema }
         schemaRef.value = schemaList
         return true
       }

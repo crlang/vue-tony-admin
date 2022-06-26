@@ -8,11 +8,12 @@
         <component :is="`${item}Transition`">
           <div
             class="box"
-            v-show="show"><div>{{ item }}</div></div>
+            v-show="show">
+            <div>{{ item }}</div>
+          </div>
         </component>
       </el-col>
     </el-row>
-
   </PageWrapper>
 </template>
 
@@ -38,7 +39,7 @@ import {
   ZoomFadeTransition,
   ZoomOutTransition,
   ExpandTransition,
-  ExpandXTransition,
+  ExpandXTransition
 } from '@/components/Transition'
 
 export default defineComponent({

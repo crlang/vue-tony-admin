@@ -29,7 +29,10 @@
             <NoticeList
               :list="item.list"
               v-else />
-            <div :class="`${prefixCls}__more`">查看更多<span v-if="item.list.length !== 0">({{ item.list.length }})</span></div>
+            <div :class="`${prefixCls}__more`">
+              查看更多
+              <span v-if="item.list.length !== 0">({{ item.list.length }})</span>
+            </div>
           </ElTabPane>
         </template>
       </ElTabs>
@@ -84,7 +87,7 @@ $prefix-cls: '#{$tonyname}-header-notify';
 .#{$prefix-cls} {
   padding-top: 2px;
 
-  &__overlay  {
+  &__overlay {
     &.is-light {
       border-color: transparent;
 

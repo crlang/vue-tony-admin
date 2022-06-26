@@ -76,11 +76,9 @@ export default defineComponent({
       const { imgSize, height, maxDegree } = props
       const { moveX } = data
 
-      const currentRotate = Math.ceil(
-        (moveX / (imgSize! - height)) * maxDegree! * unref(getFactorRef)
-      )
+      const currentRotate = Math.ceil((moveX / (imgSize! - height)) * maxDegree! * unref(getFactorRef))
       state.currentRotate = currentRotate
-      state.imgStyle = { 'transform': `rotateZ(${state.randomRotate - currentRotate}deg)` }
+      state.imgStyle = { transform: `rotateZ(${state.randomRotate - currentRotate}deg)` }
     }
 
     /**
@@ -93,7 +91,7 @@ export default defineComponent({
       // Generate random angles
       const ranRotate = Math.floor(minDegree! + Math.random() * (maxDegree! - minDegree!))
       state.randomRotate = ranRotate
-      state.imgStyle = { 'transform': `rotateZ(${ranRotate}deg)` }
+      state.imgStyle = { transform: `rotateZ(${ranRotate}deg)` }
     }
 
     /**
@@ -108,7 +106,7 @@ export default defineComponent({
       // 拖动失败，恢复原位
       // Failed to drag, return to original position
       if (Math.abs(randomRotate - currentRotate) >= (diffDegree || 20)) {
-        state.imgStyle = { 'transform': `rotateZ(${randomRotate}deg)` }
+        state.imgStyle = { transform: `rotateZ(${randomRotate}deg)` }
         state.toOrigin = true
         useTimeoutFn(() => {
           state.toOrigin = false
@@ -186,9 +184,7 @@ export default defineComponent({
               alt='verify' />
             {state.showTip && (
               <span class={[`${prefixCls}-img__tip`, state.isPassing ? 'success' : 'error']}>
-                {state.isPassing
-                  ? `验证校验成功,耗时${time.toFixed(1)}秒！`
-                  : '验证失败！'}
+                {state.isPassing ? `验证校验成功,耗时${time.toFixed(1)}秒！` : '验证失败！'}
               </span>
             )}
             {!state.showTip && !state.draged && (

@@ -337,9 +337,7 @@ export const basicSchemas: BasicFormSchema[] = [
         placeholder: '省份与城市联动',
         onChange: (e: any) => {
           let citiesOptions =
-              e === 1
-                ? citiesOptionsData[provincesOptions[0].id]
-                : citiesOptionsData[provincesOptions[1].id]
+            e === 1 ? citiesOptionsData[provincesOptions[0].id] : citiesOptionsData[provincesOptions[1].id]
           if (e === undefined) {
             citiesOptions = []
           }

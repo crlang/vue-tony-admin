@@ -5,8 +5,7 @@
   <div
     :style="getWrapStyle"
     :class="getClass">
-    <LayoutHeader
-      v-if="getShowInsetHeaderRef" />
+    <LayoutHeader v-if="getShowInsetHeaderRef" />
     <MultipleTabs v-if="getShowTabs" />
   </div>
 </template>

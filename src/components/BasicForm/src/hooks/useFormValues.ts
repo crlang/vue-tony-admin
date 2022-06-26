@@ -17,12 +17,7 @@ interface UseFormValuesContext {
  *
  * Process the value of the form
  */
-export function useFormValues({
-  defaultValueRef,
-  getSchema,
-  formModel,
-  getProps,
-}: UseFormValuesContext) {
+export function useFormValues({ defaultValueRef, getSchema, formModel, getProps }: UseFormValuesContext) {
   // check dayjs
   const isDayjsVal = (v) => v instanceof dayjs
 
@@ -60,14 +55,10 @@ export function useFormValues({
       if (typeof transformDateFn === 'function') {
         if (Array.isArray(value)) {
           for (let i = 0; i < value.length; i++) {
-            value[i] = isDayjsVal(value[i])
-              ? transformDateFn?.(value[i])
-              : value[i]
+            value[i] = isDayjsVal(value[i]) ? transformDateFn?.(value[i]) : value[i]
           }
         } else {
-          value = isDayjsVal(value)
-            ? transformDateFn?.(value)
-            : value
+          value = isDayjsVal(value) ? transformDateFn?.(value) : value
         }
       }
 
@@ -116,14 +107,10 @@ export function useFormValues({
         if (typeof transformDateFn === 'function') {
           if (Array.isArray(defaultValue)) {
             for (let i = 0; i < defaultValue.length; i++) {
-              item.defaultValue[i] = isDayjsVal(defaultValue[i])
-                ? transformDateFn?.(defaultValue[i])
-                : defaultValue[i]
+              item.defaultValue[i] = isDayjsVal(defaultValue[i]) ? transformDateFn?.(defaultValue[i]) : defaultValue[i]
             }
           } else {
-            item.defaultValue = isDayjsVal(defaultValue)
-              ? transformDateFn?.(defaultValue)
-              : defaultValue
+            item.defaultValue = isDayjsVal(defaultValue) ? transformDateFn?.(defaultValue) : defaultValue
           }
         }
       }

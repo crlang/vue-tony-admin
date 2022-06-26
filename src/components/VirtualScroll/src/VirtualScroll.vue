@@ -1,20 +1,10 @@
 <script lang="tsx">
 import type { Slot, CSSProperties } from 'vue'
 
-import {
-  defineComponent,
-  computed,
-  ref,
-  unref,
-  reactive,
-  onMounted,
-  watch,
-  nextTick,
-  onBeforeUnmount
-} from 'vue'
+import { defineComponent, computed, ref, unref, reactive, onMounted, watch, nextTick, onBeforeUnmount } from 'vue'
 import { useDesign } from '@/hooks/web/useDesign'
 
-type NOS = PropType<string | number | undefined>;
+type NOS = PropType<string | number | undefined>
 
 export default defineComponent({
   name: 'VirtualScroll',

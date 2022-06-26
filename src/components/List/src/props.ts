@@ -1,5 +1,4 @@
-export const basicProps = {
-}
+export const basicProps = {}
 
 export const itemProps = {
   /**

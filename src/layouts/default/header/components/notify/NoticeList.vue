@@ -4,8 +4,8 @@
       v-for="item in list"
       :key="item.title">
       <ListItem
-        style="display: block;"
-        :class="[prefixCls+'__item',{'is-read':item.titleDelete}]"
+        style="display: block"
+        :class="[prefixCls + '__item', { 'is-read': item.titleDelete }]"
         @click="handleTitleClick(item)">
         <template
           #thumb

@@ -1,6 +1,7 @@
 <template>
   <div class="mt-2">
-    当前权限模式: <el-button
+    当前权限模式:
+    <el-button
       type="primary"
       plain>
       {{ permissionMode === PermissionModeEnum.BACK ? '后台权限模式' : '前端角色权限模式' }}

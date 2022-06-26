@@ -13,7 +13,9 @@
         class="my-4 mr-4"
         type="primary"
         v-loading.fullscreen.lock="fullscreenLoading"
-        @click="openCompFullLoading">全屏 Loading</el-button>
+        @click="openCompFullLoading">
+        全屏 Loading
+      </el-button>
       <el-button
         class="my-4"
         type="primary"

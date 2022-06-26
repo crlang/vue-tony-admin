@@ -45,8 +45,7 @@ export default defineComponent({
   },
   emits: ['dateType'],
   setup(_) {
-    return { }
+    return {}
   },
 })
-
 </script>

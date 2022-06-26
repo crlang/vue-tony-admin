@@ -31,11 +31,7 @@ export default defineComponent({
     }
     const [register] = useForm({
       // labelWidth: 80,
-      schemas: [
-        ...UseSchemas,
-        { field: '', component: 'ElDivider', label: '更多字段' },
-        ...extraSchemas,
-      ],
+      schemas: [...UseSchemas, { field: '', component: 'ElDivider', label: '更多字段' }, ...extraSchemas],
       // actionColProps: {
       //   span: 24,
       // },

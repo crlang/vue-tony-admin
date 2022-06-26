@@ -68,9 +68,7 @@ export default defineComponent({
      * Monitor the countdown text change
      */
     const getButtonText = computed(() => {
-      return !unref(isStart)
-        ? '获取验证码'
-        : `${unref(currentCount)}秒后重新获取`
+      return !unref(isStart) ? '获取验证码' : `${unref(currentCount)}秒后重新获取`
     })
 
     /**

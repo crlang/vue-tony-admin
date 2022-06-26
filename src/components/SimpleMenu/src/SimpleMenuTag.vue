@@ -42,7 +42,7 @@ export default defineComponent({
       const { item, collapseParent } = props
       const { tag } = item
       const { dot, content } = tag!
-      return (dot || collapseParent) ? '' : content
+      return dot || collapseParent ? '' : content
     })
 
     const getTagClass = computed(() => {

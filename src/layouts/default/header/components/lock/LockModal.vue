@@ -21,9 +21,7 @@
         <ElButton
           type="primary"
           class="mt-2"
-          @click="handleLock">
-          锁定
-        </ElButton>
+          @click="handleLock">锁定</ElButton>
       </div>
     </div>
   </BasicModal>
@@ -74,7 +72,7 @@ export default defineComponent({
 
     async function handleLock() {
       await validateField()
-      const values = (getFieldsValue()) as any
+      const values = getFieldsValue() as any
       const password: string | undefined = values.password
       closeModal()
 

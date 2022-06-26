@@ -16,11 +16,14 @@ export default defineComponent({
     const chartRef = ref<HTMLDivElement | null>(null)
     const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>)
 
-    watch(() => props.type, (v) => {
-      if (v) {
-        initChart()
+    watch(
+      () => props.type,
+      (v) => {
+        if (v) {
+          initChart()
+        }
       }
-    })
+    )
 
     const initChart = () => {
       const data = computed(() => {

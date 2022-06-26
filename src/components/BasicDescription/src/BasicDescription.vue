@@ -108,7 +108,7 @@ export default defineComponent({
           }
 
           return (
-            <ElDescriptionsItem {...(unref(item))}>
+            <ElDescriptionsItem {...unref(item)}>
               {() => {
                 if (!minWidth) {
                   return getContent()
@@ -117,8 +117,7 @@ export default defineComponent({
                   minWidth: `${minWidth}px`,
                 }
                 return <div style={style}>{getContent()}</div>
-              }
-              }
+              }}
             </ElDescriptionsItem>
           )
         })
@@ -132,7 +131,7 @@ export default defineComponent({
      */
     const renderDesc = () => {
       return (
-        <ElDescriptions class={`${prefixCls}`} {...(unref(getBindValues))}>
+        <ElDescriptions class={`${prefixCls}`} {...unref(getBindValues)}>
           {renderItem()}
         </ElDescriptions>
       )

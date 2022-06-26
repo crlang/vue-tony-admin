@@ -6,10 +6,8 @@
         :itemHeight="60"
         :listData="data"
         :height="300">
-        <template #default="{ item, index}">
-          <div class="virtual-scroll-demo__item">
-            {{ index }} - {{ item.title }}
-          </div>
+        <template #default="{ item, index }">
+          <div class="virtual-scroll-demo__item">{{ index }} - {{ item.title }}</div>
         </template>
       </VirtualScroll>
     </div>

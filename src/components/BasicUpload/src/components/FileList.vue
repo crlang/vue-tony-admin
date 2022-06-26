@@ -84,9 +84,7 @@ export default defineComponent({
                     const render = typeof customRender === 'function'
                     return (
                       <td class={align} key={prop}>
-                        {render
-                          ? customRender?.({ text: record[prop], record })
-                          : record[prop]}
+                        {render ? customRender?.({ text: record[prop], record }) : record[prop]}
                       </td>
                     )
                   })}

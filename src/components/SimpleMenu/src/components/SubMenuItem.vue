@@ -47,8 +47,7 @@
             v-if="getParentSubMenu"
             name="eva:arrow-ios-downward-outline"
             :size="14"
-            :class="`${prefixCls}-title-icon`"
-          />
+            :class="`${prefixCls}-title-icon`" />
         </div>
       </template>
       <div v-bind="getEvents(true)">

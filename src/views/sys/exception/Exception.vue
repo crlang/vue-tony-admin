@@ -14,12 +14,12 @@ import { PageEnum } from '@/enums/pageEnum'
 import { ElButton, ElResult } from 'element-plus'
 
 interface MapValue {
-  title: string;
-  subTitle: string;
-  btnText?: string;
-  icon?: string;
-  handler?: Fn;
-  status?: string;
+  title: string
+  subTitle: string
+  btnText?: string
+  icon?: string
+  handler?: Fn
+  status?: string
 }
 
 export default defineComponent({

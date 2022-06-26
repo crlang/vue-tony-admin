@@ -10,7 +10,7 @@ import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'List',
-  components: { },
+  components: {},
   setup() {
     const { prefixCls } = useDesign('basic-list')
 

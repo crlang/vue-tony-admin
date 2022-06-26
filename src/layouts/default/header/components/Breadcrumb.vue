@@ -48,7 +48,7 @@ import { getAllParentPath } from '@/router/helper/menuHelper'
 export default defineComponent({
   name: 'LayoutBreadcrumb',
   components: { ElBreadcrumb, ElBreadcrumbItem, Icon },
-  props: { },
+  props: {},
   setup() {
     const routes = ref<any[]>([])
     const { currentRoute } = useRouter()
@@ -147,7 +147,7 @@ export default defineComponent({
       return routes.indexOf(route) !== routes.length - 1
     }
 
-    function getIcon(route:RouteLocationMatched) {
+    function getIcon(route: RouteLocationMatched) {
       return route.meta?.icon as string
     }
 
@@ -183,7 +183,8 @@ $prefix-cls: '#{$tonyname}-layout-header-breadcrumb';
       color: inherit;
       vertical-align: top;
 
-      a,span {
+      a,
+      span {
         font-weight: normal;
         color: inherit;
       }

@@ -79,7 +79,7 @@ export default defineComponent({
       })
     }
 
-    const scrollAction:ScrollActionType = {
+    const scrollAction: ScrollActionType = {
       wrap: null,
       scrollTo,
       scrollBottom,

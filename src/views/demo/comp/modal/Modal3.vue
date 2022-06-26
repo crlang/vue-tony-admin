@@ -2,7 +2,6 @@
   <BasicModal
     v-bind="$attrs"
     title="Modal Title"
-
     :helpMessage="['提示1', '提示2']"
     width="700px">
     <p

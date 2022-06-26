@@ -7,7 +7,6 @@
     size="50%"
     @ok="handleSubmit">
     <BasicForm @register="registerForm">
-
       <template #icon="{ model, field }">
         <IconPicker v-model:modelValue="model[field]" />
       </template>

@@ -131,7 +131,18 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue'
-import { ElButton, ElTabs, ElTabPane, ElDescriptions, ElDescriptionsItem, ElStep, ElSteps, ElCard, ElDivider, ElEmpty } from 'element-plus'
+import {
+  ElButton,
+  ElTabs,
+  ElTabPane,
+  ElDescriptions,
+  ElDescriptionsItem,
+  ElStep,
+  ElSteps,
+  ElCard,
+  ElDivider,
+  ElEmpty
+} from 'element-plus'
 import { BasicTable, useTable } from '@/components/BasicTable'
 import { refundTimeTableData, refundTimeTableSchema } from './data'
 

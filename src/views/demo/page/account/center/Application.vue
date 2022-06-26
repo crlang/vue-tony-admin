@@ -8,7 +8,7 @@
           <ListItem :class="`${prefixCls}__item`">
             <el-card
               :class="`${prefixCls}__card`"
-              :bodyStyle="{padding:0}">
+              :bodyStyle="{ padding: 0 }">
               <div :class="`${prefixCls}__card-title`">
                 <Icon
                   class="icon"

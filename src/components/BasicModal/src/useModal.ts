@@ -4,20 +4,10 @@ import type {
   BasicProps,
   ModalActionMethods,
   ReturnInnerMethods,
-  UseModalInnerReturnType,
+  UseModalInnerReturnType
 } from './typing'
 
-import {
-  ref,
-  onUnmounted,
-  unref,
-  getCurrentInstance,
-  reactive,
-  watchEffect,
-  nextTick,
-  toRaw,
-  computed
-} from 'vue'
+import { ref, onUnmounted, unref, getCurrentInstance, reactive, watchEffect, nextTick, toRaw, computed } from 'vue'
 import { isEqual } from 'lodash-es'
 import { tryOnUnmounted } from '@vueuse/core'
 
@@ -74,7 +64,9 @@ export function useModal(): UseModalReturnType {
   const getInstance = () => {
     const instance = unref(modal)
     if (!instance) {
-      error('The modal instance has not been obtained, please make sure the instance is rendered when performing the instance operation!')
+      error(
+        'The modal instance has not been obtained, please make sure the instance is rendered when performing the instance operation!'
+      )
     }
     return instance
   }
@@ -169,7 +161,6 @@ export const useModalInner = (callbackFn?: Fn): UseModalInnerReturnType => {
    * Define inner instance methods
    */
   const methods: ReturnInnerMethods = {
-
     changeLoading: (loading = true) => {
       getInstance()?.setModalProps({ loading })
     },

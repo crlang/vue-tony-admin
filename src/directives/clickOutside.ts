@@ -14,11 +14,15 @@ let startClick: MouseEvent
 
 if (typeof window !== 'undefined') {
   document.addEventListener('mousedown', (e: MouseEvent) => (startClick = e), false)
-  document.addEventListener('mouseup', (e: MouseEvent) => {
-    for (const { documentHandler } of nodeList.values()) {
-      documentHandler(e, startClick)
-    }
-  }, false)
+  document.addEventListener(
+    'mouseup',
+    (e: MouseEvent) => {
+      for (const { documentHandler } of nodeList.values()) {
+        documentHandler(e, startClick)
+      }
+    },
+    false
+  )
 }
 
 /**

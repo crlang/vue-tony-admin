@@ -1,7 +1,7 @@
 /**
  * Description: 更多使用方法请看： https://vuejs.org/guide/built-ins/transition.html#the-transition-component
  * Description: For more details see: https://vuejs.org/guide/built-ins/transition.html#the-transition-component
-*/
+ */
 
 import { defineComponent, Transition, TransitionGroup } from 'vue'
 
@@ -134,7 +134,7 @@ export function createExpandFn(x = false) {
   }
 
   return {
-    beforeEnter(el:HTMLElement) {
+    beforeEnter(el: HTMLElement) {
       // if (!el.dataset) el.dataset = {}
       el.dataset[d] = el.style[b]
       el.dataset[e] = el.style[c]
@@ -144,7 +144,7 @@ export function createExpandFn(x = false) {
       el.style[c] = '0'
     },
 
-    enter(el:HTMLElement) {
+    enter(el: HTMLElement) {
       el.dataset[g] = el.style[f]
       // if (el[h] !== 0) {
       //   el.style[a] = el[h] + 'px'
@@ -159,12 +159,12 @@ export function createExpandFn(x = false) {
       el.style[f] = 'hidden'
     },
 
-    afterEnter(el:HTMLElement) {
+    afterEnter(el: HTMLElement) {
       el.style[a] = ''
       el.style[f] = el.dataset[g] as string
     },
 
-    beforeLeave(el:HTMLElement) {
+    beforeLeave(el: HTMLElement) {
       // if (!el.dataset) el.dataset = {}
       el.dataset[d] = el.style[b]
       el.dataset[e] = el.style[c]
@@ -174,7 +174,7 @@ export function createExpandFn(x = false) {
       el.style[f] = 'hidden'
     },
 
-    leave(el:HTMLElement) {
+    leave(el: HTMLElement) {
       if (el[h] !== 0) {
         el.style[a] = '0'
         el.style[b] = '0'
@@ -182,7 +182,7 @@ export function createExpandFn(x = false) {
       }
     },
 
-    afterLeave(el:HTMLElement) {
+    afterLeave(el: HTMLElement) {
       el.style[a] = ''
       el.style[f] = el.dataset[g] as string
       el.style[b] = el.dataset[d] as string

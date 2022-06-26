@@ -7,8 +7,7 @@
       inline-prompt
       :disabled="disabled"
       active-text="开"
-      inactive-text="关"
-    />
+      inactive-text="关" />
   </div>
 </template>
 

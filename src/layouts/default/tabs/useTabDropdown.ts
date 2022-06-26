@@ -8,7 +8,7 @@ import { useMultipleTabStore } from '@/store/modules/multipleTab'
 import { RouteLocationNormalized, useRouter } from 'vue-router'
 import { useTabs } from '@/hooks/web/useTabs'
 
-interface DropdownItem extends EleDropdownItem{
+interface DropdownItem extends EleDropdownItem {
   icon: string
   text?: string
 }

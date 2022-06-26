@@ -53,7 +53,6 @@ export default defineComponent({
     return { prefixCls, getClass }
   },
 })
-
 </script>
 
 <style lang="scss">

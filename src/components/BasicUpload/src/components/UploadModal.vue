@@ -10,7 +10,6 @@
     :closeFn="handleCloseFn"
     :confirm-options="getConfirmProps"
     :cancel-options="getCancelProps">
-
     <template #centerFooter>
       <el-button
         @click="handleStartUpload"
@@ -20,7 +19,7 @@
         {{ getUploadBtnText }}
       </el-button>
     </template>
-    <div style="display: flex;align-items: center;margin-bottom: 8px;">
+    <div style="display: flex; align-items: center; margin-bottom: 8px">
       <ElAlert
         :title="getHelpText"
         type="info"
@@ -33,9 +32,11 @@
         :disabled="getUploadState"
         :show-file-list="false"
         :before-upload="beforeUpload"
-        style="margin-left: 8px;"><ElButton
+        style="margin-left: 8px">
+        <ElButton
           type="primary"
-          :disabled="getUploadState">选择文件</ElButton></ElUpload>
+          :disabled="getUploadState">选择文件</ElButton>
+      </ElUpload>
     </div>
 
     <FileList
@@ -75,7 +76,7 @@ export default defineComponent({
     const previewFileList = ref<string[]>([])
     const { accept, helpText, maxNumber, maxSize } = toRefs(props)
 
-    const [register, { closeModal }] = useModalInner((data:string[]) => {
+    const [register, { closeModal }] = useModalInner((data: string[]) => {
       // 接收 BasicUpload 页面传递过来的 data
       // Receive the data passed from the BasicUpload page
       previewFileList.value = data || []
@@ -97,8 +98,7 @@ export default defineComponent({
      */
     const getIsSelectFile = computed(() => {
       return (
-        fileListRef.value.length > 0 &&
-          !fileListRef.value.every((item) => item.status === UploadResultStatus.SUCCESS)
+        fileListRef.value.length > 0 && !fileListRef.value.every((item) => item.status === UploadResultStatus.SUCCESS)
       )
     })
     /**
@@ -106,10 +106,8 @@ export default defineComponent({
      *
      * Get confirm button configuration
      */
-    const getConfirmProps = computed(():EleButton => {
-      const someSuccess = fileListRef.value.some(
-        (item) => item.status === UploadResultStatus.SUCCESS,
-      )
+    const getConfirmProps = computed((): EleButton => {
+      const someSuccess = fileListRef.value.some((item) => item.status === UploadResultStatus.SUCCESS)
       return {
         text: '保存',
         type: 'primary',
@@ -121,7 +119,7 @@ export default defineComponent({
      *
      * Get cancel button configuration
      */
-    const getCancelProps = computed(():EleButton => {
+    const getCancelProps = computed((): EleButton => {
       return {
         text: '关闭',
         disabled: isUploadingRef.value,
@@ -132,8 +130,8 @@ export default defineComponent({
      *
      * Get whether the upload is in progress or the number of uploads exceeds the limit
      */
-    const getUploadState = computed(():boolean => {
-      return isUploadingRef.value || (fileListRef.value.length + previewFileList.value.length) >= maxNumber.value
+    const getUploadState = computed((): boolean => {
+      return isUploadingRef.value || fileListRef.value.length + previewFileList.value.length >= maxNumber.value
     })
     /**
      * 获取上传按钮文字状态变化
@@ -141,10 +139,8 @@ export default defineComponent({
      * Get upload button text state change
      */
     const getUploadBtnText = computed(() => {
-      const someError = fileListRef.value.some(
-        (item) => item.status === UploadResultStatus.ERROR,
-      )
-      return isUploadingRef.value ? '上传中' : (someError ? '重新上传失败文件' : '开始上传')
+      const someError = fileListRef.value.some((item) => item.status === UploadResultStatus.ERROR)
+      return isUploadingRef.value ? '上传中' : someError ? '重新上传失败文件' : '开始上传'
     })
     /**
      * 检查文件数量
@@ -152,7 +148,7 @@ export default defineComponent({
      * Check the number of files
      */
     function checkFileLimit() {
-      if ((fileListRef.value.length + previewFileList.value.length) > maxNumber.value) {
+      if (fileListRef.value.length + previewFileList.value.length > maxNumber.value) {
         createMessage.warning(`最多只能上传${maxNumber.value}个文件`)
         return false
       }
@@ -283,12 +279,11 @@ export default defineComponent({
 
       try {
         isUploadingRef.value = true
-        const uploadFileList =
-            fileListRef.value.filter((item) => item.status !== UploadResultStatus.SUCCESS) || []
+        const uploadFileList = fileListRef.value.filter((item) => item.status !== UploadResultStatus.SUCCESS) || []
         const data = await Promise.all(
           uploadFileList.map((item) => {
             return uploadApiByItem(item)
-          }),
+          })
         )
         isUploadingRef.value = false
         // 筛选未上传成功文件

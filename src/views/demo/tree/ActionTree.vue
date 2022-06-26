@@ -3,15 +3,14 @@
     title="Tree 函数示例"
     contentBackground>
     <div class="demo-tree-btns">
-
       <el-button @click="checkAll(true)">全选</el-button>
       <el-button @click="checkAll(false)">全不选</el-button>
 
       <el-button @click="expandAll(true)">展开全部</el-button>
       <el-button @click="expandAll(false)">折叠全部</el-button>
 
-      <el-button @click="handleLevel(2,true)">显示第2级</el-button>
-      <el-button @click="handleLevel(2,false)">隐藏第2级</el-button>
+      <el-button @click="handleLevel(2, true)">显示第2级</el-button>
+      <el-button @click="handleLevel(2, false)">隐藏第2级</el-button>
 
       <el-button @click="handleSetExpandData(true)">展开1-1-1节点数据</el-button>
       <el-button @click="handleSetExpandData(false)">折叠1-1-1节点数据</el-button>
@@ -22,7 +21,6 @@
 
       <el-button @click="handleSetNodeData">设置节点数据</el-button>
       <el-button @click="handleGetNodeData">获取节点数据</el-button>
-
     </div>
     <div class="demo-tree-btns">
       <el-button @click="appendNodeByKey">在0-0-0内添加子节点</el-button>
@@ -90,7 +88,7 @@ export default defineComponent({
       setAllTreeNodes('expanded', checked)
     }
 
-    function handleLevel(level: number, boo:boolean) {
+    function handleLevel(level: number, boo: boolean) {
       const nodes = getTree().store._getAllNodes()
       for (let i = 0; i < nodes.length; i++) {
         if (nodes[i].level === level) {
@@ -122,7 +120,7 @@ export default defineComponent({
       createMessage.success(JSON.stringify(keys))
     }
 
-    function handleSetExpandData(boo:boolean) {
+    function handleSetExpandData(boo: boolean) {
       expandTreeNode('1-1-1-1', boo)
     }
 
@@ -132,7 +130,7 @@ export default defineComponent({
       getTree().append(treeNode, '0-0-0')
     }
 
-    function insertNodeByKey(position: 'before'|'after') {
+    function insertNodeByKey(position: 'before' | 'after') {
       const treeNode = { label: 'leaf 0-0-0-' + position, key: '0-0-0-' + position }
 
       if (position === 'before') {
@@ -159,7 +157,7 @@ export default defineComponent({
       return data.label.indexOf(v) !== -1
     }
 
-    function expandTreeNode(expandKey:string | number, checked:boolean, nodeKeyName = 'key') {
+    function expandTreeNode(expandKey: string | number, checked: boolean, nodeKeyName = 'key') {
       const nodes = getAllTreeNodes()
       for (let i = 0; i < nodes.length; i++) {
         if (nodes[i]?.data[nodeKeyName] === expandKey) {
@@ -169,7 +167,7 @@ export default defineComponent({
       }
     }
 
-    function _expandParentNode(node, checked:boolean) {
+    function _expandParentNode(node, checked: boolean) {
       node.expanded = checked
       if (node.parent) {
         _expandParentNode(node.parent, checked)
@@ -184,7 +182,7 @@ export default defineComponent({
       return nodes
     }
 
-    function setAllTreeNodes(nodeStoreName, checked:boolean) {
+    function setAllTreeNodes(nodeStoreName, checked: boolean) {
       const nodes = getAllTreeNodes()
       for (let i = 0; i < nodes.length; i++) {
         nodes[i][nodeStoreName] = checked

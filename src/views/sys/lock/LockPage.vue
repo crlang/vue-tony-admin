@@ -4,7 +4,7 @@
       :class="`${prefixCls}__unlock`"
       @click="handleShowForm(false)"
       v-show="showDate">
-      <Lock style="width: 1.5em;" />
+      <Lock style="width: 1.5em" />
       <span>点击解锁</span>
     </div>
 
@@ -52,7 +52,6 @@
               :size="32"
               name="ion:power-outline" /></el-tooltip>
           </div>
-
         </div>
       </div>
     </transition>

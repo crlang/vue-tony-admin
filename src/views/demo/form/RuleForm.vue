@@ -8,11 +8,9 @@
       <el-button @click="reset()">重置</el-button>
     </div>
     <CollapseContainer title="表单校验">
-      <BasicForm
-        @register="register">
+      <BasicForm @register="register">
         <template #countdown="{ model, field }">
-          <CountdownInput
-            v-model:modelValue="model[field]" />
+          <CountdownInput v-model:modelValue="model[field]" />
         </template>
       </BasicForm>
     </CollapseContainer>
@@ -129,7 +127,7 @@ export default defineComponent({
         rules: [
           {
             required: true,
-            validator: (_, value:any, callback:any) => {
+            validator: (_, value: any, callback: any) => {
               if (!value) {
                 callback(new Error('值不能为空'))
               }
@@ -206,7 +204,7 @@ export default defineComponent({
             message: '请输入数据',
           },
           {
-            validator(_, value:any, callback:any) {
+            validator(_, value: any, callback: any) {
               isAccountExist(value)
                 .then(() => callback())
                 .catch((err) => {
@@ -217,16 +215,7 @@ export default defineComponent({
         ],
       },
     ]
-    const [
-      register,
-      {
-        validateField,
-        clearValidate,
-        getFieldsValue,
-        reset,
-        setFieldsValue,
-      },
-    ] = useForm({
+    const [register, { validateField, clearValidate, getFieldsValue, reset, setFieldsValue }] = useForm({
       labelWidth: 140,
       schemas,
       actionColProps: {

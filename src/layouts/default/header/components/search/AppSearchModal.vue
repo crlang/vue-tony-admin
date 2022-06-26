@@ -22,16 +22,12 @@
             </ElInput>
             <span
               :class="`${prefixCls}-cancel`"
-              @click="handleClose">
-              取消
-            </span>
+              @click="handleClose">取消</span>
           </div>
 
           <div
             :class="`${prefixCls}-nodata`"
-            v-show="getIsNotData">
-            暂无搜索结果
-          </div>
+            v-show="getIsNotData">暂无搜索结果</div>
 
           <ul
             :class="`${prefixCls}-list`"

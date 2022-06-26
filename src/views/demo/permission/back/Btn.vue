@@ -4,14 +4,16 @@
     title="按钮权限控制"
     description="必须处于后台权限模式才可测试此页面所展示的功能">
     <CurrentPermissionMode />
-    <p>当前拥有的code列表: <span>{{ permissionStore.getPermCodeList }}</span></p>
+    <p>
+      当前拥有的code列表:
+      <span>{{ permissionStore.getPermCodeList }}</span>
+    </p>
     <el-divider />
     <el-alert
       class="mt-4"
       type="info"
       title="点击后请查看按钮变化"
-      show-icon
-    />
+      show-icon />
     <el-divider />
     <el-button
       type="primary"

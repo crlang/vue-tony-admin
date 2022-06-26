@@ -8,8 +8,7 @@ import { defineComponent, ref, nextTick, unref, onMounted } from 'vue'
 
 import { useScript } from '@/hooks/web/useScript'
 
-const BAI_DU_MAP_URL =
-  'https://map.qq.com/api/gljs?v=1.exp&key=HRBBZ-Z7NRP-ENVDD-LRRMT-GUK2E-PGBW2'
+const BAI_DU_MAP_URL = 'https://map.qq.com/api/gljs?v=1.exp&key=HRBBZ-Z7NRP-ENVDD-LRRMT-GUK2E-PGBW2'
 export default defineComponent({
   name: 'BaiduMap',
   props: {

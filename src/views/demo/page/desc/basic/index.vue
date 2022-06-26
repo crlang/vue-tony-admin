@@ -8,8 +8,7 @@
       :border="false"
       :column="3"
       :data="refundData"
-      :schema="refundSchema"
-    />
+      :schema="refundSchema" />
     <BasicDescription
       title="用户信息"
       size="small"
@@ -17,8 +16,7 @@
       :border="false"
       :column="3"
       :data="personData"
-      :schema="personSchema"
-    />
+      :schema="personSchema" />
     <BasicTable
       v-bind="registerRefundTableFields"
       @register="registerRefundTable" />
@@ -114,7 +112,7 @@ export default defineComponent({
     margin-bottom: -8px;
     font-size: 14px;
     line-height: 44px;
-    border-bottom: 1px solid var(--border-color)
+    border-bottom: 1px solid var(--border-color);
   }
 }
 </style>

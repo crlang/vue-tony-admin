@@ -1,4 +1,3 @@
-
 export const data: Recordable[] = (() => {
   const arr: Recordable[] = []
   for (let index = 1; index < 20000; index++) {

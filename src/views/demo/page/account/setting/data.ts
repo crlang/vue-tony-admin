@@ -4,7 +4,7 @@ export interface ListItem {
   key: string
   title: string
   description: string
-  checked?: boolean,
+  checked?: boolean
   extra?: string
   avatar?: string
   color?: string

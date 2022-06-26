@@ -41,7 +41,9 @@
       class="login--submit"
       @click="handleRegister"
       :loading="loading"
-      :disabled="formData.policy===false">注册</el-button>
+      :disabled="formData.policy === false">
+      注册
+    </el-button>
     <el-button
       @click="handleBackLogin"
       class="login--back">返回</el-button>

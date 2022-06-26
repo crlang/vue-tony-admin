@@ -151,9 +151,11 @@ export default defineComponent({
     }
 
     function handleDelete({ row }) {
-      createConfirm({ title: '温馨提示', content: `是否确认删除「${row.nickname}」?`, type: 'error' }).then(() => {
-        createMessage.success('删除成功')
-      }).catch(() => { })
+      createConfirm({ title: '温馨提示', content: `是否确认删除「${row.nickname}」?`, type: 'error' })
+        .then(() => {
+          createMessage.success('删除成功')
+        })
+        .catch(() => {})
     }
 
     function handleSuccess({ isUpdate, values }) {
@@ -166,7 +168,7 @@ export default defineComponent({
       }
     }
 
-    function handleSelect(deptItem:DeptListItem) {
+    function handleSelect(deptItem: DeptListItem) {
       searchInfo.deptId = deptItem?.id
       reload()
     }

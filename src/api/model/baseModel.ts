@@ -5,6 +5,6 @@ export interface BasicPageParams {
 
 export interface BasicFetchResult<T> {
   items: T[]
-  page: number,
+  page: number
   total: number
 }

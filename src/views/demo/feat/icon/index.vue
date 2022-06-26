@@ -87,8 +87,7 @@ export default defineComponent({
     SvgIcon,
   },
   setup() {
-    return {
-    }
+    return {}
   },
 })
 </script>

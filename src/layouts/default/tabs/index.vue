@@ -111,7 +111,7 @@ export default defineComponent({
       }
     })
 
-    function handleChange(tab:any) {
+    function handleChange(tab: any) {
       const activeKey = unref(toRaw(tab).paneName)
       activeKeyRef.value = activeKey
       go(activeKey, false)

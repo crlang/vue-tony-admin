@@ -3,20 +3,23 @@
     <ElButton
       type="primary"
       @click="handleCopy">
-      <CopyDocument /> 拷贝
+      <CopyDocument />
+      拷贝
     </ElButton>
 
     <ElButton
       type="warning"
       @click="handleResetSetting"
       class="my-3">
-      <RefreshLeft /> 重置
+      <RefreshLeft />
+      重置
     </ElButton>
 
     <ElButton
       type="danger"
       @click="handleClearAndRedo">
-      <Refresh /> 清空缓存并返回登录页
+      <Refresh />
+      清空缓存并返回登录页
     </ElButton>
   </div>
 </template>

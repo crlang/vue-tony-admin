@@ -29,11 +29,11 @@ export default defineComponent({
   components: { ElInput },
   inheritAttrs: false,
   props: {
-  /**
-   * 绑定的值(密码)
-   *
-   * Bind value
-   */
+    /**
+     * 绑定的值(密码)
+     *
+     * Bind value
+     */
     modelValue: String,
     /**
      * 是否显示输入框

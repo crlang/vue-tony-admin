@@ -11,7 +11,7 @@
         :label="item.label"
         :value="item.value"
         :key="index"
-        v-for="(item,index) in options" />
+        v-for="(item, index) in options" />
     </ElSelect>
   </div>
 </template>

@@ -94,7 +94,7 @@ export default defineComponent({
         // 格式化 Y-M-D h:i:s
         if (mode === 'datetime') {
           date.value = formatToDateTime(value)
-        // 格式化 Y-M-D
+          // 格式化 Y-M-D
         } else if (mode === 'date') {
           date.value = formatToDate(value)
         }

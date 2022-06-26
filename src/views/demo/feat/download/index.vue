@@ -39,11 +39,7 @@ export default defineComponent({
       downloadByData('text content', 'testName.txt')
     }
     function handleDownloadByUrl() {
-      downloadByUrl(
-        'https://www.7-zip.org/a/7z2107-x64.exe',
-        '7z2107-x64.exe',
-        '_self',
-      )
+      downloadByUrl('https://www.7-zip.org/a/7z2107-x64.exe', '7z2107-x64.exe', '_self')
     }
 
     function handleDownloadByBase64() {

@@ -1,7 +1,6 @@
 <template>
-  <ElDropdown
-    @command="handleMenuClick">
-    <div :class="[prefixCls,itemClass]">
+  <ElDropdown @command="handleMenuClick">
+    <div :class="[prefixCls, itemClass]">
       <img
         :class="`${prefixCls}__avatar`"
         :src="getUserInfo.avatar" />
@@ -14,20 +13,29 @@
       <ElDropdownMenu :class="`${prefixCls}-menulist`">
         <ElDropdownItem
           command="doc"
-          v-if="getShowDoc"><Icon
+          v-if="getShowDoc">
+          <Icon
             class="mr-2"
-            name="ion:document-text-outline" />文档</ElDropdownItem>
+            name="ion:document-text-outline" />
+          文档
+        </ElDropdownItem>
         <ElDropdownItem
           v-if="getUseLockPage"
           :divided="getShowDoc"
-          command="lock"><Icon
+          command="lock">
+          <Icon
             class="mr-2"
-            name="ion:lock-closed-outline" />锁定屏幕</ElDropdownItem>
+            name="ion:lock-closed-outline" />
+          锁定屏幕
+        </ElDropdownItem>
         <ElDropdownItem
           command="logout"
-          divided><Icon
+          divided>
+          <Icon
             class="mr-2"
-            name="ion:power-outline" />退出系统</ElDropdownItem>
+            name="ion:power-outline" />
+          退出系统
+        </ElDropdownItem>
       </ElDropdownMenu>
     </template>
   </ElDropdown>

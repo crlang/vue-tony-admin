@@ -12,9 +12,17 @@
     <el-row :class="`${prefixCls}__inner`">
       <el-col :span="14">
         <div :class="`${prefixCls}__left`">
-          <h1>欢迎使用 <span>{{ title }}</span></h1>
-          <p>{{ title }} 基于 element plus ，并且使用了最新的 vue3, vite2, TypeScript 等主流技术开发，开箱即用的中后台前端解决方案。</p>
-          <p>基于 element plus ，并且使用了最新的 vue3, vite2, TypeScript 等主流技术开发，开箱即用的中后台前端解决方案。</p>
+          <h1>
+            欢迎使用
+            <span>{{ title }}</span>
+          </h1>
+          <p>
+            {{ title }} 基于 element plus ，并且使用了最新的 vue3, vite2, TypeScript
+            等主流技术开发，开箱即用的中后台前端解决方案。
+          </p>
+          <p>
+            基于 element plus ，并且使用了最新的 vue3, vite2, TypeScript 等主流技术开发，开箱即用的中后台前端解决方案。
+          </p>
         </div>
       </el-col>
       <el-col :span="10">
@@ -47,12 +55,12 @@
           <div
             :class="`${prefixCls}__regnew`"
             v-if="getShow">
-            没有账号？ <span @click="setLoginState(LoginStateEnum.REGISTER)">注册</span>
+            没有账号？
+            <span @click="setLoginState(LoginStateEnum.REGISTER)">注册</span>
           </div>
         </div>
       </el-col>
     </el-row>
-
   </div>
 </template>
 
@@ -93,19 +101,24 @@ export default defineComponent({
     const { title } = useGlobSetting()
     const activeName = ref('account')
     const activeNameExt = {
-      'account': LoginStateEnum.LOGIN,
-      'mobile': LoginStateEnum.MOBILE,
+      account: LoginStateEnum.LOGIN,
+      mobile: LoginStateEnum.MOBILE,
     }
 
     const getShow = computed(() => {
-      return unref(getLoginState) === LoginStateEnum.LOGIN ||
-      unref(getLoginState) === LoginStateEnum.MOBILE ||
-      unref(getLoginState) === LoginStateEnum.QR_CODE
+      return (
+        unref(getLoginState) === LoginStateEnum.LOGIN ||
+        unref(getLoginState) === LoginStateEnum.MOBILE ||
+        unref(getLoginState) === LoginStateEnum.QR_CODE
+      )
     })
 
-    watch(() => unref(activeName), (v) => {
-      v && setLoginState((activeNameExt[v]))
-    })
+    watch(
+      () => unref(activeName),
+      (v) => {
+        v && setLoginState(activeNameExt[v])
+      }
+    )
 
     return {
       prefixCls,
@@ -117,7 +130,6 @@ export default defineComponent({
     }
   },
 })
-
 </script>
 
 <style lang="scss">
@@ -314,5 +326,4 @@ $prefix-cls: '#{$tonyname}-login';
     display: block;
   }
 }
-
 </style>

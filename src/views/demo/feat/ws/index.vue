@@ -21,7 +21,8 @@
                 :type="getIsOpen ? 'danger' : 'primary'"
                 @click="toggle"
                 :loading="status === 'CONNECTING'">
-                {{ getIsOpen ? '关闭连接' : (status === 'CONNECTING' ? '连接中...' : '开启连接') }}</el-button>
+                {{ getIsOpen ? '关闭连接' : status === 'CONNECTING' ? '连接中...' : '开启连接' }}
+              </el-button>
             </template>
           </el-input>
         </el-card>
@@ -34,8 +35,7 @@
             v-model="sendValue"
             show-word-limit
             :rows="5"
-            type="textarea"
-          />
+            type="textarea" />
           <el-button
             type="primary"
             block

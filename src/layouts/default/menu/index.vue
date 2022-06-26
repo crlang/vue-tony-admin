@@ -67,9 +67,9 @@ export default defineComponent({
     const getUseScroll = computed(() => {
       return (
         !unref(getIsHorizontal) &&
-          (unref(getIsSidebarType) ||
-            props.splitType === MenuSplitTyeEnum.LEFT ||
-            props.splitType === MenuSplitTyeEnum.NONE)
+        (unref(getIsSidebarType) ||
+          props.splitType === MenuSplitTyeEnum.LEFT ||
+          props.splitType === MenuSplitTyeEnum.NONE)
       )
     })
 
@@ -103,9 +103,9 @@ export default defineComponent({
       }
     })
     /**
-       * click menu
-       * @param menu
-       */
+     * click menu
+     * @param menu
+     */
 
     function handleMenuClick(path: string) {
       go(path)
@@ -115,11 +115,7 @@ export default defineComponent({
       if (!unref(getIsShowLogo) && !unref(getIsMobile)) return null
 
       return (
-        <AppLogo
-          showTitle={!unref(getCollapsed)}
-          class={unref(getLogoClass)}
-          theme={unref(getComputedMenuTheme)}
-        />
+        <AppLogo showTitle={!unref(getCollapsed)} class={unref(getLogoClass)} theme={unref(getComputedMenuTheme)} />
       )
     }
 
@@ -135,8 +131,7 @@ export default defineComponent({
           type={unref(getMenuType)}
           showLogo={unref(getIsShowLogo)}
           mode={unref(getComputedMenuMode as any)}
-          items={menus}
-        />
+          items={menus} />
       )
     }
 

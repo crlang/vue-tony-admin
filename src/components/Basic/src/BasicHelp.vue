@@ -80,10 +80,7 @@ export default defineComponent({
 
     return () => {
       return (
-        <ElTooltip
-          popper-class={`${prefixCls}__wrap`}
-          effect={props.effect}
-          placement={props.placement} >
+        <ElTooltip popper-class={`${prefixCls}__wrap`} effect={props.effect} placement={props.placement}>
           {{
             content: () => renderTitle(),
             default: () => <span class={prefixCls}>{getSlot(slots) || <SvgIcon name={'info-fill'} />}</span>,
@@ -96,28 +93,28 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-  $prefix-cls: '#{$tonyname}-basic-help';
+$prefix-cls: '#{$tonyname}-basic-help';
 
-  .#{$prefix-cls} {
-    display: inline-block;
-    margin-left: 6px;
-    font-size: 0.875rem;
-    color: var(--text-secondary-color);
-    cursor: pointer;
+.#{$prefix-cls} {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 0.875rem;
+  color: var(--text-secondary-color);
+  cursor: pointer;
 
-    &:hover {
-      color: var(--primary-color);
-    }
+  &:hover {
+    color: var(--primary-color);
+  }
 
-    svg {
-      width: 1em;
-      height: 1em;
-    }
+  svg {
+    width: 1em;
+    height: 1em;
+  }
 
-    &__wrap {
-      p {
-        margin-bottom: 0;
-      }
+  &__wrap {
+    p {
+      margin-bottom: 0;
     }
   }
+}
 </style>

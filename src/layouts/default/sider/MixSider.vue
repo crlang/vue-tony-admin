@@ -203,7 +203,7 @@ export default defineComponent({
 
     function getWrapCommonStyle(width: string): CSSProperties {
       return {
-        [('--side-width' as any)]: width,
+        ['--side-width' as any]: width,
         width,
         maxWidth: width,
         minWidth: width,

@@ -43,10 +43,7 @@ export default defineComponent({
      */
     const getWrapperClass = computed(() => {
       const { prefixCls } = props
-      return [
-        prefixCls,
-        `${prefixCls}--align-${PAGE_POSITION_ALIGN}`,
-      ]
+      return [prefixCls, `${prefixCls}--align-${PAGE_POSITION_ALIGN}`]
     })
 
     watchEffect(() => {
@@ -59,14 +56,14 @@ export default defineComponent({
       () => unref(pageRef),
       (v) => {
         v && emit('pageChange', v)
-      },
+      }
     )
 
     watch(
       () => unref(sizeRef),
       (v) => {
         v && emit('sizeChange', v)
-      },
+      }
     )
 
     return {

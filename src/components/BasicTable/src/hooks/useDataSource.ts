@@ -24,10 +24,10 @@ import { FETCH_SETTING, ROW_KEY, PAGE_SIZE } from '../const'
 export function useDataSource(
   propsRef: ComputedRef<BasicProps>,
   tableData: Ref<Recordable[]>,
-  paginationRef:ComputedRef<ElePagination>,
+  paginationRef: ComputedRef<ElePagination>,
   setPagination: (info: Partial<ElePagination>) => void,
   setLoading: (loading: boolean) => void,
-  getFieldsValue:() => Recordable,
+  getFieldsValue: () => Recordable,
   emit: EmitType
 ) {
   const sortInfo = ref<Recordable>({})
@@ -105,7 +105,7 @@ export function useDataSource(
   function handleTableChange(
     pagination: Partial<ElePagination>,
     sorter?: ColumnSorterResult,
-    filters?: Partial<Recordable<string[]>>,
+    filters?: Partial<Recordable<string[]>>
   ) {
     const { sortFn, filterFn } = unref(propsRef)
     // 更新了分页
@@ -166,10 +166,7 @@ export function useDataSource(
    * @param rowKey
    * @param record 新记录
    */
-  function updateTableDataRecord(
-    rowKey: string | number,
-    record: Recordable
-  ): Recordable | undefined {
+  function updateTableDataRecord(rowKey: string | number, record: Recordable): Recordable | undefined {
     const row = findTableDataRecord(rowKey)
 
     if (row) {
@@ -193,9 +190,9 @@ export function useDataSource(
       unref(dataSourceRef).splice(recordIndex, 1)
     }
 
-    const total = (unref(paginationRef)?.total || 0)
+    const total = unref(paginationRef)?.total || 0
     setPagination({
-      total: total > 0 ? (total - 1) : 0,
+      total: total > 0 ? total - 1 : 0,
     })
 
     return unref(dataSourceRef)
@@ -282,8 +279,7 @@ export function useDataSource(
    * @param opt FetchParams
    */
   async function fetch(opt?: FetchParams) {
-    const { api, searchInfo, fetchSetting, beforeFetchFn, afterFetchFn, useSearchForm, pagination } =
-      unref(propsRef)
+    const { api, searchInfo, fetchSetting, beforeFetchFn, afterFetchFn, useSearchForm, pagination } = unref(propsRef)
 
     // api 必须为函数
     // 'api' must be a function
@@ -291,11 +287,7 @@ export function useDataSource(
 
     try {
       setLoading(true)
-      const { pageField, sizeField, listField, totalField } = Object.assign(
-        {},
-        FETCH_SETTING,
-        fetchSetting
-      )
+      const { pageField, sizeField, listField, totalField } = Object.assign({}, FETCH_SETTING, fetchSetting)
       let pageParams: Recordable = {}
 
       const { currentPage = 1, pageSize = PAGE_SIZE } = unref(paginationRef) ?? {}

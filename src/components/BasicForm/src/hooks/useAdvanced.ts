@@ -9,12 +9,12 @@ import { useBreakpoint } from '@/hooks/event/useBreakpoint'
 import { BASIC_COL_LEN, BASIC_COL_SIZE } from '../const'
 
 interface UseAdvancedContext {
-  advanceState: AdvanceState;
-  emit: EmitType;
-  getProps: ComputedRef<BasicProps>;
-  getSchema: ComputedRef<BasicFormSchema[]>;
-  formModel: Recordable;
-  defaultValueRef: Ref<Recordable>;
+  advanceState: AdvanceState
+  emit: EmitType
+  getProps: ComputedRef<BasicProps>
+  getSchema: ComputedRef<BasicFormSchema[]>
+  formModel: Recordable
+  defaultValueRef: Ref<Recordable>
 }
 
 /**
@@ -46,11 +46,7 @@ export function useAdvanced({
     // 默认列宽
     // Default col size
     const mdWidth =
-      parseInt(itemCol.md) ||
-      parseInt(itemCol.xs) ||
-      parseInt(itemCol.sm) ||
-      parseInt(itemCol.span) ||
-      BASIC_COL_SIZE
+      parseInt(itemCol.md) || parseInt(itemCol.xs) || parseInt(itemCol.sm) || parseInt(itemCol.span) || BASIC_COL_SIZE
 
     // 尝试查找是否存在自定义列宽
     // Try to find if there is a custom column width
@@ -121,10 +117,7 @@ export function useAdvanced({
       }
 
       if (isShow && (colProps || baseColProps)) {
-        const { itemColSum: sum, isAdvanced } = getAdvanced(
-          { ...baseColProps, ...colProps },
-          itemColSum
-        )
+        const { itemColSum: sum, isAdvanced } = getAdvanced({ ...baseColProps, ...colProps }, itemColSum)
 
         itemColSum = sum || 0
         if (isAdvanced) {

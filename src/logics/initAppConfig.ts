@@ -34,13 +34,7 @@ export function initAppConfigStore() {
   let projCfg: ProjectConfig = Persistent.getLocal(PROJ_CFG_KEY) as ProjectConfig
   projCfg = deepMerge(projectSetting, projCfg || {})
 
-  const {
-    colorWeak,
-    grayMode,
-    themeColor,
-    headerSetting,
-    menuSetting,
-  } = projCfg
+  const { colorWeak, grayMode, themeColor, headerSetting, menuSetting } = projCfg
 
   updateDarkTheme(darkMode)
 

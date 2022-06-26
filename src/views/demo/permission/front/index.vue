@@ -6,7 +6,8 @@
     <CurrentPermissionMode />
 
     <p>
-      当前角色: <span>{{ userStore.getRoleList }}</span>
+      当前角色:
+      <span>{{ userStore.getRoleList }}</span>
     </p>
     <el-alert
       class="mt-4"
@@ -15,7 +16,8 @@
       show-icon />
 
     <div class="mt-4">
-      权限切换: <el-button-group>
+      权限切换:
+      <el-button-group>
         <el-button
           @click="changeRole(RoleEnum.ADMIN)"
           :type="isAdmin ? 'primary' : 'default'">

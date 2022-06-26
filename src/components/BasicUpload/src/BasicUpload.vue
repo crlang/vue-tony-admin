@@ -12,13 +12,16 @@
           <div
             :class="`${prefixCls}-entry-thumb__img--upload`"
             @click="openUpload()">
-            <SvgIcon name="cloud-upload" /> 上传
+            <SvgIcon name="cloud-upload" />
+            上传
           </div>
           <div
             :class="`${prefixCls}-entry-thumb__img--preview`"
             v-if="getProps.showPreview"
             @click="openPreview()">
-            <SvgIcon name="eye" /> 预览 <template v-if="fileList.length && showPreviewNumber"> ({{ fileList.length }})</template>
+            <SvgIcon name="eye" />
+            预览
+            <template v-if="fileList.length && showPreviewNumber">({{ fileList.length }})</template>
           </div>
         </div>
       </div>
@@ -27,8 +30,7 @@
       <div
         :class="`${prefixCls}-entry-thumb__btn`"
         @click="openUpload()">
-        <SvgIcon
-          name="cloud-upload" />
+        <SvgIcon name="cloud-upload" />
       </div>
     </template>
   </div>
@@ -40,7 +42,8 @@
       @click="openUpload()">
       <SvgIcon
         name="cloud-upload"
-        class="mr-1" /> <span>上传</span>
+        class="mr-1" />
+      <span>上传</span>
     </ElButton>
     <ElTooltip
       placement="bottom"
@@ -54,7 +57,8 @@
       <ElButton
         @click="openPreview()"
         v-if="getProps.showPreview">
-        <SvgIcon name="eye" /> <template v-if="fileList.length && showPreviewNumber"> {{ fileList.length }}</template>
+        <SvgIcon name="eye" />
+        <template v-if="fileList.length && showPreviewNumber">{{ fileList.length }}</template>
       </ElButton>
     </ElTooltip>
   </ElButtonGroup>
@@ -116,7 +120,7 @@ export default defineComponent({
      *
      * Get thumb style
      */
-    const getThumbStyle = computed(():CSSProperties => {
+    const getThumbStyle = computed((): CSSProperties => {
       const { thumbSize } = props
 
       return {
@@ -140,7 +144,8 @@ export default defineComponent({
      */
     const getBindValues = computed(() => {
       const opts = {
-        ...attrs, ...unref(getProps),
+        ...attrs,
+        ...unref(getProps),
       }
 
       // 绑定组件Porps前，移除自定义附加项
@@ -214,7 +219,7 @@ export default defineComponent({
       (value = []) => {
         fileList.value = isArray(value) ? value : []
       },
-      { immediate: true },
+      { immediate: true }
     )
 
     return {
@@ -242,7 +247,7 @@ $prefix-cls: '#{$tonyname}-basic-upload';
 
 .#{$prefix-cls} {
   &-entry-thumb {
-    &__img ,
+    &__img,
     &__btn {
       position: relative;
       display: flex;
@@ -285,7 +290,7 @@ $prefix-cls: '#{$tonyname}-basic-upload';
         transition: all 0.15s;
       }
 
-      &--upload ,
+      &--upload,
       &--preview {
         display: flex;
         justify-content: center;
@@ -301,7 +306,7 @@ $prefix-cls: '#{$tonyname}-basic-upload';
           opacity: 0.9;
         }
 
-        >span {
+        > span {
           margin-right: 8px;
         }
       }
@@ -335,5 +340,4 @@ $prefix-cls: '#{$tonyname}-basic-upload';
     }
   }
 }
-
 </style>

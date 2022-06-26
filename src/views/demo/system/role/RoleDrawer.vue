@@ -13,7 +13,7 @@
           :data="treeData"
           node-key="id"
           defaultExpandAll
-          :props="{ label: 'menuName'}"
+          :props="{ label: 'menuName' }"
           show-checkbox
           title="菜单分配" />
       </template>

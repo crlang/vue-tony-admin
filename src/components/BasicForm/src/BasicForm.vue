@@ -83,14 +83,7 @@ export default defineComponent({
       actionSpan: BASIC_COL_SIZE,
     })
 
-    const {
-      validate,
-      validateField,
-      resetFields,
-      scrollToField,
-      clearValidate,
-      getBasicEmits,
-    } = useBasicFormFn({
+    const { validate, validateField, resetFields, scrollToField, clearValidate, getBasicEmits } = useBasicFormFn({
       formElRef,
       emit,
     })
@@ -156,7 +149,7 @@ export default defineComponent({
      * Get and process the form data structure
      */
     const getSchema = computed((): BasicFormSchema[] => {
-      const schemas = unref(schemaRef)?.length ? unref(schemaRef) : (unref(getProps).schemas || [])
+      const schemas = unref(schemaRef)?.length ? unref(schemaRef) : unref(getProps).schemas || []
 
       if (unref(getProps).showAdvancedButton) {
         return schemas.filter((schema) => schema.component !== 'ElDivider')
@@ -283,7 +276,7 @@ export default defineComponent({
             try {
               modalFn?.redoModalHeight()
             } catch (error) {
-            // try redo modal height
+              // try redo modal height
             }
           })
         }

@@ -1,4 +1,10 @@
-import type { UseDrawerReturnType, DrawerInstanceMethods, DrawerActionMethods, BasicProps, UseDrawerInnerReturnType } from './typing'
+import type {
+  UseDrawerReturnType,
+  DrawerInstanceMethods,
+  DrawerActionMethods,
+  BasicProps,
+  UseDrawerInnerReturnType
+} from './typing'
 
 import { ref, getCurrentInstance, unref, reactive, watchEffect, nextTick, toRaw, computed } from 'vue'
 import { tryOnUnmounted } from '@vueuse/core'
@@ -59,7 +65,9 @@ export function useDrawer(): UseDrawerReturnType {
   const getInstance = () => {
     const instance = unref(drawer)
     if (!instance) {
-      error('The drawer instance has not been obtained, please make sure the instance is rendered when performing the instance operation!')
+      error(
+        'The drawer instance has not been obtained, please make sure the instance is rendered when performing the instance operation!'
+      )
     }
     return instance
   }
@@ -70,7 +78,6 @@ export function useDrawer(): UseDrawerReturnType {
    * Define instance methods
    */
   const methods: DrawerActionMethods = {
-
     setDrawerProps: (props: Partial<BasicProps>): void => {
       getInstance()?.setDrawerProps(props)
     },
@@ -156,7 +163,6 @@ export const useDrawerInner = (callbackFn?: Fn): UseDrawerInnerReturnType => {
    * Define inner instance methods
    */
   const methods: ReturnInnerMethods = {
-
     getVisible: computed((): boolean => {
       return visibleData[~~unref(uidRef)]
     }),

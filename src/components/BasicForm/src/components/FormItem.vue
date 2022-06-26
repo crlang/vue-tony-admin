@@ -63,7 +63,9 @@ export default defineComponent({
       if (['ElInput', 'ElInputNumber'].includes(component)) {
         return '请输入'
       }
-      if (['ElSelect', 'ElCascader', 'ElDatePicker', 'ElTimePicker', 'ElTimeSelect', 'ElSelectV2'].includes(component)) {
+      if (
+        ['ElSelect', 'ElCascader', 'ElDatePicker', 'ElTimePicker', 'ElTimeSelect', 'ElSelectV2'].includes(component)
+      ) {
         return '请选择'
       }
       return ''
@@ -142,13 +144,7 @@ export default defineComponent({
      */
     function handleRules(): EleFormItemRule[] {
       const { schema, formProps } = props
-      const {
-        component,
-        rulesMessageJoinLabel,
-        label,
-        dynamicRules,
-        required,
-      } = schema
+      const { component, rulesMessageJoinLabel, label, dynamicRules, required } = schema
 
       if (typeof dynamicRules === 'function') {
         return dynamicRules(unref(getValues))
@@ -163,7 +159,7 @@ export default defineComponent({
        *
        * Validation rules when processing required fields
        */
-      function validator(rule: InternalRuleItem, value: any, callback:any) {
+      function validator(rule: InternalRuleItem, value: any, callback: any) {
         const msg = (rule.message || defaultMsg) as string
         if (value === undefined || value === null) {
           // null
@@ -199,10 +195,7 @@ export default defineComponent({
               if (!Reflect.has(rule, 'type')) {
                 if (component === 'ElInputNumber') {
                   rule.type = 'number'
-                } else if (
-                  (component === 'ElSelect' && componentProp?.multiple) ||
-               component === 'ElCheckboxGroup'
-                ) {
+                } else if ((component === 'ElSelect' && componentProp?.multiple) || component === 'ElCheckboxGroup') {
                   rule.type = 'array'
                 }
               }
@@ -241,13 +234,7 @@ export default defineComponent({
      * Render the form item component
      */
     function renderComponent() {
-      const {
-        renderComponentContent,
-        component,
-        field,
-        changeEvent,
-        valueField,
-      } = props.schema
+      const { renderComponentContent, component, field, changeEvent, valueField } = props.schema
 
       if (!component) {
         return null
@@ -264,7 +251,7 @@ export default defineComponent({
             propsData[eventKey](...args)
           }
           const target = e ? e.target : null
-          const value = target?.value ?? (target ?? e)
+          const value = target?.value ?? target ?? e
           props.setFormModel(field, value)
         },
       }
@@ -285,8 +272,7 @@ export default defineComponent({
       // input placeholder
       const isCreatePlaceholder = !propsData.disabled && autoSetPlaceHolder
       if (isCreatePlaceholder) {
-        propsData.placeholder =
-            unref(getComponentsProps)?.placeholder || createPlaceholderMessage(component)
+        propsData.placeholder = unref(getComponentsProps)?.placeholder || createPlaceholderMessage(component)
       }
 
       // input value
@@ -309,31 +295,43 @@ export default defineComponent({
         // Trying to set a form item component with options
         if (compAttr?.options?.length) {
           if (component === 'ElSelect') {
-            compSlot.default = () => compAttr.options.map((k: any) => {
-              return <ElOption {...k} />
-            })
+            compSlot.default = () =>
+              compAttr.options.map((k: any) => {
+                return <ElOption {...k} />
+              })
           } else if (component === 'ElCheckboxGroup') {
-            compSlot.default = () => compAttr.options.map((k: any) => {
-              return <ElCheckbox {...k} label={k.value}>{k.label}</ElCheckbox>
-            })
+            compSlot.default = () =>
+              compAttr.options.map((k: any) => {
+                return (
+                  <ElCheckbox {...k} label={k.value}>
+                    {k.label}
+                  </ElCheckbox>
+                )
+              })
           } else if (component === 'ElRadioGroup') {
-            compSlot.default = () => compAttr.options.map((k: any) => {
-              return <ElRadio {...k} label={k.value}>{k.label}</ElRadio>
-            })
+            compSlot.default = () =>
+              compAttr.options.map((k: any) => {
+                return (
+                  <ElRadio {...k} label={k.value}>
+                    {k.label}
+                  </ElRadio>
+                )
+              })
           }
         }
 
-        return <Comp {...compAttr} >{compSlot}</Comp>
+        return <Comp {...compAttr}>{compSlot}</Comp>
       }
 
       // input component custom set
-      const compSlot = typeof renderComponentContent === 'function'
-        ? {
-          ...renderComponentContent(unref(getValues)),
-        }
-        : {
-          default: () => renderComponentContent,
-        }
+      const compSlot =
+        typeof renderComponentContent === 'function'
+          ? {
+            ...renderComponentContent(unref(getValues)),
+          }
+          : {
+            default: () => renderComponentContent,
+          }
       return <Comp {...compAttr}>{compSlot}</Comp>
     }
 
@@ -345,21 +343,23 @@ export default defineComponent({
     function renderLabelHelpMessage() {
       const { label, helpMessage, subLabel } = props.schema
       const renderLabel = subLabel ? (
-        <span>{label} <span>{subLabel}</span></span>
+        <span>
+          {label} <span>{subLabel}</span>
+        </span>
       ) : (
         label
       )
       // no help message
-      const getHelpMessage = typeof helpMessage === 'function'
-        ? helpMessage(unref(getValues))
-        : helpMessage
+      const getHelpMessage = typeof helpMessage === 'function' ? helpMessage(unref(getValues)) : helpMessage
       if (!getHelpMessage || (Array.isArray(getHelpMessage) && getHelpMessage.length === 0)) {
         return renderLabel
       }
 
       // has help message
       return (
-        <span>{renderLabel} <BasicHelp placement='top' class='mx-1' text={getHelpMessage} /></span>
+        <span>
+          {renderLabel} <BasicHelp placement='top' class='mx-1' text={getHelpMessage} />
+        </span>
       )
     }
 
@@ -373,9 +373,7 @@ export default defineComponent({
 
       // render ElDivider
       if (component === 'ElDivider') {
-        return (
-          <ElDivider {...unref(getComponentsProps)}>{renderLabelHelpMessage()}</ElDivider>
-        )
+        return <ElDivider {...unref(getComponentsProps)}>{renderLabelHelpMessage()}</ElDivider>
       } else {
         /**
          * 获取表单项内容
@@ -387,8 +385,8 @@ export default defineComponent({
           // slot
           if (slot) {
             return getSlot(slots, slot, unref(getValues))
-          // 自定义渲染
-          // custom render
+            // 自定义渲染
+            // custom render
           } else if (render) {
             return render(unref(getValues))
           }
@@ -396,16 +394,11 @@ export default defineComponent({
         }
 
         return (
-          <ElFormItem
-            prop={field}
-            {...(itemProps as Recordable)}
-            rules={handleRules()} >
-            {
-              {
-                label: () => renderLabelHelpMessage(),
-                default: () => getContent(),
-              }
-            }
+          <ElFormItem prop={field} {...(itemProps as Recordable)} rules={handleRules()}>
+            {{
+              label: () => renderLabelHelpMessage(),
+              default: () => getContent(),
+            }}
           </ElFormItem>
         )
       }
@@ -432,8 +425,8 @@ export default defineComponent({
         // slot
         if (colSlot) {
           return getSlot(slots, colSlot, values)
-        // 自定义渲染表单项及其组件
-        // custom render form item and input components
+          // 自定义渲染表单项及其组件
+          // custom render form item and input components
         } else if (renderColContent) {
           return renderColContent(values)
         }

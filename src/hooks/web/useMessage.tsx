@@ -124,7 +124,10 @@ function createConfirm(options: MessageBoxOptions): Promise<EleActionPopconfirmA
  * @param options MessageBoxOptions
  * @param type EleElMessageBox['type']
  */
-function createModalOptions(options: MessageBoxOptions, type: EleElMessageBox['type']): Promise<EleActionPopconfirmAction> {
+function createModalOptions(
+  options: MessageBoxOptions,
+  type: EleElMessageBox['type']
+): Promise<EleActionPopconfirmAction> {
   const { title, content, confirmText, cancelText, customClass } = options
 
   return ElMessageBox.alert(content, title, {
@@ -188,10 +191,7 @@ const createLoading = (title: string, duration = 0) =>
     customClass: 'el-message--loading',
     duration, // If 0, you need to run ElMessage.closeAll() to close
     message: h('div', { style: 'display:flex;align-items:center;' }, [
-      h(
-        SvgIcon,
-        { name: 'loading', spin: true },
-      ),
+      h(SvgIcon, { name: 'loading', spin: true }),
       h('span', { style: 'margin-left: 12px' }, title),
     ]),
   })

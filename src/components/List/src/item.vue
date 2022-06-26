@@ -28,22 +28,22 @@ export default defineComponent({
   components: { ListMeta },
   props: {
     /**
-   * Thumbnail address
-   */
+     * Thumbnail address
+     */
     thumb: {
       type: String,
       default: '',
     },
     /**
-   * List title
-   */
+     * List title
+     */
     title: {
       type: String,
       default: '',
     },
     /**
-   * List description
-   */
+     * List description
+     */
     description: {
       type: String,
       default: '',

@@ -16,7 +16,7 @@ export default defineComponent({
   components: { BasicTable },
   setup() {
     const { createMessage } = useMessage()
-    const columns:BasicColumn[] = [
+    const columns: BasicColumn[] = [
       ...getAuthColumns(),
       {
         align: 'right',

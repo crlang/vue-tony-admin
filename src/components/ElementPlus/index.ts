@@ -114,7 +114,7 @@ export const EleDescriptionsProps = {
   },
   size: {
     type: String as PropType<ComponentSize>,
-    validator: (v:string) => componentSizes.includes(v),
+    validator: (v: string) => componentSizes.includes(v),
   },
   title: {
     type: String,
@@ -243,7 +243,7 @@ export const EleFormItemProps = {
   },
   size: {
     type: String as PropType<ComponentSize>,
-    validator: (v:string) => componentSizes.includes(v),
+    validator: (v: string) => componentSizes.includes(v),
   },
 }
 

@@ -8,13 +8,14 @@
         <span
           :class="`${prefixCls}-header__back`"
           v-if="isDetail"
-          @click="handleClose()"><SvgIcon
+          @click="handleClose()">
+          <SvgIcon
             name="arrow-right"
             :size="16"
-            rotate="180deg" /></span>
+            rotate="180deg" />
+        </span>
 
-        <BasicTitle
-          :class="`${prefixCls}-header__title`">
+        <BasicTitle :class="`${prefixCls}-header__title`">
           <template v-if="title">{{ title || '' }}</template>
           <template v-else><slot name="title"></slot></template>
         </BasicTitle>
@@ -168,7 +169,7 @@ export default defineComponent({
       const { closeFn } = unref(getProps)
 
       if (typeof closeFn === 'function') {
-        const isClose:boolean = await closeFn()
+        const isClose: boolean = await closeFn()
         visibleRef.value = !isClose
         return
       } else {

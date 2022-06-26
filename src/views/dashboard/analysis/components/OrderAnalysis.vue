@@ -16,11 +16,14 @@ export default defineComponent({
     const chartRef = ref<HTMLDivElement | null>(null)
     const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>)
 
-    watch(() => props.type, (v) => {
-      if (v) {
-        initChart()
+    watch(
+      () => props.type,
+      (v) => {
+        if (v) {
+          initChart()
+        }
       }
-    })
+    )
 
     const initChart = () => {
       const data = computed(() => {
@@ -28,7 +31,7 @@ export default defineComponent({
 
         return getDateData(type)
       })
-      const gaugeData = data.value.vdata.map(k => {
+      const gaugeData = data.value.vdata.map((k) => {
         k.value = k.value.toString().substring(0, 2)
         return k
       })
@@ -93,5 +96,4 @@ export default defineComponent({
     }
   },
 })
-
 </script>

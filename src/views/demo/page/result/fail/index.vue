@@ -13,14 +13,14 @@
       <div class="result-error__content-title">您提交的内容有如下错误：</div>
       <div class="mb-4">
         <CircleClose
-          style="width: 1rem;height: 1rem;"
+          style="width: 1rem; height: 1rem"
           class="mr-2 result-error__content-icon" />
         您的账户已被冻结
         <el-link class="ml-4">立即解冻 ></el-link>
       </div>
       <div class="mb-4">
         <CircleClose
-          style="width: 1rem;height: 1rem;"
+          style="width: 1rem; height: 1rem"
           class="mr-2 result-error__content-icon" />
         您的账户还不具备申请资格
         <el-link class="ml-4">立即解冻 ></el-link>

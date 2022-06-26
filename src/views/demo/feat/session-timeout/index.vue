@@ -4,7 +4,11 @@
     description="用户登录过期示例，不再跳转登录页，直接生成页面覆盖当前页面，方便保持过期前的用户状态！">
     <el-card>
       <template #header>
-        <div>请点击下面的按钮访问测试接口(<span style="font-size: 60%;color: #666">所访问的接口会返回Token过期响应</span>)</div>
+        <div>
+          请点击下面的按钮访问测试接口(
+          <span style="font-size: 60%; color: #666">所访问的接口会返回Token过期响应</span>
+          )
+        </div>
       </template>
       <el-button
         type="primary"

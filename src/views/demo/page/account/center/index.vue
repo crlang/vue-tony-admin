@@ -123,7 +123,7 @@ export default defineComponent({
     padding: 0 10px;
 
     &:not(:last-child) {
-      border-right: 1px dashed rgba(206,206,206,0.5);
+      border-right: 1px dashed rgba(206, 206, 206, 0.5);
     }
   }
 

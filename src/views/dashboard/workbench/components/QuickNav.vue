@@ -4,7 +4,7 @@
     title="快捷导航">
     <CardGridItem
       vertical
-      v-for="(item,index) in navItems"
+      v-for="(item, index) in navItems"
       :key="index">
       <Icon
         :name="item.icon"

@@ -4,7 +4,6 @@
     title="高级表单"
     contentFullHeight
     description=" 高级表单常见于一次性输入和提交大批量数据的场景。">
-
     <el-card header="仓库管理">
       <BasicForm @register="register" />
     </el-card>
@@ -20,7 +19,7 @@
     </el-card>
 
     <template #rightFooter>
-      <div class="p-2 text-right ">
+      <div class="p-2 text-right">
         <el-button
           type="primary"
           @click="submitAll">提交</el-button>

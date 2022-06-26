@@ -6,7 +6,7 @@
         size="small">更多</el-button>
     </template>
     <CardGridItem
-      v-for="(item,index) in items"
+      v-for="(item, index) in items"
       class="project-item"
       :key="index">
       <span class="project-item__title">

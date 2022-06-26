@@ -29,7 +29,7 @@ import { useLayoutHeight } from '../content/useContentViewHeight'
 
 export default defineComponent({
   name: 'LayoutFooter',
-  components: { },
+  components: {},
   setup() {
     const { getShowFooter } = useRootSetting()
     const { currentRoute } = useRouter()

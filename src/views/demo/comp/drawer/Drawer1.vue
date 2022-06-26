@@ -7,7 +7,7 @@
     @register="register"
     title="Drawer Title"
     size="50%">
-    <p> Drawer Info.</p>
+    <p>Drawer Info.</p>
     <el-button
       @click="closeDrawer"
       class="my-4">关闭 Drawer</el-button>

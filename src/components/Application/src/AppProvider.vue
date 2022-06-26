@@ -2,16 +2,8 @@
 import { defineComponent, ref, unref } from 'vue'
 import { createAppProviderContext } from './useAppContext'
 import { createBreakpointListen } from '@/hooks/event/useBreakpoint'
-// import { prefixCls } from '@/settings/designSetting'
 import { useAppStore } from '@/store/modules/app'
 import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum'
-
-// const props = {
-/**
-   * class style prefix
-   */
-// prefixCls: { type: String, default: prefixCls },
-// }
 
 export default defineComponent({
   name: 'AppProvider',
@@ -33,11 +25,8 @@ export default defineComponent({
       handleRestoreState()
     })
 
-    // const { prefixCls } = toRefs(props)
-
     // Inject variables into the global
     createAppProviderContext({
-      // prefixCls,
       isMobile,
     })
 

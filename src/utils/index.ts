@@ -86,10 +86,7 @@ export function getRawRoute(route: RouteLocationNormalized): RouteLocationNormal
  * @param main component
  * @param extra alias
  */
-export const withInstall = <T, E extends Record<string, any>>(
-  main: T,
-  extra?: E
-) => {
+export const withInstall = <T, E extends Record<string, any>>(main: T, extra?: E) => {
   (main as SFCWithInstall<T>).install = (app): void => {
     for (const comp of [main, ...Object.values(extra ?? {})]) {
       app.component(comp.name, comp)
@@ -161,7 +158,7 @@ export function buildUUID(): string {
  * @param instanceRef Ref<T>
  * @param name instance name
  */
-export function getUseInstance<T>(instanceRef: Ref<T> | null, name:string): T | null {
+export function getUseInstance<T>(instanceRef: Ref<T> | null, name: string): T | null {
   const instance = unref(instanceRef)
   if (!instance) {
     error(

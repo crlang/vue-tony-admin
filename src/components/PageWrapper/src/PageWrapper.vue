@@ -109,7 +109,7 @@ export default defineComponent({
     // According to the provided content, automatically determine whether the height is full
     provide(
       PageWrapperFixedHeightKey,
-      computed(() => props.contentFullHeight),
+      computed(() => props.contentFullHeight)
     )
 
     const getClass = computed(() => {
@@ -248,6 +248,5 @@ $prefix-cls: '#{$tonyname}-page-wrapper';
       z-index: 11;
     }
   }
-
 }
 </style>

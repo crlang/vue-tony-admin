@@ -22,7 +22,7 @@
     content="全屏">
     <SvgIcon
       @click="toggle"
-      :name="isFullscreen ? 'fullscreen-exit': 'fullscreen'" />
+      :name="isFullscreen ? 'fullscreen-exit' : 'fullscreen'" />
   </ElTooltip>
 </template>
 

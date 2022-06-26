@@ -11,8 +11,7 @@
               <el-date-picker
                 v-model="dateVal"
                 type="daterange"
-                range-separator="~"
-              />
+                range-separator="~" />
               <el-select
                 v-model="dateType"
                 placeholder="Select">
@@ -20,8 +19,7 @@
                   v-for="item in dateOptions"
                   :key="item.value"
                   :label="item.label"
-                  :value="item.value"
-                />
+                  :value="item.value" />
               </el-select>
             </div>
           </div>
@@ -66,7 +64,8 @@ export default defineComponent({
       { value: 'year', label: 'Year' },
     ])
 
-    watch(() => unref(dateType),
+    watch(
+      () => unref(dateType),
       (v) => {
         emit('dateType', v)
       }
@@ -79,7 +78,6 @@ export default defineComponent({
     }
   },
 })
-
 </script>
 
 <style lang="scss" scoped>

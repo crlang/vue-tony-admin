@@ -5,10 +5,10 @@
     description="表单页用于向用户收集或验证信息，基础表单常见于数据项较少的表单场景。">
     <el-row>
       <el-col
-        :xl="{span: 10, offset: 7}"
-        :lg="{span: 12, offset: 6}"
-        :md="{span: 16, offset: 4}"
-        :sm="{span: 24, offset: 0}">
+        :xl="{ span: 10, offset: 7 }"
+        :lg="{ span: 12, offset: 6 }"
+        :md="{ span: 16, offset: 4 }"
+        :sm="{ span: 24, offset: 0 }">
         <BasicForm @register="register" />
       </el-col>
     </el-row>

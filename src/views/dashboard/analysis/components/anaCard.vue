@@ -6,19 +6,18 @@
       v-for="item in CardList"
       :key="item.title">
       <el-col :span="8">
-        <el-card
-          shadow="always">
+        <el-card shadow="always">
           <div class="ana-card--li">
             <div class="ana-card--left">
               <div class="ana-card--title dashboard-analysis__title">{{ item.title }}</div>
               <div class="ana-card--subject">{{ item.subject }}</div>
               <div
                 class="ana-card--compare"
-                :class="[{'is-down':item.scale<0,'is-up':item.scale>0}]">
+                :class="[{ 'is-down': item.scale < 0, 'is-up': item.scale > 0 }]">
                 <span class="t1">{{ item.value }}</span>
                 <SvgIcon
                   class="t2"
-                  :name="item.scale > 0 ? 'rise':(item.scale < 0 ? 'fall':'line')" />
+                  :name="item.scale > 0 ? 'rise' : item.scale < 0 ? 'fall' : 'line'" />
                 <span class="t3">{{ Math.abs(item.scale) }}%</span>
               </div>
             </div>
@@ -27,13 +26,16 @@
                 type="circle"
                 :percentage="item.mix"
                 :width="112"
-                :circlePathStyle="[{color:'#f00'}]"
+                :circlePathStyle="[{ color: '#f00' }]"
                 :stroke-width="5"
                 indeterminate
                 :color="getBarColor(item.mix)">
                 <template #default>
                   <div class="ana-card--chart-inner">
-                    <div><span>{{ item.mix }}</span> <span>%</span></div>
+                    <div>
+                      <span>{{ item.mix }}</span>
+                      <span>%</span>
+                    </div>
                     <span>{{ item.desc }}</span>
                   </div>
                 </template>
@@ -59,7 +61,7 @@ defineProps({
   },
 })
 
-function getBarColor(v:number) {
+function getBarColor(v: number) {
   if (v < 30) {
     return '#09B66D'
   } else if (v < 70) {
@@ -108,21 +110,21 @@ function getBarColor(v:number) {
     }
 
     &.is-up {
-      >.t2 {
+      > .t2 {
         color: var(--green-color);
       }
 
-      >.t3 {
+      > .t3 {
         background: var(--green-color);
       }
     }
 
     &.is-down {
-      >.t2 {
+      > .t2 {
         color: var(--red-color-2);
       }
 
-      >.t3 {
+      > .t3 {
         background: var(--red-color-2);
       }
     }
@@ -168,7 +170,6 @@ function getBarColor(v:number) {
           font-weight: lighter;
         }
       }
-
     }
   }
 }

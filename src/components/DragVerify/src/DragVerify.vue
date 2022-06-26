@@ -327,7 +327,9 @@ export default defineComponent({
             onTouchstart={handleDragStart}
             style={unref(getActionStyleRef)}
             ref={actionElRef} >
-            {getSlot(slots, 'actionIcon', isPassing) || (<SvgIcon class={`${prefixCls}-action__icon`} name={`${isPassing ? 'select' : 'arrow-double-right'}`} />)}
+            {getSlot(slots, 'actionIcon', isPassing) || (
+              <SvgIcon class={`${prefixCls}-action__icon`} name={`${isPassing ? 'select' : 'arrow-double-right'}`} />
+            )}
           </div>
         )
       }

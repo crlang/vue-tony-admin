@@ -22,7 +22,7 @@ export function usePagination(propsRef: ComputedRef<BasicProps>) {
   const getTablePagination = computed((): ElePagination => {
     const { pagination, api } = unref(propsRef)
 
-    if (isBoolean(pagination) || !pagination && (!api || typeof api !== 'function')) {
+    if (isBoolean(pagination) || (!pagination && (!api || typeof api !== 'function'))) {
       return false
     }
 

@@ -6,13 +6,13 @@ import { provide, inject, ComputedRef } from 'vue'
 const key = Symbol('basic-table')
 
 type Instance = TableActionMethods & {
-  wrapRef: Ref<Nullable<HTMLElement>>;
-  getBindValues: ComputedRef<Recordable>;
-};
+  wrapRef: Ref<Nullable<HTMLElement>>
+  getBindValues: ComputedRef<Recordable>
+}
 
 type RetInstance = Omit<Instance, 'getBindValues'> & {
-  getBindValues: ComputedRef<BasicProps>;
-};
+  getBindValues: ComputedRef<BasicProps>
+}
 
 /**
  * 创建表格上下文

@@ -24,7 +24,7 @@
               <li
                 v-for="icon in currentList"
                 :key="icon"
-                :class="{'is-actived': currentSelect === icon}"
+                :class="{ 'is-actived': currentSelect === icon }"
                 @click="handleClick(icon)"
                 :title="icon">
                 <SvgIcon
@@ -53,7 +53,6 @@
             :class="`${prefixCls}__search`"
             v-else><Icon :name="currentSelect || 'ion:apps-outline'" /></span>
         </template>
-
       </ElPopover>
     </template>
   </ElInput>
@@ -203,14 +202,13 @@ export default defineComponent({
     }
   },
 })
-
 </script>
 
 <style lang="scss">
 $prefix-cls: '#{$tonyname}-icon-picker';
 
 .#{$prefix-cls} {
-  &__list{
+  &__list {
     display: block;
     margin: 24px 0;
 
@@ -261,7 +259,7 @@ $prefix-cls: '#{$tonyname}-icon-picker';
 
 html[data-theme='dark'] {
   .#{$prefix-cls} {
-    &__list{
+    &__list {
       .eleicon {
         border-color: var(--border-color-light);
 

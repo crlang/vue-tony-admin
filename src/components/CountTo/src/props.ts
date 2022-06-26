@@ -1,4 +1,3 @@
-
 export const basicProps = {
   /**
    * 开始数值

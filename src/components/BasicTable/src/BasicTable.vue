@@ -138,13 +138,7 @@ export default defineComponent({
     loading: ElLoading.directive,
   },
   props: basicProps,
-  emits: [
-    ...ElTableBasicEmits,
-    'fetch-success',
-    'fetch-error',
-    'register',
-    'pagination',
-  ],
+  emits: [...ElTableBasicEmits, 'fetch-success', 'fetch-error', 'register', 'pagination'],
 
   setup(props, { attrs, emit, slots, expose }) {
     const tableElRef = ref()
@@ -167,16 +161,9 @@ export default defineComponent({
       return { ...props, ...unref(propsRef) } as BasicProps
     })
 
-    const {
-      getLoading,
-      setLoading,
-    } = useLoading(getProps)
+    const { getLoading, setLoading } = useLoading(getProps)
 
-    const {
-      getTablePagination,
-      getPagination,
-      setPagination,
-    } = usePagination(getProps)
+    const { getTablePagination, getPagination, setPagination } = usePagination(getProps)
 
     const {
       handleTableChange,
@@ -199,7 +186,7 @@ export default defineComponent({
       setPagination,
       setLoading,
       formActions.getFieldsValue,
-      emit,
+      emit
     )
 
     const {
@@ -216,37 +203,18 @@ export default defineComponent({
       sort,
     } = useBasicTableFn(getProps, tableElRef, handleTableChange, emit)
 
-    const {
-      getViewColumns,
-      getColumns,
-      setColumns,
-      getCacheColumns,
-    } = useColumns(getProps, getTablePagination)
+    const { getViewColumns, getColumns, setColumns, getCacheColumns } = useColumns(getProps, getTablePagination)
 
-    const {
-      redoHeight,
-    } = useTableScroll(
+    const { redoHeight } = useTableScroll(getProps, tableElRef, getDataSourceRef)
+
+    const { getExpandOptions, expandAll, collapseAll } = useTableExpand(getProps, getDataSourceRef, getRowKey)
+
+    const { getFormProps, replaceFormSlotKey, getFormSlotKeys, handleSearchSubmit } = useTableForm(
       getProps,
-      tableElRef,
-      getDataSourceRef
+      slots,
+      fetch,
+      getLoading
     )
-
-    const {
-      getExpandOptions,
-      expandAll,
-      collapseAll,
-    } = useTableExpand(
-      getProps,
-      getDataSourceRef,
-      getRowKey
-    )
-
-    const {
-      getFormProps,
-      replaceFormSlotKey,
-      getFormSlotKeys,
-      handleSearchSubmit,
-    } = useTableForm(getProps, slots, fetch, getLoading)
 
     /**
      * 获取头部 Props
@@ -397,7 +365,7 @@ export default defineComponent({
       unref(isFixedHeightPage) &&
         props.canResize &&
         warn(
-          "'canResize' of BasicTable may not work in PageWrapper with 'contentFullHeight' (especially in hot updates)",
+          "'canResize' of BasicTable may not work in PageWrapper with 'contentFullHeight' (especially in hot updates)"
         )
     })
 

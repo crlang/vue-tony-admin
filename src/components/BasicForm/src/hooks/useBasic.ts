@@ -16,10 +16,7 @@ interface UseBasicFnContext {
  *
  * Please refer to Element Plus documentation for method usage
  */
-export function useBasicFormFn({
-  formElRef,
-  emit,
-}: UseBasicFnContext) {
+export function useBasicFormFn({ formElRef, emit }: UseBasicFnContext) {
   function validate(callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void): Promise<void> {
     return getUseInstance<FormActionMethods>(formElRef, 'form')?.validate(callback)
   }

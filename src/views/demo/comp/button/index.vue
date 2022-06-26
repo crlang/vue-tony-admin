@@ -38,7 +38,6 @@
           <el-button type="warning">Warning</el-button>
           <el-button type="danger">Danger</el-button>
           <el-button>中文</el-button>
-
         </el-card>
       </el-col>
       <el-col :span="12">
@@ -61,7 +60,6 @@
           <el-button
             type="danger"
             plain>Danger</el-button>
-
         </el-card>
       </el-col>
       <el-col :span="12">
@@ -88,7 +86,6 @@
           <el-button
             type="danger"
             round>Danger</el-button>
-
         </el-card>
       </el-col>
       <el-col :span="12">
@@ -103,7 +100,6 @@
           <el-button
             type="text"
             disabled>Text Button</el-button>
-
         </el-card>
       </el-col>
       <el-col :span="12">
@@ -157,9 +153,7 @@
             <el-button
               type="primary"
               class="direction-rtl"
-              :icon="ArrowRight">
-              Next Page
-            </el-button>
+              :icon="ArrowRight">Next Page</el-button>
           </el-button-group>
 
           <el-button-group>
@@ -173,7 +167,6 @@
               type="primary"
               :icon="Delete" />
           </el-button-group>
-
         </el-card>
       </el-col>
     </el-row>
@@ -235,7 +228,6 @@
             type="danger"
             plain
             disabled>Danger</el-button>
-
         </el-card>
       </el-col>
     </el-row>
@@ -318,7 +310,6 @@ export default defineComponent({
       onLoading,
     }
   },
-
 })
 </script>
 

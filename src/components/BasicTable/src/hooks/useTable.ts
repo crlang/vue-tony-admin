@@ -2,7 +2,14 @@ import type { WatchStopHandle } from 'vue'
 import type { DynamicProps } from '#/utils'
 import type { FormActionMethods } from '@/components/BasicForm'
 import type { ElePagination } from '@/components/ElementPlus'
-import type { BasicProps, TableActionMethods, FetchParams, BasicColumn, GetColumnsParams, UseTableMethod } from '../typing'
+import type {
+  BasicProps,
+  TableActionMethods,
+  FetchParams,
+  BasicColumn,
+  GetColumnsParams,
+  UseTableMethod
+} from '../typing'
 
 import { ref, onUnmounted, unref, watch } from 'vue'
 
@@ -15,10 +22,9 @@ import { error } from '@/utils/log'
  *
  * Define use instance
  */
-export function useTable(tableProps?: Partial<DynamicProps<BasicProps>>): [
-  (instance: TableActionMethods, formInstance: UseTableMethod) => void,
-  UseTableMethod,
-] {
+export function useTable(
+  tableProps?: Partial<DynamicProps<BasicProps>>
+): [(instance: TableActionMethods, formInstance: UseTableMethod) => void, UseTableMethod] {
   const tableRef = ref<Nullable<TableActionMethods>>(null)
   const loadedRef = ref<Nullable<boolean>>(false)
   const formRef = ref<Nullable<UseTableMethod>>(null)
@@ -79,7 +85,7 @@ export function useTable(tableProps?: Partial<DynamicProps<BasicProps>>): [
    * Define instance methods
    */
   const methods: TableActionMethods & {
-    getFormRef: () => FormActionMethods;
+    getFormRef: () => FormActionMethods
   } = {
     // Element Plus
     clearSelection: () => {
@@ -117,7 +123,7 @@ export function useTable(tableProps?: Partial<DynamicProps<BasicProps>>): [
     setTableProps: (props: Partial<BasicProps>) => {
       getTableInstance().setTableProps(props)
     },
-    getColumns: ({ ignoreIndex = false }:GetColumnsParams = {}) => {
+    getColumns: ({ ignoreIndex = false }: GetColumnsParams = {}) => {
       const columns = getTableInstance().getColumns({ ignoreIndex }) || []
       return columns
     },

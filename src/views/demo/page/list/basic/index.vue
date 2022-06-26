@@ -80,10 +80,8 @@
             v-for="k in 20"
             :key="k"
             title="Tony Admin"
-            :thumb="`https://himg.bdimg.com/sys/portrait/hotitem/wildkid/${k+26}`">
-            <template #description>
-              基于 Vue3, TypeScript, Element Plus 实现的一套完整的企业级后台管理系统
-            </template>
+            :thumb="`https://himg.bdimg.com/sys/portrait/hotitem/wildkid/${k + 26}`">
+            <template #description>基于 Vue3, TypeScript, Element Plus 实现的一套完整的企业级后台管理系统</template>
           </ListItem>
         </List>
       </div>

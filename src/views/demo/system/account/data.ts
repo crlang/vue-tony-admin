@@ -49,7 +49,6 @@ export const accountFormSchema: BasicFormSchema[] = [
     componentProps: {
       showPassword: true,
     },
-
   },
   {
     label: '角色',

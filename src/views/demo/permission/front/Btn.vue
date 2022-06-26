@@ -5,7 +5,10 @@
     description="由于刷新的时候会请求用户信息接口，会根据接口重置角色信息，所以刷新后界面会恢复原样，如果不需要，可以注释 src/layout/default/index内的获取用户信息接口">
     <CurrentPermissionMode />
 
-    <p>当前角色: <span>{{ userStore.getRoleList }}</span></p>
+    <p>
+      当前角色:
+      <span>{{ userStore.getRoleList }}</span>
+    </p>
     <el-alert
       class="mt-4"
       type="info"

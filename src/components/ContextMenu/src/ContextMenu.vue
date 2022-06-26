@@ -31,9 +31,7 @@ const props = {
 const ItemContent: FunctionalComponent<ItemContentProps> = (props) => {
   const { item } = props
   return (
-    <div
-      class={`${prefixCls}__text`}
-      onClick={props.handler.bind(null, item)} >
+    <div class={`${prefixCls}__text`} onClick={props.handler.bind(null, item)}>
       {props.showIcon && item.icon && <Icon class='mr-2' name={item.icon} />}
       <span>{item.label}</span>
     </div>
@@ -167,8 +165,7 @@ export default defineComponent({
 $default-height: 44px;
 
 .context-menu {
-
-  @include item-style ();
+  @include item-style();
 
   position: fixed;
   top: 0;
@@ -181,8 +178,7 @@ $default-height: 44px;
   background-color: var(--background-primary-color);
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 0.25rem;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.1),
-    0 1px 5px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.06);
   background-clip: padding-box;
   user-select: none;
 
@@ -199,7 +195,7 @@ $default-height: 44px;
   }
 
   &__popup {
-    @include item-style ();
+    @include item-style();
 
     > ul {
       padding: 0;

@@ -36,7 +36,7 @@ export default defineComponent({
   setup(_, { emit }) {
     const fileListRef = ref<PreviewFileItem[]>([])
 
-    const [register, { closeModal }] = useModalInner((data:string[]) => {
+    const [register, { closeModal }] = useModalInner((data: string[]) => {
       // 接收 BasicUpload 页面传递过来的 data
       // Receive the data passed from the BasicUpload page
       fileListRef.value = data

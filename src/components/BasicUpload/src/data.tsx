@@ -86,7 +86,11 @@ export function createActionColumn(handleRemove: Fn): FileBasicColumn {
     prop: 'action',
     fixed: false,
     customRender: ({ record }) => {
-      return <ElButton type='danger' onClick={handleRemove.bind(null, record)}>{() => '删除'}</ElButton>
+      return (
+        <ElButton type='danger' onClick={handleRemove.bind(null, record)}>
+          {() => '删除'}
+        </ElButton>
+      )
     },
   }
 }
@@ -133,7 +137,16 @@ export function createPreviewActionColumn({
     prop: 'action',
     fixed: false,
     customRender: ({ record }) => {
-      return <ElButtonGroup><ElButton type='danger' onClick={handleRemove.bind(null, record)}>{() => '删除'}</ElButton><ElButton type='success' onClick={handleDownload.bind(null, record)}>{() => '下载'}</ElButton></ElButtonGroup>
+      return (
+        <ElButtonGroup>
+          <ElButton type='danger' onClick={handleRemove.bind(null, record)}>
+            {() => '删除'}
+          </ElButton>
+          <ElButton type='success' onClick={handleDownload.bind(null, record)}>
+            {() => '下载'}
+          </ElButton>
+        </ElButtonGroup>
+      )
     },
   }
 }

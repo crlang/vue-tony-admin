@@ -1,10 +1,11 @@
 export function randomNumber(
   minNum,
-  maxNum:number|undefined = undefined,
-  decimalNum:number|undefined = undefined
+  maxNum: number | undefined = undefined,
+  decimalNum: number | undefined = undefined
 ): number {
-  let max = 0; let min = 0
-  minNum <= maxNum ? (min = minNum, max = maxNum) : (min = maxNum, max = minNum)
+  let max = 0
+  let min = 0
+  minNum <= maxNum ? ((min = minNum), (max = maxNum)) : ((min = maxNum), (max = minNum))
   switch (arguments.length) {
     case 1:
       return Math.floor(Math.random() * (max + 1))
@@ -17,7 +18,7 @@ export function randomNumber(
   }
 }
 
-export function getRandomNumberData(len:number): number[] {
+export function getRandomNumberData(len: number): number[] {
   return Array(...Array(len)).map(() => randomNumber(1, 1e5))
 }
 

@@ -44,7 +44,7 @@ export default defineComponent({
       () => lines.value,
       () => {
         redoModalHeight()
-      },
+      }
     )
 
     function handleShow(visible: boolean) {
@@ -66,9 +66,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
-  .empty-tips {
-    height: 100px;
-    line-height: 100px;
-    text-align: center;
-  }
+.empty-tips {
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+}
 </style>

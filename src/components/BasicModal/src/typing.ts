@@ -54,7 +54,7 @@ export interface ModalCustomFooter {
    *
    * Confirm button configuration, same as ElButton
    */
-  confirmOptions?: EleButton,
+  confirmOptions?: EleButton
   /**
    * 是否显示取消按钮
    *
@@ -66,7 +66,7 @@ export interface ModalCustomFooter {
    *
    * Confirm button configuration, same as ElButton
    */
-  cancelOptions?: EleButton,
+  cancelOptions?: EleButton
 }
 
 export interface BasicProps extends EleDialog, ModalCustomHeader, ModalCustomContent, ModalCustomFooter {

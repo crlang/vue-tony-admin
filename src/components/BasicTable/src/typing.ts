@@ -54,7 +54,7 @@ export interface FetchParams {
    *
    * Current page
    */
-  page?: number,
+  page?: number
   /**
    * 搜索参数
    *

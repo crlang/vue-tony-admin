@@ -8,7 +8,8 @@
       :schema="schema">
       <template #phone="val">
         <div>
-          Call: <strong>{{ val }}</strong>
+          Call:
+          <strong>{{ val }}</strong>
         </div>
       </template>
     </BasicDescription>
@@ -27,7 +28,6 @@
       :schema="schema" />
 
     <BasicDescription @register="register" />
-
   </PageWrapper>
 </template>
 

@@ -1,4 +1,3 @@
-
 <template>
   <el-card shadow="always">
     <template #header><div class="el-card__header--title">活动进度</div></template>

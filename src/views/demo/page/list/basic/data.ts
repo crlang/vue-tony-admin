@@ -1,5 +1,5 @@
 export const cardList = (() => {
-  const result:any[] = []
+  const result: any[] = []
   for (let i = 0; i < 10; i++) {
     result.push({
       id: i,

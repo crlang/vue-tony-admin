@@ -34,13 +34,17 @@
           <ElButton
             v-bind="cancelOptions"
             @click="handleCancel"
-            v-if="showCancelBtn">{{ cancelOptions?.text || 'Cancel' }}</ElButton>
+            v-if="showCancelBtn">
+            {{ cancelOptions?.text || 'Cancel' }}
+          </ElButton>
           <slot name="centerFooter"></slot>
           <ElButton
             v-bind="confirmOptions"
             :loading="getProps.confirmOptions?.loading"
             @click="handleConfirm"
-            v-if="showConfirmBtn">{{ confirmOptions?.text || 'OK' }}</ElButton>
+            v-if="showConfirmBtn">
+            {{ confirmOptions?.text || 'OK' }}
+          </ElButton>
           <slot name="appendFooter"></slot>
         </template>
       </div>
@@ -149,11 +153,7 @@ export default defineComponent({
      * Bind content props
      */
     const getWrapperBindValue = computed(() => {
-      const {
-        dyncHeight,
-        loading,
-        loadingText,
-      } = unref(getProps)
+      const { dyncHeight, loading, loadingText } = unref(getProps)
 
       const opts = {
         dyncHeight,
@@ -195,7 +195,7 @@ export default defineComponent({
       const { closeFn } = unref(getProps)
 
       if (typeof closeFn === 'function') {
-        const isClose:boolean = await closeFn()
+        const isClose: boolean = await closeFn()
         visibleRef.value = !isClose
         return
       } else {
@@ -250,13 +250,13 @@ export default defineComponent({
           // 如果 scrollTop 为 true，弹窗显示时会尝试滚动内容到顶部
           // If scrollTop is true, the popup will try to scroll the content to the top when displayed
           if (props?.scrollTop && v && unref(modalWrapperRef)) {
-            (unref(modalWrapperRef))?.scrollTop(0)
+            unref(modalWrapperRef)?.scrollTop(0)
           }
         })
       },
       {
         immediate: false,
-      },
+      }
     )
 
     return {
@@ -325,7 +325,7 @@ $prefix-cls: '#{$tonyname}-basic-modal';
 
         &:hover {
           color: var(--primary-color);
-          background: rgba(0,0,0,0.05);
+          background: rgba(0, 0, 0, 0.05);
         }
 
         > svg {

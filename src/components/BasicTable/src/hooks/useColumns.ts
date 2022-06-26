@@ -16,10 +16,7 @@ import { PAGE_SIZE } from '../const'
  * @param propsRef
  * @param getPaginationRef
  */
-export function useColumns(
-  propsRef: ComputedRef<BasicProps>,
-  getPaginationRef: ComputedRef<boolean | ElePagination>
-) {
+export function useColumns(propsRef: ComputedRef<BasicProps>, getPaginationRef: ComputedRef<boolean | ElePagination>) {
   let cacheColumns = unref(propsRef).columns
   const columnsRef = ref(cacheColumns)
   const { showIndexColumn, showCheckboxColumn } = unref(propsRef)
@@ -54,13 +51,12 @@ export function useColumns(
     const viewColumns = sortFixedColumn(unref(getColumnsRef))
 
     const columns = cloneDeep(viewColumns)
-    return columns
-      .filter((column) => {
-        return hasPermission(column.auth) && isIfShow(column)
-      })
-      // .map((column) => {
-      //   return column
-      // })
+    return columns.filter((column) => {
+      return hasPermission(column.auth) && isIfShow(column)
+    })
+    // .map((column) => {
+    //   return column
+    // })
   })
 
   /**
@@ -105,8 +101,7 @@ export function useColumns(
       // Sort according to another array
       if (!isEqual(cacheKeys, columns)) {
         newColumns.sort((prev, next) => {
-          return (cacheKeys.indexOf(prev.prop as string) -
-            cacheKeys.indexOf(next.prop as string))
+          return cacheKeys.indexOf(prev.prop as string) - cacheKeys.indexOf(next.prop as string)
         })
       }
       columnsRef.value = newColumns
@@ -221,10 +216,7 @@ function handleChildren(children: BasicColumn[] | undefined) {
  * @param columns BasicColumn[]
  * @param getPaginationRef
  */
-function handleIndexColumn(
-  columns: BasicColumn[],
-  getPaginationRef: ComputedRef<boolean | ElePagination>
-) {
+function handleIndexColumn(columns: BasicColumn[], getPaginationRef: ComputedRef<boolean | ElePagination>) {
   // 如果存在自定义索引列，则不处理
   // If there is a custom index column, it will not be processed
   const hasIndexColumn = columns.some((item) => item.type === 'index')
@@ -263,7 +255,7 @@ function handleIndexColumn(
 function handleCheckboxColumn(columns: BasicColumn[]) {
   // 存在子项则不渲染复选框
   // If there are children, do not render the checkbox
-  const hasChildrenColumn = columns.some((item) => (item?.children?.length))
+  const hasChildrenColumn = columns.some((item) => item?.children?.length)
   if (hasChildrenColumn) return
 
   // 如果存在自定义复选框列，则不处理
@@ -299,15 +291,14 @@ function handleActionColumn(columns: BasicColumn[]) {
   if (hasIndex < 0) return
 
   const isFixedRight = columns.some((item) => item.fixed === 'right')
-  columns[hasIndex] =
-    {
-      width: 120,
-      label: '操作',
-      prop: 'action',
-      type: 'action',
-      fixed: isFixedRight ? 'right' : undefined,
-      ...columns[hasIndex],
-    }
+  columns[hasIndex] = {
+    width: 120,
+    label: '操作',
+    prop: 'action',
+    type: 'action',
+    fixed: isFixedRight ? 'right' : undefined,
+    ...columns[hasIndex],
+  }
 }
 
 /**
@@ -357,7 +348,5 @@ function sortFixedColumn(columns: BasicColumn[]) {
   }
   // 剔除默认隐藏列
   // Remove default hidden columns
-  return [...fixedLeftColumns, ...defColumns, ...fixedRightColumns].filter(
-    (item) => !item.defaultHidden
-  )
+  return [...fixedLeftColumns, ...defColumns, ...fixedRightColumns].filter((item) => !item.defaultHidden)
 }

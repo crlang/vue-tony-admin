@@ -12,7 +12,7 @@
     </template>
 
     <template
-      v-for="childrenItem in (item.children || [])"
+      v-for="childrenItem in item.children || []"
       :key="childrenItem.path">
       <BasicSubMenuItem :item="childrenItem" />
     </template>

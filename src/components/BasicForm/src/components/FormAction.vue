@@ -67,9 +67,7 @@ export default defineComponent({
     const actionColOptions = computed((): Partial<EleCol> => {
       const { showAdvancedButton, actionSpan, actionColProps } = props
       const actSpan = BASIC_COL_LEN - actionSpan
-      const advancedSpanObj = showAdvancedButton
-        ? { span: actSpan < BASIC_COL_SIZE ? BASIC_COL_LEN : actSpan }
-        : {}
+      const advancedSpanObj = showAdvancedButton ? { span: actSpan < BASIC_COL_SIZE ? BASIC_COL_LEN : actSpan } : {}
 
       return {
         ...advancedSpanObj,

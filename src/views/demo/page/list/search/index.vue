@@ -87,7 +87,7 @@ export default defineComponent({
       { icon: 'bx:bxs-message-dots', text: '2', color: '#42d27d' },
     ]
 
-    function handleSubmit(v:any) {
+    function handleSubmit(v: any) {
       if (!v.field1) {
         createMessage.error(JSON.stringify(v))
       } else {

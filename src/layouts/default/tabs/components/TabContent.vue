@@ -16,13 +16,16 @@
     <template #dropdown>
       <ElDropdownMenu>
         <ElDropdownItem
-          v-for="(item,index) in getDropMenuList"
+          v-for="(item, index) in getDropMenuList"
           :key="index"
           :command="item.command"
           :disabled="item.disabled"
-          :divided="item.divided"> <Icon
+          :divided="item.divided">
+          <Icon
             :name="item.icon"
-            class="mr-2" /> {{ item.text }}</ElDropdownItem>
+            class="mr-2" />
+          {{ item.text }}
+        </ElDropdownItem>
       </ElDropdownMenu>
     </template>
   </ElDropdown>
@@ -68,7 +71,7 @@ export default defineComponent({
 
     const { getDropMenuList, handleMenuEvent, handleContextMenu } = useTabDropdown(props as TabContentProps, getIsTabs)
 
-    function handleContext(v:Boolean) {
+    function handleContext(v: Boolean) {
       if (v === true && props.tabItem) {
         handleContextMenu(props.tabItem)
       }

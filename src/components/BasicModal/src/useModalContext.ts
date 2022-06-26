@@ -13,7 +13,7 @@ export interface ModalContextProps {
    *
    * redo modal height
    */
-  redoModalHeight: () => void;
+  redoModalHeight: () => void
 }
 
 const key: InjectionKey<ModalContextProps> = Symbol()

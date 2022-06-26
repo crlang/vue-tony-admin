@@ -39,17 +39,17 @@ export const CardList: CardItem[] = [
 export type dateType = 'day' | 'week' | 'month' | 'quarter' | 'year'
 
 interface dateItem {
-  xdata: array,
+  xdata: array
   kdata: {
-    k1: array,
-    k2: array,
-    k3: array,
-  },
+    k1: array
+    k2: array
+    k3: array
+  }
   vdata: array
 }
 
-export function getDateData(type:dateType = 'day') {
-  const data:dateItem = {}
+export function getDateData(type: dateType = 'day') {
+  const data: dateItem = {}
   let len = 0
   switch (type) {
     case 'week':

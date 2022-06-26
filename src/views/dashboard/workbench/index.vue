@@ -2,11 +2,11 @@
   <PageWrapper>
     <template #extra><WorkbenchHeader /></template>
     <el-row :gutter="21">
-      <el-col :lg="{span: 16}">
+      <el-col :lg="{ span: 16 }">
         <ProjectCard class="mb-6" />
         <DynamicInfo />
       </el-col>
-      <el-col :lg="{span: 8}">
+      <el-col :lg="{ span: 8 }">
         <QuickNav />
         <ActivityTimeline class="my-6" />
         <TaskProportion />

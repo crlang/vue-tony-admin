@@ -18,13 +18,13 @@
             :maxSize="5"
             :maxNumber="3"
             showThumb
-            :accept="['png','jpg','jpeg','webp']" />
+            :accept="['png', 'jpg', 'jpeg', 'webp']" />
         </div>
       </el-col>
     </el-row>
     <el-button
       type="primary"
-      @click="handleSubmit"> 更新基本信息 </el-button>
+      @click="handleSubmit">更新基本信息</el-button>
   </CollapseContainer>
 </template>
 

@@ -108,9 +108,9 @@ export default {
      */
     defaultItemGutter: 16,
     /**
-      * 行的列数，一般不需要修改
-      * The number of columns in the row, generally do not need to be modified
-      */
+     * 行的列数，一般不需要修改
+     * The number of columns in the row, generally do not need to be modified
+     */
     fullColumnSize: 24,
   },
   /**

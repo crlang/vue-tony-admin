@@ -79,7 +79,6 @@ $prefix-cls: '#{$tonyname}-basic-button';
     > .eleicon {
       &:first-child {
         margin-right: 4px;
-
       }
 
       &:last-child {

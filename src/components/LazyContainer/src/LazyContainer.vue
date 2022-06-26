@@ -63,7 +63,7 @@ export default defineComponent({
     direction: {
       type: String as PropType<'vertical' | 'horizontal'>,
       default: 'vertical',
-      validator: (v:string) => ['vertical', 'horizontal'].includes(v),
+      validator: (v: string) => ['vertical', 'horizontal'].includes(v),
     },
     /**
      * 包裹组件的外层容器的标签名称

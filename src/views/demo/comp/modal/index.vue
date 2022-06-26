@@ -6,7 +6,7 @@
     <el-button
       type="primary"
       class="my-4"
-      @click="openModalLoading"> 打开弹窗 </el-button>
+      @click="openModalLoading">打开弹窗</el-button>
 
     <el-alert
       title="使用 createConfirm 进行弹窗操作，是一个简易友好的弹窗"
@@ -14,7 +14,7 @@
     <el-button
       type="primary"
       class="my-4"
-      @click="openMsgPopup()"> 打开消息弹窗 </el-button>
+      @click="openMsgPopup()">打开消息弹窗</el-button>
 
     <el-alert
       title="内外同时同时显示隐藏"
@@ -22,7 +22,7 @@
     <el-button
       type="primary"
       class="my-4"
-      @click="openModal2()"> 打开弹窗 </el-button>
+      @click="openModal2()">打开弹窗</el-button>
 
     <el-alert
       title="自适应高度"
@@ -30,7 +30,7 @@
     <el-button
       type="primary"
       class="my-4"
-      @click="openModal3()"> 打开弹窗 </el-button>
+      @click="openModal3()">打开弹窗</el-button>
 
     <el-alert
       title="内外数据交互"
@@ -38,13 +38,12 @@
     <el-button
       type="primary"
       class="my-4"
-      @click="send"> 打开弹窗并传递数据 </el-button>
+      @click="send">打开弹窗并传递数据</el-button>
 
     <Modal1 @register="register1" />
     <Modal2 @register="register2" />
     <Modal3 @register="register3" />
     <Modal4 @register="register4" />
-
   </PageWrapper>
 </template>
 
@@ -81,11 +80,13 @@ export default defineComponent({
     }
 
     function openMsgPopup() {
-      createConfirm({ title: '是否删除？', content: '注意：删除后将无法找回内容！', type: 'warning' }).then((act) => {
-        createMessage.success('点击了 ' + act)
-      }).catch((act) => {
-        createMessage.info('点击了 ' + act)
-      })
+      createConfirm({ title: '是否删除？', content: '注意：删除后将无法找回内容！', type: 'warning' })
+        .then((act) => {
+          createMessage.success('点击了 ' + act)
+        })
+        .catch((act) => {
+          createMessage.info('点击了 ' + act)
+        })
     }
 
     return {

@@ -41,7 +41,7 @@ export default defineComponent({
   },
   setup(props) {
     const { prefixCls } = useDesign('setting-menu-type-picker')
-    const getItemCls = (type:string) => {
+    const getItemCls = (type: string) => {
       return [
         `${prefixCls}__item`,
         `${prefixCls}__item--${type}`,

@@ -36,7 +36,7 @@ export default defineComponent({
       // do something
     }
 
-    function getRightMenuList(event:MouseEvent) {
+    function getRightMenuList(event: MouseEvent) {
       const MenuItems = [
         {
           label: '新增',
@@ -71,19 +71,13 @@ export default defineComponent({
         h(
           'div',
           null,
-          h(
-            Position,
-            {
-              class: 'mr-2',
-              onClick: () => handleSend(node, data, store),
-            }
-          ),
-          h(
-            Delete,
-            {
-              class: 'mr-2',
-            }
-          )
+          h(Position, {
+            class: 'mr-2',
+            onClick: () => handleSend(node, data, store),
+          }),
+          h(Delete, {
+            class: 'mr-2',
+          })
         )
       )
     }
@@ -98,15 +92,15 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-  .demo-tree-action {
-    flex-grow: 1;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    white-space: nowrap;
+.demo-tree-action {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  white-space: nowrap;
 
-    > div {
-      display: flex;
-    }
+  > div {
+    display: flex;
   }
+}
 </style>

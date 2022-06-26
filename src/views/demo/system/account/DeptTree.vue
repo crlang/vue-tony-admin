@@ -6,8 +6,7 @@
       :data="treeData"
       default-expand-all
       :props="{ children: 'children', label: 'deptName' }"
-      @current-change="handleSelect"
-    />
+      @current-change="handleSelect" />
   </el-card>
 </template>
 
@@ -32,7 +31,7 @@ export default defineComponent({
       treeData.value = (await getDeptList()) as unknown as ElTreeType[]
     }
 
-    function handleSelect(treeNodeData:DeptListItem) {
+    function handleSelect(treeNodeData: DeptListItem) {
       emit('select', treeNodeData)
     }
 

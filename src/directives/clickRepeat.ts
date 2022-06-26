@@ -20,13 +20,17 @@ const repeatDirective: Directive = {
       interval = null
     }
 
-    el.addEventListener('mousedown', (e: MouseEvent): void => {
-      if ((e as any).button !== 0) return
-      startTime = Date.now()
-      document.addEventListener('mouseup', clear)
-      interval && clearInterval(interval)
-      interval = setInterval(handler, 100)
-    }, false)
+    el.addEventListener(
+      'mousedown',
+      (e: MouseEvent): void => {
+        if ((e as any).button !== 0) return
+        startTime = Date.now()
+        document.addEventListener('mouseup', clear)
+        interval && clearInterval(interval)
+        interval = setInterval(handler, 100)
+      },
+      false
+    )
   },
 }
 

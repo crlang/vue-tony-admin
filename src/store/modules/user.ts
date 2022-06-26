@@ -160,7 +160,7 @@ export const useUserStore = defineStore({
         iconType: 'warning',
         title: '温馨提醒',
         content: '是否确认退出系统?',
-      }).then(k => {
+      }).then((k) => {
         if (k === 'confirm') {
           this.logout(true)
         }

@@ -38,7 +38,7 @@ export default defineComponent({
           return h(ElInput, {
             placeholder: '请输入',
             modelValue: model[field],
-            onInput: (v:any) => {
+            onInput: (v: any) => {
               model[field] = v
             },
           })

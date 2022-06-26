@@ -1,7 +1,7 @@
 <template>
   <span
     ref="elRef"
-    :class="[`${prefixCls} eleicon`, spin&&`${prefixCls}-spin`]"
+    :class="[`${prefixCls} eleicon`, spin && `${prefixCls}-spin`]"
     :style="getWrapStyle"></span>
 </template>
 
@@ -13,7 +13,7 @@ import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'Icon',
-  components: { },
+  components: {},
   props: {
     /**
      * 图标名称，名称来源请参考 TA 文档说明，如 ep:view

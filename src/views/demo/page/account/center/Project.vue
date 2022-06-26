@@ -8,11 +8,10 @@
           <ListItem :class="`${prefixCls}__item`">
             <el-card
               :class="`${prefixCls}__card`"
-              :bodyStyle="{padding:0}">
-
+              :bodyStyle="{ padding: 0 }">
               <div
                 :class="`${prefixCls}__card-img`"
-                :style="{'background-image': 'url('+demoImg+')'}"></div>
+                :style="{ 'background-image': 'url(' + demoImg + ')' }"></div>
 
               <div :class="`${prefixCls}__card-title`">
                 {{ item.title }}

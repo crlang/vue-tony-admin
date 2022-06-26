@@ -1,16 +1,14 @@
 <template>
   <PageWrapper contentBackground>
     <BasicTable @register="registerTable">
-      <template #id="{label,prop}">
+      <template #id="{ label, prop }">
         <el-table-column
           :label="label"
           :prop="prop">
-          <template #default="scope">
-            ID: {{ scope.row.id }}
-          </template>
+          <template #default="scope">ID: {{ scope.row.id }}</template>
         </el-table-column>
       </template>
-      <template #no="{label,prop}">
+      <template #no="{ label, prop }">
         <el-table-column
           :label="label"
           :prop="prop">
@@ -21,7 +19,7 @@
           </template>
         </el-table-column>
       </template>
-      <template #avatar="{label,prop}">
+      <template #avatar="{ label, prop }">
         <el-table-column
           :label="label"
           :prop="prop">
@@ -32,7 +30,7 @@
           </template>
         </el-table-column>
       </template>
-      <template #category="{label,prop}">
+      <template #category="{ label, prop }">
         <el-table-column
           :label="label"
           :prop="prop">

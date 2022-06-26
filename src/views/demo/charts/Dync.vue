@@ -65,8 +65,8 @@ export default defineComponent({
               if (params.dataIndex >= colorList.length) {
                 index = params.dataIndex - colorList.length
               }
-              return new echarts.graphic.LinearGradient(1, 0, 0, 0,
-                [{
+              return new echarts.graphic.LinearGradient(1, 0, 0, 0, [
+                {
                   offset: 0,
                   color: colorList[index][0],
                 },
@@ -74,7 +74,7 @@ export default defineComponent({
                   offset: 1,
                   color: colorList[index][1],
                 },
-                ])
+              ])
             },
           },
           label: {
@@ -130,7 +130,7 @@ export default defineComponent({
 
       setInterval(function () {
         run()
-        updateYear(String(startTimes += 1))
+        updateYear(String((startTimes += 1)))
       }, 3000)
     })
     return { chartRef }

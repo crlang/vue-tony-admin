@@ -9,7 +9,7 @@
       :maxSize="5"
       :maxNumber="3"
       @delete="handleDelete"
-      :accept="['png','jpg','jpeg','webp','svg']" />
+      :accept="['png', 'jpg', 'jpeg', 'webp', 'svg']" />
 
     <el-alert
       type="error"
@@ -24,7 +24,7 @@
       :maxSize="5"
       :maxNumber="3"
       @delete="handleDelete"
-      :accept="['png','jpg','jpeg','webp','svg']" />
+      :accept="['png', 'jpg', 'jpeg', 'webp', 'svg']" />
   </PageWrapper>
 </template>
 
