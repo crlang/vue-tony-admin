@@ -89,7 +89,7 @@ export function useAdvanced({
   }
 
   /**
-   * 获取展开/收起信息
+   * 更新展开/收起信息
    *
    * Update Expand/Collapse
    */
@@ -98,6 +98,7 @@ export function useAdvanced({
     let realItemColSum = 0
     const { colProps = {} } = unref(getProps)
     const baseColProps = colProps
+    let isAdvancedRes = false
 
     for (const schema of unref(getSchema)) {
       const { show, colProps } = schema
@@ -130,12 +131,13 @@ export function useAdvanced({
           realItemColSum = itemColSum
         }
         schema.isAdvanced = isAdvanced
+        isAdvancedRes = isAdvanced
       }
     }
 
     advanceState.actionSpan = realItemColSum % BASIC_COL_LEN
 
-    emit('advanced-change')
+    emit('advanced-change', isAdvancedRes)
   }
 
   /**

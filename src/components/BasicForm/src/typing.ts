@@ -318,7 +318,7 @@ export interface BasicFormSchema {
    */
   subLabel?: string
   /**
-   * 组件值发生变化时触发的事件名称
+   * 组件的值发生变化时触发的事件名称
    *
    * The name of the event that fires when the value of the component changes
    */

@@ -61,7 +61,16 @@ export const basicFormActionProps = {
    *
    * Whether to show collapse and expand buttons
    */
-  showAdvancedButton: { type: Boolean },
+  showAdvancedButton: Boolean,
+  /**
+   * 在支持展开/收起模式下，收起时显示多少行
+   *
+   * In support expand-collapse mode, how many rows to display after collapse
+   */
+  alwaysShowLines: {
+    type: Number,
+    default: 1,
+  },
 }
 
 /**
@@ -77,7 +86,7 @@ export const customProps = {
    * Array of form data item schemas
    */
   schemas: {
-    type: [Array] as PropType<BasicFormSchema[]>,
+    type: Array as PropType<BasicFormSchema[]>,
     default: () => [],
   },
   /**
@@ -142,15 +151,6 @@ export const customProps = {
   rulesMessageJoinLabel: {
     type: Boolean,
     default: true,
-  },
-  /**
-   * 在支持展开/收起模式下，收起时显示多少行
-   *
-   * In support expand-collapse mode, how many rows to display after collapse
-   */
-  alwaysShowLines: {
-    type: Number,
-    default: 1,
   },
   /**
    * 是否显示操作按钮组
