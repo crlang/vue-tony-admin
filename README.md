@@ -6,127 +6,121 @@
 <h1>Vue Tony Admin</h1>
 </div>
 
-**English** | [中文](./README.zh-CN.md)
+**中文** | [English](./README.md)
 
-## Introduction
+## 简介
 
-Vue Tony Admin is a free and open source management side frontend template. Based on `Element Plus`, and using the latest `vue3`, `vite2`, `TypeScript` and more mainstream technologies, it is an out-of-the-box management side frontend solution.
+Vue Tony Admin 是一个免费开源的中后台前端模板。基于`Element Plus`，并且使用了最新的`vue3`,`vite2`,`TypeScript`等主流技术开发，开箱即用的中后台前端解决方案。
 
-## Feature
+## 特性
 
-- **🎉 The latest technology stack**: Develop with front-end cutting-edge technologies such as Vue3/vite2/TypeScript
-- **🧪 Rich Scenes**: up to 60+ rich real scene examples
-- **🎨 Variable Themes**: Configurable themes
-- **👓 Dark Mode**: One step ahead of dark mode support
-- **🌐 Internationalization**: Built-in perfect internationalization solution
-- **🧩 Mock Data** Built-in mock data scheme
-- **🔒 Permission Control** Built-in perfect dynamic routing permission generation scheme
-- **🎫 Easy-to-use components** Encapsulation 30+ common and easy-to-use components
+- **🎉 最新技术栈**：使用 Vue3/vite2/TypeScript 等前端前沿技术开发
+- **🧪 丰富场景**：多达 60+丰富的真实场景示例
+- **🎨 可变主题**：可配置的主题
+- **👓 暗黑模式**：领先一步的暗黑模式支持
+- **🌐 国际化**：内置完善的国际化方案
+- **🧩 Mock 数据** 内置 Mock 数据方案
+- **🔒 权限控制** 内置完善的动态路由权限生成方案
+- **🎫 易用组件** 封装 30+常见易用的组件
 
-## Preview
+## 预览
 
 - [Github](https://crlang.github.io/vue-tony-admin-site)
-- [Tony](https://tony.crlang.com/vue-tony-admin-site)
+- [本地预览](https://tony.crlang.com/vue-tony-admin-site)
 
-## Documentation
+## 指南
 
-[Document](http://tony.crlang.com/doc/)
+- [Tony](http://tony.crlang.com/doc/) - Tony Admin 文档
+- [Vue3](https://v3.cn.vuejs.org/) - Vue3 文档
+- [Element-Plus](https://element-plus.gitee.io/) - Element Plus 文档
+- [TypeScript](https://www.tslang.cn/docs/home.html) - TypeScript 文档
+- [Vite](https://cn.vitejs.dev/) - Vite2 配置
+- [Mock.js](http://mockjs.com/examples.html) - mockjs 示例
 
-## Preparation
-
-- [Tony](http://tony.crlang.com/doc/) - Tony Admin document
-- [Vue3](https://v3.cn.vuejs.org/) - Vue3 document
-- [Element-Plus](https://element-plus.gitee.io/) - Element Plus document
-- [TypeScript](https://www.tslang.cn/docs/home.html) - TypeScript document
-- [Vite](https://cn.vitejs.dev/) - Vite2 configure
-- [Mock.js](http://mockjs.com/examples.html) - mockjs Example
-
-## Install and use
-
--
+## 安装使用
 
 ```bash
 
-# clone the project code
+# 获取项目代码
 git clone https://github.com/crlang/vue-tony-admin.git
 
-# switch folder
+# 进入目录
 cd vue-tony-admin
 
-# installation dependencies
+# 安装依赖
 yarn install
 
-# run
+# 运行
 yarn dev
 
-# build
+# 打包
 yarn build
 
 ```
 
-## Change Log
+## 更新日志
 
-[CHANGELOG](./CHANGELOG.en_US.md)
+[CHANGELOG](./CHANGELOG.zh_CN.md)
 
-## Project
+## 项目地址
 
 - [vue-tony-admin](https://github.com/crlang/vue-tony-admin)
 
-## How to contribute
+## 如何贡献
 
-You are very welcome to join！[Raise an issue](https://github.com/crlang/vue-tony-admin/issues/new/choose) Or submit a Pull Request。
+如果遇到问题，欢迎你[提一个 Issue](https://github.com/crlang/vue-tony-admin/issues/new/choose)或者提交一个 Pull Request。
 
 **Pull Request:**
 
-1. Fork code!
-2. Create your own branch: `git checkout -b feat/xxxx`
-3. Submit your changes: `git commit -am 'feat(function): add xxxxx'`
-4. Push your branch: `git push origin feat/xxxx`
-5. submit `pull request`
+1. Fork 代码!
+2. 创建自己的分支: `git checkout -b feat/xxxx`
+3. 提交你的修改: `git commit -am 'feat(function): add xxxxx'`
+4. 推送您的分支: `git push origin feat/xxxx`
+5. 提交 `pull request`
 
-## Git Contribution submission specification
+## Git 贡献提交规范
 
-- reference [vue](https://github.com/vuejs/vue/blob/dev/.github/COMMIT_CONVENTION.md)
+- 参考 [vue](https://github.com/vuejs/vue/blob/dev/.github/COMMIT_CONVENTION.md)
 
-  - `feat` Add new features
-  - `fix` Fix the problem/BUG
-  - `style` The code style is related and does not affect the running result
-  - `perf` Optimization/performance improvement
-  - `refactor` Refactor
-  - `revert` Undo edit
-  - `test` Test related
-  - `docs` Documentation/notes
-  - `chore` Dependency update/scaffolding configuration modification etc.
-  - `workflow` Workflow improvements
-  - `ci` Continuous integration
-  - `types` Type definition file changes
-  - `wip` In development
+  - `feat` 增加新功能
+  - `fix` 修复问题/BUG
+  - `style` 代码风格相关无影响运行结果的
+  - `perf` 优化/性能提升
+  - `refactor` 重构
+  - `revert` 撤销修改
+  - `test` 测试相关
+  - `docs` 文档/注释
+  - `chore` 依赖更新/脚手架配置修改等
+  - `workflow` 工作流改进
+  - `ci` 持续集成
+  - `types` 类型定义文件更改
+  - `wip` 开发中
 
-## Browser support
+## 浏览器支持
 
-The `Chrome 80+` browser is recommended for local development
+本地开发推荐使用`Chrome 80+` 浏览器
 
-Support modern browsers, not IE
+支持现代浏览器, 不支持 IE
 
-|     IE      |      Edge       |     Firefox     |     Chrome      |     Safari      |
-| :---------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| not support | last 2 versions | last 2 versions | last 2 versions | last 2 versions |
+|   IE   | Edge | Firefox | Chrome | Safari |
+| :----: | :--: | :-----: | :----: | :----: |
+| 不支持 | 支持 |  支持   |  支持  |  支持  |
 
-## Maintainer
+## 维护者
 
 [@CRLang](https://github.com/crlang)
 
-## Donate
+## 捐赠
 
-If you think this project is helpful to you, you can help the author buy a cup of coffee to show your support!
+如果你觉得这个项目对你有帮助，你可以帮作者买一杯奶茶表示支持!
 
 <img alt="Tony Admin donate" width="400" height="200" src="https://crlang.com/sponsor2.png">
 
 -- <a href="https://www.paypal.com/paypalme/crlang123">Paypal Me</a> --
 
-## grateful
+## 感谢
 
-Thanks to Vue, Antd, Vben, Element Plus for open source support
+感谢 Vue、Antd、Vben、Element Plus 提供的开源支持
 
 ## License
 
