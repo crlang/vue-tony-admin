@@ -1,7 +1,8 @@
-import contextMenuVue from './ContextMenu.vue'
-import { isClient } from '@/utils/is'
-import { CreateContextOptions, ContextMenuProps } from './typing'
+import type { CreateContextMenuOptions, ContextMenuProps } from './typing'
+
 import { createVNode, render } from 'vue'
+
+import contextMenuVue from './ContextMenu.vue'
 
 const menuManager: {
   domList: Element[]
@@ -11,33 +12,35 @@ const menuManager: {
   resolve: () => {},
 }
 
-export const createContextMenu = function (options: CreateContextOptions) {
-  const { event } = options || {}
+/**
+ * 创建右键菜单
+ *
+ * Create a right-click menu
+ * @param options CreateContextMenuOptions
+ */
+export const createContextMenu = function (options: CreateContextMenuOptions) {
+  const { event = null, showIcon = true, styles = {}, items, width } = options || {}
 
   event && event?.preventDefault()
 
-  if (!isClient) {
-    return
-  }
+  if (typeof window === 'undefined') return
+
   return new Promise((resolve) => {
     const body = document.body
 
     const container = document.createElement('div')
-    const propsData: Partial<ContextMenuProps> = {}
-    if (options.styles) {
-      propsData.styles = options.styles
+    const propsData: Partial<ContextMenuProps> = {
+      event,
+      styles,
+      showIcon,
+      items,
+      width,
+      axis: { x: event?.clientX || 0, y: event?.clientY || 0 },
     }
 
-    if (options.items) {
-      propsData.items = options.items
-    }
-
-    if (options.event) {
-      propsData.customEvent = event
-      propsData.axis = { x: event.clientX, y: event.clientY }
-    }
-
+    /** create VNode */
     const vm = createVNode(contextMenuVue, propsData)
+    /** render VNode */
     render(vm, container)
 
     const handleClick = function () {
@@ -51,7 +54,7 @@ export const createContextMenu = function (options: CreateContextOptions) {
         try {
           dom && body.removeChild(dom)
         } catch (error) {
-          // continue regardless of error
+          // continue
         }
       })
       body.removeEventListener('click', handleClick)
@@ -69,6 +72,9 @@ export const createContextMenu = function (options: CreateContextOptions) {
   })
 }
 
+/**
+ * 销毁右键菜单
+ */
 export const destroyContextMenu = function () {
   if (menuManager) {
     menuManager.resolve('')

@@ -1,3 +1,3 @@
 export { createContextMenu, destroyContextMenu } from './src/createContextMenu'
 
-export * from './src/typing'
+export type { ContextMenuItem, CreateContextMenuOptions } from './src/typing'

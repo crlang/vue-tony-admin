@@ -24,7 +24,7 @@ import { defineComponent } from 'vue'
 import { ElCard, ElTree, ElRow, ElCol } from 'element-plus'
 import { treeData } from './data'
 import { useContextMenu } from '@/hooks/web/useContextMenu'
-import { CreateContextOptions } from '@/components/ContextMenu'
+import { CreateContextMenuOptions } from '@/components/ContextMenu'
 import { Delete, Position } from '@element-plus/icons'
 
 export default defineComponent({
@@ -54,7 +54,7 @@ export default defineComponent({
         },
       ]
 
-      const contextMenuOptions: CreateContextOptions = { event, items: MenuItems }
+      const contextMenuOptions: CreateContextMenuOptions = { event, items: MenuItems }
 
       if (!contextMenuOptions.items?.length) return
 
