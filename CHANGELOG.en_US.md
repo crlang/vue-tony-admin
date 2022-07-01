@@ -1,3 +1,73 @@
+# [0.5.0](https://github.com/crlang/vue-tony-admin/compare/0.3.1...0.5.0) (2022-07-01)
+
+### Features
+
+- add PageWrapper as a global component, abolish the Button global component ([6bbeb43](https://github.com/crlang/vue-tony-admin/commit/6bbeb4383e0da680056891ebffa989748cb804f8))
+- **ApiSelect:** add components and documentation ([3c4d0f6](https://github.com/crlang/vue-tony-admin/commit/3c4d0f6c23cd5683532cb91d2ab8fb8adc0c345c))
+- **CountdownInput:** add components and documentation ([6cb9ca4](https://github.com/crlang/vue-tony-admin/commit/6cb9ca4d5613693dff4a2c234f6e3b87729082b3))
+
+### Refactors
+
+- **PageWrapper:** reoptimize components and documentation ([6bbeb43](https://github.com/crlang/vue-tony-admin/commit/6bbeb4383e0da680056891ebffa989748cb804f8))
+- **Icon:** reoptimize components and documentation ([06f1027](https://github.com/crlang/vue-tony-admin/commit/06f102794dbd9539bd2c5c4eb229e93b9229345a))
+- **SvgIcon:** reoptimize components and documentation ([06f1027](https://github.com/crlang/vue-tony-admin/commit/06f102794dbd9539bd2c5c4eb229e93b9229345a))
+- **ClickOutside:** reoptimize components and documentation ([5008d97](https://github.com/crlang/vue-tony-admin/commit/5008d976b5b4931f7eb985e3e57150a278fa3aaf))
+- **useDesign:** reoptimize function and documentation ([0cba00b](https://github.com/crlang/vue-tony-admin/commit/0cba00bbd242f192b96bcb29fbe02fac051f993f))
+- **IconPicker:** reoptimize function and documentation ([a6c6e8d](https://github.com/crlang/vue-tony-admin/commit/a6c6e8de6f5b2b9a0d728b991ffb3ffe455632a8))
+- **CollapseContainer:** reoptimize components and documentation([eb30b4e](https://github.com/crlang/vue-tony-admin/commit/eb30b4ec16c804ba5990ffb6534a3cd5fa7a8182))
+- **LazyContainer:** reoptimize components and documentation ([eb30b4e](https://github.com/crlang/vue-tony-admin/commit/eb30b4ec16c804ba5990ffb6534a3cd5fa7a8182))
+- **ScrollContainer:** reoptimize components and documentation([eb30b4e](https://github.com/crlang/vue-tony-admin/commit/eb30b4ec16c804ba5990ffb6534a3cd5fa7a8182))
+- **Authority:** reoptimize components and documentation ([ea6b6b3](https://github.com/crlang/vue-tony-admin/commit/ea6b6b3bd07e05c82898df8b1f8ac0d4cb099651))
+- **BasicForm:** reoptimize components and documentation ([fda4e37](https://github.com/crlang/vue-tony-admin/commit/fda4e37d31078d1031bae8175991b12f215712b9))
+- **BasicModal:** reoptimize components and documentation ([104cb42](https://github.com/crlang/vue-tony-admin/commit/104cb425cb48a5dae4f0dd7782cf854f94034b95))
+- **BasicTable:** reoptimize components and documentation ([b272c19](https://github.com/crlang/vue-tony-admin/commit/b272c19fded75ef6e6714c7aa9a7af74dc24fa97))
+- **BasicUpload:** reoptimize components and documentation ([1a023a1](https://github.com/crlang/vue-tony-admin/commit/1a023a10444e7d0cb89f9061bc77d7440c288e8d))
+- **CardGrid:** reoptimize components and documentation ([17f257f](https://github.com/crlang/vue-tony-admin/commit/17f257f968cd3d75a423fcd9a3fce2d5a6cb5ff7))
+- **ContextMenu:** reoptimize components and documentation ([b3d4439](https://github.com/crlang/vue-tony-admin/commit/b3d4439ae44400073dd3471c370f040b6eb0a147))
+- **CountTo:** reoptimize components and documentation ([02bedba](https://github.com/crlang/vue-tony-admin/commit/02bedbae13233cd9a80dfcfc2247f497abb73973))
+- **BasicDescription:** reoptimize components and documentation ([e56621b](https://github.com/crlang/vue-tony-admin/commit/e56621bcc164097c4c1fcf1d76abfc722087e2cf))
+- **BasicDrawer:** reoptimize components and documentation ([4a1e364](https://github.com/crlang/vue-tony-admin/commit/4a1e3647ceedfc1037309ebc71baa87d615e80ee))
+- **StrengthMeter:** reoptimize components and documentation ([653d6f9](https://github.com/crlang/vue-tony-admin/commit/653d6f985a57d3eeb2aeb3e47aded76d837be2d2))
+- **Transition:** reoptimize components and documentation ([6c64c2c](https://github.com/crlang/vue-tony-admin/commit/6c64c2cc466c8223966b41b2edfcec5f1b1c7f25))
+- **VirtualScroll:** reoptimize components and documentation ([78615cc](https://github.com/crlang/vue-tony-admin/commit/78615cc4681c911a32caabf4f69abf779af9d235))
+- **Time:** reoptimize components and documentation ([4abc43c](https://github.com/crlang/vue-tony-admin/commit/4abc43cdf28c3eee1b36dd174149686c9a7e08e4))
+- **DragVerify:** reoptimize components and documentation ([aa18be4](https://github.com/crlang/vue-tony-admin/commit/aa18be4323423b4c983d96b1a614faa3dd47f850))
+
+### Performance Improvements
+
+- compatible with better import methods ([9c0065a](https://github.com/crlang/vue-tony-admin/commit/9c0065ac2746ce7146fdb32866ee9f058a8f9b36))
+
+### Bug Fixes
+
+- rename and retrieve example ([e2e7a4e](https://github.com/crlang/vue-tony-admin/commit/e2e7a4e0d852caa60c451edb3b47aa8d37aabec1))
+- rename Form to BasicForm ([3bb3b19](https://github.com/crlang/vue-tony-admin/commit/3bb3b1904fd6e05f8a9c6e9f9d8c0f31de46bf74))
+- rename Modal to BasicModal ([af3d3e2](https://github.com/crlang/vue-tony-admin/commit/af3d3e2f08e428a086265253530b005b8c84c29a))
+- rename Table to BasicTable ([990d478](https://github.com/crlang/vue-tony-admin/commit/990d4783aef1869a98480da020e10eec8eb1fbea))
+- rename Upload to BasicUpload ([f8bd2ca](https://github.com/crlang/vue-tony-admin/commit/f8bd2caba8dd4a65b006c75f2e015c711158b13b))
+- **Basic:** optimize the confirmation button of the operation column ([79fdb6f](https://github.com/crlang/vue-tony-admin/commit/79fdb6ff11575894ea1c549c5f52ec420c8065ea))
+- **BasicModal:** fix can't close popup ([75214ed](https://github.com/crlang/vue-tony-admin/commit/75214edb4ac1d005b31fb9bf446e20e87e687c7c))
+- **BasicModal:** remove draggable, officially supports draggable ([302b2b5](https://github.com/crlang/vue-tony-admin/commit/302b2b5a0f527909902d6b57a10e9305726939f2))
+- change the name to avoid conflicts ([465c172](https://github.com/crlang/vue-tony-admin/commit/465c172de80dc63bd5a3c700950d4dd588f9f921))
+- **Cropper:** remove components ([73b7ad8](https://github.com/crlang/vue-tony-admin/commit/73b7ad8641cc9289979a9085049938a7c93364ed))
+- fix scrollbar caused by dynamic height ([db80397](https://github.com/crlang/vue-tony-admin/commit/db803977d2d0c8d2d0e9750b960362c36899eda5))
+- fix warnings caused by empty props ([5931df2](https://github.com/crlang/vue-tony-admin/commit/5931df25db8f219cbc746ff9d05e60e8a653602c))
+- **Form:** clicking submit does not return content ([787358a](https://github.com/crlang/vue-tony-admin/commit/787358ab5504ae02ab4db31479ebb8c8a34902d9))
+- global components cannot be declared ([702b79e](https://github.com/crlang/vue-tony-admin/commit/702b79eb884c702411c1bf95b416547a29a54210))
+- import name is wrong ([dd067f0](https://github.com/crlang/vue-tony-admin/commit/dd067f0ff6f84f6d8d06c603073b36bf412150ce))
+- optimization content ([f924aae](https://github.com/crlang/vue-tony-admin/commit/f924aaed084866aada552756b6ebfcaa34b00d27))
+- optimize the introduction of Element Plus ([85ee565](https://github.com/crlang/vue-tony-admin/commit/85ee5650786ad5165a949753be8c7a7199fa33a0))
+- optimized directives ([9dd3158](https://github.com/crlang/vue-tony-admin/commit/9dd3158c9a5ca1bd9778c8600a30244314d6a31d))
+- partial dark mode matching ([b97a52e](https://github.com/crlang/vue-tony-admin/commit/b97a52edfef5960a91f563ec6855225f3c04811e))
+- **Progress:** remove components, replace official components ([affe8db](https://github.com/crlang/vue-tony-admin/commit/affe8db87e142f24c4a132388cf7e4cbe8b77718))
+- remove BasicArrow, reoptimize BasicHelp and BasicTitle components and documentation ([aae1e95](https://github.com/crlang/vue-tony-admin/commit/aae1e95ecab1b564f9739ae5a4a2d611be5e2dcf))
+- remove extra tabs ([dd80377](https://github.com/crlang/vue-tony-admin/commit/dd803772c94f030f474fd989e8256b7a12b27f4d))
+- remove imgPreview component ([2e74276](https://github.com/crlang/vue-tony-admin/commit/2e7427606f8160c3438c1f235adda00890b78370))
+- remove some meaningless compatible code ([284f69f](https://github.com/crlang/vue-tony-admin/commit/284f69fab5296bc3ccbf2bb8653b0e2b5b7f9620))
+- remove tree redundant code ([b820e2f](https://github.com/crlang/vue-tony-admin/commit/b820e2f8f52de58f0941952b3f7a03cd6f9859a1))
+- remove unnecessary whitespace handling ([59d5fc7](https://github.com/crlang/vue-tony-admin/commit/59d5fc7d0a7bbe8b7276036fe2c1e0018474872f))
+- stripping form components and other detail optimizations ([6f24310](https://github.com/crlang/vue-tony-admin/commit/6f243106dca509f50843175a59db97a6d73d9dad))
+- useMessage optimization ([c3a2cbf](https://github.com/crlang/vue-tony-admin/commit/c3a2cbfa31a89b8604e000f071cc2042fbddf82f))
+
 ## [0.3.1](https://github.com/crlang/vue-tony-admin/compare/0.3.0...0.3.1) (2022-04-22)
 
 ### Bug Fixes
