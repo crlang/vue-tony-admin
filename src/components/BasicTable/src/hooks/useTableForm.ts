@@ -1,6 +1,6 @@
 import type { ComputedRef, Slots } from 'vue'
-import type { BasicProps as BasicFormProps } from '@/components/BasicForm'
-import type { BasicProps, FetchParams } from '../typing'
+import type { BasicFormProps } from '@/components/BasicForm'
+import type { BasicTableProps, FetchParams } from '../typing'
 
 import { unref, computed } from 'vue'
 
@@ -14,7 +14,7 @@ import { unref, computed } from 'vue'
  * @param getLoading
  */
 export function useTableForm(
-  propsRef: ComputedRef<BasicProps>,
+  propsRef: ComputedRef<BasicTableProps>,
   slots: Slots,
   fetch: (opt?: FetchParams | undefined) => Promise<void>,
   getLoading: ComputedRef<boolean | undefined>

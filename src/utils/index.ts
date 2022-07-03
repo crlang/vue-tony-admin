@@ -5,9 +5,8 @@ import type { SFCInstallWithContext, SFCWithInstall } from '#/utils'
 import { unref } from 'vue'
 import { NOOP } from '@vue/shared'
 
-import { isObject } from '@/utils/is'
-
 import { error } from './log'
+import { isObject } from '@vueuse/core'
 
 export const noop = () => {}
 
@@ -166,4 +165,15 @@ export function getUseInstance<T>(instanceRef: Ref<T> | null, name: string): T |
     )
   }
   return instance
+}
+
+/**
+ * 检查是否为http链接，仅做简单判断
+ *
+ * Check if it is an http link - simple judgment
+ * @param val
+ */
+export const isHttpUrl = (val: string) => {
+  const reg = /^http(s)?:\/\/\w+\..*$/
+  return reg.test(val)
 }

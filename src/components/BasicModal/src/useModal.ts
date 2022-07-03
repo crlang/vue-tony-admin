@@ -1,7 +1,7 @@
 import type {
   UseModalReturnType,
   ModalInstanceMethods,
-  BasicProps,
+  BasicModalProps,
   ModalActionMethods,
   ReturnInnerMethods,
   UseModalInnerReturnType
@@ -77,7 +77,7 @@ export function useModal(): UseModalReturnType {
    * Define instance methods
    */
   const methods: ModalActionMethods = {
-    setModalProps: (props: Partial<BasicProps>): void => {
+    setModalProps: (props: Partial<BasicModalProps>): void => {
       getInstance()?.setModalProps(props)
     },
 
@@ -177,7 +177,7 @@ export const useModalInner = (callbackFn?: Fn): UseModalInnerReturnType => {
       getInstance()?.setModalProps({ modelValue: false })
     },
 
-    setModalProps: (props: Partial<BasicProps>) => {
+    setModalProps: (props: Partial<BasicModalProps>) => {
       getInstance()?.setModalProps(props)
     },
 

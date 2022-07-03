@@ -14,7 +14,6 @@ import { PermissionModeEnum } from '@/enums/appEnum'
 import { RoleEnum } from '@/enums/roleEnum'
 
 import { intersection } from 'lodash-es'
-import { isArray } from '@/utils/is'
 import { useMultipleTabStore } from '@/store/modules/multipleTab'
 
 // User permissions related operations
@@ -65,7 +64,7 @@ export function usePermission() {
     const permMode = projectSetting.permissionMode
 
     if ([PermissionModeEnum.ROUTE_MAPPING, PermissionModeEnum.ROLE].includes(permMode)) {
-      if (!isArray(value)) {
+      if (!Array.isArray(value)) {
         return userStore.getRoleList?.includes(value as RoleEnum)
       }
       return (intersection(value, userStore.getRoleList) as RoleEnum[]).length > 0
@@ -73,7 +72,7 @@ export function usePermission() {
 
     if (PermissionModeEnum.BACK === permMode) {
       const allCodeList = permissionStore.getPermCodeList as string[]
-      if (!isArray(value)) {
+      if (!Array.isArray(value)) {
         return allCodeList.includes(value)
       }
       return (intersection(value, allCodeList) as string[]).length > 0
@@ -90,7 +89,7 @@ export function usePermission() {
       throw new Error('Please switch PermissionModeEnum to ROUTE_MAPPING mode in the configuration to operate!')
     }
 
-    if (!isArray(roles)) {
+    if (!Array.isArray(roles)) {
       roles = [roles]
     }
     userStore.setRoleList(roles)

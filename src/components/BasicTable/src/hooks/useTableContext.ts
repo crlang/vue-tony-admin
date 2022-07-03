@@ -1,5 +1,5 @@
 import type { Ref } from 'vue'
-import type { BasicProps, TableActionMethods } from '../typing'
+import type { BasicTableProps, TableActionMethods } from '../typing'
 
 import { provide, inject, ComputedRef } from 'vue'
 
@@ -11,7 +11,7 @@ type Instance = TableActionMethods & {
 }
 
 type RetInstance = Omit<Instance, 'getBindValues'> & {
-  getBindValues: ComputedRef<BasicProps>
+  getBindValues: ComputedRef<BasicTableProps>
 }
 
 /**

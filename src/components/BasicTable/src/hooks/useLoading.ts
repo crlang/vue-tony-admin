@@ -1,4 +1,4 @@
-import type { BasicProps } from '../typing'
+import type { BasicTableProps } from '../typing'
 
 import { ref, ComputedRef, unref, computed, watch } from 'vue'
 
@@ -8,7 +8,7 @@ import { ref, ComputedRef, unref, computed, watch } from 'vue'
  * Handling table loading state
  * @param props
  */
-export function useLoading(props: ComputedRef<BasicProps>) {
+export function useLoading(props: ComputedRef<BasicTableProps>) {
   const loadingRef = ref(false)
 
   /**

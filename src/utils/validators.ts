@@ -1,7 +1,5 @@
-import { isNumber } from './is'
-
 export const isValidWidthUnit = (val: string | number): boolean => {
-  if (isNumber(val)) {
+  if (typeof val === 'number') {
     return true
   }
   return ['px', 'rem', 'em', 'vw', '%', 'vmin', 'vmax'].some((unit) => val.endsWith(unit)) || val.startsWith('calc')

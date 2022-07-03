@@ -7,7 +7,8 @@ import { defineComponent, ref, watch } from 'vue'
 import { useIntervalFn } from '@vueuse/core'
 
 import { formatToDateTime, formatToDate, dateUtil } from '@/utils/dateUtil'
-import { isNumber, isObject, isString } from '@/utils/is'
+import { isObject } from '@vueuse/core'
+
 // 秒
 const ONE_SECONDS = 1000
 // 分
@@ -67,11 +68,11 @@ export default defineComponent({
       const { value } = props
       let time = 0
       // 时间戳
-      if (isNumber(value)) {
+      if (typeof value === 'number') {
         const timestamp = value.toString().length > 10 ? value : value * 1000
         time = new Date(timestamp).getTime()
         // 字符串
-      } else if (isString(value)) {
+      } else if (typeof value === 'string') {
         time = new Date(value).getTime()
         // 时间
       } else if (isObject(value)) {

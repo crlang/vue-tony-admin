@@ -32,8 +32,7 @@ import { listenerRouteChange } from '@/logics/mitt/routeChange'
 import { propTypes } from '@/utils/propTypes'
 import { REDIRECT_NAME } from '@/router/constant'
 import { useRouter } from 'vue-router'
-import { isUrl } from '@/utils/is'
-import { openWindow } from '@/utils'
+import { isHttpUrl, openWindow } from '@/utils'
 
 import { useOpenKeys } from './useOpenKeys'
 export default defineComponent({
@@ -125,7 +124,7 @@ export default defineComponent({
     }
 
     async function handleSelect(key: string) {
-      if (isUrl(key)) {
+      if (isHttpUrl(key)) {
         openWindow(key)
         return
       }

@@ -1,5 +1,5 @@
 import type { Ref, ComputedRef } from 'vue'
-import type { BasicProps, BasicFormSchema } from '../typing'
+import type { BasicFormProps, BasicFormSchema } from '../typing'
 
 import { unref } from 'vue'
 import { set } from 'lodash-es'
@@ -8,7 +8,7 @@ import dayjs from 'dayjs'
 interface UseFormValuesContext {
   defaultValueRef: Ref<any>
   getSchema: ComputedRef<BasicFormSchema[]>
-  getProps: ComputedRef<BasicProps>
+  getProps: ComputedRef<BasicFormProps>
   formModel: Recordable
 }
 

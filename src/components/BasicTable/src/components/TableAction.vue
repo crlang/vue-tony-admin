@@ -23,7 +23,6 @@ import type { TableActionItem, scopeInfo, BasicColumn } from '../typing'
 
 import { defineComponent, computed } from 'vue'
 import { ElButton } from 'element-plus'
-import { isBoolean, isFunction } from '@vueuse/core'
 import { omit } from 'lodash-es'
 
 import { usePermission } from '@/hooks/web/usePermission'
@@ -108,10 +107,10 @@ export default defineComponent({
 
       let isIfShow = true
 
-      if (isBoolean(ifShow)) {
+      if (typeof ifShow === 'boolean') {
         isIfShow = ifShow
       }
-      if (isFunction(ifShow)) {
+      if (typeof ifShow === 'function') {
         isIfShow = ifShow(action)
       }
       return isIfShow

@@ -81,7 +81,6 @@
 import { defineComponent, ref, watch, unref, computed, CSSProperties } from 'vue'
 import { ElButton, ElButtonGroup, ElTooltip } from 'element-plus'
 import { omit } from 'lodash-es'
-import { isArray } from '@/utils/is'
 
 import { useModal } from '@/components/BasicModal'
 import { SvgIcon } from '@/components/SvgIcon'
@@ -217,7 +216,7 @@ export default defineComponent({
     watch(
       () => props.modelValue,
       (value = []) => {
-        fileList.value = isArray(value) ? value : []
+        fileList.value = Array.isArray(value) ? value : []
       },
       { immediate: true }
     )

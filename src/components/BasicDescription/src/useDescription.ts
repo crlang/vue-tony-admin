@@ -1,4 +1,4 @@
-import type { BasicProps, DescActionMethods, UseDescReturnType } from './typing'
+import type { BasicDescProps, DescActionMethods, UseDescReturnType } from './typing'
 
 import { ref, getCurrentInstance, unref } from 'vue'
 
@@ -11,7 +11,7 @@ import { error } from '@/utils/log'
  * Define use instance
  * @param props DescriptionProps
  */
-export function useDescription(props?: Partial<BasicProps>): UseDescReturnType {
+export function useDescription(props?: Partial<BasicDescProps>): UseDescReturnType {
   if (!getCurrentInstance()) {
     error('useDescription() can only be used inside setup() or functional components!')
   }
@@ -39,7 +39,7 @@ export function useDescription(props?: Partial<BasicProps>): UseDescReturnType {
      * Set description props
      * @param props DescriptionProps
      */
-    setDescProps: (descProps: Partial<BasicProps>): void => {
+    setDescProps: (descProps: Partial<BasicDescProps>): void => {
       unref(desc)?.setDescProps(descProps)
     },
   }

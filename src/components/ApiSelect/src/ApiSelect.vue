@@ -20,8 +20,6 @@ import { defineComponent, ref, watchEffect, computed, unref, watch, onMounted } 
 import { ElSelect, ElOption } from 'element-plus'
 import { get, omit } from 'lodash-es'
 
-import { isFunction } from '@/utils/is'
-
 import { OptionsItem } from './typing'
 
 export default defineComponent({
@@ -169,7 +167,7 @@ export default defineComponent({
      */
     async function fetch() {
       const api = props.api
-      if (!api || !isFunction(api)) return
+      if (!api || typeof api !== 'function') return
 
       options.value = []
       try {

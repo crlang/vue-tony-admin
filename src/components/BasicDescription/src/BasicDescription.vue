@@ -1,7 +1,7 @@
 <script lang="tsx">
-import type { BasicProps, DescActionMethods } from './typing'
+import type { BasicDescProps, DescActionMethods } from './typing'
 import type { CSSProperties } from 'vue'
-import type { BasicProps as CollapseBasicProps } from '@/components/CollapseContainer'
+import type { CollapseContainerProps } from '@/components/CollapseContainer'
 
 import { defineComponent, computed, ref, unref } from 'vue'
 import { ElDescriptions, ElDescriptionsItem } from 'element-plus'
@@ -18,7 +18,7 @@ export default defineComponent({
   props: basicProps,
   emits: ['register'],
   setup(props, { attrs, slots, emit, expose }) {
-    const propsRef = ref<Partial<BasicProps> | null>(null)
+    const propsRef = ref<Partial<BasicDescProps> | null>(null)
 
     const { prefixCls } = useDesign('basic-description')
 
@@ -31,7 +31,7 @@ export default defineComponent({
       return {
         ...props,
         ...(unref(propsRef) as Recordable),
-      } as BasicProps
+      } as BasicDescProps
     })
 
     /**
@@ -46,7 +46,7 @@ export default defineComponent({
      *
      * Get Collapse configuration
      */
-    const getCollapseOptions = computed((): CollapseBasicProps => {
+    const getCollapseOptions = computed((): CollapseContainerProps => {
       const { collapseOptions = {} } = unref(getProps)
       return {
         // Cannot be expanded by default
@@ -66,7 +66,7 @@ export default defineComponent({
       // Before binding component Porps, remove custom add-ons
       const customOpts = Object.keys(customProps)
 
-      return omit(opts, customOpts) as BasicProps
+      return omit(opts, customOpts) as BasicDescProps
     })
 
     /**
@@ -75,7 +75,7 @@ export default defineComponent({
      * Setting Props by Instance
      * @param descProps Description Props
      */
-    function setDescProps(descProps: Partial<BasicProps>): void {
+    function setDescProps(descProps: Partial<BasicDescProps>): void {
       propsRef.value = { ...(unref(propsRef) as Recordable), ...descProps } as Recordable
     }
 

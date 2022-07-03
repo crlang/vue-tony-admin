@@ -18,9 +18,10 @@ import { useAppStore } from '@/store/modules/app'
 import { getCommonStoragePrefix, getStorageShortName } from '@/utils/env'
 
 import { Persistent } from '@/utils/cache/persistent'
-import { deepMerge } from '@/utils'
+// import { deepMerge } from '@/utils'
 import { ThemeEnum } from '@/enums/appEnum'
 import { primaryColor } from '@/settings/designSetting'
+import { merge } from 'lodash-es'
 
 /**
  * 初始项目配置
@@ -32,7 +33,7 @@ export function initAppConfigStore() {
   const darkMode = appStore.getDarkMode
 
   let projCfg: ProjectConfig = Persistent.getLocal(PROJ_CFG_KEY) as ProjectConfig
-  projCfg = deepMerge(projectSetting, projCfg || {})
+  projCfg = merge(projectSetting, projCfg || {})
 
   const { colorWeak, grayMode, themeColor, headerSetting, menuSetting } = projCfg
 

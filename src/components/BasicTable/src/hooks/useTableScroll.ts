@@ -1,8 +1,8 @@
 import type { Ref, ComputedRef } from 'vue'
-import type { BasicProps } from '../typing'
+import type { BasicTableProps } from '../typing'
 
 import { computed, unref, watch, nextTick } from 'vue'
-import { useDebounceFn, isBoolean } from '@vueuse/core'
+import { useDebounceFn } from '@vueuse/core'
 
 import { getViewportOffset } from '@/utils/domUtils'
 import { useWindowSizeFn } from '@/hooks/event/useWindowSizeFn'
@@ -18,7 +18,7 @@ import { onMountedOrActivated } from '@/hooks/core/onMountedOrActivated'
  * @param getDataSourceRef
  */
 export function useTableScroll(
-  propsRef: ComputedRef<BasicProps>,
+  propsRef: ComputedRef<BasicTableProps>,
   tableElRef: Ref<ComponentRef>,
   getDataSourceRef: ComputedRef<Recordable[]>
 ) {
@@ -94,7 +94,7 @@ export function useTableScroll(
 
     // Pager height
     let paginationHeight = 0
-    if (!isBoolean(pagination)) {
+    if (typeof pagination !== 'boolean') {
       paginationEl = tableEl?.nextSibling as HTMLElement
       if (paginationEl) {
         const offsetHeight = paginationEl.offsetHeight || 0

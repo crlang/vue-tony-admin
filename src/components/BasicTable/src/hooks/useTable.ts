@@ -3,7 +3,7 @@ import type { DynamicProps } from '#/utils'
 import type { FormActionMethods } from '@/components/BasicForm'
 import type { ElePagination } from '@/components/ElementPlus'
 import type {
-  BasicProps,
+  BasicTableProps,
   TableActionMethods,
   FetchParams,
   BasicColumn,
@@ -23,7 +23,7 @@ import { error } from '@/utils/log'
  * Define use instance
  */
 export function useTable(
-  tableProps?: Partial<DynamicProps<BasicProps>>
+  tableProps?: Partial<DynamicProps<BasicTableProps>>
 ): [(instance: TableActionMethods, formInstance: UseTableMethod) => void, UseTableMethod] {
   const tableRef = ref<Nullable<TableActionMethods>>(null)
   const loadedRef = ref<Nullable<boolean>>(false)
@@ -120,7 +120,7 @@ export function useTable(
     reload: async (opt?: FetchParams) => {
       getTableInstance().reload(opt)
     },
-    setTableProps: (props: Partial<BasicProps>) => {
+    setTableProps: (props: Partial<BasicTableProps>) => {
       getTableInstance().setTableProps(props)
     },
     getColumns: ({ ignoreIndex = false }: GetColumnsParams = {}) => {

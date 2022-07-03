@@ -1,6 +1,33 @@
 import type { ComputedRef } from 'vue'
 import type { EleDialog, EleButton } from '@/components/ElementPlus'
 
+/**
+ * 弹窗基础Props
+ *
+ * Modal Basic Props
+ */
+export interface BasicModalProps extends EleDialog, ModalCustomHeader, ModalCustomContent, ModalCustomFooter {
+  modelValue: Boolean
+  /**
+   * 是否显示脚部
+   *
+   * Whether to display the footer
+   */
+  showFooter?: Boolean
+  /**
+   * 关闭后是否滚动回顶部
+   *
+   * Whether to scroll back to the top after closing
+   */
+  scrollTop?: Boolean
+  /**
+   * 关闭前执行函数方法
+   *
+   * Execute the function before closing, return true before closing
+   */
+  closeFn?: () => Promise<boolean>
+}
+
 export interface ModalCustomHeader {
   /**
    * 是否显示关闭图标
@@ -69,28 +96,6 @@ export interface ModalCustomFooter {
   cancelOptions?: EleButton
 }
 
-export interface BasicProps extends EleDialog, ModalCustomHeader, ModalCustomContent, ModalCustomFooter {
-  modelValue: Boolean
-  /**
-   * 是否显示脚部
-   *
-   * Whether to display the footer
-   */
-  showFooter?: Boolean
-  /**
-   * 关闭后是否滚动回顶部
-   *
-   * Whether to scroll back to the top after closing
-   */
-  scrollTop?: Boolean
-  /**
-   * 关闭前执行函数方法
-   *
-   * Execute the function before closing, return true before closing
-   */
-  closeFn?: () => Promise<boolean>
-}
-
 /**
  * 弹窗实例方法
  *
@@ -102,7 +107,7 @@ export interface ModalInstanceMethods {
    *
    * Set modal props
    */
-  setModalProps: (props: Partial<BasicProps>) => void
+  setModalProps: (props: Partial<BasicModalProps>) => void
   /**
    * 显示/隐藏弹窗-方法内部生成
    *

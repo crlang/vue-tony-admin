@@ -1,7 +1,6 @@
 import type { RouteLocationRaw, Router } from 'vue-router'
 
 import { PageEnum } from '@/enums/pageEnum'
-import { isString } from '@/utils/is'
 import { unref } from 'vue'
 
 import { useRouter } from 'vue-router'
@@ -24,7 +23,7 @@ export function useGo(_router?: Router) {
     if (!opt) {
       return
     }
-    if (isString(opt)) {
+    if (typeof opt === 'string') {
       isReplace ? replace(opt).catch(handleError) : push(opt).catch(handleError)
     } else {
       const o = opt as RouteLocationRaw

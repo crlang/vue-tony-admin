@@ -5,10 +5,240 @@ import type {
   EleButton,
   EleActionPopconfirmAction
 } from '@/components/ElementPlus'
-import type { FormActionMethods, BasicProps as BasicFormProps } from '@/components/BasicForm'
+import type { FormActionMethods, BasicFormProps } from '@/components/BasicForm'
 import type { MessageBoxOptions } from '@/hooks/web/useMessage'
 
 import { RoleEnum } from '@/enums/roleEnum'
+
+/**
+ * 表格基础Props
+ *
+ * Table Basic Props
+ */
+export interface BasicTableProps extends EleTable {
+  // header
+  /**
+   * 表格头部标题
+   *
+   * Table header title
+   */
+  title?: string
+  /**
+   * 标题右侧的帮助提示
+   *
+   * Title help message
+   */
+  titleHelpMessage?: string | string[]
+  /**
+   * 是否显示更多设置
+   *
+   * Whether to show more settings
+   */
+  showTableSetting?: boolean
+  /**
+   * 设置的选项
+   *
+   * Setting item
+   */
+  tableSetting?: TableSetting
+  // main
+  /**
+   * 表格数据源，当存在 api 函数时，可为空
+   *
+   * Table data source, nullable when there is an api function
+   */
+  dataSource?: Recordable[]
+  /**
+   * 表格列配置
+   *
+   * Table column configuration
+   */
+  columns: BasicColumn[]
+  /**
+   * api 函数，请求后台数据
+   *
+   * api function, requesting data from the server
+   */
+  api?: (...arg: any) => Promise<any>
+  /**
+   * 接口结果字段匹配
+   *
+   * Interface result field match
+   */
+  fetchSetting?: Partial<FetchSetting>
+  /**
+   * 是否自动创建key
+   *
+   * Whether to automatically create a key
+   */
+  autoCreateKey?: boolean
+  /**
+   * 请求列表之前请求
+   *
+   * Request list before request
+   */
+  beforeFetchFn?: (data: Recordable) => Recordable
+  /**
+   * 请求列表之后请求
+   *
+   * Request list after request
+   */
+  afterFetchFn?: (data: Recordable[]) => Recordable[]
+  /**
+   * 搜索时的参数过滤
+   *
+   * Parameter filtering when searching
+   */
+  searchFn?: (data: Recordable) => Recordable
+  /**
+   * 排序时的参数过滤
+   *
+   * Parameter filtering when sorting
+   */
+  sortFn?: (data: ColumnSorterResult) => Recordable
+  /**
+   * 筛选时的参数过滤
+   *
+   * Parameter filtering when filtering
+   */
+  filterFn?: (data: Recordable[]) => Recordable[]
+  /**
+   * 是否立即请求
+   *
+   * whether to request now
+   */
+  immediate?: boolean
+  /**
+   * 额外的搜索参数
+   *
+   * Additional search parameters
+   */
+  searchInfo?: Recordable
+  /**
+   * 是否使用搜索表单
+   *
+   * Whether to use a search form
+   */
+  useSearchForm?: boolean
+  /**
+   * 搜索表单配置
+   *
+   * Search form configuration
+   */
+  formConfig?: Partial<BasicFormProps>
+  /**
+   * 是否显示序号列
+   *
+   * Whether to show the serial number column
+   */
+  showIndexColumn?: boolean
+  /**
+   * 是否显示选择列
+   *
+   * whether to show checkbox columns
+   */
+  showCheckboxColumn?: boolean
+  /**
+   * 是否自动调整表格大小
+   *
+   * Whether to automatically adjust the table size
+   */
+  canResize?: boolean
+  /**
+   * 分页导航配置
+   *
+   * Pagination Configuration
+   */
+  pagination?: Partial<ElePagination> | boolean
+  /**
+   * 是否加载状态
+   *
+   * Whether the status is being loaded
+   */
+  loading?: boolean
+  /**
+   * 子项的所在的字段名称，一般用在展开表格
+   *
+   * The name of the field where the child item is located, generally used to expand the table
+   */
+  childrenColumnName?: string
+
+  // Element Plus Table event
+  // 请查看官方使用文档
+  // Please check the official documentation
+  /**
+   * 当用户手动勾选数据行的 Checkbox 时触发的事件
+   */
+  onSelect?: (selection, row) => void
+  /**
+   * 当用户手动勾选全选 Checkbox 时触发的事件
+   */
+  onSelectAll?: (selection) => void
+  /**
+   * 当选择项发生变化时会触发该事件
+   */
+  onSelectionChange?: (selection) => void
+  /**
+   * 当单元格 hover 进入时会触发该事件
+   */
+  onCellMouseEnter?: (row, column, cell, event) => void
+  /**
+   * 当单元格 hover 退出时会触发该事件
+   */
+  onCellMouseLeave?: (row, column, cell, event) => void
+  /**
+   * 当某个单元格被点击时会触发该事件
+   */
+  onCellClick?: (row, column, cell, event) => void
+  /**
+   * 当某个单元格被双击击时会触发该事件
+   */
+  onCellDblclick?: (row, column, cell, event) => void
+  /**
+   * 当某个单元格被鼠标右键点击时会触发该事件
+   */
+  onCellContextmenu?: (row, column, cell, event) => void
+  /**
+   * 当某一行被点击时会触发该事件
+   */
+  onRowClick?: (row, column, event) => void
+  /**
+   * 当某一行被鼠标右键点击时会触发该事件
+   */
+  onRowContextmenu?: (row, column, event) => void
+  /**
+   * 当某一行被双击时会触发该事件
+   */
+  onRowDblclick?: (row, column, event) => void
+  /**
+   * 当某一列的表头被点击时会触发该事件
+   */
+  onHeaderClick?: (column, event) => void
+  /**
+   * 当某一列的表头被鼠标右键点击时触发该事件
+   */
+  onHeaderContextmenu?: (column, event) => void
+  /**
+   * 当表格的排序条件发生变化的时候会触发该事件
+   */
+  onSortChange?: ({ column, prop, order }) => void
+  /**
+   * column 的 key， 如果需要使用 filter-change 事件，则需要此属性标识是哪个 column 的筛选条件
+   */
+  onFilterChange?: (filters) => void
+  /**
+   * 当表格的当前行发生变化的时候会触发该事件，如果要高亮当前行，请打开表格的 highlight-current-row 属性
+   */
+  onCurrentChange?: (currentRow, oldCurrentRow) => void
+  /**
+   * 当拖动表头改变了列的宽度的时候会触发该事件
+   */
+  onHeaderDragend?: (newWidth, oldWidth, column, event) => void
+  /**
+   * 当用户对某一行展开或者关闭的时候会触发该事件（展开行时，回调的第二个参数为 expandedRows；树形表格时第二参数为 expanded）
+   */
+  onExpandChange?: (row, expandedRows_or_expanded) => void
+}
 
 export declare type ColumnSortOrder = 'ascending' | 'descending' | null
 
@@ -124,7 +354,7 @@ export interface TableActionMethods {
    *
    * Set table props
    */
-  setTableProps: (props: Partial<BasicProps>) => void
+  setTableProps: (props: Partial<BasicTableProps>) => void
   /**
    * 获取表格列
    *
@@ -349,231 +579,6 @@ export interface TableSetting {
    * full screen
    */
   fullScreen?: boolean
-}
-
-export interface BasicProps extends EleTable {
-  // header
-  /**
-   * 表格头部标题
-   *
-   * Table header title
-   */
-  title?: string
-  /**
-   * 标题右侧的帮助提示
-   *
-   * Title help message
-   */
-  titleHelpMessage?: string | string[]
-  /**
-   * 是否显示更多设置
-   *
-   * Whether to show more settings
-   */
-  showTableSetting?: boolean
-  /**
-   * 设置的选项
-   *
-   * Setting item
-   */
-  tableSetting?: TableSetting
-  // main
-  /**
-   * 表格数据源，当存在 api 函数时，可为空
-   *
-   * Table data source, nullable when there is an api function
-   */
-  dataSource?: Recordable[]
-  /**
-   * 表格列配置
-   *
-   * Table column configuration
-   */
-  columns: BasicColumn[]
-  /**
-   * api 函数，请求后台数据
-   *
-   * api function, requesting data from the server
-   */
-  api?: (...arg: any) => Promise<any>
-  /**
-   * 接口结果字段匹配
-   *
-   * Interface result field match
-   */
-  fetchSetting?: Partial<FetchSetting>
-  /**
-   * 是否自动创建key
-   *
-   * Whether to automatically create a key
-   */
-  autoCreateKey?: boolean
-  /**
-   * 请求列表之前请求
-   *
-   * Request list before request
-   */
-  beforeFetchFn?: (data: Recordable) => Recordable
-  /**
-   * 请求列表之后请求
-   *
-   * Request list after request
-   */
-  afterFetchFn?: (data: Recordable[]) => Recordable[]
-  /**
-   * 搜索时的参数过滤
-   *
-   * Parameter filtering when searching
-   */
-  searchFn?: (data: Recordable) => Recordable
-  /**
-   * 排序时的参数过滤
-   *
-   * Parameter filtering when sorting
-   */
-  sortFn?: (data: ColumnSorterResult) => Recordable
-  /**
-   * 筛选时的参数过滤
-   *
-   * Parameter filtering when filtering
-   */
-  filterFn?: (data: Recordable[]) => Recordable[]
-  /**
-   * 是否立即请求
-   *
-   * whether to request now
-   */
-  immediate?: boolean
-  /**
-   * 额外的搜索参数
-   *
-   * Additional search parameters
-   */
-  searchInfo?: Recordable
-  /**
-   * 是否使用搜索表单
-   *
-   * Whether to use a search form
-   */
-  useSearchForm?: boolean
-  /**
-   * 搜索表单配置
-   *
-   * Search form configuration
-   */
-  formConfig?: Partial<BasicFormProps>
-  /**
-   * 是否显示序号列
-   *
-   * Whether to show the serial number column
-   */
-  showIndexColumn?: boolean
-  /**
-   * 是否显示选择列
-   *
-   * whether to show checkbox columns
-   */
-  showCheckboxColumn?: boolean
-  /**
-   * 是否自动调整表格大小
-   *
-   * Whether to automatically adjust the table size
-   */
-  canResize?: boolean
-  /**
-   * 分页导航配置
-   *
-   * Pagination Configuration
-   */
-  pagination?: Partial<ElePagination> | boolean
-  /**
-   * 是否加载状态
-   *
-   * Whether the status is being loaded
-   */
-  loading?: boolean
-  /**
-   * 子项的所在的字段名称，一般用在展开表格
-   *
-   * The name of the field where the child item is located, generally used to expand the table
-   */
-  childrenColumnName?: string
-
-  // Element Plus Table event
-  // 请查看官方使用文档
-  // Please check the official documentation
-  /**
-   * 当用户手动勾选数据行的 Checkbox 时触发的事件
-   */
-  onSelect?: (selection, row) => void
-  /**
-   * 当用户手动勾选全选 Checkbox 时触发的事件
-   */
-  onSelectAll?: (selection) => void
-  /**
-   * 当选择项发生变化时会触发该事件
-   */
-  onSelectionChange?: (selection) => void
-  /**
-   * 当单元格 hover 进入时会触发该事件
-   */
-  onCellMouseEnter?: (row, column, cell, event) => void
-  /**
-   * 当单元格 hover 退出时会触发该事件
-   */
-  onCellMouseLeave?: (row, column, cell, event) => void
-  /**
-   * 当某个单元格被点击时会触发该事件
-   */
-  onCellClick?: (row, column, cell, event) => void
-  /**
-   * 当某个单元格被双击击时会触发该事件
-   */
-  onCellDblclick?: (row, column, cell, event) => void
-  /**
-   * 当某个单元格被鼠标右键点击时会触发该事件
-   */
-  onCellContextmenu?: (row, column, cell, event) => void
-  /**
-   * 当某一行被点击时会触发该事件
-   */
-  onRowClick?: (row, column, event) => void
-  /**
-   * 当某一行被鼠标右键点击时会触发该事件
-   */
-  onRowContextmenu?: (row, column, event) => void
-  /**
-   * 当某一行被双击时会触发该事件
-   */
-  onRowDblclick?: (row, column, event) => void
-  /**
-   * 当某一列的表头被点击时会触发该事件
-   */
-  onHeaderClick?: (column, event) => void
-  /**
-   * 当某一列的表头被鼠标右键点击时触发该事件
-   */
-  onHeaderContextmenu?: (column, event) => void
-  /**
-   * 当表格的排序条件发生变化的时候会触发该事件
-   */
-  onSortChange?: ({ column, prop, order }) => void
-  /**
-   * column 的 key， 如果需要使用 filter-change 事件，则需要此属性标识是哪个 column 的筛选条件
-   */
-  onFilterChange?: (filters) => void
-  /**
-   * 当表格的当前行发生变化的时候会触发该事件，如果要高亮当前行，请打开表格的 highlight-current-row 属性
-   */
-  onCurrentChange?: (currentRow, oldCurrentRow) => void
-  /**
-   * 当拖动表头改变了列的宽度的时候会触发该事件
-   */
-  onHeaderDragend?: (newWidth, oldWidth, column, event) => void
-  /**
-   * 当用户对某一行展开或者关闭的时候会触发该事件（展开行时，回调的第二个参数为 expandedRows；树形表格时第二参数为 expanded）
-   */
-  onExpandChange?: (row, expandedRows_or_expanded) => void
 }
 
 /**

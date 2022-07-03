@@ -2,7 +2,7 @@ import type { CSSProperties } from 'vue'
 import type { Dayjs } from 'dayjs'
 import type { TableActionMethods } from '@/components/BasicTable'
 import type { EleButton, EleCol, EleRow } from '@/components/ElementPlus'
-import type { BasicFormSchema, FormActionMethods, BasicProps } from './typing'
+import type { BasicFormSchema, FormActionMethods, BasicFormProps } from './typing'
 
 import { EleFormProps } from '@/components/ElementPlus'
 
@@ -249,7 +249,7 @@ export const basicFormItemProps = {
    * Form props
    */
   formProps: {
-    type: Object as PropType<BasicProps>,
+    type: Object as PropType<BasicFormProps>,
     default: () => ({}),
   },
   /**

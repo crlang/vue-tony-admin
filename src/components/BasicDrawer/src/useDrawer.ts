@@ -2,7 +2,7 @@ import type {
   UseDrawerReturnType,
   DrawerInstanceMethods,
   DrawerActionMethods,
-  BasicProps,
+  BasicDrawerProps,
   UseDrawerInnerReturnType
 } from './typing'
 
@@ -78,7 +78,7 @@ export function useDrawer(): UseDrawerReturnType {
    * Define instance methods
    */
   const methods: DrawerActionMethods = {
-    setDrawerProps: (props: Partial<BasicProps>): void => {
+    setDrawerProps: (props: Partial<BasicDrawerProps>): void => {
       getInstance()?.setDrawerProps(props)
     },
 
@@ -179,7 +179,7 @@ export const useDrawerInner = (callbackFn?: Fn): UseDrawerInnerReturnType => {
       getInstance()?.setDrawerProps({ modelValue: false })
     },
 
-    setDrawerProps: (props: Partial<BasicProps>) => {
+    setDrawerProps: (props: Partial<BasicDrawerProps>) => {
       getInstance()?.setDrawerProps(props)
     },
   }

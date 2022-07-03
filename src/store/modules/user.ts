@@ -13,7 +13,6 @@ import { router } from '@/router'
 import { usePermissionStore } from '@/store/modules/permission'
 import { RouteRecordRaw } from 'vue-router'
 import { PAGE_NOT_FOUND_ROUTE } from '@/router/routes/basic'
-import { isArray } from '@/utils/is'
 
 interface UserState {
   userInfo: Nullable<UserInfo>
@@ -124,7 +123,7 @@ export const useUserStore = defineStore({
       if (!this.getToken) return null
       const userInfo = await getUserInfo()
       const { roles = [] } = userInfo
-      if (isArray(roles)) {
+      if (Array.isArray(roles)) {
         const roleList = roles.map((item) => item.value) as RoleEnum[]
         this.setRoleList(roleList)
       } else {

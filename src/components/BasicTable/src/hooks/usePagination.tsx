@@ -1,8 +1,7 @@
-import type { BasicProps } from '../typing'
+import type { BasicTableProps } from '../typing'
 import type { ElePagination } from '@/components/ElementPlus'
 
 import { computed, unref, ref, ComputedRef, watchEffect } from 'vue'
-import { isBoolean } from '@/utils/is'
 import { PAGE_SIZE, PAGE_SIZE_OPTIONS, PAGE_LAYOUT_OPTIONS } from '../const'
 
 /**
@@ -11,7 +10,7 @@ import { PAGE_SIZE, PAGE_SIZE_OPTIONS, PAGE_LAYOUT_OPTIONS } from '../const'
  * Handling table pagination
  * @param propsRef
  */
-export function usePagination(propsRef: ComputedRef<BasicProps>) {
+export function usePagination(propsRef: ComputedRef<BasicTableProps>) {
   const configRef = ref<ElePagination>({})
 
   /**
@@ -22,7 +21,7 @@ export function usePagination(propsRef: ComputedRef<BasicProps>) {
   const getTablePagination = computed((): ElePagination => {
     const { pagination, api } = unref(propsRef)
 
-    if (isBoolean(pagination) || (!pagination && (!api || typeof api !== 'function'))) {
+    if (typeof pagination === 'boolean' || (!pagination && (!api || typeof api !== 'function'))) {
       return false
     }
 
@@ -66,7 +65,7 @@ export function usePagination(propsRef: ComputedRef<BasicProps>) {
 
   watchEffect(() => {
     const { pagination } = unref(propsRef)
-    if (!isBoolean(pagination) && pagination) {
+    if (typeof pagination !== 'boolean' && pagination) {
       configRef.value = {
         ...pagination,
         ...unref(configRef),

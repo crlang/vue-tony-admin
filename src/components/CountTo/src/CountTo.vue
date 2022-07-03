@@ -6,7 +6,6 @@
 import { defineComponent, ref, computed, watchEffect, unref, onMounted, watch } from 'vue'
 import { useTransition, TransitionPresets } from '@vueuse/core'
 
-import { isNumber } from '@/utils/is'
 import { basicProps } from './props'
 
 export default defineComponent({
@@ -62,7 +61,7 @@ export default defineComponent({
       const x2 = x.length > 1 ? decimal + x[1] : ''
 
       const rgx = /(\d+)(\d{3})/
-      if (separator && !isNumber(separator)) {
+      if (separator && typeof separator !== 'number') {
         while (rgx.test(x1)) {
           x1 = x1.replace(rgx, '$1' + separator + '$2')
         }

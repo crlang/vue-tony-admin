@@ -1,5 +1,5 @@
 import type { BasicColumn, FetchSetting, TableSetting, ColumnSorterResult } from './typing'
-import type { BasicProps as BasicFormProps } from '@/components/BasicForm'
+import type { BasicFormProps } from '@/components/BasicForm'
 import type { ElePagination } from '@/components/ElementPlus'
 
 import { EleTableProps, ElePaginationProps } from '@/components/ElementPlus'

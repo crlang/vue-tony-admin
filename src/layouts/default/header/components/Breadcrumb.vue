@@ -1,8 +1,7 @@
 <template>
   <ElBreadcrumb
     separator="/"
-    :class="prefixCls"
-    :routes="routes">
+    :class="prefixCls">
     <ElBreadcrumbItem
       v-for="route in routes"
       :key="route.name">
@@ -38,7 +37,6 @@ import { useDesign } from '@/hooks/web/useDesign'
 import { useRootSetting } from '@/hooks/setting/useRootSetting'
 import { useGo } from '@/hooks/web/usePage'
 
-import { isString } from '@/utils/is'
 import { filter } from '@/utils/helper/treeHelper'
 import { getMenus } from '@/router/menus'
 
@@ -127,7 +125,7 @@ export default defineComponent({
         return
       }
 
-      if (redirect && isString(redirect)) {
+      if (redirect && typeof redirect === 'string') {
         go(redirect)
       } else {
         let goPath = ''

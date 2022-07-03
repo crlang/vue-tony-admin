@@ -96,12 +96,12 @@
 
 <script lang="ts">
 import type { ElePagination } from '@/components/ElementPlus'
-import type { BasicProps, TableActionMethods } from './typing'
+import type { BasicTableProps, TableActionMethods } from './typing'
 
 import { defineComponent, ref, computed, unref, watchEffect, inject } from 'vue'
 import { ElLoading, ElTable, ElTableColumn, ElConfigProvider } from 'element-plus'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
-import { omit, isString } from 'lodash-es'
+import { omit } from 'lodash-es'
 
 import { BasicForm, useForm } from '@/components/BasicForm'
 import { PageWrapperFixedHeightKey } from '@/components/PageWrapper'
@@ -145,7 +145,7 @@ export default defineComponent({
     const tableData = ref<Recordable[]>([])
 
     const wrapRef = ref(null)
-    const propsRef = ref<Partial<BasicProps>>({})
+    const propsRef = ref<Partial<BasicTableProps>>({})
 
     const { prefixCls } = useDesign('basic-table')
     const [registerForm, formActions] = useForm()
@@ -158,7 +158,7 @@ export default defineComponent({
      * Get props
      */
     const getProps = computed(() => {
-      return { ...props, ...unref(propsRef) } as BasicProps
+      return { ...props, ...unref(propsRef) } as BasicTableProps
     })
 
     const { getLoading, setLoading } = useLoading(getProps)
@@ -229,7 +229,7 @@ export default defineComponent({
         return {}
       }
 
-      if (!isString(title)) {
+      if (typeof title !== 'string') {
         warn('Table title must be a string')
       }
 
@@ -269,7 +269,7 @@ export default defineComponent({
       // Before binding component Porps, remove custom add-ons
       const customOpts = Object.keys(customProps)
 
-      return omit(opts, customOpts) as BasicProps
+      return omit(opts, customOpts) as BasicTableProps
     })
     /**
      * 获取表格外框类
@@ -291,7 +291,7 @@ export default defineComponent({
      * Setting Props by Instance
      * @param tableProps Table Props
      */
-    function setTableProps(tableProps: Partial<BasicProps>): void {
+    function setTableProps(tableProps: Partial<BasicTableProps>): void {
       propsRef.value = { ...(unref(propsRef) as Recordable), ...tableProps } as Recordable
     }
 

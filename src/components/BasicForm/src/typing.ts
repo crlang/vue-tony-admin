@@ -3,168 +3,11 @@ import type { TableActionMethods } from '@/components/BasicTable'
 import type { EleButton, EleCol, EleForm, EleFormItem, EleFormItemRule, EleRow } from '@/components/ElementPlus'
 
 /**
- * 表单项支持的组件
+ * 表单基础Props
  *
- * Components supported by form items
+ * Form Basic Props
  */
-export type ComponentType =
-  | 'ElDivider'
-  | 'ElInput'
-  | 'ElSelect'
-  | 'ElDatePicker'
-  | 'ElTimePicker'
-  // | 'ElRadio'
-  | 'ElRadioGroup'
-  // | 'ElRadioButton'
-  // | 'ElCheckbox'
-  | 'ElCheckboxGroup'
-  | 'ElSwitch'
-  | 'ElCascader'
-  | 'ElRate'
-  | 'ElSlider'
-  | 'ElInputNumber'
-
-/**
- * 展开/收起状态
- *
- * Expand/Collapse state
- */
-export interface AdvanceState {
-  /**
-   * 展开/收起按钮的状态
-   *
-   * Expand/Collapse button state
-   */
-  isAdvanced: boolean
-  /**
-   * 操作项的列的大小
-   *
-   * The size of the column for the action item
-   */
-  actionSpan: number
-}
-
-/**
- * 表单项Prop
- *
- * Form item prop
- */
-export type FormItemProp = string | string[]
-
-/**
- * 渲染函数的回调参数
- *
- * The callback parameter of the render function
- */
-export interface RenderCallbackParams {
-  schema: BasicFormSchema
-  model: Recordable
-  field: string
-}
-
-/**
- * 实例支持的方法
- *
- * Instance Supported Methods
- */
-export interface FormActionMethods {
-  // Custom
-  /**
-   * 提交表单
-   *
-   * Submit form
-   */
-  submit: () => Promise<Recordable>
-  /**
-   * 重置表单
-   *
-   * Reset form
-   */
-  reset: () => void
-  /**
-   * 更新表单Props
-   *
-   * Set form props
-   */
-  setFormProps: (formProps: Partial<BasicProps>) => void
-  /**
-   * 更新表单内容
-   *
-   * Set form field values
-   */
-  setFieldsValue: (values: Recordable) => void
-  /**
-   * 获取表单内容
-   *
-   * Get form field values
-   */
-  getFieldsValue: () => Recordable
-  /**
-   * 更新表单架构数据
-   *
-   * Update form schema data
-   */
-  updateSchema: (schema: Partial<BasicFormSchema>) => boolean
-  /**
-   * 重置表单数据架构，需要传入重置的架构数据
-   *
-   * To reset the form data schema, the reset schema data needs to be passed in
-   */
-  resetSchema: (schemaData: BasicFormSchema[]) => void
-  /**
-   * 插入一个结构数据到表单架构中
-   *
-   * Insert a structure data into the form schema
-   */
-  appendSchemaByField: (schema: BasicFormSchema, beforeField?: string, first?: boolean) => void
-  /**
-   * 根据字段删除表单架构内容
-   *
-   * Delete form schema content based on fields
-   */
-  removeSchemaByField: (field: string | string[]) => void
-
-  // Element Plus
-  /**
-   * 对整个表单的内容进行验证。 接收一个回调函数，或返回 Promise。
-   */
-  validate: (callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void) => Promise<void>
-  /**
-   * 验证具体的某个字段。
-   */
-  validateField: (
-    props?: Arrayable<FormItemProp>,
-    callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void
-  ) => Promise<void>
-  /**
-   * 重置该表单项，将其值重置为初始值，并移除校验结果
-   */
-  resetFields: (props?: Arrayable<FormItemProp>) => void
-  /**
-   * 滚动到指定的字段
-   */
-  scrollToField: (prop: FormItemProp) => void
-  /**
-   * 清理某个字段的表单验证信息。
-   */
-  clearValidate: (props?: Arrayable<FormItemProp>) => void
-}
-
-/**
- * 注册实例方法
- *
- * Register instance function
- */
-export type RegisterFn = (formInstance: FormActionMethods) => void
-
-/**
- * 定义实例内容
- *
- * Define instance content
- */
-export type UseFormReturnType = [RegisterFn, FormActionMethods]
-
-export interface BasicProps extends EleForm {
+export interface BasicFormProps extends Partial<EleForm> {
   /**
    * 表单数据项架构的数组
    *
@@ -292,6 +135,168 @@ export interface BasicProps extends EleForm {
    */
   tableAction?: TableActionMethods
 }
+
+/**
+ * 表单项支持的组件
+ *
+ * Components supported by form items
+ */
+export type ComponentType =
+  | 'ElDivider'
+  | 'ElInput'
+  | 'ElSelect'
+  | 'ElDatePicker'
+  | 'ElTimePicker'
+  // | 'ElRadio'
+  | 'ElRadioGroup'
+  // | 'ElRadioButton'
+  // | 'ElCheckbox'
+  | 'ElCheckboxGroup'
+  | 'ElSwitch'
+  | 'ElCascader'
+  | 'ElRate'
+  | 'ElSlider'
+  | 'ElInputNumber'
+
+/**
+ * 展开/收起状态
+ *
+ * Expand/Collapse state
+ */
+export interface AdvanceState {
+  /**
+   * 展开/收起按钮的状态
+   *
+   * Expand/Collapse button state
+   */
+  isAdvanced: boolean
+  /**
+   * 操作项的列的大小
+   *
+   * The size of the column for the action item
+   */
+  actionSpan: number
+}
+
+/**
+ * 表单项Prop
+ *
+ * Form item prop
+ */
+export type FormItemProp = string | string[]
+
+/**
+ * 渲染函数的回调参数
+ *
+ * The callback parameter of the render function
+ */
+export interface RenderCallbackParams {
+  schema: BasicFormSchema
+  model: Recordable
+  field: string
+}
+
+/**
+ * 实例支持的方法
+ *
+ * Instance Supported Methods
+ */
+export interface FormActionMethods {
+  // Custom
+  /**
+   * 提交表单
+   *
+   * Submit form
+   */
+  submit: () => Promise<Recordable>
+  /**
+   * 重置表单
+   *
+   * Reset form
+   */
+  reset: () => void
+  /**
+   * 更新表单Props
+   *
+   * Set form props
+   */
+  setFormProps: (formProps: Partial<BasicFormProps>) => void
+  /**
+   * 更新表单内容
+   *
+   * Set form field values
+   */
+  setFieldsValue: (values: Recordable) => void
+  /**
+   * 获取表单内容
+   *
+   * Get form field values
+   */
+  getFieldsValue: () => Recordable
+  /**
+   * 更新表单架构数据
+   *
+   * Update form schema data
+   */
+  updateSchema: (schema: Partial<BasicFormSchema>) => boolean
+  /**
+   * 重置表单数据架构，需要传入重置的架构数据
+   *
+   * To reset the form data schema, the reset schema data needs to be passed in
+   */
+  resetSchema: (schemaData: BasicFormSchema[]) => void
+  /**
+   * 插入一个结构数据到表单架构中
+   *
+   * Insert a structure data into the form schema
+   */
+  appendSchemaByField: (schema: BasicFormSchema, beforeField?: string, first?: boolean) => void
+  /**
+   * 根据字段删除表单架构内容
+   *
+   * Delete form schema content based on fields
+   */
+  removeSchemaByField: (field: string | string[]) => void
+
+  // Element Plus
+  /**
+   * 对整个表单的内容进行验证。 接收一个回调函数，或返回 Promise。
+   */
+  validate: (callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void) => Promise<void>
+  /**
+   * 验证具体的某个字段。
+   */
+  validateField: (
+    props?: Arrayable<FormItemProp>,
+    callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void
+  ) => Promise<void>
+  /**
+   * 重置该表单项，将其值重置为初始值，并移除校验结果
+   */
+  resetFields: (props?: Arrayable<FormItemProp>) => void
+  /**
+   * 滚动到指定的字段
+   */
+  scrollToField: (prop: FormItemProp) => void
+  /**
+   * 清理某个字段的表单验证信息。
+   */
+  clearValidate: (props?: Arrayable<FormItemProp>) => void
+}
+
+/**
+ * 注册实例方法
+ *
+ * Register instance function
+ */
+export type RegisterFn = (formInstance: FormActionMethods) => void
+
+/**
+ * 定义实例内容
+ *
+ * Define instance content
+ */
+export type UseFormReturnType = [RegisterFn, FormActionMethods]
 
 /**
  * 表单的数据架构

@@ -1,5 +1,5 @@
 import type { ComputedRef } from 'vue'
-import type { BasicProps } from '../typing'
+import type { BasicTableProps } from '../typing'
 
 import { computed, unref, ref, toRaw } from 'vue'
 
@@ -14,7 +14,7 @@ import { warn } from '@/utils/log'
  * @param emit
  */
 export function useTableExpand(
-  propsRef: ComputedRef<BasicProps>,
+  propsRef: ComputedRef<BasicTableProps>,
   getDataSourceRef: ComputedRef<Recordable[]>,
   getRowKey: ComputedRef<string | undefined>
 ) {

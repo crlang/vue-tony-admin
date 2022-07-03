@@ -1,12 +1,12 @@
 import type { ValidateFieldsError } from 'async-validator'
 import type { DynamicProps } from '#/utils'
-import type { BasicProps, FormActionMethods, UseFormReturnType, BasicFormSchema, FormItemProp } from '../typing'
+import type { BasicFormProps, FormActionMethods, UseFormReturnType, BasicFormSchema, FormItemProp } from '../typing'
 
 import { ref, onUnmounted, unref, watch, WatchStopHandle } from 'vue'
 import { isProdMode } from '@/utils/env'
 import { getDynamicProps, getUseInstance } from '@/utils'
 
-type Props = Partial<DynamicProps<BasicProps>>
+type Props = Partial<DynamicProps<BasicFormProps>>
 
 export function useForm(formProps?: Props): UseFormReturnType {
   const formRef = ref<Nullable<FormActionMethods>>(null)
@@ -60,7 +60,7 @@ export function useForm(formProps?: Props): UseFormReturnType {
       return getUseInstance<FormActionMethods>(formRef, 'form')?.clearValidate(props)
     },
     // Advanced
-    setFormProps: (formProps: Partial<BasicProps>) => {
+    setFormProps: (formProps: Partial<BasicFormProps>) => {
       return getUseInstance<FormActionMethods>(formRef, 'form')?.setFormProps(formProps)
     },
 

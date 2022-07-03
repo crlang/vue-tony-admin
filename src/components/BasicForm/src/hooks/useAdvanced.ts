@@ -1,6 +1,6 @@
 import type { ComputedRef, Ref } from 'vue'
 import type { EleCol } from '@/components/ElementPlus'
-import type { BasicProps, BasicFormSchema, AdvanceState } from '../typing'
+import type { BasicFormProps, BasicFormSchema, AdvanceState } from '../typing'
 
 import { unref, watch } from 'vue'
 
@@ -11,7 +11,7 @@ import { BASIC_COL_LEN, BASIC_COL_SIZE } from '../const'
 interface UseAdvancedContext {
   advanceState: AdvanceState
   emit: EmitType
-  getProps: ComputedRef<BasicProps>
+  getProps: ComputedRef<BasicFormProps>
   getSchema: ComputedRef<BasicFormSchema[]>
   formModel: Recordable
   defaultValueRef: Ref<Recordable>

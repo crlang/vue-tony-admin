@@ -53,7 +53,7 @@
 </template>
 
 <script lang="ts">
-import type { BasicProps, ModalInstanceMethods, ModalCustomHeader, ModalCustomContent } from './typing'
+import type { BasicModalProps, ModalInstanceMethods, ModalCustomHeader, ModalCustomContent } from './typing'
 
 import { defineComponent, computed, ref, watch, unref, watchEffect, getCurrentInstance, nextTick } from 'vue'
 import { ElDialog, ElButton } from 'element-plus'
@@ -73,7 +73,7 @@ export default defineComponent({
   emits: ['visible-change', 'height-change', 'cancel', 'confirm', 'register', 'update:modelValue'],
   setup(props, { emit }) {
     const visibleRef = ref(false)
-    const propsRef = ref<Partial<BasicProps> | null>(null)
+    const propsRef = ref<Partial<BasicModalProps> | null>(null)
     const modalWrapperRef = ref<any>(null)
     const { prefixCls } = useDesign('basic-modal')
     const fullscreenRef = ref(false)
@@ -107,7 +107,7 @@ export default defineComponent({
       return {
         ...props,
         ...(unref(propsRef) as Recordable),
-      } as BasicProps
+      } as BasicModalProps
     })
 
     /**
@@ -172,7 +172,7 @@ export default defineComponent({
      * Setting Props by Instance
      * @param modalProps Modal Props
      */
-    function setModalProps(modalProps: Partial<BasicProps>): void {
+    function setModalProps(modalProps: Partial<BasicModalProps>): void {
       propsRef.value = { ...(unref(propsRef) as Recordable), ...modalProps } as Recordable
 
       if (Reflect.has(modalProps, 'modelValue')) {

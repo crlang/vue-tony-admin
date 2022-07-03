@@ -5,7 +5,6 @@ import { defineComponent } from 'vue'
 import { ElTooltip } from 'element-plus'
 
 import { SvgIcon } from '@/components/SvgIcon'
-import { isArray, isString } from '@/utils/is'
 import { getSlot } from '@/utils/helper/tsxHelper'
 import { useDesign } from '@/hooks/web/useDesign'
 
@@ -57,13 +56,13 @@ export default defineComponent({
 
       // 单条内容
       // single content
-      if (isString(textList)) {
+      if (typeof textList === 'string') {
         return textList
       }
 
       // 多条内容
       // multiple content
-      if (isArray(textList)) {
+      if (Array.isArray(textList)) {
         return textList.map((text, index) => {
           return (
             <p key={text}>

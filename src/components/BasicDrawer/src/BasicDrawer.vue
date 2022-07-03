@@ -71,7 +71,7 @@
 </template>
 
 <script lang="ts">
-import type { DrawerInstanceMethods, BasicProps } from './typing'
+import type { DrawerInstanceMethods, BasicDrawerProps } from './typing'
 
 import { defineComponent, ref, computed, watch, unref, nextTick, getCurrentInstance } from 'vue'
 import { ElDrawer, ElLoading, ElButton } from 'element-plus'
@@ -96,7 +96,7 @@ export default defineComponent({
   emits: ['update:modelValue', 'visible-change', 'confirm', 'cancel', 'register'],
   setup(props, { attrs, emit }) {
     const visibleRef = ref(false)
-    const propsRef = ref<Partial<Nullable<BasicProps>>>(null)
+    const propsRef = ref<Partial<Nullable<BasicDrawerProps>>>(null)
 
     const { prefixCls } = useDesign('basic-drawer')
 
@@ -116,7 +116,7 @@ export default defineComponent({
       const opts = {
         ...props,
         ...(unref(propsRef) as Recordable),
-      } as BasicProps
+      } as BasicDrawerProps
 
       opts.customClass = `${prefixCls} ${opts?.customClass || ''} ${prefixCls}-${instance?.uid}`
 
@@ -152,7 +152,7 @@ export default defineComponent({
      * Setting Props by Instance
      * @param drawerProps Drawer Props
      */
-    function setDrawerProps(drawerProps: Partial<BasicProps>): void {
+    function setDrawerProps(drawerProps: Partial<BasicDrawerProps>): void {
       propsRef.value = { ...(unref(propsRef) as Recordable), ...drawerProps } as Recordable
 
       if (Reflect.has(drawerProps, 'modelValue')) {

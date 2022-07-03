@@ -1,9 +1,9 @@
-import type { BasicColumn, BasicProps, GetColumnsParams } from '../typing'
+import type { BasicColumn, BasicTableProps, GetColumnsParams } from '../typing'
 import type { ComputedRef } from 'vue'
 import type { ElePagination } from '@/components/ElementPlus'
 
 import { computed, ref, unref, watch } from 'vue'
-import { cloneDeep, isEqual, isBoolean, isString } from 'lodash-es'
+import { cloneDeep, isEqual } from 'lodash-es'
 
 import { usePermission } from '@/hooks/web/usePermission'
 
@@ -16,7 +16,10 @@ import { PAGE_SIZE } from '../const'
  * @param propsRef
  * @param getPaginationRef
  */
-export function useColumns(propsRef: ComputedRef<BasicProps>, getPaginationRef: ComputedRef<boolean | ElePagination>) {
+export function useColumns(
+  propsRef: ComputedRef<BasicTableProps>,
+  getPaginationRef: ComputedRef<boolean | ElePagination>
+) {
   let cacheColumns = unref(propsRef).columns
   const columnsRef = ref(cacheColumns)
   const { showIndexColumn, showCheckboxColumn } = unref(propsRef)
@@ -77,7 +80,7 @@ export function useColumns(propsRef: ComputedRef<BasicProps>, getPaginationRef: 
 
     const firstColumn = columns[0]
 
-    if (!isString(firstColumn)) {
+    if (typeof firstColumn !== 'string') {
       columnsRef.value = columns as BasicColumn[]
     } else {
       const cacheKeys = cacheColumns.map((item) => item.prop)
@@ -312,7 +315,7 @@ function isIfShow(column: BasicColumn): boolean {
 
   let isIfShow = true
 
-  if (isBoolean(ifShow)) {
+  if (typeof ifShow === 'boolean') {
     isIfShow = ifShow
   }
 

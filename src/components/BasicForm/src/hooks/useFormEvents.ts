@@ -1,5 +1,5 @@
 import type { ComputedRef, Ref } from 'vue'
-import type { BasicProps, BasicFormSchema, FormActionMethods } from '../typing'
+import type { BasicFormProps, BasicFormSchema, FormActionMethods } from '../typing'
 
 import { unref, toRaw } from 'vue'
 
@@ -7,7 +7,7 @@ import { error } from '@/utils/log'
 
 interface UseFormActionContext {
   emit: EmitType
-  getProps: ComputedRef<BasicProps>
+  getProps: ComputedRef<BasicFormProps>
   getSchema: ComputedRef<BasicFormSchema[]>
   formModel: Recordable
   defaultValueRef: Ref<Recordable>

@@ -9,12 +9,12 @@ import { checkStatus } from './checkStatus'
 import { useGlobSetting } from '@/hooks/setting'
 import { useMessage } from '@/hooks/web/useMessage'
 import { RequestEnum, ResultEnum, ContentTypeEnum } from '@/enums/httpEnum'
-import { isString } from '@/utils/is'
 import { getToken } from '@/utils/auth'
-import { setObjToUrlParams, deepMerge } from '@/utils'
+import { setObjToUrlParams } from '@/utils'
 import { useErrorLogStoreWithOut } from '@/store/modules/errorLog'
 import { joinTimestamp, formatRequestDate } from './helper'
 import { useUserStoreWithOut } from '@/store/modules/user'
+import { merge } from 'lodash-es'
 
 const globSetting = useGlobSetting()
 const urlPrefix = globSetting.urlPrefix
@@ -89,14 +89,14 @@ const transform: AxiosTransform = {
       config.url = `${urlPrefix}${config.url}`
     }
 
-    if (apiUrl && isString(apiUrl)) {
+    if (apiUrl && typeof apiUrl === 'string') {
       config.url = `${apiUrl}${config.url}`
     }
     const params = config.params || {}
     const data = config.data || false
-    formatDate && data && !isString(data) && formatRequestDate(data)
+    formatDate && data && typeof data !== 'string' && formatRequestDate(data)
     if (config.method?.toUpperCase() === RequestEnum.GET) {
-      if (!isString(params)) {
+      if (typeof params !== 'string') {
         // 给 get 请求加上时间戳参数，避免从缓存中拿数据。
         config.params = Object.assign(params || {}, joinTimestamp(joinTime, false))
       } else {
@@ -105,7 +105,7 @@ const transform: AxiosTransform = {
         config.params = undefined
       }
     } else {
-      if (!isString(params)) {
+      if (typeof params !== 'string') {
         formatDate && formatRequestDate(params)
         if (Reflect.has(config, 'data') && config.data && Object.keys(config.data).length > 0) {
           config.data = data
@@ -186,7 +186,7 @@ const transform: AxiosTransform = {
 
 function createAxios(opt?: Partial<CreateAxiosOptions>) {
   return new VAxios(
-    deepMerge(
+    merge(
       {
         // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#authentication_schemes
         // authentication schemes，e.g: Bearer

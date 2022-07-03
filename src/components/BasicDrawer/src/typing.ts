@@ -1,7 +1,12 @@
 import type { ComputedRef } from 'vue'
 import type { EleButton, EleDrawer } from '@/components/ElementPlus'
 
-export interface BasicProps extends EleDrawer {
+/**
+ * 抽屉基础Props
+ *
+ * Drawer Basic Props
+ */
+export interface BasicDrawerProps extends EleDrawer {
   /**
    * 绑定的值（显示/隐藏）
    *
@@ -81,7 +86,7 @@ export interface DrawerInstanceMethods {
    *
    * Set drawer props
    */
-  setDrawerProps: (props: Partial<BasicProps> | boolean) => void
+  setDrawerProps: (props: Partial<BasicDrawerProps> | boolean) => void
   /**
    * 显示/隐藏抽屉-方法内部生成
    *

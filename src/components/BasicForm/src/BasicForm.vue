@@ -45,7 +45,7 @@
 </template>
 
 <script lang="ts">
-import type { FormActionMethods, BasicProps, BasicFormSchema, AdvanceState } from './typing'
+import type { FormActionMethods, BasicFormProps, BasicFormSchema, AdvanceState } from './typing'
 
 import { defineComponent, reactive, ref, computed, unref, onMounted, watch, nextTick } from 'vue'
 import { ElForm, ElRow } from 'element-plus'
@@ -71,7 +71,7 @@ export default defineComponent({
   setup(props, { emit, attrs, expose }) {
     const formElRef = ref<Nullable<FormActionMethods>>(null)
     const formModel = reactive<Recordable>({})
-    const propsRef = ref<Partial<BasicProps>>({})
+    const propsRef = ref<Partial<BasicFormProps>>({})
     const schemaRef = ref<BasicFormSchema[]>([])
     const modalFn = useModalContext()
     const isInitedDefaultRef = ref(false)
@@ -97,7 +97,7 @@ export default defineComponent({
       const opts = {
         ...props,
         ...(unref(propsRef) as Recordable),
-      } as BasicProps
+      } as BasicFormProps
       return opts
     })
     /**
@@ -208,7 +208,7 @@ export default defineComponent({
      * Setting Props by Instance
      * @param formProps Form Props
      */
-    function setFormProps(formProps: Partial<BasicProps>): void {
+    function setFormProps(formProps: Partial<BasicFormProps>): void {
       propsRef.value = { ...(unref(propsRef) as Recordable), ...formProps } as Recordable
     }
 

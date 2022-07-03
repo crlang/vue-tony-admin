@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import dotenv from 'dotenv'
+import { isObject } from '@vueuse/core'
 
 export function isDevFn(mode: string): boolean {
   return mode === 'development'
@@ -38,7 +39,7 @@ export function wrapperEnv(envConf: Recordable): ViteEnv {
     ret[envName] = realName
     if (typeof realName === 'string') {
       process.env[envName] = realName
-    } else if (typeof realName === 'object') {
+    } else if (isObject(realName)) {
       process.env[envName] = JSON.stringify(realName)
     }
   }

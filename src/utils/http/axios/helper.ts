@@ -1,5 +1,4 @@
 import dayjs from 'dayjs'
-import { isObject, isString } from '@/utils/is'
 
 const DATE_TIME_FORMAT = 'YYYY-MM-DD HH:mm'
 
@@ -31,11 +30,11 @@ export function formatRequestDate(params: Recordable) {
     if (params[key] && params[key] instanceof dayjs) {
       params[key] = params[key].format(DATE_TIME_FORMAT)
     }
-    if (isString(key)) {
+    if (typeof key === 'string') {
       const value = params[key]
       if (value) {
         try {
-          params[key] = isString(value) ? value.trim() : value
+          params[key] = typeof value === 'string' ? value.trim() : value
         } catch (error) {
           throw new Error(error)
         }

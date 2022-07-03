@@ -79,8 +79,8 @@ import { propTypes } from '@/utils/propTypes'
 import { useMenuItem } from './useMenu'
 import { useSimpleRootMenuContext } from './useSimpleMenuContext'
 import Icon from '@/components/Icon'
-import { isBoolean, isObject } from '@/utils/is'
 import mitt from '@/utils/mitt'
+import { isObject } from '@vueuse/core'
 
 const DELAY = 200
 export default defineComponent({
@@ -262,7 +262,7 @@ export default defineComponent({
 
       rootMenuEmitter.on('on-update-opened', (data: boolean | (string | number)[] | Recordable) => {
         if (unref(getCollapse)) return
-        if (isBoolean(data)) {
+        if (typeof data === 'boolean') {
           state.opened = data
           return
         }

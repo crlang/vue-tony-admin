@@ -1,8 +1,7 @@
 import type { ElePagination } from '@/components/ElementPlus'
-import type { BasicProps, FetchParams, ColumnSorterResult } from '../typing'
+import type { BasicTableProps, FetchParams, ColumnSorterResult } from '../typing'
 
 import { ref, unref, ComputedRef, computed, onMounted, watch, Ref, watchEffect, toRaw } from 'vue'
-import { isFunction, isBoolean, useTimeoutFn } from '@vueuse/core'
 import { get, cloneDeep } from 'lodash-es'
 
 import { buildUUID } from '@/utils'
@@ -22,7 +21,7 @@ import { FETCH_SETTING, ROW_KEY, PAGE_SIZE } from '../const'
  * @param emit
  */
 export function useDataSource(
-  propsRef: ComputedRef<BasicProps>,
+  propsRef: ComputedRef<BasicTableProps>,
   tableData: Ref<Recordable[]>,
   paginationRef: ComputedRef<ElePagination>,
   setPagination: (info: Partial<ElePagination>) => void,
@@ -115,12 +114,12 @@ export function useDataSource(
     }
     // 更新了排序
     // Sort updated
-    if (sorter && isFunction(sortFn)) {
+    if (sorter && typeof sortFn === 'function') {
       sortInfo.value = sortFn(sorter)
     }
     // 更新了筛选
     // Filter updated
-    if (filters && isFunction(filterFn)) {
+    if (filters && typeof filterFn === 'function') {
       filterInfo.value = filterFn(filters)
     }
     fetch()
@@ -283,7 +282,7 @@ export function useDataSource(
 
     // api 必须为函数
     // 'api' must be a function
-    if (!api || !isFunction(api)) return
+    if (typeof api !== 'function') return
 
     try {
       setLoading(true)
@@ -292,7 +291,7 @@ export function useDataSource(
 
       const { currentPage = 1, pageSize = PAGE_SIZE } = unref(paginationRef) ?? {}
 
-      if ((isBoolean(pagination) && !pagination) || isBoolean(paginationRef)) {
+      if ((typeof pagination === 'boolean' && !pagination) || typeof paginationRef === 'boolean') {
         pageParams = {}
       } else {
         pageParams[pageField] = opt?.page || currentPage
@@ -310,7 +309,7 @@ export function useDataSource(
 
       // 前置请求，参数随服务端内容变化而变化
       // Pre-request, the parameters change with the content of the server
-      if (beforeFetchFn && isFunction(beforeFetchFn)) {
+      if (typeof beforeFetchFn === 'function') {
         params = beforeFetchFn(params) || params
       }
 
@@ -337,7 +336,7 @@ export function useDataSource(
 
       // 结果作为参数，第二次请求才是正确的结果
       // The result is used as a parameter, and the second request is the correct result
-      if (afterFetchFn && isFunction(afterFetchFn)) {
+      if (typeof afterFetchFn === 'function') {
         resultItems = afterFetchFn(resultItems) || resultItems
       }
       dataSourceRef.value = resultItems
@@ -375,7 +374,7 @@ export function useDataSource(
   }
 
   onMounted(() => {
-    useTimeoutFn(() => {
+    setTimeout(() => {
       unref(propsRef).immediate && fetch()
     }, 50)
   })

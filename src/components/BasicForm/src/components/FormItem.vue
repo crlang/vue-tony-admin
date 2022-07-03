@@ -320,7 +320,7 @@ export default defineComponent({
           }
         }
 
-        return <Comp {...compAttr}>{compSlot}</Comp>
+        return <Comp {...compAttr} options={null}>{compSlot}</Comp>
       }
 
       // input component custom set

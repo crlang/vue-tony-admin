@@ -1,4 +1,4 @@
-import { BasicProps, BasicFormSchema } from '@/components/BasicForm'
+import { BasicFormProps, BasicFormSchema } from '@/components/BasicForm'
 import { BasicColumn } from '@/components/BasicTable'
 import { ElTag } from 'element-plus'
 import { h } from 'vue'
@@ -161,7 +161,7 @@ export const getAdvanceSchema = (itemNumber = 6): BasicFormSchema[] => {
   return arr
 }
 
-export function getFormConfig(): Partial<BasicProps> {
+export function getFormConfig(): Partial<BasicFormProps> {
   return {
     labelWidth: 100,
     showAdvancedButton: true,

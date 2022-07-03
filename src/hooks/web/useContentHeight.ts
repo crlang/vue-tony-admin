@@ -3,7 +3,6 @@ import { onMountedOrActivated } from '@/hooks/core/onMountedOrActivated'
 import { useWindowSizeFn } from '@/hooks/event/useWindowSizeFn'
 import { useLayoutHeight } from '@/layouts/default/content/useContentViewHeight'
 import { getViewportOffset } from '@/utils/domUtils'
-import { isNumber, isString } from '@/utils/is'
 
 export interface CompensationHeight {
   // 使用 layout Footer 高度作为判断补偿高度的条件
@@ -116,14 +115,14 @@ export function useContentHeight(
       if (element && upwardLvlOrClass) {
         const parent = element.parentElement
         if (parent) {
-          if (isString(upwardLvlOrClass)) {
+          if (typeof upwardLvlOrClass === 'string') {
             if (!parent.classList.contains(upwardLvlOrClass)) {
               upwardSpaceHeight += calcSubtractSpace(parent, 'bottom')
               upward(parent, upwardLvlOrClass)
             } else {
               upwardSpaceHeight += calcSubtractSpace(parent, 'bottom')
             }
-          } else if (isNumber(upwardLvlOrClass)) {
+          } else if (typeof upwardLvlOrClass === 'number') {
             if (upwardLvlOrClass > 0) {
               upwardSpaceHeight += calcSubtractSpace(parent, 'bottom')
               upward(parent, --upwardLvlOrClass)
