@@ -1,3 +1,9 @@
+## [0.5.1](https://github.com/crlang/vue-tony-admin/compare/0.5.0...0.5.1) (2022-07-04)
+
+### Performance
+
+- 删除一些不必要的处理文件 ([0878b99](https://github.com/crlang/vue-tony-admin/commit/0878b995cb82622925038ff40c91d35a1e11642d))
+
 # [0.5.0](https://github.com/crlang/vue-tony-admin/compare/0.3.1...0.5.0) (2022-07-01)
 
 ### Features
