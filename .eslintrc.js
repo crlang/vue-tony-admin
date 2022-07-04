@@ -7,9 +7,7 @@ module.exports = defineConfig({
     node: true,
     es6: true,
   },
-  globals: {
-    jest: 'readonly',
-  },
+  globals: { },
   parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
