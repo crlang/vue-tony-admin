@@ -49,7 +49,7 @@ $prefix-cls: '#{$tonyname}-drag-bar';
   position: absolute;
   top: 0;
   right: -2px;
-  z-index: $side-drag-z-index;
+  z-index: 200;
   width: 2px;
   height: 100%;
   cursor: col-resize;

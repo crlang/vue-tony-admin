@@ -161,8 +161,6 @@ $prefix-cls: '#{$tonyname}-multiple-tabs';
         color: var(--primary-color);
 
         &::after {
-          @include BasicThemeBackground();
-
           opacity: 0.1;
         }
       }

@@ -71,10 +71,6 @@ $simple-submenu: '#{$tonyname}-simple-submenu';
     &--active {
       > .#{$simple-submenu}-item-title {
         @include MixSiderHover();
-
-        &::after {
-          @include BasicThemeBackground();
-        }
       }
     }
 

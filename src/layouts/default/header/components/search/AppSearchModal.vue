@@ -242,7 +242,7 @@ $prefix-cls: '#{$tonyname}-header-search-modal';
       cursor: pointer;
       background-color: var(--background-primary-color);
       border-radius: var(--radius-base);
-      box-shadow: var(--control-shadow);
+      box-shadow: 0 2px 4px rgba(169, 194, 209, 0.55);
 
       &--active {
         color: var(--text-primary-reverse);
@@ -280,7 +280,7 @@ $prefix-cls: '#{$tonyname}-header-search-modal';
         padding: 4px;
         margin-right: 8px;
         background-color: var(--background-main-color);
-        box-shadow: var(--control-shadow);
+        box-shadow: 0 2px 4px rgba(169, 194, 209, 0.55);
       }
     }
   }

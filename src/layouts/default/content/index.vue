@@ -52,7 +52,7 @@ $prefix-cls: '#{$tonyname}-layout-content';
   &-loading {
     position: absolute;
     top: 200px;
-    z-index: $page-loading-z-index;
+    z-index: 10000;
   }
 }
 </style>

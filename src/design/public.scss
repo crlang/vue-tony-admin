@@ -1,32 +1,18 @@
-@use 'var/color.scss' as *;
-
-#app {
-  width: 100%;
-  height: 100%;
-}
-
 // =================================
 // ==============scrollbar==========
 // =================================
 
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 8px;
   height: 8px;
 }
-
-// ::-webkit-scrollbar-track {
-//   background: transparent;
-// }
 
 ::-webkit-scrollbar-track {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
 ::-webkit-scrollbar-thumb {
-  // background: rgba(0, 0, 0, 0.6);
   background-color: rgba(144, 147, 153, 0.3);
-
-  // background-color: rgba(144, 147, 153, 0.3);
   border-radius: 2px;
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
 }
@@ -45,10 +31,90 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 99999;
+    z-index: var(--top-zindex);
     width: 100%;
     height: 2px;
     background-color: var(--primary-color);
     opacity: 0.75;
+  }
+}
+
+// =================================
+// ============ConfirmPopup========
+// =================================
+.#{$tonyname}-confirm-popup {
+  padding: 3rem 0 0;
+  border: none;
+  border-radius: var(--radius-base);
+  box-shadow: 0 4px 8px rgba(9, 22, 31, 0.15), 0 16px 32px rgba(9, 22, 31, 0.15);
+
+  .el-message-box {
+    &__header {
+      padding: 0 1.5rem;
+      text-align: center;
+      --el-messagebox-font-size: 2rem;
+      --el-messagebox-title-color: var(--text-primary-color);
+    }
+
+    &__title {
+      line-height: normal;
+    }
+
+    &__content {
+      padding: 0 1.5rem;
+      margin-top: 1rem;
+      font-size: 1.3rem;
+      text-align: center;
+      --el-messagebox-content-color: var(--text-secondary-color);
+    }
+
+    &__btns {
+      padding: 0;
+      margin-top: 4rem;
+
+      .el-button {
+        height: 64px;
+        padding: 0;
+        margin: 0;
+        font-size: 1rem;
+        color: var(--text-primary-color);
+        background: var(--background-secondary-color);
+        border: none;
+        border-radius: 0;
+        flex: 1;
+
+        &:hover {
+          filter: brightness(0.96);
+        }
+      }
+    }
+  }
+
+  &__error .el-message-box__btns {
+    .el-button:nth-child(2) {
+      color: #fff;
+      background: var(--danger-color);
+    }
+  }
+
+  &__warning .el-message-box__btns {
+    .el-button:nth-child(2) {
+      color: #fff;
+      background: var(--warning-color);
+    }
+  }
+
+  &__success .el-message-box__btns {
+    .el-button:nth-child(2) {
+      color: #fff;
+      background: var(--success-color);
+    }
+  }
+
+  &__info .el-message-box__btns {
+    .el-button:nth-child(2) {
+      color: #fff;
+      background: var(--primary-color);
+    }
   }
 }

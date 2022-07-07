@@ -285,25 +285,6 @@ $prefix-cls: '#{$tonyname}-login';
     padding: 0;
     margin: 1.5rem 0;
     line-height: 44px;
-    color: var(--white-color);
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-
-    &:hover {
-      color: var(--white-color);
-      background-color: var(--blue-color-control-1);
-      border-color: var(--blue-color-control-1);
-    }
-
-    &:active {
-      background-color: var(--primary-color);
-      border-color: var(--primary-color);
-    }
-
-    &.is-disabled {
-      background-color: var(--el-button-disabled-bg-color);
-      border-color: var(--el-button-disabled-border-color);
-    }
   }
 
   .login--back {

@@ -1,157 +1,118 @@
-$white: #fff;
-$content-bg: #f4f7f9;
-$app-content-background: #fafafa;
-$layout-body-background: #f2f3f4; // 框架背景颜色
+@use 'sass:color';
 
-$component-background: #fff; // 页面背景颜色
-
-$background-color-light: #fafafa; // 页面背景颜色
-
-$modal-mask-bg: rgba(0, 0, 0, 0.55);
+$white-color: #fff;
+$black-color: #000;
 
 // =================================
-// ==============main-color=======
+// ============== main-color =======
 // =================================
+// 主色
+$primary-color: #0081ff;
 
-$primary-color: #1890ff; // 全局主色
+// 主悬浮色
+$primary-hover-color: color.scale($primary-color, $lightness: 10%);
 
-$link-color: #1890ff; // 链接色
+// 主激活色
+$primary-active-color: color.scale($primary-color, $lightness: -10%);
 
-$success-color: #52c41a; // 成功色
+// 主浅(背景)色
+$primary-bg-color: color.scale($primary-color, $lightness: 30%, $alpha: -85%);
 
-$warning-color: #faad14; // 警告色
+// 成功色
+$success-color: #09b66d;
 
-$error-color: #f5222d; // 错误色
+// 成功浅(背景)色
+$success-bg-color: color.scale($success-color, $lightness: 30%, $alpha: -85%);
 
-$font-size-base: 14px; // 主字号
+// 警告色
+$warning-color: #ff8a48;
 
-$heading-color: rgba(0, 0, 0, 0.85); // 标题色
+// 警告浅(背景)色
+$warning-bg-color: color.scale($warning-color, $lightness: 30%, $alpha: -85%);
 
-$text-color: rgba(0, 0, 0, 0.65); // 主文本色
+// 错误色
+$error-color: #ff3d57;
+$danger-color: #ff3d57;
 
-$text-color-secondary: rgba(0, 0, 0, 0.45); // 次文本色
+// 错误浅(背景)色
+$error-bg-color: color.scale($error-color, $lightness: 30%, $alpha: -85%);
+$danger-bg-color: color.scale($danger-color, $lightness: 30%, $alpha: -85%);
 
-$disabled-color: rgba(0, 0, 0, 0.25); // 失效色
+// 文本色
+$info-color: #6c757d;
 
-$border-radius-base: 4px; // 组件/浮层圆角
+// 文本浅(背景)色
+$info-bg-color: color.scale($info-color, $lightness: 30%, $alpha: -85%);
 
-$box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15); // 浮层阴影
+// 禁用色
+$disabled-color: #6c757d;
 
-// =================================
-// ==============border-color=======
-// =================================
-
-$border-color-base: #f0f0f0;
-
-// Dark-dark
-$border-color-dark: #b6b7b9;
-
-// Dark-light
-$border-color-shallow-dark: #cececd;
-
-// Light-dark
-$border-color-light: $border-color-base;
-
-// =================================
-// ==============message==============
-// =================================
-
-// success-bg-color
-$success-background-color: #f1f9ec;
-
-// info-bg-color
-$info-background-color: #e8eff8;
-
-// warn-bg-color
-$warning-background-color: #fdf6ed;
-
-// danger-bg-color
-$danger-background-color: #fef0f0;
+// 禁用浅(背景)色
+$disabled-bg-color: color.scale($disabled-color, $lightness: 30%, $alpha: -85%);
 
 // =================================
-// ==============Header=============
+// ============== text-color =======
 // =================================
 
-$header-dark-bg-color: var(--header-bg-color);
-$header-dark-bg-hover-color: var(--header-bg-hover-color);
-$header-light-bg-hover-color: #f6f6f6;
-$header-light-desc-color: #7c8087;
-$header-light-bottom-border-color: #eee;
+// 主文本色
+$text-primary: #44566c;
 
-// top-menu
-// top-menu-active-bg-color: var(--header-active-menu-bg-color);
+// 常规文本色
+$text-regular: #606266;
 
-// =================================
-// ==============Menu============
-// =================================
+// 副文本色
+$text-secondary: #8697a8;
 
-// let -menu
-// sider-dark-bg-color: var(--sider-dark-bg-color);
-$sider-dark-darken-bg-color: var(--sider-dark-darken-bg-color);
-$sider-dark-lighten-bg-color: var(--sider-dark-lighten-bg-color);
+// 占位文本色
+$text-placeholder: #a8abb2;
 
-// trigger
-$trigger-dark-hover-bg-color: rgba(255, 255, 255, 0.2);
-$trigger-dark-bg-color: rgba(255, 255, 255, 0.1);
+// 禁用文本色
+$text-disabled: #c0c4cc;
 
 // =================================
-// ==============tree============
+// =========== background-color ====
 // =================================
-// tree item hover background
-$tree-hover-background-color: #f5f7fa;
+// 主背景色
+$background-primary: #f8fafb;
 
-// tree item hover font color
-$tree-hover-font-color: #f5f7fa;
+// 常规背景色
+$background-regular: #f2f4f6;
 
-// =================================
-// ==============link============
-// =================================
-// $link-hover-color: $primary-color;
-// $link-active-color: color.scale($primary-color, $lightness: -10%);
+// 副背景色
+$background-secondary: #fff;
 
-// =================================
-// ==============Text color-=============
-// =================================
+// 占位背景色-待定
+$background-placeholder: #fff;
 
-// Main text color
-$text-color-base: $text-color;
+// 禁用背景色-待定
+$background-disabled: #fff;
 
-// Label color
-$text-color-call-out: #606266;
+// 特殊-框架背景颜色
+$layout-background: $background-primary;
 
-// Auxiliary information color-dark
-$text-color-help-dark: #909399;
+// 特殊-页面背景颜色
+$page-background: $background-regular;
 
-// =================================
-// ==============breadcrumb=========
-// =================================
-$breadcrumb-item-normal-color: #999;
+// 特殊-组件背景颜色
+$component-background: $background-secondary;
 
 // =================================
-// ==============button=============
+// =========== link-color =========
 // =================================
+// 链接色
+$link-color: $primary-color;
 
-// $button-primary-color: $primary-color;
-// $button-primary-hover-color: color.scale($primary-color, $lightness: 5%);
-// $button-primary-active-color: color.scale($primary-color, $lightness: -5%);
-// $button-ghost-color: $white;
-// $button-ghost-hover-color: color.scale($white, $lightness: 10%);
-// $button-ghost-hover-bg-color: #e1ebf6;
-// $button-ghost-active-color: color.scale($white, $lightness: -10%);
-// $button-success-color: $success-color;
-// $button-success-hover-color: color.scale($success-color, $lightness: 10%);
-// $button-success-active-color: color.scale($success-color, $lightness: -10%);
-// $button-warn-color: $warning-color;
-// $button-warn-hover-color: color.scale($warning-color, $lightness: 10%);
-// $button-warn-active-color: color.scale($warning-color, $lightness: -10%);
-// $button-error-color: $error-color;
-// $button-error-hover-color: color.scale($error-color, $lightness: 10%);
-// $button-error-active-color: color.scale($error-color, $lightness: -10%);
-// $button-cancel-color: $text-color-call-out;
-// $button-cancel-bg-color: $white;
-// $button-cancel-border-color: $border-color-shallow-dark;
+// 链接悬浮色
+$link-hover-color: color.scale($primary-color, $lightness: 10%);
 
-// Mouse over
-// $button-cancel-hover-color: $primary-color;
-// $button-cancel-hover-bg-color: $white;
-// $button-cancel-hover-border-color: $primary-color;
+// 链接点击色
+$link-active-color: color.scale($primary-color, $lightness: -10%);
+
+// =================================
+// =========== border-color =========
+// =================================
+// 边框色
+$border-color: #8697a8;
+
+// 边框色-浅
+$border-color-light: #eaedf0;

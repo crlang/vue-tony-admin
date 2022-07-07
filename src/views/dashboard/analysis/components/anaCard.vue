@@ -110,22 +110,16 @@ function getBarColor(v: number) {
     }
 
     &.is-up {
-      > .t2 {
-        color: var(--green-color);
-      }
-
+      > .t2,
       > .t3 {
-        background: var(--green-color);
+        background: var(--success-color);
       }
     }
 
     &.is-down {
-      > .t2 {
-        color: var(--red-color-2);
-      }
-
+      > .t2 ,
       > .t3 {
-        background: var(--red-color-2);
+        background: var(--danger-color);
       }
     }
   }
