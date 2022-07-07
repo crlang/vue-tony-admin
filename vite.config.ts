@@ -56,6 +56,9 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       proxy: createProxy(VITE_PROXY),
       open: false,
     },
+    esbuild: {
+      pure: VITE_DROP_CONSOLE ? ['console.log', 'debugger'] : [],
+    },
     build: {
       target: 'es2015',
       outDir: OUTPUT_DIR,
@@ -96,7 +99,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           charset: false,
           additionalData: `
             @use "@/design/ele/setting.scss" as *;
-            @use "@/design/var/index.scss" as *;
+            @use "@/design/var/config.scss" as *;
           `,
         },
       },
@@ -107,9 +110,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
 
     optimizeDeps: {
       // @iconify/iconify: The dependency is dynamically and virtually loaded by @purge-icons/generated, so it needs to be specified explicitly
-      include: [
-        '@iconify/iconify',
-      ],
+      include: ['@iconify/iconify'],
       exclude: ['vue-demi'],
     },
   }

@@ -4,6 +4,7 @@ import type { BasicFormProps, BasicFormSchema } from '../typing'
 import { unref } from 'vue'
 import { set } from 'lodash-es'
 import dayjs from 'dayjs'
+import { isObject } from '@/utils/is'
 
 interface UseFormValuesContext {
   defaultValueRef: Ref<any>
@@ -28,7 +29,7 @@ export function useFormValues({ defaultValueRef, getSchema, formModel, getProps 
    * @param values
    */
   function handleFormValues(values: Recordable) {
-    if (values === null || typeof values !== 'object') {
+    if (!isObject(values)) {
       return {}
     }
     const res: Recordable = {}

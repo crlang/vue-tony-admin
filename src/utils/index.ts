@@ -5,8 +5,9 @@ import type { SFCInstallWithContext, SFCWithInstall } from '#/utils'
 import { unref } from 'vue'
 import { NOOP } from '@vue/shared'
 
+import { isObject } from '@/utils/is'
+
 import { error } from './log'
-import { isObject } from '@vueuse/core'
 
 export const noop = () => {}
 

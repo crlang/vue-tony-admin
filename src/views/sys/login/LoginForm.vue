@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref, toRaw, unref, computed } from 'vue'
+import { reactive, ref, unref, computed } from 'vue'
 import { ElRow, ElCol, ElCheckbox, ElButton, ElForm, ElFormItem, ElInput } from 'element-plus'
 import { useMessage } from '@/hooks/web/useMessage'
 import { useUserStore } from '@/store/modules/user'
@@ -71,11 +71,11 @@ async function handleLogin() {
   try {
     loading.value = true
     const userInfo = await userStore.login(
-      toRaw({
+      {
         password: formData.password,
         username: formData.account,
         mode: 'none',
-      })
+      }
     )
     if (userInfo) {
       notification.success({

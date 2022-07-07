@@ -40,7 +40,7 @@ export function formatRequestDate(params: Recordable) {
         }
       }
     }
-    if (isObject(params[key])) {
+    if (params[key] && typeof params[key] === 'object') {
       formatRequestDate(params[key])
     }
   }

@@ -80,7 +80,7 @@ import { useMenuItem } from './useMenu'
 import { useSimpleRootMenuContext } from './useSimpleMenuContext'
 import Icon from '@/components/Icon'
 import mitt from '@/utils/mitt'
-import { isObject } from '@vueuse/core'
+import { isObject } from '@/utils/is'
 
 const DELAY = 200
 export default defineComponent({

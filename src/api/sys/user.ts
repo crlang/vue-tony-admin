@@ -7,7 +7,7 @@ enum Api {
   Login = '/login',
   Logout = '/logout',
   GetUserInfo = '/getUserInfo',
-  GetPermCode = '/getPermCode'
+  GetPermCode = '/getPermCode',
 }
 
 /**
@@ -21,7 +21,7 @@ export function loginApi(params: LoginParams, mode: ErrorMessageMode = 'modal') 
     },
     {
       errorMessageMode: mode,
-    }
+    },
   )
 }
 

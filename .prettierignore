@@ -3,5 +3,6 @@
 
 **/*.svg
 **/*.sh
+**/*.html
 
 /public/*

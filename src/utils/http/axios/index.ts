@@ -10,11 +10,11 @@ import { useGlobSetting } from '@/hooks/setting'
 import { useMessage } from '@/hooks/web/useMessage'
 import { RequestEnum, ResultEnum, ContentTypeEnum } from '@/enums/httpEnum'
 import { getToken } from '@/utils/auth'
-import { setObjToUrlParams } from '@/utils'
+import { deepMerge, setObjToUrlParams } from '@/utils'
 import { useErrorLogStoreWithOut } from '@/store/modules/errorLog'
 import { joinTimestamp, formatRequestDate } from './helper'
 import { useUserStoreWithOut } from '@/store/modules/user'
-import { merge } from 'lodash-es'
+import { isString } from '@/utils/is'
 
 const globSetting = useGlobSetting()
 const urlPrefix = globSetting.urlPrefix
@@ -89,14 +89,14 @@ const transform: AxiosTransform = {
       config.url = `${urlPrefix}${config.url}`
     }
 
-    if (apiUrl && typeof apiUrl === 'string') {
+    if (apiUrl && isString(apiUrl)) {
       config.url = `${apiUrl}${config.url}`
     }
     const params = config.params || {}
     const data = config.data || false
-    formatDate && data && typeof data !== 'string' && formatRequestDate(data)
+    formatDate && data && isString(data) && formatRequestDate(data)
     if (config.method?.toUpperCase() === RequestEnum.GET) {
-      if (typeof params !== 'string') {
+      if (!isString(params)) {
         // 给 get 请求加上时间戳参数，避免从缓存中拿数据。
         config.params = Object.assign(params || {}, joinTimestamp(joinTime, false))
       } else {
@@ -105,7 +105,7 @@ const transform: AxiosTransform = {
         config.params = undefined
       }
     } else {
-      if (typeof params !== 'string') {
+      if (!isString(params)) {
         formatDate && formatRequestDate(params)
         if (Reflect.has(config, 'data') && config.data && Object.keys(config.data).length > 0) {
           config.data = data
@@ -186,7 +186,7 @@ const transform: AxiosTransform = {
 
 function createAxios(opt?: Partial<CreateAxiosOptions>) {
   return new VAxios(
-    merge(
+    deepMerge(
       {
         // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#authentication_schemes
         // authentication schemes，e.g: Bearer
@@ -227,8 +227,8 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
           withToken: true,
         },
       },
-      opt || {}
-    )
+      opt || {},
+    ),
   )
 }
 export const defHttp = createAxios()

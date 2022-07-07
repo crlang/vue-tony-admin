@@ -1,3 +1,5 @@
+import { isNullOrUnDef } from '../is'
+
 export interface CreateStorageParams {
   prefixKey: string
   storage: Storage
@@ -42,7 +44,7 @@ export const createStorage = ({
       const stringData = JSON.stringify({
         value,
         time: Date.now(),
-        expire: expire ? new Date().getTime() + expire * 1000 : null,
+        expire: isNullOrUnDef(expire) ? new Date().getTime() + expire * 1000 : null,
       })
       const stringifyValue = stringData
       this.storage.setItem(this.getKey(key), stringifyValue)
@@ -61,7 +63,7 @@ export const createStorage = ({
         const decVal = val
         const data = JSON.parse(decVal)
         const { value, expire } = data
-        if (!expire || expire >= new Date().getTime()) {
+        if (isNullOrUnDef(expire) || expire >= new Date().getTime()) {
           return value
         }
         this.remove(key)

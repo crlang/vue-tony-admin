@@ -1,4 +1,12 @@
-// @ts-check
+/*
+ * Eslint config file
+ * Documentation: https://eslint.org/docs/user-guide/configuring/
+ * Documentation: https://typescript-eslint.io/rules
+ * 格式化异常时，请留意项目 Prettier 插件与编辑器的 Prettier 插件配置的差异，最好保持一致
+ * Install the Eslint extension before using this feature.
+ *
+ * 可用 0 = off, 1 = warn, 2 = error
+ */
 const { defineConfig } = require('eslint-define-config')
 module.exports = defineConfig({
   root: true,
@@ -7,7 +15,7 @@ module.exports = defineConfig({
     node: true,
     es6: true,
   },
-  globals: { },
+  globals: {},
   parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
@@ -23,6 +31,7 @@ module.exports = defineConfig({
   extends: [
     'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/recommended',
+    'eslint:recommended',
     // 'prettier'
   ],
   rules: {
@@ -54,11 +63,11 @@ module.exports = defineConfig({
     'vue/max-attributes-per-line': [
       'error',
       {
-        'singleline': {
-          'max': 1,
+        singleline: {
+          max: 1,
         },
-        'multiline': {
-          'max': 1,
+        multiline: {
+          max: 1,
         },
       },
     ],
@@ -140,13 +149,16 @@ module.exports = defineConfig({
         properties: 'always',
       },
     ],
-    'comma-dangle': [2, {
-      arrays: 'always-multiline',
-      objects: 'always-multiline',
-      imports: 'only-multiline',
-      exports: 'only-multiline',
-      functions: 'only-multiline',
-    }],
+    'comma-dangle': [
+      2,
+      {
+        arrays: 'always-multiline',
+        objects: 'always-multiline',
+        imports: 'only-multiline',
+        exports: 'only-multiline',
+        functions: 'only-multiline',
+      },
+    ],
     'comma-spacing': [
       2,
       {
@@ -262,7 +274,7 @@ module.exports = defineConfig({
     'no-this-before-super': 2,
     'no-throw-literal': 2,
     'no-trailing-spaces': 2,
-    'no-undef': 'off',
+    'no-undef': 'warn',
     'no-undef-init': 2,
     'no-unexpected-multiline': 2,
     'no-unmodified-loop-condition': 2,

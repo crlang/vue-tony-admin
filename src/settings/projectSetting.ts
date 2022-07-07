@@ -7,7 +7,7 @@ import {
   ThemeEnum,
   RouterTransitionEnum,
   SettingButtonPositionEnum,
-  SessionTimeoutProcessingEnum
+  SessionTimeoutProcessingEnum,
 } from '@/enums/appEnum'
 import { SIDE_BAR_BG_COLOR_LIST, HEADER_PRESET_BG_COLOR_LIST, primaryColor } from './designSetting'
 
@@ -148,7 +148,7 @@ const setting: ProjectConfig = {
     openPageLoading: true,
 
     // Whether to open the top progress bar
-    openNProgress: false,
+    openNProgress: true,
   },
 
   // Whether to enable KeepAlive cache is best to close during development, otherwise the cache needs to be cleared every time

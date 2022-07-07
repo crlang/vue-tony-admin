@@ -7,10 +7,9 @@ import { AxiosCanceler } from './axiosCancel'
 import { cloneDeep, omit } from 'lodash-es'
 import { ContentTypeEnum } from '@/enums/httpEnum'
 import { RequestEnum } from '@/enums/httpEnum'
+import { isFunction } from '@/utils/is'
 
 export * from './axiosTransform'
-
-const isFunction = (v) => typeof v === 'function'
 
 /**
  * @description:  axios module
