@@ -56,7 +56,6 @@ module.exports = defineConfig({
       },
     ],
     '@typescript-eslint/indent': ['error', 2],
-    'no-unused-vars': 0,
     'vue/attributes-order': 'off',
     'vue/one-component-per-file': 'off',
     'vue/html-closing-bracket-newline': 'off',
@@ -286,10 +285,13 @@ module.exports = defineConfig({
     ],
     'no-unreachable': 2,
     'no-unsafe-finally': 2,
-    // 'no-unused-vars': [2, {
-    //   'vars': 'all',
-    //   'args': 'none'
-    // }],
+    'no-unused-vars': [2, {
+      'vars': 'all',
+      'args': 'all',
+      'ignoreRestSiblings': false,
+      'argsIgnorePattern': '^_',
+      'varsIgnorePattern': '^_',
+    }],
     // 'no-useless-call': 2,
     'no-useless-computed-key': 2,
     'no-useless-constructor': 2,

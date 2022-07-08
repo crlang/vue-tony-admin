@@ -35,7 +35,7 @@ export default defineComponent({
         span: 12,
       },
       submitButtonOptions: {
-        text: '提交',
+        btnText: '提交',
       },
       submitFn: customSubmitFunc,
     })

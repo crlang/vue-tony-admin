@@ -1,32 +1,14 @@
-import generate from '@/utils/generate'
-
 export const primaryColor = '#0081FF'
 
 export const darkMode = 'light'
 
 type Fn = (...arg: any) => any;
 
-type GenerateTheme = 'light' | 'dark';
-
 export interface GenerateColorsParams {
   mixLighten: Fn;
   mixDarken: Fn;
   tinycolor: Fn;
   color?: string;
-}
-
-export function generateAntColors(color: string, theme: GenerateTheme = 'light') {
-  return generate(color, {
-    theme,
-  })
-}
-
-export function getThemeColors(color?: string) {
-  const tc = color || primaryColor
-  const lightColors = generateAntColors(tc)
-  const primary = lightColors[5]
-  const modeColors = generateAntColors(primary, 'dark')
-  return [...lightColors, ...modeColors]
 }
 
 export function generateColors({

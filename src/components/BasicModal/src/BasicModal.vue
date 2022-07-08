@@ -3,13 +3,13 @@
     v-bind="getBindValues"
     :showClose="false"
     v-model:modelValue="visibleRef">
-    <template #title>
+    <template #header>
       <ModalHeader
         v-bind="getHeaderBindValues"
         @fullscreen="handleFullscreen"
         @cancel="handleCancel">
-        <template #title>
-          <slot name="title"></slot>
+        <template #header>
+          <slot name="header"></slot>
         </template>
       </ModalHeader>
     </template>
@@ -35,7 +35,7 @@
             v-bind="cancelOptions"
             @click="handleCancel"
             v-if="showCancelBtn">
-            {{ cancelOptions?.text || 'Cancel' }}
+            {{ cancelOptions?.btnText || 'Cancel' }}
           </ElButton>
           <slot name="centerFooter"></slot>
           <ElButton
@@ -43,7 +43,7 @@
             :loading="getProps.confirmOptions?.loading"
             @click="handleConfirm"
             v-if="showConfirmBtn">
-            {{ confirmOptions?.text || 'OK' }}
+            {{ confirmOptions?.btnText || 'OK' }}
           </ElButton>
           <slot name="appendFooter"></slot>
         </template>

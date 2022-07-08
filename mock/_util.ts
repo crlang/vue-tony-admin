@@ -76,6 +76,7 @@ export function getRandomItem(id = '', code = '') {
     address: '@county(true)',
     sex: '@integer(1,2)',
     name: '@first()',
+    id: undefined,
     nickname: '@cname()',
     description: '@cparagraph()',
     age: '@integer(1,100)',

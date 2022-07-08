@@ -50,7 +50,7 @@ export default defineComponent({
       },
       showResetButton: false,
       submitButtonOptions: {
-        text: '下一步',
+        btnText: '下一步',
       },
       submitFn: customSubmitFunc,
     })

@@ -76,7 +76,7 @@ export const footerProps = {
   confirmOptions: {
     type: Object as PropType<EleButton>,
     default: {
-      text: '确定',
+      btnText: '确定',
       type: 'primary',
     },
   },
@@ -97,7 +97,7 @@ export const footerProps = {
   cancelOptions: {
     type: Object as PropType<EleButton>,
     default: {
-      text: '取消',
+      btnText: '取消',
       type: 'default',
     },
   },

@@ -109,7 +109,7 @@ export default defineComponent({
     const getConfirmProps = computed((): EleButton => {
       const someSuccess = fileListRef.value.some((item) => item.status === UploadResultStatus.SUCCESS)
       return {
-        text: '保存',
+        btnText: '保存',
         type: 'primary',
         disabled: isUploadingRef.value || fileListRef.value.length === 0 || !someSuccess,
       }
@@ -121,7 +121,7 @@ export default defineComponent({
      */
     const getCancelProps = computed((): EleButton => {
       return {
-        text: '关闭',
+        btnText: '关闭',
         disabled: isUploadingRef.value,
       }
     })

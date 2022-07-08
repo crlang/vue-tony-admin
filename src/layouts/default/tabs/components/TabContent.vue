@@ -1,18 +1,14 @@
 <template>
-  <div
-    :class="`${prefixCls}__name`"
-    v-if="getIsTabs"
-    @contextmenu.prevent="handleOpenDropdown()">{{ getTitle }}</div>
-  <span
-    :class="`${prefixCls}`"
-    v-else
-    @mouseenter="handleOpenDropdown()"><Icon name="ion:chevron-down" /></span>
   <ElDropdown
     ref="tabsDropdownRef"
     :trigger="getTrigger"
     @visible-change="handleContext"
-    :popper-class="`${prefixCls}__contextmenu`"
+    :popper-class="`${prefixCls}__popper`"
     @command="handleMenuEvent">
+    <span v-if="getIsTabs">{{ getTitle }}</span>
+    <Icon
+      v-else
+      name="ion:chevron-down" />
     <template #dropdown>
       <ElDropdownMenu>
         <ElDropdownItem
@@ -65,8 +61,8 @@ export default defineComponent({
 
     const getIsTabs = computed(() => props.type === TabContentEnum.TAB_TYPE)
 
-    const getTrigger = computed((): ('contextmenu' | 'click' | 'hover')[] =>
-      unref(getIsTabs) ? ['contextmenu'] : ['hover']
+    const getTrigger = computed((): ('contextmenu' | 'click' | 'hover') =>
+      unref(getIsTabs) ? 'contextmenu' : 'hover'
     )
 
     const { getDropMenuList, handleMenuEvent, handleContextMenu } = useTabDropdown(props as TabContentProps, getIsTabs)

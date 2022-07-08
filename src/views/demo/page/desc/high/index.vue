@@ -30,7 +30,7 @@
         <el-descriptions-item label="创建人">曲丽丽</el-descriptions-item>
         <el-descriptions-item label="订购产品">XX 服务</el-descriptions-item>
         <el-descriptions-item label="创建时间">2021-01-01</el-descriptions-item>
-        <el-descriptions-item label="关联单据"><el-button type="text">12421</el-button></el-descriptions-item>
+        <el-descriptions-item label="关联单据"><el-button text>12421</el-button></el-descriptions-item>
         <el-descriptions-item label="生效日期">2021-01-01 ~ 2022-01-01</el-descriptions-item>
         <el-descriptions-item label="备注">请于两个工作日内确认</el-descriptions-item>
       </el-descriptions>

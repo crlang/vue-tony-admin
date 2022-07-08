@@ -75,7 +75,7 @@ export default defineComponent({
     function openModalLoading() {
       openModal1(true)
       setModalProps({
-        confirmOptions: { text: 'New Btn' },
+        confirmOptions: { btnText: 'New Btn' },
       })
     }
 

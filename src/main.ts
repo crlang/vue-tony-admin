@@ -1,6 +1,7 @@
 // Register icon sprite
 import 'virtual:svg-icons-register'
 import 'element-plus/theme-chalk/src/index.scss'
+import 'element-plus/theme-chalk/dark/css-vars.css'
 import App from './App.vue'
 import { createApp } from 'vue'
 // import ElementPlus from 'element-plus'

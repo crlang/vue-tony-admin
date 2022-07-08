@@ -37,10 +37,10 @@ export default defineComponent({
       colProps: { span: 16 },
       schemas: formSchema,
       submitButtonOptions: {
-        text: '确认',
+        btnText: '确认',
       },
       resetButtonOptions: {
-        text: '重置',
+        btnText: '重置',
       },
     })
 

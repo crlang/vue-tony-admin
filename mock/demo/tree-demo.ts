@@ -5,7 +5,7 @@ import { getDemoRandomCount, getRandomItem, resultPageSuccess } from '../_util'
 const demoList = (() => {
   const result: any[] = []
   for (let i = 0; i < 31; i++) {
-    const item = getRandomItem(i + 1, `0-${i + 1}`)
+    const item = getRandomItem(String(i + 1), `0-${i + 1}`)
     const len = getDemoRandomCount(10)
     item.children = []
     for (let j = 0; j < len; j++) {

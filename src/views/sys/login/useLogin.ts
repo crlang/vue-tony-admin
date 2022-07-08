@@ -40,15 +40,15 @@ export function useFormRules(formData?: Recordable) {
   const getPasswordFormRule = computed(() => createRule('请输入密码'))
   const getSmsFormRule = computed(() => createRule('请输入验证码'))
 
-  const validatePolicy = (rule, value, callback) => {
+  const validatePolicy = (_, value, callback) => {
     return callback(!value ? new Error('勾选后才能注册') : null)
   }
 
-  const validateConfirmPassword = (rule, value, callback, diffField) => {
+  const validateConfirmPassword = (_, value, callback, diffField) => {
     if (!value) {
       return callback(new Error('请输入密码'))
     } else {
-      if (formData[diffField] === value) {
+      if (formData && formData[diffField] === value) {
         callback()
       } else {
         return callback(new Error('两次输入密码不一致'))
@@ -56,7 +56,7 @@ export function useFormRules(formData?: Recordable) {
     }
   }
 
-  const validateMobile = (rule, value, callback) => {
+  const validateMobile = (_, value, callback) => {
     if (!value) {
       return callback(new Error('请输入手机号码'))
     } else {

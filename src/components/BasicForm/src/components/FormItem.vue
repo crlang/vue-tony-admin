@@ -25,10 +25,16 @@ export default defineComponent({
      * Get the value bound to the form item
      */
     const getValues = computed(() => {
-      const { formModel, schema } = props
+      const { formModel, schema, defaultValues } = props
+      const { mergeDynamicData } = props.formProps
       return {
         field: schema.field,
         model: formModel,
+        values: {
+          ...mergeDynamicData,
+          ...defaultValues,
+          ...formModel,
+        } as Recordable,
         schema,
       }
     })

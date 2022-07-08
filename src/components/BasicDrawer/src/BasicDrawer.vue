@@ -3,7 +3,7 @@
     @close="handleClose()"
     v-bind="getBindValues"
     v-model="visibleRef">
-    <template #title>
+    <template #header>
       <div :class="`${prefixCls}-header`">
         <span
           :class="`${prefixCls}-header__back`"
@@ -17,7 +17,7 @@
 
         <BasicTitle :class="`${prefixCls}-header__title`">
           <template v-if="title">{{ title || '' }}</template>
-          <template v-else><slot name="title"></slot></template>
+          <template v-else><slot name="header"></slot></template>
         </BasicTitle>
 
         <span
@@ -50,7 +50,7 @@
           @click="handleClose"
           v-bind="cancelOptions"
           v-if="showCancelBtn">
-          {{ cancelOptions.text || 'Cancel' }}
+          {{ cancelOptions.btnText || 'Cancel' }}
         </ElButton>
         <slot
           name="centerFooter"
@@ -60,7 +60,7 @@
           v-bind="confirmOptions"
           :loading="getProps.confirmOptions?.loading"
           v-if="showConfirmBtn">
-          {{ confirmOptions.text || 'Ok' }}
+          {{ confirmOptions.btnText || 'Ok' }}
         </ElButton>
         <slot
           name="appendFooter"

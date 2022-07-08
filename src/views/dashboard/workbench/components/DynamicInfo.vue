@@ -3,7 +3,7 @@
     <template #header>
       <div class="dync-card-header">
         <div class="el-card__header--title">最新动态</div>
-        <el-button type="text">更多</el-button>
+        <el-button text>更多</el-button>
       </div>
     </template>
     <List>

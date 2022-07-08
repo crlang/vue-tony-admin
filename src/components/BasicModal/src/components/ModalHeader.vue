@@ -5,7 +5,7 @@
     <BasicTitle :helpMessage="helpMessage">
       <template v-if="title">{{ title }}</template>
       <slot
-        name="title"
+        name="header"
         v-else></slot>
     </BasicTitle>
     <div :class="`${prefixCls}__extra`">

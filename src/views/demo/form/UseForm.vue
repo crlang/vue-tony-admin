@@ -16,7 +16,7 @@
       <el-button @click="setFormProps({ showResetButton: true })">显示重置按钮</el-button>
       <el-button @click="setFormProps({ showSubmitButton: false })">隐藏查询按钮</el-button>
       <el-button @click="setFormProps({ showSubmitButton: true })">显示查询按钮</el-button>
-      <el-button @click="setFormProps({ resetButtonOptions: { disabled: true, text: '重置New' } })">
+      <el-button @click="setFormProps({ resetButtonOptions: { disabled: true, btnText: '重置New' } })">
         修改重置按钮
       </el-button>
       <el-button @click="setFormProps({ submitButtonOptions: { disabled: true, loading: true } })">

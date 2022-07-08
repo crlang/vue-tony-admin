@@ -17,7 +17,7 @@
           <template #title>
             {{ item.title }}
             <el-button
-              type="text"
+              text
               size="small"
               v-if="item.extra"
               class="extra">

@@ -22,6 +22,7 @@ import { useRootSetting } from '@/hooks/setting/useRootSetting'
 import { updateHeaderBgColor, updateSidebarBgColor } from '@/logics/theme/updateBackground'
 import { updateDarkTheme } from '@/logics/theme/dark'
 import { ThemeEnum } from '@/enums/appEnum'
+// import { useDark, useToggle } from '@vueuse/core'
 
 const { prefixCls } = useDesign('dark-switch')
 const { getDarkMode, setDarkMode, getShowDarkModeToggle } = useRootSetting()
@@ -39,6 +40,10 @@ function toggleDarkMode() {
   const darkMode = getDarkMode.value === ThemeEnum.DARK ? ThemeEnum.LIGHT : ThemeEnum.DARK
   setDarkMode(darkMode)
   updateDarkTheme(darkMode)
+
+  // const isDark = useDark()
+  // const toggleDark = useToggle(isDark)
+
   updateHeaderBgColor()
   updateSidebarBgColor()
 }

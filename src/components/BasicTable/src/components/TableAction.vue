@@ -4,14 +4,14 @@
       v-for="action in getActions"
       :key="action?.id">
       <el-button
-        type="text"
+        text
         size="small"
         v-bind="action.buttonProps"
         @click="handleClick(action)">
         <SvgIcon
           :name="action.svgName"
           v-if="action?.svgName" />
-        {{ action.buttonProps?.text || '' }}
+        {{ action.buttonProps?.btnText || '' }}
       </el-button>
     </template>
   </div>

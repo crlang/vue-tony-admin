@@ -193,6 +193,7 @@ export type FormItemProp = string | string[]
 export interface RenderCallbackParams {
   schema: BasicFormSchema
   model: Recordable
+  values: Recordable
   field: string
 }
 

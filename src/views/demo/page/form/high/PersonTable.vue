@@ -28,11 +28,11 @@ export default defineComponent({
       {
         actions: [
           {
-            text: '编辑',
+            btnText: '编辑',
             callback: handleEdit,
           },
           {
-            text: '删除',
+            btnText: '删除',
           },
         ],
       },
@@ -51,11 +51,11 @@ export default defineComponent({
     function createActions(record) {
       return [
         {
-          text: '编辑',
+          btnText: '编辑',
           onClick: handleEdit.bind(null, record),
         },
         {
-          text: '删除',
+          btnText: '删除',
         },
       ]
     }

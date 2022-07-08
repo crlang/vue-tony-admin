@@ -96,9 +96,9 @@
             <div class="card-header">Text button</div>
           </template>
 
-          <el-button type="text">Text Button</el-button>
+          <el-button text>Text Button</el-button>
           <el-button
-            type="text"
+            text
             disabled>Text Button</el-button>
         </el-card>
       </el-col>

@@ -101,17 +101,17 @@ export default defineComponent({
         actions: [
           {
             icon: 'clarity:info-standard-line',
-            text: '查看',
+            btnText: '查看',
             callback: handleView,
           },
           {
             icon: 'clarity:note-edit-line',
-            text: '编辑',
+            btnText: '编辑',
             callback: handleEdit,
           },
           {
             icon: 'ep:delete',
-            text: '删除',
+            btnText: '删除',
             callback: handleDelete,
           },
         ],

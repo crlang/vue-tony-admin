@@ -57,19 +57,20 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       open: false,
     },
     esbuild: {
-      pure: VITE_DROP_CONSOLE ? ['console.log', 'debugger'] : [],
+      drop: VITE_DROP_CONSOLE ? ['console', 'debugger'] : [],
     },
     build: {
       target: 'es2015',
       outDir: OUTPUT_DIR,
-      terserOptions: {
-        compress: {
-          keep_infinity: true,
-          drop_debugger: true,
-          // Used to delete console in production environment
-          drop_console: VITE_DROP_CONSOLE,
-        },
-      },
+      minify: 'esbuild',
+      // terserOptions: {
+      //   compress: {
+      //     keep_infinity: true,
+      //     drop_debugger: true,
+      //     // Used to delete console in production environment
+      //     drop_console: VITE_DROP_CONSOLE,
+      //   },
+      // },
       // Turning off brotliSize display can slightly reduce packaging time
       brotliSize: false,
       // 合并所有CSS文件

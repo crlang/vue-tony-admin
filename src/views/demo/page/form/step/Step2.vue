@@ -39,10 +39,10 @@ export default defineComponent({
         span: 14,
       },
       resetButtonOptions: {
-        text: '上一步',
+        btnText: '上一步',
       },
       submitButtonOptions: {
-        text: '提交',
+        btnText: '提交',
       },
       resetFn: customResetFunc,
       submitFn: customSubmitFunc,

@@ -60,7 +60,7 @@ export const customProps = {
   confirmOptions: {
     type: Object as PropType<EleButton>,
     default: {
-      text: '确认',
+      btnText: '确认',
       type: 'primary',
     },
   },
@@ -81,7 +81,7 @@ export const customProps = {
   cancelOptions: {
     type: Object as PropType<EleButton>,
     default: {
-      text: '取消',
+      btnText: '取消',
       type: 'default',
     },
   },

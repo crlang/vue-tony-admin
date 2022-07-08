@@ -27,7 +27,7 @@
         :span="12"
         class="text-right">
         <el-button
-          type="text"
+          text
           @click="setLoginState(LoginStateEnum.RESET_PASSWORD)">忘记密码?</el-button>
       </el-col>
     </el-row>

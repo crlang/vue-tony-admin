@@ -262,6 +262,15 @@ export const basicFormItemProps = {
     default: () => ({}),
   },
   /**
+   * 表单默认的值
+   *
+   * Form model
+   */
+  defaultValues: {
+    type: Object as PropType<Recordable>,
+    default: null,
+  },
+  /**
    * 更新表单数据，并尝试验证
    *
    * Update the form data and try to validate

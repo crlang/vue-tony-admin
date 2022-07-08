@@ -30,11 +30,11 @@ export const columns: BasicColumn[] = [
         row.pendingStatus = false
       }
       return h(ElSwitch, {
-        modelValue: record.status === '0',
+        modelValue: record?.status === '0',
         activeText: 'Y',
         inactiveText: 'N',
         inlinePrompt: true,
-        loading: record.pendingStatus,
+        loading: record?.pendingStatus,
         onChange(checked: boolean) {
           row.pendingStatus = true
           const newStatus = checked ? '0' : '1'
@@ -102,7 +102,7 @@ export const formSchema: BasicFormSchema[] = [
   {
     field: 'status',
     label: '状态',
-    component: 'ElRadioButton',
+    component: 'ElRadioGroup',
     defaultValue: '0',
     componentProps: {
       options: [

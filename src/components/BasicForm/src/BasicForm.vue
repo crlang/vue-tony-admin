@@ -14,6 +14,7 @@
           :tableAction="tableAction"
           :formAction="formActionType"
           :schema="schema"
+          :defaultValues="defaultValueRef"
           :formProps="getProps"
           :formModel="formModel"
           :setFormModel="setFormModel">

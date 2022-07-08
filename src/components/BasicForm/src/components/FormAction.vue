@@ -7,7 +7,7 @@
         v-bind="resetBtnOptions"
         @click="resetAction"
         v-if="showResetButton">
-        {{ resetBtnOptions.text }}
+        {{ resetBtnOptions.btnText }}
       </ElButton>
 
       <slot name="submitBefore"></slot>
@@ -16,12 +16,12 @@
         v-bind="submitBtnOptions"
         @click="submitAction"
         v-if="showSubmitButton">
-        {{ submitBtnOptions.text }}
+        {{ submitBtnOptions.btnText }}
       </ElButton>
 
       <slot name="advanceBefore"></slot>
       <ElButton
-        type="text"
+        text
         size="small"
         @click="toggleAdvanced"
         v-if="showAdvancedButton">
@@ -81,7 +81,7 @@ export default defineComponent({
      */
     const resetBtnOptions = computed(() => {
       return {
-        text: '重置',
+        btnText: '重置',
         ...props.resetButtonOptions,
       }
     })
@@ -92,7 +92,7 @@ export default defineComponent({
      */
     const submitBtnOptions = computed(() => {
       return {
-        text: '查询',
+        btnText: '查询',
         ...props.submitButtonOptions,
       }
     })

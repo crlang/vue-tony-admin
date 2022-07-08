@@ -80,11 +80,11 @@ export default defineComponent({
         fixed: 'right',
         actions: [
           {
-            text: '启用',
+            btnText: '启用',
             callback: handleOpen,
           },
           {
-            text: '删除',
+            btnText: '删除',
             callback: handleDelete,
           },
         ],

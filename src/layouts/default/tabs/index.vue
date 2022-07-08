@@ -27,11 +27,13 @@
       <FoldButton
         v-if="getShowQuick"
         :class="`${prefixCls}__extra-btn`" />
-      <TabContent
-        :type="1"
-        :prefixCls="`${prefixCls}__extra-btn`"
-        :tabItem="$route"
-        v-if="getShowFold" />
+      <span :class="`${prefixCls}__extra-btn`">
+        <TabContent
+          :type="1"
+          :prefixCls="`${prefixCls}__extra`"
+          :tabItem="$route"
+          v-if="getShowFold" />
+      </span>
     </div>
   </div>
 </template>

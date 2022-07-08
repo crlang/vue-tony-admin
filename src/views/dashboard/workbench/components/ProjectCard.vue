@@ -2,7 +2,7 @@
   <CardGrid title="项目">
     <template #extra>
       <el-button
-        type="text"
+        text
         size="small">更多</el-button>
     </template>
     <CardGridItem

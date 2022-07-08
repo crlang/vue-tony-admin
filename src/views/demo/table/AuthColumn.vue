@@ -22,17 +22,17 @@ export default defineComponent({
         align: 'right',
         actions: [
           {
-            text: '启用',
+            btnText: '启用',
             callback: handleOpen,
             auth: 'admin', // 根据权限控制是否显示: 无权限，不显示
           },
           {
-            text: '编辑',
+            btnText: '编辑',
             callback: handleEdit,
             auth: 'other', // 根据权限控制是否显示: 无权限，不显示
           },
           {
-            text: '删除',
+            btnText: '删除',
             callback: handleDelete,
             popConfirm: {
               title: '是否删除？',
