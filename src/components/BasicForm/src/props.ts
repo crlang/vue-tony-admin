@@ -221,6 +221,15 @@ export const formActionProps = {
     default: 6,
   },
   /**
+   * 是否显示展开/收起按钮-通过计算判断
+   *
+   * Whether to display the expand/collapse button - judged by calculation
+   */
+  showAdvanced: {
+    type: Boolean,
+    default: true,
+  },
+  /**
    * 展开/收起按钮的状态
    *
    * Expand/Collapse button state

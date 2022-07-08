@@ -92,7 +92,7 @@ export function useAdvanced({
   function updateAdvanced() {
     let itemColSum = 0
     let realItemColSum = 0
-    const { colProps = {} } = unref(getProps)
+    const { colProps = {}, actionColProps = {} } = unref(getProps)
     const baseColProps = colProps
     let isAdvancedRes = false
 
@@ -125,6 +125,9 @@ export function useAdvanced({
         }
         schema.isAdvanced = isAdvanced
         isAdvancedRes = isAdvanced
+        const actSpan = actionColProps?.span || BASIC_COL_SIZE
+
+        advanceState.showAdvanced = itemColSum + actSpan > BASIC_COL_LEN
       }
     }
 

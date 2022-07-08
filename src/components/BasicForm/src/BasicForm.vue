@@ -81,6 +81,7 @@ export default defineComponent({
     const { prefixCls } = useDesign('basic-form')
     const advanceState = reactive<AdvanceState>({
       isAdvanced: false,
+      showAdvanced: true,
       actionSpan: BASIC_COL_SIZE,
     })
 
@@ -311,6 +312,7 @@ $prefix-cls: '#{$tonyname}-basic-form';
   position: relative;
 
   .el-col {
+    .el-select,
     .el-input {
       width: 100%;
     }

@@ -7,7 +7,7 @@
         v-bind="resetBtnOptions"
         @click="resetAction"
         v-if="showResetButton">
-        {{ resetBtnOptions.btnText }}
+        {{ resetBtnOptions.btnText || '重置' }}
       </ElButton>
 
       <slot name="submitBefore"></slot>
@@ -16,7 +16,7 @@
         v-bind="submitBtnOptions"
         @click="submitAction"
         v-if="showSubmitButton">
-        {{ submitBtnOptions.btnText }}
+        {{ submitBtnOptions.btnText || '查询' }}
       </ElButton>
 
       <slot name="advanceBefore"></slot>
@@ -24,7 +24,7 @@
         text
         size="small"
         @click="toggleAdvanced"
-        v-if="showAdvancedButton">
+        v-if="showAdvancedButton && showAdvanced">
         {{ isAdvanced ? '收起 ' : '展开 ' }}
         <SvgIcon
           :rotate="isAdvanced ? '-90deg' : '90deg'"
@@ -81,7 +81,6 @@ export default defineComponent({
      */
     const resetBtnOptions = computed(() => {
       return {
-        btnText: '重置',
         ...props.resetButtonOptions,
       }
     })
@@ -92,7 +91,6 @@ export default defineComponent({
      */
     const submitBtnOptions = computed(() => {
       return {
-        btnText: '查询',
         ...props.submitButtonOptions,
       }
     })
