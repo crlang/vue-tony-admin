@@ -1,3 +1,21 @@
+## [0.5.2](https://github.com/crlang/vue-tony-admin/compare/0.5.1...0.5.2) (2022-07-08)
+
+### Bug Fixes
+
+- Fixed interface issues caused by Element Plus version upgrades ([7dc6abc](https://github.com/crlang/vue-tony-admin/commit/7dc6abcbecebc0ad09dfa21417811169c3fe0120))
+- **BasicModal:** hide the x-axis scrollbar ([3aa83eb](https://github.com/crlang/vue-tony-admin/commit/3aa83eb88a1e316cda35ba8ccd86bbd6dc95ba87))
+- **BasicTable:** Adjust the default width of the action column to 150, fix the icon cannot be displayed ([9497c0c](https://github.com/crlang/vue-tony-admin/commit/9497c0c5ac0e0fb66082d958f4083ef0bcda4002))
+- **BasicTable:** Optimize undefined code ([7e1865e](https://github.com/crlang/vue-tony-admin/commit/7e1865ee469400c870a4539862f783730c694b2a))
+
+### Features
+
+- Upgrade Element Plus version to latest version 2.2.9 ([30fd87c](https://github.com/crlang/vue-tony-admin/commit/30fd87cf84aae2fda89ef107f3119dab54ebf30d))
+- **BasicForm:** Add automatic judgment whether to display the expand button ([f12ad88](https://github.com/crlang/vue-tony-admin/commit/f12ad882e484a8049314392d94ce4c954b1db872))
+
+### Reverts
+
+- Optimize login exceptions and withdraw some adjustments ([ccc0e07](https://github.com/crlang/vue-tony-admin/commit/ccc0e075ad2f7a719b6fe9c2b1452caada1a5640))
+
 ## [0.5.1](https://github.com/crlang/vue-tony-admin/compare/0.5.0...0.5.1) (2022-07-04)
 
 ### Performance
