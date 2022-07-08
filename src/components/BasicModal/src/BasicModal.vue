@@ -343,6 +343,10 @@ $prefix-cls: '#{$tonyname}-basic-modal';
       margin-bottom: 0;
     }
 
+    .scrollbar__bar.is-horizontal{
+      display: none;
+    }
+
     // .scrollbar__view {
     //   height: 100%;
     //   overflow: hidden;
