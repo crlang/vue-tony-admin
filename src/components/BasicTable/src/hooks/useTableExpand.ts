@@ -75,7 +75,7 @@ export function useTableExpand(
 
       const children = item[childrenColumnName || 'children']
       if (children?.length) {
-        keys.push(...getAllKeys(children))
+        keys.push(...getTableDataKeys(children))
       }
     })
 

@@ -3,10 +3,8 @@
     ref="wrapRef"
     :class="getWrapperClass">
     <BasicForm
-      submitAfterReset
-      :alwaysShowLines="1"
       v-bind="getFormProps"
-      v-if="getBindValues.useSearchForm"
+      v-if="getProps.useSearchForm"
       :tableAction="tableMethods"
       @register="registerForm"
       @advanced-change="redoHeight"
@@ -148,7 +146,6 @@ export default defineComponent({
     const propsRef = ref<Partial<BasicTableProps>>({})
 
     const { prefixCls } = useDesign('basic-table')
-    const [registerForm, formActions] = useForm()
 
     const isFixedHeightPage = inject(PageWrapperFixedHeightKey, false)
 
@@ -164,6 +161,11 @@ export default defineComponent({
     const { getLoading, setLoading } = useLoading(getProps)
 
     const { getTablePagination, getPagination, setPagination } = usePagination(getProps)
+
+    const [registerForm, formActions] = useForm({
+      submitAfterReset: true,
+      alwaysShowLines: 1,
+    })
 
     const {
       handleTableChange,
@@ -302,9 +304,11 @@ export default defineComponent({
      */
     function handlePageChange(currentPage: number) {
       const opts = unref(getTablePagination)
-      opts.currentPage = (opts.currentPage || 0) + currentPage
 
-      emit('pagination', opts)
+      emit('pagination', {
+        ...opts,
+        currentPage: (opts.currentPage || 0) + currentPage,
+      })
       handleTableChange({ currentPage })
     }
 
@@ -315,9 +319,10 @@ export default defineComponent({
      */
     function handlePageSizeChange(pageSize: number) {
       const opts = unref(getTablePagination)
-      opts.pageSize = (opts.pageSize || 0) + pageSize
-
-      emit('pagination', opts)
+      emit('pagination', {
+        ...opts,
+        pageSize: (opts.pageSize || 0) + pageSize,
+      })
       handleTableChange({ pageSize })
     }
 
@@ -403,7 +408,7 @@ $prefix-cls: '#{$tonyname}-basic-table';
 .#{$prefix-cls} {
   max-width: 100%;
   padding: 16px;
-  background: var(--background-primary-color);
+  background: var(--background-secondary-color);
 
   &-header {
     &__top {
