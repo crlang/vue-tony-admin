@@ -7,9 +7,11 @@
         <template #add="{ field }">
           <el-button
             v-if="Number(field) === 0"
+            style="width: 42px;"
             @click="add">+</el-button>
           <el-button
             v-if="field > 0"
+            style="width: 42px;"
             @click="del(field)">-</el-button>
         </template>
       </BasicForm>

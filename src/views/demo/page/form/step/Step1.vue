@@ -45,6 +45,9 @@ export default defineComponent({
     const [register, { validate }] = useForm({
       labelWidth: 100,
       schemas: step1Schemas,
+      colProps: {
+        span: 24,
+      },
       actionColProps: {
         span: 14,
       },

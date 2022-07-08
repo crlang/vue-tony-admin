@@ -91,9 +91,14 @@ function getBarColor(v: number) {
     > .t1 {
       margin-right: 0.25rem;
       font-size: 1.5rem;
+      color: var(--text-secondary-color);
+
     }
 
     > .t2 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 1.875rem;
       height: 1.875rem;
       color: var(--text-secondary-color);
@@ -107,17 +112,24 @@ function getBarColor(v: number) {
       color: #fff;
       background: var(--text-secondary-color);
       border-radius: 1.125rem;
+
     }
 
     &.is-up {
-      > .t2,
+      > .t2 {
+        color: var(--success-color);
+      }
+
       > .t3 {
         background: var(--success-color);
       }
     }
 
     &.is-down {
-      > .t2 ,
+      > .t2  {
+        color: var(--danger-color);
+      }
+
       > .t3 {
         background: var(--danger-color);
       }

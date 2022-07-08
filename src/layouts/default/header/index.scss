@@ -99,9 +99,15 @@ $prefix-cls: '#{$tonyname}-layout-header';
         background: var(--header-background-hover-color);
       }
 
-      svg {
-        width: 1em;
-        height: 1em;
+      > span.el-tooltip__trigger {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+          width: 1em;
+          height: 1em;
+        }
       }
 
       .el-badge {

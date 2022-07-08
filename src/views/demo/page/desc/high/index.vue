@@ -3,6 +3,7 @@
     title="单号：234231029431"
     description="组合详情"
     class="p-4"
+    headerClass="pb-0"
     contentBackground>
     <template #toolbar>
       <el-button>操作一</el-button>

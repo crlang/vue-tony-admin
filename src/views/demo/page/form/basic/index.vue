@@ -29,6 +29,9 @@ export default defineComponent({
     const { createMessage } = useMessage()
     const [register, { validate, setFormProps }] = useForm({
       labelWidth: 160,
+      colProps: {
+        span: 24,
+      },
       schemas: schemas,
       actionColProps: {
         offset: 8,

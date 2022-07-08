@@ -3,7 +3,7 @@
     v-bind="$attrs"
     @register="registerModal"
     :title="getTitle"
-    @ok="handleSubmit">
+    @confirm="handleSubmit">
     <BasicForm @register="registerForm" />
   </BasicModal>
 </template>
@@ -26,6 +26,12 @@ export default defineComponent({
       labelWidth: 100,
       schemas: formSchema,
       showActionButtonGroup: false,
+      colProps: {
+        span: 24,
+      },
+      actionColProps: {
+        span: 24,
+      },
     })
 
     const [registerModal, { setModalProps, closeModal }] = useModalInner(async (data) => {

@@ -141,5 +141,11 @@ $prefix-cls: '#{$tonyname}-app-exception-page';
   display: flex;
   align-items: center;
   flex-direction: column;
+
+  >.el-result__icon {
+    > img {
+      width: 320px;
+    }
+  }
 }
 </style>

@@ -60,13 +60,13 @@ export default defineComponent({
 .scroll-wrap {
   width: 50%;
   height: 300px;
-  background-color: var(--background-primary-color);
+  background-color: var(--background-secondary-color);
 
   li {
     height: 40px;
     padding: 0 20px;
     line-height: 40px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color-light);
   }
 }
 </style>

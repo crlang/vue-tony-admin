@@ -32,6 +32,7 @@ export default defineComponent({
             callback: handleEdit,
           },
           {
+            type: 'danger',
             btnText: '删除',
           },
         ],

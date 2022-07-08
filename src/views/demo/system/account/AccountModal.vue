@@ -5,10 +5,12 @@
     :title="getTitle"
     @confirm="handleSubmit">
     <BasicForm @register="registerForm">
-      <template #localSearch="{ model, field }">
+      <template #role="{ model, field }">
         <ApiSelect
           :api="getAllRoleList"
           filterable
+          placeholder="请选择"
+          style="width: 100%;"
           v-model:modelValue="model[field]"
           labelField="roleName"
           valueField="roleValue" />
@@ -38,8 +40,11 @@ export default defineComponent({
       labelWidth: 100,
       schemas: accountFormSchema,
       showActionButtonGroup: false,
+      colProps: {
+        span: 24,
+      },
       actionColProps: {
-        span: 23,
+        span: 24,
       },
     })
 

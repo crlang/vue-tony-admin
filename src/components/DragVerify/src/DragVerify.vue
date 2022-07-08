@@ -363,8 +363,8 @@ $prefix-cls: '#{$tonyname}-basic-drag-verify';
   position: relative;
   overflow: hidden;
   text-align: center;
-  background-color: var(--background-primary-color);
-  border: 1px solid var(--border-color);
+  background-color: var(--white-color);
+  border: 1px solid var(--border-color-light);
   border-radius: var(--varify-radius);
   user-select: none;
 
@@ -400,6 +400,10 @@ $prefix-cls: '#{$tonyname}-basic-drag-verify';
     background-clip: text;
     user-select: none;
 
+    > span {
+      display: inline-block;
+    }
+
     &.success {
       -webkit-text-fill-color: var(--white-color);
     }
@@ -417,7 +421,7 @@ $prefix-cls: '#{$tonyname}-basic-drag-verify';
     justify-content: center;
     align-items: center;
     cursor: move;
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-primary-color);
     border-radius: var(--varify-radius);
 
     &__icon {

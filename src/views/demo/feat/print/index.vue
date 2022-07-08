@@ -6,7 +6,7 @@
 
     <el-button
       type="primary"
-      class="mt-5"
+      class="ml-5"
       :loading="printLoading"
       @click="imagePrint">Image Print</el-button>
   </PageWrapper>

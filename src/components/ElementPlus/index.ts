@@ -18,13 +18,14 @@ import type {
   TagProps,
   PaginationProps,
   FormItemRule,
-  FormRulesMap,
+  FormRules,
   ComponentSize,
-  componentSizes,
   PopconfirmProps,
   ElMessageBoxOptions,
   NotificationOptions,
-  Action
+  Action,
+  FormProps,
+  FormItemProps,
 } from 'element-plus'
 
 import {
@@ -39,7 +40,13 @@ import {
   tagProps,
   paginationProps,
   popconfirmProps,
-  notificationProps
+  notificationProps,
+  componentSizes,
+  formProps,
+  formItemProps,
+  dropdownMenuProps,
+  dropdownProps,
+  dropdownItemProps
 } from 'element-plus'
 
 export const EleButtonProps = buttonProps
@@ -83,21 +90,34 @@ export type EleElMessageBox = ElMessageBoxOptions
 export const EleNotificationProps = notificationProps
 export type EleNotification = NotificationOptions
 
+export const EleFormProps = formProps
+export type EleForm = FormProps
+
+export const EleFormItemProps = formItemProps
+export type EleFormItem = FormItemProps
+
+export type EleFormItemRule = FormItemRule
+
+export type EleFormRules = FormRules
+
+export const EleDropdownProps = dropdownProps
+export type EleDropdown = ExtractPropTypes<typeof dropdownProps>
+
+export const EleDropdownMenuProps = dropdownMenuProps
+export type EleDropdownMenu = ExtractPropTypes<typeof dropdownMenuProps>
+
+export const EleDropdownItemProps = dropdownItemProps
+export type EleDropdownItem = ExtractPropTypes<typeof dropdownItemProps>
+
+//
 // 杂项
 // MISC
 export type EleActionPopconfirmAction = Action
 
 // 以下为临时方案，由于 Element Plus 未全局导出 Prop ，只能自建或通过引入组件方式定义组件 Prop
 // The following is a temporary solution. Since Element Plus does not export Prop globally, it can only define component Prop by itself or by introducing components
-import { dropdownProps, dropdownItemProps } from 'element-plus/es/components/dropdown/src/dropdown'
 import TableDefault from 'element-plus/es/components/table/src/table/defaults'
 import TableColumn from 'element-plus/es/components/table/src/table-column/defaults'
-
-export const EleDropdownProps = dropdownProps
-export type EleDropdown = ExtractPropTypes<typeof dropdownProps>
-
-export const EleDropdownItemProps = dropdownItemProps
-export type EleDropdownItem = ExtractPropTypes<typeof dropdownItemProps>
 
 export const EleDescriptionsProps = {
   border: {
@@ -162,104 +182,6 @@ export const EleDescriptionsItemProps = {
   },
 }
 export type EleDescriptionsItem = Partial<ExtractPropTypes<typeof EleDescriptionsItemProps>>
-
-export type EleFormItemRule = FormItemRule
-
-export type EleFormRulesMap = FormRulesMap
-
-export const EleFormProps = {
-  model: Object,
-  rules: Object as PropType<FormRulesMap>,
-  labelPosition: String,
-  labelWidth: {
-    type: [String, Number],
-    default: '',
-  },
-  labelSuffix: {
-    type: String,
-    default: '',
-  },
-  inline: Boolean,
-  inlineMessage: Boolean,
-  statusIcon: Boolean,
-  showMessage: {
-    type: Boolean,
-    default: true,
-  },
-  size: String as PropType<ComponentSize>,
-  disabled: Boolean,
-  validateOnRuleChange: {
-    type: Boolean,
-    default: true,
-  },
-  hideRequiredAsterisk: {
-    type: Boolean,
-    default: false,
-  },
-  scrollToError: Boolean,
-}
-
-export interface EleForm {
-  model: object
-  rules: FormRulesMap
-  labelPosition: string
-  labelWidth: string | number
-  labelSuffix: string
-  inline: boolean
-  inlineMessage: boolean
-  statusIcon: boolean
-  showMessage: boolean
-  size: ComponentSize
-  disabled: boolean
-  validateOnRuleChange: boolean
-  hideRequiredAsterisk: boolean
-  scrollToError: boolean
-}
-
-type FormItemValidateStatus = '' | 'success' | 'warning' | 'error' | 'validating'
-
-export const EleFormItemProps = {
-  label: String,
-  labelWidth: {
-    type: [String, Number],
-    default: '',
-  },
-  prop: String,
-  required: {
-    type: Boolean,
-    default: undefined,
-  },
-  rules: [Object, Array] as PropType<FormItemRule | FormItemRule[]>,
-  error: String,
-  validateStatus: String as PropType<FormItemValidateStatus>,
-  for: String,
-  inlineMessage: {
-    type: [String, Boolean],
-    default: '',
-  },
-  showMessage: {
-    type: Boolean,
-    default: true,
-  },
-  size: {
-    type: String as PropType<ComponentSize>,
-    validator: (v: string) => componentSizes.includes(v),
-  },
-}
-
-export interface EleFormItem {
-  label: string
-  labelWidth: string | number
-  prop: string
-  required: boolean
-  rules: FormItemRule | FormItemRule[]
-  error: string
-  validateStatus: FormItemValidateStatus
-  for: string
-  inlineMessage: string | boolean
-  showMessage: boolean
-  size: ComponentSize
-}
 
 export const EleTableProps = TableDefault
 export type EleTable = Partial<ExtractPropTypes<typeof TableDefault>>

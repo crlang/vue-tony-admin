@@ -16,7 +16,7 @@ export const columns: BasicColumn[] = [
     prop: 'icon',
     width: 100,
     customRender: ({ record }) => {
-      return h(Icon, { icon: record.icon })
+      return h(Icon, { name: record.icon })
     },
   },
   {
@@ -136,7 +136,7 @@ export const formSchema: BasicFormSchema[] = [
   {
     field: 'status',
     label: '状态',
-    component: 'ElRadioButton',
+    component: 'ElRadioGroup',
     defaultValue: '0',
     componentProps: {
       options: [
@@ -148,7 +148,7 @@ export const formSchema: BasicFormSchema[] = [
   {
     field: 'isExt',
     label: '是否外链',
-    component: 'ElRadioButton',
+    component: 'ElRadioGroup',
     defaultValue: '0',
     componentProps: {
       options: [
@@ -162,7 +162,7 @@ export const formSchema: BasicFormSchema[] = [
   {
     field: 'keepalive',
     label: '是否缓存',
-    component: 'ElRadioButton',
+    component: 'ElRadioGroup',
     defaultValue: '0',
     componentProps: {
       options: [
@@ -176,7 +176,7 @@ export const formSchema: BasicFormSchema[] = [
   {
     field: 'show',
     label: '是否显示',
-    component: 'ElRadioButton',
+    component: 'ElRadioGroup',
     defaultValue: '0',
     componentProps: {
       options: [

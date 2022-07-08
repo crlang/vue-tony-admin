@@ -50,6 +50,7 @@ $prefix-cls: '#{$tonyname}-card-grid';
 
 .#{$prefix-cls} {
   overflow: visible;
+  background: var(--background-secondary-color);
 
   .el-card__header {
     display: flex;
@@ -59,8 +60,18 @@ $prefix-cls: '#{$tonyname}-card-grid';
   }
 
   .el-card__body {
+    clear: both;
     padding: 0;
     margin: -1px 0 0 -1px;
+
+    &::after {
+      display: block;
+      clear: both;
+      height: 0;
+      font-size: 0;
+      content: '.';
+      visibility: hidden;
+    }
   }
 
   &__item {

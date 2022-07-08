@@ -4,8 +4,8 @@
     @register="registerDrawer"
     showFooter
     :title="getTitle"
-    size="50%"
-    @ok="handleSubmit">
+    size="500px"
+    @confirm="handleSubmit">
     <BasicForm @register="registerForm">
       <template #icon="{ model, field }">
         <IconPicker v-model:modelValue="model[field]" />
@@ -35,6 +35,12 @@ export default defineComponent({
       labelWidth: 100,
       schemas: formSchema,
       showActionButtonGroup: false,
+      colProps: {
+        span: 24,
+      },
+      actionColProps: {
+        span: 24,
+      },
     })
 
     const [registerDrawer, { closeDrawer, changeConfirmLoading }] = useDrawerInner(async (data) => {

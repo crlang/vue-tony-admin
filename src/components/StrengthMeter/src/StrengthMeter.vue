@@ -103,7 +103,7 @@ $prefix-cls: '#{$tonyname}-strength-meter';
     position: relative;
     height: 6px;
     margin: 10px auto 6px;
-    background-color: var(--border-color);
+    background-color: var(--border-color-light);
     border-radius: 6px;
 
     &::before,
@@ -114,7 +114,7 @@ $prefix-cls: '#{$tonyname}-strength-meter';
       width: 20%;
       height: inherit;
       background-color: transparent;
-      border-color: var(--border-color);
+      border-color: var(--border-color-light);
       border-style: solid;
       border-width: 0 5px;
       content: '';
@@ -168,11 +168,11 @@ $prefix-cls: '#{$tonyname}-strength-meter';
 html[data-theme='dark'] {
   .#{$prefix-cls} {
     &-bar {
-      background-color: var(--border-color-light);
+      background-color: var(--border-color);
 
       &::before,
       &::after {
-        border-color: var(--border-color-light);
+        border-color: var(--border-color);
         filter: brightness(0.8);
       }
     }

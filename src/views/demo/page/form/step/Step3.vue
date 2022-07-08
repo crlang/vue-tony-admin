@@ -12,9 +12,7 @@
       </template>
     </el-result>
     <div class="desc-wrap">
-      <el-descriptions
-        :column="1"
-        class="mt-5">
+      <el-descriptions :column="1">
         <el-descriptions-item label="付款账户">test@alipay.com</el-descriptions-item>
         <el-descriptions-item label="收款账户">test@example.com</el-descriptions-item>
         <el-descriptions-item label="收款人姓名">Tony</el-descriptions-item>

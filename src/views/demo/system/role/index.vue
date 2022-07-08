@@ -43,11 +43,13 @@ export default defineComponent({
             },
             {
               icon: 'ep:delete',
+              type: 'danger',
               btnText: '删除',
               popConfirm: {
-                title: '是否确认删除',
-                confirm: handleDelete,
+                title: '是否删除？',
+                type: 'error',
               },
+              callback: handleDelete,
             },
           ],
         },

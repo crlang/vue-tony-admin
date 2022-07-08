@@ -49,14 +49,14 @@ export default defineComponent({
     display: flex;
     justify-content: center;
     margin: 0 20%;
-    background-color: var(--background-primary-color);
+    background-color: var(--background-secondary-color);
   }
 
   &__item {
     height: 40px;
     padding: 0 20px;
     line-height: 40px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color-light);
   }
 }
 </style>

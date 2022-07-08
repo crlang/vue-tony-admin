@@ -28,9 +28,7 @@
             name="ion:lock-closed-outline" />
           锁定屏幕
         </ElDropdownItem>
-        <ElDropdownItem
-          command="logout"
-          divided>
+        <ElDropdownItem command="logout">
           <Icon
             class="mr-2"
             name="ion:power-outline" />

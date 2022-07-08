@@ -1,6 +1,38 @@
 import { isAccountExist } from '@/api/demo/system'
 import { BasicFormSchema } from '@/components/BasicForm'
 
+export const columns: BasicColumn[] = [
+  {
+    label: '用户名',
+    prop: 'account',
+    width: 120,
+  },
+  {
+    label: '昵称',
+    prop: 'nickname',
+    width: 120,
+  },
+  {
+    label: '邮箱',
+    prop: 'email',
+    width: 120,
+  },
+  {
+    label: '创建时间',
+    prop: 'createTime',
+    width: 180,
+  },
+  {
+    label: '角色',
+    prop: 'role',
+    width: 200,
+  },
+  {
+    label: '备注',
+    prop: 'remark',
+  },
+]
+
 export const searchFormSchema: BasicFormSchema[] = [
   {
     field: 'account',
@@ -11,6 +43,12 @@ export const searchFormSchema: BasicFormSchema[] = [
   {
     field: 'nickname',
     label: '昵称',
+    component: 'ElInput',
+    colProps: { span: 8 },
+  },
+  {
+    label: '邮箱',
+    field: 'email',
     component: 'ElInput',
     colProps: { span: 8 },
   },
@@ -55,6 +93,7 @@ export const accountFormSchema: BasicFormSchema[] = [
     field: 'role',
     component: 'ElSelect',
     slot: 'role',
+    changeEvent: 'change',
     required: true,
   },
   {

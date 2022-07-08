@@ -183,8 +183,7 @@ B.parent-cat.pcc__title
   --white-color: #{co.$white-color};
   --disabled-color: #{co.$disabled-color};
   --border-color: #{co.$border-color};
-
-  // --border-color-light: #{$border-color-light};
+  --border-color-light: #{co.$border-color-light};
 
   /* Text Color */
   --text-primary-color: #{co.$text-primary};

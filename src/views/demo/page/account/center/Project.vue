@@ -60,7 +60,7 @@ export default defineComponent({
 
   &__card {
     width: 100%;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-color-light);
 
     &-img {
       width: 100%;

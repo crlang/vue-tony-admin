@@ -37,7 +37,7 @@
 import { defineComponent, reactive } from 'vue'
 import { ElRow, ElCol, ElButton } from 'element-plus'
 
-import { BasicColumn, BasicTable, useTable } from '@/components/BasicTable'
+import { BasicTable, useTable } from '@/components/BasicTable'
 import { getAccountList } from '@/api/demo/system'
 import DeptTree from './DeptTree.vue'
 
@@ -46,7 +46,7 @@ import { Document, Edit, Delete } from '@element-plus/icons'
 import { useGo } from '@/hooks/web/usePage'
 import { DeptListItem } from '@/api/demo/model/systemModel'
 import { useMessage } from '@/hooks/web/useMessage'
-import { searchFormSchema } from './data'
+import { searchFormSchema, columns } from './data'
 import { useModal } from '@/components/BasicModal'
 
 export default defineComponent({
@@ -61,62 +61,9 @@ export default defineComponent({
   },
   setup() {
     const go = useGo()
-    const { createConfirm, createMessage } = useMessage()
+    const { createMessage } = useMessage()
 
     const [registerModal, { openModal }] = useModal()
-
-    const columns: BasicColumn[] = [
-      {
-        label: '用户名',
-        prop: 'account',
-        width: 120,
-      },
-      {
-        label: '昵称',
-        prop: 'nickname',
-        width: 120,
-      },
-      {
-        label: '邮箱',
-        prop: 'email',
-        width: 120,
-      },
-      {
-        label: '创建时间',
-        prop: 'createTime',
-        width: 180,
-      },
-      {
-        label: '角色',
-        prop: 'role',
-        width: 200,
-      },
-      {
-        label: '备注',
-        prop: 'remark',
-      },
-      {
-        width: 220,
-        fixed: 'right',
-        actions: [
-          {
-            icon: 'clarity:info-standard-line',
-            btnText: '查看',
-            callback: handleView,
-          },
-          {
-            icon: 'clarity:note-edit-line',
-            btnText: '编辑',
-            callback: handleEdit,
-          },
-          {
-            icon: 'ep:delete',
-            btnText: '删除',
-            callback: handleDelete,
-          },
-        ],
-      },
-    ]
 
     function handleCreate() {
       openModal(true, {
@@ -129,11 +76,42 @@ export default defineComponent({
       title: '账号列表',
       api: getAccountList,
       rowKey: 'id',
-      columns,
+      columns: [
+        ...columns,
+        {
+          width: 220,
+          fixed: 'right',
+          actions: [
+            {
+              icon: 'clarity:info-standard-line',
+              btnText: '查看',
+              callback: handleView,
+            },
+            {
+              icon: 'clarity:note-edit-line',
+              btnText: '编辑',
+              callback: handleEdit,
+            },
+            {
+              icon: 'ep:delete',
+              type: 'danger',
+              btnText: '删除',
+              popConfirm: {
+                title: '是否删除？',
+                type: 'error',
+              },
+              callback: handleDelete,
+            },
+          ],
+        },
+      ],
       formConfig: {
         labelWidth: 120,
         schemas: searchFormSchema,
         autoSubmitOnEnter: true,
+        // actionColProps: {
+        //   span: 24,
+        // },
       },
       useSearchForm: true,
       border: true,
@@ -150,12 +128,10 @@ export default defineComponent({
       })
     }
 
-    function handleDelete({ row }) {
-      createConfirm({ title: '温馨提示', content: `是否确认删除「${row.nickname}」?`, type: 'error' })
-        .then(() => {
-          createMessage.success('删除成功')
-        })
-        .catch(() => {})
+    function handleDelete(_, action) {
+      if (action === 'confirm') {
+        createMessage.success('删除成功')
+      }
     }
 
     function handleSuccess({ isUpdate, values }) {

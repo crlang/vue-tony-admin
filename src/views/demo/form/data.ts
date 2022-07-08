@@ -57,15 +57,16 @@ export const basicSchemas: BasicFormSchema[] = [
     field: 'divider-basic',
     component: 'ElDivider',
     label: '基础字段',
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'field1',
     component: 'ElInput',
     label: '字段1',
-    colProps: {
-      span: 8,
-    },
     subLabel: '( 选填 )',
+    defaultValue: '10',
     componentProps: () => {
       return {
         placeholder: '自定义placeholder',
@@ -74,12 +75,12 @@ export const basicSchemas: BasicFormSchema[] = [
         },
       }
     },
-    renderComponentContent: () => {
-      return {
-        prefix: () => 'Be',
-        suffix: () => 'Af',
-      }
-    },
+    // renderComponentContent: () => {
+    //   return {
+    //     prefix: '共',
+    //     suffix: '元',
+    //   }
+    // },
   },
   {
     field: 'field2',
@@ -87,25 +88,23 @@ export const basicSchemas: BasicFormSchema[] = [
     label: '字段2',
     required: true,
     defaultValue: '111',
-    colProps: {
-      span: 8,
-    },
     componentProps: {
       onChange: () => {
         // do something
       },
     },
-    prepend: '第',
-    append: '天',
+    // renderComponentContent: () => {
+    //   return {
+    //     prepend: '第',
+    //     append: '天',
+    //   }
+    // },
   },
   {
     field: 'field3',
     component: 'ElDatePicker',
     label: '字段3',
     defaultValue: dayjs(new Date()),
-    colProps: {
-      span: 8,
-    },
     componentProps: {
       type: 'date',
     },
@@ -115,9 +114,6 @@ export const basicSchemas: BasicFormSchema[] = [
     component: 'ElDatePicker',
     label: '字段33',
     defaultValue: new Date(),
-    colProps: {
-      span: 8,
-    },
     componentProps: {
       type: 'date',
     },
@@ -126,9 +122,6 @@ export const basicSchemas: BasicFormSchema[] = [
     field: 'field4',
     component: 'ElSelect',
     label: '字段4',
-    colProps: {
-      span: 8,
-    },
     componentProps: {
       options: [
         {
@@ -150,9 +143,6 @@ export const basicSchemas: BasicFormSchema[] = [
     label: '字段5',
     // The default value must be an array
     defaultValue: [],
-    colProps: {
-      span: 8,
-    },
     componentProps: {
       options: [
         {
@@ -170,9 +160,6 @@ export const basicSchemas: BasicFormSchema[] = [
     field: 'field6',
     component: 'ElRadio',
     label: '字段6',
-    colProps: {
-      span: 8,
-    },
     componentProps: {
       options: [
         {
@@ -190,9 +177,6 @@ export const basicSchemas: BasicFormSchema[] = [
     field: 'field7',
     component: 'ElRadioGroup',
     label: '字段7',
-    colProps: {
-      span: 8,
-    },
     componentProps: {
       options: [
         {
@@ -210,9 +194,6 @@ export const basicSchemas: BasicFormSchema[] = [
     field: 'field8',
     component: 'ElCheckbox',
     label: '字段8',
-    colProps: {
-      span: 8,
-    },
     // If you don't specify a value, it will return true/false
     // componentProps: {
     //   'true-label': 1,
@@ -224,17 +205,11 @@ export const basicSchemas: BasicFormSchema[] = [
     field: 'field9',
     component: 'ElSwitch',
     label: '字段9',
-    colProps: {
-      span: 8,
-    },
   },
   {
     field: 'field10',
     component: 'ElRadioButton',
     label: '字段10',
-    colProps: {
-      span: 8,
-    },
     componentProps: {
       options: [
         {
@@ -252,9 +227,6 @@ export const basicSchemas: BasicFormSchema[] = [
     field: 'field11',
     component: 'ElCascader',
     label: '字段11',
-    colProps: {
-      span: 8,
-    },
     componentProps: {
       options: [
         {
@@ -296,6 +268,9 @@ export const basicSchemas: BasicFormSchema[] = [
     field: 'divider-api-select',
     component: 'ElDivider',
     label: '远程下拉演示',
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'field31',
@@ -303,9 +278,6 @@ export const basicSchemas: BasicFormSchema[] = [
     label: '懒加载远程下拉',
     helpMessage: ['ApiSelect组件', '远程数据源本地搜索', '只发起一次请求获取所有选项'],
     slot: 'localSearch',
-    colProps: {
-      span: 8,
-    },
     defaultValue: '0',
   },
   {
@@ -314,23 +286,20 @@ export const basicSchemas: BasicFormSchema[] = [
     label: '下拉远程搜索',
     helpMessage: ['ApiSelect组件', '将关键词发送到接口进行远程搜索'],
     slot: 'remoteSearch',
-    colProps: {
-      span: 8,
-    },
     defaultValue: '0',
   },
   {
     field: 'divider-linked',
     component: 'ElDivider',
     label: '字段联动',
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'province',
     component: 'ElSelect',
     label: '省份',
-    colProps: {
-      span: 8,
-    },
     componentProps: ({ formModel, formAction }) => {
       return {
         options: provincesOptions,
@@ -357,9 +326,6 @@ export const basicSchemas: BasicFormSchema[] = [
     field: 'city',
     component: 'ElSelect',
     label: '城市',
-    colProps: {
-      span: 8,
-    },
     componentProps: {
       options: [], // defalut []
       placeholder: '省份与城市联动',
@@ -370,6 +336,9 @@ export const basicSchemas: BasicFormSchema[] = [
     component: 'ElDivider',
     label: '互斥多选',
     helpMessage: ['两个Select共用数据源', '但不可选择对方已选中的项目'],
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'selectA',
@@ -377,9 +346,6 @@ export const basicSchemas: BasicFormSchema[] = [
     label: '互斥SelectA',
     slot: 'selectA',
     defaultValue: [],
-    colProps: {
-      span: 8,
-    },
   },
   {
     field: 'selectB',
@@ -387,22 +353,19 @@ export const basicSchemas: BasicFormSchema[] = [
     label: '互斥SelectB',
     slot: 'selectB',
     defaultValue: [],
-    colProps: {
-      span: 8,
-    },
   },
   {
     field: 'divider-others',
     component: 'ElDivider',
     label: '其它',
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'field21',
     component: 'ElInputNumber',
     label: '字段21',
-    colProps: {
-      span: 8,
-    },
   },
   {
     field: 'field22',
@@ -417,18 +380,12 @@ export const basicSchemas: BasicFormSchema[] = [
         60: '60°C',
       },
     },
-    colProps: {
-      span: 8,
-    },
   },
   {
     field: 'field23',
     component: 'ElRate',
     label: '字段23',
     defaultValue: 3,
-    colProps: {
-      span: 8,
-    },
     componentProps: {
       disabled: false,
       allowHalf: true,

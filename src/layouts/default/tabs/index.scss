@@ -6,7 +6,7 @@ $prefix-cls: '#{$tonyname}-multiple-tabs';
 .#{$prefix-cls} {
   position: relative;
   z-index: 10;
-  background: var(--background-primary-color);
+  background: var(--background-secondary-color);
 
   &-content {
     height: 100%;
@@ -137,6 +137,7 @@ $prefix-cls: '#{$tonyname}-multiple-tabs';
         width: 0;
         opacity: 0;
         visibility: hidden;
+        transition: none;
 
         &:hover {
           color: #fff;
@@ -151,7 +152,7 @@ $prefix-cls: '#{$tonyname}-multiple-tabs';
 
       &:hover,
       &.is-active {
-        padding: 0 30px;
+        padding: 0 24px;
         mask: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANoAAAAkBAMAAAAdqzmBAAAAMFBMVEVHcEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlTPQ5AAAAD3RSTlMAr3DvEM8wgCBA379gj5//tJBPAAAAnUlEQVRIx2NgAAM27fj/tAO/xBsYkIHyf9qCT8iWMf6nNQhAsk2f5rYheY7Dnua2/U+A28ZEe8v+F9Ax2v7/F4DbxkUH2wzgtvHTwbYPo7aN2jZq26hto7aN2jZq25Cy7Qvctnw62PYNbls9HWz7S8/G6//PsI6H4396gAUQy1je08W2jxDbpv6nD4gB2uWp+J9eYPsEhv/0BPS1DQBvoBLVZ3BppgAAAABJRU5ErkJggg==');
         mask-size: 100% 100%;
         transition: all var(--el-transition-duration) var(--el-transition-function-ease-in-out-bezier);
@@ -166,7 +167,6 @@ $prefix-cls: '#{$tonyname}-multiple-tabs';
 
       &:hover {
         color: var(--primary-color);
-        background: #f5f6f7;
       }
 
       &.is-active {

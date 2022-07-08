@@ -5,7 +5,7 @@
     showFooter
     :title="getTitle"
     width="500px"
-    @ok="handleSubmit">
+    @confirm="handleSubmit">
     <BasicForm @register="registerForm">
       <template #menu="{ model, field }">
         <el-tree
@@ -45,6 +45,12 @@ export default defineComponent({
       labelWidth: 90,
       schemas: formSchema,
       showActionButtonGroup: false,
+      colProps: {
+        span: 24,
+      },
+      actionColProps: {
+        span: 24,
+      },
     })
 
     const [registerDrawer, { closeDrawer, changeConfirmLoading }] = useDrawerInner(async (data) => {

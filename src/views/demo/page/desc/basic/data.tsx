@@ -1,6 +1,6 @@
 import { DescItem } from '@/components/BasicDescription'
 import { BasicColumn } from '@/components/BasicTable'
-import { ElBadge, ElButton } from 'element-plus'
+import { ElTag, ElButton } from 'element-plus'
 
 export const refundData = {
   a1: '1000000000',
@@ -104,7 +104,7 @@ export const refundTimeTableSchema: BasicColumn[] = [
     label: '状态',
     prop: 't3',
     customRender: ({ record }) => {
-      return <ElBadge type='success' value={record.t3} />
+      return <ElTag type='success'>{record.t3}</ElTag>
     },
   },
   {
