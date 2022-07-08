@@ -295,7 +295,7 @@ function handleActionColumn(columns: BasicColumn[]) {
 
   const isFixedRight = columns.some((item) => item.fixed === 'right')
   columns[hasIndex] = {
-    width: 120,
+    width: 150,
     label: '操作',
     prop: 'action',
     type: 'action',

@@ -7,12 +7,11 @@
         text
         size="small"
         v-bind="action.buttonProps"
-        @click="handleClick(action)">
-        <SvgIcon
+        @click="handleClick(action)"><SvgIcon
           :name="action.svgName"
-          v-if="action?.svgName" />
-        {{ action.buttonProps?.btnText || '' }}
-      </el-button>
+          v-if="action?.svgName" /><Icon
+            :name="action.iconName"
+            v-else-if="action?.iconName" />{{ action?.btnText || '' }}</el-button>
     </template>
   </div>
 </template>
@@ -27,6 +26,7 @@ import { omit } from 'lodash-es'
 
 import { usePermission } from '@/hooks/web/usePermission'
 import { SvgIcon } from '@/components/SvgIcon'
+import { Icon } from '@/components/Icon'
 import { useMessage } from '@/hooks/web/useMessage'
 
 interface TableActionItemX extends TableActionItem {
@@ -35,7 +35,7 @@ interface TableActionItemX extends TableActionItem {
 
 export default defineComponent({
   name: 'TableAction',
-  components: { ElButton, SvgIcon },
+  components: { ElButton, SvgIcon, Icon },
   props: {
     prefixCls: String,
     /**
@@ -77,8 +77,10 @@ export default defineComponent({
           const opt = {
             callback: action?.callback || null,
             popConfirm: action?.popConfirm || null,
-            svgName: action.svgName,
-            buttonProps: omit(action, ['svgName', 'popConfirm', 'auth', 'ifShow', 'callback']) as EleButton,
+            svgName: action?.svgName || null,
+            iconName: action?.iconName || null,
+            btnText: action?.btnText || null,
+            buttonProps: omit(action, ['svgName', 'popConfirm', 'auth', 'ifShow', 'callback', 'btnText']) as EleButton,
           }
 
           return opt

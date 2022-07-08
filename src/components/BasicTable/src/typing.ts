@@ -658,6 +658,12 @@ export interface TableActionItem extends EleButton {
    */
   svgName?: string
   /**
+   * 常规图标的名称
+   *
+   * Icon name
+   */
+  iconName?: string
+  /**
    * 如果有，将转为弹窗确认按钮模式
    *
    * If there is, it will switch to popup confirmation button mode

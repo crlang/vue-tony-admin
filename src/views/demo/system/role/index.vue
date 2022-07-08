@@ -37,12 +37,12 @@ export default defineComponent({
         {
           actions: [
             {
-              icon: 'clarity:note-edit-line',
+              iconName: 'clarity:note-edit-line',
               btnText: '编辑',
               callback: handleEdit,
             },
             {
-              icon: 'ep:delete',
+              iconName: 'ep:delete',
               type: 'danger',
               btnText: '删除',
               popConfirm: {
