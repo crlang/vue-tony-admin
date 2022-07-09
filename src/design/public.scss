@@ -83,6 +83,26 @@
         border-radius: 0;
         flex: 1;
 
+        &--primary {
+          color: #fff;
+          background: var(--primary-color);
+        }
+
+        &--danger {
+          color: #fff;
+          background: var(--danger-color);
+        }
+
+        &--warning {
+          color: #fff;
+          background: var(--warning-color);
+        }
+
+        &--success {
+          color: #fff;
+          background: var(--success-color);
+        }
+
         &:hover {
           filter: brightness(0.96);
         }
