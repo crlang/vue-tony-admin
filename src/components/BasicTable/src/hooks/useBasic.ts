@@ -1,5 +1,5 @@
-import type { BasicTableProps, TableActionMethods } from '../typing'
-import { ComputedRef, Ref, unref } from 'vue'
+import type { TableActionMethods } from '../typing'
+import { Ref, unref } from 'vue'
 import { error } from '@/utils/log'
 
 /**
@@ -8,7 +8,6 @@ import { error } from '@/utils/log'
  * Please refer to Element Plus documentation for method usage
  */
 export function useBasicTableFn(
-  propsRef: ComputedRef<BasicTableProps>,
   tableRef: Ref<TableActionMethods>,
   handleTableChange: (...arg: any[]) => void,
   emit: EmitType

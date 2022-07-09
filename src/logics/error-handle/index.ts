@@ -91,7 +91,7 @@ export function scriptErrorHandler(
     return false
   }
   const errorInfo: Partial<ErrorLogInfo> = {}
-  colno = colno || (window.event && (window.event as any).errorCharacter) || 0
+  colno = colno || (window.event && (window.event as Event).errorCharacter) || 0
   errorInfo.message = event as string
   if (error?.stack) {
     errorInfo.stack = error.stack
@@ -106,6 +106,7 @@ export function scriptErrorHandler(
     file: source as string,
     detail: 'lineno' + lineno,
     url: window.location.href,
+    colno: colno || null,
     ...(errorInfo as Pick<ErrorLogInfo, 'message' | 'stack'>),
   })
   return true

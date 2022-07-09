@@ -153,7 +153,7 @@ export function useDataSource(
   function updateTableData(index: number, prop: string, value: any) {
     const record = dataSourceRef.value[index]
     if (record) {
-      dataSourceRef.value[index][key] = value
+      dataSourceRef.value[index][prop] = value
     }
     return dataSourceRef.value[index]
   }

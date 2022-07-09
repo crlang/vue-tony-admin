@@ -203,7 +203,7 @@ export default defineComponent({
       clearFilter,
       doLayout,
       sort,
-    } = useBasicTableFn(getProps, tableElRef, handleTableChange, emit)
+    } = useBasicTableFn(tableElRef, handleTableChange, emit)
 
     const { getViewColumns, getColumns, setColumns, getCacheColumns } = useColumns(getProps, getTablePagination)
 
