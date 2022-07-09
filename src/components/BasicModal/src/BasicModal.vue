@@ -84,6 +84,7 @@ export default defineComponent({
       redoModalHeight: () => {
         nextTick(() => {
           if (unref(modalWrapperRef)) {
+            // eslint-disable-next-line prettier/prettier
             (unref(modalWrapperRef) as any).setModalHeight()
           }
         })
@@ -256,7 +257,7 @@ export default defineComponent({
       },
       {
         immediate: false,
-      }
+      },
     )
 
     return {
@@ -343,7 +344,7 @@ $prefix-cls: '#{$tonyname}-basic-modal';
       margin-bottom: 0;
     }
 
-    .scrollbar__bar.is-horizontal{
+    .scrollbar__bar.is-horizontal {
       display: none;
     }
 

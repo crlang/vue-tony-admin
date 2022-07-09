@@ -46,7 +46,7 @@ export function useWatermark(appendEl: Ref<HTMLElement | null> = ref(document.bo
       width?: number
       height?: number
       str?: string
-    } = {}
+    } = {},
   ) {
     const el = unref(watermarkEl)
     if (!el) return

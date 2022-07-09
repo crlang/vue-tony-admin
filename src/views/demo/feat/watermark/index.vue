@@ -6,15 +6,21 @@
       <el-button
         type="primary"
         class="mr-2"
-        @click="setWatermark('WaterMark Info')">Create</el-button>
+        @click="setWatermark('WaterMark Info')">
+        Create
+      </el-button>
       <el-button
         type="danger"
         class="mr-2"
-        @click="clear">Clear</el-button>
+        @click="clear">
+        Clear
+      </el-button>
       <el-button
         type="warning"
         class="mr-2"
-        @click="setWatermark('WaterMark Info New')">Reset</el-button>
+        @click="setWatermark('WaterMark Info New')">
+        Reset
+      </el-button>
     </CollapseContainer>
   </PageWrapper>
 </template>

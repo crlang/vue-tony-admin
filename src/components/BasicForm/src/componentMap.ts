@@ -19,7 +19,7 @@ import {
   ElCascader,
   ElRate,
   ElSlider,
-  ElInputNumber
+  ElInputNumber,
 } from 'element-plus'
 
 /**

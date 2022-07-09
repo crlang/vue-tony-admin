@@ -11,7 +11,9 @@
       <el-button
         type="danger"
         @click="setLines"
-        :disabled="loading">点我更新内容</el-button>
+        :disabled="loading">
+        点我更新内容
+      </el-button>
     </template>
     <template v-if="loading">
       <div class="empty-tips">加载中，稍等3秒……</div>
@@ -20,7 +22,9 @@
       <ul>
         <li
           v-for="index in lines"
-          :key="index">加载完成{{ index }}！</li>
+          :key="index">
+          加载完成{{ index }}！
+        </li>
       </ul>
     </template>
   </BasicModal>
@@ -44,7 +48,7 @@ export default defineComponent({
       () => lines.value,
       () => {
         redoModalHeight()
-      }
+      },
     )
 
     function handleShow(visible: boolean) {

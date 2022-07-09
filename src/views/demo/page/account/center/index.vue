@@ -39,7 +39,9 @@
             :key="tag">
             <el-tag
               class="mb-2 mr-2"
-              size="small">{{ tag }}</el-tag>
+              size="small">
+              {{ tag }}
+            </el-tag>
           </template>
         </CollapseContainer>
       </el-col>

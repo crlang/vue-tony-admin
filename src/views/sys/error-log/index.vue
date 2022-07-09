@@ -13,13 +13,19 @@
       <template #toolbar>
         <el-button
           @click="fireVueError"
-          type="primary">点击触发vue错误</el-button>
+          type="primary">
+          点击触发vue错误
+        </el-button>
         <el-button
           @click="fireResourceError"
-          type="primary">点击触发资源加载错误</el-button>
+          type="primary">
+          点击触发资源加载错误
+        </el-button>
         <el-button
           @click="fireAjaxError"
-          type="primary">点击触发ajax错误</el-button>
+          type="primary">
+          点击触发ajax错误
+        </el-button>
       </template>
     </BasicTable>
   </div>
@@ -52,7 +58,7 @@ watch(
   },
   {
     immediate: true,
-  }
+  },
 )
 const { createMessage } = useMessage()
 if (import.meta.env.DEV) {

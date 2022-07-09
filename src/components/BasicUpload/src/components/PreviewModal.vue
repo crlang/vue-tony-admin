@@ -66,7 +66,7 @@ export default defineComponent({
         // callback remaining unremoved items
         emit(
           'list-change',
-          fileListRef.value.map((item) => item.url)
+          fileListRef.value.map((item) => item.url),
         )
       }
     }

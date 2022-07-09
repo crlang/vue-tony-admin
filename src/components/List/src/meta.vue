@@ -17,16 +17,24 @@
       v-if="$slots.title || $slots.description">
       <h4
         :class="prefixCls + '-title'"
-        v-if="$slots.title"><slot name="title"></slot></h4>
+        v-if="$slots.title">
+        <slot name="title"></slot>
+      </h4>
       <h4
         :class="prefixCls + '-title'"
-        v-else-if="title">{{ title }}</h4>
+        v-else-if="title">
+        {{ title }}
+      </h4>
       <div
         :class="prefixCls + '-description'"
-        v-if="$slots.description"><slot name="description"></slot></div>
+        v-if="$slots.description">
+        <slot name="description"></slot>
+      </div>
       <div
         :class="prefixCls + '-description'"
-        v-else-if="description">{{ description }}</div>
+        v-else-if="description">
+        {{ description }}
+      </div>
     </div>
   </div>
 </template>

@@ -79,7 +79,10 @@ export default defineComponent({
 
     return () => {
       return (
-        <ElTooltip popper-class={`${prefixCls}__wrap`} effect={props.effect} placement={props.placement}>
+        <ElTooltip
+          popper-class={`${prefixCls}__wrap`}
+          effect={props.effect}
+          placement={props.placement}>
           {{
             content: () => renderTitle(),
             default: () => <span class={prefixCls}>{getSlot(slots) || <SvgIcon name={'info-fill'} />}</span>,

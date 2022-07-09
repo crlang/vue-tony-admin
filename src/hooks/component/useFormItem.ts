@@ -16,7 +16,7 @@ export function useRuleFormItem<T extends Recordable>(
   props: T,
   key: keyof T = 'modelValue',
   changeEvent = 'change',
-  emitValue?: ''
+  emitValue?: '',
 ) {
   const instance = getCurrentInstance()
   const emit = instance?.emit

@@ -7,7 +7,9 @@
       <template #extra>
         <el-button
           type="primary"
-          @click="redo">再转一笔</el-button>
+          @click="redo">
+          再转一笔
+        </el-button>
         <el-button>查看账单</el-button>
       </template>
     </el-result>

@@ -39,13 +39,13 @@ export const CardList: CardItem[] = [
 export type dateType = 'day' | 'week' | 'month' | 'quarter' | 'year'
 
 interface dateItem {
-  xdata: array
+  xdata: Array
   kdata: {
-    k1: array
-    k2: array
-    k3: array
+    k1: Array
+    k2: Array
+    k3: Array
   }
-  vdata: array
+  vdata: Array
 }
 
 export function getDateData(type: dateType = 'day') {

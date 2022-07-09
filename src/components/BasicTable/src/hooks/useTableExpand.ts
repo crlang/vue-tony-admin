@@ -16,7 +16,7 @@ import { warn } from '@/utils/log'
 export function useTableExpand(
   propsRef: ComputedRef<BasicTableProps>,
   getDataSourceRef: ComputedRef<Recordable[]>,
-  getRowKey: ComputedRef<string | undefined>
+  getRowKey: ComputedRef<string | undefined>,
 ) {
   /**
    * 展开的key

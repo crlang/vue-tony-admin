@@ -4,7 +4,7 @@ import type {
   BasicModalProps,
   ModalActionMethods,
   ReturnInnerMethods,
-  UseModalInnerReturnType
+  UseModalInnerReturnType,
 } from './typing'
 
 import { ref, onUnmounted, unref, getCurrentInstance, reactive, watchEffect, nextTick, toRaw, computed } from 'vue'
@@ -65,7 +65,7 @@ export function useModal(): UseModalReturnType {
     const instance = unref(modal)
     if (!instance) {
       error(
-        'The modal instance has not been obtained, please make sure the instance is rendered when performing the instance operation!'
+        'The modal instance has not been obtained, please make sure the instance is rendered when performing the instance operation!',
       )
     }
     return instance

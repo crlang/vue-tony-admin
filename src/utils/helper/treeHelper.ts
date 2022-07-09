@@ -155,7 +155,7 @@ export function treeMapEach(data: any, { children = 'children', conversion }: { 
         treeMapEach(i, {
           children,
           conversion,
-        })
+        }),
       ),
     }
   } else {

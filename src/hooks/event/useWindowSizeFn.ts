@@ -3,6 +3,7 @@ import { tryOnMounted, tryOnUnmounted, useDebounceFn } from '@vueuse/core'
 interface WindowSizeOptions {
   once?: boolean
   immediate?: boolean
+  // eslint-disable-next-line no-undef
   listenerOptions?: AddEventListenerOptions | boolean
 }
 

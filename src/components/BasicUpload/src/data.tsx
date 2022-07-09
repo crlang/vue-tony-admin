@@ -39,10 +39,17 @@ export function createTableColumns(): FileBasicColumn[] {
         }
         return (
           <span>
-            <p class='truncate mb-1' title={text}>
+            <p
+              class='truncate mb-1'
+              title={text}>
               {text}
             </p>
-            <ElProgress percentage={percent} text-inside={true} stroke-width={24} status={status} />
+            <ElProgress
+              percentage={percent}
+              text-inside={true}
+              stroke-width={24}
+              status={status}
+            />
           </span>
         )
       },
@@ -87,7 +94,9 @@ export function createActionColumn(handleRemove: Fn): FileBasicColumn {
     fixed: false,
     customRender: ({ record }) => {
       return (
-        <ElButton type='danger' onClick={handleRemove.bind(null, record)}>
+        <ElButton
+          type='danger'
+          onClick={handleRemove.bind(null, record)}>
           {() => '删除'}
         </ElButton>
       )
@@ -139,10 +148,14 @@ export function createPreviewActionColumn({
     customRender: ({ record }) => {
       return (
         <ElButtonGroup>
-          <ElButton type='danger' onClick={handleRemove.bind(null, record)}>
+          <ElButton
+            type='danger'
+            onClick={handleRemove.bind(null, record)}>
             {() => '删除'}
           </ElButton>
-          <ElButton type='success' onClick={handleDownload.bind(null, record)}>
+          <ElButton
+            type='success'
+            onClick={handleDownload.bind(null, record)}>
             {() => '下载'}
           </ElButton>
         </ElButtonGroup>

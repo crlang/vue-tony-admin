@@ -61,9 +61,7 @@ export default defineComponent({
 
     const getIsTabs = computed(() => props.type === TabContentEnum.TAB_TYPE)
 
-    const getTrigger = computed((): ('contextmenu' | 'click' | 'hover') =>
-      unref(getIsTabs) ? 'contextmenu' : 'hover'
-    )
+    const getTrigger = computed((): 'contextmenu' | 'click' | 'hover' => (unref(getIsTabs) ? 'contextmenu' : 'hover'))
 
     const { getDropMenuList, handleMenuEvent, handleContextMenu } = useTabDropdown(props as TabContentProps, getIsTabs)
 

@@ -6,16 +6,22 @@
       <el-button
         type="primary"
         @click="enter"
-        class="mr-2">Enter Window Full Screen</el-button>
+        class="mr-2">
+        Enter Window Full Screen
+      </el-button>
       <el-button
         type="success"
         @click="toggle"
-        class="mr-2">Toggle Window Full Screen</el-button>
+        class="mr-2">
+        Toggle Window Full Screen
+      </el-button>
 
       <el-button
         type="danger"
         @click="exit"
-        class="mr-2">Exit Window Full Screen</el-button>
+        class="mr-2">
+        Exit Window Full Screen
+      </el-button>
 
       Current State: {{ isFullscreen }}
     </CollapseContainer>
@@ -26,7 +32,9 @@
       <el-button
         type="primary"
         @click="toggleDom"
-        class="mr-2">Enter Dom Full Screen</el-button>
+        class="mr-2">
+        Enter Dom Full Screen
+      </el-button>
     </CollapseContainer>
 
     <div
@@ -35,7 +43,9 @@
       <el-button
         type="primary"
         @click="toggleDom"
-        class="mr-2">Exit Dom Full Screen</el-button>
+        class="mr-2">
+        Exit Dom Full Screen
+      </el-button>
     </div>
   </PageWrapper>
 </template>

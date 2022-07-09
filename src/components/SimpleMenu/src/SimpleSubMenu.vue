@@ -10,7 +10,9 @@
       :size="16" />
     <div
       v-if="collapsedShowTitle && getIsCollapseParent"
-      class="mt-1 collapse-title">{{ getName }}</div>
+      class="mt-1 collapse-title">
+      {{ getName }}
+    </div>
     <template #title>
       <span :class="`${prefixCls}-sub-title`">{{ getName }}</span>
       <SimpleMenuTag
@@ -30,11 +32,15 @@
         :size="16" />
       <div
         v-if="collapsedShowTitle && getIsCollapseParent"
-        class="collapse-title">{{ getName }}</div>
+        class="collapse-title">
+        {{ getName }}
+      </div>
 
       <span
         v-show="getShowSubTitle"
-        :class="`${prefixCls}-sub-title`">{{ getName }}</span>
+        :class="`${prefixCls}-sub-title`">
+        {{ getName }}
+      </span>
       <SimpleMenuTag
         :item="item"
         :collapseParent="!!collapse && !!parent" />

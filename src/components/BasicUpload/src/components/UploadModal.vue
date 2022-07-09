@@ -35,7 +35,9 @@
         style="margin-left: 8px">
         <ElButton
           type="primary"
-          :disabled="getUploadState">选择文件</ElButton>
+          :disabled="getUploadState">
+          选择文件
+        </ElButton>
       </ElUpload>
     </div>
 
@@ -283,7 +285,7 @@ export default defineComponent({
         const data = await Promise.all(
           uploadFileList.map((item) => {
             return uploadApiByItem(item)
-          })
+          }),
         )
         isUploadingRef.value = false
         // 筛选未上传成功文件

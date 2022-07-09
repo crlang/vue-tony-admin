@@ -1,7 +1,9 @@
 <template>
   <span
     :class="getTagClass"
-    v-if="getShowTag">{{ getContent }}</span>
+    v-if="getShowTag">
+    {{ getContent }}
+  </span>
 </template>
 
 <script lang="ts">

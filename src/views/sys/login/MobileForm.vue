@@ -20,7 +20,9 @@
         type="primary"
         @click="handleLogin"
         :loading="loading"
-        class="login--submit">登录</el-button>
+        class="login--submit">
+        登录
+      </el-button>
     </el-form-item>
   </el-form>
 </template>

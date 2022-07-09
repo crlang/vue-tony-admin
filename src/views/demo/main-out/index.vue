@@ -4,7 +4,9 @@
     <el-button
       @click="$router.go(-1)"
       class="mt-10"
-      type="primary">Back</el-button>
+      type="primary">
+      Back
+    </el-button>
   </div>
 </template>
 

@@ -5,7 +5,9 @@
         <ul class="p-3">
           <li
             v-for="(k, i) in litdata"
-            :key="i">{{ k }}</li>
+            :key="i">
+            {{ k }}
+          </li>
         </ul>
       </ScrollContainer>
     </div>

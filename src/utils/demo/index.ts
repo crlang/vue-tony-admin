@@ -1,7 +1,7 @@
 export function randomNumber(
   minNum,
   maxNum: number | undefined = undefined,
-  decimalNum: number | undefined = undefined
+  decimalNum: number | undefined = undefined,
 ): number {
   let max = 0
   let min = 0

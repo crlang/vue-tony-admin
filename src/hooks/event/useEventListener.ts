@@ -6,7 +6,9 @@ export type RemoveEventFn = () => void
 export interface UseEventParams {
   el?: Element | Ref<Element | undefined> | Window | any
   name: string
+  // eslint-disable-next-line no-undef
   listener: EventListener
+  // eslint-disable-next-line no-undef
   options?: boolean | AddEventListenerOptions
   autoRemove?: boolean
   isDebounce?: boolean
@@ -46,7 +48,7 @@ export function useEventListener({
           })
         }
       },
-      { immediate: true }
+      { immediate: true },
     )
 
     remove = () => {

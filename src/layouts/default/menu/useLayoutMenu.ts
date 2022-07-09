@@ -45,7 +45,7 @@ export function useSplitMenu(splitType: Ref<MenuSplitTyeEnum>) {
     },
     {
       immediate: true,
-    }
+    },
   )
 
   // Menu changes
@@ -56,7 +56,7 @@ export function useSplitMenu(splitType: Ref<MenuSplitTyeEnum>) {
     },
     {
       immediate: true,
-    }
+    },
   )
 
   // split Menu changes
@@ -65,7 +65,7 @@ export function useSplitMenu(splitType: Ref<MenuSplitTyeEnum>) {
     () => {
       if (unref(splitNotLeft)) return
       genMenus()
-    }
+    },
   )
 
   // Handle left menu split

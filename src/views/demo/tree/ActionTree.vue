@@ -69,7 +69,7 @@ export default defineComponent({
       () => filterTreeNodeKey.value,
       (v: string) => {
         getTree().filter(v)
-      }
+      },
     )
 
     function getTree() {

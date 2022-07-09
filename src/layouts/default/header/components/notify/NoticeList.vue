@@ -96,7 +96,7 @@ export default defineComponent({
       () => props.page,
       (v) => {
         current.value = v
-      }
+      },
     )
     const isTitleClickable = computed(() => !!props.onTitleClick)
 

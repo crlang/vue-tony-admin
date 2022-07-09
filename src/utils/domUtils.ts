@@ -132,7 +132,8 @@ export function hackCss(attr: string, value: string) {
 export function on(
   element: Element | HTMLElement | Document | Window,
   event: string,
-  handler: EventListenerOrEventListenerObject
+  // eslint-disable-next-line no-undef
+  handler: EventListenerOrEventListenerObject,
 ): void {
   if (element && event && handler) {
     element.addEventListener(event, handler, false)
@@ -145,6 +146,7 @@ export function off(element: Element | HTMLElement | Document | Window, event: s
   }
 }
 
+// eslint-disable-next-line no-undef
 export function once(el: HTMLElement, event: string, fn: EventListener): void {
   const listener = function (this: any, ...args: unknown[]) {
     if (fn) {

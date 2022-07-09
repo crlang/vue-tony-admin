@@ -34,31 +34,41 @@
     <Authority :value="RoleEnum.ADMIN">
       <el-button
         type="primary"
-        class="mx-4">拥有admin角色权限可见</el-button>
+        class="mx-4">
+        拥有admin角色权限可见
+      </el-button>
     </Authority>
 
     <Authority :value="RoleEnum.TEST">
       <el-button
         type="success"
-        class="mx-4">拥有test角色权限可见</el-button>
+        class="mx-4">
+        拥有test角色权限可见
+      </el-button>
     </Authority>
 
     <Authority :value="[RoleEnum.TEST, RoleEnum.ADMIN]">
       <el-button
         type="danger"
-        class="mx-4">拥有[test,admin]角色权限可见</el-button>
+        class="mx-4">
+        拥有[test,admin]角色权限可见
+      </el-button>
     </Authority>
 
     <el-divider>函数方式方式判断权限(适用于函数内部过滤)</el-divider>
     <el-button
       v-if="hasPermission(RoleEnum.ADMIN)"
       type="primary"
-      class="mx-4">拥有admin角色权限可见</el-button>
+      class="mx-4">
+      拥有admin角色权限可见
+    </el-button>
 
     <el-button
       v-if="hasPermission(RoleEnum.TEST)"
       type="success"
-      class="mx-4">拥有test角色权限可见</el-button>
+      class="mx-4">
+      拥有test角色权限可见
+    </el-button>
 
     <el-button
       v-if="hasPermission([RoleEnum.TEST, RoleEnum.ADMIN])"
@@ -71,12 +81,16 @@
     <el-button
       v-auth="RoleEnum.ADMIN"
       type="primary"
-      class="mx-4">拥有admin角色权限可见</el-button>
+      class="mx-4">
+      拥有admin角色权限可见
+    </el-button>
 
     <el-button
       v-auth="RoleEnum.TEST"
       type="success"
-      class="mx-4">拥有test角色权限可见</el-button>
+      class="mx-4">
+      拥有test角色权限可见
+    </el-button>
 
     <el-button
       v-auth="[RoleEnum.TEST, RoleEnum.ADMIN]"

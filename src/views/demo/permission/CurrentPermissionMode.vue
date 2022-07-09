@@ -9,7 +9,9 @@
     <el-button
       class="ml-4"
       @click="togglePermissionMode"
-      type="primary">切换权限模式</el-button>
+      type="primary">
+      切换权限模式
+    </el-button>
     <el-divider />
   </div>
 </template>

@@ -110,7 +110,7 @@ export default defineComponent({
           emit('update:modelValue', isPassing)
           emit('change', isPassing)
         }
-      }
+      },
     )
 
     watchEffect(() => {
@@ -288,7 +288,13 @@ export default defineComponent({
         if (state.toLeft) {
           cls.push('to-left')
         }
-        return <div class={cls} ref={barElRef} style={unref(getBarStyleRef)} />
+        return (
+          <div
+            class={cls}
+            ref={barElRef}
+            style={unref(getBarStyleRef)}
+          />
+        )
       }
 
       /**
@@ -304,7 +310,10 @@ export default defineComponent({
         isPassing && cls.push('success')
 
         return (
-          <div class={cls} ref={contentElRef} style={unref(getContentStyleRef)}>
+          <div
+            class={cls}
+            ref={contentElRef}
+            style={unref(getContentStyleRef)}>
             {getSlot(slots, 'text', isPassing) || (isPassing ? successText : text)}
           </div>
         )
@@ -326,9 +335,12 @@ export default defineComponent({
             onMousedown={handleDragStart}
             onTouchstart={handleDragStart}
             style={unref(getActionStyleRef)}
-            ref={actionElRef} >
+            ref={actionElRef}>
             {getSlot(slots, 'actionIcon', isPassing) || (
-              <SvgIcon class={`${prefixCls}-action__icon`} name={`${isPassing ? 'select' : 'arrow-double-right'}`} />
+              <SvgIcon
+                class={`${prefixCls}-action__icon`}
+                name={`${isPassing ? 'select' : 'arrow-double-right'}`}
+              />
             )}
           </div>
         )
@@ -343,7 +355,7 @@ export default defineComponent({
           onTouchmove={handleDragMoving}
           onMouseleave={handleDragOver}
           onMouseup={handleDragOver}
-          onTouchend={handleDragOver} >
+          onTouchend={handleDragOver}>
           {renderBar()}
           {renderContent()}
           {renderAction()}

@@ -56,14 +56,14 @@ export default defineComponent({
       () => unref(pageRef),
       (v) => {
         v && emit('pageChange', v)
-      }
+      },
     )
 
     watch(
       () => unref(sizeRef),
       (v) => {
         v && emit('sizeChange', v)
-      }
+      },
     )
 
     return {

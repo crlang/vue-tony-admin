@@ -48,9 +48,11 @@
           <div
             :class="`${prefixCls}-entry__extra`"
             @click="goLogin">
-            <el-tooltip content="返回登录"><Icon
-              :size="32"
-              name="ion:power-outline" /></el-tooltip>
+            <el-tooltip content="返回登录">
+              <Icon
+                :size="32"
+                name="ion:power-outline" />
+            </el-tooltip>
           </div>
         </div>
       </div>

@@ -3,7 +3,9 @@
     <el-link
       href="#main-out"
       type="primary"
-      class="mb-4">跳出框架外页面</el-link>
+      class="mb-4">
+      跳出框架外页面
+    </el-link>
     <ClickOutside
       @click-outside="handleClickOutside"
       class="flex justify-center">

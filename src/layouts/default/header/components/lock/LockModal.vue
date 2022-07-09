@@ -21,7 +21,9 @@
         <ElButton
           type="primary"
           class="mt-2"
-          @click="handleLock">锁定</ElButton>
+          @click="handleLock">
+          锁定
+        </ElButton>
       </div>
     </div>
   </BasicModal>

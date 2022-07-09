@@ -117,7 +117,7 @@ export default defineComponent({
       () => unref(activeName),
       (v) => {
         v && setLoginState(activeNameExt[v])
-      }
+      },
     )
 
     return {

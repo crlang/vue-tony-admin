@@ -24,7 +24,7 @@
         text="拖动以进行校验"
         successText="校验成功"
         :barStyle="{
-          backgroundColor: '#018ffb'
+          backgroundColor: '#018ffb',
         }" />
       <el-button @click="handleBtnClick(el3)">还原</el-button>
     </div>

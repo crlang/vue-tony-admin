@@ -1,4 +1,5 @@
 import type { VNode, CSSProperties } from 'vue'
+import type { ValidateFieldsError } from 'async-validator'
 import type { TableActionMethods } from '@/components/BasicTable'
 import type { EleButton, EleCol, EleForm, EleFormItem, EleFormItemRule, EleRow } from '@/components/ElementPlus'
 
@@ -275,7 +276,7 @@ export interface FormActionMethods {
    */
   validateField: (
     props?: Arrayable<FormItemProp>,
-    callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void
+    callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void,
   ) => Promise<void>
   /**
    * 重置该表单项，将其值重置为初始值，并移除校验结果
@@ -371,13 +372,13 @@ export interface BasicFormSchema {
    * Parameters of the rendered form component
    */
   componentProps?:
-  | ((opt: {
-    schema: BasicFormSchema
-    tableAction?: TableActionMethods
-    formAction: FormActionMethods
-    formModel: Recordable
-  }) => Recordable)
-  | object
+    | ((opt: {
+        schema: BasicFormSchema
+        tableAction?: TableActionMethods
+        formAction: FormActionMethods
+        formModel: Recordable
+      }) => Recordable)
+    | object
   /**
    * 是否必填，当 rules 为空时生效
    *

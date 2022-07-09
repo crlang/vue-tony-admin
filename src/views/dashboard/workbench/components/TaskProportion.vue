@@ -8,7 +8,9 @@
 </template>
 
 <script lang="ts" setup>
-import { Ref, ref } from 'vue'
+import type { Ref } from 'vue'
+
+import { ref, defineProps } from 'vue'
 import { ElCard } from 'element-plus'
 import { useECharts } from '@/hooks/web/useECharts'
 

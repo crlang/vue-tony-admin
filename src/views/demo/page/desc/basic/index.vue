@@ -39,7 +39,7 @@ import {
   refundTableSchema,
   refundTimeTableSchema,
   refundTableData,
-  refundTimeTableData
+  refundTimeTableData,
 } from './data'
 
 export default defineComponent({

@@ -107,10 +107,7 @@ const menuList = (() => {
                   type: '2',
                   menuName: '按钮' + (j + 1) + '-' + (k + 1),
                   icon: '',
-                  permission:
-                    ['menu1:view', 'menu2:add', 'menu3:update', 'menu4:del'][index] +
-                    ':btn' +
-                    (k + 1),
+                  permission: ['menu1:view', 'menu2:add', 'menu3:update', 'menu4:del'][index] + ':btn' + (k + 1),
                   component: [
                     '/dashboard/welcome/index',
                     '/dashboard/analysis/index',
@@ -197,7 +194,7 @@ export default [
       if (account && account.indexOf('admin') !== -1) {
         return resultError('该字段不能包含admin')
       } else {
-        if (demoUser.some(k => k.username === account)) {
+        if (demoUser.some((k) => k.username === account)) {
           return resultError(`${account} is exist`)
         }
         return resultSuccess(`${account} can use`)

@@ -117,12 +117,14 @@ export default defineComponent({
           class={prefixCls}
           status={status as any}
           title={props.title || title}
-          sub-title={props.subTitle || subTitle} >
+          sub-title={props.subTitle || subTitle}>
           {{
             icon: () => (icon ? <img src={icon} /> : null),
             extra: () =>
               btnText && (
-                <ElButton type='primary' onClick={handler}>
+                <ElButton
+                  type='primary'
+                  onClick={handler}>
                   {() => btnText}
                 </ElButton>
               ),
@@ -142,7 +144,7 @@ $prefix-cls: '#{$tonyname}-app-exception-page';
   align-items: center;
   flex-direction: column;
 
-  >.el-result__icon {
+  > .el-result__icon {
     > img {
       width: 320px;
     }

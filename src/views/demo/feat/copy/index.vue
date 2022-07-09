@@ -9,7 +9,9 @@
           v-model="value" />
         <el-button
           type="primary"
-          @click="handleCopy">Copy</el-button>
+          @click="handleCopy">
+          Copy
+        </el-button>
       </div>
     </CollapseContainer>
   </PageWrapper>

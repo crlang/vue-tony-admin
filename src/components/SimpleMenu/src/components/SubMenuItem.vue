@@ -38,8 +38,8 @@
             :class="[
               {
                 [`${prefixCls}--popup`]: !getParentSubMenu,
-                [`${prefixCls}--collapsed-show-title`]: collapsedShowTitle
-              }
+                [`${prefixCls}--collapsed-show-title`]: collapsedShowTitle,
+              },
             ]">
             <slot name="title"></slot>
           </div>
@@ -71,7 +71,7 @@ import {
   reactive,
   provide,
   onBeforeMount,
-  inject
+  inject,
 } from 'vue'
 import { ElPopover } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'

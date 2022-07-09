@@ -4,12 +4,16 @@
       <el-col :span="12">
         <el-card
           header="图标选择器(Iconify)"
-          class="text-center"><IconPicker copy /></el-card>
+          class="text-center">
+          <IconPicker copy />
+        </el-card>
       </el-col>
       <el-col :span="12">
         <el-card
           header="图标选择器(Svg)"
-          class="text-center"><IconPicker mode="svg" /></el-card>
+          class="text-center">
+          <IconPicker mode="svg" />
+        </el-card>
       </el-col>
     </el-row>
 
@@ -25,16 +29,22 @@
     <CardGrid
       title="IconIfy 组件使用"
       center>
-      <CardGridItem><Icon
-        name="ep:arrow-down"
-        :size="30" /></CardGridItem>
-      <CardGridItem><Icon
-        name="ep:arrow-left"
-        spin
-        :size="30" /></CardGridItem>
-      <CardGridItem><Icon
-        name="ep:arrow-right"
-        :size="30" /></CardGridItem>
+      <CardGridItem>
+        <Icon
+          name="ep:arrow-down"
+          :size="30" />
+      </CardGridItem>
+      <CardGridItem>
+        <Icon
+          name="ep:arrow-left"
+          spin
+          :size="30" />
+      </CardGridItem>
+      <CardGridItem>
+        <Icon
+          name="ep:arrow-right"
+          :size="30" />
+      </CardGridItem>
     </CardGrid>
 
     <CardGrid

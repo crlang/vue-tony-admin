@@ -46,7 +46,7 @@ import {
   formItemProps,
   dropdownMenuProps,
   dropdownProps,
-  dropdownItemProps
+  dropdownItemProps,
 } from 'element-plus'
 
 export const EleButtonProps = buttonProps

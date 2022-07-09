@@ -83,6 +83,7 @@ export default function mitt(all?: EventHandlerMap): Emitter {
      * @memberOf mitt
      */
     emit<T = any>(type: EventType, evt: T) {
+      // eslint-disable-next-line prettier/prettier
       ((all?.get(type) || []) as EventHandlerList).slice().map((handler) => {
         handler(evt)
       })

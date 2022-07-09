@@ -80,7 +80,7 @@ export default defineComponent({
       (val) => {
         emit('update:modelValue', val)
         emit('change', val)
-      }
+      },
     )
 
     return {

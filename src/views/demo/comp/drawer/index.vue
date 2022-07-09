@@ -11,28 +11,36 @@
     <el-button
       type="primary"
       class="my-4"
-      @click="openDrawer2(true)">打开Drawer</el-button>
+      @click="openDrawer2(true)">
+      打开Drawer
+    </el-button>
     <el-alert
       title="自适应高度/显示footer"
       show-icon />
     <el-button
       type="primary"
       class="my-4"
-      @click="openDrawer3(true)">打开Drawer</el-button>
+      @click="openDrawer3(true)">
+      打开Drawer
+    </el-button>
     <el-alert
       title="内外数据交互"
       show-icon />
     <el-button
       type="primary"
       class="my-4"
-      @click="send">打开Drawer并传递数据</el-button>
+      @click="send">
+      打开Drawer并传递数据
+    </el-button>
     <el-alert
       title="详情页模式"
       show-icon />
     <el-button
       type="primary"
       class="my-4"
-      @click="openDrawer5(true)">打开详情Drawer</el-button>
+      @click="openDrawer5(true)">
+      打开详情Drawer
+    </el-button>
     <Drawer2 @register="register2" />
     <Drawer3 @register="register3" />
     <Drawer4 @register="register4" />

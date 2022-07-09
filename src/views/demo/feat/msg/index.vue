@@ -5,23 +5,33 @@
       title="Message">
       <el-button
         @click="infoMsg('Info message')"
-        class="mr-2">Info</el-button>
+        class="mr-2">
+        Info
+      </el-button>
       <el-button
         @click="successMsg('Success message')"
         class="mr-2"
-        type="success">Success</el-button>
+        type="success">
+        Success
+      </el-button>
       <el-button
         @click="warningMsg('Warning message')"
         class="mr-2"
-        type="warning">Warning</el-button>
+        type="warning">
+        Warning
+      </el-button>
       <el-button
         @click="errorMsg('Error message')"
         class="mr-2"
-        type="danger">Error</el-button>
+        type="danger">
+        Error
+      </el-button>
       <el-button
         @click="handleLoading"
         class="mr-2"
-        type="primary">Loading</el-button>
+        type="primary">
+        Loading
+      </el-button>
     </CollapseContainer>
 
     <CollapseContainer
@@ -29,19 +39,27 @@
       title="Comfirm">
       <el-button
         @click="handleConfirm('info')"
-        class="mr-2">Info</el-button>
+        class="mr-2">
+        Info
+      </el-button>
       <el-button
         @click="handleConfirm('warning')"
         type="warning"
-        class="mr-2">Warning</el-button>
+        class="mr-2">
+        Warning
+      </el-button>
       <el-button
         @click="handleConfirm('success')"
         type="success"
-        class="mr-2">Success</el-button>
+        class="mr-2">
+        Success
+      </el-button>
       <el-button
         @click="handleConfirm('error')"
         type="danger"
-        class="mr-2">Error</el-button>
+        class="mr-2">
+        Error
+      </el-button>
     </CollapseContainer>
 
     <CollapseContainer
@@ -49,19 +67,27 @@
       title="Modal">
       <el-button
         @click="handleInfoModal"
-        class="mr-2">Info</el-button>
+        class="mr-2">
+        Info
+      </el-button>
       <el-button
         @click="handleSuccessModal"
         type="success"
-        class="mr-2">Success</el-button>
+        class="mr-2">
+        Success
+      </el-button>
       <el-button
         @click="handleErrorModal"
         type="danger"
-        class="mr-2">Error</el-button>
+        class="mr-2">
+        Error
+      </el-button>
       <el-button
         @click="handleWarningModal"
         type="warning"
-        class="mr-2">Warning</el-button>
+        class="mr-2">
+        Warning
+      </el-button>
     </CollapseContainer>
 
     <CollapseContainer
@@ -69,19 +95,27 @@
       title="Notification 用法与上面一致">
       <el-button
         @click="handleNotify('info')"
-        class="mr-2">Info</el-button>
+        class="mr-2">
+        Info
+      </el-button>
       <el-button
         @click="handleNotify('success')"
         type="success"
-        class="mr-2">Success</el-button>
+        class="mr-2">
+        Success
+      </el-button>
       <el-button
         @click="handleNotify('error')"
         type="danger"
-        class="mr-2">Error</el-button>
+        class="mr-2">
+        Error
+      </el-button>
       <el-button
         @click="handleNotify('warning')"
         type="warning"
-        class="mr-2">Warning</el-button>
+        class="mr-2">
+        Warning
+      </el-button>
     </CollapseContainer>
   </PageWrapper>
 </template>

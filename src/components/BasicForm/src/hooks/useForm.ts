@@ -35,7 +35,7 @@ export function useForm(formProps?: Props): UseFormReturnType {
       {
         immediate: true,
         deep: true,
-      }
+      },
     )
   }
 
@@ -46,7 +46,7 @@ export function useForm(formProps?: Props): UseFormReturnType {
     },
     validateField: (
       props?: Arrayable<FormItemProp>,
-      callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void
+      callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void,
     ) => {
       return getUseInstance<FormActionMethods>(formRef, 'form')?.validateField(props, callback)
     },

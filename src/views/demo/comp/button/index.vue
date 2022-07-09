@@ -11,20 +11,28 @@
           <Button preIcon="ion:layers-outline">Default</Button>
           <Button
             type="primary"
-            preIcon="ion:layers-outline">Primary</Button>
+            preIcon="ion:layers-outline">
+            Primary
+          </Button>
 
           <Button
             sufIcon="ion:layers-outline"
-            type="success">Success</Button>
+            type="success">
+            Success
+          </Button>
           <Button
             sufIcon="ion:layers-outline"
             :iconSize="22"
-            type="info">Large Icon</Button>
+            type="info">
+            Large Icon
+          </Button>
 
           <Button shadow>Shadow</Button>
           <Button
             shadow
-            type="primary">Success</Button>
+            type="primary">
+            Success
+          </Button>
         </el-card>
       </el-col>
       <el-col :span="12">
@@ -47,19 +55,29 @@
           <el-button plain>Default</el-button>
           <el-button
             type="primary"
-            plain>Primary</el-button>
+            plain>
+            Primary
+          </el-button>
           <el-button
             type="success"
-            plain>Success</el-button>
+            plain>
+            Success
+          </el-button>
           <el-button
             type="info"
-            plain>Info</el-button>
+            plain>
+            Info
+          </el-button>
           <el-button
             type="warning"
-            plain>Warning</el-button>
+            plain>
+            Warning
+          </el-button>
           <el-button
             type="danger"
-            plain>Danger</el-button>
+            plain>
+            Danger
+          </el-button>
         </el-card>
       </el-col>
       <el-col :span="12">
@@ -73,19 +91,29 @@
           <el-button round>Default</el-button>
           <el-button
             type="primary"
-            round>Primary</el-button>
+            round>
+            Primary
+          </el-button>
           <el-button
             type="success"
-            round>Success</el-button>
+            round>
+            Success
+          </el-button>
           <el-button
             type="info"
-            round>Info</el-button>
+            round>
+            Info
+          </el-button>
           <el-button
             type="warning"
-            round>Warning</el-button>
+            round>
+            Warning
+          </el-button>
           <el-button
             type="danger"
-            round>Danger</el-button>
+            round>
+            Danger
+          </el-button>
         </el-card>
       </el-col>
       <el-col :span="12">
@@ -99,7 +127,9 @@
           <el-button text>Text Button</el-button>
           <el-button
             text
-            disabled>Text Button</el-button>
+            disabled>
+            Text Button
+          </el-button>
         </el-card>
       </el-col>
       <el-col :span="12">
@@ -135,7 +165,9 @@
             circle />
           <el-button
             type="primary"
-            :icon="Search">Search</el-button>
+            :icon="Search">
+            Search
+          </el-button>
         </el-card>
       </el-col>
       <el-col :span="12">
@@ -149,11 +181,15 @@
           <el-button-group>
             <el-button
               type="primary"
-              :icon="ArrowLeft">Previous Page</el-button>
+              :icon="ArrowLeft">
+              Previous Page
+            </el-button>
             <el-button
               type="primary"
               class="direction-rtl"
-              :icon="ArrowRight">Next Page</el-button>
+              :icon="ArrowRight">
+              Next Page
+            </el-button>
           </el-button-group>
 
           <el-button-group>
@@ -182,19 +218,29 @@
           <el-button disabled>Default</el-button>
           <el-button
             type="primary"
-            disabled>Primary</el-button>
+            disabled>
+            Primary
+          </el-button>
           <el-button
             type="success"
-            disabled>Success</el-button>
+            disabled>
+            Success
+          </el-button>
           <el-button
             type="info"
-            disabled>Info</el-button>
+            disabled>
+            Info
+          </el-button>
           <el-button
             type="warning"
-            disabled>Warning</el-button>
+            disabled>
+            Warning
+          </el-button>
           <el-button
             type="danger"
-            disabled>Danger</el-button>
+            disabled>
+            Danger
+          </el-button>
         </el-card>
       </el-col>
       <el-col :span="12">
@@ -207,27 +253,39 @@
 
           <el-button
             plain
-            disabled>Default</el-button>
+            disabled>
+            Default
+          </el-button>
           <el-button
             type="primary"
             plain
-            disabled>Primary</el-button>
+            disabled>
+            Primary
+          </el-button>
           <el-button
             type="success"
             plain
-            disabled>Success</el-button>
+            disabled>
+            Success
+          </el-button>
           <el-button
             type="info"
             plain
-            disabled>Info</el-button>
+            disabled>
+            Info
+          </el-button>
           <el-button
             type="warning"
             plain
-            disabled>Warning</el-button>
+            disabled>
+            Warning
+          </el-button>
           <el-button
             type="danger"
             plain
-            disabled>Danger</el-button>
+            disabled>
+            Danger
+          </el-button>
         </el-card>
       </el-col>
     </el-row>
@@ -243,11 +301,15 @@
           <div class="flex">
             <el-button
               type="primary"
-              :loading="true">Loading</el-button>
+              :loading="true">
+              Loading
+            </el-button>
             <el-button
               type="primary"
               :loading="loading"
-              @click="onLoading">Click Me</el-button>
+              @click="onLoading">
+              Click Me
+            </el-button>
           </div>
         </el-card>
       </el-col>

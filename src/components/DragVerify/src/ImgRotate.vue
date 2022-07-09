@@ -157,7 +157,7 @@ export default defineComponent({
           emit('change', isPassing)
           emit('update:modelValue', isPassing)
         }
-      }
+      },
     )
 
     return () => {
@@ -171,7 +171,9 @@ export default defineComponent({
 
       return (
         <div class={`${prefixCls}`}>
-          <div class={`${prefixCls}-img__wrap`} style={unref(getImgWrapStyleRef)}>
+          <div
+            class={`${prefixCls}-img__wrap`}
+            style={unref(getImgWrapStyleRef)}>
             <img
               src={src}
               onLoad={handleImgOnLoad}
@@ -181,7 +183,8 @@ export default defineComponent({
               onClick={() => {
                 resume()
               }}
-              alt='verify' />
+              alt='verify'
+            />
             {state.showTip && (
               <span class={[`${prefixCls}-img__tip`, state.isPassing ? 'success' : 'error']}>
                 {state.isPassing ? `验证校验成功,耗时${time.toFixed(1)}秒！` : '验证失败！'}
@@ -199,7 +202,8 @@ export default defineComponent({
             ref={basicRef}
             {...{ ...attrs, ...props }}
             modelValue={isPassing}
-            isSlot={true} />
+            isSlot={true}
+          />
         </div>
       )
     }

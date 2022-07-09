@@ -6,10 +6,14 @@
       <template #toolbar>
         <el-button
           type="primary"
-          @click="expandAll">展开全部</el-button>
+          @click="expandAll">
+          展开全部
+        </el-button>
         <el-button
           type="primary"
-          @click="collapseAll">折叠全部</el-button>
+          @click="collapseAll">
+          折叠全部
+        </el-button>
       </template>
     </BasicTable>
   </PageWrapper>

@@ -64,7 +64,9 @@ export const refundTableSchema: BasicColumn[] = [
     prop: 't1',
     customRender: ({ record }) => {
       return (
-        <ElButton text size='small'>
+        <ElButton
+          text
+          size='small'>
           {() => record.t1}
         </ElButton>
       )

@@ -10,8 +10,8 @@
       getMenuTheme,
       {
         open: openMenu,
-        mini: getCollapsed
-      }
+        mini: getCollapsed,
+      },
     ]"
     v-bind="getMenuEvents">
     <AppLogo
@@ -24,8 +24,8 @@
           :class="[
             `${prefixCls}-module__item `,
             {
-              [`${prefixCls}-module__item--active`]: item.path === activePath
-            }
+              [`${prefixCls}-module__item--active`]: item.path === activePath,
+            },
           ]"
           v-bind="getItemEvents(item)"
           v-for="item in menuModules"
@@ -57,8 +57,8 @@
         :class="[
           `${prefixCls}-menu-list__title`,
           {
-            show: openMenu
-          }
+            show: openMenu,
+          },
         ]">
         <span class="text">{{ activeMenu?.name && activeMenu.name }}</span>
         <span
@@ -179,11 +179,11 @@ export default defineComponent({
     const getMenuEvents = computed(() => {
       return !unref(getMixSideFixed)
         ? {
-          onMouseleave: () => {
-            setActive(true)
-            closeMenu()
-          },
-        }
+            onMouseleave: () => {
+              setActive(true)
+              closeMenu()
+            },
+          }
         : {}
     })
 

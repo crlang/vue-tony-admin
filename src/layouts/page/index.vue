@@ -8,7 +8,7 @@
             openCache,
             enableTransition: getEnableTransition,
             cacheTabs: getCaches,
-            def: getBasicTransition
+            def: getBasicTransition,
           })
         "
         mode="out-in"

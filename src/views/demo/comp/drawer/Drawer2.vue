@@ -7,7 +7,9 @@
     Drawer Info.
     <el-button
       type="primary"
-      @click="closeDrawer">内部关闭drawer</el-button>
+      @click="closeDrawer">
+      内部关闭drawer
+    </el-button>
   </BasicDrawer>
 </template>
 

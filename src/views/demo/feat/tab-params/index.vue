@@ -1,7 +1,9 @@
 <template>
   <PageWrapper
     title="带参数标签页"
-    description="支持带参数多tab缓存">Current Param : {{ params }}</PageWrapper>
+    description="支持带参数多tab缓存">
+    Current Param : {{ params }}
+  </PageWrapper>
 </template>
 
 <script lang="ts">

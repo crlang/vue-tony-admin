@@ -77,8 +77,8 @@ export default defineComponent({
           }),
           h(Delete, {
             class: 'mr-2',
-          })
-        )
+          }),
+        ),
       )
     }
 

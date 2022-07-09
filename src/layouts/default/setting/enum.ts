@@ -46,7 +46,7 @@ export enum HandlerEnum {
   ROUTER_TRANSITION,
   OPEN_PROGRESS,
   OPEN_PAGE_LOADING,
-  OPEN_ROUTE_TRANSITION
+  OPEN_ROUTE_TRANSITION,
 }
 
 export const contentModeOptions = [
@@ -88,11 +88,11 @@ export const getMenuTriggerOptions = (hideTop: boolean) => {
     ...(hideTop
       ? []
       : [
-        {
-          value: TriggerEnum.HEADER,
-          label: '顶部',
-        },
-      ]),
+          {
+            value: TriggerEnum.HEADER,
+            label: '顶部',
+          },
+        ]),
   ]
 }
 

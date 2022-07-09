@@ -10,7 +10,9 @@
       placeholder="建议为url标准字符，输入后点击切换" />
     <el-button
       type="primary"
-      @click="handleClickGo">切换路由</el-button>
+      @click="handleClickGo">
+      切换路由
+    </el-button>
     <br />
     切换路由后
     <ul>

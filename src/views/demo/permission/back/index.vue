@@ -16,10 +16,14 @@
       <el-button-group>
         <el-button
           @click="switchToken(1)"
-          :disabled="!isBackPremissionMode">获取用户id为1的菜单</el-button>
+          :disabled="!isBackPremissionMode">
+          获取用户id为1的菜单
+        </el-button>
         <el-button
           @click="switchToken(2)"
-          :disabled="!isBackPremissionMode">获取用户id为2的菜单</el-button>
+          :disabled="!isBackPremissionMode">
+          获取用户id为2的菜单
+        </el-button>
       </el-button-group>
 
       <el-alert

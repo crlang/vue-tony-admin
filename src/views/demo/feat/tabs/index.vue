@@ -9,7 +9,9 @@
         <el-button
           class="mr-2"
           @click="setTabTitle"
-          type="primary">设置Tab标题</el-button>
+          type="primary">
+          设置Tab标题
+        </el-button>
         <el-input
           placeholder="请输入"
           v-model="title"
@@ -23,27 +25,39 @@
       <el-button
         plain
         class="mr-2"
-        @click="closeAll">关闭所有</el-button>
+        @click="closeAll">
+        关闭所有
+      </el-button>
       <el-button
         plain
         class="mr-2"
-        @click="closeLeft">关闭左侧</el-button>
+        @click="closeLeft">
+        关闭左侧
+      </el-button>
       <el-button
         plain
         class="mr-2"
-        @click="closeRight">关闭右侧</el-button>
+        @click="closeRight">
+        关闭右侧
+      </el-button>
       <el-button
         plain
         class="mr-2"
-        @click="closeOther">关闭其他</el-button>
+        @click="closeOther">
+        关闭其他
+      </el-button>
       <el-button
         plain
         class="mr-2"
-        @click="closeCurrent">关闭当前</el-button>
+        @click="closeCurrent">
+        关闭当前
+      </el-button>
       <el-button
         plain
         class="mr-2"
-        @click="refreshPage">刷新当前</el-button>
+        @click="refreshPage">
+        刷新当前
+      </el-button>
     </CollapseContainer>
   </PageWrapper>
 </template>

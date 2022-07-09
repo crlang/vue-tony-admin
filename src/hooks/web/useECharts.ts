@@ -86,7 +86,7 @@ export function useECharts(elRef: Ref<HTMLDivElement>, theme: 'light' | 'dark' |
         initCharts(theme as 'default')
         setOptions(cacheOptions.value)
       }
-    }
+    },
   )
 
   tryOnUnmounted(() => {

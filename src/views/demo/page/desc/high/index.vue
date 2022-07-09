@@ -126,7 +126,9 @@
     </div>
     <div
       v-else
-      class="pt-4 m-4">~~~ rule ~~~</div>
+      class="pt-4 m-4">
+      ~~~ rule ~~~
+    </div>
   </PageWrapper>
 </template>
 
@@ -142,7 +144,7 @@ import {
   ElSteps,
   ElCard,
   ElDivider,
-  ElEmpty
+  ElEmpty,
 } from 'element-plus'
 import { BasicTable, useTable } from '@/components/BasicTable'
 import { refundTimeTableData, refundTimeTableSchema } from './data'

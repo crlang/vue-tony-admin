@@ -29,7 +29,7 @@ const repeatDirective: Directive = {
         interval && clearInterval(interval)
         interval = setInterval(handler, 100)
       },
-      false
+      false,
     )
   },
 }

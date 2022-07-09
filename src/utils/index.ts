@@ -46,7 +46,7 @@ export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
 
 export function openWindow(
   url: string,
-  opt?: { target?: TargetContext | string; noopener?: boolean; noreferrer?: boolean }
+  opt?: { target?: TargetContext | string; noopener?: boolean; noreferrer?: boolean },
 ) {
   const { target = '__blank', noopener = true, noreferrer = true } = opt || {}
   const feature: string[] = []
@@ -87,6 +87,7 @@ export function getRawRoute(route: RouteLocationNormalized): RouteLocationNormal
  * @param extra alias
  */
 export const withInstall = <T, E extends Record<string, any>>(main: T, extra?: E) => {
+  // eslint-disable-next-line prettier/prettier
   (main as SFCWithInstall<T>).install = (app): void => {
     for (const comp of [main, ...Object.values(extra ?? {})]) {
       app.component(comp.name, comp)
@@ -95,6 +96,7 @@ export const withInstall = <T, E extends Record<string, any>>(main: T, extra?: E
 
   if (extra) {
     for (const [key, comp] of Object.entries(extra)) {
+      // eslint-disable-next-line prettier/prettier
       (main as any)[key] = comp
     }
   }
@@ -110,7 +112,9 @@ export const withInstall = <T, E extends Record<string, any>>(main: T, extra?: E
  * @returns
  */
 export const withInstallFunction = <T>(fn: T, name: string) => {
+  // eslint-disable-next-line prettier/prettier
   (fn as SFCWithInstall<T>).install = (app: App) => {
+    // eslint-disable-next-line prettier/prettier
     (fn as SFCInstallWithContext<T>)._context = app._context
     app.config.globalProperties[name] = fn
   }
@@ -125,6 +129,7 @@ export const withInstallFunction = <T>(fn: T, name: string) => {
  * @param component component
  */
 export const withNoopInstall = <T>(component: T) => {
+  // eslint-disable-next-line prettier/prettier
   (component as SFCWithInstall<T>).install = NOOP
 
   return component as SFCWithInstall<T>
@@ -162,7 +167,7 @@ export function getUseInstance<T>(instanceRef: Ref<T> | null, name: string): T |
   const instance = unref(instanceRef)
   if (!instance) {
     error(
-      `The ${name} instance has not been obtained, please make sure the instance is rendered when performing the instance operation!`
+      `The ${name} instance has not been obtained, please make sure the instance is rendered when performing the instance operation!`,
     )
   }
   return instance

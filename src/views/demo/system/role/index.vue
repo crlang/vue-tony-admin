@@ -4,7 +4,9 @@
       <template #toolbar>
         <el-button
           type="primary"
-          @click="handleCreate">新增角色</el-button>
+          @click="handleCreate">
+          新增角色
+        </el-button>
       </template>
     </BasicTable>
     <RoleDrawer

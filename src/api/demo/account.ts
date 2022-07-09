@@ -4,7 +4,7 @@ import { GetAccountInfoModel } from './model/accountModel'
 enum Api {
   ACCOUNT_INFO = '/account/getAccountInfo',
   SESSION_TIMEOUT = '/user/sessionTimeout',
-  TOKEN_EXPIRED = '/user/tokenExpired'
+  TOKEN_EXPIRED = '/user/tokenExpired',
 }
 
 // Get personal center-basic settings

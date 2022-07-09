@@ -20,9 +20,9 @@ export interface Axis {
   y: number
 }
 /**
-   * 右击菜单项的数据
-   *
-   * Right-click menu item data
+ * 右击菜单项的数据
+ *
+ * Right-click menu item data
  */
 export interface ContextMenuItem {
   /**

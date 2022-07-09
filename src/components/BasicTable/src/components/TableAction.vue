@@ -7,11 +7,15 @@
         text
         size="small"
         v-bind="action.buttonProps"
-        @click="handleClick(action)"><SvgIcon
+        @click="handleClick(action)">
+        <SvgIcon
           :name="action.svgName"
-          v-if="action?.svgName" /><Icon
-            :name="action.iconName"
-            v-else-if="action?.iconName" />{{ action?.btnText || '' }}</el-button>
+          v-if="action?.svgName" />
+        <Icon
+          :name="action.iconName"
+          v-else-if="action?.iconName" />
+        {{ action?.btnText || '' }}
+      </el-button>
     </template>
   </div>
 </template>

@@ -1,7 +1,9 @@
 <template>
   <ElMenuItem
     v-if="!menuHasChildren(item) && getShowMenu"
-    :index="item.path">{{ item.name }}</ElMenuItem>
+    :index="item.path">
+    {{ item.name }}
+  </ElMenuItem>
   <ElSubMenu
     v-if="menuHasChildren(item) && getShowMenu"
     :key="`submenu-${item.path}`"

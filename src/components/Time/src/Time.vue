@@ -160,7 +160,7 @@ export default defineComponent({
       () => {
         setTime()
       },
-      { immediate: true }
+      { immediate: true },
     )
 
     return { date }

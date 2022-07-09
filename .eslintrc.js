@@ -7,15 +7,45 @@
  *
  * 可用 0 = off, 1 = warn, 2 = error
  */
-const { defineConfig } = require('eslint-define-config')
-module.exports = defineConfig({
-  root: true,
+module.exports = {
   env: {
     browser: true,
     node: true,
     es6: true,
   },
-  globals: {},
+  globals: {
+    // global.d
+    __APP_INFO__: true,
+    PropType: true,
+    VueNode: true,
+    Writable: true,
+    Nullable: true,
+    Arrayable: true,
+    Awaitable: true,
+    NonNullable: true,
+    Recordable: true,
+    ReadonlyRecordable: true,
+    Indexable: true,
+    DeepPartial: true,
+    TimeoutHandle: true,
+    IntervalHandle: true,
+    ChangeEvent: true,
+    WheelEvent: true,
+    ImportMetaEnv: true,
+    ViteEnv: true,
+    JSX: true,
+    // index.d
+    Fn: true,
+    PromiseFn: true,
+    RefType: true,
+    LabelValueOptions: true,
+    EmitType: true,
+    TargetContext: true,
+    ComponentElRef: true,
+    ComponentRef: true,
+    ElRef: true,
+    ThemeType: true,
+  },
   parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
@@ -27,13 +57,8 @@ module.exports = defineConfig({
       tsx: true,
     },
   },
-  // plugins: ['@typescript-eslint', /* 'prettier',*/ 'import'],
-  extends: [
-    'plugin:vue/vue3-recommended',
-    'plugin:@typescript-eslint/recommended',
-    'eslint:recommended',
-    // 'prettier'
-  ],
+  plugins: ['@typescript-eslint', 'prettier', 'import'],
+  extends: ['plugin:vue/vue3-recommended', 'plugin:@typescript-eslint/recommended', 'eslint:recommended'],
   rules: {
     'vue/script-setup-uses-vars': 'error',
     '@typescript-eslint/ban-ts-ignore': 'off',
@@ -51,11 +76,14 @@ module.exports = defineConfig({
     '@typescript-eslint/no-unused-vars': [
       'error',
       {
+        vars: 'all',
+        args: 'all',
+        ignoreRestSiblings: false,
         argsIgnorePattern: '^_',
         varsIgnorePattern: '^_',
       },
     ],
-    '@typescript-eslint/indent': ['error', 2],
+    // '@typescript-eslint/indent': ['error', 2],
     'vue/attributes-order': 'off',
     'vue/one-component-per-file': 'off',
     'vue/html-closing-bracket-newline': 'off',
@@ -106,26 +134,32 @@ module.exports = defineConfig({
         math: 'always',
       },
     ],
-    // 'prettier/prettier': [
-    //   'error',
-    //   {
-    //     printWidth: 120,
-    //     tabWidth: 2,
-    //     useTabs: false,
-    //     semi: false,
-    //     singleQuote: true,
-    //     quoteProps: 'as-needed',
-    //     bracketSpacing: true,
-    //     trailingComma: 'none',
-    //     // jsxSingleQuote: false,
-    //     arrowParens: 'always',
-    //     insertPragma: false,
-    //     requirePragma: false,
-    //     proseWrap: 'never',
-    //     htmlWhitespaceSensitivity: 'ignore',
-    //     endOfLine: 'auto'
-    //   }
-    // ],
+    'prettier/prettier': [
+      'error',
+      {
+        printWidth: 120,
+        tabWidth: 2,
+        useTabs: false,
+        semi: false,
+        singleQuote: true,
+        quoteProps: 'as-needed',
+        bracketSpacing: true,
+        trailingComma: 'all',
+        bracketLine: false,
+        jsxSingleQuote: true,
+        jsxBrackets: false,
+        jsxBracketSameLine: true,
+        bracketSameLine: true,
+        arrowParens: 'always',
+        insertPragma: false,
+        requirePragma: false,
+        proseWrap: 'never',
+        htmlWhitespaceSensitivity: 'ignore',
+        vueIndentScriptAndStyle: false,
+        endOfLine: 'auto',
+        singleAttributePerLine: true,
+      },
+    ],
     'accessor-pairs': 2,
     'arrow-spacing': [
       2,
@@ -242,7 +276,7 @@ module.exports = defineConfig({
     ],
     'no-lone-blocks': 2,
     'no-mixed-spaces-and-tabs': 2,
-    'no-multi-spaces': 2,
+    // 'no-multi-spaces': 2,
     'no-multi-str': 2,
     'no-multiple-empty-lines': [
       2,
@@ -285,13 +319,16 @@ module.exports = defineConfig({
     ],
     'no-unreachable': 2,
     'no-unsafe-finally': 2,
-    'no-unused-vars': [2, {
-      'vars': 'all',
-      'args': 'all',
-      'ignoreRestSiblings': false,
-      'argsIgnorePattern': '^_',
-      'varsIgnorePattern': '^_',
-    }],
+    'no-unused-vars': [
+      2,
+      {
+        vars: 'all',
+        args: 'all',
+        ignoreRestSiblings: false,
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      },
+    ],
     // 'no-useless-call': 2,
     'no-useless-computed-key': 2,
     'no-useless-constructor': 2,
@@ -333,7 +370,7 @@ module.exports = defineConfig({
     ],
     'space-before-blocks': [2, 'always'],
     'space-before-function-paren': [2, { anonymous: 'always', named: 'never', asyncArrow: 'always' }],
-    'space-in-parens': [2, 'never'],
+    // 'space-in-parens': [2, 'never'],
     'space-infix-ops': 2,
     'space-unary-ops': [
       2,
@@ -366,4 +403,4 @@ module.exports = defineConfig({
     ],
     'array-bracket-spacing': [2, 'never'],
   },
-})
+}

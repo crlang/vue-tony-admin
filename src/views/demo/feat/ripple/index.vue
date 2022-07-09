@@ -2,7 +2,9 @@
   <PageWrapper title="Ripple示例">
     <div
       class="demo-box"
-      v-ripple>content</div>
+      v-ripple>
+      content
+    </div>
   </PageWrapper>
 </template>
 

@@ -149,7 +149,7 @@ export default defineComponent({
       () => {
         !unref(isFirstLoad) && fetch()
       },
-      { deep: true }
+      { deep: true },
     )
 
     watch(
@@ -157,7 +157,7 @@ export default defineComponent({
       (val) => {
         emit('update:modelValue', val)
         emit('change', val)
-      }
+      },
     )
 
     /**

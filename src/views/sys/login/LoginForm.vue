@@ -21,14 +21,18 @@
       <el-col :span="12">
         <el-checkbox
           v-model="rememberMe"
-          size="small">记住我</el-checkbox>
+          size="small">
+          记住我
+        </el-checkbox>
       </el-col>
       <el-col
         :span="12"
         class="text-right">
         <el-button
           text
-          @click="setLoginState(LoginStateEnum.RESET_PASSWORD)">忘记密码?</el-button>
+          @click="setLoginState(LoginStateEnum.RESET_PASSWORD)">
+          忘记密码?
+        </el-button>
       </el-col>
     </el-row>
     <el-form-item>
@@ -36,7 +40,9 @@
         type="primary"
         class="login--submit"
         :loading="loading"
-        @click="handleLogin">登录</el-button>
+        @click="handleLogin">
+        登录
+      </el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -70,13 +76,11 @@ async function handleLogin() {
 
   try {
     loading.value = true
-    const userInfo = await userStore.login(
-      {
-        password: formData.password,
-        username: formData.account,
-        mode: 'none',
-      }
-    )
+    const userInfo = await userStore.login({
+      password: formData.password,
+      username: formData.account,
+      mode: 'none',
+    })
     if (userInfo) {
       createNotification({
         title: '登录成功',

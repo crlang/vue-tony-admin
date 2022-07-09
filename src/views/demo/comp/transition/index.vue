@@ -39,7 +39,7 @@ import {
   ZoomFadeTransition,
   ZoomOutTransition,
   ExpandTransition,
-  ExpandXTransition
+  ExpandXTransition,
 } from '@/components/Transition'
 
 export default defineComponent({

@@ -24,7 +24,9 @@
     </el-row>
     <el-button
       type="primary"
-      @click="handleSubmit">更新基本信息</el-button>
+      @click="handleSubmit">
+      更新基本信息
+    </el-button>
   </CollapseContainer>
 </template>
 

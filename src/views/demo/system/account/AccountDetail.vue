@@ -7,10 +7,14 @@
     <template #toolbar>
       <el-button
         size="small"
-        type="danger">禁用账号</el-button>
+        type="danger">
+        禁用账号
+      </el-button>
       <el-button
         size="small"
-        type="primary">修改密码</el-button>
+        type="primary">
+        修改密码
+      </el-button>
     </template>
     <template #extra>
       <el-tabs
@@ -30,13 +34,17 @@
       <template v-if="currentKey == 'detail'">
         <div
           v-for="i in 10"
-          :key="i">这是用户{{ userId }}资料Tab</div>
+          :key="i">
+          这是用户{{ userId }}资料Tab
+        </div>
       </template>
 
       <template v-if="currentKey == 'logs'">
         <div
           v-for="i in 10"
-          :key="i">这是用户{{ userId }}操作日志Tab</div>
+          :key="i">
+          这是用户{{ userId }}操作日志Tab
+        </div>
       </template>
     </div>
   </PageWrapper>

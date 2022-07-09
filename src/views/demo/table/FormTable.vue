@@ -4,7 +4,9 @@
       <template #toolbar>
         <el-button
           type="primary"
-          @click="getFormValues">获取表单数据</el-button>
+          @click="getFormValues">
+          获取表单数据
+        </el-button>
       </template>
       <template #form-field10="{ model, field }">
         <el-input

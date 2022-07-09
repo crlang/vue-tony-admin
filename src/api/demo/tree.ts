@@ -1,7 +1,7 @@
 import { defHttp } from '@/utils/http/axios'
 
 enum Api {
-  TREE_OPTIONS_LIST = '/tree/getDemoTreeList'
+  TREE_OPTIONS_LIST = '/tree/getDemoTreeList',
 }
 
 /**

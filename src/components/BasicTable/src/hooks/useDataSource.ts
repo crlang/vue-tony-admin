@@ -27,7 +27,7 @@ export function useDataSource(
   setPagination: (info: Partial<ElePagination>) => void,
   setLoading: (loading: boolean) => void,
   getFieldsValue: () => Recordable,
-  emit: EmitType
+  emit: EmitType,
 ) {
   const sortInfo = ref<Recordable>({})
   const filterInfo = ref<Recordable>({})
@@ -52,7 +52,7 @@ export function useDataSource(
     const { rowKey } = unref(propsRef)
     const keyName = unref(getAutoCreateKey) ? ROW_KEY : rowKey
     if (typeof keyName === 'function') {
-      return rowKeyName(r) as string
+      return keyName(rowKey) as string
     }
     return keyName
   })
@@ -104,7 +104,7 @@ export function useDataSource(
   function handleTableChange(
     pagination: Partial<ElePagination>,
     sorter?: ColumnSorterResult,
-    filters?: Partial<Recordable<string[]>>
+    filters?: Partial<Recordable<string[]>>,
   ) {
     const { sortFn, filterFn } = unref(propsRef)
     // 更新了分页
@@ -393,7 +393,7 @@ export function useDataSource(
     },
     {
       immediate: true,
-    }
+    },
   )
 
   return {

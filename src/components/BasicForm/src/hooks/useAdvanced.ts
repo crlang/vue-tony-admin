@@ -153,7 +153,7 @@ export function useAdvanced({
         updateAdvanced()
       }
     },
-    { immediate: true }
+    { immediate: true },
   )
 
   return { handleToggleAdvanced }

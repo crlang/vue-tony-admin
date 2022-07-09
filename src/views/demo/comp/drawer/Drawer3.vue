@@ -14,7 +14,9 @@
     <p
       class="p-20"
       v-for="index in 10"
-      :key="index">根据屏幕高度自适应</p>
+      :key="index">
+      根据屏幕高度自适应
+    </p>
     <template #prependFooter>
       <el-button>left info</el-button>
     </template>

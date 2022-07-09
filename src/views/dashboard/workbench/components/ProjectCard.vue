@@ -3,7 +3,9 @@
     <template #extra>
       <el-button
         text
-        size="small">更多</el-button>
+        size="small">
+        更多
+      </el-button>
     </template>
     <CardGridItem
       v-for="(item, index) in items"

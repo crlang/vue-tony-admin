@@ -13,11 +13,15 @@
       <el-button
         type="primary"
         plain
-        @click="test1">HttpStatus == 401</el-button>
+        @click="test1">
+        HttpStatus == 401
+      </el-button>
       <el-button
         class="ml-4"
         type="primary"
-        @click="test2">Response.code == 401</el-button>
+        @click="test2">
+        Response.code == 401
+      </el-button>
     </el-card>
   </PageWrapper>
 </template>

@@ -131,7 +131,9 @@ export default defineComponent({
      */
     const renderDesc = () => {
       return (
-        <ElDescriptions class={`${prefixCls}`} {...unref(getBindValues)}>
+        <ElDescriptions
+          class={`${prefixCls}`}
+          {...unref(getBindValues)}>
           {renderItem()}
         </ElDescriptions>
       )
@@ -154,7 +156,10 @@ export default defineComponent({
       const { canExpand, helpMessage } = unref(getCollapseOptions)
 
       return (
-        <CollapseContainer title={title} canExpan={canExpand} helpMessage={helpMessage}>
+        <CollapseContainer
+          title={title}
+          canExpan={canExpand}
+          helpMessage={helpMessage}>
           {{
             default: () => renderDesc(),
             action: () => getSlot(slots, 'action'),

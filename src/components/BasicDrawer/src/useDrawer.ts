@@ -3,7 +3,7 @@ import type {
   DrawerInstanceMethods,
   DrawerActionMethods,
   BasicDrawerProps,
-  UseDrawerInnerReturnType
+  UseDrawerInnerReturnType,
 } from './typing'
 
 import { ref, getCurrentInstance, unref, reactive, watchEffect, nextTick, toRaw, computed } from 'vue'
@@ -66,7 +66,7 @@ export function useDrawer(): UseDrawerReturnType {
     const instance = unref(drawer)
     if (!instance) {
       error(
-        'The drawer instance has not been obtained, please make sure the instance is rendered when performing the instance operation!'
+        'The drawer instance has not been obtained, please make sure the instance is rendered when performing the instance operation!',
       )
     }
     return instance

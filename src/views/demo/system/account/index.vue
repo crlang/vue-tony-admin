@@ -21,7 +21,9 @@
             <el-button
               type="primary"
               size="small"
-              @click="handleCreate">新增账号</el-button>
+              @click="handleCreate">
+              新增账号
+            </el-button>
           </template>
         </BasicTable>
       </el-col>

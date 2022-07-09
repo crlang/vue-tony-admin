@@ -23,7 +23,9 @@
       <template #toolbar>
         <el-button
           type="primary"
-          @click="toggleSelection">切换选中</el-button>
+          @click="toggleSelection">
+          切换选中
+        </el-button>
         <el-button
           type="primary"
           @click="toggleBorder">
@@ -31,7 +33,9 @@
         </el-button>
         <el-button
           type="primary"
-          @click="toggleLoading">开启loading</el-button>
+          @click="toggleLoading">
+          开启loading
+        </el-button>
         <el-button
           type="primary"
           @click="toggleStripe">

@@ -19,24 +19,32 @@
       <el-button
         class="my-4"
         type="primary"
-        @click="openCompAbsolute">容器内 Loading</el-button>
+        @click="openCompAbsolute">
+        容器内 Loading
+      </el-button>
 
       <el-alert title="函数方式" />
 
       <el-button
         class="my-4 mr-4"
         type="primary"
-        @click="openFnFullLoading">全屏 Loading</el-button>
+        @click="openFnFullLoading">
+        全屏 Loading
+      </el-button>
       <el-button
         class="my-4"
         type="primary"
-        @click="openFnWrapLoading">容器内 Loading</el-button>
+        @click="openFnWrapLoading">
+        容器内 Loading
+      </el-button>
 
       <el-alert title="指令方式" />
       <el-button
         class="my-4 mr-4"
         type="primary"
-        @click="openDirectiveLoading">打开指令Loading</el-button>
+        @click="openDirectiveLoading">
+        打开指令Loading
+      </el-button>
     </div>
   </PageWrapper>
 </template>

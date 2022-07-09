@@ -54,7 +54,9 @@
               <el-button
                 @click="loadTreeData"
                 class="ml-6"
-                :loading="treeLoading">加载数据</el-button>
+                :loading="treeLoading">
+                加载数据
+              </el-button>
             </div>
           </template>
           <el-tree

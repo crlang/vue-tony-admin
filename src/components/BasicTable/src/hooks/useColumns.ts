@@ -18,7 +18,7 @@ import { PAGE_SIZE } from '../const'
  */
 export function useColumns(
   propsRef: ComputedRef<BasicTableProps>,
-  getPaginationRef: ComputedRef<boolean | ElePagination>
+  getPaginationRef: ComputedRef<boolean | ElePagination>,
 ) {
   let cacheColumns = unref(propsRef).columns
   const columnsRef = ref(cacheColumns)
@@ -166,7 +166,7 @@ export function useColumns(
         columnsRef.value = columns
         cacheColumns = columns.filter((item) => !item.type)
       }
-    }
+    },
   )
 
   return {

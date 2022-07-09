@@ -10,7 +10,7 @@
           :api="getAllRoleList"
           filterable
           placeholder="请选择"
-          style="width: 100%;"
+          style="width: 100%"
           v-model:modelValue="model[field]"
           labelField="roleName"
           valueField="roleValue" />

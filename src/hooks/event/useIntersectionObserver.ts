@@ -3,6 +3,7 @@ import { Ref, watchEffect, ref } from 'vue'
 interface IntersectionObserverProps {
   target: Ref<Element | null | undefined>
   root?: Ref<any>
+  // eslint-disable-next-line no-undef
   onIntersect: IntersectionObserverCallback
   rootMargin?: string
   threshold?: number

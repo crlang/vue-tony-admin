@@ -51,7 +51,9 @@
           </span>
           <span
             :class="`${prefixCls}__search`"
-            v-else><Icon :name="currentSelect || 'ion:apps-outline'" /></span>
+            v-else>
+            <Icon :name="currentSelect || 'ion:apps-outline'" />
+          </span>
         </template>
       </ElPopover>
     </template>
@@ -188,7 +190,7 @@ export default defineComponent({
       (v) => {
         emit('update:modelValue', v)
         return emit('change', v)
-      }
+      },
     )
 
     return {

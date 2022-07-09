@@ -22,7 +22,9 @@
       <div class="p-2 text-right">
         <el-button
           type="primary"
-          @click="submitAll">提交</el-button>
+          @click="submitAll">
+          提交
+        </el-button>
       </div>
     </template>
   </PageWrapper>

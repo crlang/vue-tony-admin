@@ -22,12 +22,16 @@
             </ElInput>
             <span
               :class="`${prefixCls}-cancel`"
-              @click="handleClose">取消</span>
+              @click="handleClose">
+              取消
+            </span>
           </div>
 
           <div
             :class="`${prefixCls}-nodata`"
-            v-show="getIsNotData">暂无搜索结果</div>
+            v-show="getIsNotData">
+            暂无搜索结果
+          </div>
 
           <ul
             :class="`${prefixCls}-list`"
@@ -43,8 +47,8 @@
               :class="[
                 `${prefixCls}-list__item`,
                 {
-                  [`${prefixCls}-list__item--active`]: activeIndex === index
-                }
+                  [`${prefixCls}-list__item--active`]: activeIndex === index,
+                },
               ]">
               <div :class="`${prefixCls}-list__item-icon`">
                 <Icon
@@ -69,7 +73,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, unref, ref, watch, nextTick } from 'vue'
+import { computed, unref, ref, watch, nextTick, defineProps, defineEmits } from 'vue'
 import { Search } from '@element-plus/icons'
 import AppSearchFooter from './AppSearchFooter.vue'
 import Icon from '@/components/Icon'
@@ -97,7 +101,7 @@ const { getIsMobile } = useAppInject()
 const { handleSearch, searchResult, keyword, activeIndex, handleEnter, handleMouseenter } = useMenuSearch(
   refs,
   scrollWrap,
-  emit
+  emit,
 )
 
 const getIsNotData = computed(() => !keyword || unref(searchResult).length === 0)
@@ -119,7 +123,7 @@ watch(
         searchKey.value = ''
         unref(inputRef)?.focus()
       })
-  }
+  },
 )
 
 function handleClose() {

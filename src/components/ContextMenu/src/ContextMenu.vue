@@ -103,8 +103,15 @@ export default defineComponent({
     const ItemContent: FunctionalComponent<ItemContentProps> = (props) => {
       const { item, handler, showIcon } = props
       return (
-        <div class={`${prefixCls}__text`} onClick={handler.bind(null, item)}>
-          {showIcon && item.icon && <Icon class='mr-2' name={item.icon} />}
+        <div
+          class={`${prefixCls}__text`}
+          onClick={handler.bind(null, item)}>
+          {showIcon && item.icon && (
+            <Icon
+              class='mr-2'
+              name={item.icon}
+            />
+          )}
           <span>{item.label}</span>
         </div>
       )
@@ -143,7 +150,10 @@ export default defineComponent({
         if (!children || children.length === 0) {
           return (
             <>
-              <ElMenuItem disabled={disabled} class={`${prefixCls}__item ${divider ? 'is-divider' : ''}`} index={label}>
+              <ElMenuItem
+                disabled={disabled}
+                class={`${prefixCls}__item ${divider ? 'is-divider' : ''}`}
+                index={label}>
                 <ItemContent {...contentProps} />
               </ElMenuItem>
             </>
@@ -152,7 +162,10 @@ export default defineComponent({
         if (!unref(showRef)) return null
 
         return (
-          <ElSubMenu index={label} disabled={disabled} popper-class={`${prefixCls}__popup`}>
+          <ElSubMenu
+            index={label}
+            disabled={disabled}
+            popper-class={`${prefixCls}__popup`}>
             {{
               title: () => <ItemContent {...contentProps} />,
               default: () => renderMenuItem(children),
@@ -184,7 +197,7 @@ export default defineComponent({
           menu-trigger='hover'
           class={prefixCls}
           ref={wrapRef}
-          style={unref(getStyle)} >
+          style={unref(getStyle)}>
           {renderMenuItem(items)}
         </ElMenu>
       )

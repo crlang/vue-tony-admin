@@ -9,7 +9,7 @@ export enum sizeEnum {
   MD = 'MD',
   LG = 'LG',
   XL = 'XL',
-  XXL = 'XXL'
+  XXL = 'XXL',
 }
 
 /**
@@ -23,7 +23,7 @@ export enum screenEnum {
   MD = 768,
   LG = 992,
   XL = 1200,
-  XXL = 1600
+  XXL = 1600,
 }
 
 /**

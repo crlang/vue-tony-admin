@@ -56,7 +56,7 @@ function dynamicImport(dynamicViewsModules: Record<string, () => Promise<Recorda
     return dynamicViewsModules[matchKey]
   } else if (matchKeys?.length > 1) {
     warn(
-      'Please do not create `.vue` and `.TSX` files with the same file name in the same hierarchical directory under the views folder. This will cause dynamic introduction failure'
+      'Please do not create `.vue` and `.TSX` files with the same file name in the same hierarchical directory under the views folder. This will cause dynamic introduction failure',
     )
     return
   } else {

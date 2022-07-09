@@ -1,5 +1,6 @@
 import { isAccountExist } from '@/api/demo/system'
 import { BasicFormSchema } from '@/components/BasicForm'
+import { BasicColumn } from '@/components/BasicTable'
 
 export const columns: BasicColumn[] = [
   {

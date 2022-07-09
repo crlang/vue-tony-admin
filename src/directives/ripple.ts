@@ -141,6 +141,7 @@ function rippler({ event, el, zIndex, background }: { event: EventType; el: HTML
     clearRipple()
   }
 
+  // eslint-disable-next-line prettier/prettier
   (el as Recordable).setBackground = (bgColor: string) => {
     if (!bgColor) {
       return

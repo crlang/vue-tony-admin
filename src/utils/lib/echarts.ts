@@ -9,7 +9,7 @@ import {
   MapChart,
   // PictorialBarChart,
   // RadarChart,
-  GaugeChart
+  GaugeChart,
 } from 'echarts/charts'
 
 import {
@@ -26,7 +26,7 @@ import {
   VisualMapComponent,
   TimelineComponent,
   CalendarComponent,
-  GraphicComponent
+  GraphicComponent,
 } from 'echarts/components'
 
 import { SVGRenderer } from 'echarts/renderers'

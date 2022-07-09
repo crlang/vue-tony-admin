@@ -49,6 +49,7 @@
 </template>
 
 <script lang="ts" setup>
+import { defineProps } from 'vue'
 import { ElRow, ElCol, ElCard, ElProgress } from 'element-plus'
 
 import { SvgIcon } from '@/components/SvgIcon'
@@ -92,7 +93,6 @@ function getBarColor(v: number) {
       margin-right: 0.25rem;
       font-size: 1.5rem;
       color: var(--text-secondary-color);
-
     }
 
     > .t2 {
@@ -112,7 +112,6 @@ function getBarColor(v: number) {
       color: #fff;
       background: var(--text-secondary-color);
       border-radius: 1.125rem;
-
     }
 
     &.is-up {
@@ -126,7 +125,7 @@ function getBarColor(v: number) {
     }
 
     &.is-down {
-      > .t2  {
+      > .t2 {
         color: var(--danger-color);
       }
 

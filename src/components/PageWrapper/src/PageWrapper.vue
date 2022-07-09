@@ -8,14 +8,18 @@
       :class="getHeaderClass">
       <div
         v-if="title"
-        :class="`${prefixCls}-header__title`">{{ title }}</div>
+        :class="`${prefixCls}-header__title`">
+        {{ title }}
+      </div>
       <template v-else>
         <slot name="title"></slot>
       </template>
 
       <div
         v-if="description"
-        :class="`${prefixCls}-header__description`">{{ description }}</div>
+        :class="`${prefixCls}-header__description`">
+        {{ description }}
+      </div>
       <template v-else>
         <slot name="description"></slot>
       </template>
@@ -109,7 +113,7 @@ export default defineComponent({
     // According to the provided content, automatically determine whether the height is full
     provide(
       PageWrapperFixedHeightKey,
-      computed(() => props.contentFullHeight)
+      computed(() => props.contentFullHeight),
     )
 
     const getClass = computed(() => {

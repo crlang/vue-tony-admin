@@ -34,7 +34,9 @@
     <el-form-item prop="policy">
       <el-checkbox
         v-model="formData.policy"
-        :checked="formData.policy">我同意xxx隐私政策</el-checkbox>
+        :checked="formData.policy">
+        我同意xxx隐私政策
+      </el-checkbox>
     </el-form-item>
     <el-button
       type="primary"
@@ -46,7 +48,9 @@
     </el-button>
     <el-button
       @click="handleBackLogin"
-      class="login--back">返回</el-button>
+      class="login--back">
+      返回
+    </el-button>
   </el-form>
 </template>
 

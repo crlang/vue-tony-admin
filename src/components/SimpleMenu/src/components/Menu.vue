@@ -16,7 +16,7 @@ import {
   watch,
   nextTick,
   getCurrentInstance,
-  provide
+  provide,
 } from 'vue'
 import { useDesign } from '@/hooks/web/useDesign'
 import { createSimpleRootMenuContext } from './useSimpleMenuContext'
@@ -104,7 +104,7 @@ export default defineComponent({
         nextTick(() => {
           updateOpened()
         })
-      }
+      },
     )
 
     function updateOpened() {

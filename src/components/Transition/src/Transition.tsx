@@ -57,7 +57,11 @@ export function createSimpleTransition(name: string, origin = 'top center 0', mo
       return () => {
         const Tag = !props.group ? Transition : TransitionGroup
         return (
-          <Tag name={name} mode={props.mode} {...attrs} onBeforeEnter={onBeforeEnter}>
+          <Tag
+            name={name}
+            mode={props.mode}
+            {...attrs}
+            onBeforeEnter={onBeforeEnter}>
             {() => getSlot(slots)}
           </Tag>
         )
@@ -99,7 +103,7 @@ export function createJavascriptTransition(name: string, functions: Recordable, 
             onEnter={functions.enter}
             onLeave={functions.leave}
             onAfterLeave={functions.afterLeave}
-            onLeaveCancelled={functions.afterLeave} >
+            onLeaveCancelled={functions.afterLeave}>
             {() => getSlot(slots)}
           </Transition>
         )

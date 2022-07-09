@@ -218,7 +218,7 @@ export default defineComponent({
       (value = []) => {
         fileList.value = Array.isArray(value) ? value : []
       },
-      { immediate: true }
+      { immediate: true },
     )
 
     return {

@@ -22,7 +22,7 @@ export default defineComponent({
         if (v) {
           initChart()
         }
-      }
+      },
     )
 
     const initChart = () => {

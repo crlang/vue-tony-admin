@@ -25,6 +25,7 @@ export default defineComponent({
     const { setOptions, getInstance, echarts } = useECharts(chartRef as Ref<HTMLDivElement>)
     const data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     let startTimes = 0
+    // eslint-disable-next-line no-undef
     const options = reactive<echarts.EChartsOption>({
       xAxis: {
         max: 'dataMax',
@@ -121,7 +122,9 @@ export default defineComponent({
     }
 
     function updateYear(year: string) {
+      // eslint-disable-next-line prettier/prettier
       (options as any).graphic.elements[0].style.text = year
+      // eslint-disable-next-line no-undef
       getInstance()?.setOption<echarts.EChartsOption>(options as any)
     }
 

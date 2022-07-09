@@ -6,7 +6,9 @@
       <template #toolbar>
         <el-button
           type="primary"
-          @click="handleCreate">新增菜单</el-button>
+          @click="handleCreate">
+          新增菜单
+        </el-button>
       </template>
     </BasicTable>
     <MenuDrawer

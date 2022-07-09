@@ -32,7 +32,7 @@ export function useLoading(props: ComputedRef<BasicTableProps>) {
     () => unref(props).loading,
     (v) => {
       loadingRef.value = v
-    }
+    },
   )
 
   return { getLoading, setLoading }

@@ -85,7 +85,7 @@ export function scriptErrorHandler(
   source?: string,
   lineno?: number,
   colno?: number,
-  error?: Error
+  error?: Error,
 ) {
   if (event === 'Script error.' && !source) {
     return false
@@ -130,7 +130,7 @@ function registerPromiseErrorHandler() {
         message: event.reason,
       })
     },
-    true
+    true,
   )
 }
 
@@ -158,7 +158,7 @@ function registerResourceErrorHandler() {
         message: (e.target || ({} as any)).localName + ' is load error',
       })
     },
-    true
+    true,
   )
 }
 

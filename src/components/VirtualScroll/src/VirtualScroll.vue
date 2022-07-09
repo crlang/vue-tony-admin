@@ -240,7 +240,10 @@ export default defineComponent({
       const top = convertToUnit(index * unref(getItemHeightRef))
       const slotFn = slots['default'] as Slot
       return (
-        <div class={`${prefixCls}__item`} style={{ top, height }} key={index}>
+        <div
+          class={`${prefixCls}__item`}
+          style={{ top, height }}
+          key={index}>
           {{ default: () => slotFn({ index, item }) }}
         </div>
       )
@@ -274,8 +277,13 @@ export default defineComponent({
     })
 
     return () => (
-      <div class={prefixCls} style={unref(getWrapStyleRef)} ref={wrapElRef}>
-        <div class={`${prefixCls}__container`} style={unref(getContainerStyleRef)}>
+      <div
+        class={prefixCls}
+        style={unref(getWrapStyleRef)}
+        ref={wrapElRef}>
+        <div
+          class={`${prefixCls}__container`}
+          style={unref(getContainerStyleRef)}>
           {renderChildren()}
         </div>
       </div>

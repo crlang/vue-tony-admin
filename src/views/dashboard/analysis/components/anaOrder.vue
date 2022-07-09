@@ -68,7 +68,7 @@ export default defineComponent({
       () => unref(dateType),
       (v) => {
         emit('dateType', v)
-      }
+      },
     )
 
     return {

@@ -16,7 +16,7 @@ export function useCopyToClipboard(initial?: string) {
         isSuccessRef.value = copyTextToClipboard(str)
       }
     },
-    { immediate: !!initial, flush: 'sync' }
+    { immediate: !!initial, flush: 'sync' },
   )
 
   return { clipboardRef, isSuccessRef, copiedRef }
@@ -61,6 +61,7 @@ export function copyTextToClipboard(input: string, { target = document.body }: O
   }
 
   if (previouslyFocusedElement) {
+    // eslint-disable-next-line prettier/prettier
     (previouslyFocusedElement as HTMLElement).focus()
   }
   return isSuccess

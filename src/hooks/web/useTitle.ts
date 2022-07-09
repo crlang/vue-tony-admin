@@ -26,6 +26,6 @@ export function useTitle() {
       const tTitle = route?.meta?.title || ''
       pageTitle.value = tTitle ? ` ${tTitle} - ${title} ` : `${title}`
     },
-    { immediate: true }
+    { immediate: true },
   )
 }

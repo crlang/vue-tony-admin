@@ -25,10 +25,14 @@
         type="primary"
         class="login--submit"
         @click="handleReset"
-        :loading="loading">重置</el-button>
+        :loading="loading">
+        重置
+      </el-button>
       <el-button
         class="login--back"
-        @click="handleBackLogin">返回</el-button>
+        @click="handleBackLogin">
+        返回
+      </el-button>
     </el-form-item>
   </el-form>
 </template>

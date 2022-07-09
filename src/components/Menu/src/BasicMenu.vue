@@ -102,7 +102,7 @@ export default defineComponent({
         () => props.items,
         () => {
           handleMenuChange()
-        }
+        },
       )
 
     async function handleMenuChange(route?: RouteLocationNormalizedLoaded) {

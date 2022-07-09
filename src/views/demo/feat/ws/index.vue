@@ -41,7 +41,9 @@
             block
             class="mt-4"
             :disabled="!getIsOpen"
-            @click="handlerSend">发送</el-button>
+            @click="handlerSend">
+            发送
+          </el-button>
         </el-card>
       </el-col>
       <el-col :span="16">

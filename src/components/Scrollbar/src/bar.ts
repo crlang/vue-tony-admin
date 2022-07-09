@@ -86,7 +86,7 @@ export default defineComponent({
             move: props.move,
             bar: bar.value,
           }),
-        })
+        }),
       )
   },
 })

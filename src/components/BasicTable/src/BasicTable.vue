@@ -188,7 +188,7 @@ export default defineComponent({
       setPagination,
       setLoading,
       formActions.getFieldsValue,
-      emit
+      emit,
     )
 
     const {
@@ -215,7 +215,7 @@ export default defineComponent({
       getProps,
       slots,
       fetch,
-      getLoading
+      getLoading,
     )
 
     /**
@@ -370,7 +370,7 @@ export default defineComponent({
       unref(isFixedHeightPage) &&
         props.canResize &&
         warn(
-          "'canResize' of BasicTable may not work in PageWrapper with 'contentFullHeight' (especially in hot updates)"
+          "'canResize' of BasicTable may not work in PageWrapper with 'contentFullHeight' (especially in hot updates)",
         )
     })
 

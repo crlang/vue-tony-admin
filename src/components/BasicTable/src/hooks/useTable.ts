@@ -8,7 +8,7 @@ import type {
   FetchParams,
   BasicColumn,
   GetColumnsParams,
-  UseTableMethod
+  UseTableMethod,
 } from '../typing'
 
 import { ref, onUnmounted, unref, watch } from 'vue'
@@ -23,7 +23,7 @@ import { error } from '@/utils/log'
  * Define use instance
  */
 export function useTable(
-  tableProps?: Partial<DynamicProps<BasicTableProps>>
+  tableProps?: Partial<DynamicProps<BasicTableProps>>,
 ): [(instance: TableActionMethods, formInstance: UseTableMethod) => void, UseTableMethod] {
   const tableRef = ref<Nullable<TableActionMethods>>(null)
   const loadedRef = ref<Nullable<boolean>>(false)
@@ -61,7 +61,7 @@ export function useTable(
       {
         immediate: true,
         deep: true,
-      }
+      },
     )
   }
   /**
@@ -73,7 +73,7 @@ export function useTable(
     const instance = unref(tableRef)
     if (!instance) {
       error(
-        'The table instance has not been obtained, please make sure the instance is rendered when performing the instance operation!'
+        'The table instance has not been obtained, please make sure the instance is rendered when performing the instance operation!',
       )
     }
     return instance

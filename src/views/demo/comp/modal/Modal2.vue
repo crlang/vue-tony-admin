@@ -6,10 +6,14 @@
     <el-button
       type="primary"
       @click="closeModal()"
-      class="mr-2">从内部关闭弹窗</el-button>
+      class="mr-2">
+      从内部关闭弹窗
+    </el-button>
     <el-button
       type="primary"
-      @click="setModalProps">从内部修改title</el-button>
+      @click="setModalProps">
+      从内部修改title
+    </el-button>
   </BasicModal>
 </template>
 

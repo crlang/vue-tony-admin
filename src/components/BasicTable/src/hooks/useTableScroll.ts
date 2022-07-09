@@ -20,7 +20,7 @@ import { onMountedOrActivated } from '@/hooks/core/onMountedOrActivated'
 export function useTableScroll(
   propsRef: ComputedRef<BasicTableProps>,
   tableElRef: Ref<ComponentRef>,
-  getDataSourceRef: ComputedRef<Recordable[]>
+  getDataSourceRef: ComputedRef<Recordable[]>,
 ) {
   let paginationEl: HTMLElement | null
   let bodyEl: HTMLElement | null
@@ -140,7 +140,7 @@ export function useTableScroll(
     },
     {
       flush: 'post',
-    }
+    },
   )
   return { redoHeight }
 }

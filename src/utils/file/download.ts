@@ -10,6 +10,7 @@ import { dataURLtoBlob, imgurlToBase64 } from './base64Conver'
  * @param mime image type, eg: image/png
  * @param bom
  */
+// eslint-disable-next-line no-undef
 export function downloadByOnlineUrl(url: string, filename: string, mime?: string, bom?: BlobPart) {
   imgurlToBase64(url).then((base64) => {
     downloadByBase64(base64, filename, mime, bom)
@@ -25,6 +26,7 @@ export function downloadByOnlineUrl(url: string, filename: string, mime?: string
  * @param mime file type
  * @param bom blob info
  */
+// eslint-disable-next-line no-undef
 export function downloadByBase64(buf: string, filename: string, mime?: string, bom?: BlobPart) {
   const base64Buf = dataURLtoBlob(buf)
   downloadByData(base64Buf, filename, mime, bom)
@@ -39,6 +41,7 @@ export function downloadByBase64(buf: string, filename: string, mime?: string, b
  * @param mime file type
  * @param bom blob info
  */
+// eslint-disable-next-line no-undef
 export function downloadByData(data: BlobPart, filename: string, mime?: string, bom?: BlobPart) {
   const blobData = typeof bom !== 'undefined' ? [bom, data] : [data]
   const blob = new Blob(blobData, { type: mime || 'application/octet-stream' })

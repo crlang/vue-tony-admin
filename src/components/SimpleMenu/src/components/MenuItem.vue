@@ -89,6 +89,7 @@ export default defineComponent({
           active.value = true
           list.forEach((item) => {
             if (item.proxy) {
+              // eslint-disable-next-line prettier/prettier
               (item.proxy as any).active = true
             }
           })
@@ -98,7 +99,7 @@ export default defineComponent({
           active.value = false
         }
       },
-      { immediate: true }
+      { immediate: true },
     )
 
     return { getClass, prefixCls, getItemStyle, getCollapse, handleClickItem, showTooptip }

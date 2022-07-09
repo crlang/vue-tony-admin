@@ -20,7 +20,7 @@
       direction="vertical"
       :collapseOptions="{
         canExpand: true,
-        helpMessage: 'help me'
+        helpMessage: 'help me',
       }"
       :column="2"
       border

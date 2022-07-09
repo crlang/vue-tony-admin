@@ -148,7 +148,7 @@ export function useFormEvents({
     }
 
     const hasField = schemaList.every(
-      (item) => item.component === 'ElDivider' || (Reflect.has(item, 'field') && item.field)
+      (item) => item.component === 'ElDivider' || (Reflect.has(item, 'field') && item.field),
     )
 
     if (!hasField) {

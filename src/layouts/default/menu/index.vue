@@ -57,7 +57,7 @@ export default defineComponent({
     const { getIsMobile } = useAppInject()
 
     const getComputedMenuMode = computed(() =>
-      unref(getIsMobile) ? MenuModeEnum.INLINE : props.menuMode || unref(getMenuMode)
+      unref(getIsMobile) ? MenuModeEnum.INLINE : props.menuMode || unref(getMenuMode),
     )
 
     const getComputedMenuTheme = computed(() => props.theme || unref(getMenuTheme))
@@ -115,7 +115,11 @@ export default defineComponent({
       if (!unref(getIsShowLogo) && !unref(getIsMobile)) return null
 
       return (
-        <AppLogo showTitle={!unref(getCollapsed)} class={unref(getLogoClass)} theme={unref(getComputedMenuTheme)} />
+        <AppLogo
+          showTitle={!unref(getCollapsed)}
+          class={unref(getLogoClass)}
+          theme={unref(getComputedMenuTheme)}
+        />
       )
     }
 
@@ -123,7 +127,11 @@ export default defineComponent({
       const { menus, ...menuProps } = unref(getCommonProps)
       if (!menus || !menus.length) return null
       return !props.isHorizontal ? (
-        <SimpleMenu {...menuProps} isSplitMenu={unref(getSplit)} items={menus} />
+        <SimpleMenu
+          {...menuProps}
+          isSplitMenu={unref(getSplit)}
+          items={menus}
+        />
       ) : (
         <BasicMenu
           {...(menuProps as any)}
@@ -131,7 +139,8 @@ export default defineComponent({
           type={unref(getMenuType)}
           showLogo={unref(getIsShowLogo)}
           mode={unref(getComputedMenuMode as any)}
-          items={menus} />
+          items={menus}
+        />
       )
     }
 

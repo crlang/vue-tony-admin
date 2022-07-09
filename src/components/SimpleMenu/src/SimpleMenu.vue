@@ -86,7 +86,7 @@ export default defineComponent({
           setOpenKeys(currentRoute.value.path)
         }
       },
-      { immediate: true }
+      { immediate: true },
     )
 
     watch(
@@ -97,7 +97,7 @@ export default defineComponent({
         }
         setOpenKeys(currentRoute.value.path)
       },
-      { flush: 'post' }
+      { flush: 'post' },
     )
 
     listenerRouteChange((route) => {

@@ -14,6 +14,6 @@ export function uploadApi(params: UploadFileParams, onUploadProgress?: (progress
       url: uploadUrl,
       onUploadProgress,
     },
-    params
+    params,
   )
 }

@@ -204,7 +204,7 @@ export default defineComponent({
       (v) => {
         visibleRef.value = !!v
       },
-      { deep: true }
+      { deep: true },
     )
 
     watch(
@@ -215,7 +215,7 @@ export default defineComponent({
           emit('update:modelValue', visible)
           instance && drawerMethods.emitVisible?.(visible, instance.uid)
         })
-      }
+      },
     )
 
     return {

@@ -10,13 +10,13 @@ import { error } from '@/utils/log'
 export function useBasicTableFn(
   tableRef: Ref<TableActionMethods>,
   handleTableChange: (...arg: any[]) => void,
-  emit: EmitType
+  emit: EmitType,
 ) {
   function getTable() {
     const table = unref(tableRef)
     if (!table) {
       error(
-        'The table instance has not been obtained, please make sure that the table has been rendered when performing the table operation!'
+        'The table instance has not been obtained, please make sure that the table has been rendered when performing the table operation!',
       )
     }
     return table as TableActionMethods

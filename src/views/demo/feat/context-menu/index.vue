@@ -3,7 +3,9 @@
     <CollapseContainer title="Simple">
       <el-button
         type="primary"
-        @contextmenu="handleContext">Right Click on me</el-button>
+        @contextmenu="handleContext">
+        Right Click on me
+      </el-button>
     </CollapseContainer>
 
     <CollapseContainer
@@ -11,7 +13,9 @@
       class="mt-4">
       <el-button
         type="primary"
-        @contextmenu="handleMultipleContext">Right Click on me</el-button>
+        @contextmenu="handleMultipleContext">
+        Right Click on me
+      </el-button>
     </CollapseContainer>
   </PageWrapper>
 </template>

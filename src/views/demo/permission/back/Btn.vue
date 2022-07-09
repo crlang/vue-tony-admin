@@ -34,31 +34,41 @@
       <Authority :value="'1000'">
         <el-button
           type="primary"
-          class="mx-4">拥有code ['1000']权限可见</el-button>
+          class="mx-4">
+          拥有code ['1000']权限可见
+        </el-button>
       </Authority>
 
       <Authority :value="'2000'">
         <el-button
           color="success"
-          class="mx-4">拥有code ['2000']权限可见</el-button>
+          class="mx-4">
+          拥有code ['2000']权限可见
+        </el-button>
       </Authority>
 
       <Authority :value="['1000', '2000']">
         <el-button
           color="error"
-          class="mx-4">拥有code ['1000','2000']角色权限可见</el-button>
+          class="mx-4">
+          拥有code ['1000','2000']角色权限可见
+        </el-button>
       </Authority>
 
       <el-divider>函数方式方式判断权限</el-divider>
       <el-button
         v-if="hasPermission('1000')"
         type="primary"
-        class="mx-4">拥有code ['1000']权限可见</el-button>
+        class="mx-4">
+        拥有code ['1000']权限可见
+      </el-button>
 
       <el-button
         v-if="hasPermission('2000')"
         color="success"
-        class="mx-4">拥有code ['2000']权限可见</el-button>
+        class="mx-4">
+        拥有code ['2000']权限可见
+      </el-button>
 
       <el-button
         v-if="hasPermission(['1000', '2000'])"
@@ -71,17 +81,23 @@
       <el-button
         v-auth="'1000'"
         type="primary"
-        class="mx-4">拥有code ['1000']权限可见</el-button>
+        class="mx-4">
+        拥有code ['1000']权限可见
+      </el-button>
 
       <el-button
         v-auth="'2000'"
         color="success"
-        class="mx-4">拥有code ['2000']权限可见</el-button>
+        class="mx-4">
+        拥有code ['2000']权限可见
+      </el-button>
 
       <el-button
         v-auth="['1000', '2000']"
         color="error"
-        class="mx-4">拥有code ['1000','2000']角色权限可见</el-button>
+        class="mx-4">
+        拥有code ['1000','2000']角色权限可见
+      </el-button>
     </template>
   </PageWrapper>
 </template>
