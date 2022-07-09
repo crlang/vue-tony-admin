@@ -102,7 +102,7 @@ export default defineComponent({
       createInfoModal,
       createErrorModal,
       createWarningModal,
-      notification,
+      createNotification,
     } = useMessage()
     const { info, success, warning, error } = createMessage
 
@@ -135,7 +135,7 @@ export default defineComponent({
       createInfoModal({ title: 'Tip', content: 'content message...' })
     }
     function handleNotify(type: 'warning' | 'error' | 'success' | 'info') {
-      notification({
+      createNotification({
         title: 'Tip',
         message: 'content message...',
         type,

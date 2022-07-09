@@ -48,7 +48,7 @@ import { useMessage } from '@/hooks/web/useMessage'
 import { useUserStore } from '@/store/modules/user'
 import { LoginStateEnum, useLoginState, useFormRules, useFormValid } from './useLogin'
 
-const { notification } = useMessage()
+const { createNotification } = useMessage()
 const userStore = useUserStore()
 const { setLoginState, getLoginState } = useLoginState()
 const { getFormRules } = useFormRules()
@@ -78,15 +78,17 @@ async function handleLogin() {
       }
     )
     if (userInfo) {
-      notification.success({
+      createNotification({
         title: '登录成功',
+        type: 'success',
         message: `欢迎回来: ${userInfo.realName}`,
         duration: 3000,
       })
     }
   } catch (error: any) {
-    notification.error({
+    createNotification({
       title: '错误提示',
+      type: 'error',
       message: error.message || '网络异常，请检查您的网络连接是否正常',
     })
   } finally {

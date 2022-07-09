@@ -26,6 +26,12 @@ interface BasicMessageOptions {
    */
   content?: string | JSX.Element
   /**
+   * 同上，二选一
+   *
+   * Same as above, choose one
+   */
+  message?: string | JSX.Element
+  /**
    * 自定义消息类
    *
    * Custom popup class
@@ -86,11 +92,11 @@ export interface NotificationOptions extends BasicMessageOptions {
  * @param options NotificationOptions
  */
 function createNotification(options: NotificationOptions): Promise<EleActionPopconfirmAction> {
-  const { title, content, position = 'top-right', customClass, type, duration = 4500 } = options
+  const { title, content, message, position = 'top-right', customClass, type, duration = 4500 } = options
 
   return ElNotification({
     title,
-    message: content,
+    message: content || message,
     customClass,
     type,
     position,
@@ -106,10 +112,10 @@ function createNotification(options: NotificationOptions): Promise<EleActionPopc
  * @param options MessageBoxOptions
  */
 function createConfirm(options: MessageBoxOptions): Promise<EleActionPopconfirmAction> {
-  const { title, content, confirmText = '确认', cancelText = '取消', customClass = '', type } = options
+  const { title, content, message, confirmText = '确认', cancelText = '取消', customClass = '', type } = options
   const { prefixCls } = useDesign('confirm-popup')
 
-  return ElMessageBox.confirm(content, title, {
+  return ElMessageBox.confirm(content || message, title, {
     confirmButtonText: confirmText,
     cancelButtonText: cancelText,
     showClose: false,
@@ -126,11 +132,11 @@ function createConfirm(options: MessageBoxOptions): Promise<EleActionPopconfirmA
  */
 function createModalOptions(
   options: MessageBoxOptions,
-  type: EleElMessageBox['type']
+  type: EleElMessageBox['type'],
 ): Promise<EleActionPopconfirmAction> {
-  const { title, content, confirmText, cancelText, customClass } = options
+  const { title, content, message, confirmText, cancelText, customClass } = options
 
-  return ElMessageBox.alert(content, title, {
+  return ElMessageBox.alert(content || message, title, {
     confirmButtonText: confirmText || '确认',
     cancelButtonText: cancelText || '取消',
     type,
