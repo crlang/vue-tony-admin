@@ -1,3 +1,13 @@
+## [0.5.3](https://github.com/crlang/vue-tony-admin/compare/0.5.2...0.5.3) (2022-07-11)
+
+### Bug Fixes
+
+- fix undefined issue ([71e3f29](https://github.com/crlang/vue-tony-admin/commit/71e3f29ea8126800d811fe9cebee063b5dacaba4))
+
+### Features
+
+- **useMessage:** Added message option, which has the same effect as content ([bf698d2](https://github.com/crlang/vue-tony-admin/commit/bf698d25f033490a6dd09ee19e2c1c63a4b5f4a3))
+
 ## [0.5.2](https://github.com/crlang/vue-tony-admin/compare/0.5.1...0.5.2) (2022-07-08)
 
 ### Bug Fixes
