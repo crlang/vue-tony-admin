@@ -283,6 +283,7 @@ export default defineComponent({
         prefixCls,
         {
           [`${prefixCls}--full`]: unref(getProps).canResize,
+          [`is-shadow`]: unref(getProps).isShadow,
         },
       ]
     })
@@ -407,8 +408,12 @@ $prefix-cls: '#{$tonyname}-basic-table';
 
 .#{$prefix-cls} {
   max-width: 100%;
-  padding: 16px;
+  padding: 32px 24px 16px;
   background: var(--background-secondary-color);
+
+  &.is-shadow {
+    box-shadow: var(--card-shadow);
+  }
 
   &-header {
     &__top {

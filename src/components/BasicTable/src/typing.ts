@@ -145,6 +145,12 @@ export interface BasicTableProps extends EleTable {
    */
   canResize?: boolean
   /**
+   * 是否显示盒子阴影
+   *
+   * Whether to show box shadow
+   */
+  isShadow?: Boolean
+  /**
    * 分页导航配置
    *
    * Pagination Configuration
