@@ -1,6 +1,5 @@
 <script lang="tsx">
 import type { BasicDescProps, DescActionMethods } from './typing'
-import type { CSSProperties } from 'vue'
 import type { CollapseContainerProps } from '@/components/CollapseContainer'
 
 import { defineComponent, computed, ref, unref } from 'vue'
@@ -88,7 +87,7 @@ export default defineComponent({
       const { schema, data } = unref(getProps)
       return unref(schema)
         .map((item) => {
-          const { field, show, isSlot, render, minWidth } = item
+          const { field, show, isSlot, render } = item
 
           if (typeof show === 'function' && !show(data)) {
             return null
@@ -104,19 +103,19 @@ export default defineComponent({
               return getSlot(slots, field, getField)
             }
             // 是否自定义渲染函数
-            return typeof render === 'function' ? render(getField, item) : getField ?? ''
+            return typeof render === 'function' ? render(getField, data) : getField ?? ''
           }
 
           return (
             <ElDescriptionsItem {...unref(item)}>
               {() => {
-                if (!minWidth) {
-                  return getContent()
-                }
-                const style: CSSProperties = {
-                  minWidth: `${minWidth}px`,
-                }
-                return <div style={style}>{getContent()}</div>
+                // if (!minWidth) {
+                return getContent()
+                // }
+                // const style: CSSProperties = {
+                //   minWidth: `${minWidth}px`,
+                // }
+                // return <div stylex={style}>{getContent()}</div>
               }}
             </ElDescriptionsItem>
           )
