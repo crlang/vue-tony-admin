@@ -1,3 +1,19 @@
+## [0.5.4](https://github.com/crlang/vue-tony-admin/compare/0.5.3...0.5.4) (2022-07-21)
+
+### Bug Fixes
+
+- 修复图标依赖包名称变更 ([beeb355](https://github.com/crlang/vue-tony-admin/commit/beeb355cca86c7a9beb6b273e90a4dbb97e1a336))
+- 修复 log 的彩色问题 ([c013748](https://github.com/crlang/vue-tony-admin/commit/c013748a968bdede80738691eb97c60eae0398b4))
+- 移除 vue 已全局定义的内容 ([767d4b2](https://github.com/crlang/vue-tony-admin/commit/767d4b28320818bb454b6eac36b5647ddbfc8ca3))
+- **BasicDescription:** 移除 style 引起的编辑器着色 ([9804128](https://github.com/crlang/vue-tony-admin/commit/9804128f888d41dd7dde6ae27b304b02289db239))
+- **BasicForm:** 修复无法控制操作按钮组 ([d6180dd](https://github.com/crlang/vue-tony-admin/commit/d6180dddc68bbaa7a23b6274064bb8440fb74008))
+
+### Features
+
+- **BasicTable:** 新增是否显示盒子阴影属性 ([5bdb817](https://github.com/crlang/vue-tony-admin/commit/5bdb8174f13e067ad1a7a9acaf4b59d764ac9229))
+- **BasicUpload:** 新增上传配置修复上传文件字段引起的安全警告 ([f2111af](https://github.com/crlang/vue-tony-admin/commit/f2111afb9b782291b1fcdee7ca357bd71b58aace))
+- **PageWrapper:** 新增是否继承路由标题，优化页面标题显示，默认继承路由标题 ([811fe55](https://github.com/crlang/vue-tony-admin/commit/811fe557118a6d21f5f36b8a547b5899a37b98cc))
+
 ## [0.5.3](https://github.com/crlang/vue-tony-admin/compare/0.5.2...0.5.3) (2022-07-11)
 
 ### Bug Fixes

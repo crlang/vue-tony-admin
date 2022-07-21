@@ -1,3 +1,19 @@
+## [0.5.4](https://github.com/crlang/vue-tony-admin/compare/0.5.3...0.5.4) (2022-07-21)
+
+### Bug Fixes
+
+- Fix icon dependency package name change ([beeb355](https://github.com/crlang/vue-tony-admin/commit/beeb355cca86c7a9beb6b273e90a4dbb97e1a336))
+- Fix the color problem of log ([c013748](https://github.com/crlang/vue-tony-admin/commit/c013748a968bdede80738691eb97c60eae0398b4))
+- Remove the content that vue has defined globally ([767d4b2](https://github.com/crlang/vue-tony-admin/commit/767d4b28320818bb454b6eac36b5647ddbfc8ca3))
+- **BasicDescription:** Remove editor coloring caused by style ([9804128](https://github.com/crlang/vue-tony-admin/commit/9804128f888d41dd7dde6ae27b304b02289db239))
+- **BasicForm:** Fixed inability to control the action button group ([d6180dd](https://github.com/crlang/vue-tony-admin/commit/d6180dddc68bbaa7a23b6274064bb8440fb74008))
+
+### Features
+
+- **BasicTable:** Added whether to show the box shadow property ([5bdb817](https://github.com/crlang/vue-tony-admin/commit/5bdb8174f13e067ad1a7a9acaf4b59d764ac9229))
+- **BasicUpload:** Added upload configuration to fix the security warning caused by the upload file field ([f2111af](https://github.com/crlang/vue-tony-admin/commit/f2111afb9b782291b1fcdee7ca357bd71b58aace))
+- **PageWrapper:** Added whether to inherit the routing title, optimize the page title display, and inherit the routing title by default ([811fe55](https://github.com/crlang/vue-tony-admin/commit/811fe557118a6d21f5f36b8a547b5899a37b98cc))
+
 ## [0.5.3](https://github.com/crlang/vue-tony-admin/compare/0.5.2...0.5.3) (2022-07-11)
 
 ### Bug Fixes
@@ -12,19 +28,19 @@
 
 ### Bug Fixes
 
-- 修复 Element Plus 版本升级后导致的界面问题 ([7dc6abc](https://github.com/crlang/vue-tony-admin/commit/7dc6abcbecebc0ad09dfa21417811169c3fe0120))
-- **BasicModal:** 隐藏 x 轴滚动条 ([3aa83eb](https://github.com/crlang/vue-tony-admin/commit/3aa83eb88a1e316cda35ba8ccd86bbd6dc95ba87))
-- **BasicTable:** 调整操作列默认为 150 宽度，修复 icon 无法显示 ([9497c0c](https://github.com/crlang/vue-tony-admin/commit/9497c0c5ac0e0fb66082d958f4083ef0bcda4002))
-- **BasicTable:** 优化未定义代码 ([7e1865e](https://github.com/crlang/vue-tony-admin/commit/7e1865ee469400c870a4539862f783730c694b2a))
+- Fixed interface issues caused by Element Plus version upgrades ([7dc6abc](https://github.com/crlang/vue-tony-admin/commit/7dc6abcbecebc0ad09dfa21417811169c3fe0120))
+- **BasicModal:** Hide the x-axis scrollbar ([3aa83eb](https://github.com/crlang/vue-tony-admin/commit/3aa83eb88a1e316cda35ba8ccd86bbd6dc95ba87))
+- **BasicTable:** Adjust the default width of the action column to 150, fix the icon cannot be displayed ([9497c0c](https://github.com/crlang/vue-tony-admin/commit/9497c0c5ac0e0fb66082d958f4083ef0bcda4002))
+- **BasicTable:** Optimize undefined code ([7e1865e](https://github.com/crlang/vue-tony-admin/commit/7e1865ee469400c870a4539862f783730c694b2a))
 
 ### Features
 
-- 升级 Element Plus 版本至最新版 2.2.9 ([30fd87c](https://github.com/crlang/vue-tony-admin/commit/30fd87cf84aae2fda89ef107f3119dab54ebf30d))
-- **BasicForm:** 添加自动判断是否显示展开按钮 ([f12ad88](https://github.com/crlang/vue-tony-admin/commit/f12ad882e484a8049314392d94ce4c954b1db872))
+- Upgrade Element Plus version to latest version 2.2.9 ([30fd87c](https://github.com/crlang/vue-tony-admin/commit/30fd87cf84aae2fda89ef107f3119dab54ebf30d))
+- **BasicForm:** Add automatic judgment whether to display the expand button ([f12ad88](https://github.com/crlang/vue-tony-admin/commit/f12ad882e484a8049314392d94ce4c954b1db872))
 
 ### Reverts
 
-- 优化登录异常，撤回部分调整 ([ccc0e07](https://github.com/crlang/vue-tony-admin/commit/ccc0e075ad2f7a719b6fe9c2b1452caada1a5640))
+- Optimize login exceptions and withdraw some adjustments ([ccc0e07](https://github.com/crlang/vue-tony-admin/commit/ccc0e075ad2f7a719b6fe9c2b1452caada1a5640))
 
 ## [0.5.1](https://github.com/crlang/vue-tony-admin/compare/0.5.0...0.5.1) (2022-07-04)
 
