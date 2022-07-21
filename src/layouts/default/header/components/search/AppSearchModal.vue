@@ -73,7 +73,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, unref, ref, watch, nextTick, defineProps, defineEmits } from 'vue'
+import { computed, unref, ref, watch, nextTick } from 'vue'
 import { Search } from '@element-plus/icons-vue'
 import AppSearchFooter from './AppSearchFooter.vue'
 import Icon from '@/components/Icon'

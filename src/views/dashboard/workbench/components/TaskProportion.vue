@@ -10,7 +10,7 @@
 <script lang="ts" setup>
 import type { Ref } from 'vue'
 
-import { ref, defineProps } from 'vue'
+import { ref } from 'vue'
 import { ElCard } from 'element-plus'
 import { useECharts } from '@/hooks/web/useECharts'
 

@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, defineProps } from 'vue'
+import { computed } from 'vue'
 import { useGlobSetting } from '@/hooks/setting'
 import { useGo } from '@/hooks/web/usePage'
 import { useDesign } from '@/hooks/web/useDesign'

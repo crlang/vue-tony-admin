@@ -49,7 +49,6 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps } from 'vue'
 import { ElRow, ElCol, ElCard, ElProgress } from 'element-plus'
 
 import { SvgIcon } from '@/components/SvgIcon'
