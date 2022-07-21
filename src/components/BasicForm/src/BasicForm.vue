@@ -30,7 +30,7 @@
 
       <FormAction
         v-bind="getActionProps"
-        v-if="showActionButtonGroup"
+        v-if="getProps.showActionButtonGroup"
         @toggle-advanced="handleToggleAdvanced">
         <template
           #[item]="data"
