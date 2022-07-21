@@ -25,7 +25,7 @@ import { ElCard, ElTree, ElRow, ElCol } from 'element-plus'
 import { treeData } from './data'
 import { useContextMenu } from '@/hooks/web/useContextMenu'
 import { CreateContextMenuOptions } from '@/components/ContextMenu'
-import { Delete, Position } from '@element-plus/icons'
+import { Delete, Position } from '@element-plus/icons-vue'
 
 export default defineComponent({
   components: { ElCard, ElTree, ElRow, ElCol },

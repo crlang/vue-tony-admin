@@ -1,5 +1,5 @@
 import { BasicFormSchema } from '@/components/BasicForm'
-import { Search } from '@element-plus/icons'
+import { Search } from '@element-plus/icons-vue'
 
 export const searchList = (() => {
   const result: any[] = []

@@ -44,7 +44,7 @@ import { getAccountList } from '@/api/demo/system'
 import DeptTree from './DeptTree.vue'
 
 import AccountModal from './AccountModal.vue'
-import { Document, Edit, Delete } from '@element-plus/icons'
+import { Document, Edit, Delete } from '@element-plus/icons-vue'
 import { useGo } from '@/hooks/web/usePage'
 import { DeptListItem } from '@/api/demo/model/systemModel'
 import { useMessage } from '@/hooks/web/useMessage'

@@ -20,7 +20,7 @@
 
 <script lang="ts" setup>
 import { ElCard, ElTimeline, ElTimelineItem } from 'element-plus'
-import { Check } from '@element-plus/icons'
+import { Check } from '@element-plus/icons-vue'
 
 const activities = [
   {

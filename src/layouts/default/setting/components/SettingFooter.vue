@@ -28,7 +28,7 @@
 import { defineComponent, unref } from 'vue'
 import { ElButton } from 'element-plus'
 
-import { CopyDocument, RefreshLeft, Refresh } from '@element-plus/icons'
+import { CopyDocument, RefreshLeft, Refresh } from '@element-plus/icons-vue'
 import { useAppStore } from '@/store/modules/app'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useMultipleTabStore } from '@/store/modules/multipleTab'

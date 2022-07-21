@@ -75,7 +75,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElRow, ElCol, ElCard } from 'element-plus'
-import { ArrowDownBold, ArrowLeftBold, ArrowRightBold } from '@element-plus/icons'
+import { ArrowDownBold, ArrowLeftBold, ArrowRightBold } from '@element-plus/icons-vue'
 
 import { Icon } from '@/components/Icon'
 import { IconPicker } from '@/components/IconPicker'

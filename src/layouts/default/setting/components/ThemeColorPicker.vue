@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { Check } from '@element-plus/icons'
+import { Check } from '@element-plus/icons-vue'
 
 import { useDesign } from '@/hooks/web/useDesign'
 

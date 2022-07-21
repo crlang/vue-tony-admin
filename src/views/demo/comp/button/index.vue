@@ -8,31 +8,31 @@
         <el-card
           class="box-card"
           shadow="hover">
-          <Button preIcon="ion:layers-outline">Default</Button>
-          <Button
+          <ElButton preIcon="ion:layers-outline">Default</ElButton>
+          <ElButton
             type="primary"
             preIcon="ion:layers-outline">
             Primary
-          </Button>
+          </ElButton>
 
-          <Button
+          <ElButton
             sufIcon="ion:layers-outline"
             type="success">
             Success
-          </Button>
-          <Button
+          </ElButton>
+          <ElButton
             sufIcon="ion:layers-outline"
             :iconSize="22"
             type="info">
             Large Icon
-          </Button>
+          </ElButton>
 
-          <Button shadow>Shadow</Button>
-          <Button
+          <ElButton shadow>Shadow</ElButton>
+          <ElButton
             shadow
             type="primary">
             Success
-          </Button>
+          </ElButton>
         </el-card>
       </el-col>
       <el-col :span="12">
@@ -124,11 +124,11 @@
             <div class="card-header">Text button</div>
           </template>
 
-          <el-button text>Text Button</el-button>
+          <el-button text>Text ElButton</el-button>
           <el-button
             text
             disabled>
-            Text Button
+            Text ElButton
           </el-button>
         </el-card>
       </el-col>
@@ -344,11 +344,10 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { ElRow, ElCol, ElCard, ElButton, ElButtonGroup } from 'element-plus'
-import { Search, Edit, Check, Message, Star, Delete, ArrowLeft, Share, ArrowRight } from '@element-plus/icons'
-import { Button } from '@/components/Button'
+import { Search, Edit, Check, Message, Star, Delete, ArrowLeft, Share, ArrowRight } from '@element-plus/icons-vue'
 
 export default defineComponent({
-  components: { ElRow, ElCol, ElCard, ElButton, ElButtonGroup, Button },
+  components: { ElRow, ElCol, ElCard, ElButton, ElButtonGroup },
   setup() {
     const loading = ref(false)
 

@@ -74,7 +74,7 @@
 
 <script lang="ts" setup>
 import { computed, unref, ref, watch, nextTick, defineProps, defineEmits } from 'vue'
-import { Search } from '@element-plus/icons'
+import { Search } from '@element-plus/icons-vue'
 import AppSearchFooter from './AppSearchFooter.vue'
 import Icon from '@/components/Icon'
 import vClickOutside from '@/directives/clickOutside'
