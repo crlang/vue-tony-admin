@@ -113,6 +113,14 @@ export default {
      */
     fullColumnSize: 24,
   },
+  upload: {
+    /**
+     * 服务端返回的上传字段，可能存在嵌套模式，如 'data.url'
+     *
+     * The upload field returned by the server, there may be nested patterns, such as 'data.url'
+     */
+    urlField: 'url',
+  },
   /**
    * 滚动组件的配置
    *

@@ -256,7 +256,10 @@ export default defineComponent({
           item.percent = complete
         }
 
-        const { data } = await api({ ...(uploadParams || {}), [uploadName]: item.file }, onUploadProgress)
+        const params = uploadParams || {}
+        params.file = item.file
+        params[uploadName] = item.file
+        const { data } = await api(params, onUploadProgress)
         item.status = UploadResultStatus.SUCCESS
         item.responseData = data
         return {
