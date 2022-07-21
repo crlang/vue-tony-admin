@@ -319,8 +319,8 @@ export function useDataSource(
       const isArrayResult = Array.isArray(res)
 
       let resultItems: Recordable[] = isArrayResult ? res : get(res, listField)
-      const resultTotal: number = isArrayResult ? 0 : get(res, totalField)
-      const resultPage: number = isArrayResult ? 1 : get(res, pageField)
+      const resultTotal: number = isArrayResult ? 0 : parseInt(get(res, totalField))
+      const resultPage: number = isArrayResult ? 1 : parseInt(get(res, pageField))
 
       if (resultTotal) {
         const currentTotalPage = Math.ceil(resultTotal / pageSize)

@@ -128,6 +128,7 @@ $prefix-cls: '#{$tonyname}-svg-icon';
     width: 1em;
     height: 1em;
     overflow: hidden;
+    /* stylelint-disable-next-line value-keyword-case */
     fill: currentColor;
     transition: transform 0.25s linear;
   }

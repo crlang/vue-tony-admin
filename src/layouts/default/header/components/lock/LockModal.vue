@@ -58,6 +58,9 @@ export default defineComponent({
 
     const [registerForm, { validateField, resetFields, getFieldsValue }] = useForm({
       showActionButtonGroup: false,
+      colProps: {
+        span: 24,
+      },
       schemas: [
         {
           field: 'password',
