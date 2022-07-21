@@ -7,18 +7,18 @@
       ref="headerRef"
       :class="getHeaderClass">
       <div
-        v-if="title"
+        v-if="getTitle"
         :class="`${prefixCls}-header__title`">
-        {{ title }}
+        {{ getTitle }}
       </div>
       <template v-else>
         <slot name="title"></slot>
       </template>
 
       <div
-        v-if="description"
+        v-if="getDesc"
         :class="`${prefixCls}-header__description`">
-        {{ description }}
+        {{ getDesc }}
       </div>
       <template v-else>
         <slot name="description"></slot>
@@ -51,6 +51,7 @@
 
 <script lang="ts">
 import { defineComponent, computed, ref, provide } from 'vue'
+import { useRoute } from 'vue-router'
 
 import { useDesign } from '@/hooks/web/useDesign'
 
@@ -71,6 +72,15 @@ export default defineComponent({
      * Page header description
      */
     description: String,
+    /**
+     * 当title和description不存在的时候，是否继承路由
+     *
+     * Whether to inherit routing when title and description do not exist
+     */
+    inheritRouter: {
+      type: Boolean,
+      default: true,
+    },
     /**
      * 头部是否固定
      *
@@ -108,6 +118,7 @@ export default defineComponent({
     const contentRef = ref<HTMLDivElement | null>(null)
     const footerRef = ref<HTMLDivElement | null>(null)
     const { prefixCls } = useDesign('page-wrapper')
+    const route = useRoute()
 
     // 根据提供的内容，自动判断是否高度占满
     // According to the provided content, automatically determine whether the height is full
@@ -127,15 +138,26 @@ export default defineComponent({
       ]
     })
 
+    const getTitle = computed(() => {
+      const { title, inheritRouter } = props
+      if (inheritRouter) {
+        return title || route.meta.title || undefined
+      }
+
+      return title || undefined
+    })
+
+    const getDesc = computed(() => {
+      const { description, inheritRouter } = props
+
+      if (inheritRouter) {
+        return description || route.meta.description || undefined
+      }
+
+      return description || undefined
+    })
     const getShowheader = computed(() => {
-      return !!(
-        props?.title ||
-        slots?.title ||
-        props?.description ||
-        slots?.description ||
-        slots?.toolbar ||
-        slots?.extra
-      )
+      return !!(getTitle.value || slots?.title || getDesc.value || slots?.description || slots?.toolbar || slots?.extra)
     })
 
     const getHeaderClass = computed(() => {
@@ -167,6 +189,8 @@ export default defineComponent({
       headerRef,
       contentRef,
       footerRef,
+      getTitle,
+      getDesc,
       getClass,
       getShowheader,
       getHeaderClass,
