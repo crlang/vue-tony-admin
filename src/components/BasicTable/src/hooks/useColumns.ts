@@ -22,7 +22,6 @@ export function useColumns(
 ) {
   let cacheColumns = unref(propsRef).columns
   const columnsRef = ref(cacheColumns)
-  const { showIndexColumn, showCheckboxColumn } = unref(propsRef)
   const { hasPermission } = usePermission()
 
   /**
@@ -31,6 +30,7 @@ export function useColumns(
    * Get table columns - inside
    */
   const getColumnsRef = computed(() => {
+    const { showIndexColumn, showCheckboxColumn } = unref(propsRef)
     const columns = cloneDeep(unref(columnsRef))
 
     if (!columns || columns.length === 0) return []
