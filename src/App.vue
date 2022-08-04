@@ -1,5 +1,5 @@
 <template>
-  <ElConfigProvider>
+  <ElConfigProvider :locale="zhCn">
     <AppProvider>
       <RouterView />
     </AppProvider>
@@ -11,6 +11,9 @@ import { RouterView } from 'vue-router'
 import { ElConfigProvider } from 'element-plus'
 import { AppProvider } from '@/components/Application'
 import { useTitle } from '@/hooks/web/useTitle'
+// 默认载入了Element Plus的中文
+// The Chinese of Element Plus is loaded by default
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 
 // Listening to page changes and dynamically changing site titles
 useTitle()
