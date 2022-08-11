@@ -1,31 +1,7 @@
 $elenamex: 'el-message';
 
-.#{$elenamex} {
-  &--info {
-    &.el-message--loading {
-      // Hide info icon in loading
-      .el-icon.el-message__icon.el-message-icon--info {
-        display: none;
-      }
-    }
-  }
-}
+// .#{$elenamex} {
+// }
 
-html[data-theme='dark'] {
-  .#{$elenamex} {
-
-    &-box {
-      --el-color-info: var(--text-secondary-color);
-      --el-border-color-lighter: var(--background-secondary-color);
-      --el-color-white: var(--background-secondary-color);
-      --el-messagebox-title-color: var(--text-primary-color);
-      --el-messagebox-content-color: var(--text-secondary-color);
-    }
-
-    &--info {
-      --el-message-bg-color: var(--background-secondary-color);
-      --el-message-border-color: var(--border-color-light);
-      --el-message-text-color: var(--text-secondary-color);
-    }
-  }
-}
+// html.dark {
+// }

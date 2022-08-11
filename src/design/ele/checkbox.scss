@@ -1,9 +1,7 @@
 $elenamex: 'el-checkbox';
 
-html[data-theme='dark'] {
-  .#{$elenamex} {
-    --el-checkbox-bg-color: var(--background-secondary-color);
-    --el-checkbox-input-border: var(--border-color);
-    --el-checkbox-text-color: var(--text-secondary-color);
-  }
-}
+// .#{$elenamex} {
+// }
+
+// html.dark {
+// }

@@ -1,9 +1,7 @@
 $elenamex: 'el-tree';
 
-html[data-theme='dark'] {
-  .#{$elenamex} {
-    --el-tree-text-color: var(--text-secondary-color);
-    --el-color-white: transparent;
-    --el-tree-node-hover-bg-color: var(--background-secondary-color);
-  }
-}
+// .#{$elenamex} {
+// }
+
+// html.dark {
+// }

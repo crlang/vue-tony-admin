@@ -3,7 +3,7 @@ import type { ProjectConfig } from '#/config'
 import { computed } from 'vue'
 
 import { useAppStore } from '@/store/modules/app'
-import { ContentEnum, ThemeEnum } from '@/enums/appEnum'
+import { ContentEnum } from '@/enums/appEnum'
 
 type RootSetting = Omit<ProjectConfig, 'locale' | 'headerSetting' | 'menuSetting' | 'multiTabsSetting'>
 
@@ -48,8 +48,6 @@ export function useRootSetting() {
 
   const getShowDarkModeToggle = computed(() => appStore.getProjectConfig.showDarkModeToggle)
 
-  const getDarkMode = computed(() => appStore.getDarkMode)
-
   const getLayoutContentMode = computed(() =>
     appStore.getProjectConfig.contentMode === ContentEnum.FULL ? ContentEnum.FULL : ContentEnum.FIXED,
   )
@@ -58,9 +56,6 @@ export function useRootSetting() {
     appStore.setProjectConfig(setting)
   }
 
-  function setDarkMode(mode: ThemeEnum) {
-    appStore.setDarkMode(mode)
-  }
   return {
     setRootSetting,
 
@@ -83,8 +78,6 @@ export function useRootSetting() {
     getContentMode,
     getLockTime,
     getThemeColor,
-    getDarkMode,
-    setDarkMode,
     getShowDarkModeToggle,
   }
 }

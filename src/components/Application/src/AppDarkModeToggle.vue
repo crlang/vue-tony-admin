@@ -2,7 +2,7 @@
   <div
     v-if="getShowDarkModeToggle"
     :class="getClass"
-    @click="toggleDarkMode">
+    @click="toggleDark">
     <div :class="`${prefixCls}-inner`"></div>
     <SvgIcon
       size="14"
@@ -20,14 +20,10 @@ import { SvgIcon } from '@/components/SvgIcon'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useRootSetting } from '@/hooks/setting/useRootSetting'
 import { updateHeaderBgColor, updateSidebarBgColor } from '@/logics/theme/updateBackground'
-import { updateDarkTheme } from '@/logics/theme/dark'
-import { ThemeEnum } from '@/enums/appEnum'
-// import { useDark, useToggle } from '@vueuse/core'
+import { toggleDarkMode, isDark } from '@/logics/theme/dark'
 
 const { prefixCls } = useDesign('dark-switch')
-const { getDarkMode, setDarkMode, getShowDarkModeToggle } = useRootSetting()
-
-const isDark = computed(() => getDarkMode.value === ThemeEnum.DARK)
+const { getShowDarkModeToggle } = useRootSetting()
 
 const getClass = computed(() => [
   prefixCls,
@@ -36,13 +32,8 @@ const getClass = computed(() => [
   },
 ])
 
-function toggleDarkMode() {
-  const darkMode = getDarkMode.value === ThemeEnum.DARK ? ThemeEnum.LIGHT : ThemeEnum.DARK
-  setDarkMode(darkMode)
-  updateDarkTheme(darkMode)
-
-  // const isDark = useDark()
-  // const toggleDark = useToggle(isDark)
+function toggleDark() {
+  toggleDarkMode()
 
   updateHeaderBgColor()
   updateSidebarBgColor()

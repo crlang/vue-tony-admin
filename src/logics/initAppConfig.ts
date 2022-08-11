@@ -9,7 +9,6 @@ import projectSetting from '@/settings/projectSetting'
 import { updateHeaderBgColor, updateSidebarBgColor } from '@/logics/theme/updateBackground'
 import { updateColorWeak } from '@/logics/theme/updateColorWeak'
 import { updateGrayMode } from '@/logics/theme/updateGrayMode'
-import { updateDarkTheme } from '@/logics/theme/dark'
 import { changeTheme } from '@/logics/theme'
 import { initBasicHeight } from '@/logics/theme/initBasicVariable'
 
@@ -18,10 +17,8 @@ import { useAppStore } from '@/store/modules/app'
 import { getCommonStoragePrefix, getStorageShortName } from '@/utils/env'
 
 import { Persistent } from '@/utils/cache/persistent'
-// import { deepMerge } from '@/utils'
-import { ThemeEnum } from '@/enums/appEnum'
+import { deepMerge } from '@/utils'
 import { primaryColor } from '@/settings/designSetting'
-import { deepMerge } from '../utils'
 
 /**
  * 初始项目配置
@@ -30,14 +27,11 @@ import { deepMerge } from '../utils'
  */
 export function initAppConfigStore() {
   const appStore = useAppStore()
-  const darkMode = appStore.getDarkMode
 
   let projCfg: ProjectConfig = Persistent.getLocal(PROJ_CFG_KEY) as ProjectConfig
   projCfg = deepMerge(projectSetting, projCfg || {})
 
   const { colorWeak, grayMode, themeColor, headerSetting, menuSetting } = projCfg
-
-  updateDarkTheme(darkMode)
 
   if (themeColor && themeColor !== primaryColor) {
     changeTheme(themeColor)
@@ -50,13 +44,8 @@ export function initAppConfigStore() {
 
   appStore.setProjectConfig(projCfg)
 
-  if (darkMode === ThemeEnum.DARK) {
-    updateHeaderBgColor()
-    updateSidebarBgColor()
-  } else {
-    headerSetting.bgColor && updateHeaderBgColor(headerSetting.bgColor)
-    menuSetting.bgColor && updateSidebarBgColor(menuSetting.bgColor)
-  }
+  headerSetting.bgColor && updateHeaderBgColor(headerSetting.bgColor)
+  menuSetting.bgColor && updateSidebarBgColor(menuSetting.bgColor)
 
   setTimeout(() => {
     clearObsoleteStorage()

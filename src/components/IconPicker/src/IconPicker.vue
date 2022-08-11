@@ -258,18 +258,4 @@ $prefix-cls: '#{$tonyname}-icon-picker';
     }
   }
 }
-
-html[data-theme='dark'] {
-  .#{$prefix-cls} {
-    &__list {
-      .eleicon {
-        border-color: var(--border-color-light);
-
-        &:hover {
-          background: #44566c;
-        }
-      }
-    }
-  }
-}
 </style>

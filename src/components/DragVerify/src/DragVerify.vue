@@ -458,11 +458,4 @@ $prefix-cls: '#{$tonyname}-basic-drag-verify';
     background-position: 120px 0;
   }
 }
-
-html[data-theme='dark'] {
-  // .#{$prefix-cls} {
-  //   background-color: #0c0c0c;
-  //   border-color: #777;
-  // }
-}
 </style>
