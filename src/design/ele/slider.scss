@@ -3,9 +3,5 @@ $elenamex: 'el-slider';
 // .#{$elenamex} {
 // }
 
-html[data-theme='dark'] {
-  .#{$elenamex} {
-    --el-color-white: var(--background-primary-reverse);
-    --el-slider-runway-bg-color: var(--background-secondary-color);
-  }
-}
+// html.dark {
+// }

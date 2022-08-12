@@ -1,15 +1,7 @@
 $elenamex: 'el-picker';
 
-.#{$elenamex} {
-  &-panel {
-    background-color: transparent;
-  }
-}
+// .#{$elenamex} {
+// }
 
-html[data-theme='dark'] {
-  .#{$elenamex} {
-    &-panel {
-      --el-text-color-regular: var(--text-primary-color);
-    }
-  }
-}
+// html.dark {
+// }

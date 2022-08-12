@@ -164,18 +164,4 @@ $prefix-cls: '#{$tonyname}-strength-meter';
     }
   }
 }
-
-html[data-theme='dark'] {
-  .#{$prefix-cls} {
-    &-bar {
-      background-color: var(--border-color);
-
-      &::before,
-      &::after {
-        border-color: var(--border-color);
-        filter: brightness(0.8);
-      }
-    }
-  }
-}
 </style>

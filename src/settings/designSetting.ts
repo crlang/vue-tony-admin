@@ -1,8 +1,4 @@
-import { ThemeEnum } from '../enums/appEnum'
-
 export const prefixCls = 'tony'
-
-export const darkMode = ThemeEnum.LIGHT
 
 export const primaryColor = '#0081FF'
 

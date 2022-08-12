@@ -1,16 +1,7 @@
 $elenamex: 'el-descriptions';
 
-.#{$elenamex} {
-  .el-descriptions__body{
-    background: none;
-  }
-}
+// .#{$elenamex} {
+// }
 
-html[data-theme='dark'] {
-  .#{$elenamex} {
-    --el-descriptions-table-border: 1px solid var(--border-color);
-    --el-descriptions-item-bordered-label-background: var(--background-secondary-color);
-    --el-text-color-regular: var(--text-secondary-color);
-    --el-text-color-primary: var(--text-primary-color);
-  }
-}
+// html.dark {
+// }

@@ -3,11 +3,5 @@ $elenamex: 'el-tag';
 // .#{$elenamex} {
 // }
 
-html[data-theme='dark'] {
-  .#{$elenamex} {
-    &--info {
-      --el-tag-text-color: var(--text-secondary-color);
-      --el-tag-bg-color: var(--background-primary-color);
-    }
-  }
-}
+// html.dark {
+// }

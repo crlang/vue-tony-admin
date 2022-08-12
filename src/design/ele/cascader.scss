@@ -3,15 +3,5 @@ $elenamex: 'el-cascader';
 // .#{$elenamex} {
 // }
 
-html[data-theme='dark'] {
-  .#{$elenamex} {
-    &-node {
-      color: var(--text-secondary-color);
-      --el-cascader-node-background-hover: var(--background-secondary-color);
-
-      &.is-active {
-        color: var(--primary-color);
-      }
-    }
-  }
-}
+// html.dark {
+// }

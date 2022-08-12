@@ -1,6 +1,5 @@
-import { colorIsDark, darken, lighten } from '@/utils/color'
+import { darken } from '@/utils/color'
 import { useAppStore } from '@/store/modules/app'
-import { ThemeEnum } from '@/enums/appEnum'
 import { setCssVar } from './util'
 
 const HEADER_BG_COLOR = '--header-background-color'
@@ -19,7 +18,6 @@ const SIDER_TEXT_HOVER_COLOR = '--sider-text-hover-color'
  */
 export function updateHeaderBgColor(color?: string) {
   const appStore = useAppStore()
-  const darkMode = appStore.getDarkMode === ThemeEnum.DARK
   if (!color) {
     color = appStore.getHeaderSetting.bgColor
 
@@ -28,7 +26,6 @@ export function updateHeaderBgColor(color?: string) {
     }
   }
 
-  const isDark = colorIsDark(color)
   const dyncColor = dyncGenerateColor(color)
 
   // color
@@ -38,12 +35,6 @@ export function updateHeaderBgColor(color?: string) {
   // hover color
   setCssVar(HEADER_BG_HOVER_COLOR, dyncColor.backgroundHover)
   setCssVar(HEADER_TEXT_HOVER_COLOR, dyncColor.textHover)
-
-  appStore.setProjectConfig({
-    headerSetting: {
-      theme: isDark || darkMode ? ThemeEnum.DARK : ThemeEnum.LIGHT,
-    },
-  })
 }
 
 /**
@@ -53,7 +44,6 @@ export function updateHeaderBgColor(color?: string) {
 export function updateSidebarBgColor(color?: string) {
   const appStore = useAppStore()
 
-  const darkMode = appStore.getDarkMode === ThemeEnum.DARK
   if (!color) {
     color = appStore.getMenuSetting.bgColor
     if (!color) {
@@ -69,16 +59,6 @@ export function updateSidebarBgColor(color?: string) {
   // hover color
   setCssVar(SIDER_BG_HOVER_COLOR, dyncColor.backgroundHover)
   setCssVar(SIDER_TEXT_HOVER_COLOR, dyncColor.textHover)
-
-  // only #ffffff is light
-  // Only when the background color is #fff, the theme of the menu will be changed to light
-  const isLight = ['#fff', '#ffffff'].includes(color!.toLowerCase())
-
-  appStore.setProjectConfig({
-    menuSetting: {
-      theme: isLight && !darkMode ? ThemeEnum.LIGHT : ThemeEnum.DARK,
-    },
-  })
 }
 
 /**
@@ -86,11 +66,9 @@ export function updateSidebarBgColor(color?: string) {
  * @param color
  */
 function dyncGenerateColor(color?: string) {
-  const isDark = colorIsDark(color)
-
   return {
-    text: isDark ? lighten(color, 75) : darken(color, 75),
-    textHover: isDark ? lighten(color, 90) : darken(color, 90),
-    backgroundHover: isDark ? lighten(color, 5) : darken(color, 5),
+    text: darken(color, 75),
+    textHover: darken(color, 90),
+    backgroundHover: darken(color, 5),
   }
 }

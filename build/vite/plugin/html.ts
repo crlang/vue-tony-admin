@@ -26,13 +26,13 @@ export function configHtmlPlugin(env: ViteEnv, isBuild: boolean) {
       // Embed the generated app.config.js file
       tags: isBuild
         ? [
-          {
-            tag: 'script',
-            attrs: {
-              src: getAppConfigSrc(),
+            {
+              tag: 'script',
+              attrs: {
+                src: getAppConfigSrc(),
+              },
             },
-          },
-        ]
+          ]
         : [],
     },
   })

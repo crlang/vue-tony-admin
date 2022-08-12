@@ -1,11 +1,7 @@
 $elenamex: 'el-tabs';
 
-html[data-theme='dark'] {
-  .#{$elenamex} {
-    &--card > .#{$elenamex}__header .#{$elenamex}__item.is-active {
-      border-bottom-color: var(--border-color);
-    }
-    --el-border-color-light: var(--border-color-light);
-    --el-text-color-primary: var(--text-primary-color);
-  }
-}
+// .#{$elenamex} {
+// }
+
+// html.dark {
+// }

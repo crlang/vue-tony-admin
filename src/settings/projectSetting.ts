@@ -4,7 +4,6 @@ import { CacheTypeEnum } from '@/enums/cacheEnum'
 import {
   ContentEnum,
   PermissionModeEnum,
-  ThemeEnum,
   RouterTransitionEnum,
   SettingButtonPositionEnum,
   SessionTimeoutProcessingEnum,
@@ -62,8 +61,6 @@ const setting: ProjectConfig = {
     fixed: true,
     // Whether to show top
     show: true,
-    // theme
-    theme: ThemeEnum.LIGHT,
     // Whether to enable the lock screen function
     useLockPage: true,
     // Whether to show the full screen button
@@ -99,8 +96,6 @@ const setting: ProjectConfig = {
     mode: MenuModeEnum.INLINE,
     // Menu type
     type: MenuTypeEnum.SIDEBAR,
-    // Menu theme
-    theme: ThemeEnum.DARK,
     // Split menu
     split: false,
     // Top menu layout

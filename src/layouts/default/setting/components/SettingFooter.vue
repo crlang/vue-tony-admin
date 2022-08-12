@@ -41,6 +41,7 @@ import { useCopyToClipboard } from '@/hooks/web/useCopyToClipboard'
 import { updateColorWeak } from '@/logics/theme/updateColorWeak'
 import { updateGrayMode } from '@/logics/theme/updateGrayMode'
 import defaultSetting from '@/settings/projectSetting'
+import { toggleDarkMode } from '@/logics/theme/dark'
 
 export default defineComponent({
   name: 'SettingFooter',
@@ -65,7 +66,7 @@ export default defineComponent({
       try {
         appStore.setProjectConfig(defaultSetting)
         const { colorWeak, grayMode } = defaultSetting
-        // updateDarkTheme(themeColor)
+        toggleDarkMode(false)
         updateColorWeak(colorWeak)
         updateGrayMode(grayMode)
         createMessage.success('重置成功！')

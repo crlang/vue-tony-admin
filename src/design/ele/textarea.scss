@@ -1,12 +1,7 @@
-@import './mix_input.scss';
-
 $elenamex: 'el-textarea';
 
 // .#{$elenamex} {
 // }
 
-html[data-theme='dark'] {
-  .#{$elenamex} {
-    @include inputbox();
-  }
-}
+// html.dark {
+// }
