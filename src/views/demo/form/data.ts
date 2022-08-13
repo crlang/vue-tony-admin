@@ -638,7 +638,7 @@ export const dyncSchemas1: BasicFormSchema[] = [
     componentProps: ({ formAction }) => {
       return {
         placeholder: '值改变时执行查询,查看控制台',
-        onChange: async () => {
+        onChange: async() => {
           const { validate } = formAction
           await validate()
         },

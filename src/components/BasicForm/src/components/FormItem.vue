@@ -343,11 +343,11 @@ export default defineComponent({
       const compSlot =
         typeof renderComponentContent === 'function'
           ? {
-              ...renderComponentContent(unref(getValues)),
-            }
+            ...renderComponentContent(unref(getValues)),
+          }
           : {
-              default: () => renderComponentContent,
-            }
+            default: () => renderComponentContent,
+          }
       return <Comp {...compAttr}>{compSlot}</Comp>
     }
 

@@ -43,7 +43,7 @@ export default defineComponent({
       },
     })
 
-    const [registerDrawer, { closeDrawer, changeConfirmLoading }] = useDrawerInner(async (data) => {
+    const [registerDrawer, { closeDrawer, changeConfirmLoading }] = useDrawerInner(async(data) => {
       resetFields()
       changeConfirmLoading(false)
       isUpdate.value = !!data?.isUpdate

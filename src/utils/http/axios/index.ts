@@ -58,16 +58,16 @@ const transform: AxiosTransform = {
     // 如果不希望中断当前请求，请return数据，否则直接抛出异常即可
     let timeoutMsg = ''
     switch (code) {
-      case ResultEnum.TIMEOUT:
-        timeoutMsg = '登录超时,请重新登录！'
-        const userStore = useUserStoreWithOut()
-        userStore.setToken(undefined)
-        userStore.logout(true)
-        break
-      default:
-        if (message) {
-          timeoutMsg = message
-        }
+    case ResultEnum.TIMEOUT:
+      timeoutMsg = '登录超时,请重新登录！'
+      const userStore = useUserStoreWithOut()
+      userStore.setToken(undefined)
+      userStore.logout(true)
+      break
+    default:
+      if (message) {
+        timeoutMsg = message
+      }
     }
 
     // errorMessageMode=‘modal’的时候会显示modal错误弹窗，而不是消息提示，用于一些比较重要的错误

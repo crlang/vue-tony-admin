@@ -47,7 +47,7 @@ export function useDragLine(siderRef: Ref<any>, dragBarRef: Ref<any>, mix = fals
   }
 
   function handleMouseMove(ele: HTMLElement, wrap: HTMLElement, clientX: number) {
-    document.onmousemove = function (innerE) {
+    document.onmousemove = function(innerE) {
       let iT = (ele as any).left + (innerE.clientX - clientX)
       innerE = innerE || window.event
       const maxT = 800
@@ -63,7 +63,7 @@ export function useDragLine(siderRef: Ref<any>, dragBarRef: Ref<any>, mix = fals
   // Drag and drop in the menu area-release the mouse
   function removeMouseup(ele: any) {
     const wrap = getEl(siderRef)
-    document.onmouseup = function () {
+    document.onmouseup = function() {
       document.onmousemove = null
       document.onmouseup = null
       wrap.style.transition = 'width 0.2s'

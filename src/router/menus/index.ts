@@ -62,7 +62,7 @@ async function getAsyncMenus() {
   return staticMenus
 }
 
-export const getMenus = async (): Promise<Menu[]> => {
+export const getMenus = async(): Promise<Menu[]> => {
   const menus = await getAsyncMenus()
   if (isRoleMode()) {
     const routes = router.getRoutes()

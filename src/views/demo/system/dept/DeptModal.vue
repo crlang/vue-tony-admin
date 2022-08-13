@@ -34,7 +34,7 @@ export default defineComponent({
       },
     })
 
-    const [registerModal, { setModalProps, closeModal }] = useModalInner(async (data) => {
+    const [registerModal, { setModalProps, closeModal }] = useModalInner(async(data) => {
       resetFields()
       setModalProps({ confirmOptions: { loading: false } })
       isUpdate.value = !!data?.isUpdate

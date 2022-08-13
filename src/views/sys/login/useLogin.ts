@@ -81,39 +81,39 @@ export function useFormRules(formData?: Recordable) {
       mobile: [{ required: true, validator: validateMobile, trigger: 'blur' }],
     }
     switch (unref(currentState)) {
-      // register form rules
-      case LoginStateEnum.REGISTER:
-        return {
-          account: accountFormRule,
-          password: passwordFormRule,
-          confirmPassword: [
-            {
-              validator: (rule: any, value: any, callback: any) =>
-                validateConfirmPassword(rule, value, callback, 'password'),
-              trigger: 'blur',
-            },
-          ],
-          policy: [{ validator: validatePolicy, trigger: 'change' }],
-          ...mobileRule,
-        }
+    // register form rules
+    case LoginStateEnum.REGISTER:
+      return {
+        account: accountFormRule,
+        password: passwordFormRule,
+        confirmPassword: [
+          {
+            validator: (rule: any, value: any, callback: any) =>
+              validateConfirmPassword(rule, value, callback, 'password'),
+            trigger: 'blur',
+          },
+        ],
+        policy: [{ validator: validatePolicy, trigger: 'change' }],
+        ...mobileRule,
+      }
 
       // reset password form rules
-      case LoginStateEnum.RESET_PASSWORD:
-        return {
-          account: accountFormRule,
-          ...mobileRule,
-        }
+    case LoginStateEnum.RESET_PASSWORD:
+      return {
+        account: accountFormRule,
+        ...mobileRule,
+      }
 
       // mobile form rules
-      case LoginStateEnum.MOBILE:
-        return mobileRule
+    case LoginStateEnum.MOBILE:
+      return mobileRule
 
       // login form rules
-      default:
-        return {
-          account: accountFormRule,
-          password: passwordFormRule,
-        }
+    default:
+      return {
+        account: accountFormRule,
+        password: passwordFormRule,
+      }
     }
   })
   return { getFormRules }

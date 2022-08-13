@@ -5,7 +5,7 @@ import colors from 'picocolors'
 
 import pkg from '../../package.json'
 
-export const runBuild = async () => {
+export const runBuild = async() => {
   try {
     const argvList = process.argv.splice(2)
 

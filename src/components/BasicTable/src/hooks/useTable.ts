@@ -117,7 +117,7 @@ export function useTable(
     },
 
     // Advanced
-    reload: async (opt?: FetchParams) => {
+    reload: async(opt?: FetchParams) => {
       getTableInstance().reload(opt)
     },
     setTableProps: (props: Partial<BasicTableProps>) => {

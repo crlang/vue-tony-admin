@@ -69,7 +69,7 @@ export default defineComponent({
      *
      * Dynamically rendered icons
      */
-    const update = async () => {
+    const update = async() => {
       const el = unref(elRef)
       if (!el) return
 

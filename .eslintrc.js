@@ -15,6 +15,9 @@ module.exports = {
     es6: true,
   },
   globals: {
+    // inside vue
+    defineProps: true,
+    defineEmits: true,
     // global.d
     __APP_INFO__: true,
     PropType: true,

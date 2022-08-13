@@ -53,7 +53,7 @@ export default defineComponent({
       },
     })
 
-    const [registerDrawer, { closeDrawer, changeConfirmLoading }] = useDrawerInner(async (data) => {
+    const [registerDrawer, { closeDrawer, changeConfirmLoading }] = useDrawerInner(async(data) => {
       resetFields()
       changeConfirmLoading(false)
       if (unref(treeData).length === 0) {

@@ -32,7 +32,7 @@ export function setupRouterGuard(router: Router) {
 function createPageGuard(router: Router) {
   const loadedPageMap = new Map<string, boolean>()
 
-  router.beforeEach(async (to) => {
+  router.beforeEach(async(to) => {
     // The page has already been loaded, it will be faster to open it again, you don’t need to do loading and other processing
     to.meta.loaded = !!loadedPageMap.get(to.path)
     // Notify routing changes
@@ -51,7 +51,7 @@ function createPageLoadingGuard(router: Router) {
   const userStore = useUserStoreWithOut()
   const appStore = useAppStoreWithOut()
   const { getOpenPageLoading } = useTransitionSetting()
-  router.beforeEach(async (to) => {
+  router.beforeEach(async(to) => {
     if (!userStore.getToken) {
       return true
     }
@@ -66,7 +66,7 @@ function createPageLoadingGuard(router: Router) {
 
     return true
   })
-  router.afterEach(async () => {
+  router.afterEach(async() => {
     if (unref(getOpenPageLoading)) {
       // TODO Looking for a better way
       // The timer simulates the loading time to prevent flashing too fast,
@@ -88,7 +88,7 @@ function createHttpGuard(router: Router) {
   if (removeAllHttpPending) {
     axiosCanceler = new AxiosCanceler()
   }
-  router.beforeEach(async () => {
+  router.beforeEach(async() => {
     // Switching the route will delete the previous request
     axiosCanceler?.removeAllPending()
     return true
@@ -103,7 +103,7 @@ function createScrollGuard(router: Router) {
 
   const body = document.body
 
-  router.afterEach(async (to) => {
+  router.afterEach(async(to) => {
     // scroll top
     try {
       isHash((to as RouteLocationNormalized & { href: string })?.href) && body.scrollTo(0, 0)
@@ -121,7 +121,7 @@ function createScrollGuard(router: Router) {
 export function createMessageGuard(router: Router) {
   const { closeMessageOnSwitch } = projectSetting
 
-  router.beforeEach(async () => {
+  router.beforeEach(async() => {
     try {
       if (closeMessageOnSwitch) {
         ElMessage.closeAll()
@@ -136,7 +136,7 @@ export function createMessageGuard(router: Router) {
 
 export function createProgressGuard(router: Router) {
   const { getOpenNProgress } = useTransitionSetting()
-  router.beforeEach(async (to) => {
+  router.beforeEach(async(to) => {
     if (to.meta.loaded) {
       return true
     }
@@ -144,7 +144,7 @@ export function createProgressGuard(router: Router) {
     return true
   })
 
-  router.afterEach(async () => {
+  router.afterEach(async() => {
     unref(getOpenNProgress) && nProgress.done()
     return true
   })

@@ -62,30 +62,30 @@ export function useTabs(_router?: Router) {
     }
     const currentTab = getCurrentTab()
     switch (action) {
-      case TableActionEnum.REFRESH:
-        await tabStore.refreshPage(router)
-        break
+    case TableActionEnum.REFRESH:
+      await tabStore.refreshPage(router)
+      break
 
-      case TableActionEnum.CLOSE_ALL:
-        await tabStore.closeAllTab(router)
-        break
+    case TableActionEnum.CLOSE_ALL:
+      await tabStore.closeAllTab(router)
+      break
 
-      case TableActionEnum.CLOSE_LEFT:
-        await tabStore.closeLeftTabs(currentTab, router)
-        break
+    case TableActionEnum.CLOSE_LEFT:
+      await tabStore.closeLeftTabs(currentTab, router)
+      break
 
-      case TableActionEnum.CLOSE_RIGHT:
-        await tabStore.closeRightTabs(currentTab, router)
-        break
+    case TableActionEnum.CLOSE_RIGHT:
+      await tabStore.closeRightTabs(currentTab, router)
+      break
 
-      case TableActionEnum.CLOSE_OTHER:
-        await tabStore.closeOtherTabs(currentTab, router)
-        break
+    case TableActionEnum.CLOSE_OTHER:
+      await tabStore.closeOtherTabs(currentTab, router)
+      break
 
-      case TableActionEnum.CLOSE_CURRENT:
-      case TableActionEnum.CLOSE:
-        await tabStore.closeTab(tab || currentTab, router)
-        break
+    case TableActionEnum.CLOSE_CURRENT:
+    case TableActionEnum.CLOSE:
+      await tabStore.closeTab(tab || currentTab, router)
+      break
     }
   }
 

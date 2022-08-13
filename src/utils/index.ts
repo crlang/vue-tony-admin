@@ -3,6 +3,7 @@ import type { App, Ref } from 'vue'
 import type { SFCInstallWithContext, SFCWithInstall } from '#/utils'
 
 import { unref } from 'vue'
+// eslint-disable-next-line vue/prefer-import-from-vue
 import { NOOP } from '@vue/shared'
 
 import { isObject } from '@/utils/is'

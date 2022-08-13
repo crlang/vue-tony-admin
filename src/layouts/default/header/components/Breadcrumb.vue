@@ -54,7 +54,7 @@ export default defineComponent({
     const { getShowBreadCrumbIcon } = useRootSetting()
     const go = useGo()
 
-    watchEffect(async () => {
+    watchEffect(async() => {
       if (currentRoute.value.name === REDIRECT_NAME) return
       const menus = await getMenus()
 

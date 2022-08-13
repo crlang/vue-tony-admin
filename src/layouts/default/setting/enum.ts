@@ -88,11 +88,11 @@ export const getMenuTriggerOptions = (hideTop: boolean) => {
     ...(hideTop
       ? []
       : [
-          {
-            value: TriggerEnum.HEADER,
-            label: '顶部',
-          },
-        ]),
+        {
+          value: TriggerEnum.HEADER,
+          label: '顶部',
+        },
+      ]),
   ]
 }
 

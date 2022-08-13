@@ -18,7 +18,7 @@ const menuManager: {
  * Create a right-click menu
  * @param options CreateContextMenuOptions
  */
-export const createContextMenu = function (options: CreateContextMenuOptions) {
+export const createContextMenu = function(options: CreateContextMenuOptions) {
   const { event = null, showIcon = true, styles = {}, items, width } = options || {}
 
   event && event?.preventDefault()
@@ -43,13 +43,13 @@ export const createContextMenu = function (options: CreateContextMenuOptions) {
     /** render VNode */
     render(vm, container)
 
-    const handleClick = function () {
+    const handleClick = function() {
       menuManager.resolve('')
     }
 
     menuManager.domList.push(container)
 
-    const remove = function () {
+    const remove = function() {
       menuManager.domList.forEach((dom: Element) => {
         try {
           dom && body.removeChild(dom)
@@ -61,7 +61,7 @@ export const createContextMenu = function (options: CreateContextMenuOptions) {
       body.removeEventListener('scroll', handleClick)
     }
 
-    menuManager.resolve = function (arg) {
+    menuManager.resolve = function(arg) {
       remove()
       resolve(arg)
     }
@@ -75,7 +75,7 @@ export const createContextMenu = function (options: CreateContextMenuOptions) {
 /**
  * 销毁右键菜单
  */
-export const destroyContextMenu = function () {
+export const destroyContextMenu = function() {
   if (menuManager) {
     menuManager.resolve('')
     menuManager.domList = []
