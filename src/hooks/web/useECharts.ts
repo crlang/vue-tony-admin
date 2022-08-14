@@ -6,7 +6,7 @@ import { unref, nextTick, watch, computed, ref } from 'vue'
 import { useEventListener } from '@/hooks/event/useEventListener'
 import { useBreakpoint } from '@/hooks/event/useBreakpoint'
 import echarts from '@/utils/lib/echarts'
-import { isDark } from '@/logics/theme/dark'
+import { isDark } from '@/logics/theme'
 
 export function useECharts(elRef: Ref<HTMLDivElement>, theme: 'light' | 'dark' | 'default' = 'default') {
   let chartInstance: echarts.ECharts | null = null

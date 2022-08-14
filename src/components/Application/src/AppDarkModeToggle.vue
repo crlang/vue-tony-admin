@@ -19,8 +19,7 @@ import { computed, unref } from 'vue'
 import { SvgIcon } from '@/components/SvgIcon'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useRootSetting } from '@/hooks/setting/useRootSetting'
-import { updateHeaderBgColor, updateSidebarBgColor } from '@/logics/theme/updateBackground'
-import { toggleDarkMode, isDark } from '@/logics/theme/dark'
+import { updateHeaderColor, updateSidebarColor, toggleDarkMode, isDark } from '@/logics/theme'
 
 const { prefixCls } = useDesign('dark-switch')
 const { getShowDarkModeToggle } = useRootSetting()
@@ -35,8 +34,8 @@ const getClass = computed(() => [
 function toggleDark() {
   toggleDarkMode()
 
-  updateHeaderBgColor()
-  updateSidebarBgColor()
+  updateHeaderColor()
+  updateSidebarColor()
 }
 </script>
 

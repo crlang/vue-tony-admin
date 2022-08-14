@@ -38,10 +38,9 @@ import { useDesign } from '@/hooks/web/useDesign'
 import { useMessage } from '@/hooks/web/useMessage'
 import { useCopyToClipboard } from '@/hooks/web/useCopyToClipboard'
 
-import { updateColorWeak } from '@/logics/theme/updateColorWeak'
-import { updateGrayMode } from '@/logics/theme/updateGrayMode'
+import { updateHeaderColor, updateSidebarColor, updateColorWeak, updateGrayMode, changeTheme, toggleDarkMode } from '@/logics/theme'
 import defaultSetting from '@/settings/projectSetting'
-import { toggleDarkMode } from '@/logics/theme/dark'
+import { primaryColor } from '@/settings/designSetting'
 
 export default defineComponent({
   name: 'SettingFooter',
@@ -65,10 +64,13 @@ export default defineComponent({
     function handleResetSetting() {
       try {
         appStore.setProjectConfig(defaultSetting)
-        const { colorWeak, grayMode } = defaultSetting
+        const { colorWeak, grayMode, headerSetting, menuSetting } = defaultSetting
         toggleDarkMode(false)
         updateColorWeak(colorWeak)
         updateGrayMode(grayMode)
+        updateHeaderColor(headerSetting.bgColor)
+        updateSidebarColor(menuSetting.bgColor)
+        changeTheme(primaryColor)
         createMessage.success('重置成功！')
       } catch (error) {
         createMessage.error(error as string)

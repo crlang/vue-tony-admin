@@ -6,11 +6,7 @@ import type { ProjectConfig } from '#/config'
 import { PROJ_CFG_KEY } from '@/enums/cacheEnum'
 import projectSetting from '@/settings/projectSetting'
 
-import { updateHeaderBgColor, updateSidebarBgColor } from '@/logics/theme/updateBackground'
-import { updateColorWeak } from '@/logics/theme/updateColorWeak'
-import { updateGrayMode } from '@/logics/theme/updateGrayMode'
-import { changeTheme } from '@/logics/theme'
-import { initBasicHeight } from '@/logics/theme/initBasicVariable'
+import { updateHeaderColor, updateSidebarColor, updateColorWeak, updateGrayMode, changeTheme, initBasicHeight } from '@/logics/theme'
 
 import { useAppStore } from '@/store/modules/app'
 
@@ -31,21 +27,20 @@ export function initAppConfigStore() {
   let projCfg: ProjectConfig = Persistent.getLocal(PROJ_CFG_KEY) as ProjectConfig
   projCfg = deepMerge(projectSetting, projCfg || {})
 
-  const { colorWeak, grayMode, themeColor, headerSetting, menuSetting } = projCfg
-
+  const { colorWeak, grayMode, themeColor, headerSetting, menuSetting, multiTabsSetting } = projCfg
   if (themeColor && themeColor !== primaryColor) {
     changeTheme(themeColor)
   }
 
-  initBasicHeight()
+  initBasicHeight(headerSetting.height, multiTabsSetting.height)
 
   grayMode && updateGrayMode(grayMode)
   colorWeak && updateColorWeak(colorWeak)
 
   appStore.setProjectConfig(projCfg)
 
-  headerSetting.bgColor && updateHeaderBgColor(headerSetting.bgColor)
-  menuSetting.bgColor && updateSidebarBgColor(menuSetting.bgColor)
+  updateHeaderColor(headerSetting.bgColor)
+  updateSidebarColor(menuSetting.bgColor)
 
   setTimeout(() => {
     clearObsoleteStorage()

@@ -1,21 +1,18 @@
-import { HandlerEnum } from './enum'
-import { updateHeaderBgColor, updateSidebarBgColor } from '@/logics/theme/updateBackground'
-import { updateColorWeak } from '@/logics/theme/updateColorWeak'
-import { updateGrayMode } from '@/logics/theme/updateGrayMode'
-
-import { useAppStore } from '@/store/modules/app'
 import { ProjectConfig } from '#/config'
-import { changeTheme } from '@/logics/theme'
-import { toggleDarkMode } from '@/logics/theme/dark'
+
+import { updateHeaderColor, updateSidebarColor, updateColorWeak, updateGrayMode, changeTheme, toggleDarkMode } from '@/logics/theme'
+import { useAppStore } from '@/store/modules/app'
 import { useRootSetting } from '@/hooks/setting/useRootSetting'
+
+import { HandlerEnum } from './enum'
 
 export function baseHandler(event: HandlerEnum, value: any) {
   const appStore = useAppStore()
   const config = handler(event, value)
   appStore.setProjectConfig(config)
   if (event === HandlerEnum.CHANGE_THEME) {
-    updateHeaderBgColor()
-    updateSidebarBgColor()
+    updateHeaderColor()
+    updateSidebarColor()
   }
 }
 

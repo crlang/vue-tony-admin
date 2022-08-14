@@ -8,7 +8,7 @@ import {
   SettingButtonPositionEnum,
   SessionTimeoutProcessingEnum,
 } from '@/enums/appEnum'
-import { SIDE_BAR_BG_COLOR_LIST, HEADER_PRESET_BG_COLOR_LIST, primaryColor } from './designSetting'
+import { headerColor, primaryColor, sidebarColor } from './designSetting'
 
 // ! You need to clear the browser cache after the change
 const setting: ProjectConfig = {
@@ -56,7 +56,7 @@ const setting: ProjectConfig = {
     // header height
     height: 60,
     // header bg color
-    bgColor: HEADER_PRESET_BG_COLOR_LIST[0],
+    bgColor: headerColor,
     // Fixed at the top
     fixed: true,
     // Whether to show top
@@ -76,7 +76,7 @@ const setting: ProjectConfig = {
   // Menu configuration
   menuSetting: {
     // sidebar menu bg color
-    bgColor: SIDE_BAR_BG_COLOR_LIST[0],
+    bgColor: sidebarColor,
     //  Whether to fix the left menu
     fixed: true,
     // Menu collapse
