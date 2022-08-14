@@ -14,7 +14,7 @@ import {
   APP_SESSION_CACHE_KEY,
   MULTIPLE_TABS_KEY,
 } from '@/enums/cacheEnum'
-import { DEFAULT_CACHE_TIME } from '@/settings/encryptionSetting'
+import projectSetting from '@/settings/projectSetting'
 import { toRaw } from 'vue'
 import { pick, omit } from 'lodash-es'
 
@@ -38,8 +38,8 @@ type SessionKeys = keyof SessionStore
 const ls = createLocalStorage()
 const ss = createSessionStorage()
 
-const localMemory = new Memory(DEFAULT_CACHE_TIME)
-const sessionMemory = new Memory(DEFAULT_CACHE_TIME)
+const localMemory = new Memory(projectSetting.cacheTime)
+const sessionMemory = new Memory(projectSetting.cacheTime)
 
 function initPersistentMemory() {
   const localCache = ls.get(APP_LOCAL_CACHE_KEY)

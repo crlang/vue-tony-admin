@@ -5,8 +5,7 @@ import { GLOB_CONFIG_FILE_NAME, OUTPUT_DIR } from '../constant'
 import fs, { writeFileSync } from 'fs-extra'
 import colors from 'picocolors'
 
-import { getEnvConfig, getRootPath } from '../utils'
-import { getConfigFileName } from '../getConfigFileName'
+import { getEnvConfig, getRootPath, getConfigFileName } from '../utils'
 
 import pkg from '../../package.json'
 
@@ -16,6 +15,12 @@ interface CreateConfigParams {
   configFileName?: string
 }
 
+/**
+ * 创建打包构建配置
+ *
+ * Create Build Configuration
+ * @param params CreateConfigParams
+ */
 function createConfig(params: CreateConfigParams) {
   const { configName, config, configFileName } = params
   try {
@@ -38,6 +43,11 @@ function createConfig(params: CreateConfigParams) {
   }
 }
 
+/**
+ * 运行打包构建配置
+ *
+ * Run the build configuration
+ */
 export function runBuildConfig() {
   const config = getEnvConfig()
   const configFileName = getConfigFileName(config)

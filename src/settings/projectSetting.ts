@@ -173,6 +173,9 @@ const setting: ProjectConfig = {
   // Whether to cancel the http request that has been sent but not responded when switching the interface.
   // If it is enabled, I want to overwrite a single interface. Can be set in a separate interface
   removeAllHttpPending: false,
+
+  // System default cache time, in seconds
+  cacheTime: 60 * 60 * 24 * 7,
 }
 
 export default setting
