@@ -63,7 +63,7 @@ export default defineComponent({
     const getCollapse = computed(() => unref(getParentRootMenu)?.props.collapse)
 
     const showTooptip = computed(() => {
-      return unref(getParentMenu)?.type.name === 'Menu' && unref(getCollapse) && slots.title
+      return unref(getParentMenu)?.type.name === 'MenuList' && unref(getCollapse) && slots.title
     })
 
     function handleClickItem() {

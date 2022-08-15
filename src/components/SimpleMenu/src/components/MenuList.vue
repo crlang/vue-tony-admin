@@ -23,12 +23,8 @@ import { createSimpleRootMenuContext } from './useSimpleMenuContext'
 import mitt from '@/utils/mitt'
 
 export default defineComponent({
-  name: 'Menu',
+  name: 'MenuList',
   props: {
-    theme: {
-      type: String as PropType<ThemeType>,
-      default: 'light',
-    },
     activeName: String,
     openNames: {
       type: Array as PropType<string[]>,
@@ -77,10 +73,8 @@ export default defineComponent({
     })
 
     const getClass = computed(() => {
-      const { theme } = props
       return [
         prefixCls,
-        `${prefixCls}-${theme}`,
         `${prefixCls}-vertical`,
         {
           [`${prefixCls}-collapse`]: props.collapse,

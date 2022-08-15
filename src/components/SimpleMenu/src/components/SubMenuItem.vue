@@ -51,7 +51,7 @@
         </div>
       </template>
       <div v-bind="getEvents(true)">
-        <ul :class="[prefixCls, `${prefixCls}--${getTheme}`, `${prefixCls}--popup`]">
+        <ul :class="[prefixCls, `${prefixCls}--popup`]">
           <slot></slot>
         </ul>
       </div>
@@ -75,7 +75,6 @@ import {
 } from 'vue'
 import { ElPopover } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
-import { propTypes } from '@/utils/propTypes'
 import { useMenuItem } from './useMenu'
 import { useSimpleRootMenuContext } from './useSimpleMenuContext'
 import Icon from '@/components/Icon'
@@ -94,8 +93,8 @@ export default defineComponent({
       type: String,
       required: true,
     },
-    disabled: propTypes.bool,
-    collapsedShowTitle: propTypes.bool,
+    disabled: Boolean,
+    collapsedShowTitle: Boolean,
   },
   setup(props) {
     const instance = getCurrentInstance()
@@ -146,7 +145,6 @@ export default defineComponent({
 
     const getAccordion = computed(() => rootProps.accordion)
     const getCollapse = computed(() => rootProps.collapse)
-    const getTheme = computed(() => rootProps.theme)
 
     const getIsOpend = computed(() => {
       const name = props.name
@@ -312,7 +310,6 @@ export default defineComponent({
       handleClick,
       handleVisibleChange,
       getParentSubMenu,
-      getTheme,
       getIsOpend,
       getEvents,
       getSubClass,

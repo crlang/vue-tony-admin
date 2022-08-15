@@ -9,13 +9,12 @@
     :class="getSiderClass"
     :width="getMenuWidthX">
     <LayoutMenu
-      :theme="getMenuTheme"
       :menuMode="getMode"
       :splitType="getSplitType" />
     <DragBar ref="dragBarRef" />
     <template v-if="getShowTrigger">
       <LayoutTrigger
-        :class="`${prefixCls}-trigger ${getMenuTheme}`"
+        :class="`${prefixCls}-trigger`"
         sider />
     </template>
   </ElAside>
@@ -42,7 +41,7 @@ export default defineComponent({
     const dragBarRef = ref<ElRef>(null)
     const sideRef = ref<ElRef>(null)
 
-    const { getSplit, getMenuTheme, getRealWidth, getMenuHidden, getMenuFixed, getIsMixMode } = useMenuSetting()
+    const { getSplit, getRealWidth, getMenuHidden, getMenuFixed, getIsMixMode } = useMenuSetting()
 
     const { prefixCls } = useDesign('layout-sideBar')
 
@@ -100,7 +99,6 @@ export default defineComponent({
       getMenuFixed,
       showClassSideBarRef,
       getMenuWidthX,
-      getMenuTheme,
       getMode,
       getSplitType,
       getShowTrigger,

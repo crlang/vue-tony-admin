@@ -7,7 +7,6 @@
     :style="getWrapStyle"
     :class="[
       prefixCls,
-      getMenuTheme,
       {
         open: openMenu,
         mini: getCollapsed,
@@ -70,7 +69,6 @@
       <ScrollContainer :class="`${prefixCls}-menu-list__content`">
         <SimpleMenu
           :items="childrenMenus"
-          :theme="getMenuTheme"
           mixSider
           @menu-click="handleMenuClick" />
       </ScrollContainer>
@@ -133,7 +131,6 @@ export default defineComponent({
       getMenuWidth,
       getCanDrag,
       getCloseMixSidebarOnChange,
-      getMenuTheme,
       getMixSideTrigger,
       getRealWidth,
       getMixSideFixed,
@@ -321,7 +318,6 @@ export default defineComponent({
       dragBarRef,
       activeMenu,
       openMenu,
-      getMenuTheme,
       getItemEvents,
       getMenuEvents,
       getDomStyle,

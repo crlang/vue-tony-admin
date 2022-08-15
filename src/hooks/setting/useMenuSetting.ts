@@ -36,8 +36,6 @@ export function useMenuSetting() {
 
   const getTrigger = computed(() => appStore.getMenuSetting.trigger)
 
-  const getMenuTheme = computed(() => appStore.getMenuSetting.theme)
-
   const getSplit = computed(() => appStore.getMenuSetting.split)
 
   const getMenuBgColor = computed(() => appStore.getMenuSetting.bgColor)
@@ -134,7 +132,6 @@ export function useMenuSetting() {
     getMenuWidth,
     getTrigger,
     getSplit,
-    getMenuTheme,
     getCanDrag,
     getCollapsedShowTitle,
     getIsHorizontal,

@@ -3,11 +3,11 @@ import type { CSSProperties } from 'vue'
 
 export function useMenuItem(instance: ComponentInternalInstance | null) {
   const getParentMenu = computed(() => {
-    return findParentMenu(['Menu', 'SubMenu'])
+    return findParentMenu(['MenuList', 'SubMenu'])
   })
 
   const getParentRootMenu = computed(() => {
-    return findParentMenu(['Menu'])
+    return findParentMenu(['MenuList'])
   })
 
   const getParentSubMenu = computed(() => {
@@ -23,7 +23,7 @@ export function useMenuItem(instance: ComponentInternalInstance | null) {
     if (unref(getParentRootMenu)?.props.collapse) {
       padding = indentSize
     } else {
-      while (parent && parent.type.name !== 'Menu') {
+      while (parent && parent.type.name !== 'MenuList') {
         if (parent.type.name === 'SubMenu') {
           padding += indentSize
         }
@@ -51,7 +51,7 @@ export function useMenuItem(instance: ComponentInternalInstance | null) {
       }
     }
     const ret: any[] = []
-    while (parent && parent.type.name !== 'Menu') {
+    while (parent && parent.type.name !== 'MenuList') {
       if (parent.type.name === 'SubMenu') {
         ret.push(parent)
       }
