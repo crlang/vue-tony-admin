@@ -19,7 +19,7 @@ const ONE_HOUR = ONE_MINUTES * 60
 const ONE_DAY = ONE_HOUR * 24
 
 export default defineComponent({
-  name: 'Time',
+  name: 'RelativeTime',
   props: {
     /**
      * 时间值，支持时间字符串、时间戳、时间
