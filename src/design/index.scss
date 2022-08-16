@@ -53,7 +53,6 @@ B.parent-cat.pcc__title
 */
 
 // Basic
-@use 'var/config.scss' as *;
 @use 'var/color.scss' as co;
 
 // Element Plus
@@ -61,7 +60,6 @@ B.parent-cat.pcc__title
 
 // Advanced
 @import 'basic.scss';
-@import 'theme.scss';
 @import 'transition/index.scss';
 @import 'public.scss';
 
