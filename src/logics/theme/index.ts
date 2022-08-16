@@ -1,8 +1,8 @@
+import { useDark, useToggle } from '@vueuse/core'
+
 import { primaryColor, darkHeaderColor, darkSidebarColor } from '@/settings/designSetting'
 import { useAppStore } from '@/store/modules/app'
 import { colorIsDark, darken, lighten } from '@/utils/color'
-
-import { useDark, useToggle } from '@vueuse/core'
 
 const HEADER_HEIGHT = '--header-height'
 const TABS_HEIGHT = '--tabs-height'

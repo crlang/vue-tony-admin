@@ -1,5 +1,9 @@
 /**
+ * 用于配置全局错误处理功能，可以监控vue错误、脚本错误、静态资源错误和Promise错误
+ *
  * Used to configure the global error handling function, which can monitor vue errors, script errors, static resource errors and Promise errors
+ *
+ * settings/projectSetting.js -> useErrorHandle
  */
 
 import type { ErrorLogInfo } from '#/store'
@@ -37,7 +41,7 @@ function processStackMsg(error: Error) {
  * get comp name
  * @param vm
  */
-function formatComponentName(vm: any) {
+function formatComponentName(vm) {
   if (vm.$root === vm) {
     return {
       name: 'root',
@@ -45,7 +49,7 @@ function formatComponentName(vm: any) {
     }
   }
 
-  const options = vm.$options as any
+  const options = vm.$options
   if (!options) {
     return {
       name: 'anonymous',
@@ -63,7 +67,7 @@ function formatComponentName(vm: any) {
  * Configure Vue error handling function
  */
 
-function vueErrorHandler(err: Error, vm: any, info: string) {
+function vueErrorHandler(err: Error, vm, info: string) {
   const errorLogStore = useErrorLogStoreWithOut()
   const { name, path } = formatComponentName(vm)
   errorLogStore.addErrorLogInfo({
@@ -142,12 +146,12 @@ function registerResourceErrorHandler() {
   window.addEventListener(
     'error',
     function(e: Event) {
-      const target = e.target ? e.target : (e.srcElement as any)
+      const target = e.target ? e.target : e.srcElement
       const errorLogStore = useErrorLogStoreWithOut()
       errorLogStore.addErrorLogInfo({
         type: ErrorTypeEnum.RESOURCE,
         name: 'Resource Error!',
-        file: (e.target || ({} as any)).currentSrc,
+        file: (e.target || {}).currentSrc,
         detail: JSON.stringify({
           tagName: target.localName,
           html: target.outerHTML,
@@ -155,7 +159,7 @@ function registerResourceErrorHandler() {
         }),
         url: window.location.href,
         stack: 'resource is not found',
-        message: (e.target || ({} as any)).localName + ' is load error',
+        message: (e.target || {}).localName + ' is load error',
       })
     },
     true,

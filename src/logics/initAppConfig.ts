@@ -10,7 +10,7 @@ import { updateHeaderColor, updateSidebarColor, updateColorWeak, updateGrayMode,
 
 import { useAppStore } from '@/store/modules/app'
 
-import { getCommonStoragePrefix, getStorageShortName } from '@/utils/env'
+// import { getCommonStoragePrefix, getStorageShortName } from '@/utils/env'
 
 import { Persistent } from '@/utils/cache/persistent'
 import { deepMerge } from '@/utils'
@@ -42,24 +42,26 @@ export function initAppConfigStore() {
   updateHeaderColor(headerSetting.bgColor)
   updateSidebarColor(menuSetting.bgColor)
 
-  setTimeout(() => {
-    clearObsoleteStorage()
-  }, 16)
+  // setTimeout(() => {
+  //   clearObsoleteStorage()
+  // }, 16)
 }
 
 /**
+ * 随着版本的不断迭代，localStorage 中存储的缓存键将会越来越多。 此方法用于删除无用的键
+ *
  * As the version continues to iterate, there will be more and more cache keys stored in localStorage.
  * This method is used to delete useless keys
  */
-export function clearObsoleteStorage() {
-  const commonPrefix = getCommonStoragePrefix()
-  const shortPrefix = getStorageShortName()
+// export function clearObsoleteStorage() {
+//   const commonPrefix = getCommonStoragePrefix()
+//   const shortPrefix = getStorageShortName()
 
-  ;[localStorage, sessionStorage].forEach((item: Storage) => {
-    Object.keys(item).forEach((key) => {
-      if (key && key.startsWith(commonPrefix) && !key.startsWith(shortPrefix)) {
-        item.removeItem(key)
-      }
-    })
-  })
-}
+//   ;[localStorage, sessionStorage].forEach((item: Storage) => {
+//     Object.keys(item).forEach((key) => {
+//       if (key && key.startsWith(commonPrefix) && !key.startsWith(shortPrefix)) {
+//         item.removeItem(key)
+//       }
+//     })
+//   })
+// }
