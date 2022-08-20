@@ -5,11 +5,16 @@ $basic-menu-prefix-cls: '#{$tonyname}-basic-menu';
 
   &.el-menu--horizontal {
     .el-menu  {
+      .el-sub-menu,
       .el-menu-item {
         height: 40px;
         padding: 0 16px;
         margin: 8px 0 4px;
         line-height: 40px;
+      }
+
+      .el-sub-menu__title {
+        padding: 0;
       }
     }
   }
@@ -17,4 +22,11 @@ $basic-menu-prefix-cls: '#{$tonyname}-basic-menu';
 
 .#{$basic-menu-prefix-cls} {
   width: 100%;
+
+  &-item {
+    &-content {
+      display: flex;
+      align-items: center;
+    }
+  }
 }
