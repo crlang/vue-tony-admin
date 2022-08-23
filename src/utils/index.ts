@@ -6,9 +6,8 @@ import { unref } from 'vue'
 // eslint-disable-next-line vue/prefer-import-from-vue
 import { NOOP } from '@vue/shared'
 
-import { isObject } from '@/utils/is'
-
 import { error } from './log'
+import { isObject } from 'lodash-es'
 
 export const noop = () => {}
 

@@ -4,10 +4,9 @@
 
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue'
-import { useIntervalFn } from '@vueuse/core'
+import { useIntervalFn, isObject } from '@vueuse/core'
 
 import { formatToDateTime, formatToDate, dateUtil } from '@/utils/dateUtil'
-import { isObject } from '@/utils/is'
 
 // 秒
 const ONE_SECONDS = 1000

@@ -79,7 +79,7 @@ import { useMenuItem } from './useMenu'
 import { useSimpleRootMenuContext } from './useSimpleMenuContext'
 import Icon from '@/components/Icon'
 import mitt from '@/utils/mitt'
-import { isObject } from '@/utils/is'
+import { isObject } from 'lodash-es'
 
 const DELAY = 200
 export default defineComponent({

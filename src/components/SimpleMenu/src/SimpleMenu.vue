@@ -30,10 +30,10 @@ import SimpleSubMenu from './SimpleSubMenu.vue'
 import { listenerRouteChange } from '@/logics/mitt/routeChange'
 import { REDIRECT_NAME } from '@/router/constant'
 import { useRouter } from 'vue-router'
-import { openWindow } from '@/utils'
+import { isHttpUrl, openWindow } from '@/utils'
 
 import { useOpenKeys } from './useOpenKeys'
-import { isUrl } from '@/utils/is'
+
 export default defineComponent({
   name: 'SimpleMenu',
   components: {
@@ -122,7 +122,7 @@ export default defineComponent({
     }
 
     async function handleSelect(key: string) {
-      if (isUrl(key)) {
+      if (isHttpUrl(key)) {
         openWindow(key)
         return
       }

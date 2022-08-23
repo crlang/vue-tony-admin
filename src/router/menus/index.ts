@@ -8,7 +8,7 @@ import { filter } from '@/utils/helper/treeHelper'
 import { router } from '@/router'
 import { PermissionModeEnum } from '@/enums/appEnum'
 import { pathToRegexp } from 'path-to-regexp'
-import { isUrl } from '@/utils/is'
+import { isHttpUrl } from '@/utils'
 
 const modules = import.meta.globEager('./modules/**/*.ts')
 
@@ -105,7 +105,7 @@ export async function getChildrenMenus(parentPath: string) {
 function basicFilter(routes: RouteRecordNormalized[]) {
   return (menu: Menu) => {
     const matchRoute = routes.find((route) => {
-      if (isUrl(menu.path)) return true
+      if (isHttpUrl(menu.path)) return true
 
       if (route.meta?.carryParam) {
         return pathToRegexp(route.path).test(menu.path)

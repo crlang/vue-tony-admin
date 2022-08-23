@@ -7,7 +7,6 @@ import { AxiosCanceler } from './axiosCancel'
 import { cloneDeep, omit } from 'lodash-es'
 import { ContentTypeEnum } from '@/enums/httpEnum'
 import { RequestEnum } from '@/enums/httpEnum'
-import { isFunction } from '@/utils/is'
 
 export * from './axiosTransform'
 
@@ -83,29 +82,27 @@ export class VAxios {
         ignoreCancelToken !== undefined ? ignoreCancelToken : this.options.requestOptions?.ignoreCancelToken
 
       !ignoreCancel && axiosCanceler.addPending(config)
-      if (requestInterceptors && isFunction(requestInterceptors)) {
+      if (typeof requestInterceptors === 'function') {
         config = requestInterceptors(config, this.options)
       }
       return config
     }, undefined)
 
     // Request interceptor error capture
-    requestInterceptorsCatch &&
-      isFunction(requestInterceptorsCatch) &&
+    typeof requestInterceptorsCatch === 'function' &&
       this.axiosInstance.interceptors.request.use(undefined, requestInterceptorsCatch)
 
     // Response result interceptor processing
     this.axiosInstance.interceptors.response.use((res: AxiosResponse<any>) => {
       res && axiosCanceler.removePending(res.config)
-      if (responseInterceptors && isFunction(responseInterceptors)) {
+      if (typeof responseInterceptors === 'function') {
         res = responseInterceptors(res)
       }
       return res
     }, undefined)
 
     // Response result interceptor error capture
-    responseInterceptorsCatch &&
-      isFunction(responseInterceptorsCatch) &&
+    typeof responseInterceptorsCatch === 'function' &&
       this.axiosInstance.interceptors.response.use(undefined, responseInterceptorsCatch)
   }
 
@@ -191,7 +188,7 @@ export class VAxios {
     const opt: RequestOptions = Object.assign({}, requestOptions, options)
 
     const { beforeRequestHook, requestCatchHook, transformRequestHook } = transform || {}
-    if (beforeRequestHook && isFunction(beforeRequestHook)) {
+    if (typeof beforeRequestHook === 'function') {
       conf = beforeRequestHook(conf, opt)
     }
     conf.requestOptions = opt
@@ -202,7 +199,7 @@ export class VAxios {
       this.axiosInstance
         .request<any, AxiosResponse<Result>>(conf)
         .then((res: AxiosResponse<Result>) => {
-          if (transformRequestHook && isFunction(transformRequestHook)) {
+          if (typeof transformRequestHook === 'function') {
             try {
               const ret = transformRequestHook(res, opt)
               resolve(ret)
@@ -214,7 +211,7 @@ export class VAxios {
           resolve(res as unknown as Promise<T>)
         })
         .catch((e: Error | AxiosError) => {
-          if (requestCatchHook && isFunction(requestCatchHook)) {
+          if (typeof requestCatchHook === 'function') {
             reject(requestCatchHook(e, opt))
             return
           }

@@ -14,7 +14,6 @@ import { deepMerge, setObjToUrlParams } from '@/utils'
 import { useErrorLogStoreWithOut } from '@/store/modules/errorLog'
 import { joinTimestamp, formatRequestDate } from './helper'
 import { useUserStoreWithOut } from '@/store/modules/user'
-import { isString } from '@/utils/is'
 
 const globSetting = useGlobSetting()
 const urlPrefix = globSetting.urlPrefix
@@ -89,14 +88,14 @@ const transform: AxiosTransform = {
       config.url = `${urlPrefix}${config.url}`
     }
 
-    if (apiUrl && isString(apiUrl)) {
+    if (typeof apiUrl === 'string') {
       config.url = `${apiUrl}${config.url}`
     }
     const params = config.params || {}
     const data = config.data || false
-    formatDate && data && isString(data) && formatRequestDate(data)
+    formatDate && typeof data === 'string' && formatRequestDate(data)
     if (config.method?.toUpperCase() === RequestEnum.GET) {
-      if (!isString(params)) {
+      if (typeof params !== 'string') {
         // 给 get 请求加上时间戳参数，避免从缓存中拿数据。
         config.params = Object.assign(params || {}, joinTimestamp(joinTime, false))
       } else {
@@ -105,7 +104,7 @@ const transform: AxiosTransform = {
         config.params = undefined
       }
     } else {
-      if (!isString(params)) {
+      if (typeof params !== 'string') {
         formatDate && formatRequestDate(params)
         if (Reflect.has(config, 'data') && config.data && Object.keys(config.data).length > 0) {
           config.data = data

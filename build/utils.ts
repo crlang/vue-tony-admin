@@ -1,7 +1,6 @@
 import fs from 'fs'
 import path from 'path'
 import dotenv from 'dotenv'
-import { isObject } from '@vueuse/core'
 
 /**
  * Whether to generate package preview
@@ -31,7 +30,7 @@ export function wrapperEnv(envConf: Recordable): ViteEnv {
     ret[envName] = realName
     if (typeof realName === 'string') {
       process.env[envName] = realName
-    } else if (isObject(realName)) {
+    } else if (typeof realName === 'object') {
       process.env[envName] = JSON.stringify(realName)
     }
   }
