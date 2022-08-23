@@ -11,7 +11,7 @@ import {
 import { headerColor, primaryColor, sidebarColor } from './designSetting'
 
 // ! You need to clear the browser cache after the change
-const setting: ProjectConfig = {
+let setting: ProjectConfig = {
   // Whether to show the configuration button
   showSettingButton: true,
 
@@ -176,6 +176,15 @@ const setting: ProjectConfig = {
 
   // System default cache time, in seconds
   cacheTime: 60 * 60 * 24 * 7,
+}
+
+setting = {
+  ...setting,
+  // 请把复制的项目配置内容，粘贴到此处
+  // Please paste the copied project configuration content here
+  // ↓↓↓↓↓↓↓↓
+  /* do something */
+  // ↑↑↑↑↑↑↑↑
 }
 
 export default setting

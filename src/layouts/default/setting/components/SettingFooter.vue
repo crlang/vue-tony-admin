@@ -54,11 +54,11 @@ export default defineComponent({
     const appStore = useAppStore()
 
     function handleCopy() {
-      const { isSuccessRef } = useCopyToClipboard(JSON.stringify(unref(appStore.getProjectConfig), null, 2))
+      const { isSuccessRef } = useCopyToClipboard('...' + JSON.stringify(unref(appStore.getProjectConfig), null, 2))
       unref(isSuccessRef) &&
         createSuccessModal({
           title: '操作成功',
-          content: '复制成功,请到 src/settings/projectSetting.ts 中修改配置！',
+          content: '复制配置成功,请到 src/settings/projectSetting.ts 中的 /* do something */ 粘贴替换！',
         })
     }
     function handleResetSetting() {
