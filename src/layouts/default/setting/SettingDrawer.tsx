@@ -42,6 +42,7 @@ export default defineComponent({
       getLockTime,
       getShowDarkModeToggle,
       getThemeColor,
+      getShowSettingButton,
     } = useRootSetting()
 
     const { getOpenPageLoading, getBasicTransition, getEnableTransition, getOpenNProgress } = useTransitionSetting()
@@ -134,6 +135,11 @@ export default defineComponent({
 
       return (
         <>
+          <SwitchItem
+            title={'项目配置入口'}
+            event={HandlerEnum.THEME_SETTING}
+            def={unref(getShowSettingButton)}
+          />
           <SwitchItem
             title={'分割菜单'}
             event={HandlerEnum.MENU_SPLIT}

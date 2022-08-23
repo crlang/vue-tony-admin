@@ -107,6 +107,9 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<ProjectConf
     return { transitionSetting: { openNProgress: value } }
 
     // ============root==================
+  case HandlerEnum.THEME_SETTING:
+    return { showSettingButton: value }
+
   case HandlerEnum.LOCK_TIME:
     return { lockTime: value }
 

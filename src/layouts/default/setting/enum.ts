@@ -47,6 +47,8 @@ export enum HandlerEnum {
   OPEN_PROGRESS,
   OPEN_PAGE_LOADING,
   OPEN_ROUTE_TRANSITION,
+
+  THEME_SETTING,
 }
 
 export const contentModeOptions = [
