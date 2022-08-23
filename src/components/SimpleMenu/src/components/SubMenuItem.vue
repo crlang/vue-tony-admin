@@ -268,7 +268,7 @@ export default defineComponent({
           const { opend, parent, uidList } = data as Recordable
           if (parent === instance?.parent) {
             state.opened = opend
-          } else if (!uidList.includes(instance?.uid)) {
+          } else if (!uidList?.includes(instance?.uid)) {
             state.opened = false
           }
           return

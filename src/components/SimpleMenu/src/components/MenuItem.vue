@@ -87,7 +87,7 @@ export default defineComponent({
         if (name === props.name) {
           const { list, uidList } = getParentList()
           active.value = true
-          list.forEach((item) => {
+          list?.forEach((item) => {
             if (item.proxy) {
               // eslint-disable-next-line prettier/prettier
               (item.proxy as any).active = true
