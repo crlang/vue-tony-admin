@@ -110,6 +110,9 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<ProjectConf
   case HandlerEnum.THEME_SETTING:
     return { showSettingButton: value }
 
+  case HandlerEnum.HEADER_ERROR_LOG:
+    return { useErrorHandle: value }
+
   case HandlerEnum.LOCK_TIME:
     return { lockTime: value }
 
@@ -159,6 +162,9 @@ export function handler(event: HandlerEnum, value: any): DeepPartial<ProjectConf
 
   case HandlerEnum.HEADER_SEARCH:
     return { headerSetting: { showSearch: value } }
+
+  case HandlerEnum.HEADER_NOTICE:
+    return { headerSetting: { showNotice: value } }
 
   case HandlerEnum.HEADER_FIXED:
     return { headerSetting: { fixed: value } }

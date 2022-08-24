@@ -43,6 +43,7 @@ export default defineComponent({
       getShowDarkModeToggle,
       getThemeColor,
       getShowSettingButton,
+      getUseErrorHandle,
     } = useRootSetting()
 
     const { getOpenPageLoading, getBasicTransition, getEnableTransition, getOpenNProgress } = useTransitionSetting()
@@ -68,7 +69,13 @@ export default defineComponent({
       getMixSideFixed,
     } = useMenuSetting()
 
-    const { getShowHeader, getFixed: getHeaderFixed, getHeaderBgColor, getShowSearch } = useHeaderSetting()
+    const {
+      getShowHeader,
+      getFixed: getHeaderFixed,
+      getHeaderBgColor,
+      getShowSearch,
+      getShowNotice,
+    } = useHeaderSetting()
 
     const { getShowMultipleTab, getShowQuick, getShowRedo, getShowFold } = useMultipleTabSetting()
 
@@ -124,6 +131,41 @@ export default defineComponent({
       )
     }
 
+    function renderHeader() {
+      return (
+        <>
+          <SwitchItem
+            title={'项目配置入口'}
+            event={HandlerEnum.THEME_SETTING}
+            def={unref(getShowSettingButton)}
+            disabled={!unref(getShowHeader)}
+          />
+
+          <SwitchItem
+            title={'菜单搜索'}
+            event={HandlerEnum.HEADER_SEARCH}
+            def={unref(getShowSearch)}
+            disabled={!unref(getShowHeader)}
+          />
+
+          <SwitchItem
+            title={'错误日志'}
+            event={HandlerEnum.HEADER_ERROR_LOG}
+            def={unref(getUseErrorHandle)}
+            disabled={!unref(getShowHeader)}
+          />
+
+          <SwitchItem
+            title={'通知中心'}
+            event={HandlerEnum.HEADER_NOTICE}
+            def={unref(getShowNotice)}
+            disabled={!unref(getShowHeader)}
+          />
+
+        </>
+      )
+    }
+
     function renderFeatures() {
       let triggerDef = unref(getTrigger)
 
@@ -135,11 +177,6 @@ export default defineComponent({
 
       return (
         <>
-          <SwitchItem
-            title={'项目配置入口'}
-            event={HandlerEnum.THEME_SETTING}
-            def={unref(getShowSettingButton)}
-          />
           <SwitchItem
             title={'分割菜单'}
             event={HandlerEnum.MENU_SPLIT}
@@ -171,12 +208,6 @@ export default defineComponent({
             event={HandlerEnum.MENU_HAS_DRAG}
             def={unref(getCanDrag)}
             disabled={!unref(getShowMenuRef)}
-          />
-          <SwitchItem
-            title={'菜单搜索'}
-            event={HandlerEnum.HEADER_SEARCH}
-            def={unref(getShowSearch)}
-            disabled={!unref(getShowHeader)}
           />
           <SwitchItem
             title={'侧边菜单手风琴模式'}
@@ -383,7 +414,7 @@ export default defineComponent({
         {{
           default: () => (
             <>
-              {unref(getShowDarkModeToggle) && <ElDivider>{() => '主题'}</ElDivider>}
+              {unref(getShowDarkModeToggle) && <ElDivider>{() => '暗黑主题'}</ElDivider>}
               {unref(getShowDarkModeToggle) && <AppDarkModeToggle class='mx-auto' />}
               <ElDivider>{() => '导航栏模式'}</ElDivider>
               {renderSidebar()}
@@ -393,6 +424,8 @@ export default defineComponent({
               {renderHeaderTheme()}
               <ElDivider>{() => '菜单主题'}</ElDivider>
               {renderSiderTheme()}
+              <ElDivider>{() => '界面头部'}</ElDivider>
+              {renderHeader()}
               <ElDivider>{() => '界面功能'}</ElDivider>
               {renderFeatures()}
               <ElDivider>{() => '界面显示'}</ElDivider>

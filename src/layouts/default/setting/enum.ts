@@ -49,6 +49,8 @@ export enum HandlerEnum {
   OPEN_ROUTE_TRANSITION,
 
   THEME_SETTING,
+  HEADER_ERROR_LOG,
+  HEADER_NOTICE,
 }
 
 export const contentModeOptions = [
