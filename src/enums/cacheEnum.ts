@@ -21,7 +21,22 @@ export const APP_LOCAL_CACHE_KEY = 'COMMON__LOCAL__KEY__'
 // base global session key
 export const APP_SESSION_CACHE_KEY = 'COMMON__SESSION__KEY__'
 
+/**
+ * 缓存类型
+ *
+ * Cache type
+ */
 export enum CacheTypeEnum {
+  /**
+   * 会话缓存
+   *
+   * sessionStorage
+   */
   SESSION,
+  /**
+   * 本地缓存
+   *
+   * localStorage
+   */
   LOCAL,
 }
