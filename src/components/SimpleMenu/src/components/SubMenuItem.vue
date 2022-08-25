@@ -79,7 +79,7 @@ import { useMenuItem } from './useMenu'
 import { useSimpleRootMenuContext } from './useSimpleMenuContext'
 import Icon from '@/components/Icon'
 import mitt from '@/utils/mitt'
-import { isObject } from 'lodash-es'
+import { isObject } from '@vueuse/core'
 
 const DELAY = 200
 export default defineComponent({
@@ -268,7 +268,7 @@ export default defineComponent({
           const { opend, parent, uidList } = data as Recordable
           if (parent === instance?.parent) {
             state.opened = opend
-          } else if (!uidList?.includes(instance?.uid)) {
+          } else if (!uidList.includes(instance?.uid)) {
             state.opened = false
           }
           return

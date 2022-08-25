@@ -7,7 +7,7 @@ import { unref } from 'vue'
 import { NOOP } from '@vue/shared'
 
 import { error } from './log'
-import { isObject } from 'lodash-es'
+import { isObject } from '@vueuse/core'
 
 export const noop = () => {}
 

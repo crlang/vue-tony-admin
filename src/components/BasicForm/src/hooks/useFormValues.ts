@@ -2,7 +2,9 @@ import type { Ref, ComputedRef } from 'vue'
 import type { BasicFormProps, BasicFormSchema } from '../typing'
 
 import { unref } from 'vue'
-import { isObject, set } from 'lodash-es'
+import { isObject } from '@vueuse/core'
+
+import { set } from 'lodash-es'
 import dayjs from 'dayjs'
 
 interface UseFormValuesContext {
