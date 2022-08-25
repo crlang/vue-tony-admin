@@ -6,7 +6,6 @@
       <AppLogo
         v-if="getShowHeaderLogo || getIsMobile"
         :class="`${prefixCls}-logo`"
-        :theme="getHeaderTheme"
         :style="getLogoWidth" />
       <LayoutTrigger
         :class="`${prefixCls}-trigger`"
@@ -19,7 +18,6 @@
     <div :class="`${prefixCls}-menu`" v-if="getShowTopMenu && !getIsMobile">
       <LayoutMenu
         :isHorizontal="true"
-        :theme="getHeaderTheme"
         :splitType="getSplitType"
         :menuMode="getMenuMode"
       />
@@ -101,7 +99,6 @@ export default defineComponent({
     const { getUseErrorHandle, getShowSettingButton, getSettingButtonPosition } = useRootSetting()
 
     const {
-      getHeaderTheme,
       getShowFullScreen,
       getShowNotice,
       getShowContent,
@@ -114,13 +111,11 @@ export default defineComponent({
     const { getIsMobile } = useAppInject()
 
     const getHeaderClass = computed(() => {
-      const theme = unref(getHeaderTheme)
       return [
         prefixCls,
         {
           [`${prefixCls}--fixed`]: props.fixed,
           [`${prefixCls}--mobile`]: unref(getIsMobile),
-          [`${prefixCls}--${theme}`]: theme,
         },
       ]
     })
@@ -157,7 +152,6 @@ export default defineComponent({
       prefixCls,
       getHeaderClass,
       getShowHeaderLogo,
-      getHeaderTheme,
       getShowHeaderTrigger,
       getIsMobile,
       getShowBread,

@@ -23,6 +23,20 @@ $basic-menu-prefix-cls: '#{$tonyname}-basic-menu';
 .#{$basic-menu-prefix-cls} {
   width: 100%;
 
+  &__align {
+    &-start {
+      justify-content: start;
+    }
+
+    &-center {
+      justify-content: center;
+    }
+
+    &-end {
+      justify-content: end;
+    }
+  }
+
   &-item {
     &-content {
       display: flex;
