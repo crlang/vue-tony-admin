@@ -129,19 +129,19 @@ export default defineComponent({
         // 小于一分钟
         // less than a minute
       } else if (diff < ONE_MINUTES) {
-        resStr = parseInt(diff / ONE_SECONDS) + '秒' + dirStr
+        resStr = `${parseInt(diff / ONE_SECONDS)}秒${dirStr}`
         // 小于一小时
         // less than an hour
       } else if (diff >= ONE_MINUTES && diff < ONE_HOUR) {
-        resStr = Math.floor(diff / ONE_MINUTES) + '分钟' + dirStr
+        resStr = `${Math.floor(diff / ONE_MINUTES)}分钟${dirStr}`
         // 小于一天
         // less than a day
       } else if (diff >= ONE_HOUR && diff < ONE_DAY) {
-        resStr = Math.floor(diff / ONE_HOUR) + '小时' + dirStr
+        resStr = `${Math.floor(diff / ONE_HOUR)}小时${dirStr}`
         // 小于一个月
         // less than one month
       } else if (diff >= ONE_DAY && diff < 2623860000) {
-        resStr = Math.floor(diff / ONE_DAY) + '天' + dirStr
+        resStr = `${Math.floor(diff / ONE_DAY)}天${dirStr}`
         // 小于一年
         // less than one year
       } else if (diff >= 2623860000 && diff <= 31567860000 && isBefore) {

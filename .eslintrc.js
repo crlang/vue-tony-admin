@@ -390,6 +390,8 @@ module.exports = {
       },
     ],
     'template-curly-spacing': [2, 'never'],
+    'no-template-curly-in-string': 2,
+    'prefer-template': 2,
     'use-isnan': 2,
     'valid-typeof': 2,
     'wrap-iife': [2, 'any'],

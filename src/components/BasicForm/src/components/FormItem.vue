@@ -158,7 +158,7 @@ export default defineComponent({
 
       let rules = [...(schema.rules || [])]
       const joinLabel = rulesMessageJoinLabel || formProps.rulesMessageJoinLabel || false
-      const defaultMsg = createPlaceholderMessage(component) + `${joinLabel ? label : ''}`
+      const defaultMsg = `${createPlaceholderMessage(component)}${joinLabel ? label : ''}`
 
       /**
        * 处理必填的时的校验规则

@@ -62,7 +62,7 @@ export default defineComponent({
      *
      * Get icon name
      */
-    const getIconRef = computed(() => `${props.prefix ? props.prefix + ':' : ''}${props.name}`)
+    const getIconRef = computed(() => `${props.prefix ? `${props.prefix}:` : ''}${props.name}`)
 
     /**
      * 动态渲染图标

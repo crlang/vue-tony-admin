@@ -55,9 +55,9 @@ export function useDragLine(siderRef: Ref<any>, dragBarRef: Ref<any>, mix = fals
       iT < 0 && (iT = 0)
       iT > maxT && (iT = maxT)
       iT < minT && (iT = minT)
-      ele.style.left = iT - 4 + 'px'
+      ele.style.left = `${iT - 4}px`
       ele.style.right = 'auto'
-      wrap.style.width = iT + 'px'
+      wrap.style.width = `${iT}px`
       return false
     }
   }

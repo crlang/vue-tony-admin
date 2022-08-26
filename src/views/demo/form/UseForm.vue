@@ -55,7 +55,7 @@ export default defineComponent({
     })
 
     function handleSubmit(values: Recordable) {
-      createMessage.success('click search,values:' + JSON.stringify(values))
+      createMessage.success(`click search,values:${JSON.stringify(values)}`)
     }
 
     return {

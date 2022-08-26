@@ -100,7 +100,7 @@ const transform: AxiosTransform = {
         config.params = Object.assign(params || {}, joinTimestamp(joinTime, false))
       } else {
         // 兼容restful风格
-        config.url = config.url + params + `${joinTimestamp(joinTime, true)}`
+        config.url = `${config.url + params}${joinTimestamp(joinTime, true)}`
         config.params = undefined
       }
     } else {

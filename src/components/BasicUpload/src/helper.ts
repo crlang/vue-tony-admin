@@ -9,7 +9,7 @@ import { Ref, unref, computed } from 'vue'
  */
 export function checkFileExtType(file: File, accepts: string[]) {
   const newTypes = accepts.join('|')
-  const reg = new RegExp('\\.(' + newTypes + ')$', 'i')
+  const reg = new RegExp(`\\.(${newTypes})$`, 'i')
   return reg.test(file.name)
 }
 

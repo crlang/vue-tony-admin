@@ -68,7 +68,7 @@ export const getLineData = () => {
 export const getNightingaleData = () => {
   const dt: any[] = []
   for (let i = 1; i < 10; i++) {
-    dt.push({ value: 10 * i, name: 'Nightingale ' + i })
+    dt.push({ value: 10 * i, name: `Nightingale ${i}` })
   }
   return dt
 }

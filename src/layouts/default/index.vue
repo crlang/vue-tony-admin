@@ -53,7 +53,7 @@ export default defineComponent({
     const layoutClass = computed(() => {
       const cls: string[] = [prefixCls]
       if (unref(getIsMixSidebar) || unref(getShowMenu)) {
-        cls.push(prefixCls + '-has-sider')
+        cls.push(`${prefixCls}-has-sider`)
       }
       return cls
     })

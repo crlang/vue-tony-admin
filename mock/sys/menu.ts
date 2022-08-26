@@ -253,11 +253,11 @@ export default [
       let menu: Object[]
       switch (id) {
       case '1':
-        dashboardRoute.redirect = dashboardRoute.path + '/' + dashboardRoute.children[0].path
+        dashboardRoute.redirect = `${dashboardRoute.path}/${dashboardRoute.children[0].path}`
         menu = [dashboardRoute, authRoute, levelRoute, sysRoute, linkRoute]
         break
       case '2':
-        dashboardRoute.redirect = dashboardRoute.path + '/' + dashboardRoute.children[1].path
+        dashboardRoute.redirect = `${dashboardRoute.path}/${dashboardRoute.children[1].path}`
         menu = [dashboardRoute, authRoute, levelRoute, linkRoute]
         break
       default:

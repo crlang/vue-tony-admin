@@ -152,7 +152,7 @@ export default defineComponent({
     }
 
     function handleView({ row }) {
-      go('/system/account_detail/' + row.id)
+      go(`/system/account_detail/${row.id}`)
     }
 
     return {

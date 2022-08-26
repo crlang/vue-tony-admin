@@ -21,9 +21,9 @@ export default defineComponent({
     const extraSchemas: BasicFormSchema[] = []
     for (let i = 14; i < 31; i++) {
       extraSchemas.push({
-        field: 'field' + i,
+        field: `field${i}`,
         component: 'ElInput',
-        label: '字段' + i,
+        label: `字段${i}`,
         // colProps: {
         //   span: 24,
         // },

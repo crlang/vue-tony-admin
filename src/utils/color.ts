@@ -20,7 +20,7 @@ export function isHexColor(color: string) {
  */
 export function rgbToHex(r: number, g: number, b: number) {
   const hex = ((r << 16) | (g << 8) | b).toString(16)
-  return '#' + new Array(Math.abs(hex.length - 7)).join('0') + hex
+  return `#${new Array(Math.abs(hex.length - 7)).join('0')}${hex}`
 }
 
 /**
@@ -41,9 +41,9 @@ export function hexToRGB(hex: string) {
     }
     const sColorChange: number[] = []
     for (let i = 1; i < 7; i += 2) {
-      sColorChange.push(parseInt('0x' + sHex.slice(i, i + 2)))
+      sColorChange.push(parseInt(`0x${sHex.slice(i, i + 2)}`))
     }
-    return 'RGB(' + sColorChange.join(',') + ')'
+    return `RGB(${sColorChange.join(',')})`
   }
   return sHex
 }

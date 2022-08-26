@@ -128,7 +128,7 @@ export function createMessageGuard(router: Router) {
         ElNotification.closeAll()
       }
     } catch (error) {
-      warn('message guard error:' + error)
+      warn(`message guard error:${error}`)
     }
     return true
   })
