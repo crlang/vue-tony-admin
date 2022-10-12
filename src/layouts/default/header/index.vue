@@ -6,7 +6,6 @@
       <AppLogo
         v-if="getShowHeaderLogo || getIsMobile"
         :class="`${prefixCls}-logo`"
-        :theme="getHeaderTheme"
         :style="getLogoWidth" />
       <LayoutTrigger
         :class="`${prefixCls}-trigger`"
@@ -14,6 +13,16 @@
       <LayoutBreadcrumb v-if="getShowContent && getShowBread" />
     </div>
     <!-- left end -->
+
+    <!-- menu start -->
+    <div :class="`${prefixCls}-menu`" v-if="getShowTopMenu && !getIsMobile">
+      <LayoutMenu
+        :isHorizontal="true"
+        :splitType="getSplitType"
+        :menuMode="getMenuMode"
+      />
+    </div>
+    <!-- menu-end -->
 
     <!-- action  -->
     <div :class="`${prefixCls}-action`">
@@ -47,6 +56,7 @@ import { defineComponent, unref, computed } from 'vue'
 import { ElHeader } from 'element-plus'
 
 import { AppLogo } from '@/components/Application'
+import LayoutMenu from '../menu/index.vue'
 import LayoutTrigger from '../trigger/index.vue'
 
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
@@ -69,6 +79,7 @@ export default defineComponent({
     AppLogo,
     LayoutTrigger,
     LayoutBreadcrumb,
+    LayoutMenu,
     UserDropDown,
     FullScreen,
     Notify,
@@ -88,7 +99,6 @@ export default defineComponent({
     const { getUseErrorHandle, getShowSettingButton, getSettingButtonPosition } = useRootSetting()
 
     const {
-      getHeaderTheme,
       getShowFullScreen,
       getShowNotice,
       getShowContent,
@@ -101,13 +111,11 @@ export default defineComponent({
     const { getIsMobile } = useAppInject()
 
     const getHeaderClass = computed(() => {
-      const theme = unref(getHeaderTheme)
       return [
         prefixCls,
         {
           [`${prefixCls}--fixed`]: props.fixed,
           [`${prefixCls}--mobile`]: unref(getIsMobile),
-          [`${prefixCls}--${theme}`]: theme,
         },
       ]
     })
@@ -144,7 +152,6 @@ export default defineComponent({
       prefixCls,
       getHeaderClass,
       getShowHeaderLogo,
-      getHeaderTheme,
       getShowHeaderTrigger,
       getIsMobile,
       getShowBread,

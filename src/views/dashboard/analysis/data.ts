@@ -52,26 +52,26 @@ export function getDateData(type: dateType = 'day') {
   const data: dateItem = {}
   let len = 0
   switch (type) {
-    case 'week':
-      len = 7
-      data.xdata = ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-      break
-    case 'month':
-      len = 31
-      data.xdata = getSerialData(1, len, '', '/12')
-      break
-    case 'quarter':
-      len = 3
-      data.xdata = getSerialData(1, len, '第', '季度')
-      break
-    case 'year':
-      len = 12
-      data.xdata = getSerialData(1, len, '', '月')
-      break
-    default:
-      len = 24
-      data.xdata = getSerialData(0, len - 1, '', ':00')
-      break
+  case 'week':
+    len = 7
+    data.xdata = ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+    break
+  case 'month':
+    len = 31
+    data.xdata = getSerialData(1, len, '', '/12')
+    break
+  case 'quarter':
+    len = 3
+    data.xdata = getSerialData(1, len, '第', '季度')
+    break
+  case 'year':
+    len = 12
+    data.xdata = getSerialData(1, len, '', '月')
+    break
+  default:
+    len = 24
+    data.xdata = getSerialData(0, len - 1, '', ':00')
+    break
   }
   data.kdata = {
     k1: getRandomNumberData(len),

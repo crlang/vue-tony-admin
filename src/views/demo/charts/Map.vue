@@ -27,7 +27,7 @@ export default defineComponent({
     const chartRef = ref<HTMLDivElement | null>(null)
     const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>)
 
-    onMounted(async () => {
+    onMounted(async() => {
       const json = await axios.get('https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json')
       registerMap('china', json.data)
       setOptions({

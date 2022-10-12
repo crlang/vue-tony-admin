@@ -1,7 +1,6 @@
 import { Ref } from 'vue'
 
 export interface Props {
-  theme: string
   activeName?: string | undefined
   openNames: string[]
   accordion: boolean

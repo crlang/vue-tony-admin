@@ -68,7 +68,7 @@ export default defineComponent({
     // 本页代码仅作演示，实际应当通过userId从接口获得用户的相关资料
 
     // 设置Tab的标题（不会影响页面标题）
-    setTitle('详情：用户' + userId.value)
+    setTitle(`详情：用户${userId.value}`)
 
     return { userId, currentKey }
   },

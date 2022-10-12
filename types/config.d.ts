@@ -2,10 +2,9 @@ import { MenuTypeEnum, MenuModeEnum, TriggerEnum, MixSidebarTriggerEnum } from '
 import {
   ContentEnum,
   PermissionModeEnum,
-  ThemeEnum,
   RouterTransitionEnum,
   SettingButtonPositionEnum,
-  SessionTimeoutProcessingEnum
+  SessionTimeoutProcessingEnum,
 } from '@/enums/appEnum'
 
 import { CacheTypeEnum } from '@/enums/cacheEnum'
@@ -21,7 +20,6 @@ export interface MenuSetting {
   menuWidth: number
   mode: MenuModeEnum
   type: MenuTypeEnum
-  theme: ThemeEnum
   topMenuAlign: 'start' | 'center' | 'end'
   trigger: TriggerEnum
   accordion: boolean
@@ -46,7 +44,6 @@ export interface HeaderSetting {
   bgColor: string
   fixed: boolean
   show: boolean
-  theme: ThemeEnum
   // Turn on full screen
   showFullScreen: boolean
   // Whether to show the lock screen
@@ -123,6 +120,8 @@ export interface ProjectConfig {
   closeMessageOnSwitch: boolean
   // Whether to cancel the http request that has been sent but not responded when switching the interface.
   removeAllHttpPending: boolean
+  // System default cache time, in seconds
+  cacheTime: number
 }
 
 export interface GlobConfig {

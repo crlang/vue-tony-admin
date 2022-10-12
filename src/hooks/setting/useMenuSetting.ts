@@ -36,8 +36,6 @@ export function useMenuSetting() {
 
   const getTrigger = computed(() => appStore.getMenuSetting.trigger)
 
-  const getMenuTheme = computed(() => appStore.getMenuSetting.theme)
-
   const getSplit = computed(() => appStore.getMenuSetting.split)
 
   const getMenuBgColor = computed(() => appStore.getMenuSetting.bgColor)
@@ -101,9 +99,9 @@ export function useMenuSetting() {
       unref(getIsTopMenu) || !unref(getShowMenu) || (unref(getSplit) && unref(getMenuHidden))
         ? 0
         : unref(getIsMixSidebar)
-        ? (unref(getCollapsed) ? SIDE_BAR_MINI_WIDTH : SIDE_BAR_SHOW_TIT_MINI_WIDTH) +
+          ? (unref(getCollapsed) ? SIDE_BAR_MINI_WIDTH : SIDE_BAR_SHOW_TIT_MINI_WIDTH) +
           (unref(getMixSideFixed) && unref(mixSideHasChildren) ? unref(getRealWidth) : 0)
-        : unref(getRealWidth)
+          : unref(getRealWidth)
 
     return `calc(100% - ${unref(width)}px)`
   })
@@ -134,7 +132,6 @@ export function useMenuSetting() {
     getMenuWidth,
     getTrigger,
     getSplit,
-    getMenuTheme,
     getCanDrag,
     getCollapsedShowTitle,
     getIsHorizontal,

@@ -1,9 +1,9 @@
 <template>
   <PageWrapper title="时间组件示例">
     <CollapseContainer title="基础示例">
-      <Time :value="time1" />
+      <RelativeTime :value="time1" />
       <br />
-      <Time :value="time2" />
+      <RelativeTime :value="time2" />
     </CollapseContainer>
 
     <CollapseContainer
@@ -14,25 +14,25 @@
         :column="1"
         border>
         <el-descriptions-item label="每60秒更新(默认)">
-          <Time :value="now" />
+          <RelativeTime :value="now" />
         </el-descriptions-item>
         <el-descriptions-item label="格式化日期">
-          <Time
+          <RelativeTime
             :value="now"
             mode="date" />
         </el-descriptions-item>
         <el-descriptions-item label="格式化时间">
-          <Time
+          <RelativeTime
             :value="now"
             mode="datetime" />
         </el-descriptions-item>
         <el-descriptions-item label="每秒更新">
-          <Time
+          <RelativeTime
             :value="now"
             :step="1" />
         </el-descriptions-item>
         <el-descriptions-item label="每5秒更新">
-          <Time
+          <RelativeTime
             :value="now"
             :step="5" />
         </el-descriptions-item>
@@ -43,12 +43,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { Time } from '@/components/Time'
+import { RelativeTime } from '@/components/RelativeTime'
 import { CollapseContainer } from '@/components/CollapseContainer'
 import { ElDescriptions, ElDescriptionsItem } from 'element-plus'
 
 export default defineComponent({
-  components: { ElDescriptions, ElDescriptionsItem, Time, CollapseContainer },
+  components: { ElDescriptions, ElDescriptionsItem, RelativeTime, CollapseContainer },
   setup() {
     const now = new Date().getTime()
 

@@ -1,7 +1,0 @@
-$elenamex: 'el-breadcrumb';
-
-html[data-theme='dark'] {
-  .#{$elenamex} {
-    --el-text-color-regular: var(--text-secondary-color);
-  }
-}

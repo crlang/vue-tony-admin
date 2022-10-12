@@ -64,7 +64,7 @@ export default defineComponent({
       showActionButtonGroup: false,
     })
 
-    onMounted(async () => {
+    onMounted(async() => {
       const data = await accountInfoApi()
       setFieldsValue(data)
     })

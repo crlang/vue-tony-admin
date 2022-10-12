@@ -55,14 +55,14 @@ export default defineComponent({
       const { dyncHeight } = props
       return dyncHeight
         ? {
-            // 动态获取内容区高度
-            // Dynamically get the height of the content area
-            height: `${unref(realHeightRef)}px`,
-          }
+          // 动态获取内容区高度
+          // Dynamically get the height of the content area
+          height: `${unref(realHeightRef)}px`,
+        }
         : {
-            height: 'auto',
-            padding: '1rem',
-          }
+          height: 'auto',
+          padding: '1rem',
+        }
     })
 
     /**

@@ -1,37 +1,8 @@
-// common
-@import './common.scss';
-
 // components
-// @import './alert.scss';
-@import './button.scss';
+$ele-button: 'el-button';
 
-// @import './card.scss';
-// @import './checkbox.scss';
-// @import './date.scss';
-// @import './descriptions.scss';
-// @import './divider.scss';
-// @import './dropdown.scss';
-// @import './icon.scss';
-// @import './input.scss';
-// @import './message.scss';
-// @import './pagination.scss';
-// @import './picker.scss';
-// @import './popper.scss';
-// @import './radio.scss';
-// @import './result.scss';
-// @import './select.scss';
-// @import './table.scss';
-// @import './tree.scss';
-// @import './tabs.scss';
-// @import './overlay.scss';
-// @import './drawer.scss';
-// @import './switch.scss';
-// @import './textarea.scss';
-// @import './cascader.scss';
-// @import './slider.scss';
-// @import './tag.scss';
-// @import './loading.scss';
-// @import './tooltip.scss';
-// @import './breadcrumb.scss';
-// @import './dialog.scss';
-// @import './form.scss';
+.#{$ele-button} {
+  &.is-text {
+    padding: 0;
+  }
+}

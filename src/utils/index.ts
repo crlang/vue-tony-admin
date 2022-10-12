@@ -3,11 +3,11 @@ import type { App, Ref } from 'vue'
 import type { SFCInstallWithContext, SFCWithInstall } from '#/utils'
 
 import { unref } from 'vue'
+// eslint-disable-next-line vue/prefer-import-from-vue
 import { NOOP } from '@vue/shared'
 
-import { isObject } from '@/utils/is'
-
 import { error } from './log'
+import { isObject } from '@vueuse/core'
 
 export const noop = () => {}
 
@@ -30,7 +30,7 @@ export function getPopupContainer(node?: HTMLElement): HTMLElement {
 export function setObjToUrlParams(baseUrl: string, obj: any): string {
   let parameters = ''
   for (const key in obj) {
-    parameters += key + '=' + encodeURIComponent(obj[key]) + '&'
+    parameters += `${key}=${encodeURIComponent(obj[key])}&`
   }
   parameters = parameters.replace(/&$/, '')
   return /\?$/.test(baseUrl) ? baseUrl + parameters : baseUrl.replace(/\/?$/, '?') + parameters

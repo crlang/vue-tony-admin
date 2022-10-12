@@ -81,7 +81,7 @@ export default defineComponent({
     return {
       register,
       handleSubmit: (values: any) => {
-        createMessage.success('click search,values:' + JSON.stringify(values))
+        createMessage.success(`click search,values:${JSON.stringify(values)}`)
       },
     }
   },

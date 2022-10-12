@@ -152,27 +152,17 @@ $prefix-cls: '#{$tonyname}-login';
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -1;
+    z-index: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
-
-    &::before {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0) 100%);
-      content: '';
-    }
 
     > img {
       display: none;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: blur(5px) opacity(0.8);
+      filter: blur(5px) opacity(0.8) brightness(0.98);
     }
   }
 
@@ -296,13 +286,13 @@ $prefix-cls: '#{$tonyname}-login';
   }
 }
 
-[data-theme='light'] {
+html:not(.dark) {
   .#{$prefix-cls}__bg--light {
     display: block;
   }
 }
 
-[data-theme='dark'] {
+html.dark {
   .#{$prefix-cls}__bg--dark {
     display: block;
   }

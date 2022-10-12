@@ -62,14 +62,14 @@ export default defineComponent({
      *
      * Get icon name
      */
-    const getIconRef = computed(() => `${props.prefix ? props.prefix + ':' : ''}${props.name}`)
+    const getIconRef = computed(() => `${props.prefix ? `${props.prefix}:` : ''}${props.name}`)
 
     /**
      * 动态渲染图标
      *
      * Dynamically rendered icons
      */
-    const update = async () => {
+    const update = async() => {
       const el = unref(elRef)
       if (!el) return
 

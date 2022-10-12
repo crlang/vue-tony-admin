@@ -2,6 +2,7 @@
   <ElContainer
     :class="[layoutClass]"
     v-bind="lockEvents">
+    <LayoutHeader fixed v-if="getShowFullHeaderRef" />
     <LayoutSideBar v-if="getShowSidebar || getIsMobile" />
     <ElContainer :class="`${prefixCls}-main`">
       <LayoutFeatures />
@@ -17,6 +18,7 @@ import { defineComponent, computed, unref } from 'vue'
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
 import { ElContainer } from 'element-plus'
 
+import LayoutHeader from './header/index.vue'
 import LayoutContent from './content/index.vue'
 import LayoutSideBar from './sider/index.vue'
 import LayoutMultipleHeader from './header/MultipleHeader.vue'
@@ -34,7 +36,7 @@ export default defineComponent({
     ElContainer,
     LayoutFeatures: createAsyncComponent(() => import('@/layouts/default/feature/index.vue')),
     LayoutFooter: createAsyncComponent(() => import('@/layouts/default/footer/index.vue')),
-    // LayoutHeader,
+    LayoutHeader,
     LayoutContent,
     LayoutSideBar,
     LayoutMultipleHeader,
@@ -51,7 +53,7 @@ export default defineComponent({
     const layoutClass = computed(() => {
       const cls: string[] = [prefixCls]
       if (unref(getIsMixSidebar) || unref(getShowMenu)) {
-        cls.push(prefixCls + '-has-sider')
+        cls.push(`${prefixCls}-has-sider`)
       }
       return cls
     })

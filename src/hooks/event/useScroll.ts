@@ -1,8 +1,7 @@
 import type { Ref } from 'vue'
 
 import { ref, onMounted, watch, onUnmounted } from 'vue'
-import { useThrottleFn, isWindow } from '@vueuse/core'
-import { isObject } from '@/utils/is'
+import { useThrottleFn, isWindow, isObject } from '@vueuse/core'
 
 export function useScroll(
   refEl: Ref<Element | Window | null>,

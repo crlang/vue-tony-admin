@@ -127,8 +127,8 @@ export default defineComponent({
         } else {
           return resolve([
             {
-              title: 'zone' + node.data.key,
-              key: node.data.key + '-1',
+              title: `zone${node.data.key}`,
+              key: `${node.data.key}-1`,
             },
           ])
         }

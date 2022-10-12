@@ -64,7 +64,7 @@ export default defineComponent({
         width: w,
         height: `${h}px`,
         lineHeight: `${h}px`,
-        borderRadius: circle ? h / 2 + 'px' : 0,
+        borderRadius: circle ? `${h / 2}px` : 0,
         ...wrapStyle,
       }
     })
@@ -78,7 +78,7 @@ export default defineComponent({
       const h = height
       return {
         height: `${h}px`,
-        borderRadius: circle ? h / 2 + 'px 0 0 ' + h / 2 + 'px' : 0,
+        borderRadius: circle ? `${h / 2}px 0 0 ${h / 2}px` : 0,
         ...barStyle,
       }
     })
@@ -457,12 +457,5 @@ $prefix-cls: '#{$tonyname}-basic-drag-verify';
   100% {
     background-position: 120px 0;
   }
-}
-
-html[data-theme='dark'] {
-  // .#{$prefix-cls} {
-  //   background-color: #0c0c0c;
-  //   border-color: #777;
-  // }
 }
 </style>

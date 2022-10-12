@@ -6,14 +6,9 @@ import { unref, nextTick, watch, computed, ref } from 'vue'
 import { useEventListener } from '@/hooks/event/useEventListener'
 import { useBreakpoint } from '@/hooks/event/useBreakpoint'
 import echarts from '@/utils/lib/echarts'
-import { useRootSetting } from '@/hooks/setting/useRootSetting'
+import { isDark } from '@/logics/theme'
 
 export function useECharts(elRef: Ref<HTMLDivElement>, theme: 'light' | 'dark' | 'default' = 'default') {
-  const { getDarkMode: getSysDarkMode } = useRootSetting()
-
-  const getDarkMode = computed(() => {
-    return theme === 'default' ? getSysDarkMode.value : theme
-  })
   let chartInstance: echarts.ECharts | null = null
   let resizeFn: Fn = resize
   const cacheOptions = ref({}) as Ref<EChartsOption>
@@ -22,7 +17,7 @@ export function useECharts(elRef: Ref<HTMLDivElement>, theme: 'light' | 'dark' |
   resizeFn = useDebounceFn(resize, 200)
 
   const getOptions = computed(() => {
-    if (getDarkMode.value !== 'dark') {
+    if (!isDark.value) {
       return cacheOptions.value as EChartsOption
     }
     return {
@@ -63,7 +58,7 @@ export function useECharts(elRef: Ref<HTMLDivElement>, theme: 'light' | 'dark' |
     nextTick(() => {
       useTimeoutFn(() => {
         if (!chartInstance) {
-          initCharts(getDarkMode.value as 'default')
+          initCharts(isDark.value ? 'dark' : 'light')
 
           if (!chartInstance) return
         }
@@ -79,7 +74,7 @@ export function useECharts(elRef: Ref<HTMLDivElement>, theme: 'light' | 'dark' |
   }
 
   watch(
-    () => getDarkMode.value,
+    () => isDark.value,
     (theme) => {
       if (chartInstance) {
         chartInstance.dispose()
@@ -98,7 +93,7 @@ export function useECharts(elRef: Ref<HTMLDivElement>, theme: 'light' | 'dark' |
 
   function getInstance(): echarts.ECharts | null {
     if (!chartInstance) {
-      initCharts(getDarkMode.value as 'default')
+      initCharts(isDark.value ? 'dark' : 'default')
     }
     return chartInstance
   }

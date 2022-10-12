@@ -125,7 +125,7 @@ export default defineComponent({
 
     async function switchToken(userId: number) {
       // 本函数切换用户登录Token的部分仅用于演示，实际生产时切换身份应当重新登录
-      const token = 'fakeToken' + userId
+      const token = `fakeToken${userId}`
       userStore.setToken(token)
 
       // 重新获取用户信息和菜单

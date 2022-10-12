@@ -31,7 +31,7 @@ export function imgurlToBase64(url: string, mineType?: string): Promise<string> 
 
     const img = new Image()
     img.crossOrigin = 'anonymous'
-    img.onload = function () {
+    img.onload = function() {
       if (!canvas || !ctx) {
         return reject()
       }

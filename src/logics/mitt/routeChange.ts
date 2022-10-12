@@ -1,4 +1,6 @@
 /**
+ * 用于监视路由更改以更改菜单和选项卡的状态。 不需要监听路由，因为路由状态变化受页面渲染时间影响，会比较慢
+ *
  * Used to monitor routing changes to change the status of menus and tabs. There is no need to monitor the route, because the route status change is affected by the page rendering time, which will be slow
  */
 

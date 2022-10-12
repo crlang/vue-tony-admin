@@ -110,30 +110,30 @@ export function useTabDropdown(tabContentProps: TabContentProps, getIsTabs: Comp
   function handleMenuEvent(menu: EleDropdownItem['command']): void {
     // const { event } = menu
     switch (menu) {
-      case MenuEventEnum.REFRESH_PAGE:
-        // refresh page
-        refreshPage()
-        break
+    case MenuEventEnum.REFRESH_PAGE:
+      // refresh page
+      refreshPage()
+      break
       // Close current
-      case MenuEventEnum.CLOSE_CURRENT:
-        close(tabContentProps.tabItem)
-        break
+    case MenuEventEnum.CLOSE_CURRENT:
+      close(tabContentProps.tabItem)
+      break
       // Close left
-      case MenuEventEnum.CLOSE_LEFT:
-        closeLeft()
-        break
+    case MenuEventEnum.CLOSE_LEFT:
+      closeLeft()
+      break
       // Close right
-      case MenuEventEnum.CLOSE_RIGHT:
-        closeRight()
-        break
+    case MenuEventEnum.CLOSE_RIGHT:
+      closeRight()
+      break
       // Close other
-      case MenuEventEnum.CLOSE_OTHER:
-        closeOther()
-        break
+    case MenuEventEnum.CLOSE_OTHER:
+      closeOther()
+      break
       // Close all
-      case MenuEventEnum.CLOSE_ALL:
-        closeAll()
-        break
+    case MenuEventEnum.CLOSE_ALL:
+      closeAll()
+      break
     }
   }
   return { getDropMenuList, handleMenuEvent, handleContextMenu }

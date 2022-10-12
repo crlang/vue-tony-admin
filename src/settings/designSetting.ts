@@ -1,50 +1,44 @@
-import { ThemeEnum } from '../enums/appEnum'
-
+/**
+ * css 前缀命名空间，与 `design/var/config.scss` 中的 `$tonyname` 保持一致
+ *
+ * css prefix namespace, consistent with `$tonyname` in `design/var/config.scss`
+ */
 export const prefixCls = 'tony'
 
-export const darkMode = ThemeEnum.LIGHT
-
+/**
+ * 主题色
+ *
+ * Theme color
+ */
 export const primaryColor = '#0081FF'
+/**
+ * 头部颜色
+ *
+ * Header color
+ */
+export const headerColor = '#ffffff'
+/**
+ * 侧边栏颜色
+ *
+ * Sidebar color
+ */
+export const sidebarColor = '#001529'
 
-// app theme preset color
-export const APP_PRESET_COLOR_LIST: string[] = [
-  '#0960bd',
-  '#0084f4',
-  '#009688',
-  '#536dfe',
-  '#ff5c93',
-  '#ee4f12',
-  '#0096c7',
-  '#9c27b0',
-  '#ff9800',
-]
-
-// header preset color
-export const HEADER_PRESET_BG_COLOR_LIST: string[] = [
-  '#ffffff',
-  '#151515',
-  '#009688',
-  '#5172DC',
-  '#018ffb',
-  '#409eff',
-  '#e74c3c',
-  '#24292e',
-  '#394664',
-  '#001529',
-  '#383f45',
-]
-
-// sider preset color
-export const SIDE_BAR_BG_COLOR_LIST: string[] = [
-  '#001529',
-  '#212121',
-  '#273352',
-  '#ffffff',
-  '#191b24',
-  '#191a23',
-  '#304156',
-  '#001628',
-  '#28333E',
-  '#344058',
-  '#383f45',
-]
+/**
+ * 黑暗模式全局颜色
+ *
+ * Dark mode global color
+ */
+export const darkMainColor = '#141414'
+/**
+ * 黑暗模式头部颜色
+ *
+ * Dark mode header color
+ */
+export const darkHeaderColor = '#151515'
+/**
+ * 黑暗模式侧边栏颜色
+ *
+ * Dark mode sidebar color
+ */
+export const darkSidebarColor = '#161616'

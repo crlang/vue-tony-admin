@@ -1,5 +1,5 @@
 <template>
-  <ElConfigProvider>
+  <ElConfigProvider :locale="zhCn">
     <AppProvider>
       <RouterView />
     </AppProvider>
@@ -11,15 +11,23 @@ import { RouterView } from 'vue-router'
 import { ElConfigProvider } from 'element-plus'
 import { AppProvider } from '@/components/Application'
 import { useTitle } from '@/hooks/web/useTitle'
+// 默认载入了Element Plus的中文
+// The Chinese of Element Plus is loaded by default
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 
-// Listening to page changes and dynamically changing site titles
 useTitle()
 
-if ((process.env.NODE_ENV || '') === 'production') {
+let isProdEnv = false
+try {
+  isProdEnv = process.env.NODE_ENV === 'production'
+} catch (error) {
+  // --
+}
+if (isProdEnv) {
   const { pkg, lastBuildTime } = __APP_INFO__
   const { name, version } = pkg
   console.log(
-    ` %c ${name} %c 版本${version} %c 构建时间${lastBuildTime} `,
+    ` %c ${name.toUpperCase()} %c Version ${version} %c BuildTime ${lastBuildTime} `,
     'color: #fadfa3; background: #030307; padding:5px 0;',
     'color: #fadfa3; background: #4D4A48; padding:5px 0;',
     'background: #fadfa3; padding:5px 0;',

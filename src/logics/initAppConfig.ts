@@ -6,22 +6,15 @@ import type { ProjectConfig } from '#/config'
 import { PROJ_CFG_KEY } from '@/enums/cacheEnum'
 import projectSetting from '@/settings/projectSetting'
 
-import { updateHeaderBgColor, updateSidebarBgColor } from '@/logics/theme/updateBackground'
-import { updateColorWeak } from '@/logics/theme/updateColorWeak'
-import { updateGrayMode } from '@/logics/theme/updateGrayMode'
-import { updateDarkTheme } from '@/logics/theme/dark'
-import { changeTheme } from '@/logics/theme'
-import { initBasicHeight } from '@/logics/theme/initBasicVariable'
+import { updateHeaderColor, updateSidebarColor, updateColorWeak, updateGrayMode, changeTheme, initBasicHeight } from '@/logics/theme'
 
 import { useAppStore } from '@/store/modules/app'
 
-import { getCommonStoragePrefix, getStorageShortName } from '@/utils/env'
+// import { getCommonStoragePrefix, getStorageShortName } from '@/utils/env'
 
 import { Persistent } from '@/utils/cache/persistent'
-// import { deepMerge } from '@/utils'
-import { ThemeEnum } from '@/enums/appEnum'
+import { deepMerge } from '@/utils'
 import { primaryColor } from '@/settings/designSetting'
-import { deepMerge } from '../utils'
 
 /**
  * 初始项目配置
@@ -30,52 +23,45 @@ import { deepMerge } from '../utils'
  */
 export function initAppConfigStore() {
   const appStore = useAppStore()
-  const darkMode = appStore.getDarkMode
 
   let projCfg: ProjectConfig = Persistent.getLocal(PROJ_CFG_KEY) as ProjectConfig
   projCfg = deepMerge(projectSetting, projCfg || {})
 
-  const { colorWeak, grayMode, themeColor, headerSetting, menuSetting } = projCfg
-
-  updateDarkTheme(darkMode)
-
+  const { colorWeak, grayMode, themeColor, headerSetting, menuSetting, multiTabsSetting } = projCfg
   if (themeColor && themeColor !== primaryColor) {
     changeTheme(themeColor)
   }
 
-  initBasicHeight()
+  initBasicHeight(headerSetting.height, multiTabsSetting.height)
 
   grayMode && updateGrayMode(grayMode)
   colorWeak && updateColorWeak(colorWeak)
 
   appStore.setProjectConfig(projCfg)
 
-  if (darkMode === ThemeEnum.DARK) {
-    updateHeaderBgColor()
-    updateSidebarBgColor()
-  } else {
-    headerSetting.bgColor && updateHeaderBgColor(headerSetting.bgColor)
-    menuSetting.bgColor && updateSidebarBgColor(menuSetting.bgColor)
-  }
+  updateHeaderColor(headerSetting.bgColor)
+  updateSidebarColor(menuSetting.bgColor)
 
-  setTimeout(() => {
-    clearObsoleteStorage()
-  }, 16)
+  // setTimeout(() => {
+  //   clearObsoleteStorage()
+  // }, 16)
 }
 
 /**
+ * 随着版本的不断迭代，localStorage 中存储的缓存键将会越来越多。 此方法用于删除无用的键
+ *
  * As the version continues to iterate, there will be more and more cache keys stored in localStorage.
  * This method is used to delete useless keys
  */
-export function clearObsoleteStorage() {
-  const commonPrefix = getCommonStoragePrefix()
-  const shortPrefix = getStorageShortName()
+// export function clearObsoleteStorage() {
+//   const commonPrefix = getCommonStoragePrefix()
+//   const shortPrefix = getStorageShortName()
 
-  ;[localStorage, sessionStorage].forEach((item: Storage) => {
-    Object.keys(item).forEach((key) => {
-      if (key && key.startsWith(commonPrefix) && !key.startsWith(shortPrefix)) {
-        item.removeItem(key)
-      }
-    })
-  })
-}
+//   ;[localStorage, sessionStorage].forEach((item: Storage) => {
+//     Object.keys(item).forEach((key) => {
+//       if (key && key.startsWith(commonPrefix) && !key.startsWith(shortPrefix)) {
+//         item.removeItem(key)
+//       }
+//     })
+//   })
+// }

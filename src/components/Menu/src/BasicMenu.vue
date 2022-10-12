@@ -68,7 +68,7 @@ export default defineComponent({
       const align = props.isHorizontal && unref(getSplit) ? 'start' : unref(getTopMenuAlign)
       return [
         prefixCls,
-        `justify-${align}`,
+        `${prefixCls}__align-${align}`,
         {
           [`${prefixCls}__second`]: !props.isHorizontal && unref(getSplit),
           [`${prefixCls}__sidebar-hor`]: unref(getIsTopMenu),
