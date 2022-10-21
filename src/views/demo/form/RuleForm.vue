@@ -234,7 +234,7 @@ export default defineComponent({
     }
     function getFormValues() {
       const values = getFieldsValue()
-      createMessage.success(`values:${JSON.stringify(values)}`)
+      createMessage.success('values:' + JSON.stringify(values))
     }
     function setFormValues() {
       setFieldsValue({
@@ -249,7 +249,7 @@ export default defineComponent({
       register,
       schemas,
       handleSubmit: (values: any) => {
-        createMessage.success(`click search,values:${JSON.stringify(values)}`)
+        createMessage.success('click search,values:' + JSON.stringify(values))
       },
       getFormValues,
       setFormValues,

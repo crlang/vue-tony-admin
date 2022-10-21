@@ -136,12 +136,12 @@ export default defineComponent({
        */
       let rootMargin = '0px'
       switch (direction) {
-      case 'vertical':
-        rootMargin = `${threshold} 0px`
-        break
-      case 'horizontal':
-        rootMargin = `0px ${threshold}`
-        break
+        case 'vertical':
+          rootMargin = `${threshold} 0px`
+          break
+        case 'horizontal':
+          rootMargin = `0px ${threshold}`
+          break
       }
 
       try {

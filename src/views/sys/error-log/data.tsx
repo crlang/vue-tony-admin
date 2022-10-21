@@ -13,12 +13,12 @@ export function getLogColumns(): BasicColumn[] {
           text === ErrorTypeEnum.VUE
             ? 'success'
             : text === ErrorTypeEnum.RESOURCE
-              ? 'warning'
-              : text === ErrorTypeEnum.PROMISE
-                ? 'primary'
-                : ErrorTypeEnum.AJAX
-                  ? 'danger'
-                  : 'info'
+            ? 'warning'
+            : text === ErrorTypeEnum.PROMISE
+            ? 'primary'
+            : ErrorTypeEnum.AJAX
+            ? 'danger'
+            : 'info'
 
         return <ElTag type={color}>{() => text}</ElTag>
       },

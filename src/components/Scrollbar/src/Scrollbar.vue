@@ -93,8 +93,8 @@ export default defineComponent({
       const heightPercentage = (unref(wrap).clientHeight * 100) / unref(wrap).scrollHeight
       const widthPercentage = (unref(wrap).clientWidth * 100) / unref(wrap).scrollWidth
 
-      sizeHeight.value = heightPercentage < 100 ? `${heightPercentage}%` : ''
-      sizeWidth.value = widthPercentage < 100 ? `${widthPercentage}%` : ''
+      sizeHeight.value = heightPercentage < 100 ? heightPercentage + '%' : ''
+      sizeWidth.value = widthPercentage < 100 ? widthPercentage + '%' : ''
     }
 
     onMounted(() => {

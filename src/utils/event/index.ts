@@ -1,5 +1,7 @@
 import ResizeObserver from 'resize-observer-polyfill'
 
+const isServer = typeof window === 'undefined'
+
 function resizeHandler(entries: any[]) {
   for (const entry of entries) {
     const listeners = entry.target.__resizeListeners__ || []
@@ -12,7 +14,7 @@ function resizeHandler(entries: any[]) {
 }
 
 export function addResizeListener(element: any, fn: () => any) {
-  if (typeof window === 'undefined') return
+  if (isServer) return
   if (!element.__resizeListeners__) {
     element.__resizeListeners__ = []
     element.__ro__ = new ResizeObserver(resizeHandler)

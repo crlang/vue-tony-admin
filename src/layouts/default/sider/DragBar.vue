@@ -20,7 +20,7 @@ export default defineComponent({
     const { prefixCls } = useDesign('drag-bar')
     const getDragBarStyle = computed(() => {
       if (unref(getCollapsed)) {
-        return { left: `${unref(getMiniWidthNumber) - 8}px`, right: 'auto' }
+        return { left: `${unref(getMiniWidthNumber)}px` }
       }
       return {}
     })
@@ -48,9 +48,9 @@ $prefix-cls: '#{$tonyname}-drag-bar';
 .#{$prefix-cls} {
   position: absolute;
   top: 0;
-  right: 0;
+  right: -2px;
   z-index: 200;
-  width: 4px;
+  width: 2px;
   height: 100%;
   cursor: col-resize;
   border-top: none;

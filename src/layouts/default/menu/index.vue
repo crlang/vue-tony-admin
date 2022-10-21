@@ -20,6 +20,8 @@ import { useDesign } from '@/hooks/web/useDesign'
 export default defineComponent({
   name: 'LayoutMenu',
   props: {
+    theme: String as PropType<ThemeType>,
+
     splitType: {
       type: Number as PropType<MenuSplitTyeEnum>,
       default: MenuSplitTyeEnum.NONE,
@@ -38,6 +40,7 @@ export default defineComponent({
     const {
       getMenuMode,
       getMenuType,
+      getMenuTheme,
       getCollapsed,
       getCollapsedShowTitle,
       getAccordion,
@@ -56,6 +59,8 @@ export default defineComponent({
     const getComputedMenuMode = computed(() =>
       unref(getIsMobile) ? MenuModeEnum.INLINE : props.menuMode || unref(getMenuMode),
     )
+
+    const getComputedMenuTheme = computed(() => props.theme || unref(getMenuTheme))
 
     const getIsShowLogo = computed(() => unref(getShowLogo) && unref(getIsSidebarType))
 
@@ -77,6 +82,7 @@ export default defineComponent({
     const getLogoClass = computed(() => {
       return [
         `${prefixCls}--logo`,
+        unref(getComputedMenuTheme),
         {
           [`${prefixCls}--mini`]: unref(getCollapsed),
           [`${prefixCls}--mobile`]: unref(getIsMobile),
@@ -89,6 +95,7 @@ export default defineComponent({
       return {
         menus,
         items: menus,
+        theme: unref(getComputedMenuTheme),
         accordion: unref(getAccordion),
         collapse: unref(getCollapsed),
         collapsedShowTitle: unref(getCollapsedShowTitle),
@@ -111,6 +118,7 @@ export default defineComponent({
         <AppLogo
           showTitle={!unref(getCollapsed)}
           class={unref(getLogoClass)}
+          theme={unref(getComputedMenuTheme)}
         />
       )
     }

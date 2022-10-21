@@ -38,9 +38,9 @@ import { useDesign } from '@/hooks/web/useDesign'
 import { useMessage } from '@/hooks/web/useMessage'
 import { useCopyToClipboard } from '@/hooks/web/useCopyToClipboard'
 
-import { updateHeaderColor, updateSidebarColor, updateColorWeak, updateGrayMode, changeTheme, toggleDarkMode } from '@/logics/theme'
+import { updateColorWeak } from '@/logics/theme/updateColorWeak'
+import { updateGrayMode } from '@/logics/theme/updateGrayMode'
 import defaultSetting from '@/settings/projectSetting'
-import { primaryColor } from '@/settings/designSetting'
 
 export default defineComponent({
   name: 'SettingFooter',
@@ -54,23 +54,20 @@ export default defineComponent({
     const appStore = useAppStore()
 
     function handleCopy() {
-      const { isSuccessRef } = useCopyToClipboard(`...${JSON.stringify(unref(appStore.getProjectConfig), null, 2)}`)
+      const { isSuccessRef } = useCopyToClipboard(JSON.stringify(unref(appStore.getProjectConfig), null, 2))
       unref(isSuccessRef) &&
         createSuccessModal({
           title: '操作成功',
-          content: '复制配置成功,请到 src/settings/projectSetting.ts 中的 /* do something */ 粘贴替换！',
+          content: '复制成功,请到 src/settings/projectSetting.ts 中修改配置！',
         })
     }
     function handleResetSetting() {
       try {
         appStore.setProjectConfig(defaultSetting)
-        const { colorWeak, grayMode, headerSetting, menuSetting } = defaultSetting
-        toggleDarkMode(false)
+        const { colorWeak, grayMode } = defaultSetting
+        // updateDarkTheme(themeColor)
         updateColorWeak(colorWeak)
         updateGrayMode(grayMode)
-        updateHeaderColor(headerSetting.bgColor)
-        updateSidebarColor(menuSetting.bgColor)
-        changeTheme(primaryColor)
         createMessage.success('重置成功！')
       } catch (error) {
         createMessage.error(error as string)

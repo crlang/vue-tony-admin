@@ -32,7 +32,7 @@ export function useSplitMenu(splitType: Ref<MenuSplitTyeEnum>) {
 
   watch(
     [() => unref(currentRoute).path, () => unref(splitType)],
-    async([path]: [string, MenuSplitTyeEnum]) => {
+    async ([path]: [string, MenuSplitTyeEnum]) => {
       if (unref(splitNotLeft) || unref(getIsMobile)) return
 
       const { meta } = unref(currentRoute)

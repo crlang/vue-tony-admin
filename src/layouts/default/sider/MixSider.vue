@@ -7,6 +7,7 @@
     :style="getWrapStyle"
     :class="[
       prefixCls,
+      getMenuTheme,
       {
         open: openMenu,
         mini: getCollapsed,
@@ -69,6 +70,7 @@
       <ScrollContainer :class="`${prefixCls}-menu-list__content`">
         <SimpleMenu
           :items="childrenMenus"
+          :theme="getMenuTheme"
           mixSider
           @menu-click="handleMenuClick" />
       </ScrollContainer>
@@ -131,6 +133,7 @@ export default defineComponent({
       getMenuWidth,
       getCanDrag,
       getCloseMixSidebarOnChange,
+      getMenuTheme,
       getMixSideTrigger,
       getRealWidth,
       getMixSideFixed,
@@ -176,17 +179,17 @@ export default defineComponent({
     const getMenuEvents = computed(() => {
       return !unref(getMixSideFixed)
         ? {
-          onMouseleave: () => {
-            setActive(true)
-            closeMenu()
-          },
-        }
+            onMouseleave: () => {
+              setActive(true)
+              closeMenu()
+            },
+          }
         : {}
     })
 
     const getShowDragBar = computed(() => unref(getCanDrag))
 
-    onMounted(async() => {
+    onMounted(async () => {
       menuModules.value = await getShallowMenus()
     })
 
@@ -280,7 +283,7 @@ export default defineComponent({
       if (unref(getMixSideTrigger) === 'hover') {
         return {
           onMouseenter: () => handleModuleClick(item, true),
-          onClick: async() => {
+          onClick: async () => {
             const children = await getChildrenMenus(item.path)
             if (item.path && (!children || children.length === 0)) go(item.path)
           },
@@ -318,6 +321,7 @@ export default defineComponent({
       dragBarRef,
       activeMenu,
       openMenu,
+      getMenuTheme,
       getItemEvents,
       getMenuEvents,
       getDomStyle,

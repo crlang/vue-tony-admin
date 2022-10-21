@@ -63,7 +63,7 @@ export const achieveList: TabItem[] = [
   {
     key: '1',
     name: '文章',
-    component: 'ArticleList',
+    component: 'Article',
   },
   {
     key: '2',

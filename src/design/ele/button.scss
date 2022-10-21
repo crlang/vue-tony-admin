@@ -1,0 +1,93 @@
+$elenamex: 'el-button';
+
+.#{$elenamex} {
+  // &.is-circle {
+  //   width: var(--el-button-size);
+  //   height: var(--el-button-size);
+  // }
+
+  // svg {
+  //   display: inline-block;
+  // }
+
+  // [class*=el-icon]+span {
+  //   vertical-align: text-top;
+  // }
+  &.is-text {
+    padding: 0;
+  }
+}
+
+// html[data-theme='dark'] {
+//   .#{$elenamex} {
+//     --el-color-white: #fff;
+//     --el-button-text-color: var(--text-control-color);
+//     --el-button-bg-color: var(--background-control-color);
+//     --el-button-border-color: var(--border-color-light);
+
+//     // Hover
+//     --el-button-hover-text-color: var(--text-control-hover);
+//     --el-button-hover-bg-color: var(--background-control-hover);
+//     --el-button-hover-border-color: var(--background-control-hover);
+
+//     // Disabled
+//     --el-button-disabled-bg-color: var(--background-disabled-color);
+
+//     // 以下内容复制于Element Plus，暗黑模式不对带状态颜色的按钮进行处理
+//     &--primary {
+//       --el-button-text-color: var(--el-color-white);
+//       --el-button-bg-color: var(--el-color-primary);
+//       --el-button-border-color: var(--el-color-primary);
+//       --el-button-hover-text-color: var(--el-color-white);
+//       --el-button-hover-bg-color: var(--el-color-primary-light-3);
+//       --el-button-hover-border-color: var(--el-color-primary-light-3);
+//       --el-button-active-bg-color: var(--el-color-primary-dark-2);
+//       --el-button-active-border-color: var(--el-color-primary-dark-2);
+//       --el-button-disabled-text-color: var(--el-color-white);
+//       --el-button-disabled-bg-color: var(--el-color-primary-light-5);
+//       --el-button-disabled-border-color: var(--el-color-primary-light-5);
+//     }
+
+//     &--success {
+//       --el-button-text-color: var(--el-color-white);
+//       --el-button-bg-color: var(--el-color-success);
+//       --el-button-border-color: var(--el-color-success);
+//       --el-button-hover-text-color: var(--el-color-white);
+//       --el-button-hover-bg-color: var(--el-color-success-light-3);
+//       --el-button-hover-border-color: var(--el-color-success-light-3);
+//       --el-button-active-bg-color: var(--el-color-success-dark-2);
+//       --el-button-active-border-color: var(--el-color-success-dark-2);
+//       --el-button-disabled-text-color: var(--el-color-white);
+//       --el-button-disabled-bg-color: var(--el-color-success-light-5);
+//       --el-button-disabled-border-color: var(--el-color-success-light-5);
+//     }
+
+//     &--warning {
+//       --el-button-text-color: var(--el-color-white);
+//       --el-button-bg-color: var(--el-color-warning);
+//       --el-button-border-color: var(--el-color-warning);
+//       --el-button-hover-text-color: var(--el-color-white);
+//       --el-button-hover-bg-color: var(--el-color-warning-light-3);
+//       --el-button-hover-border-color: var(--el-color-warning-light-3);
+//       --el-button-active-bg-color: var(--el-color-warning-dark-2);
+//       --el-button-active-border-color: var(--el-color-warning-dark-2);
+//       --el-button-disabled-text-color: var(--el-color-white);
+//       --el-button-disabled-bg-color: var(--el-color-warning-light-5);
+//       --el-button-disabled-border-color: var(--el-color-warning-light-5);
+//     }
+
+//     &--danger {
+//       --el-button-text-color: var(--el-color-white);
+//       --el-button-bg-color: var(--el-color-danger);
+//       --el-button-border-color: var(--el-color-danger);
+//       --el-button-hover-text-color: var(--el-color-white);
+//       --el-button-hover-bg-color: var(--el-color-danger-light-3);
+//       --el-button-hover-border-color: var(--el-color-danger-light-3);
+//       --el-button-active-bg-color: var(--el-color-danger-dark-2);
+//       --el-button-active-border-color: var(--el-color-danger-dark-2);
+//       --el-button-disabled-text-color: var(--el-color-white);
+//       --el-button-disabled-bg-color: var(--el-color-danger-light-5);
+//       --el-button-disabled-border-color: var(--el-color-danger-light-5);
+//     }
+//   }
+// }

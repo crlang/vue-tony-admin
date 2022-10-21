@@ -1,9 +1,5 @@
 /**
- * 用于配置全局错误处理功能，可以监控vue错误、脚本错误、静态资源错误和Promise错误
- *
  * Used to configure the global error handling function, which can monitor vue errors, script errors, static resource errors and Promise errors
- *
- * settings/projectSetting.js -> useErrorHandle
  */
 
 import type { ErrorLogInfo } from '#/store'
@@ -32,7 +28,7 @@ function processStackMsg(error: Error) {
     .replace(/\?[^:]+/gi, '') // Remove redundant parameters of js file links (?x=1 and the like)
   const msg = error.toString()
   if (stack.indexOf(msg) < 0) {
-    stack = `${msg}@${stack}`
+    stack = msg + '@' + stack
   }
   return stack
 }
@@ -41,7 +37,7 @@ function processStackMsg(error: Error) {
  * get comp name
  * @param vm
  */
-function formatComponentName(vm) {
+function formatComponentName(vm: any) {
   if (vm.$root === vm) {
     return {
       name: 'root',
@@ -49,7 +45,7 @@ function formatComponentName(vm) {
     }
   }
 
-  const options = vm.$options
+  const options = vm.$options as any
   if (!options) {
     return {
       name: 'anonymous',
@@ -67,7 +63,7 @@ function formatComponentName(vm) {
  * Configure Vue error handling function
  */
 
-function vueErrorHandler(err: Error, vm, info: string) {
+function vueErrorHandler(err: Error, vm: any, info: string) {
   const errorLogStore = useErrorLogStoreWithOut()
   const { name, path } = formatComponentName(vm)
   errorLogStore.addErrorLogInfo({
@@ -108,7 +104,7 @@ export function scriptErrorHandler(
     type: ErrorTypeEnum.SCRIPT,
     name: name,
     file: source as string,
-    detail: `lineno${lineno}`,
+    detail: 'lineno' + lineno,
     url: window.location.href,
     colno: colno || null,
     ...(errorInfo as Pick<ErrorLogInfo, 'message' | 'stack'>),
@@ -122,7 +118,7 @@ export function scriptErrorHandler(
 function registerPromiseErrorHandler() {
   window.addEventListener(
     'unhandledrejection',
-    function(event) {
+    function (event) {
       const errorLogStore = useErrorLogStoreWithOut()
       errorLogStore.addErrorLogInfo({
         type: ErrorTypeEnum.PROMISE,
@@ -145,13 +141,13 @@ function registerResourceErrorHandler() {
   // Monitoring resource loading error(img,script,css,and jsonp)
   window.addEventListener(
     'error',
-    function(e: Event) {
-      const target = e.target ? e.target : e.srcElement
+    function (e: Event) {
+      const target = e.target ? e.target : (e.srcElement as any)
       const errorLogStore = useErrorLogStoreWithOut()
       errorLogStore.addErrorLogInfo({
         type: ErrorTypeEnum.RESOURCE,
         name: 'Resource Error!',
-        file: (e.target || {}).currentSrc,
+        file: (e.target || ({} as any)).currentSrc,
         detail: JSON.stringify({
           tagName: target.localName,
           html: target.outerHTML,
@@ -159,7 +155,7 @@ function registerResourceErrorHandler() {
         }),
         url: window.location.href,
         stack: 'resource is not found',
-        message: `${(e.target || {}).localName} is load error`,
+        message: (e.target || ({} as any)).localName + ' is load error',
       })
     },
     true,

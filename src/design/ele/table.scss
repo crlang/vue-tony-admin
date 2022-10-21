@@ -1,0 +1,72 @@
+$elenamex: 'el-table';
+
+.#{$elenamex} {
+  --el-table-row-hover-bg-color: var(--background-secondary-color);
+  --el-table-header-bg-color: var(--background-secondary-color);
+  --el-table-border-color: var(--border-color);
+  --el-table-tr-bg-color: var(--white-color);
+
+  &__inner-wrapper {
+    &::after,
+    &::before {
+      display: none;
+    }
+  }
+
+  &__header {
+    &-wrapper {
+      tr  {
+        th.el-table-fixed-column--left ,
+        th.el-table-fixed-column--right {
+          background: var(--el-table-header-bg-color);
+          filter: brightness(0.96);
+        }
+      }
+    }
+  }
+
+  &--striped {
+    .el-table__body tr.el-table__row--striped td.el-table__cell {
+      background: var(--background-secondary-color);
+    }
+  }
+
+  &__column {
+    &-filter-trigger {
+      margin-left: 4px;
+    }
+  }
+
+  &-filter__bottom {
+    display: flex;
+    padding: 0;
+
+    button {
+      flex: 1;
+      padding: 8px 12px;
+
+      &:nth-child(1) {
+        color: var(--success-color);
+      }
+    }
+  }
+}
+
+html[data-theme='dark'] {
+  .#{$elenamex} {
+    --el-table-text-color: var(--text-secondary-color);
+    --el-table-border-color: var(--border-color-light);
+    --el-table-tr-bg-color: var(--background-primary-color);
+    --el-table-row-hover-bg-color: var(--background-secondary-color);
+    --el-table-bg-color: var(--background-secondary-color);
+
+    &__body {
+      &-wrapper {
+        tr td.el-table-fixed-column--left ,
+        tr td.el-table-fixed-column--right {
+          background: var(--background-primary-color);
+        }
+      }
+    }
+  }
+}

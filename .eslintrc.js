@@ -2,7 +2,6 @@
  * Eslint config file
  * Documentation: https://eslint.org/docs/user-guide/configuring/
  * Documentation: https://typescript-eslint.io/rules
- * Documentation: https://eslint.vuejs.org/rules/
  * 格式化异常时，请留意项目 Prettier 插件与编辑器的 Prettier 插件配置的差异，最好保持一致
  * Install the Eslint extension before using this feature.
  *
@@ -15,9 +14,6 @@ module.exports = {
     es6: true,
   },
   globals: {
-    // inside vue
-    defineProps: true,
-    defineEmits: true,
     // global.d
     __APP_INFO__: true,
     PropType: true,
@@ -64,11 +60,14 @@ module.exports = {
   plugins: ['@typescript-eslint', 'prettier', 'import'],
   extends: ['plugin:vue/vue3-recommended', 'plugin:@typescript-eslint/recommended', 'eslint:recommended'],
   rules: {
+    'vue/script-setup-uses-vars': 'error',
     '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-empty-function': 'off',
+    'vue/custom-event-name-casing': 'off',
+    'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/ban-types': 'off',
@@ -84,8 +83,7 @@ module.exports = {
         varsIgnorePattern: '^_',
       },
     ],
-    'vue/script-setup-uses-vars': 'error',
-    'vue/custom-event-name-casing': 'off',
+    // '@typescript-eslint/indent': ['error', 2],
     'vue/attributes-order': 'off',
     'vue/one-component-per-file': 'off',
     'vue/html-closing-bracket-newline': 'off',
@@ -93,7 +91,7 @@ module.exports = {
       'error',
       {
         singleline: {
-          max: 3,
+          max: 1,
         },
         multiline: {
           max: 1,
@@ -136,33 +134,32 @@ module.exports = {
         math: 'always',
       },
     ],
-    // 'prettier/prettier': [
-    //   'error',
-    //   {
-    //     printWidth: 120,
-    //     tabWidth: 2,
-    //     useTabs: false,
-    //     semi: false,
-    //     singleQuote: true,
-    //     quoteProps: 'as-needed',
-    //     bracketSpacing: true,
-    //     trailingComma: 'all',
-    //     bracketLine: false,
-    //     jsxSingleQuote: true,
-    //     jsxBrackets: false,
-    //     jsxBracketSameLine: true,
-    //     bracketSameLine: true,
-    //     arrowParens: 'always',
-    //     insertPragma: false,
-    //     requirePragma: false,
-    //     proseWrap: 'never',
-    //     htmlWhitespaceSensitivity: 'ignore',
-    //     vueIndentScriptAndStyle: false,
-    //     endOfLine: 'auto',
-    //     singleAttributePerLine: true,
-    //   },
-    // ],
-    'no-use-before-define': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        printWidth: 120,
+        tabWidth: 2,
+        useTabs: false,
+        semi: false,
+        singleQuote: true,
+        quoteProps: 'as-needed',
+        bracketSpacing: true,
+        trailingComma: 'all',
+        bracketLine: false,
+        jsxSingleQuote: true,
+        jsxBrackets: false,
+        jsxBracketSameLine: true,
+        bracketSameLine: true,
+        arrowParens: 'always',
+        insertPragma: false,
+        requirePragma: false,
+        proseWrap: 'never',
+        htmlWhitespaceSensitivity: 'ignore',
+        vueIndentScriptAndStyle: false,
+        endOfLine: 'auto',
+        singleAttributePerLine: true,
+      },
+    ],
     'accessor-pairs': 2,
     'arrow-spacing': [
       2,
@@ -216,7 +213,7 @@ module.exports = {
       },
     ],
     'handle-callback-err': [2, '^(err|error)$'],
-    indent: ['error', 2],
+    indent: 'off',
     'jsx-quotes': [2, 'prefer-single'],
     'key-spacing': [
       2,
@@ -279,7 +276,7 @@ module.exports = {
     ],
     'no-lone-blocks': 2,
     'no-mixed-spaces-and-tabs': 2,
-    'no-multi-spaces': 2,
+    // 'no-multi-spaces': 2,
     'no-multi-str': 2,
     'no-multiple-empty-lines': [
       2,
@@ -372,8 +369,8 @@ module.exports = {
       },
     ],
     'space-before-blocks': [2, 'always'],
-    'space-before-function-paren': [2, { anonymous: 'never', named: 'never', asyncArrow: 'never' }],
-    'space-in-parens': [2, 'never'],
+    'space-before-function-paren': [2, { anonymous: 'always', named: 'never', asyncArrow: 'always' }],
+    // 'space-in-parens': [2, 'never'],
     'space-infix-ops': 2,
     'space-unary-ops': [
       2,
@@ -390,8 +387,6 @@ module.exports = {
       },
     ],
     'template-curly-spacing': [2, 'never'],
-    'no-template-curly-in-string': 2,
-    'prefer-template': 2,
     'use-isnan': 2,
     'valid-typeof': 2,
     'wrap-iife': [2, 'any'],
@@ -403,11 +398,9 @@ module.exports = {
       2,
       'always',
       {
-        arraysInObjects: true,
         objectsInObjects: true,
       },
     ],
     'array-bracket-spacing': [2, 'never'],
-    'computed-property-spacing': [2, 'never'],
   },
 }

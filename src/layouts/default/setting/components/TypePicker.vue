@@ -133,6 +133,10 @@ $prefix-cls: '#{$tonyname}-setting-menu-type-picker';
       }
     }
 
+    // &--dark {
+    //   background-color: #273352;
+    // }
+
     &--mix-sidebar {
       &::before {
         top: 0;

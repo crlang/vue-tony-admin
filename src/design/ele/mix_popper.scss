@@ -1,0 +1,7 @@
+
+@mixin popupbox {
+  --el-color-white: var(--background-secondary-color);
+  --el-border-color-light: var(--border-color);
+
+  background: var(--background-secondary-color);
+}

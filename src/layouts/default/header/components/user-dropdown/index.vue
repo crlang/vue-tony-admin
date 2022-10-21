@@ -99,15 +99,15 @@ export default defineComponent({
 
     function handleMenuClick(e: MenuEvent) {
       switch (e) {
-      case 'logout':
-        handleLoginOut()
-        break
-      case 'doc':
-        openDoc()
-        break
-      case 'lock':
-        handleLock()
-        break
+        case 'logout':
+          handleLoginOut()
+          break
+        case 'doc':
+          openDoc()
+          break
+        case 'lock':
+          handleLock()
+          break
       }
     }
 

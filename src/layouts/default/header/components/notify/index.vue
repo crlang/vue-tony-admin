@@ -67,7 +67,7 @@ export default defineComponent({
     })
 
     function onNoticeClick(record: ListItem) {
-      createMessage.success(`Notice ID: ${record.id}`)
+      createMessage.success('Notice ID: ' + record.id)
       record.titleDelete = !record.titleDelete
     }
 

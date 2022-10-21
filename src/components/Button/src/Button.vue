@@ -32,7 +32,7 @@ import { basicProps, customProps } from './props'
 import { omit } from 'lodash-es'
 
 export default defineComponent({
-  name: 'BasicButton',
+  name: 'Button',
   components: { Icon, ElButton },
   props: basicProps,
   setup(props, { attrs }) {

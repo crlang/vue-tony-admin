@@ -1,0 +1,21 @@
+$elenamex: 'el-divider';
+
+.#{$elenamex} {
+  --el-text-color-primary: var(--text-primary-color);
+
+  &__text {
+    line-height: 1;
+    background: var(--background-primary-color);
+  }
+}
+
+html[data-theme='dark'] {
+  .#{$elenamex} {
+    --el-border-color: var(--border-color-light);
+
+    &__text {
+      line-height: 1;
+      background: var(--background-secondary-color) ;
+    }
+  }
+}

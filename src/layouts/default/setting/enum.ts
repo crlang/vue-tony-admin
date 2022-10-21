@@ -47,10 +47,6 @@ export enum HandlerEnum {
   OPEN_PROGRESS,
   OPEN_PAGE_LOADING,
   OPEN_ROUTE_TRANSITION,
-
-  THEME_SETTING,
-  HEADER_ERROR_LOG,
-  HEADER_NOTICE,
 }
 
 export const contentModeOptions = [
@@ -92,11 +88,11 @@ export const getMenuTriggerOptions = (hideTop: boolean) => {
     ...(hideTop
       ? []
       : [
-        {
-          value: TriggerEnum.HEADER,
-          label: '顶部',
-        },
-      ]),
+          {
+            value: TriggerEnum.HEADER,
+            label: '顶部',
+          },
+        ]),
   ]
 }
 
@@ -120,16 +116,16 @@ export const menuTypeList = [
     mode: MenuModeEnum.INLINE,
     type: MenuTypeEnum.SIDEBAR,
   },
-  {
-    title: '顶部菜单混合模式',
-    mode: MenuModeEnum.INLINE,
-    type: MenuTypeEnum.MIX,
-  },
-  {
-    title: '顶部菜单模式',
-    mode: MenuModeEnum.HORIZONTAL,
-    type: MenuTypeEnum.TOP_MENU,
-  },
+  // {
+  //   title: '顶部菜单混合模式',
+  //   mode: MenuModeEnum.INLINE,
+  //   type: MenuTypeEnum.MIX
+  // },
+  // {
+  //   title: '顶部菜单模式',
+  //   mode: MenuModeEnum.HORIZONTAL,
+  //   type: MenuTypeEnum.TOP_MENU,
+  // },
   {
     title: '左侧菜单混合模式',
     mode: MenuModeEnum.INLINE,

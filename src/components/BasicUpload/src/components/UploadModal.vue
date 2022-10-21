@@ -251,7 +251,7 @@ export default defineComponent({
 
       try {
         item.status = UploadResultStatus.UPLOADING
-        const onUploadProgress = function(progressEvent: ProgressEvent) {
+        const onUploadProgress = function (progressEvent: ProgressEvent) {
           const complete = ((progressEvent.loaded / progressEvent.total) * 100) | 0
           item.percent = complete
         }

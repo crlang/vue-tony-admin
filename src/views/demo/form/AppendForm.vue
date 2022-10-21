@@ -82,7 +82,7 @@ export default defineComponent({
         {
           field: `field${n.value}a`,
           component: 'ElInput',
-          label: `字段${n.value}`,
+          label: '字段' + n.value,
           colProps: {
             span: 8,
           },
@@ -94,7 +94,7 @@ export default defineComponent({
         {
           field: `field${n.value}b`,
           component: 'ElInput',
-          label: `字段${n.value}`,
+          label: '字段' + n.value,
           colProps: {
             span: 8,
           },

@@ -23,7 +23,7 @@ if (_redirect_type === 'name') {
   })
 } else {
   replace({
-    path: _path.startsWith('/') ? _path : `/${_path}`,
+    path: _path.startsWith('/') ? _path : '/' + _path,
     query,
   })
 }

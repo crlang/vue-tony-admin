@@ -1,0 +1,14 @@
+$elenamex: 'el-drawer';
+
+.#{$elenamex} {
+  z-index: 3;
+}
+
+html[data-theme='dark'] {
+  .#{$elenamex} {
+    &__header {
+      color: var(--text-secondary-color);
+    }
+    --el-drawer-bg-color: var(--background-secondary-color);
+  }
+}

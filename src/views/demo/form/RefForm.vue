@@ -50,7 +50,7 @@ export default defineComponent({
     const formElRef = ref<Nullable<FormActionMethods>>(null)
     const { createMessage } = useMessage()
     function handleSubmit(values: any) {
-      createMessage.success(`click search,values:${JSON.stringify(values)}`)
+      createMessage.success('click search,values:' + JSON.stringify(values))
     }
     function setFormProps(props: Partial<BasicFormProps>) {
       const formEl = formElRef.value

@@ -49,7 +49,7 @@ export default defineComponent({
           type: 'bar',
           data: data,
           itemStyle: {
-            color: function(params) {
+            color: function (params) {
               var colorList = [
                 ['#DCE35B', '#45B649'],
                 ['#F5cF0D', '#fa9203'],
@@ -131,7 +131,7 @@ export default defineComponent({
     onMounted(() => {
       setOptions(options as any)
 
-      setInterval(function() {
+      setInterval(function () {
         run()
         updateYear(String((startTimes += 1)))
       }, 3000)

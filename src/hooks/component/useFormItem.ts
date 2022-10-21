@@ -31,7 +31,7 @@ export function useRuleFormItem<T extends Recordable>(
     innerState.value = val as T[keyof T]
   }
 
-  const state = computed({
+  const state: any = computed({
     get() {
       return innerState.value
     },

@@ -27,7 +27,7 @@ export function hasClass(el: Element, cls: string) {
   if (el.classList) {
     return el.classList.contains(cls)
   } else {
-    return (` ${el.className} `).indexOf(` ${cls} `) > -1
+    return (' ' + el.className + ' ').indexOf(' ' + cls + ' ') > -1
   }
 }
 
@@ -43,7 +43,7 @@ export function addClass(el: Element, cls: string) {
     if (el.classList) {
       el.classList.add(clsName)
     } else if (!hasClass(el, clsName)) {
-      curClass += ` ${clsName}`
+      curClass += ' ' + clsName
     }
   }
   if (!el.classList) {
@@ -54,7 +54,7 @@ export function addClass(el: Element, cls: string) {
 export function removeClass(el: Element, cls: string) {
   if (!el || !cls) return
   const classes = cls.split(' ')
-  let curClass = ` ${el.className} `
+  let curClass = ' ' + el.className + ' '
 
   for (let i = 0, j = classes.length; i < j; i++) {
     const clsName = classes[i]
@@ -63,7 +63,7 @@ export function removeClass(el: Element, cls: string) {
     if (el.classList) {
       el.classList.remove(clsName)
     } else if (hasClass(el, clsName)) {
-      curClass = curClass.replace(` ${clsName} `, ' ')
+      curClass = curClass.replace(' ' + clsName + ' ', ' ')
     }
   }
   if (!el.classList) {
@@ -148,7 +148,7 @@ export function off(element: Element | HTMLElement | Document | Window, event: s
 
 // eslint-disable-next-line no-undef
 export function once(el: HTMLElement, event: string, fn: EventListener): void {
-  const listener = function(this: any, ...args: unknown[]) {
+  const listener = function (this: any, ...args: unknown[]) {
     if (fn) {
       fn.apply(this, args)
     }
@@ -159,7 +159,7 @@ export function once(el: HTMLElement, event: string, fn: EventListener): void {
 
 export function useRafThrottle<T extends FunctionArgs>(fn: T): T {
   let locked = false
-  return function(...args: any[]) {
+  return function (...args: any[]) {
     if (locked) return
     locked = true
     window.requestAnimationFrame(() => {

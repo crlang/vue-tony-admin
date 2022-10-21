@@ -41,7 +41,7 @@ export default defineComponent({
       })
 
       // 监听地图瓦片加载完成事件
-      map.on('tilesloaded', function() {
+      map.on('tilesloaded', function () {
         // 地图瓦片已加载完成
       })
     }

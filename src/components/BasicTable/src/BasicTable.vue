@@ -41,52 +41,54 @@
         <slot name="headerBottom"></slot>
       </template>
     </TableHeader>
-    <ElTable
-      ref="tableElRef"
-      v-bind="getBindValues"
-      v-loading="getLoading">
-      <template
-        v-for="column in columns"
-        :key="column.prop">
-        <template v-if="column.customRender">
+    <el-config-provider :locale="zhLocale">
+      <ElTable
+        ref="tableElRef"
+        v-bind="getBindValues"
+        v-loading="getLoading">
+        <template
+          v-for="column in columns"
+          :key="column.prop">
+          <template v-if="column.customRender">
+            <ElTableColumn
+              v-bind="column"
+              :customRender="null">
+              <template #default="scope">
+                <TableRender
+                  :customRender="column.customRender"
+                  :scope="scope"
+                  :column="column" />
+              </template>
+            </ElTableColumn>
+          </template>
+          <template v-else-if="column.type === 'action'">
+            <ElTableColumn v-bind="column">
+              <template #default="scope">
+                <TableAction
+                  :prefixCls="`${prefixCls}-action`"
+                  :column="column"
+                  :scopes="scope" />
+              </template>
+            </ElTableColumn>
+          </template>
+          <template v-else-if="column.isSlot">
+            <slot
+              :name="column.prop"
+              v-bind="column"></slot>
+          </template>
+
           <ElTableColumn
             v-bind="column"
-            :customRender="null">
-            <template #default="scope">
-              <TableRender
-                :customRender="column.customRender"
-                :scope="scope"
-                :column="column" />
-            </template>
-          </ElTableColumn>
+            v-else />
         </template>
-        <template v-else-if="column.type === 'action'">
-          <ElTableColumn v-bind="column">
-            <template #default="scope">
-              <TableAction
-                :prefixCls="`${prefixCls}-action`"
-                :column="column"
-                :scopes="scope" />
-            </template>
-          </ElTableColumn>
-        </template>
-        <template v-else-if="column.isSlot">
-          <slot
-            :name="column.prop"
-            v-bind="column"></slot>
-        </template>
-
-        <ElTableColumn
-          v-bind="column"
-          v-else />
-      </template>
-    </ElTable>
-    <TablePagination
-      v-if="getPaginationProps !== false"
-      :prefixCls="`${prefixCls}-pagination`"
-      v-bind="getPaginationProps"
-      @page-change="handlePageChange"
-      @size-change="handlePageSizeChange" />
+      </ElTable>
+      <TablePagination
+        v-if="getPaginationProps !== false"
+        :prefixCls="`${prefixCls}-pagination`"
+        v-bind="getPaginationProps"
+        @page-change="handlePageChange"
+        @size-change="handlePageSizeChange" />
+    </el-config-provider>
   </div>
 </template>
 
@@ -95,7 +97,8 @@ import type { ElePagination } from '@/components/ElementPlus'
 import type { BasicTableProps, TableActionMethods } from './typing'
 
 import { defineComponent, ref, computed, unref, watchEffect, inject } from 'vue'
-import { ElLoading, ElTable, ElTableColumn } from 'element-plus'
+import { ElLoading, ElTable, ElTableColumn, ElConfigProvider } from 'element-plus'
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 import { omit } from 'lodash-es'
 
 import { BasicForm, useForm } from '@/components/BasicForm'
@@ -122,6 +125,7 @@ export default defineComponent({
   components: {
     ElTable,
     ElTableColumn,
+    ElConfigProvider,
     BasicForm,
     TableHeader,
     TableRender,
@@ -374,6 +378,9 @@ export default defineComponent({
     return {
       prefixCls,
       tableElRef,
+      // 修改表格i18n内容为中文
+      // Modify the content of table i18n to Chinese
+      zhLocale: zhCn,
       getProps,
       getBindValues,
       getLoading,

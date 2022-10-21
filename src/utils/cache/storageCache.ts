@@ -1,4 +1,4 @@
-const isNullOrUnDef = (val: unknown) => typeof val === 'undefined' || val === null
+import { isNullOrUnDef } from '../is'
 
 export interface CreateStorageParams {
   prefixKey: string

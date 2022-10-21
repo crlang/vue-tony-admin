@@ -23,7 +23,7 @@
   <SubMenu
     :name="item.path"
     v-if="menuHasChildren(item) && getShowMenu"
-    :class="getLevelClass"
+    :class="[getLevelClass, theme]"
     :collapsedShowTitle="collapsedShowTitle">
     <template #title>
       <Icon
@@ -50,6 +50,7 @@
       :key="childrenItem.path">
       <SimpleSubMenu
         :collapsedShowTitle="collapsedShowTitle"
+        :theme="theme"
         :item="childrenItem"
         :parent="false" />
     </template>
@@ -83,6 +84,9 @@ export default defineComponent({
     parent: Boolean,
     collapsedShowTitle: Boolean,
     collapse: Boolean,
+    theme: {
+      type: String as PropType<ThemeType>,
+    },
   },
   setup(props) {
     const { prefixCls } = useDesign('simple-menu')

@@ -1,0 +1,14 @@
+
+@mixin inputbox {
+  --el-input-text-color: var(--text-primary-color);
+  --el-input-bg-color: var(--background-control-color);
+  --el-input-border-color: var(--border-color);
+  --el-fill-color-light: var(--background-secondary-color);
+  --el-input-hover-border-color: var(--border-color-light);
+
+  // Disabled
+  --el-disabled-text-color: var(--text-disabled-color);
+  --el-disabled-bg-color: var(--background-disabled-color);
+  --el-select-disabled-border: var(--background-disabled-color);
+  --el-disabled-border-color: var(--background-disabled-color);
+}

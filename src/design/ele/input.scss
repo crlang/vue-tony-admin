@@ -1,0 +1,26 @@
+@import './mix_input.scss';
+
+$elenamex: 'el-input';
+
+.#{$elenamex} {
+  &__prefix,
+  &__suffix {
+    &-inner {
+      align-items: center;
+    }
+  }
+}
+
+html[data-theme='dark'] {
+  .#{$elenamex} {
+    --el-color-info: var(--text-secondary-color);
+
+    @include inputbox();
+
+    &-number {
+      --el-text-color-regular: var(--text-control-color);
+      --el-border: 1px solid var(--border-color);
+      --el-fill-color-light: var(--background-control-color);
+    }
+  }
+}

@@ -1,9 +1,10 @@
 <template>
-  <MenuList
+  <Menu
     :activeName="activeName"
     :openNames="getOpenKeys"
     :collapse="collapse"
     :accordion="accordion"
+    :theme="theme"
     :class="prefixCls"
     :activeSubMenuNames="activeSubMenuNames"
     @select="handleSelect">
@@ -16,7 +17,7 @@
         :collapsedShowTitle="collapsedShowTitle"
         :collapse="collapse" />
     </template>
-  </MenuList>
+  </Menu>
 </template>
 
 <script lang="ts">
@@ -25,19 +26,20 @@ import type { Menu as MenuType } from '@/router/types'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import { defineComponent, computed, ref, unref, reactive, toRefs, watch } from 'vue'
 import { useDesign } from '@/hooks/web/useDesign'
-import MenuList from './components/MenuList.vue'
+import Menu from './components/Menu.vue'
 import SimpleSubMenu from './SimpleSubMenu.vue'
 import { listenerRouteChange } from '@/logics/mitt/routeChange'
+import { propTypes } from '@/utils/propTypes'
 import { REDIRECT_NAME } from '@/router/constant'
 import { useRouter } from 'vue-router'
-import { isHttpUrl, openWindow } from '@/utils'
+import { openWindow } from '@/utils'
 
 import { useOpenKeys } from './useOpenKeys'
-
+import { isUrl } from '@/utils/is'
 export default defineComponent({
   name: 'SimpleMenu',
   components: {
-    MenuList,
+    Menu,
     SimpleSubMenu,
   },
   inheritAttrs: false,
@@ -46,14 +48,15 @@ export default defineComponent({
       type: Array as PropType<MenuType[]>,
       default: () => [],
     },
-    collapse: Boolean,
-    mixSider: Boolean,
-    accordion: {
-      type: Boolean,
-      default: true,
+    collapse: propTypes.bool,
+    mixSider: propTypes.bool,
+    theme: {
+      type: String as PropType<ThemeType>,
+      default: '',
     },
-    collapsedShowTitle: Boolean,
-    isSplitMenu: Boolean,
+    accordion: propTypes.bool.def(true),
+    collapsedShowTitle: propTypes.bool,
+    isSplitMenu: propTypes.bool,
   },
   emits: ['menuClick'],
   setup(props, { attrs, emit }) {
@@ -122,7 +125,7 @@ export default defineComponent({
     }
 
     async function handleSelect(key: string) {
-      if (isHttpUrl(key)) {
+      if (isUrl(key)) {
         openWindow(key)
         return
       }

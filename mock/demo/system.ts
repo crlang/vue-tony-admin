@@ -105,9 +105,9 @@ const menuList = (() => {
                 children.push({
                   id: `${index}-${j}-${k}`,
                   type: '2',
-                  menuName: `按钮${j + 1}-${k + 1}`,
+                  menuName: '按钮' + (j + 1) + '-' + (k + 1),
                   icon: '',
-                  permission: `${['menu1:view', 'menu2:add', 'menu3:update', 'menu4:del'][index]}:btn${k + 1}`,
+                  permission: ['menu1:view', 'menu2:add', 'menu3:update', 'menu4:del'][index] + ':btn' + (k + 1),
                   component: [
                     '/dashboard/welcome/index',
                     '/dashboard/analysis/index',

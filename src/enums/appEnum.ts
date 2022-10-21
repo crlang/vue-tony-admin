@@ -1,113 +1,43 @@
-/**
- * 最小化时，侧边栏宽度
- *
- * When minimized, the sidebar width
- */
 export const SIDE_BAR_MINI_WIDTH = 48
-/**
- * 缩小时，侧边栏宽度
- *
- * When zoomed out, the sidebar width
- */
 export const SIDE_BAR_SHOW_TIT_MINI_WIDTH = 64
 
-/**
- * 内容显示控制
- *
- * Content Display Control
- */
 export enum ContentEnum {
-  /**
-   * 自动宽度
-   *
-   * Auto width
-   */
+  // auto width
   FULL = 'full',
-  /**
-   * 固定宽度
-   *
-   * Fixed width
-   */
+  // fixed width
   FIXED = 'fixed',
 }
 
-/**
- * 配置按钮位置
- *
- * Configure button position
- */
+// menu theme enum
+export enum ThemeEnum {
+  DARK = 'dark',
+  LIGHT = 'light',
+}
+
 export enum SettingButtonPositionEnum {
-  /**
-   * 自动判断
-   *
-   * Automatic judgment
-   */
   AUTO = 'auto',
-  /**
-   * 头部显示
-   *
-   * Show in the head
-   */
   HEADER = 'header',
-  /**
-   * 固定在右侧
-   *
-   * Fixed on the right
-   */
   FIXED = 'fixed',
 }
 
-/**
- * 会话超时处理
- *
- * Session timeout handling
- */
 export enum SessionTimeoutProcessingEnum {
-  /**
-   * 路由跳转
-   *
-   * Route jump
-   */
   ROUTE_JUMP,
-  /**
-   * 弹窗覆盖
-   *
-   * Page coverage
-   */
   PAGE_COVERAGE,
 }
 
 /**
- * 权限控制模式
- *
- * Privilege Control Mode
+ * 权限模式
  */
 export enum PermissionModeEnum {
-  /**
-   * 角色控制
-   *
-   * Role control
-   */
+  // role
   ROLE = 'ROLE',
-  /**
-   * 后端控制
-   *
-   * Backend control
-   */
+  // black
   BACK = 'BACK',
-  /**
-   * 路由映射
-   *
-   * Route maping
-   */
+  // route mapping
   ROUTE_MAPPING = 'ROUTE_MAPPING',
 }
 
-/**
- * 路由切换动画
- *
- * Route switching animation
- */
+//  Route switching animation
 export enum RouterTransitionEnum {
   ZOOM_FADE = 'zoom-fade',
   ZOOM_OUT = 'zoom-out',

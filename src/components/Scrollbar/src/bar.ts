@@ -74,7 +74,7 @@ export default defineComponent({
       h(
         'div',
         {
-          class: ['scrollbar__bar', `is-${bar.value.key}`],
+          class: ['scrollbar__bar', 'is-' + bar.value.key],
           onMousedown: clickTrackHandler,
         },
         h('div', {

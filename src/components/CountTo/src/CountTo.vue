@@ -63,7 +63,7 @@ export default defineComponent({
       const rgx = /(\d+)(\d{3})/
       if (separator && typeof separator !== 'number') {
         while (rgx.test(x1)) {
-          x1 = x1.replace(rgx, `$1${separator}$2`)
+          x1 = x1.replace(rgx, '$1' + separator + '$2')
         }
       }
       return prefix + x1 + x2 + suffix

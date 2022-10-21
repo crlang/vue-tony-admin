@@ -131,7 +131,7 @@ export default defineComponent({
     }
 
     function insertNodeByKey(position: 'before' | 'after') {
-      const treeNode = { label: `leaf 0-0-0-${position}`, key: `0-0-0-${position}` }
+      const treeNode = { label: 'leaf 0-0-0-' + position, key: '0-0-0-' + position }
 
       if (position === 'before') {
         getTree().insertBefore(treeNode, '0-0-0')

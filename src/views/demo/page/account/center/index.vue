@@ -83,7 +83,7 @@ import { defineComponent, computed } from 'vue'
 import { ElRow, ElCol, ElTabs, ElTabPane, ElTag } from 'element-plus'
 import { CollapseContainer } from '@/components/CollapseContainer'
 import Icon from '@/components/Icon'
-import ArticleList from './ArticleList.vue'
+import Article from './Article.vue'
 import Application from './Application.vue'
 import Project from './Project.vue'
 
@@ -100,7 +100,7 @@ export default defineComponent({
     ElTag,
     CollapseContainer,
     Icon,
-    ArticleList,
+    Article,
     Application,
     Project,
   },

@@ -5,7 +5,7 @@ import { addResizeListener, removeResizeListener } from '@/utils/event'
 const domSymbol = Symbol('watermark-dom')
 
 export function useWatermark(appendEl: Ref<HTMLElement | null> = ref(document.body) as Ref<HTMLElement>) {
-  const func = useRafThrottle(function() {
+  const func = useRafThrottle(function () {
     const el = unref(appendEl)
     if (!el) return
     const { clientHeight: height, clientWidth: width } = el

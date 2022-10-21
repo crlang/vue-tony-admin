@@ -174,7 +174,7 @@ export function createExpandFn(x = false) {
       el.dataset[e] = el.style[c]
       el.dataset[g] = el.style[f]
 
-      el.style[a] = `${el[h]}px`
+      el.style[a] = el[h] + 'px'
       el.style[f] = 'hidden'
     },
 

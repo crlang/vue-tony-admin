@@ -1,22 +1,3 @@
-## [0.5.5](https://github.com/crlang/vue-tony-admin/compare/0.5.4...0.5.5) (2022-08-21)
-
-### Bug Fixes
-
-- 调整颜色及暗黑模式的处理方式 ([d41fafe](https://github.com/crlang/vue-tony-admin/commit/d41fafe11bc9e28e0622a1e2b405cfda9b591a99))
-- 修复兼容性问题 ([258f1ae](https://github.com/crlang/vue-tony-admin/commit/258f1aecfb1e1b93e49952373698df08feffdf46))
-- 修复 tabs 跳动问题 ([40122af](https://github.com/crlang/vue-tony-admin/commit/40122af79bf91a0776518d607373785ca0102778))
-- 移除菜单非必要的字段 ([4444383](https://github.com/crlang/vue-tony-admin/commit/444438386ae4eb2e74db1ac98cb14f8b74953a1b))
-- 重命名组件以避免与 HTML 元素名相同 ([8656842](https://github.com/crlang/vue-tony-admin/commit/86568421dca6e7e6c850a71c1a2b81dcb1125bce))
-- **BasicTable:** 修复部分属性失去活性问题 ([0749968](https://github.com/crlang/vue-tony-admin/commit/0749968bb507b9a5507aa97617d44e32929ef9b4))
-
-### Features
-
-- 将项目切换为默认中文语言输出 ([13faa98](https://github.com/crlang/vue-tony-admin/commit/13faa98e5daf7414c4f302e1769f7c4718bb08ec))
-- 新增头部菜单模块 ([bc3e3be](https://github.com/crlang/vue-tony-admin/commit/bc3e3bea7f97540e130bfc4066e061092acfc4f6))
-- 新增重构后的黑暗模式 ([87307b6](https://github.com/crlang/vue-tony-admin/commit/87307b6b43fd9b7bdff8ff245a1131c20b4cb563))
-- **BasicButton:** 重命名 Button 为 BasicButton ([c0640ad](https://github.com/crlang/vue-tony-admin/commit/c0640adeec1b050dc4c86566fc836e6d567f771a))
-- **RelativeTime:** 重命名 Time 为 RelativeTime ([221a1eb](https://github.com/crlang/vue-tony-admin/commit/221a1ebe9879cb47b5a59934ee5873ba6bc81d5d))
-
 ## [0.5.4](https://github.com/crlang/vue-tony-admin/compare/0.5.3...0.5.4) (2022-07-21)
 
 ### Bug Fixes

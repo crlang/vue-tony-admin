@@ -271,19 +271,10 @@ $prefix-cls: '#{$tonyname}-lock-page';
         color: rgba(255, 255, 255, 0.75);
       }
 
-      .el-input {
-        --el-input-height: 48px;
-      }
-
-      :deep(.el-input__wrapper) {
-        --el-input-bg-color: transparent;
-        --el-input-border-color: #888;
-      }
-
       :deep(.el-input__inner) {
-        --el-input-text-color: rgba(255, 255, 255, 1);
+        padding-right: 16px;
+        color: rgba(255, 255, 255, 1);
       }
-
     }
 
     &__extra {

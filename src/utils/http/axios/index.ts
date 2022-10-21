@@ -14,6 +14,7 @@ import { deepMerge, setObjToUrlParams } from '@/utils'
 import { useErrorLogStoreWithOut } from '@/store/modules/errorLog'
 import { joinTimestamp, formatRequestDate } from './helper'
 import { useUserStoreWithOut } from '@/store/modules/user'
+import { isString } from '@/utils/is'
 
 const globSetting = useGlobSetting()
 const urlPrefix = globSetting.urlPrefix
@@ -57,16 +58,16 @@ const transform: AxiosTransform = {
     // 如果不希望中断当前请求，请return数据，否则直接抛出异常即可
     let timeoutMsg = ''
     switch (code) {
-    case ResultEnum.TIMEOUT:
-      timeoutMsg = '登录超时,请重新登录！'
-      const userStore = useUserStoreWithOut()
-      userStore.setToken(undefined)
-      userStore.logout(true)
-      break
-    default:
-      if (message) {
-        timeoutMsg = message
-      }
+      case ResultEnum.TIMEOUT:
+        timeoutMsg = '登录超时,请重新登录！'
+        const userStore = useUserStoreWithOut()
+        userStore.setToken(undefined)
+        userStore.logout(true)
+        break
+      default:
+        if (message) {
+          timeoutMsg = message
+        }
     }
 
     // errorMessageMode=‘modal’的时候会显示modal错误弹窗，而不是消息提示，用于一些比较重要的错误
@@ -88,23 +89,23 @@ const transform: AxiosTransform = {
       config.url = `${urlPrefix}${config.url}`
     }
 
-    if (typeof apiUrl === 'string') {
+    if (apiUrl && isString(apiUrl)) {
       config.url = `${apiUrl}${config.url}`
     }
     const params = config.params || {}
     const data = config.data || false
-    formatDate && typeof data === 'string' && formatRequestDate(data)
+    formatDate && data && isString(data) && formatRequestDate(data)
     if (config.method?.toUpperCase() === RequestEnum.GET) {
-      if (typeof params !== 'string') {
+      if (!isString(params)) {
         // 给 get 请求加上时间戳参数，避免从缓存中拿数据。
         config.params = Object.assign(params || {}, joinTimestamp(joinTime, false))
       } else {
         // 兼容restful风格
-        config.url = `${config.url + params}${joinTimestamp(joinTime, true)}`
+        config.url = config.url + params + `${joinTimestamp(joinTime, true)}`
         config.params = undefined
       }
     } else {
-      if (typeof params !== 'string') {
+      if (!isString(params)) {
         formatDate && formatRequestDate(params)
         if (Reflect.has(config, 'data') && config.data && Object.keys(config.data).length > 0) {
           config.data = data

@@ -59,7 +59,7 @@ export function createTableColumns(): FileBasicColumn[] {
       label: '文件大小',
       width: 100,
       customRender: ({ text = 0 }) => {
-        return text && `${(text / 1024).toFixed(2)}KB`
+        return text && (text / 1024).toFixed(2) + 'KB'
       },
     },
     {

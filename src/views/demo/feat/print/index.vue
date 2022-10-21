@@ -47,10 +47,10 @@ export default defineComponent({
         type: 'image',
         header: 'Multiple Images',
         imageStyle: 'width:100%;',
-        onLoadingStart: function() {
+        onLoadingStart: function () {
           printLoading.value = true
         },
-        onLoadingEnd: function() {
+        onLoadingEnd: function () {
           printLoading.value = false
         },
       })
