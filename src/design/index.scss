@@ -228,7 +228,7 @@ body {
   height: 100%;
   margin: 0;
   overflow: hidden;
-  font-family: inherit;
+  font-family: var(--font-family-base);
   font-size: inherit;
   font-weight: 500;
   line-height: 1.45;

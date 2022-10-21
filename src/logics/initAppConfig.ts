@@ -1,20 +1,18 @@
 /**
+ * 应用配置
+ *
  * Application configuration
  */
 import type { ProjectConfig } from '#/config'
 
 import { PROJ_CFG_KEY } from '@/enums/cacheEnum'
 import projectSetting from '@/settings/projectSetting'
-
 import { updateHeaderColor, updateSidebarColor, updateColorWeak, updateGrayMode, changeTheme, initBasicHeight } from '@/logics/theme'
-
 import { useAppStore } from '@/store/modules/app'
-
-// import { getCommonStoragePrefix, getStorageShortName } from '@/utils/env'
-
 import { Persistent } from '@/utils/cache/persistent'
 import { deepMerge } from '@/utils'
 import { primaryColor } from '@/settings/designSetting'
+import { getCommonStoragePrefix, getStorageShortName } from '@/utils/env'
 
 /**
  * 初始项目配置
@@ -42,9 +40,9 @@ export function initAppConfigStore() {
   updateHeaderColor(headerSetting.bgColor)
   updateSidebarColor(menuSetting.bgColor)
 
-  // setTimeout(() => {
-  //   clearObsoleteStorage()
-  // }, 16)
+  setTimeout(() => {
+    clearObsoleteStorage()
+  }, 16)
 }
 
 /**
@@ -53,15 +51,15 @@ export function initAppConfigStore() {
  * As the version continues to iterate, there will be more and more cache keys stored in localStorage.
  * This method is used to delete useless keys
  */
-// export function clearObsoleteStorage() {
-//   const commonPrefix = getCommonStoragePrefix()
-//   const shortPrefix = getStorageShortName()
+export function clearObsoleteStorage() {
+  const commonPrefix = getCommonStoragePrefix()
+  const shortPrefix = getStorageShortName()
 
-//   ;[localStorage, sessionStorage].forEach((item: Storage) => {
-//     Object.keys(item).forEach((key) => {
-//       if (key && key.startsWith(commonPrefix) && !key.startsWith(shortPrefix)) {
-//         item.removeItem(key)
-//       }
-//     })
-//   })
-// }
+  ;[localStorage, sessionStorage].forEach((item: Storage) => {
+    Object.keys(item).forEach((key) => {
+      if (key && key.startsWith(commonPrefix) && !key.startsWith(shortPrefix)) {
+        item.removeItem(key)
+      }
+    })
+  })
+}

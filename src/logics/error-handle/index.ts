@@ -8,15 +8,17 @@
 
 import type { ErrorLogInfo } from '#/store'
 
-import { useErrorLogStoreWithOut } from '@/store/modules/errorLog'
-
-import { ErrorTypeEnum } from '@/enums/exceptionEnum'
 import { App } from 'vue'
+
+import { useErrorLogStoreWithOut } from '@/store/modules/errorLog'
+import { ErrorTypeEnum } from '@/enums/exceptionEnum'
 import projectSetting from '@/settings/projectSetting'
 
 /**
+ * 处理错误堆栈信息
+ *
  * Handling error stack information
- * @param error
+ * @param error Error
  */
 function processStackMsg(error: Error) {
   if (!error.stack) {
@@ -38,7 +40,9 @@ function processStackMsg(error: Error) {
 }
 
 /**
- * get comp name
+ * 获取组件名称
+ *
+ * Get component name
  * @param vm
  */
 function formatComponentName(vm) {
@@ -64,9 +68,13 @@ function formatComponentName(vm) {
 }
 
 /**
+ * 配置Vue错误处理功能
+ *
  * Configure Vue error handling function
+ * @param err Error
+ * @param vm
+ * @param info string
  */
-
 function vueErrorHandler(err: Error, vm, info: string) {
   const errorLogStore = useErrorLogStoreWithOut()
   const { name, path } = formatComponentName(vm)
@@ -82,7 +90,15 @@ function vueErrorHandler(err: Error, vm, info: string) {
 }
 
 /**
+ * 配置脚本错误处理功能
+ *
  * Configure script error handling function
+ * @param event Event | string
+ * @param source string
+ * @param lineno number
+ * @param colno number
+ * @param error Error
+ * @returns
  */
 export function scriptErrorHandler(
   event: Event | string,
@@ -117,6 +133,8 @@ export function scriptErrorHandler(
 }
 
 /**
+ * 配置Promise错误处理功能
+ *
  * Configure Promise error handling function
  */
 function registerPromiseErrorHandler() {
@@ -139,6 +157,8 @@ function registerPromiseErrorHandler() {
 }
 
 /**
+ * 配置监控资源加载错误处理功能
+ *
  * Configure monitoring resource loading error handling function
  */
 function registerResourceErrorHandler() {
@@ -167,8 +187,10 @@ function registerResourceErrorHandler() {
 }
 
 /**
+ * 配置全局错误处理
+ *
  * Configure global error handling
- * @param app
+ * @param app App
  */
 export function setupErrorHandle(app: App) {
   const { useErrorHandle } = projectSetting
