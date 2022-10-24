@@ -1,7 +1,20 @@
+/**
+ * 角色定义，通常前端控制权限用得到
+ *
+ * Role definition, usually used for front-end control permission
+ */
 export enum RoleEnum {
-  // admin
+  /**
+   * 超管
+   *
+   * Admin
+   */
   ADMIN = 'admin',
 
-  // test
+  /**
+   * 测试
+   *
+   * Test
+   */
   TEST = 'test',
 }

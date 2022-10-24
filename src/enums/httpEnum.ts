@@ -1,15 +1,39 @@
 /**
- * @description: Request result set
+ * 请求结果配置
+ *
+ * Request result
  */
 export enum ResultEnum {
+  /**
+   * 成功
+   *
+   * Success
+   */
   SUCCESS = 0,
+  /**
+   * 错误
+   *
+   * Error
+   */
   ERROR = 1,
+  /**
+   * 超时
+   *
+   * Timeout
+   */
   TIMEOUT = 401,
+  /**
+   * 回调类型
+   *
+   * Response type
+   */
   TYPE = 'success',
 }
 
 /**
- * @description: request method
+ * 请求的方法
+ *
+ * Request method
  */
 export enum RequestEnum {
   GET = 'GET',
@@ -19,13 +43,12 @@ export enum RequestEnum {
 }
 
 /**
- * @description:  contentTyp
+ * 请求上下文类型
+ *
+ * Content type
  */
 export enum ContentTypeEnum {
-  // json
   JSON = 'application/json;charset=UTF-8',
-  // form-data qs
   FORM_URLENCODED = 'application/x-www-form-urlencoded;charset=UTF-8',
-  // form-data  upload
   FORM_DATA = 'multipart/form-data;charset=UTF-8',
 }
