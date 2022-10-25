@@ -4,6 +4,12 @@ interface ScriptOptions {
   src: string
 }
 
+/**
+ * 创建并插入动态脚本
+ *
+ * Create script
+ * @param opts ScriptOptions
+ */
 export function useScript(opts: ScriptOptions) {
   const isLoading = ref(false)
   const error = ref(false)

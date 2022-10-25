@@ -1,24 +1,38 @@
 import type { RouteLocationRaw, Router } from 'vue-router'
 
-import { PageEnum } from '@/enums/pageEnum'
 import { unref } from 'vue'
-
 import { useRouter } from 'vue-router'
+
+import { PageEnum } from '@/enums/pageEnum'
 import { REDIRECT_NAME } from '@/router/constant'
 
 export type RouteLocationRawEx = Omit<RouteLocationRaw, 'path'> & { path: PageEnum }
-
+/**
+ * 显示错误
+ *
+ * Display error
+ * @param e Error
+ */
 function handleError(e: Error) {
   console.error(e)
 }
 
-// page switch
+/**
+ * 路由切换
+ *
+ * Reactive page switch
+ * @param _router Router
+ */
 export function useGo(_router?: Router) {
-  let router
-  if (!_router) {
-    router = useRouter()
-  }
-  const { push, replace } = _router || router
+  const { push, replace } = _router || useRouter()
+
+  /**
+   * 路由跳转
+   *
+   * Router jump
+   * @param opt
+   * @param isReplace
+   */
   function go(opt: PageEnum | RouteLocationRawEx | string = PageEnum.BASE_HOME, isReplace = false) {
     if (!opt) {
       return
@@ -34,11 +48,20 @@ export function useGo(_router?: Router) {
 }
 
 /**
- * @description: redo current page
+ * 路由刷新
+ *
+ * Reactive page redo
+ * @param _router Router
  */
 export const useRedo = (_router?: Router) => {
   const { push, currentRoute } = _router || useRouter()
   const { query, params = {}, name, fullPath } = unref(currentRoute.value)
+
+  /**
+   * 刷新当前页面
+   *
+   * Redo current page
+   */
   function redo(): Promise<boolean> {
     return new Promise((resolve) => {
       if (name === REDIRECT_NAME) {

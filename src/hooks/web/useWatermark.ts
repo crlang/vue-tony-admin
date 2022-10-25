@@ -1,9 +1,16 @@
 import { getCurrentInstance, onBeforeUnmount, ref, Ref, shallowRef, unref } from 'vue'
+
 import { useRafThrottle } from '@/utils/domUtils'
 import { addResizeListener, removeResizeListener } from '@/utils/event'
 
 const domSymbol = Symbol('watermark-dom')
 
+/**
+ * 元素节点的水印处理
+ *
+ * Watermark elements
+ * @param appendEl HTMLElement
+ */
 export function useWatermark(appendEl: Ref<HTMLElement | null> = ref(document.body) as Ref<HTMLElement>) {
   const func = useRafThrottle(function() {
     const el = unref(appendEl)
@@ -14,6 +21,11 @@ export function useWatermark(appendEl: Ref<HTMLElement | null> = ref(document.bo
   const id = domSymbol.toString()
   const watermarkEl = shallowRef<HTMLElement>()
 
+  /**
+   * 清除节点水印
+   *
+   * Clear dom watermark
+   */
   const clear = () => {
     const domId = unref(watermarkEl)
     watermarkEl.value = undefined
@@ -23,6 +35,12 @@ export function useWatermark(appendEl: Ref<HTMLElement | null> = ref(document.bo
     removeResizeListener(el, func)
   }
 
+  /**
+   * 字符串转base64格式的图片
+   *
+   * Convert strings to pictures in base64 format
+   * @param str string
+   */
   function createBase64(str: string) {
     const can = document.createElement('canvas')
     const width = 300
@@ -41,6 +59,12 @@ export function useWatermark(appendEl: Ref<HTMLElement | null> = ref(document.bo
     return can.toDataURL('image/png')
   }
 
+  /**
+   * 更新水印
+   *
+   * Update watermark
+   * @param options
+   */
   function updateWatermark(
     options: {
       width?: number
@@ -61,6 +85,12 @@ export function useWatermark(appendEl: Ref<HTMLElement | null> = ref(document.bo
     }
   }
 
+  /**
+   * 创建水印
+   *
+   * Create watermark
+   * @param str string
+   */
   const createWatermark = (str: string) => {
     if (unref(watermarkEl)) {
       updateWatermark({ str })
@@ -82,6 +112,12 @@ export function useWatermark(appendEl: Ref<HTMLElement | null> = ref(document.bo
     return id
   }
 
+  /**
+   * 设置水印
+   *
+   * Set watermark
+   * @param str string
+   */
   function setWatermark(str: string) {
     createWatermark(str)
     addResizeListener(document.documentElement, func)

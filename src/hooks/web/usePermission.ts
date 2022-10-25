@@ -1,22 +1,23 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-import { useAppStore } from '@/store/modules/app'
-import { usePermissionStore } from '@/store/modules/permission'
-import { useUserStore } from '@/store/modules/user'
-
-import { useTabs } from './useTabs'
-
-import { router, resetRouter } from '@/router'
-// import { RootRoute } from '@/router/routes';
+import { intersection } from 'lodash-es'
 
 import projectSetting from '@/settings/projectSetting'
+import { useAppStore } from '@/store/modules/app'
+import { useUserStore } from '@/store/modules/user'
+import { usePermissionStore } from '@/store/modules/permission'
+import { useMultipleTabStore } from '@/store/modules/multipleTab'
+import { router, resetRouter } from '@/router'
 import { PermissionModeEnum } from '@/enums/appEnum'
 import { RoleEnum } from '@/enums/roleEnum'
 
-import { intersection } from 'lodash-es'
-import { useMultipleTabStore } from '@/store/modules/multipleTab'
+import { useTabs } from './useTabs'
 
-// User permissions related operations
+/**
+ * 处理用户路由权限
+ *
+ * Reactive user permission
+ */
 export function usePermission() {
   const userStore = useUserStore()
   const appStore = useAppStore()
@@ -24,6 +25,8 @@ export function usePermission() {
   const { closeAll } = useTabs(router)
 
   /**
+   * 修改权限控制模式
+   *
    * Change permission mode
    */
   async function togglePermissionMode() {
@@ -37,8 +40,9 @@ export function usePermission() {
   }
 
   /**
-   * Reset and regain authority resource information
-   * @param id
+   * 重置并重新获取权限信息
+   *
+   * Reset and regain authority data
    */
   async function resume() {
     const tabStore = useMultipleTabStore()
@@ -53,7 +57,11 @@ export function usePermission() {
   }
 
   /**
-   * Determine whether there is permission
+   * 检测当前角色是否有权限
+   *
+   * Check whether the current role has permission
+   * @param value RoleEnum | RoleEnum[] | string | string[]
+   * @param def boolean
    */
   function hasPermission(value?: RoleEnum | RoleEnum[] | string | string[], def = true): boolean {
     // Visible by default
@@ -81,6 +89,8 @@ export function usePermission() {
   }
 
   /**
+   * 修改角色
+   *
    * Change roles
    * @param roles
    */
@@ -97,6 +107,8 @@ export function usePermission() {
   }
 
   /**
+   * 刷新权限菜单数据
+   *
    * refresh menu data
    */
   async function refreshMenu() {

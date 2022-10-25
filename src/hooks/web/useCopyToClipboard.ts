@@ -3,6 +3,13 @@ import { ref, watch } from 'vue'
 interface Options {
   target?: HTMLElement
 }
+
+/**
+ * 使用复制到粘贴板
+ *
+ * Reactive copy to clipboard
+ * @param initial
+ */
 export function useCopyToClipboard(initial?: string) {
   const clipboardRef = ref(initial || '')
   const isSuccessRef = ref(false)
@@ -22,6 +29,13 @@ export function useCopyToClipboard(initial?: string) {
   return { clipboardRef, isSuccessRef, copiedRef }
 }
 
+/**
+ * 复制文本到粘贴板
+ *
+ * Copy text to clipboard
+ * @param input
+ * @param param1
+ */
 export function copyTextToClipboard(input: string, { target = document.body }: Options = {}) {
   const element = document.createElement('textarea')
   const previouslyFocusedElement = document.activeElement
@@ -61,7 +75,6 @@ export function copyTextToClipboard(input: string, { target = document.body }: O
   }
 
   if (previouslyFocusedElement) {
-    // eslint-disable-next-line prettier/prettier
     (previouslyFocusedElement as HTMLElement).focus()
   }
   return isSuccess

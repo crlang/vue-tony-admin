@@ -16,9 +16,20 @@ enum TableActionEnum {
   CLOSE,
 }
 
+/**
+ * 选项卡处理
+ *
+ * Reactive multiple tab
+ * @param _router Router
+ */
 export function useTabs(_router?: Router) {
   const appStore = useAppStore()
 
+  /**
+   * 是否有访问权限
+   *
+   * Check for access
+   */
   function canIUseTabs(): boolean {
     const { show } = appStore.getMultiTabsSetting
     if (!show) {
@@ -32,11 +43,23 @@ export function useTabs(_router?: Router) {
 
   const { currentRoute } = router
 
+  /**
+   * 获取当前选项卡
+   *
+   * Get current tab
+   */
   function getCurrentTab() {
     const route = unref(currentRoute)
     return tabStore.getTabList.find((item) => item.path === route.path)!
   }
 
+  /**
+   * 更新选项卡名称
+   *
+   * Update tab title
+   * @param title string
+   * @param tab RouteLocationNormalized
+   */
   async function updateTabTitle(title: string, tab?: RouteLocationNormalized) {
     const canIUse = canIUseTabs
     if (!canIUse) {
@@ -46,6 +69,13 @@ export function useTabs(_router?: Router) {
     await tabStore.setTabTitle(title, targetTab)
   }
 
+  /**
+   * 更新选项卡路径
+   *
+   * Update tab path
+   * @param path string
+   * @param tab RouteLocationNormalized
+   */
   async function updateTabPath(path: string, tab?: RouteLocationNormalized) {
     const canIUse = canIUseTabs
     if (!canIUse) {
@@ -55,6 +85,13 @@ export function useTabs(_router?: Router) {
     await tabStore.updateTabPath(path, targetTab)
   }
 
+  /**
+   * 选项卡相关操作
+   *
+   * Handling tab action
+   * @param action TableActionEnum
+   * @param tab RouteLocationNormalized
+   */
   async function handleTabAction(action: TableActionEnum, tab?: RouteLocationNormalized) {
     const canIUse = canIUseTabs
     if (!canIUse) {

@@ -1,13 +1,22 @@
 import type { EChartsOption } from 'echarts'
 import type { Ref } from 'vue'
-import { useTimeoutFn } from '@/hooks/core/useTimeout'
-import { tryOnUnmounted, useDebounceFn } from '@vueuse/core'
+
 import { unref, nextTick, watch, computed, ref } from 'vue'
+import { tryOnUnmounted, useDebounceFn } from '@vueuse/core'
+
+import { useTimeoutFn } from '@/hooks/core/useTimeout'
 import { useEventListener } from '@/hooks/event/useEventListener'
 import { useBreakpoint } from '@/hooks/event/useBreakpoint'
 import echarts from '@/utils/lib/echarts'
 import { isDark } from '@/logics/theme'
 
+/**
+ * 使用Echarts图表
+ *
+ * Reactive Echarts
+ * @param elRef
+ * @param theme
+ */
 export function useECharts(elRef: Ref<HTMLDivElement>, theme: 'light' | 'dark' | 'default' = 'default') {
   let chartInstance: echarts.ECharts | null = null
   let resizeFn: Fn = resize
@@ -26,6 +35,10 @@ export function useECharts(elRef: Ref<HTMLDivElement>, theme: 'light' | 'dark' |
     } as EChartsOption
   })
 
+  /**
+   * 初始化图表
+   * @param t 主题
+   */
   function initCharts(t = theme) {
     const el = unref(elRef)
     if (!el || !unref(el)) {
@@ -47,6 +60,13 @@ export function useECharts(elRef: Ref<HTMLDivElement>, theme: 'light' | 'dark' |
     }
   }
 
+  /**
+   * 设置图表配置
+   *
+   * Set chart options
+   * @param options
+   * @param clear 是否先清空图表
+   */
   function setOptions(options: EChartsOption, clear = true) {
     cacheOptions.value = options
     if (unref(elRef)?.offsetHeight === 0) {
@@ -69,6 +89,11 @@ export function useECharts(elRef: Ref<HTMLDivElement>, theme: 'light' | 'dark' |
     })
   }
 
+  /**
+   * 重新匹配图表大小
+   *
+   * Resize chart
+   */
   function resize() {
     chartInstance?.resize()
   }
@@ -91,6 +116,11 @@ export function useECharts(elRef: Ref<HTMLDivElement>, theme: 'light' | 'dark' |
     chartInstance = null
   })
 
+  /**
+   * 获取图表实例
+   *
+   * Get chart instance
+   */
   function getInstance(): echarts.ECharts | null {
     if (!chartInstance) {
       initCharts(isDark.value ? 'dark' : 'default')

@@ -7,6 +7,11 @@ import { useLockStore } from '@/store/modules/lock'
 import { useUserStore } from '@/store/modules/user'
 import { useRootSetting } from '../setting/useRootSetting'
 
+/**
+ * 处理锁屏
+ *
+ * Reactive lock page
+ */
 export function useLockPage() {
   const { getLockTime } = useRootSetting()
   const lockStore = useLockStore()

@@ -7,6 +7,11 @@ export interface ScrollToParams {
   callback?: () => any
 }
 
+/**
+ * 创建动画曲线
+ *
+ * Creat easeinout timing-function
+ */
 const easeInOutQuad = (t: number, b: number, c: number, d: number) => {
   t /= d / 2
   if (t < 1) {
@@ -15,20 +20,15 @@ const easeInOutQuad = (t: number, b: number, c: number, d: number) => {
   t--
   return (-c / 2) * (t * (t - 2) - 1) + b
 }
-const move = (el: HTMLElement, amount: number) => {
-  el.scrollTop = amount
-}
-
-const position = (el: HTMLElement) => {
-  return el.scrollTop
-}
 
 /**
- * 定义-滚动到指定位置
+ * 滚动到指定位置
+ *
+ * Reactive Scroll to the specified position
  */
 export function useScrollTo({ el, to, duration = 500, callback }: ScrollToParams) {
   const isActiveRef = ref(false)
-  const start = position(el)
+  const start = el.scrollTop ?? 0
   const change = to - start
   const increment = 20
   let currentTime = 0
@@ -40,7 +40,7 @@ export function useScrollTo({ el, to, duration = 500, callback }: ScrollToParams
     }
     currentTime += increment
     const val = easeInOutQuad(currentTime, start, change, duration)
-    move(el, val)
+    el.scrollTop = val
     if (currentTime < duration && unref(isActiveRef)) {
       requestAnimationFrame(animateScroll)
     } else {

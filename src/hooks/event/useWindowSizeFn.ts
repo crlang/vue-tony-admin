@@ -7,6 +7,14 @@ interface WindowSizeOptions {
   listenerOptions?: AddEventListenerOptions | boolean
 }
 
+/**
+ * 监听窗口大小
+ *
+ * Reactive window resize event listener
+ * @param fn
+ * @param wait
+ * @param options
+ */
 export function useWindowSizeFn<T>(fn: Fn<T>, wait = 150, options?: WindowSizeOptions) {
   let handler = () => {
     fn()
@@ -14,6 +22,11 @@ export function useWindowSizeFn<T>(fn: Fn<T>, wait = 150, options?: WindowSizeOp
   const handleSize = useDebounceFn(handler, wait)
   handler = handleSize
 
+  /**
+   * 开始监听
+   *
+   * Start event listener
+   */
   const start = () => {
     if (options && options.immediate) {
       handler()
@@ -21,6 +34,11 @@ export function useWindowSizeFn<T>(fn: Fn<T>, wait = 150, options?: WindowSizeOp
     window.addEventListener('resize', handler)
   }
 
+  /**
+   * 停止监听
+   *
+   * Stop event listener
+   */
   const stop = () => {
     window.removeEventListener('resize', handler)
   }

@@ -6,6 +6,11 @@ let globalScreenRef: ComputedRef<sizeEnum | undefined>
 let globalWidthRef: ComputedRef<number>
 let globalRealWidthRef: ComputedRef<number>
 
+/**
+ * 断点回调内容
+ *
+ * Breakpoint callback info
+ */
 export interface CreateCallbackParams {
   screen: ComputedRef<sizeEnum | undefined>
   width: ComputedRef<number>
@@ -16,9 +21,9 @@ export interface CreateCallbackParams {
 }
 
 /**
- * 处理屏幕断点，即屏幕窗口大小的变化
+ * 使用屏幕断点
  *
- * Handling screen breakpoints, i.e. changes in the size of the screen window
+ * Reactive screen breakpoint
  */
 export function useBreakpoint() {
   return {
@@ -29,11 +34,21 @@ export function useBreakpoint() {
   }
 }
 
-// Just call it once
+/**
+ * 创建屏幕断点监听
+ *
+ * Create breakpoint listen
+ * @param fn
+ */
 export function createBreakpointListen(fn?: (opt: CreateCallbackParams) => void) {
   const screenRef = ref<sizeEnum>(sizeEnum.XL)
   const realWidthRef = ref(window.innerWidth)
 
+  /**
+   * 获取窗口宽度
+   *
+   * Get window width
+   */
   function getWindowWidth() {
     const width = document.body.clientWidth
     const xs = screenMap.get(sizeEnum.XS)!
@@ -65,7 +80,6 @@ export function createBreakpointListen(fn?: (opt: CreateCallbackParams) => void)
       getWindowWidth()
       resizeFn()
     },
-    // wait: 100,
   })
 
   getWindowWidth()

@@ -6,7 +6,7 @@ import { isEqual } from 'lodash-es'
 /**
  * 嵌入到表单中，子组件只需使用钩子绑定即可进行表单验证
  *
- * Embed into a form, subcomponents just need to use hook binding for form validation
+ * Reactive form item rule, Embed into a form, subcomponents just need to use hook binding for form validation
  * @param props
  * @param key
  * @param changeEvent

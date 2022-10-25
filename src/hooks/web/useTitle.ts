@@ -1,12 +1,14 @@
 import { watch, unref } from 'vue'
 import { useTitle as usePageTitle } from '@vueuse/core'
-import { useGlobSetting } from '@/hooks/setting'
 import { useRouter } from 'vue-router'
 
+import { useGlobSetting } from '@/hooks/setting'
 import { REDIRECT_NAME } from '@/router/constant'
 
 /**
- * Listening to page changes and dynamically changing site titles
+ * 页面标题处理
+ *
+ * Listen to the route title and display it in the page title
  */
 export function useTitle() {
   const { title } = useGlobSetting()

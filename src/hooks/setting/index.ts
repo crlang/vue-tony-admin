@@ -3,6 +3,11 @@ import type { GlobConfig } from '#/config'
 import { warn } from '@/utils/log'
 import { getAppEnvConfig } from '@/utils/env'
 
+/**
+ * 使用全局配置项
+ *
+ * Reactive global setting
+ */
 export const useGlobSetting = (): Readonly<GlobConfig> => {
   const {
     VITE_GLOB_APP_TITLE,

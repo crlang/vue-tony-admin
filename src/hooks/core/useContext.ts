@@ -4,7 +4,6 @@ import {
   inject,
   reactive,
   readonly as defineReadonly,
-  // defineComponent,
   UnwrapRef,
 } from 'vue'
 
@@ -18,6 +17,14 @@ type ShallowUnwrap<T> = {
   [P in keyof T]: UnwrapRef<T[P]>
 }
 
+/**
+ * 创建上下文
+ *
+ * Create context
+ * @param context 上下文内容
+ * @param key 注入key
+ * @param options 可选项
+ */
 export function createContext<T>(context: any, key: InjectionKey<T> = Symbol(), options: CreateContextOptions = {}) {
   const { readonly = true, createProvider = false, native = false } = options
 
@@ -30,9 +37,13 @@ export function createContext<T>(context: any, key: InjectionKey<T> = Symbol(), 
   }
 }
 
-// export function useContext<T>(key: InjectionKey<T>, native?: boolean): T
-// export function useContext<T>(key: InjectionKey<T>, defaultValue?: any, native?: boolean): T
-
+/**
+ * 使用上下文
+ *
+ * Reactive context
+ * @param key
+ * @param defaultValue
+ */
 export function useContext<T>(key: InjectionKey<T> = Symbol(), defaultValue?: any): ShallowUnwrap<T> {
   return inject(key, defaultValue || {})
 }
