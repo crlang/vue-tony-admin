@@ -39,6 +39,8 @@ $prefix-cls: '#{$tonyname}-layout-content';
   flex: 1;
   min-height: 0;
   padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
 
   &--full {
     height: 100%;
