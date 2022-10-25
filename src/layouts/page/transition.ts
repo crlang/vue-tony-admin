@@ -29,5 +29,6 @@ export function getTransitionName({
   if (openCache) {
     name = isInCache && route.meta.loaded ? transitionName : undefined
   }
-  return name || (route.meta.transitionName as string) || def
+  const ret = name || (route.meta.transitionName as string) || def
+  return `tyani-${ret}`
 }
