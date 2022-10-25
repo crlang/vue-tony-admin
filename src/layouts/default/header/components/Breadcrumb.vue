@@ -32,14 +32,11 @@ import { ElBreadcrumb, ElBreadcrumbItem } from 'element-plus'
 import { useRouter } from 'vue-router'
 
 import Icon from '@/components/Icon'
-
 import { useDesign } from '@/hooks/web/useDesign'
 import { useRootSetting } from '@/hooks/setting/useRootSetting'
 import { useGo } from '@/hooks/web/usePage'
-
 import { filter } from '@/utils/helper/treeHelper'
 import { getMenus } from '@/router/menus'
-
 import { REDIRECT_NAME } from '@/router/constant'
 import { getAllParentPath } from '@/router/helper/menuHelper'
 

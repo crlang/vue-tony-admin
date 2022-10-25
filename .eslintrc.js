@@ -104,10 +104,10 @@ module.exports = {
       'error',
       {
         // 每行最大字符
-        code: 120,
-        template: 120,
+        code: 160,
+        template: 160,
         tabWidth: 2,
-        comments: 120,
+        comments: 160,
         ignorePattern: '',
         ignoreComments: true,
         ignoreTrailingComments: false,
@@ -139,7 +139,7 @@ module.exports = {
     // 'prettier/prettier': [
     //   'error',
     //   {
-    //     printWidth: 120,
+    //     printWidth: 160,
     //     tabWidth: 2,
     //     useTabs: false,
     //     semi: false,

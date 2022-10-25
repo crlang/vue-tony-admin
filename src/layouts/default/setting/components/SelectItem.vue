@@ -19,7 +19,9 @@
 <script lang="ts">
 import { defineComponent, PropType, computed } from 'vue'
 import { ElSelect, ElOption } from 'element-plus'
+
 import { useDesign } from '@/hooks/web/useDesign'
+
 import { baseHandler } from '../handler'
 import { HandlerEnum } from '../enum'
 

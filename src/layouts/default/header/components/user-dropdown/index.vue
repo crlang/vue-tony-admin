@@ -45,17 +45,15 @@ import { defineComponent, computed } from 'vue'
 import { ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus'
 
 import { DOC_URL } from '@/settings/siteSetting'
-
 import { useUserStore } from '@/store/modules/user'
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useModal } from '@/components/BasicModal'
-
-import headerImg from '@/assets/images/header.jpg'
 import { openWindow } from '@/utils'
 import { Icon } from '@/components/Icon'
-
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
+
+import headerImg from '@/assets/images/header.jpg'
 
 type MenuEvent = 'logout' | 'doc' | 'lock'
 

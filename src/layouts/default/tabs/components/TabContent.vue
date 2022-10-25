@@ -33,7 +33,9 @@ import type { TabContentProps } from '../types'
 
 import { defineComponent, computed, unref, ref } from 'vue'
 import { ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus'
+
 import { Icon } from '@/components/Icon'
+
 import { useTabDropdown } from '../useTabDropdown'
 import { TabContentEnum } from '../types'
 

@@ -56,21 +56,18 @@ import { defineComponent, unref, computed } from 'vue'
 import { ElHeader } from 'element-plus'
 
 import { AppLogo } from '@/components/Application'
-import LayoutMenu from '../menu/index.vue'
-import LayoutTrigger from '../trigger/index.vue'
-
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { useRootSetting } from '@/hooks/setting/useRootSetting'
-
 import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum'
 import { SettingButtonPositionEnum } from '@/enums/appEnum'
-
-import { UserDropDown, LayoutBreadcrumb, FullScreen, Notify, ErrorAction, AppSearch } from './components'
 import { useAppInject } from '@/hooks/web/useAppInject'
 import { useDesign } from '@/hooks/web/useDesign'
-
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
+
+import LayoutMenu from '../menu/index.vue'
+import LayoutTrigger from '../trigger/index.vue'
+import { UserDropDown, LayoutBreadcrumb, FullScreen, Notify, ErrorAction, AppSearch } from './components'
 
 export default defineComponent({
   name: 'LayoutHeader',

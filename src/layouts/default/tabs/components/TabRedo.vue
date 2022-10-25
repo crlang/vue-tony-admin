@@ -8,6 +8,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+
 import { useTabs } from '@/hooks/web/useTabs'
 import { Icon } from '@/components/Icon'
 

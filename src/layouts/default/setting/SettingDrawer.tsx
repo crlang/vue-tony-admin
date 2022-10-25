@@ -1,18 +1,16 @@
 import { defineComponent, computed, unref } from 'vue'
-import { BasicDrawer } from '@/components/BasicDrawer'
 import { ElDivider } from 'element-plus'
-import { TypePicker, ThemeColorPicker, SettingFooter, SwitchItem, SelectItem, InputNumberItem } from './components'
 
+import { BasicDrawer } from '@/components/BasicDrawer'
 import { AppDarkModeToggle } from '@/components/Application'
-
 import { MenuTypeEnum, TriggerEnum } from '@/enums/menuEnum'
-
 import { useRootSetting } from '@/hooks/setting/useRootSetting'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
 import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting'
 import { useTransitionSetting } from '@/hooks/setting/useTransitionSetting'
 
+import { TypePicker, ThemeColorPicker, SettingFooter, SwitchItem, SelectItem, InputNumberItem } from './components'
 import { baseHandler } from './handler'
 
 import {

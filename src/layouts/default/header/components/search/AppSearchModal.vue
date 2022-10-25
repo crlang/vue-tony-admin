@@ -74,15 +74,17 @@
 
 <script lang="ts" setup>
 import { computed, unref, ref, watch, nextTick } from 'vue'
+import { ElInput } from 'element-plus'
 import { Search } from '@element-plus/icons-vue'
-import AppSearchFooter from './AppSearchFooter.vue'
+
 import Icon from '@/components/Icon'
 import vClickOutside from '@/directives/clickOutside'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useRefs } from '@/hooks/core/useRefs'
-import { useMenuSearch } from './useMenuSearch'
 import { useAppInject } from '@/hooks/web/useAppInject'
-import { ElInput } from 'element-plus'
+
+import { useMenuSearch } from './useMenuSearch'
+import AppSearchFooter from './AppSearchFooter.vue'
 
 const props = defineProps({
   visible: { type: Boolean },

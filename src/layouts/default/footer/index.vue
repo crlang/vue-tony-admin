@@ -20,13 +20,13 @@
 
 <script lang="ts">
 import { computed, defineComponent, unref, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 import { DOC_URL, GITHUB_URL, SITE_URL } from '@/settings/siteSetting'
-import { openWindow } from '@/utils'
-
-import { useRootSetting } from '@/hooks/setting/useRootSetting'
-import { useRouter } from 'vue-router'
 import { useDesign } from '@/hooks/web/useDesign'
+import { openWindow } from '@/utils'
+import { useRootSetting } from '@/hooks/setting/useRootSetting'
+
 import { useLayoutHeight } from '../content/useContentViewHeight'
 
 export default defineComponent({

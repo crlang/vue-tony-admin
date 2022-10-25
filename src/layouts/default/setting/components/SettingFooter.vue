@@ -27,17 +27,15 @@
 <script lang="ts">
 import { defineComponent, unref } from 'vue'
 import { ElButton } from 'element-plus'
-
 import { CopyDocument, RefreshLeft, Refresh } from '@element-plus/icons-vue'
+
 import { useAppStore } from '@/store/modules/app'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useMultipleTabStore } from '@/store/modules/multipleTab'
 import { useUserStore } from '@/store/modules/user'
-
 import { useDesign } from '@/hooks/web/useDesign'
 import { useMessage } from '@/hooks/web/useMessage'
 import { useCopyToClipboard } from '@/hooks/web/useCopyToClipboard'
-
 import { updateHeaderColor, updateSidebarColor, updateColorWeak, updateGrayMode, changeTheme, toggleDarkMode } from '@/logics/theme'
 import defaultSetting from '@/settings/projectSetting'
 import { primaryColor } from '@/settings/designSetting'

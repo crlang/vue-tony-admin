@@ -85,6 +85,7 @@ import type { CSSProperties } from 'vue'
 import type { RouteLocationNormalized } from 'vue-router'
 
 import { computed, defineComponent, onMounted, ref, unref } from 'vue'
+
 import { ScrollContainer } from '@/components/ScrollContainer'
 import { SimpleMenu, SimpleMenuTag } from '@/components/SimpleMenu'
 import { Icon } from '@/components/Icon'
@@ -98,6 +99,7 @@ import { SIDE_BAR_MINI_WIDTH, SIDE_BAR_SHOW_TIT_MINI_WIDTH } from '@/enums/appEn
 import clickOutside from '@/directives/clickOutside'
 import { getChildrenMenus, getCurrentParentPath, getShallowMenus } from '@/router/menus'
 import { listenerRouteChange } from '@/logics/mitt/routeChange'
+
 import { useDragLine } from './useLayoutSider'
 import LayoutTrigger from '../trigger/index.vue'
 

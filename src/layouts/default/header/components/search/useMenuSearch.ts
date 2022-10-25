@@ -1,11 +1,13 @@
 import type { Menu } from '@/router/types'
+
 import { ref, onBeforeMount, unref, Ref, nextTick } from 'vue'
-import { getMenus } from '@/router/menus'
 import { cloneDeep } from 'lodash-es'
+import { onKeyStroke, useDebounceFn } from '@vueuse/core'
+
+import { getMenus } from '@/router/menus'
 import { filter } from '@/utils/helper/treeHelper'
 import { useGo } from '@/hooks/web/usePage'
 import { useScrollTo } from '@/hooks/event/useScrollTo'
-import { onKeyStroke, useDebounceFn } from '@vueuse/core'
 
 export interface SearchResult {
   name: string

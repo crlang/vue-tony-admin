@@ -8,6 +8,7 @@
 
 <script lang="ts">
 import { defineComponent, unref, computed } from 'vue'
+
 import { Icon } from '@/components/Icon'
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'

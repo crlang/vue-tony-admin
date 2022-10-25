@@ -21,9 +21,7 @@
         <ElButton
           type="primary"
           class="mt-2"
-          @click="handleLock">
-          锁定
-        </ElButton>
+          @click="handleLock">锁定</ElButton>
       </div>
     </div>
   </BasicModal>
@@ -32,12 +30,14 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { ElButton } from 'element-plus'
+
 import { useDesign } from '@/hooks/web/useDesign'
 import { BasicModal, useModalInner } from '@/components/BasicModal'
 import { useUserStore } from '@/store/modules/user'
 import { useLockStore } from '@/store/modules/lock'
-import headerImg from '@/assets/images/header.jpg'
 import { BasicForm, useForm } from '@/components/BasicForm'
+
+import headerImg from '@/assets/images/header.jpg'
 
 export default defineComponent({
   name: 'LockModal',

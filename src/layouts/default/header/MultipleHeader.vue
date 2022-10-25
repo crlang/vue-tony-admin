@@ -12,18 +12,17 @@
 <script lang="ts">
 import { defineComponent, unref, computed, CSSProperties } from 'vue'
 
-import LayoutHeader from './index.vue'
-import MultipleTabs from '../tabs/index.vue'
-
 import projectSetting from '@/settings/projectSetting'
-
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { useFullContent } from '@/hooks/web/useFullContent'
 import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting'
 import { useAppInject } from '@/hooks/web/useAppInject'
 import { useDesign } from '@/hooks/web/useDesign'
+
+import MultipleTabs from '../tabs/index.vue'
 import { useLayoutHeight } from '../content/useContentViewHeight'
+import LayoutHeader from './index.vue'
 
 const HEADER_HEIGHT = projectSetting.headerSetting.height
 

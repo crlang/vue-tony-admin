@@ -52,9 +52,11 @@
 <script lang="ts">
 import { computed, defineComponent, PropType, ref, watch } from 'vue'
 import { ElAvatar, ElTag } from 'element-plus'
-import { ListItem as ListItemType } from './data'
+
 import { useDesign } from '@/hooks/web/useDesign'
 import { List, ListItem } from '@/components/List'
+
+import { ListItem as ListItemType } from './data'
 
 export default defineComponent({
   components: {

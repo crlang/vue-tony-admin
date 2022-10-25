@@ -15,11 +15,10 @@ import { useRootSetting } from '@/hooks/setting/useRootSetting'
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useUserStoreWithOut } from '@/store/modules/user'
-
 import { SettingButtonPositionEnum } from '@/enums/appEnum'
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
-
 import SessionTimeoutLogin from '@/views/sys/login/SessionTimeoutLogin.vue'
+
 export default defineComponent({
   name: 'LayoutFeatures',
   components: {

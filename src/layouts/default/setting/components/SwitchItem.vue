@@ -13,10 +13,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType, computed } from 'vue'
+import { ElSwitch } from 'element-plus'
+
 import { useDesign } from '@/hooks/web/useDesign'
+
 import { baseHandler } from '../handler'
 import { HandlerEnum } from '../enum'
-import { ElSwitch } from 'element-plus'
 
 export default defineComponent({
   name: 'SwitchItem',

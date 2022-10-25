@@ -43,23 +43,19 @@ import type { RouteLocationNormalized, RouteMeta } from 'vue-router'
 
 import { defineComponent, computed, unref, ref, toRaw } from 'vue'
 import { ElTabs, ElTabPane } from 'element-plus'
+import { useRouter } from 'vue-router'
+
+import { useGo } from '@/hooks/web/usePage'
+import { useMultipleTabStore } from '@/store/modules/multipleTab'
+import { useUserStore } from '@/store/modules/user'
+import { useDesign } from '@/hooks/web/useDesign'
+import { REDIRECT_NAME } from '@/router/constant'
+import { listenerRouteChange } from '@/logics/mitt/routeChange'
+import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting'
 
 import TabContent from './components/TabContent.vue'
 import FoldButton from './components/FoldButton.vue'
 import TabRedo from './components/TabRedo.vue'
-
-import { useGo } from '@/hooks/web/usePage'
-
-import { useMultipleTabStore } from '@/store/modules/multipleTab'
-import { useUserStore } from '@/store/modules/user'
-
-import { useDesign } from '@/hooks/web/useDesign'
-
-import { REDIRECT_NAME } from '@/router/constant'
-import { listenerRouteChange } from '@/logics/mitt/routeChange'
-
-import { useRouter } from 'vue-router'
-import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting'
 
 export default defineComponent({
   name: 'MultipleTabs',

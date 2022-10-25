@@ -16,14 +16,13 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { ElTooltip, ElBadge } from 'element-plus'
-import Icon from '@/components/Icon'
 
+import Icon from '@/components/Icon'
 import { useErrorLogStore } from '@/store/modules/errorLog'
 import { PageEnum } from '@/enums/pageEnum'
 import { useDesign } from '@/hooks/web/useDesign'
-
-import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'ErrorAction',

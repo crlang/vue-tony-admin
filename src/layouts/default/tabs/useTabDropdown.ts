@@ -3,10 +3,12 @@ import type { ComputedRef } from 'vue'
 import type { EleDropdownItem } from '@/components/ElementPlus'
 
 import { computed, unref, reactive } from 'vue'
-import { MenuEventEnum } from './types'
-import { useMultipleTabStore } from '@/store/modules/multipleTab'
 import { RouteLocationNormalized, useRouter } from 'vue-router'
+
+import { useMultipleTabStore } from '@/store/modules/multipleTab'
 import { useTabs } from '@/hooks/web/useTabs'
+
+import { MenuEventEnum } from './types'
 
 interface DropdownItem extends EleDropdownItem {
   icon: string

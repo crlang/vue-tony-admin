@@ -14,9 +14,10 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { Search } from '@element-plus/icons-vue'
-import AppSearchModal from './AppSearchModal.vue'
 import { ElTooltip } from 'element-plus'
+import { Search } from '@element-plus/icons-vue'
+
+import AppSearchModal from './AppSearchModal.vue'
 
 export default defineComponent({
   name: 'AppSearch',

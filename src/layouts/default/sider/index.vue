@@ -16,12 +16,13 @@
 import { defineComponent } from 'vue'
 import { ElDrawer } from 'element-plus'
 
-import Sider from './LayoutSider.vue'
-import MixSider from './MixSider.vue'
-
 import { useAppInject } from '@/hooks/web/useAppInject'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { useDesign } from '@/hooks/web/useDesign'
+
+import Sider from './LayoutSider.vue'
+import MixSider from './MixSider.vue'
+
 export default defineComponent({
   name: 'SiderWrapper',
   components: { ElDrawer, Sider, MixSider },

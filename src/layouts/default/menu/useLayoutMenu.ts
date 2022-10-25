@@ -3,8 +3,9 @@ import type { Ref } from 'vue'
 
 import { watch, unref, ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { MenuSplitTyeEnum } from '@/enums/menuEnum'
 import { useThrottleFn } from '@vueuse/core'
+
+import { MenuSplitTyeEnum } from '@/enums/menuEnum'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { getChildrenMenus, getCurrentParentPath, getMenus, getShallowMenus } from '@/router/menus'
 import { usePermissionStore } from '@/store/modules/permission'

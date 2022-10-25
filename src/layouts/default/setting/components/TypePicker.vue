@@ -19,7 +19,9 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 import { ElTooltip } from 'element-plus'
+
 import { useDesign } from '@/hooks/web/useDesign'
+
 import { menuTypeList } from '../enum'
 
 export default defineComponent({
