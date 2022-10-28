@@ -63,7 +63,8 @@ function createPageLoadingGuard(router: Router) {
     }
 
     if (unref(getOpenPageLoading)) {
-      appStore.setPageLoadingAction(true)
+      appStore.setPageLoading(true)
+      // appStore.setPageLoadingAction(true)
       return true
     }
 
@@ -73,9 +74,9 @@ function createPageLoadingGuard(router: Router) {
     if (unref(getOpenPageLoading)) {
       // TODO Looking for a better way
       // The timer simulates the loading time to prevent flashing too fast,
-      setTimeout(() => {
-        appStore.setPageLoading(false)
-      }, 220)
+      // setTimeout(() => {
+      appStore.setPageLoading(false)
+      // }, 220)
     }
     return true
   })

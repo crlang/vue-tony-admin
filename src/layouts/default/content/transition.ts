@@ -6,6 +6,11 @@ export interface DefaultContext {
   route: RouteLocation
 }
 
+/**
+ * 根据路由、缓存中获取页面过渡动画名称
+ *
+ * Get the page transition animation name according to the route and cache
+ */
 export function getTransitionName({
   route,
   openCache,
@@ -30,5 +35,7 @@ export function getTransitionName({
     name = isInCache && route.meta.loaded ? transitionName : undefined
   }
   const ret = name || (route.meta.transitionName as string) || def
+  // 加上统一的动画前缀，预防名称相同
+  // Add a uniform animation prefix to prevent the same name
   return `tyani-${ret}`
 }

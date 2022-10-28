@@ -17,7 +17,7 @@ interface AppState {
   // When the window shrinks, remember some states, and restore these states when the window is restored
   beforeMiniInfo: BeforeMiniState
 }
-let timeId: TimeoutHandle
+// let timeId: TimeoutHandle
 export const useAppStore = defineStore({
   id: 'app',
   state: (): AppState => ({
@@ -69,18 +69,18 @@ export const useAppStore = defineStore({
       resetRouter()
       Persistent.clearAll()
     },
-    async setPageLoadingAction(loading: boolean): Promise<void> {
-      if (loading) {
-        clearTimeout(timeId)
-        // Prevent flicker
-        timeId = setTimeout(() => {
-          this.setPageLoading(loading)
-        }, 50)
-      } else {
-        this.setPageLoading(loading)
-        clearTimeout(timeId)
-      }
-    },
+    // async setPageLoadingAction(loading: boolean): Promise<void> {
+    //   if (loading) {
+    //     clearTimeout(timeId)
+    //     // Prevent flicker
+    //     timeId = setTimeout(() => {
+    //       this.setPageLoading(loading)
+    //     }, 50)
+    //   } else {
+    //     this.setPageLoading(loading)
+    //     clearTimeout(timeId)
+    //   }
+    // },
   },
 })
 

@@ -8,9 +8,7 @@
 
       <a
         @click="openWindow(GITHUB_URL)"
-        :class="`${prefixCls}__github`">
-        Github
-      </a>
+        :class="`${prefixCls}__github`">Github</a>
 
       <a @click="openWindow(DOC_URL)">在线文档</a>
     </div>
