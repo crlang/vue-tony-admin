@@ -10,7 +10,7 @@ const permission: AppRouteModule = {
   redirect: '/permission/front/page',
   meta: {
     orderNo: 6,
-    icon: 'ion:key-outline',
+    icon: 'ep:key',
     title: '权限管理',
   },
 

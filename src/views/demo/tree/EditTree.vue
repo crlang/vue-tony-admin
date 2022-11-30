@@ -25,7 +25,7 @@ import { ElCard, ElTree, ElRow, ElCol } from 'element-plus'
 import { treeData } from './data'
 import { useContextMenu } from '@/hooks/web/useContextMenu'
 import { CreateContextMenuOptions } from '@/components/ContextMenu'
-import { Delete, Position } from '@element-plus/icons-vue'
+import { SvgIcon } from '@/components/SvgIcon'
 
 export default defineComponent({
   components: { ElCard, ElTree, ElRow, ElCol },
@@ -43,14 +43,14 @@ export default defineComponent({
           handler: () => {
             // do something
           },
-          icon: 'bi:plus',
+          icon: 'ep:plus',
         },
         {
           label: '删除',
           handler: () => {
             // do something
           },
-          icon: 'bx:bxs-folder-open',
+          icon: 'ep:delete',
         },
       ]
 
@@ -71,11 +71,13 @@ export default defineComponent({
         h(
           'div',
           null,
-          h(Position, {
+          h(SvgIcon, {
+            name: 'plus',
             class: 'mr-2',
             onClick: () => handleSend(node, data, store),
           }),
-          h(Delete, {
+          h(SvgIcon, {
+            name: 'filetext',
             class: 'mr-2',
           }),
         ),

@@ -3,7 +3,7 @@ export const cardList = (() => {
   for (let i = 0; i < 12; i++) {
     result.push({
       title: 'Tony Admin',
-      icon: 'logos:vue',
+      icon: 'ep:element-plus',
       color: '#1890ff',
       active: '100',
       new: '1,799',

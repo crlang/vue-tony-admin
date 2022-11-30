@@ -9,7 +9,7 @@ const system: AppRouteModule = {
   redirect: '/system/account',
   meta: {
     orderNo: 7,
-    icon: 'ion:settings-outline',
+    icon: 'ep:setting',
     title: '系统管理',
   },
   children: [

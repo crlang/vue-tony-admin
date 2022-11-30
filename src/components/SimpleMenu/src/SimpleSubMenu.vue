@@ -4,10 +4,7 @@
     :name="item.path"
     :disabled="item?.disabled"
     :class="getLevelClass">
-    <Icon
-      v-if="getIcon"
-      :name="getIcon"
-      :size="16" />
+    <Icon v-if="getIcon" :name="getIcon" />
     <div
       v-if="collapsedShowTitle && getIsCollapseParent"
       class="mt-1 collapse-title">
@@ -26,10 +23,7 @@
     :class="getLevelClass"
     :collapsedShowTitle="collapsedShowTitle">
     <template #title>
-      <Icon
-        v-if="getIcon"
-        :name="getIcon"
-        :size="16" />
+      <Icon v-if="getIcon" :name="getIcon" />
       <div
         v-if="collapsedShowTitle && getIsCollapseParent"
         class="collapse-title">

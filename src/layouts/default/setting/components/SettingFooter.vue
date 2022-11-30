@@ -3,23 +3,23 @@
     <ElButton
       type="primary"
       @click="handleCopy">
-      <CopyDocument />
-      拷贝
+      <SvgIcon name="copy" class="mr-1" />
+      <span>拷贝</span>
     </ElButton>
 
     <ElButton
       type="warning"
       @click="handleResetSetting"
       class="my-3">
-      <RefreshLeft />
-      重置
+      <SvgIcon name="reload" class="mr-1" />
+      <span>重置</span>
     </ElButton>
 
     <ElButton
       type="danger"
       @click="handleClearAndRedo">
-      <Refresh />
-      清空缓存并返回登录页
+      <SvgIcon name="poweroff" class="mr-1" />
+      <span>清空缓存并返回登录页</span>
     </ElButton>
   </div>
 </template>
@@ -27,7 +27,6 @@
 <script lang="ts">
 import { defineComponent, unref } from 'vue'
 import { ElButton } from 'element-plus'
-import { CopyDocument, RefreshLeft, Refresh } from '@element-plus/icons-vue'
 
 import { useAppStore } from '@/store/modules/app'
 import { usePermissionStore } from '@/store/modules/permission'
@@ -39,10 +38,11 @@ import { useCopyToClipboard } from '@/hooks/web/useCopyToClipboard'
 import { updateHeaderColor, updateSidebarColor, updateColorWeak, updateGrayMode, changeTheme, toggleDarkMode } from '@/logics/theme'
 import defaultSetting from '@/settings/projectSetting'
 import { primaryColor } from '@/settings/designSetting'
+import { SvgIcon } from '@/components/SvgIcon'
 
 export default defineComponent({
   name: 'SettingFooter',
-  components: { ElButton, CopyDocument, RefreshLeft, Refresh },
+  components: { ElButton, SvgIcon },
   setup() {
     const permissionStore = usePermissionStore()
     const { prefixCls } = useDesign('setting-footer')

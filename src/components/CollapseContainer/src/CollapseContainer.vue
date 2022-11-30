@@ -9,11 +9,9 @@
       </BasicTitle>
       <div :class="`${prefixCls}__action`">
         <slot name="extra"></slot>
-        <SvgIcon
-          v-if="canExpan"
-          @click="handleExpand"
-          :rotate="show ? '-90deg' : '90deg'"
-          name="arrow-right-bold" />
+        <template v-if="canExpan">
+          <SvgIcon @click="handleExpand" :name="show ? 'up' : 'down'" />
+        </template>
       </div>
     </div>
 
@@ -50,7 +48,7 @@ import { ElSkeleton } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
 import { ExpandTransition } from '@/components/Transition'
 import { BasicTitle } from '@/components/Basic'
-import SvgIcon from '@/components/SvgIcon'
+import { SvgIcon } from '@/components/SvgIcon'
 
 import { basicProps } from './props'
 

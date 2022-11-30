@@ -11,7 +11,7 @@ const dashboardRoute = {
   meta: {
     title: '仪表盘',
     hideChildrenInMenu: true,
-    icon: 'bx:bx-home',
+    icon: 'ep:data-line',
   },
   children: [
     {
@@ -23,7 +23,7 @@ const dashboardRoute = {
         hideBreadcrumb: true,
         title: '分析页',
         currentActiveMenu: '/dashboard',
-        icon: 'bx:bx-home',
+        icon: 'ep:data-line',
       },
     },
     {
@@ -35,7 +35,7 @@ const dashboardRoute = {
         hideBreadcrumb: true,
         title: '工作台',
         currentActiveMenu: '/dashboard',
-        icon: 'bx:bx-home',
+        icon: 'ep:cpu',
       },
     },
   ],
@@ -74,7 +74,7 @@ const authRoute = {
   component: 'LAYOUT',
   redirect: '/permission/front/page',
   meta: {
-    icon: 'carbon:user-role',
+    icon: 'ep:key',
     title: '权限管理',
   },
   children: [backRoute],
@@ -86,7 +86,7 @@ const levelRoute = {
   component: 'LAYOUT',
   redirect: '/level/menu1/menu1-1',
   meta: {
-    icon: 'carbon:user-role',
+    icon: 'ep:finished',
     title: '多级菜单',
   },
 
@@ -142,7 +142,7 @@ const sysRoute = {
   component: 'LAYOUT',
   redirect: '/system/account',
   meta: {
-    icon: 'ion:settings-outline',
+    icon: 'ep:setting',
     title: '系统管理',
   },
   children: [
@@ -212,7 +212,7 @@ const linkRoute = {
   name: 'Link',
   component: 'LAYOUT',
   meta: {
-    icon: 'ion:tv-outline',
+    icon: 'ep:top-right',
     title: '外部页面',
   },
   children: [

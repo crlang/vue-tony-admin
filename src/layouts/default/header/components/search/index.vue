@@ -4,7 +4,7 @@
       effect="dark"
       content="搜索"
       placement="bottom-end">
-      <span><Search /></span>
+      <span><SvgIcon name="search" /></span>
     </ElTooltip>
     <AppSearchModal
       @close="showModal = false"
@@ -15,13 +15,13 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { ElTooltip } from 'element-plus'
-import { Search } from '@element-plus/icons-vue'
+import { SvgIcon } from '@/components/SvgIcon'
 
 import AppSearchModal from './AppSearchModal.vue'
 
 export default defineComponent({
   name: 'AppSearch',
-  components: { ElTooltip, AppSearchModal, Search },
+  components: { ElTooltip, AppSearchModal, SvgIcon },
   setup() {
     const showModal = ref(false)
 

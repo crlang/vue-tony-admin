@@ -85,7 +85,7 @@ export default defineComponent({
           placement={props.placement}>
           {{
             content: () => renderTitle(),
-            default: () => <span class={prefixCls}>{getSlot(slots) || <SvgIcon name={'info-fill'} />}</span>,
+            default: () => <span class={prefixCls}>{getSlot(slots) || <SvgIcon name='info-cirlce-o' />}</span>,
           }}
         </ElTooltip>
       )

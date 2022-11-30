@@ -18,7 +18,7 @@
               clearable
               v-model="searchKey"
               @input="handleSearch">
-              <template #prefix><Search /></template>
+              <template #prefix><SvgIcon name="search" /></template>
             </ElInput>
             <span
               :class="`${prefixCls}-cancel`"
@@ -50,18 +50,11 @@
                   [`${prefixCls}-list__item--active`]: activeIndex === index,
                 },
               ]">
-              <div :class="`${prefixCls}-list__item-icon`">
-                <Icon
-                  :name="item.icon || 'mdi:form-select'"
-                  :size="20" />
-              </div>
               <div :class="`${prefixCls}-list__item-text`">
                 {{ item.name }}
               </div>
               <div :class="`${prefixCls}-list__item-enter`">
-                <Icon
-                  name="uil:enter"
-                  :size="20" />
+                <SvgIcon name="enter" :size="20" />
               </div>
             </li>
           </ul>
@@ -75,9 +68,8 @@
 <script lang="ts" setup>
 import { computed, unref, ref, watch, nextTick } from 'vue'
 import { ElInput } from 'element-plus'
-import { Search } from '@element-plus/icons-vue'
 
-import Icon from '@/components/Icon'
+import { SvgIcon } from '@/components/SvgIcon'
 import vClickOutside from '@/directives/clickOutside'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useRefs } from '@/hooks/core/useRefs'
@@ -210,7 +202,6 @@ $prefix-cls: '#{$tonyname}-header-search-modal';
 
   .el-input__inner {
     height: 100%;
-    padding-left: 1.75em;
   }
 
   .el-input__prefix-inner {
@@ -257,10 +248,6 @@ $prefix-cls: '#{$tonyname}-header-search-modal';
         .#{$prefix-cls}-list__item-enter {
           opacity: 1;
         }
-      }
-
-      &-icon {
-        width: 2rem;
       }
 
       &-text {

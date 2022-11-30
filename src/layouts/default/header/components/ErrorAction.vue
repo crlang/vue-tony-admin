@@ -7,7 +7,7 @@
         <ElBadge
           :value="getCount"
           :max="99">
-          <Icon name="ion:bug-outline" />
+          <SvgIcon name="bug" />
         </ElBadge>
       </span>
     </ElTooltip>
@@ -19,14 +19,14 @@ import { defineComponent, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElTooltip, ElBadge } from 'element-plus'
 
-import Icon from '@/components/Icon'
+import { SvgIcon } from '@/components/SvgIcon'
 import { useErrorLogStore } from '@/store/modules/errorLog'
 import { PageEnum } from '@/enums/pageEnum'
 import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'ErrorAction',
-  components: { ElTooltip, ElBadge, Icon },
+  components: { ElTooltip, ElBadge, SvgIcon },
 
   setup() {
     const { push } = useRouter()

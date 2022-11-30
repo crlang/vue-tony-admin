@@ -63,7 +63,7 @@
         <span
           class="pushpin"
           @click="handleFixedMenu">
-          <SvgIcon :name="getMixSideFixed ? 'pushpin-fill' : 'pushpin-line'" />
+          <SvgIcon :name="getMixSideFixed ? 'pushpin-fill' : 'pushpin'" />
         </span>
       </div>
       <ScrollContainer :class="`${prefixCls}-menu-list__content`">

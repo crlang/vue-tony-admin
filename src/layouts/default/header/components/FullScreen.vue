@@ -4,14 +4,8 @@
       :content="getTitle"
       placement="bottom">
       <span @click="toggle">
-        <SvgIcon
-          size="18"
-          name="fullscreen"
-          v-if="!isFullscreen" />
-        <SvgIcon
-          size="18"
-          name="fullscreen-exit"
-          v-else />
+        <SvgIcon name="arrowsalt" v-if="!isFullscreen" />
+        <SvgIcon name="shrink" v-else />
       </span>
     </ElTooltip>
   </div>

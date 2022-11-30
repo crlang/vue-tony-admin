@@ -9,7 +9,7 @@ const feat: AppRouteModule = {
   redirect: '/feat/icon',
   meta: {
     orderNo: 3,
-    icon: 'ion:git-compare-outline',
+    icon: 'ep:compass',
     title: '功能',
   },
 

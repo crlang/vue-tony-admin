@@ -9,7 +9,7 @@ const dashboard: AppRouteModule = {
   redirect: '/dashboard/analysis',
   meta: {
     orderNo: 1,
-    icon: 'ion:grid-outline',
+    icon: 'ep:data-line',
     title: '仪表盘',
   },
   children: [
@@ -19,6 +19,7 @@ const dashboard: AppRouteModule = {
       component: () => import('@/views/dashboard/analysis/index.vue'),
       meta: {
         // affix: true,
+        icon: 'ep:data-line',
         title: '分析页',
       },
     },
@@ -27,6 +28,7 @@ const dashboard: AppRouteModule = {
       name: 'Workbench',
       component: () => import('@/views/dashboard/workbench/index.vue'),
       meta: {
+        icon: 'ep:cpu',
         title: '工作台',
       },
     },

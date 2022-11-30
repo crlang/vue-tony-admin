@@ -22,32 +22,32 @@ interface DynamicInfoItem {
 export const navItems: NavItem[] = [
   {
     title: '首页',
-    icon: 'ion:home-outline',
+    icon: 'ep:chrome-filled',
     color: '#1fdaca',
   },
   {
     title: '仪表盘',
-    icon: 'ion:grid-outline',
+    icon: 'ep:eleme',
     color: '#bf0c2c',
   },
   {
     title: '组件',
-    icon: 'ion:layers-outline',
+    icon: 'ep:eleme-filled',
     color: '#e18525',
   },
   {
     title: '系统管理',
-    icon: 'ion:settings-outline',
+    icon: 'ep:shop',
     color: '#3fb27f',
   },
   {
     title: '权限管理',
-    icon: 'ion:key-outline',
+    icon: 'ep:switch-filled',
     color: '#4daf1bc9',
   },
   {
     title: '图表',
-    icon: 'ion:bar-chart-outline',
+    icon: 'ep:wind-power',
     color: '#00d8ff',
   },
 ]

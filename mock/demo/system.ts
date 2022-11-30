@@ -72,7 +72,7 @@ const menuList = (() => {
   for (let index = 0; index < 3; index++) {
     result.push({
       id: `${index}`,
-      icon: ['ion:layers-outline', 'ion:git-compare-outline', 'ion:tv-outline'][index],
+      icon: ['ep:data-line', 'ep:key', 'ep:compass'][index],
       component: 'LAYOUT',
       type: '0',
       menuName: ['Dashboard', '权限管理', '功能'][index],
@@ -87,7 +87,7 @@ const menuList = (() => {
             id: `${index}-${j}`,
             type: '1',
             menuName: ['菜单1', '菜单2', '菜单3', '菜单4'][j],
-            icon: 'ion:document',
+            icon: 'ep:document',
             permission: ['menu1:view', 'menu2:add', 'menu3:update', 'menu4:del'][index],
             component: [
               '/dashboard/welcome/index',

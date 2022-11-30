@@ -7,7 +7,6 @@
       :key="route.name">
       <Icon
         :name="getIcon(route)"
-        size="14"
         class="mr-1"
         v-if="getShowBreadCrumbIcon && getIcon(route)" />
       <span v-if="!hasRedirect(routes, route)">

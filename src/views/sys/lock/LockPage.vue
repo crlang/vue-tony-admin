@@ -4,7 +4,7 @@
       :class="`${prefixCls}__unlock`"
       @click="handleShowForm(false)"
       v-show="showDate">
-      <Lock style="width: 1.5em" />
+      <SvgIcon name="lock" :size="32" />
       <span>点击解锁</span>
     </div>
 
@@ -40,18 +40,13 @@
               type="password"
               placeholder="请输入锁屏密码或者用户密码"
               @keypress.enter="unLock()" />
-            <Loading
-              v-if="loading"
-              class="is-loading" />
-            <ArrowRightBold v-else />
+            <SvgIcon :name="loading ? 'loading' : 'right'" :spin="loading" />
           </div>
           <div
             :class="`${prefixCls}-entry__extra`"
             @click="goLogin">
             <el-tooltip content="返回登录">
-              <Icon
-                :size="32"
-                name="ion:power-outline" />
+              <SvgIcon :size="32" name="poweroff" />
             </el-tooltip>
           </div>
         </div>
@@ -75,10 +70,9 @@ import { useUserStore } from '@/store/modules/user'
 import { useLockStore } from '@/store/modules/lock'
 import { useNow } from './useNow'
 import { useDesign } from '@/hooks/web/useDesign'
-import { Lock, ArrowRightBold, Loading } from '@element-plus/icons-vue'
 import headerImg from '@/assets/images/header.jpg'
 import { useMessage } from '@/hooks/web/useMessage'
-import { Icon } from '@/components/Icon'
+import { SvgIcon } from '@/components/SvgIcon'
 
 const password = ref('')
 const loading = ref(false)
@@ -262,7 +256,7 @@ $prefix-cls: '#{$tonyname}-lock-page';
       position: relative;
       margin: 16px 0;
 
-      > svg {
+      > span {
         position: absolute;
         top: calc(50% - 8px);
         right: 16px;

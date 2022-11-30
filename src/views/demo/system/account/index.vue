@@ -41,15 +41,14 @@ import { ElRow, ElCol, ElButton } from 'element-plus'
 
 import { BasicTable, useTable } from '@/components/BasicTable'
 import { getAccountList } from '@/api/demo/system'
-import DeptTree from './DeptTree.vue'
-
-import AccountModal from './AccountModal.vue'
-import { Document, Edit, Delete } from '@element-plus/icons-vue'
 import { useGo } from '@/hooks/web/usePage'
 import { DeptListItem } from '@/api/demo/model/systemModel'
 import { useMessage } from '@/hooks/web/useMessage'
-import { searchFormSchema, columns } from './data'
 import { useModal } from '@/components/BasicModal'
+
+import { searchFormSchema, columns } from './data'
+import AccountModal from './AccountModal.vue'
+import DeptTree from './DeptTree.vue'
 
 export default defineComponent({
   name: 'AccountManagement',
@@ -159,9 +158,6 @@ export default defineComponent({
       searchInfo,
       registerTable,
       registerModal,
-      Document,
-      Edit,
-      Delete,
       handleCreate,
       handleEdit,
       handleDelete,

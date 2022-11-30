@@ -3,26 +3,20 @@
     v-if="redo"
     placement="top"
     content="刷新">
-    <SvgIcon
-      name="redo"
-      @click="handleRedo" />
+    <SvgIcon name="reload" @click="handleRedo" />
   </ElTooltip>
   <ElTooltip
     v-if="size"
     placement="top"
     content="密度">
-    <SvgIcon
-      :name="`size-${sizeRef}`"
-      @click="handleSize" />
+    <SvgIcon :name="`size-${sizeRef}`" @click="handleSize" />
   </ElTooltip>
 
   <ElTooltip
     v-if="fullScreen"
     placement="top"
     content="全屏">
-    <SvgIcon
-      @click="toggle"
-      :name="isFullscreen ? 'fullscreen-exit' : 'fullscreen'" />
+    <SvgIcon @click="toggle" :name="isFullscreen ? 'shrink' : 'arrowsalt'" />
   </ElTooltip>
 </template>
 
@@ -31,7 +25,7 @@ import { defineComponent, ref } from 'vue'
 import { ComponentSize, ElTooltip } from 'element-plus'
 import { useFullscreen } from '@vueuse/core'
 
-import SvgIcon from '@/components/SvgIcon'
+import { SvgIcon } from '@/components/SvgIcon'
 
 import { useTableContext } from '../hooks/useTableContext'
 

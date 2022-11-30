@@ -82,9 +82,9 @@ export default defineComponent({
     const { createMessage } = useMessage()
 
     const metaActions = [
-      { icon: 'clarity:star-line', text: '156', color: '#018ffb' },
-      { icon: 'bx:bxs-like', text: '156', color: '#459ae8' },
-      { icon: 'bx:bxs-message-dots', text: '2', color: '#42d27d' },
+      { icon: 'ep:star', text: '156', color: '#018ffb' },
+      { icon: 'ep:promotion', text: '156', color: '#459ae8' },
+      { icon: 'ep:comment', text: '2', color: '#42d27d' },
     ]
 
     function handleSubmit(v: any) {

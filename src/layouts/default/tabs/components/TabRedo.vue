@@ -2,7 +2,7 @@
   <span
     @click="handleRedo"
     title="重新加载">
-    <Icon name="codicon:debug-restart" />
+    <SvgIcon name="reload" />
   </span>
 </template>
 
@@ -10,11 +10,11 @@
 import { defineComponent, ref } from 'vue'
 
 import { useTabs } from '@/hooks/web/useTabs'
-import { Icon } from '@/components/Icon'
+import { SvgIcon } from '@/components/SvgIcon'
 
 export default defineComponent({
   name: 'TabRedo',
-  components: { Icon },
+  components: { SvgIcon },
 
   setup() {
     const loading = ref(false)

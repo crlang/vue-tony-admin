@@ -9,7 +9,7 @@ const dashboard: AppRouteModule = {
   redirect: '/about/index',
   meta: {
     hideChildrenInMenu: true,
-    icon: 'simple-icons:about-dot-me',
+    icon: 'ep:connection',
     title: '关于',
     orderNo: 999,
   },
@@ -20,7 +20,7 @@ const dashboard: AppRouteModule = {
       component: () => import('@/views/sys/about/index.vue'),
       meta: {
         title: '关于',
-        icon: 'simple-icons:about-dot-me',
+        icon: 'ep:connection',
         hideMenu: true,
       },
     },

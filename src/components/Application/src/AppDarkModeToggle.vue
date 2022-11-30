@@ -4,12 +4,8 @@
     :class="getClass"
     @click="toggleDark">
     <div :class="`${prefixCls}-inner`"></div>
-    <SvgIcon
-      size="14"
-      name="sun" />
-    <SvgIcon
-      size="14"
-      name="moon" />
+    <SvgIcon name="sun" />
+    <SvgIcon name="moon" />
   </div>
 </template>
 
@@ -51,8 +47,9 @@ $prefix-cls: '#{$tonyname}-dark-switch';
   height: 26px;
   padding: 0 6px;
   margin-left: auto;
+  color: var(--text-primary-reverse);
   cursor: pointer;
-  background-color: #151515;
+  background-color: var(--text-primary-color);
   border-radius: 30px;
 
   &-inner {
@@ -60,7 +57,7 @@ $prefix-cls: '#{$tonyname}-dark-switch';
     z-index: 1;
     width: 18px;
     height: 18px;
-    background-color: #fff;
+    background-color: var(--text-primary-reverse);
     border-radius: 50%;
     transition: transform 0.5s, background-color 0.5s;
     will-change: transform;
@@ -70,7 +67,7 @@ $prefix-cls: '#{$tonyname}-dark-switch';
     border: 1px solid #c4bcbc;
 
     .#{$prefix-cls}-inner {
-      background-color: rgba(255, 255, 255, 0.65);
+      background-color: var(--text-primary-reverse);
       transform: translateX(calc(100% + 2px));
     }
   }

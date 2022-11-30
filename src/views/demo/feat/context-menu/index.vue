@@ -38,14 +38,14 @@ export default defineComponent({
         items: [
           {
             label: 'New',
-            icon: 'bi:plus',
+            icon: 'ep:plus',
             handler: () => {
               createMessage.success('click new')
             },
           },
           {
             label: 'Open',
-            icon: 'bx:bxs-folder-open',
+            icon: 'ep:folder',
             handler: () => {
               createMessage.success('click open')
             },
@@ -60,12 +60,12 @@ export default defineComponent({
         items: [
           {
             label: 'New',
-            icon: 'bi:plus',
+            icon: 'ep:plus',
 
             children: [
               {
                 label: 'New1-1',
-                icon: 'bi:plus',
+                icon: 'ep:plus',
                 divider: true,
                 children: [
                   {
@@ -82,7 +82,7 @@ export default defineComponent({
               },
               {
                 label: 'New1-2',
-                icon: 'bi:plus',
+                icon: 'ep:plus',
               },
             ],
           },

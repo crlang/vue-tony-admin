@@ -26,9 +26,7 @@
         @click="toggleAdvanced"
         v-if="showAdvancedButton && showAdvanced">
         {{ isAdvanced ? '收起 ' : '展开 ' }}
-        <SvgIcon
-          :rotate="isAdvanced ? '-90deg' : '90deg'"
-          name="arrow-right-bold" />
+        <SvgIcon class="ml-1" :name="isAdvanced ? 'up' : 'down'" />
       </ElButton>
       <slot name="advanceAfter"></slot>
     </ElFormItem>
@@ -41,7 +39,7 @@ import type { EleCol } from '@/components/ElementPlus'
 import { defineComponent, computed } from 'vue'
 import { ElFormItem, ElCol, ElButton } from 'element-plus'
 
-import SvgIcon from '@/components/SvgIcon'
+import { SvgIcon } from '@/components/SvgIcon'
 
 import { useFormContext } from '../hooks/useFormContext'
 import { formActionProps } from '../props'

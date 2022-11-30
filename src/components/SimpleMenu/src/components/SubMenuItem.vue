@@ -6,9 +6,9 @@
         @click.stop="handleClick"
         :style="getItemStyle">
         <slot name="title"></slot>
-        <Icon
-          name="eva:arrow-ios-downward-outline"
-          :size="14"
+        <SvgIcon
+          name="down"
+          :size="12"
           :class="`${prefixCls}-title-icon`" />
       </div>
       <transition
@@ -43,10 +43,10 @@
             ]">
             <slot name="title"></slot>
           </div>
-          <Icon
+          <SvgIcon
             v-if="getParentSubMenu"
-            name="eva:arrow-ios-downward-outline"
-            :size="14"
+            name="down"
+            :size="12"
             :class="`${prefixCls}-title-icon`" />
         </div>
       </template>
@@ -77,7 +77,7 @@ import { ElPopover } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useMenuItem } from './useMenu'
 import { useSimpleRootMenuContext } from './useSimpleMenuContext'
-import Icon from '@/components/Icon'
+import { SvgIcon } from '@/components/SvgIcon'
 import mitt from '@/utils/mitt'
 import { isObject } from '@vueuse/core'
 
@@ -86,7 +86,7 @@ export default defineComponent({
   name: 'SubMenu',
   components: {
     ElPopover,
-    Icon,
+    SvgIcon,
   },
   props: {
     name: {

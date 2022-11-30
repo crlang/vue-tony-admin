@@ -9,10 +9,7 @@
           :class="`${prefixCls}-header__back`"
           v-if="isDetail"
           @click="handleClose()">
-          <SvgIcon
-            name="arrow-right"
-            :size="16"
-            rotate="180deg" />
+          <SvgIcon name="left" />
         </span>
 
         <BasicTitle :class="`${prefixCls}-header__title`">

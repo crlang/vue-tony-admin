@@ -337,10 +337,7 @@ export default defineComponent({
             style={unref(getActionStyleRef)}
             ref={actionElRef}>
             {getSlot(slots, 'actionIcon', isPassing) || (
-              <SvgIcon
-                class={`${prefixCls}-action__icon`}
-                name={`${isPassing ? 'select' : 'arrow-double-right'}`}
-              />
+              <SvgIcon class={`${prefixCls}-action__icon`} name={`${isPassing ? 'check' : 'doubleright'}`} />
             )}
           </div>
         )
@@ -437,8 +434,6 @@ $prefix-cls: '#{$tonyname}-basic-drag-verify';
     border-radius: var(--varify-radius);
 
     &__icon {
-      width: 1.45em;
-      height: 1.45em;
       cursor: inherit;
     }
 

@@ -56,40 +56,40 @@ export function useTabDropdown(tabContentProps: TabContentProps, getIsTabs: Comp
       !isCurItem || (index === tabStore.getTabList.length - 1 && tabStore.getLastDragEndIndex >= 0)
     const dropMenuList: DropdownItem[] = [
       {
-        icon: 'ion:reload-sharp',
+        icon: 'reload',
         command: MenuEventEnum.REFRESH_PAGE,
         text: '重新加载',
         disabled: refreshDisabled,
       },
       {
-        icon: 'clarity:close-line',
+        icon: 'close',
         command: MenuEventEnum.CLOSE_CURRENT,
         text: '关闭标签页',
         disabled: !!meta?.affix || disabled,
         divided: true,
       },
       {
-        icon: 'line-md:arrow-close-left',
+        icon: 'verticleright',
         command: MenuEventEnum.CLOSE_LEFT,
         text: '关闭左侧标签页',
         disabled: closeLeftDisabled,
         divided: false,
       },
       {
-        icon: 'line-md:arrow-close-right',
+        icon: 'verticleleft',
         command: MenuEventEnum.CLOSE_RIGHT,
         text: '关闭右侧标签页',
         disabled: closeRightDisabled,
         divided: true,
       },
       {
-        icon: 'dashicons:align-center',
+        icon: 'swap',
         command: MenuEventEnum.CLOSE_OTHER,
         text: '关闭其它标签页',
         disabled: disabled || !isCurItem,
       },
       {
-        icon: 'clarity:minus-line',
+        icon: 'minus',
         command: MenuEventEnum.CLOSE_ALL,
         text: '关闭全部标签页',
         disabled: disabled,

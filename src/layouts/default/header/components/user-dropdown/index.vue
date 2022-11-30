@@ -14,25 +14,19 @@
         <ElDropdownItem
           command="doc"
           v-if="getShowDoc">
-          <Icon
-            class="mr-2"
-            name="ion:document-text-outline" />
-          文档
+          <SvgIcon class="mr-2" name="filetext" />
+          <span>文档</span>
         </ElDropdownItem>
         <ElDropdownItem
           v-if="getUseLockPage"
           :divided="getShowDoc"
           command="lock">
-          <Icon
-            class="mr-2"
-            name="ion:lock-closed-outline" />
-          锁定屏幕
+          <SvgIcon class="mr-2" name="lock" />
+          <span>锁定屏幕</span>
         </ElDropdownItem>
         <ElDropdownItem command="logout">
-          <Icon
-            class="mr-2"
-            name="ion:power-outline" />
-          退出系统
+          <SvgIcon class="mr-2" name="poweroff" />
+          <span>退出系统</span>
         </ElDropdownItem>
       </ElDropdownMenu>
     </template>
@@ -50,7 +44,7 @@ import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useModal } from '@/components/BasicModal'
 import { openWindow } from '@/utils'
-import { Icon } from '@/components/Icon'
+import { SvgIcon } from '@/components/SvgIcon'
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
 
 import headerImg from '@/assets/images/header.jpg'
@@ -64,7 +58,7 @@ export default defineComponent({
     ElDropdownItem,
     ElDropdownMenu,
     LockAction: createAsyncComponent(() => import('../lock/LockModal.vue')),
-    Icon,
+    SvgIcon,
   },
   props: {
     itemClass: String,

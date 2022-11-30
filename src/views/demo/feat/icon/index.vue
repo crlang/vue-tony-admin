@@ -52,21 +52,13 @@
       class="my-6"
       center>
       <CardGridItem>
-        <SvgIcon
-          name="sun"
-          size="36" />
+        <SvgIcon name="sun" :size="30" />
       </CardGridItem>
       <CardGridItem>
-        <SvgIcon
-          name="moon"
-          spin
-          size="36" />
+        <SvgIcon name="moon" :size="30" spin />
       </CardGridItem>
       <CardGridItem>
-        <SvgIcon
-          name="notices"
-          size="36"
-          color="#f00" />
+        <SvgIcon name="bells" :size="30" color="#f00" />
       </CardGridItem>
     </CardGrid>
   </PageWrapper>

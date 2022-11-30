@@ -107,10 +107,7 @@ export default defineComponent({
           class={`${prefixCls}__text`}
           onClick={handler.bind(null, item)}>
           {showIcon && item.icon && (
-            <Icon
-              class='mr-2'
-              name={item.icon}
-            />
+            <Icon class='mr-2' name={item.icon}/>
           )}
           <span>{item.label}</span>
         </div>

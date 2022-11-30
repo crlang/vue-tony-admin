@@ -40,9 +40,7 @@
     <ElButton
       type="primary"
       @click="openUpload()">
-      <SvgIcon
-        name="cloud-upload"
-        class="mr-1" />
+      <SvgIcon name="cloud-upload" class="mr-1" />
       <span>上传</span>
     </ElButton>
     <ElTooltip

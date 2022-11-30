@@ -13,32 +13,32 @@ export interface TabItem {
 export const tags: string[] = ['很有想法的', '专注设计', '川妹子', '大长腿', '海纳百川', '前端开发', 'vue3']
 export const teams: ListItem[] = [
   {
-    icon: 'ri:alipay-fill',
+    icon: 'ep:element-plus',
     title: '科学搬砖组',
     color: '#ff4000',
   },
   {
-    icon: 'emojione-monotone:letter-a',
+    icon: 'ep:element-plus',
     title: '中二少年团',
     color: '#7c51b8',
   },
   {
-    icon: 'ri:alipay-fill',
+    icon: 'ep:element-plus',
     title: '高逼格设计',
     color: '#00adf7',
   },
   {
-    icon: 'jam:codepen-circle',
+    icon: 'ep:element-plus',
     title: '程序员日常',
     color: '#00adf7',
   },
   {
-    icon: 'fa:behance-square',
+    icon: 'ep:element-plus',
     title: '科学搬砖组',
     color: '#7c51b8',
   },
   {
-    icon: 'jam:codepen-circle',
+    icon: 'ep:element-plus',
     title: '程序员日常',
     color: '#ff4000',
   },
@@ -46,15 +46,15 @@ export const teams: ListItem[] = [
 
 export const details: ListItem[] = [
   {
-    icon: 'ic:outline-contacts',
+    icon: 'ep:element-plus',
     title: '交互专家',
   },
   {
-    icon: 'grommet-icons:cluster',
+    icon: 'ep:element-plus',
     title: '某某某事业群',
   },
   {
-    icon: 'bx:bx-home-circle',
+    icon: 'ep:element-plus',
     title: '福建省厦门市',
   },
 ]
@@ -95,7 +95,7 @@ export const applicationList = (() => {
   for (let i = 0; i < 8; i++) {
     result.push({
       title: 'Tony Admin',
-      icon: 'emojione-monotone:letter-a',
+      icon: 'ep:element-plus',
       color: '#1890ff',
       active: '100',
       new: '1,799',

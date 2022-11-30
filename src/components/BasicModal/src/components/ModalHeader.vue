@@ -14,26 +14,20 @@
           content="还原"
           placement="bottom"
           v-if="fullscreen">
-          <SvgIcon
-            @click="handleFullscreen"
-            name="fullscreen-exit" />
+          <SvgIcon @click="handleFullscreen" name="shrink" />
         </ElTooltip>
         <ElTooltip
           content="最大化"
           placement="bottom"
           v-else>
-          <SvgIcon
-            @click="handleFullscreen"
-            name="fullscreen" />
+          <SvgIcon @click="handleFullscreen" name="arrowsalt" />
         </ElTooltip>
       </template>
       <ElTooltip
         v-if="showClose"
         content="关闭"
         placement="bottom">
-        <SvgIcon
-          @click="handleCancel"
-          name="close" />
+        <SvgIcon @click="handleCancel" name="close" />
       </ElTooltip>
     </div>
   </div>

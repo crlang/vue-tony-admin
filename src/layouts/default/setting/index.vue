@@ -3,7 +3,7 @@
     <span
       style="width: 100%; text-align: center"
       @click="openDrawer(true)">
-      <Icon name="ion:settings-outline" />
+      <SvgIcon name="setting" />
     </span>
     <SettingDrawer @register="register" />
   </div>
@@ -12,14 +12,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
-import Icon from '@/components/Icon'
+import { SvgIcon } from '@/components/SvgIcon'
 import { useDrawer } from '@/components/BasicDrawer'
 
 import SettingDrawer from './SettingDrawer'
 
 export default defineComponent({
   name: 'SettingButton',
-  components: { SettingDrawer, Icon },
+  components: { SettingDrawer, SvgIcon },
   setup() {
     const [register, { openDrawer }] = useDrawer()
 

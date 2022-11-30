@@ -15,9 +15,7 @@
                 class="ana-card--compare"
                 :class="[{ 'is-down': item.scale < 0, 'is-up': item.scale > 0 }]">
                 <span class="t1">{{ item.value }}</span>
-                <SvgIcon
-                  class="t2"
-                  :name="item.scale > 0 ? 'rise' : item.scale < 0 ? 'fall' : 'line'" />
+                <SvgIcon class="t2" :name="item.scale > 0 ? 'rise' : item.scale < 0 ? 'fall' : 'minus'" />
                 <span class="t3">{{ Math.abs(item.scale) }}%</span>
               </div>
             </div>

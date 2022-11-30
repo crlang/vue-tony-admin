@@ -2,28 +2,28 @@
   <span
     @click="handleFold"
     :title="getIconText">
-    <Icon :name="getIcon" />
+    <SvgIcon :name="getIcon" />
   </span>
 </template>
 
 <script lang="ts">
 import { defineComponent, unref, computed } from 'vue'
 
-import { Icon } from '@/components/Icon'
+import { SvgIcon } from '@/components/SvgIcon'
 import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { triggerWindowResize } from '@/utils/event'
 
 export default defineComponent({
   name: 'FoldButton',
-  components: { Icon },
+  components: { SvgIcon },
   setup() {
     const { getShowMenu, setMenuSetting } = useMenuSetting()
     const { getShowHeader, setHeaderSetting } = useHeaderSetting()
 
     const getIsUnFold = computed(() => !unref(getShowMenu) && !unref(getShowHeader))
 
-    const getIcon = computed(() => (unref(getIsUnFold) ? 'codicon:screen-normal' : 'codicon:screen-full'))
+    const getIcon = computed(() => (unref(getIsUnFold) ? 'shrink' : 'arrowsalt'))
 
     const getIconText = computed(() => (unref(getIsUnFold) ? '退出全屏' : '全屏'))
 

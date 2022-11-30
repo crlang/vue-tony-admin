@@ -9,7 +9,7 @@ const comp: AppRouteModule = {
   redirect: '/comp/basic',
   meta: {
     orderNo: 2,
-    icon: 'ion:layers-outline',
+    icon: 'ep:coin',
     title: '组件',
     tag: {
       type: 'success',
@@ -24,7 +24,7 @@ const comp: AppRouteModule = {
       name: 'BasicDemo',
       component: () => import('@/views/demo/comp/button/index.vue'),
       meta: {
-        icon: 'ion:layers-outline',
+        icon: 'ep:coin',
         title: '基础组件',
       },
     },
@@ -35,7 +35,6 @@ const comp: AppRouteModule = {
       redirect: '/comp/form/basic',
       component: getParentLayout('FormDemo'),
       meta: {
-        // icon: 'mdi:form-select',
         title: 'Form',
         tag: {
           type: 'error',
@@ -116,7 +115,6 @@ const comp: AppRouteModule = {
       redirect: '/comp/table/basic',
       component: getParentLayout('TableDemo'),
       meta: {
-        // icon: 'carbon:table-split',
         title: 'Table',
         tag: {
           type: 'error',
@@ -238,7 +236,6 @@ const comp: AppRouteModule = {
       redirect: '/comp/tree/basic',
       component: getParentLayout('TreeDemo'),
       meta: {
-        // icon: 'clarity:tree-view-line',
         title: 'Tree',
       },
       children: [

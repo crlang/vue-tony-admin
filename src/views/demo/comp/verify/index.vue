@@ -34,9 +34,7 @@
         ref="el4"
         @success="handleSuccess">
         <template #actionIcon="isPassing">
-          <SvgIcon
-            :name="isPassing ? 'moon' : 'sun'"
-            size="24" />
+          <SvgIcon :name="isPassing ? 'moon' : 'sun'" />
         </template>
       </BasicDragVerify>
       <el-button @click="handleBtnClick(el4)">还原</el-button>
@@ -47,10 +45,7 @@
         ref="el5"
         @success="handleSuccess">
         <template #text="isPassing">
-          <SvgIcon
-            :name="isPassing ? 'moon' : 'sun'"
-            class="mt-2"
-            size="24" />
+          <SvgIcon :name="isPassing ? 'moon' : 'sun'" class="mt-2" />
         </template>
       </BasicDragVerify>
       <el-button @click="handleBtnClick(el5)">还原</el-button>

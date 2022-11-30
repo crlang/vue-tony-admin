@@ -6,9 +6,7 @@
     :popper-class="`${prefixCls}__popper`"
     @command="handleMenuEvent">
     <span v-if="getIsTabs">{{ getTitle }}</span>
-    <Icon
-      v-else
-      name="ion:chevron-down" />
+    <SvgIcon v-else name="down" />
     <template #dropdown>
       <ElDropdownMenu>
         <ElDropdownItem
@@ -17,10 +15,8 @@
           :command="item.command"
           :disabled="item.disabled"
           :divided="item.divided">
-          <Icon
-            :name="item.icon"
-            class="mr-2" />
-          {{ item.text }}
+          <SvgIcon :name="item.icon" class="mr-2" />
+          <span>{{ item.text }}</span>
         </ElDropdownItem>
       </ElDropdownMenu>
     </template>
@@ -34,14 +30,14 @@ import type { TabContentProps } from '../types'
 import { defineComponent, computed, unref, ref } from 'vue'
 import { ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus'
 
-import { Icon } from '@/components/Icon'
+import { SvgIcon } from '@/components/SvgIcon'
 
 import { useTabDropdown } from '../useTabDropdown'
 import { TabContentEnum } from '../types'
 
 export default defineComponent({
   name: 'TabContent',
-  components: { ElDropdown, ElDropdownItem, ElDropdownMenu, Icon },
+  components: { ElDropdown, ElDropdownItem, ElDropdownMenu, SvgIcon },
   props: {
     tabItem: {
       type: Object as PropType<RouteLocationNormalized>,

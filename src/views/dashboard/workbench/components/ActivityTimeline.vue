@@ -5,7 +5,6 @@
       <el-timeline-item
         v-for="(activity, index) in activities"
         :key="index"
-        :icon="activity.icon"
         :type="activity.type"
         :color="activity.color"
         :size="activity.size"
@@ -20,7 +19,6 @@
 
 <script lang="ts" setup>
 import { ElCard, ElTimeline, ElTimelineItem } from 'element-plus'
-import { Check } from '@element-plus/icons-vue'
 
 const activities = [
   {
@@ -29,7 +27,6 @@ const activities = [
     timestamp: '2018-04-12 20:46',
     size: 'large',
     type: 'primary',
-    icon: Check,
   },
   {
     content: 'Custom color',

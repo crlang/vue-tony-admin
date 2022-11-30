@@ -2,28 +2,28 @@
   <div>
     <div>
       <span>
-        <Icon name="uil:enter" />
+        <SvgIcon name="enter" />
       </span>
       <span>确认</span>
     </div>
     <div>
       <span>
-        <Icon name="ion:arrow-up-outline" />
+        <SvgIcon name="arrowup" />
       </span>
       <span>
-        <Icon name="ion:arrow-down-outline" />
+        <SvgIcon name="arrowdown" />
       </span>
       <span>切换</span>
     </div>
     <div>
       <span>
-        <Icon name="mdi:keyboard-esc" />
+        <SvgIcon name="close" />
       </span>
-      <span>关闭</span>
+      <span>ESC</span>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { Icon } from '@/components/Icon'
+import { SvgIcon } from '@/components/SvgIcon'
 </script>

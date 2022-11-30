@@ -9,9 +9,7 @@
         <ElBadge
           :value="count"
           is-dot>
-          <SvgIcon
-            size="18"
-            name="notices" />
+          <SvgIcon name="bells" />
         </ElBadge>
       </template>
 

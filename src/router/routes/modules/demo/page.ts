@@ -12,7 +12,7 @@ const page: AppRouteModule = {
   redirect: '/page-demo/form/basic',
   meta: {
     orderNo: 4,
-    icon: 'ion:aperture-outline',
+    icon: 'ep:reading',
     title: '页面',
   },
   children: [

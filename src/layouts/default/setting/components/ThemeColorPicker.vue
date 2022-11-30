@@ -7,7 +7,7 @@
         @click="handleClick(color)"
         :class="getItemCls(color)"
         :style="{ background: color }">
-        <Check />
+        <SvgIcon name="check" />
       </span>
     </template>
   </div>
@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { Check } from '@element-plus/icons-vue'
+import { SvgIcon } from '@/components/SvgIcon'
 
 import { useDesign } from '@/hooks/web/useDesign'
 
@@ -24,7 +24,7 @@ import { HandlerEnum } from '../enum'
 
 export default defineComponent({
   name: 'ThemeColorPicker',
-  components: { Check },
+  components: { SvgIcon },
   props: {
     colorList: {
       type: Array as PropType<string[]>,

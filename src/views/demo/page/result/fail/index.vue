@@ -11,17 +11,17 @@
 
     <div class="result-error__content">
       <div class="result-error__content-title">您提交的内容有如下错误：</div>
-      <div class="mb-4">
-        <CircleClose
-          style="width: 1rem; height: 1rem"
-          class="mr-2 result-error__content-icon" />
+      <div class="result-error__content-item">
+        <SvgIcon
+          name="close"
+          class="result-error__content-icon" />
         您的账户已被冻结
         <el-link class="ml-4">立即解冻 ></el-link>
       </div>
-      <div class="mb-4">
-        <CircleClose
-          style="width: 1rem; height: 1rem"
-          class="mr-2 result-error__content-icon" />
+      <div class="result-error__content-item">
+        <SvgIcon
+          name="close"
+          class="result-error__content-icon" />
         您的账户还不具备申请资格
         <el-link class="ml-4">立即解冻 ></el-link>
       </div>
@@ -32,10 +32,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElResult, ElButton, ElLink } from 'element-plus'
-import { CircleClose } from '@element-plus/icons-vue'
+
+import { SvgIcon } from '@/components/SvgIcon'
 
 export default defineComponent({
-  components: { ElResult, ElButton, ElLink, CircleClose },
+  components: { ElResult, ElButton, ElLink, SvgIcon },
 })
 </script>
 
@@ -53,6 +54,16 @@ export default defineComponent({
       margin-bottom: 16px;
       font-size: 16px;
       font-weight: 500;
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    &-icon {
+      margin-right: 8px;
     }
   }
 }

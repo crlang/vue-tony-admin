@@ -10,7 +10,7 @@ const iframe: AppRouteModule = {
   redirect: '/frame/doc',
   meta: {
     orderNo: 9,
-    icon: 'ion:tv-outline',
+    icon: 'ep:top-right',
     title: '外部页面',
   },
 

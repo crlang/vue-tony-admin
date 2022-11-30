@@ -1,6 +1,6 @@
 <template>
   <span @click="toggleCollapsed">
-    <SvgIcon :name="getCollapsed ? 'expand' : 'fold'" />
+    <SvgIcon :name="getCollapsed ? 'indent' : 'outdent'" />
   </span>
 </template>
 
