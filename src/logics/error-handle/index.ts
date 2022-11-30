@@ -100,13 +100,7 @@ function vueErrorHandler(err: Error, vm, info: string) {
  * @param error Error
  * @returns
  */
-export function scriptErrorHandler(
-  event: Event | string,
-  source?: string,
-  lineno?: number,
-  colno?: number,
-  error?: Error,
-) {
+export function scriptErrorHandler(event: Event | string, source?: string, lineno?: number, colno?: number, error?: Error) {
   if (event === 'Script error.' && !source) {
     return false
   }

@@ -1,14 +1,8 @@
 <template>
   <div :class="prefixCls">
-    <template
-      v-for="item in menuTypeList || []"
-      :key="item.title">
-      <ElTooltip
-        :content="item.title"
-        placement="bottom">
-        <div
-          @click="handler(item)"
-          :class="getItemCls(item.type)">
+    <template v-for="item in menuTypeList || []" :key="item.title">
+      <ElTooltip :content="item.title" placement="bottom">
+        <div @click="handler(item)" :class="getItemCls(item.type)">
           <div class="mix-sidebar"></div>
         </div>
       </ElTooltip>

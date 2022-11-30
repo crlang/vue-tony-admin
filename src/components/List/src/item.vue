@@ -1,16 +1,9 @@
 <template>
   <div :class="prefixCls">
     <slot></slot>
-    <ListMeta
-      :thumb="thumb"
-      :title="title"
-      :description="description">
-      <template
-        #[item]="data"
-        v-for="item in Object.keys($slots)">
-        <slot
-          :name="item"
-          v-bind="data || {}"></slot>
+    <ListMeta :thumb="thumb" :title="title" :description="description">
+      <template #[item]="data" v-for="item in Object.keys($slots)">
+        <slot :name="item" v-bind="data || {}"></slot>
       </template>
     </ListMeta>
   </div>

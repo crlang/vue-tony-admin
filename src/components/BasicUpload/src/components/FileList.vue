@@ -60,12 +60,7 @@ export default defineComponent({
                 width: `${width}px`,
                 minWidth: `${width}px`,
               }
-              return (
-                <col
-                  style={width ? style : {}}
-                  key={prop}
-                />
-              )
+              return <col style={width ? style : {}} key={prop} />
             })}
           </colgroup>
           <thead>
@@ -73,9 +68,7 @@ export default defineComponent({
               {columnList.map((item) => {
                 const { label = '', align = 'center', prop } = item
                 return (
-                  <th
-                    class={align}
-                    key={prop}>
+                  <th class={align} key={prop}>
                     {label}
                   </th>
                 )
@@ -90,9 +83,7 @@ export default defineComponent({
                     const { prop = '', customRender, align = 'center' } = item
                     const render = typeof customRender === 'function'
                     return (
-                      <td
-                        class={align}
-                        key={prop}>
+                      <td class={align} key={prop}>
                         {render ? customRender?.({ text: record[prop], record }) : record[prop]}
                       </td>
                     )

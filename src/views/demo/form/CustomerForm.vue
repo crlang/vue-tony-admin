@@ -1,13 +1,9 @@
 <template>
   <PageWrapper title="自定义组件示例">
     <CollapseContainer title="自定义表单">
-      <BasicForm
-        @register="register"
-        @submit="handleSubmit">
+      <BasicForm @register="register" @submit="handleSubmit">
         <template #f3="{ model, field }">
-          <el-input
-            v-model:modelValue="model[field]"
-            placeholder="自定义slot" />
+          <el-input v-model:modelValue="model[field]" placeholder="自定义slot" />
         </template>
       </BasicForm>
     </CollapseContainer>

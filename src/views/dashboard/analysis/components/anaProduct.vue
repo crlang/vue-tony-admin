@@ -1,7 +1,5 @@
 <template>
-  <el-row
-    class="ana-product"
-    :gutter="32">
+  <el-row class="ana-product" :gutter="32">
     <el-col :span="8">
       <el-card shadow="always">
         <template #header>

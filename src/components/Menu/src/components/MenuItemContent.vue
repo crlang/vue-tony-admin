@@ -1,9 +1,6 @@
 <template>
   <span>
-    <Icon
-      v-if="getIcon"
-      :name="getIcon"
-      class="mr-2" />
+    <Icon v-if="getIcon" :name="getIcon" class="mr-2" />
     {{ getName }}
   </span>
 </template>

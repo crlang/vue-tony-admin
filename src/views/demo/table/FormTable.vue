@@ -2,16 +2,10 @@
   <PageWrapper>
     <BasicTable @register="registerTable">
       <template #toolbar>
-        <el-button
-          type="primary"
-          @click="getFormValues">
-          获取表单数据
-        </el-button>
+        <el-button type="primary" @click="getFormValues">获取表单数据</el-button>
       </template>
       <template #form-field10="{ model, field }">
-        <el-input
-          v-model:modelValue="model[field]"
-          placeholder="自定义slot" />
+        <el-input v-model:modelValue="model[field]" placeholder="自定义slot" />
       </template>
     </BasicTable>
   </PageWrapper>

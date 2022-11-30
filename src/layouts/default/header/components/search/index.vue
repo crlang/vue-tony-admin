@@ -1,14 +1,9 @@
 <template>
   <div @click="showModal = true">
-    <ElTooltip
-      effect="dark"
-      content="搜索"
-      placement="bottom-end">
+    <ElTooltip effect="dark" content="搜索" placement="bottom-end">
       <span><SvgIcon name="search" /></span>
     </ElTooltip>
-    <AppSearchModal
-      @close="showModal = false"
-      :visible="showModal" />
+    <AppSearchModal @close="showModal = false" :visible="showModal" />
   </div>
 </template>
 

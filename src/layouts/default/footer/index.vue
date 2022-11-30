@@ -1,14 +1,9 @@
 <template>
-  <div
-    :class="prefixCls"
-    v-if="getShowLayoutFooter"
-    ref="footerRef">
+  <div :class="prefixCls" v-if="getShowLayoutFooter" ref="footerRef">
     <div :class="`${prefixCls}__links`">
       <a @click="openWindow(SITE_URL)">在线预览</a>
 
-      <a
-        @click="openWindow(GITHUB_URL)"
-        :class="`${prefixCls}__github`">Github</a>
+      <a @click="openWindow(GITHUB_URL)" :class="`${prefixCls}__github`">Github</a>
 
       <a @click="openWindow(DOC_URL)">在线文档</a>
     </div>

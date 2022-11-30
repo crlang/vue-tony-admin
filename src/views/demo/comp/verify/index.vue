@@ -10,10 +10,7 @@
     </div>
 
     <div class="demo-verify-item">
-      <BasicDragVerify
-        ref="el2"
-        @success="handleSuccess"
-        circle />
+      <BasicDragVerify ref="el2" @success="handleSuccess" circle />
       <el-button @click="handleBtnClick(el2)">还原</el-button>
     </div>
 
@@ -30,9 +27,7 @@
     </div>
 
     <div class="demo-verify-item">
-      <BasicDragVerify
-        ref="el4"
-        @success="handleSuccess">
+      <BasicDragVerify ref="el4" @success="handleSuccess">
         <template #actionIcon="isPassing">
           <SvgIcon :name="isPassing ? 'moon' : 'sun'" />
         </template>
@@ -41,9 +36,7 @@
     </div>
 
     <div class="demo-verify-item">
-      <BasicDragVerify
-        ref="el5"
-        @success="handleSuccess">
+      <BasicDragVerify ref="el5" @success="handleSuccess">
         <template #text="isPassing">
           <SvgIcon :name="isPassing ? 'moon' : 'sun'" class="mt-2" />
         </template>

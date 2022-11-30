@@ -1,10 +1,7 @@
 <template>
   <span :class="getClass">
     <slot></slot>
-    <BasicHelp
-      :class="`${prefixCls}-help`"
-      v-if="helpMessage"
-      :text="helpMessage" />
+    <BasicHelp :class="`${prefixCls}-help`" v-if="helpMessage" :text="helpMessage" />
   </span>
 </template>
 
@@ -44,11 +41,7 @@ export default defineComponent({
   setup(props, { slots }) {
     const { prefixCls } = useDesign('basic-title')
 
-    const getClass = computed(() => [
-      prefixCls,
-      { [`${prefixCls}--span`]: props.span && slots.default },
-      { [`${prefixCls}--bold`]: props.bold },
-    ])
+    const getClass = computed(() => [prefixCls, { [`${prefixCls}--span`]: props.span && slots.default }, { [`${prefixCls}--bold`]: props.bold }])
 
     return { prefixCls, getClass }
   },

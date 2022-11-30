@@ -1,7 +1,5 @@
 <template>
-  <Scrollbar
-    ref="scrollbarRef"
-    :class="prefixCls">
+  <Scrollbar ref="scrollbarRef" :class="prefixCls">
     <slot></slot>
   </Scrollbar>
 </template>

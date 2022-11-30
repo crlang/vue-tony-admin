@@ -30,20 +30,7 @@ export default defineComponent({
   setup() {
     const { createMessage } = useMessage()
     const columns = getBasicColumns()
-    const [
-      registerTable,
-      {
-        setLoading,
-        setColumns,
-        getColumns,
-        getDataSource,
-        getRawDataSource,
-        reload,
-        getPagination,
-        setPagination,
-        toggleAllSelection,
-      },
-    ] = useTable({
+    const [registerTable, { setLoading, setColumns, getColumns, getDataSource, getRawDataSource, reload, getPagination, setPagination, toggleAllSelection }] = useTable({
       title: 'useTable示例',
       titleHelpMessage: '使用useTable调用表格内方法',
       api: demoListApi,

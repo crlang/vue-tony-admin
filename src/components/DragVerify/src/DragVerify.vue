@@ -288,13 +288,7 @@ export default defineComponent({
         if (state.toLeft) {
           cls.push('to-left')
         }
-        return (
-          <div
-            class={cls}
-            ref={barElRef}
-            style={unref(getBarStyleRef)}
-          />
-        )
+        return <div class={cls} ref={barElRef} style={unref(getBarStyleRef)} />
       }
 
       /**
@@ -310,10 +304,7 @@ export default defineComponent({
         isPassing && cls.push('success')
 
         return (
-          <div
-            class={cls}
-            ref={contentElRef}
-            style={unref(getContentStyleRef)}>
+          <div class={cls} ref={contentElRef} style={unref(getContentStyleRef)}>
             {getSlot(slots, 'text', isPassing) || (isPassing ? successText : text)}
           </div>
         )
@@ -330,15 +321,8 @@ export default defineComponent({
           cls.push('to-left')
         }
         return (
-          <div
-            class={cls}
-            onMousedown={handleDragStart}
-            onTouchstart={handleDragStart}
-            style={unref(getActionStyleRef)}
-            ref={actionElRef}>
-            {getSlot(slots, 'actionIcon', isPassing) || (
-              <SvgIcon class={`${prefixCls}-action__icon`} name={`${isPassing ? 'check' : 'doubleright'}`} />
-            )}
+          <div class={cls} onMousedown={handleDragStart} onTouchstart={handleDragStart} style={unref(getActionStyleRef)} ref={actionElRef}>
+            {getSlot(slots, 'actionIcon', isPassing) || <SvgIcon class={`${prefixCls}-action__icon`} name={`${isPassing ? 'check' : 'doubleright'}`} />}
           </div>
         )
       }
@@ -395,16 +379,7 @@ $prefix-cls: '#{$tonyname}-basic-drag-verify';
     top: 0;
     font-size: 12px;
     text-size-adjust: none;
-    background-image: -webkit-gradient(
-      linear,
-      left top,
-      right top,
-      color-stop(0, #333),
-      color-stop(0.4, #333),
-      color-stop(0.5, #fff),
-      color-stop(0.6, #333),
-      color-stop(1, #333)
-    );
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #333), color-stop(0.4, #333), color-stop(0.5, #fff), color-stop(0.6, #333), color-stop(1, #333));
     animation: slidetounlock 3s infinite;
     background-clip: text;
     user-select: none;

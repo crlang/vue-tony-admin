@@ -274,10 +274,7 @@ export interface FormActionMethods {
   /**
    * 验证具体的某个字段。
    */
-  validateField: (
-    props?: Arrayable<FormItemProp>,
-    callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void,
-  ) => Promise<void>
+  validateField: (props?: Arrayable<FormItemProp>, callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void) => Promise<void>
   /**
    * 重置该表单项，将其值重置为初始值，并移除校验结果
    */
@@ -371,14 +368,7 @@ export interface BasicFormSchema {
    *
    * Parameters of the rendered form component
    */
-  componentProps?:
-    | ((opt: {
-        schema: BasicFormSchema
-        tableAction?: TableActionMethods
-        formAction: FormActionMethods
-        formModel: Recordable
-      }) => Recordable)
-    | object
+  componentProps?: ((opt: { schema: BasicFormSchema; tableAction?: TableActionMethods; formAction: FormActionMethods; formModel: Recordable }) => Recordable) | object
   /**
    * 是否必填，当 rules 为空时生效
    *

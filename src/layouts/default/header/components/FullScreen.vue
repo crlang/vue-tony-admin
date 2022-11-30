@@ -1,8 +1,6 @@
 <template>
   <div>
-    <ElTooltip
-      :content="getTitle"
-      placement="bottom">
+    <ElTooltip :content="getTitle" placement="bottom">
       <span @click="toggle">
         <SvgIcon name="arrowsalt" v-if="!isFullscreen" />
         <SvgIcon name="shrink" v-else />

@@ -1,7 +1,5 @@
 <template>
-  <ElMenuItem
-    v-if="!menuHasChildren(item) && getShowMenu"
-    :index="item.path">
+  <ElMenuItem v-if="!menuHasChildren(item) && getShowMenu" :index="item.path">
     {{ item.name }}
   </ElMenuItem>
   <ElSubMenu
@@ -13,9 +11,7 @@
       <MenuItemContent :item="item" :class="`${prefixCls}-content`" />
     </template>
 
-    <template
-      v-for="childrenItem in item.children || []"
-      :key="childrenItem.path">
+    <template v-for="childrenItem in item.children || []" :key="childrenItem.path">
       <BasicSubMenuItem :item="childrenItem" />
     </template>
   </ElSubMenu>
@@ -38,12 +34,7 @@ export default defineComponent({
   setup(props) {
     const getShowMenu = computed(() => !props.item.meta?.hideMenu)
     function menuHasChildren(menuTreeItem: MenuType): boolean {
-      return (
-        !menuTreeItem.meta?.hideChildrenInMenu &&
-        Reflect.has(menuTreeItem, 'children') &&
-        !!menuTreeItem.children &&
-        menuTreeItem.children.length > 0
-      )
+      return !menuTreeItem.meta?.hideChildrenInMenu && Reflect.has(menuTreeItem, 'children') && !!menuTreeItem.children && menuTreeItem.children.length > 0
     }
     return {
       menuHasChildren,

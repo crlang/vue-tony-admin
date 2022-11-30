@@ -8,9 +8,7 @@
       <BasicForm @register="register" />
     </el-card>
 
-    <el-card
-      header="任务管理"
-      class="my-5">
+    <el-card header="任务管理" class="my-5">
       <BasicForm @register="registerTask" />
     </el-card>
 
@@ -20,11 +18,7 @@
 
     <template #rightFooter>
       <div class="p-2 text-right">
-        <el-button
-          type="primary"
-          @click="submitAll">
-          提交
-        </el-button>
+        <el-button type="primary" @click="submitAll">提交</el-button>
       </div>
     </template>
   </PageWrapper>

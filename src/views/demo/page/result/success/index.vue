@@ -18,10 +18,7 @@
         <el-descriptions-item label="生效时间">2016-12-12 ~ 2017-12-12</el-descriptions-item>
       </el-descriptions>
 
-      <el-steps
-        :active="1"
-        finish-status="success"
-        class="mt-8">
+      <el-steps :active="1" finish-status="success" class="mt-8">
         <el-step title="创建项目">
           <template #description>
             <div>Tony</div>

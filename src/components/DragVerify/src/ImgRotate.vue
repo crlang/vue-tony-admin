@@ -171,9 +171,7 @@ export default defineComponent({
 
       return (
         <div class={`${prefixCls}`}>
-          <div
-            class={`${prefixCls}-img__wrap`}
-            style={unref(getImgWrapStyleRef)}>
+          <div class={`${prefixCls}-img__wrap`} style={unref(getImgWrapStyleRef)}>
             <img
               src={src}
               onLoad={handleImgOnLoad}
@@ -186,13 +184,9 @@ export default defineComponent({
               alt='verify'
             />
             {state.showTip && (
-              <span class={[`${prefixCls}-img__tip`, state.isPassing ? 'success' : 'error']}>
-                {state.isPassing ? `验证校验成功,耗时${time.toFixed(1)}秒！` : '验证失败！'}
-              </span>
+              <span class={[`${prefixCls}-img__tip`, state.isPassing ? 'success' : 'error']}>{state.isPassing ? `验证校验成功,耗时${time.toFixed(1)}秒！` : '验证失败！'}</span>
             )}
-            {!state.showTip && !state.draged && (
-              <span class={[`${prefixCls}-img__tip`, 'normal']}>{'点击图片可刷新'}</span>
-            )}
+            {!state.showTip && !state.draged && <span class={[`${prefixCls}-img__tip`, 'normal']}>{'点击图片可刷新'}</span>}
           </div>
           <BasicDragVerify
             class={`${prefixCls}-drag__bar`}

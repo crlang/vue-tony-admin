@@ -14,13 +14,8 @@
       </component>
     </div>
     <template v-if="!native">
-      <bar
-        :move="moveX"
-        :size="sizeWidth" />
-      <bar
-        vertical
-        :move="moveY"
-        :size="sizeHeight" />
+      <bar :move="moveX" :size="sizeWidth" />
+      <bar vertical :move="moveY" :size="sizeHeight" />
     </template>
   </div>
 </template>

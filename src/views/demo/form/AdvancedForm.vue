@@ -1,8 +1,6 @@
 <template>
   <PageWrapper title="可折叠表单示例">
-    <CollapseContainer
-      title="超过3行自动收起，折叠时保留1行"
-      class="mt-4">
+    <CollapseContainer title="超过3行自动收起，折叠时保留1行" class="mt-4">
       <BasicForm @register="register" />
     </CollapseContainer>
   </PageWrapper>

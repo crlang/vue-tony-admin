@@ -1,12 +1,7 @@
 <template>
   <div :class="prefixCls">
-    <template
-      v-for="color in colorList || []"
-      :key="color">
-      <span
-        @click="handleClick(color)"
-        :class="getItemCls(color)"
-        :style="{ background: color }">
+    <template v-for="color in colorList || []" :key="color">
+      <span @click="handleClick(color)" :class="getItemCls(color)" :style="{ background: color }">
         <SvgIcon name="check" />
       </span>
     </template>

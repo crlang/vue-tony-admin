@@ -1,15 +1,8 @@
 <template>
   <div class="step3">
-    <el-result
-      icon="success"
-      title="操作成功"
-      sub-title="预计两小时内到账">
+    <el-result icon="success" title="操作成功" sub-title="预计两小时内到账">
       <template #extra>
-        <el-button
-          type="primary"
-          @click="redo">
-          再转一笔
-        </el-button>
+        <el-button type="primary" @click="redo">再转一笔</el-button>
         <el-button>查看账单</el-button>
       </template>
     </el-result>

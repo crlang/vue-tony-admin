@@ -101,11 +101,7 @@ export function useDataSource(
    * @param sorter ColumnSorterResult
    * @param filters
    */
-  function handleTableChange(
-    pagination: Partial<ElePagination>,
-    sorter?: ColumnSorterResult,
-    filters?: Partial<Recordable<string[]>>,
-  ) {
+  function handleTableChange(pagination: Partial<ElePagination>, sorter?: ColumnSorterResult, filters?: Partial<Recordable<string[]>>) {
     const { sortFn, filterFn } = unref(propsRef)
     // 更新了分页
     // Pagination updated

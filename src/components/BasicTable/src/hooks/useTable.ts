@@ -2,14 +2,7 @@ import type { WatchStopHandle } from 'vue'
 import type { DynamicProps } from '#/utils'
 import type { FormActionMethods } from '@/components/BasicForm'
 import type { ElePagination } from '@/components/ElementPlus'
-import type {
-  BasicTableProps,
-  TableActionMethods,
-  FetchParams,
-  BasicColumn,
-  GetColumnsParams,
-  UseTableMethod,
-} from '../typing'
+import type { BasicTableProps, TableActionMethods, FetchParams, BasicColumn, GetColumnsParams, UseTableMethod } from '../typing'
 
 import { ref, onUnmounted, unref, watch } from 'vue'
 
@@ -22,9 +15,7 @@ import { error } from '@/utils/log'
  *
  * Define use instance
  */
-export function useTable(
-  tableProps?: Partial<DynamicProps<BasicTableProps>>,
-): [(instance: TableActionMethods, formInstance: UseTableMethod) => void, UseTableMethod] {
+export function useTable(tableProps?: Partial<DynamicProps<BasicTableProps>>): [(instance: TableActionMethods, formInstance: UseTableMethod) => void, UseTableMethod] {
   const tableRef = ref<Nullable<TableActionMethods>>(null)
   const loadedRef = ref<Nullable<boolean>>(false)
   const formRef = ref<Nullable<UseTableMethod>>(null)
@@ -72,9 +63,7 @@ export function useTable(
   function getTableInstance() {
     const instance = unref(tableRef)
     if (!instance) {
-      error(
-        'The table instance has not been obtained, please make sure the instance is rendered when performing the instance operation!',
-      )
+      error('The table instance has not been obtained, please make sure the instance is rendered when performing the instance operation!')
     }
     return instance
   }

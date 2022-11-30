@@ -2,16 +2,10 @@
   <div>
     <BasicTable @register="registerTable">
       <template #toolbar>
-        <el-button
-          type="primary"
-          @click="handleCreate">
-          新增角色
-        </el-button>
+        <el-button type="primary" @click="handleCreate">新增角色</el-button>
       </template>
     </BasicTable>
-    <RoleDrawer
-      @register="registerDrawer"
-      @success="handleSuccess" />
+    <RoleDrawer @register="registerDrawer" @success="handleSuccess" />
   </div>
 </template>
 

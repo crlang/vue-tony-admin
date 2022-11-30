@@ -1,7 +1,5 @@
 <template>
-  <PageWrapper
-    title="懒加载基础示例"
-    description="向下滚动到可见区域才会加载组件">
+  <PageWrapper title="懒加载基础示例" description="向下滚动到可见区域才会加载组件">
     <div class="lazy-base-demo-wrap">
       <h1>向下滚动</h1>
       <div class="lazy-base-demo-box">

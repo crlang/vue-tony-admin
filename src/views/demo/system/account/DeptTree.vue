@@ -1,7 +1,5 @@
 <template>
-  <el-card
-    header="部门列表"
-    shadow="never">
+  <el-card header="部门列表" shadow="never">
     <el-tree
       :data="treeData"
       default-expand-all

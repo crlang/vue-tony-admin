@@ -7,13 +7,9 @@
       <el-button @click="scrollBottom()">滚动到底部</el-button>
     </div>
     <div class="scroll-wrap">
-      <ScrollContainer
-        class="mt-4"
-        ref="scrollRef">
+      <ScrollContainer class="mt-4" ref="scrollRef">
         <ul class="p-3">
-          <li
-            v-for="(k, i) in litdata"
-            :key="i">
+          <li v-for="(k, i) in litdata" :key="i">
             {{ k }}
           </li>
         </ul>

@@ -20,10 +20,7 @@
       </el-button>
     </template>
     <div style="display: flex; align-items: center; margin-bottom: 8px">
-      <ElAlert
-        :title="getHelpText"
-        type="info"
-        :closable="false" />
+      <ElAlert :title="getHelpText" type="info" :closable="false" />
       <ElUpload
         action="emptyUrl"
         :accept="getStringAccept"
@@ -33,18 +30,11 @@
         :show-file-list="false"
         :before-upload="beforeUpload"
         style="margin-left: 8px">
-        <ElButton
-          type="primary"
-          :disabled="getUploadState">
-          选择文件
-        </ElButton>
+        <ElButton type="primary" :disabled="getUploadState">选择文件</ElButton>
       </ElUpload>
     </div>
 
-    <FileList
-      :dataSource="fileListRef"
-      :columns="columns"
-      :actionColumn="actionColumn" />
+    <FileList :dataSource="fileListRef" :columns="columns" :actionColumn="actionColumn" />
   </BasicModal>
 </template>
 
@@ -99,9 +89,7 @@ export default defineComponent({
      * Get whether the selected files have all been uploaded
      */
     const getIsSelectFile = computed(() => {
-      return (
-        fileListRef.value.length > 0 && !fileListRef.value.every((item) => item.status === UploadResultStatus.SUCCESS)
-      )
+      return fileListRef.value.length > 0 && !fileListRef.value.every((item) => item.status === UploadResultStatus.SUCCESS)
     })
     /**
      * 获取确定按钮配置

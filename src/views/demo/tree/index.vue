@@ -1,14 +1,9 @@
 <template>
-  <PageWrapper
-    title="Tree 基础示例"
-    description="未做封装，仅对 Element ElTree 官方组件进行演示">
+  <PageWrapper title="Tree 基础示例" description="未做封装，仅对 Element ElTree 官方组件进行演示">
     <el-row :gutter="16">
       <el-col :span="8">
         <el-card header="基础示例，默认展开第一层">
-          <el-tree
-            :data="treeData"
-            node-key="key"
-            :default-expanded-keys="['0-0', '1-1', '2-2']" />
+          <el-tree :data="treeData" node-key="key" :default-expanded-keys="['0-0', '1-1', '2-2']" />
         </el-card>
       </el-col>
       <el-col :span="8">
@@ -31,9 +26,7 @@
             :default-checked-keys="['0-0']" />
         </el-card>
       </el-col>
-      <el-col
-        :span="8"
-        class="mt-4">
+      <el-col :span="8" class="mt-4">
         <el-card header="懒加载异步树">
           <el-tree
             ref="asyncTreeRef"
@@ -44,19 +37,12 @@
             :load="onLoadData" />
         </el-card>
       </el-col>
-      <el-col
-        :span="16"
-        class="mt-4">
+      <el-col :span="16" class="mt-4">
         <el-card>
           <template #header>
             <div>
               <span>异步数据，默认展开</span>
-              <el-button
-                @click="loadTreeData"
-                class="ml-6"
-                :loading="treeLoading">
-                加载数据
-              </el-button>
+              <el-button @click="loadTreeData" class="ml-6" :loading="treeLoading">加载数据</el-button>
             </div>
           </template>
           <el-tree

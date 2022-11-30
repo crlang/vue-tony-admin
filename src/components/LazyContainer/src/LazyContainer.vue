@@ -6,17 +6,11 @@
     :name="transitionName"
     :tag="tag"
     mode="out-in">
-    <div
-      key="component"
-      v-if="isInit">
+    <div key="component" v-if="isInit">
       <slot :loading="loading"></slot>
     </div>
-    <div
-      key="skeleton"
-      v-else>
-      <slot
-        name="skeleton"
-        v-if="$slots.skeleton"></slot>
+    <div key="skeleton" v-else>
+      <slot name="skeleton" v-if="$slots.skeleton"></slot>
       <ElSkeleton v-else />
     </div>
   </transition-group>

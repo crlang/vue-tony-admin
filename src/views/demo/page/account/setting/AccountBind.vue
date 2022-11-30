@@ -1,11 +1,7 @@
 <template>
-  <CollapseContainer
-    title="账号绑定"
-    :canExpan="false">
+  <CollapseContainer title="账号绑定" :canExpan="false">
     <List>
-      <template
-        v-for="item in list"
-        :key="item.key">
+      <template v-for="item in list" :key="item.key">
         <ListItem>
           <template #thumb>
             <Icon

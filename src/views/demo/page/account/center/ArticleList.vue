@@ -1,20 +1,14 @@
 <template>
   <List :class="prefixCls">
-    <template
-      v-for="item in list"
-      :key="item.title">
+    <template v-for="item in list" :key="item.title">
       <ListItem>
         <template #title>
           <p :class="`${prefixCls}__title`">
             {{ item.title }}
           </p>
           <div>
-            <template
-              v-for="tag in item.description"
-              :key="tag">
-              <el-tag
-                class="mb-2 mr-2"
-                size="small">
+            <template v-for="tag in item.description" :key="tag">
+              <el-tag class="mb-2 mr-2" size="small">
                 {{ tag }}
               </el-tag>
             </template>
@@ -25,9 +19,7 @@
             {{ item.content }}
           </div>
           <div class="mt-2">
-            <template
-              v-for="action in metaActions"
-              :key="action.text">
+            <template v-for="action in metaActions" :key="action.text">
               <div :class="`${prefixCls}__action`">
                 <Icon
                   v-if="action.icon"

@@ -5,34 +5,17 @@
     :rules="getFormRules"
     ref="formRef">
     <el-form-item prop="account">
-      <el-input
-        v-model="formData.account"
-        placeholder="账号 admin/tony" />
+      <el-input v-model="formData.account" placeholder="账号 admin/tony" />
     </el-form-item>
-    <el-form-item
-      prop="password"
-      class="mb-1">
-      <el-input
-        v-model="formData.password"
-        placeholder="密码 123456"
-        @keypress.enter="handleLogin" />
+    <el-form-item prop="password" class="mb-1">
+      <el-input v-model="formData.password" placeholder="密码 123456" @keypress.enter="handleLogin" />
     </el-form-item>
     <el-row class="mt-3">
       <el-col :span="12">
-        <el-checkbox
-          v-model="rememberMe"
-          size="small">
-          记住我
-        </el-checkbox>
+        <el-checkbox v-model="rememberMe" size="small">记住我</el-checkbox>
       </el-col>
-      <el-col
-        :span="12"
-        class="text-right">
-        <el-button
-          text
-          @click="setLoginState(LoginStateEnum.RESET_PASSWORD)">
-          忘记密码?
-        </el-button>
+      <el-col :span="12" class="text-right">
+        <el-button text @click="setLoginState(LoginStateEnum.RESET_PASSWORD)">忘记密码?</el-button>
       </el-col>
     </el-row>
     <el-form-item>
@@ -40,9 +23,7 @@
         type="primary"
         class="login--submit"
         :loading="loading"
-        @click="handleLogin">
-        登录
-      </el-button>
+        @click="handleLogin">登录</el-button>
     </el-form-item>
   </el-form>
 </template>

@@ -2,10 +2,7 @@
   <PageWrapper contentFullHeight>
     <BasicTable @register="registerTable">
       <template #imgs="{ label, width, prop }">
-        <el-table-column
-          :label="label"
-          :width="width"
-          :prop="prop">
+        <el-table-column :label="label" :width="width" :prop="prop">
           <template #default="scope">
             <img
               :src="item"

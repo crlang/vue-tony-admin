@@ -4,47 +4,22 @@
     loading-tip="加载中..."
     title="ElLoading 示例"
     description="未做组件封装，仅是根据官方 ElLoading 组件进行示例">
-    <div
-      ref="wrapEl"
-      v-loading.lock="boxLoadingRef"
-      element-loading-background="rgba(0, 0, 0, 0.7)">
+    <div ref="wrapEl" v-loading.lock="boxLoadingRef" element-loading-background="rgba(0, 0, 0, 0.7)">
       <el-alert title="组件方式" />
       <el-button
         class="my-4 mr-4"
         type="primary"
         v-loading.fullscreen.lock="fullscreenLoading"
-        @click="openCompFullLoading">
-        全屏 Loading
-      </el-button>
-      <el-button
-        class="my-4"
-        type="primary"
-        @click="openCompAbsolute">
-        容器内 Loading
-      </el-button>
+        @click="openCompFullLoading">全屏 Loading</el-button>
+      <el-button class="my-4" type="primary" @click="openCompAbsolute">容器内 Loading</el-button>
 
       <el-alert title="函数方式" />
 
-      <el-button
-        class="my-4 mr-4"
-        type="primary"
-        @click="openFnFullLoading">
-        全屏 Loading
-      </el-button>
-      <el-button
-        class="my-4"
-        type="primary"
-        @click="openFnWrapLoading">
-        容器内 Loading
-      </el-button>
+      <el-button class="my-4 mr-4" type="primary" @click="openFnFullLoading">全屏 Loading</el-button>
+      <el-button class="my-4" type="primary" @click="openFnWrapLoading">容器内 Loading</el-button>
 
       <el-alert title="指令方式" />
-      <el-button
-        class="my-4 mr-4"
-        type="primary"
-        @click="openDirectiveLoading">
-        打开指令Loading
-      </el-button>
+      <el-button class="my-4 mr-4" type="primary" @click="openDirectiveLoading">打开指令Loading</el-button>
     </div>
   </PageWrapper>
 </template>

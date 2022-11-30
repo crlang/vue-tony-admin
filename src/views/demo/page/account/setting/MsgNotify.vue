@@ -1,11 +1,7 @@
 <template>
-  <CollapseContainer
-    title="新消息通知"
-    :canExpan="false">
+  <CollapseContainer title="新消息通知" :canExpan="false">
     <List>
-      <template
-        v-for="item in list"
-        :key="item.key">
+      <template v-for="item in list" :key="item.key">
         <ListItem>
           <template #title>
             {{ item.title }}

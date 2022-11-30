@@ -113,9 +113,7 @@ export function useRootSetting() {
   /**
    * 获取布局内容区显示模式
    */
-  const getLayoutContentMode = computed(() =>
-    appStore.getProjectConfig.contentMode === ContentEnum.FULL ? ContentEnum.FULL : ContentEnum.FIXED,
-  )
+  const getLayoutContentMode = computed(() => (appStore.getProjectConfig.contentMode === ContentEnum.FULL ? ContentEnum.FULL : ContentEnum.FIXED))
 
   /**
    * 修改通用配置项

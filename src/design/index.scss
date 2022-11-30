@@ -67,10 +67,7 @@ B.parent-cat.pcc__title
   font-family: 'Urial';
   font-style: normal;
   font-weight: normal;
-  src: url('@/assets/fonts/URIAL.woff') format('woff'), /* Modern Browsers */
-    url('@/assets/fonts/URIAL.woff2') format('woff2'), /* Modern Browsers */
-    url('@/assets/fonts/URIAL.ttf') format('truetype'); /* Safari, Android, iOS */
-
+  src: url('@/assets/fonts/URIAL.woff') format('woff'), url('@/assets/fonts/URIAL.woff2') format('woff2'), url('@/assets/fonts/URIAL.ttf') format('truetype');
   text-rendering: optimizelegibility;
 }
 
@@ -159,6 +156,9 @@ B.parent-cat.pcc__title
   /* Shadow */
   --card-shadow: 0 2px 4px rgba(169, 194, 209, 0.05), 0 12px 16px rgba(169, 194, 209, 0.1);
   --card-shadow-shape: 0 32px 32px rgba(169, 194, 209, 0.1), 0 8px 16px rgba(169, 194, 209, 0.05);
+
+  /* Mix Theme Color */
+  @include co.MixElPrimaryThemeColor();
 }
 
 /* Dark mode will be refactored */

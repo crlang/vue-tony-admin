@@ -1,32 +1,21 @@
 <template>
-  <div
-    :class="getClass"
-    ref="wrapperRef">
-    <div
-      v-if="getShowheader"
-      ref="headerRef"
-      :class="getHeaderClass">
-      <div
-        v-if="getTitle"
-        :class="`${prefixCls}-header__title`">
+  <div :class="getClass" ref="wrapperRef">
+    <div v-if="getShowheader" ref="headerRef" :class="getHeaderClass">
+      <div v-if="getTitle" :class="`${prefixCls}-header__title`">
         {{ getTitle }}
       </div>
       <template v-else>
         <slot name="title"></slot>
       </template>
 
-      <div
-        v-if="getDesc"
-        :class="`${prefixCls}-header__description`">
+      <div v-if="getDesc" :class="`${prefixCls}-header__description`">
         {{ getDesc }}
       </div>
       <template v-else>
         <slot name="description"></slot>
       </template>
 
-      <div
-        :class="`${prefixCls}-header__toolbar`"
-        v-if="$slots.toolbar">
+      <div :class="`${prefixCls}-header__toolbar`" v-if="$slots.toolbar">
         <slot name="toolbar"></slot>
       </div>
 
@@ -35,9 +24,7 @@
       </template>
     </div>
 
-    <div
-      :class="getContentClass"
-      ref="contentRef">
+    <div :class="getContentClass" ref="contentRef">
       <slot></slot>
     </div>
 
@@ -263,8 +250,7 @@ $prefix-cls: '#{$tonyname}-page-wrapper';
     width: 100%;
     background-color: var(--background-secondary-color);
     border-top: 1px solid var(--border-color);
-    box-shadow: 0 -6px 16px -8px rgba(0, 0, 0, 0.08), 0 -9px 28px 0 rgba(0, 0, 0, 0.05),
-      0 -12px 48px 16px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 -6px 16px -8px rgba(0, 0, 0, 0.08), 0 -9px 28px 0 rgba(0, 0, 0, 0.05), 0 -12px 48px 16px rgba(0, 0, 0, 0.03);
   }
 
   &--full {

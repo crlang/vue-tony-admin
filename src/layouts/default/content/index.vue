@@ -2,21 +2,11 @@
   <ElMain :class="[prefixCls, `${prefixCls}--${getLayoutContentMode}`]">
     <RouterView>
       <template #default="{ Component, route }">
-        <transition
-          :name="getTransName(route)"
-          mode="out-in"
-          appear>
-          <keep-alive
-            v-if="openCache"
-            :include="getCaches">
-            <component
-              :is="Component"
-              :key="route.fullPath" />
+        <transition :name="getTransName(route)" mode="out-in" appear>
+          <keep-alive v-if="openCache" :include="getCaches">
+            <component :is="Component" :key="route.fullPath" />
           </keep-alive>
-          <component
-            v-else
-            :is="Component"
-            :key="route.fullPath" />
+          <component v-else :is="Component" :key="route.fullPath" />
         </transition>
       </template>
     </RouterView>
@@ -59,13 +49,14 @@ export default defineComponent({
       return tabStore.getCachedTabList
     })
 
-    const getTransName = (route: RouteLocationNormalizedLoaded) => getTransitionName({
-      route,
-      openCache: unref(openCache),
-      enableTransition: unref(getEnableTransition),
-      cacheTabs: unref(getCaches),
-      def: unref(getBasicTransition),
-    })
+    const getTransName = (route: RouteLocationNormalizedLoaded) =>
+      getTransitionName({
+        route,
+        openCache: unref(openCache),
+        enableTransition: unref(getEnableTransition),
+        cacheTabs: unref(getCaches),
+        def: unref(getBasicTransition),
+      })
 
     useContentViewHeight()
     return {

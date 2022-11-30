@@ -9,23 +9,14 @@
     @visible-change="handleShow">
     <template #title>Modal slot title</template>
     <template #prependFooter>
-      <el-button
-        type="danger"
-        @click="setLines"
-        :disabled="loading">
-        点我更新内容
-      </el-button>
+      <el-button type="danger" @click="setLines" :disabled="loading">点我更新内容</el-button>
     </template>
     <template v-if="loading">
       <div class="empty-tips">加载中，稍等3秒……</div>
     </template>
     <template v-if="!loading">
       <ul>
-        <li
-          v-for="index in lines"
-          :key="index">
-          加载完成{{ index }}！
-        </li>
+        <li v-for="index in lines" :key="index">加载完成{{ index }}！</li>
       </ul>
     </template>
   </BasicModal>

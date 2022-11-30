@@ -1,8 +1,5 @@
 <template>
-  <div
-    :class="prefixCls"
-    :style="getWrapStyle"
-    v-loading="loading">
+  <div :class="prefixCls" :style="getWrapStyle" v-loading="loading">
     <iframe
       :src="frameSrc"
       :class="`${prefixCls}__main`"

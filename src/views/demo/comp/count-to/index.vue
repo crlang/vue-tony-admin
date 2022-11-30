@@ -1,10 +1,6 @@
 <template>
-  <PageWrapper
-    title="数字动画示例"
-    contentBackground>
-    <CardGrid
-      class="m-20"
-      center>
+  <PageWrapper title="数字动画示例" contentBackground>
+    <CardGrid class="m-20" center>
       <CardGridItem>
         <CountTo
           suffix="$"
@@ -15,10 +11,7 @@
           :duration="6000" />
       </CardGridItem>
       <CardGridItem>
-        <CountTo
-          ref="countRef"
-          :autoplay="false"
-          @finished="handleFinished" />
+        <CountTo ref="countRef" :autoplay="false" @finished="handleFinished" />
         <ElButton @click="handleStart">Go</ElButton>
       </CardGridItem>
       <CardGridItem>

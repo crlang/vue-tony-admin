@@ -22,14 +22,7 @@ interface UseAdvancedContext {
  *
  * Handle Expand/Collapse Information
  */
-export function useAdvanced({
-  advanceState,
-  emit,
-  getProps,
-  getSchema,
-  formModel,
-  defaultValueRef,
-}: UseAdvancedContext) {
+export function useAdvanced({ advanceState, emit, getProps, getSchema, formModel, defaultValueRef }: UseAdvancedContext) {
   const { realWidthRef, screenEnum } = useBreakpoint()
   let firstLoad = false
 
@@ -45,8 +38,7 @@ export function useAdvanced({
 
     // 默认列宽
     // Default col size
-    const mdWidth =
-      parseInt(itemCol.md) || parseInt(itemCol.xs) || parseInt(itemCol.sm) || parseInt(itemCol.span) || BASIC_COL_SIZE
+    const mdWidth = parseInt(itemCol.md) || parseInt(itemCol.xs) || parseInt(itemCol.sm) || parseInt(itemCol.span) || BASIC_COL_SIZE
 
     // 尝试查找是否存在自定义列宽
     // Try to find if there is a custom column width

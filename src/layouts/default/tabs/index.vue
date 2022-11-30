@@ -1,32 +1,17 @@
 <template>
   <div :class="getWrapClass">
-    <ElTabs
-      v-model="activeKeyRef"
-      @tab-click="handleChange"
-      @edit="handleEdit">
-      <template
-        v-for="item in getTabsState"
-        :key="item.query ? item.fullPath : item.path">
-        <ElTabPane
-          :name="item.query ? item.fullPath : item.path"
-          :closable="!(item && item.meta && item.meta.affix)">
+    <ElTabs v-model="activeKeyRef" @tab-click="handleChange" @edit="handleEdit">
+      <template v-for="item in getTabsState" :key="item.query ? item.fullPath : item.path">
+        <ElTabPane :name="item.query ? item.fullPath : item.path" :closable="!(item && item.meta && item.meta.affix)">
           <template #label>
-            <TabContent
-              :tabItem="item"
-              :prefixCls="prefixCls" />
+            <TabContent :tabItem="item" :prefixCls="prefixCls" />
           </template>
         </ElTabPane>
       </template>
     </ElTabs>
-    <div
-      :class="`${prefixCls}__extra`"
-      v-if="getShowRedo || getShowQuick">
-      <TabRedo
-        v-if="getShowRedo"
-        :class="`${prefixCls}__extra-btn`" />
-      <FoldButton
-        v-if="getShowQuick"
-        :class="`${prefixCls}__extra-btn`" />
+    <div :class="`${prefixCls}__extra`" v-if="getShowRedo || getShowQuick">
+      <TabRedo v-if="getShowRedo" :class="`${prefixCls}__extra-btn`" />
+      <FoldButton v-if="getShowQuick" :class="`${prefixCls}__extra-btn`" />
       <span :class="`${prefixCls}__extra-btn`">
         <TabContent
           :type="1"

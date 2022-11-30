@@ -5,16 +5,12 @@
     :disabled="item?.disabled"
     :class="getLevelClass">
     <Icon v-if="getIcon" :name="getIcon" />
-    <div
-      v-if="collapsedShowTitle && getIsCollapseParent"
-      class="mt-1 collapse-title">
+    <div v-if="collapsedShowTitle && getIsCollapseParent" class="mt-1 collapse-title">
       {{ getName }}
     </div>
     <template #title>
       <span :class="`${prefixCls}-sub-title`">{{ getName }}</span>
-      <SimpleMenuTag
-        :item="item"
-        :collapseParent="getIsCollapseParent" />
+      <SimpleMenuTag :item="item" :collapseParent="getIsCollapseParent" />
     </template>
   </MenuItem>
   <SubMenu
@@ -24,28 +20,17 @@
     :collapsedShowTitle="collapsedShowTitle">
     <template #title>
       <Icon v-if="getIcon" :name="getIcon" />
-      <div
-        v-if="collapsedShowTitle && getIsCollapseParent"
-        class="collapse-title">
+      <div v-if="collapsedShowTitle && getIsCollapseParent" class="collapse-title">
         {{ getName }}
       </div>
 
-      <span
-        v-show="getShowSubTitle"
-        :class="`${prefixCls}-sub-title`">
+      <span v-show="getShowSubTitle" :class="`${prefixCls}-sub-title`">
         {{ getName }}
       </span>
-      <SimpleMenuTag
-        :item="item"
-        :collapseParent="!!collapse && !!parent" />
+      <SimpleMenuTag :item="item" :collapseParent="!!collapse && !!parent" />
     </template>
-    <template
-      v-for="childrenItem in item.children || []"
-      :key="childrenItem.path">
-      <SimpleSubMenu
-        :collapsedShowTitle="collapsedShowTitle"
-        :item="childrenItem"
-        :parent="false" />
+    <template v-for="childrenItem in item.children || []" :key="childrenItem.path">
+      <SimpleSubMenu :collapsedShowTitle="collapsedShowTitle" :item="childrenItem" :parent="false" />
     </template>
   </SubMenu>
 </template>
@@ -97,12 +82,7 @@ export default defineComponent({
     })
 
     function menuHasChildren(menuTreeItem: MenuType): boolean {
-      return (
-        !menuTreeItem.meta?.hideChildrenInMenu &&
-        Reflect.has(menuTreeItem, 'children') &&
-        !!menuTreeItem.children &&
-        menuTreeItem.children.length > 0
-      )
+      return !menuTreeItem.meta?.hideChildrenInMenu && Reflect.has(menuTreeItem, 'children') && !!menuTreeItem.children && menuTreeItem.children.length > 0
     }
 
     return {

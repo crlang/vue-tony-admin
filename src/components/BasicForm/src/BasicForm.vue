@@ -7,9 +7,7 @@
     @keypress.enter="handleEnterPress">
     <slot name="formHeader"></slot>
     <ElRow v-bind="getRow">
-      <template
-        v-for="schema in getSchema"
-        :key="schema.field">
+      <template v-for="schema in getSchema" :key="schema.field">
         <FormItem
           :tableAction="tableAction"
           :formAction="formActionType"
@@ -18,26 +16,15 @@
           :formProps="getProps"
           :formModel="formModel"
           :setFormModel="setFormModel">
-          <template
-            #[item]="data"
-            v-for="item in Object.keys($slots)">
-            <slot
-              :name="item"
-              v-bind="data || {}"></slot>
+          <template #[item]="data" v-for="item in Object.keys($slots)">
+            <slot :name="item" v-bind="data || {}"></slot>
           </template>
         </FormItem>
       </template>
 
-      <FormAction
-        v-bind="getActionProps"
-        v-if="getProps.showActionButtonGroup"
-        @toggle-advanced="handleToggleAdvanced">
-        <template
-          #[item]="data"
-          v-for="item in ['resetBefore', 'submitBefore', 'advanceBefore', 'advanceAfter']">
-          <slot
-            :name="item"
-            v-bind="data || {}"></slot>
+      <FormAction v-bind="getActionProps" v-if="getProps.showActionButtonGroup" @toggle-advanced="handleToggleAdvanced">
+        <template #[item]="data" v-for="item in ['resetBefore', 'submitBefore', 'advanceBefore', 'advanceAfter']">
+          <slot :name="item" v-bind="data || {}"></slot>
         </template>
       </FormAction>
     </ElRow>
@@ -176,16 +163,7 @@ export default defineComponent({
       formModel,
     })
 
-    const {
-      handleSubmit,
-      handleReset,
-      setFieldsValue,
-      getFieldsValue,
-      updateSchema,
-      resetSchema,
-      appendSchemaByField,
-      removeSchemaByField,
-    } = useFormEvents({
+    const { handleSubmit, handleReset, setFieldsValue, getFieldsValue, updateSchema, resetSchema, appendSchemaByField, removeSchemaByField } = useFormEvents({
       emit,
       getProps,
       formModel,

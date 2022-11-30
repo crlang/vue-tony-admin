@@ -1,9 +1,7 @@
 <template>
   <el-card shadow="always">
     <template #header><div class="el-card__header--title">销售统计</div></template>
-    <div
-      ref="chartRef"
-      :style="{ width, height }"></div>
+    <div ref="chartRef" :style="{ width, height }"></div>
   </el-card>
 </template>
 

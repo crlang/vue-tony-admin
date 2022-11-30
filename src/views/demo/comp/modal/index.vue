@@ -1,54 +1,19 @@
 <template>
   <PageWrapper title="modal组件使用示例">
-    <el-alert
-      title="使用 useModal 进行弹窗操作，加载动态数据并自动调整高度(默认可以拖动/全屏)"
-      show-icon />
-    <el-button
-      type="primary"
-      class="my-4"
-      @click="openModalLoading">
-      打开弹窗
-    </el-button>
+    <el-alert title="使用 useModal 进行弹窗操作，加载动态数据并自动调整高度(默认可以拖动/全屏)" show-icon />
+    <el-button type="primary" class="my-4" @click="openModalLoading">打开弹窗</el-button>
 
-    <el-alert
-      title="使用 createConfirm 进行弹窗操作，是一个简易友好的弹窗"
-      show-icon />
-    <el-button
-      type="primary"
-      class="my-4"
-      @click="openMsgPopup()">
-      打开消息弹窗
-    </el-button>
+    <el-alert title="使用 createConfirm 进行弹窗操作，是一个简易友好的弹窗" show-icon />
+    <el-button type="primary" class="my-4" @click="openMsgPopup()">打开消息弹窗</el-button>
 
-    <el-alert
-      title="内外同时同时显示隐藏"
-      show-icon />
-    <el-button
-      type="primary"
-      class="my-4"
-      @click="openModal2()">
-      打开弹窗
-    </el-button>
+    <el-alert title="内外同时同时显示隐藏" show-icon />
+    <el-button type="primary" class="my-4" @click="openModal2()">打开弹窗</el-button>
 
-    <el-alert
-      title="自适应高度"
-      show-icon />
-    <el-button
-      type="primary"
-      class="my-4"
-      @click="openModal3()">
-      打开弹窗
-    </el-button>
+    <el-alert title="自适应高度" show-icon />
+    <el-button type="primary" class="my-4" @click="openModal3()">打开弹窗</el-button>
 
-    <el-alert
-      title="内外数据交互"
-      show-icon />
-    <el-button
-      type="primary"
-      class="my-4"
-      @click="send">
-      打开弹窗并传递数据
-    </el-button>
+    <el-alert title="内外数据交互" show-icon />
+    <el-button type="primary" class="my-4" @click="send">打开弹窗并传递数据</el-button>
 
     <Modal1 @register="register1" />
     <Modal2 @register="register2" />

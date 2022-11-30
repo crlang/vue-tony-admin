@@ -36,11 +36,7 @@ export function useMenuSetting() {
    * 获取是否显示侧边菜单
    */
   const getShowSidebar = computed(() => {
-    return (
-      unref(getSplit) || (
-        unref(getShowMenu) && unref(getMenuMode) !== MenuModeEnum.HORIZONTAL && !unref(getFullContent)
-      )
-    )
+    return unref(getSplit) || (unref(getShowMenu) && unref(getMenuMode) !== MenuModeEnum.HORIZONTAL && !unref(getFullContent))
   })
 
   /**
@@ -187,9 +183,11 @@ export function useMenuSetting() {
     const width =
       unref(getIsTopMenu) || !unref(getShowMenu) || (unref(getSplit) && unref(getMenuHidden))
         ? 0
-        : (unref(getIsMixSidebar)
-          ? (unref(getCollapsed) ? SIDE_BAR_MINI_WIDTH : SIDE_BAR_SHOW_TIT_MINI_WIDTH)
-          : unref(getRealWidth))
+        : unref(getIsMixSidebar)
+          ? unref(getCollapsed)
+            ? SIDE_BAR_MINI_WIDTH
+            : SIDE_BAR_SHOW_TIT_MINI_WIDTH
+          : unref(getRealWidth)
 
     return `calc(100% - ${unref(width)}px)`
   })

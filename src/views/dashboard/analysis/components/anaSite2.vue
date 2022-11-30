@@ -1,20 +1,13 @@
 <template>
-  <el-row
-    class="ana-site"
-    :gutter="32">
+  <el-row class="ana-site" :gutter="32">
     <el-col :span="16">
       <el-card shadow="always">
         <template #header>
           <div class="dashboard-analysis__title ana-site__title">
             <span>流量趋势</span>
             <div class="ana-site__extra">
-              <el-date-picker
-                v-model="dateVal"
-                type="daterange"
-                range-separator="~" />
-              <el-select
-                v-model="dateType"
-                placeholder="Select">
+              <el-date-picker v-model="dateVal" type="daterange" range-separator="~" />
+              <el-select v-model="dateType" placeholder="Select">
                 <el-option
                   v-for="item in dateOptions"
                   :key="item.value"

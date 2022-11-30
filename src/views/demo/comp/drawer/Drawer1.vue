@@ -1,20 +1,8 @@
 <template>
-  <el-button
-    @click="openDrawerLoading"
-    class="my-4"
-    type="primary">
-    打开Drawer
-  </el-button>
-  <BasicDrawer
-    @register="register"
-    title="Drawer Title"
-    size="50%">
+  <el-button @click="openDrawerLoading" class="my-4" type="primary">打开Drawer</el-button>
+  <BasicDrawer @register="register" title="Drawer Title" size="50%">
     <p>Drawer Info.</p>
-    <el-button
-      @click="closeDrawer"
-      class="my-4">
-      关闭 Drawer
-    </el-button>
+    <el-button @click="closeDrawer" class="my-4">关闭 Drawer</el-button>
   </BasicDrawer>
 </template>
 

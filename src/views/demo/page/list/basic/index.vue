@@ -1,24 +1,16 @@
 <template>
-  <PageWrapper
-    :class="prefixCls"
-    title="数据列表">
+  <PageWrapper :class="prefixCls" title="数据列表">
     <div :class="`${prefixCls}__top`">
       <el-row :gutter="12">
-        <el-col
-          :span="8"
-          :class="`${prefixCls}__top-col`">
+        <el-col :span="8" :class="`${prefixCls}__top-col`">
           <div>我的待办</div>
           <p>8个任务</p>
         </el-col>
-        <el-col
-          :span="8"
-          :class="`${prefixCls}__top-col`">
+        <el-col :span="8" :class="`${prefixCls}__top-col`">
           <div>本周任务平均处理时间</div>
           <p>32分钟</p>
         </el-col>
-        <el-col
-          :span="8"
-          :class="`${prefixCls}__top-col`">
+        <el-col :span="8" :class="`${prefixCls}__top-col`">
           <div>本周完成任务数</div>
           <p>24个任务</p>
         </el-col>
@@ -28,9 +20,7 @@
     <CollapseContainer title="常规列表">
       <div :class="`${prefixCls}__content`">
         <List :pagination="pagination">
-          <template
-            v-for="item in list"
-            :key="item.id">
+          <template v-for="item in list" :key="item.id">
             <ListItem class="list">
               <template #thumb>
                 <Icon
@@ -41,9 +31,7 @@
               </template>
               <template #title>
                 <span>{{ item.title }}</span>
-                <div
-                  class="extra"
-                  v-if="item.extra">
+                <div class="extra" v-if="item.extra">
                   {{ item.extra }}
                 </div>
               </template>
@@ -71,9 +59,7 @@
       </div>
     </CollapseContainer>
 
-    <CollapseContainer
-      class="my-4"
-      title="基础列表">
+    <CollapseContainer class="my-4" title="基础列表">
       <div :class="`${prefixCls}__content`">
         <List>
           <ListItem

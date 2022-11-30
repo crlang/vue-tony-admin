@@ -1,32 +1,19 @@
 <template>
-  <div
-    :class="prefixCls"
-    @dblclick="handleTitleDbClick">
+  <div :class="prefixCls" @dblclick="handleTitleDbClick">
     <BasicTitle :helpMessage="helpMessage">
       <template v-if="title">{{ title }}</template>
-      <slot
-        name="header"
-        v-else></slot>
+      <slot name="header" v-else></slot>
     </BasicTitle>
     <div :class="`${prefixCls}__extra`">
       <template v-if="showFullscreen">
-        <ElTooltip
-          content="还原"
-          placement="bottom"
-          v-if="fullscreen">
+        <ElTooltip content="还原" placement="bottom" v-if="fullscreen">
           <SvgIcon @click="handleFullscreen" name="shrink" />
         </ElTooltip>
-        <ElTooltip
-          content="最大化"
-          placement="bottom"
-          v-else>
+        <ElTooltip content="最大化" placement="bottom" v-else>
           <SvgIcon @click="handleFullscreen" name="arrowsalt" />
         </ElTooltip>
       </template>
-      <ElTooltip
-        v-if="showClose"
-        content="关闭"
-        placement="bottom">
+      <ElTooltip v-if="showClose" content="关闭" placement="bottom">
         <SvgIcon @click="handleCancel" name="close" />
       </ElTooltip>
     </div>

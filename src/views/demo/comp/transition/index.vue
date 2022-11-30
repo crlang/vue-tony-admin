@@ -1,14 +1,9 @@
 <template>
   <PageWrapper title="动画组件示例">
     <el-row :gutter="16">
-      <el-col
-        :span="6"
-        v-for="item in transitionList"
-        :key="item">
+      <el-col :span="6" v-for="item in transitionList" :key="item">
         <component :is="`${item}Transition`">
-          <div
-            class="box"
-            v-show="show">
+          <div class="box" v-show="show">
             <div>{{ item }}</div>
           </div>
         </component>

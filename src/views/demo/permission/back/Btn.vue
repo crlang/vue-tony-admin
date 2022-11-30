@@ -1,8 +1,5 @@
 <template>
-  <PageWrapper
-    contentBackground
-    title="按钮权限控制"
-    description="必须处于后台权限模式才可测试此页面所展示的功能">
+  <PageWrapper contentBackground title="按钮权限控制" description="必须处于后台权限模式才可测试此页面所展示的功能">
     <CurrentPermissionMode />
     <p>
       当前拥有的code列表:
@@ -19,85 +16,36 @@
       type="primary"
       class="mr-2"
       @click="switchToken(2)"
-      :disabled="!isBackPremissionMode">
-      点击切换按钮权限(用户id为2)
-    </el-button>
-    <el-button
-      type="primary"
-      @click="switchToken(1)"
-      :disabled="!isBackPremissionMode">
-      点击切换按钮权限(用户id为1,默认)
-    </el-button>
+      :disabled="!isBackPremissionMode">点击切换按钮权限(用户id为2)</el-button>
+    <el-button type="primary" @click="switchToken(1)" :disabled="!isBackPremissionMode">点击切换按钮权限(用户id为1,默认)</el-button>
 
     <template v-if="isBackPremissionMode">
       <el-divider>组件方式判断权限</el-divider>
       <Authority :value="'1000'">
-        <el-button
-          type="primary"
-          class="mx-4">
-          拥有code ['1000']权限可见
-        </el-button>
+        <el-button type="primary" class="mx-4">拥有code ['1000']权限可见</el-button>
       </Authority>
 
       <Authority :value="'2000'">
-        <el-button
-          color="success"
-          class="mx-4">
-          拥有code ['2000']权限可见
-        </el-button>
+        <el-button color="success" class="mx-4">拥有code ['2000']权限可见</el-button>
       </Authority>
 
       <Authority :value="['1000', '2000']">
-        <el-button
-          color="error"
-          class="mx-4">
-          拥有code ['1000','2000']角色权限可见
-        </el-button>
+        <el-button color="error" class="mx-4">拥有code ['1000','2000']角色权限可见</el-button>
       </Authority>
 
       <el-divider>函数方式方式判断权限</el-divider>
-      <el-button
-        v-if="hasPermission('1000')"
-        type="primary"
-        class="mx-4">
-        拥有code ['1000']权限可见
-      </el-button>
+      <el-button v-if="hasPermission('1000')" type="primary" class="mx-4">拥有code ['1000']权限可见</el-button>
 
-      <el-button
-        v-if="hasPermission('2000')"
-        color="success"
-        class="mx-4">
-        拥有code ['2000']权限可见
-      </el-button>
+      <el-button v-if="hasPermission('2000')" color="success" class="mx-4">拥有code ['2000']权限可见</el-button>
 
-      <el-button
-        v-if="hasPermission(['1000', '2000'])"
-        color="error"
-        class="mx-4">
-        拥有code ['1000','2000']角色权限可见
-      </el-button>
+      <el-button v-if="hasPermission(['1000', '2000'])" color="error" class="mx-4">拥有code ['1000','2000']角色权限可见</el-button>
 
       <el-divider>指令方式方式判断权限(该方式不能动态修改权限.)</el-divider>
-      <el-button
-        v-auth="'1000'"
-        type="primary"
-        class="mx-4">
-        拥有code ['1000']权限可见
-      </el-button>
+      <el-button v-auth="'1000'" type="primary" class="mx-4">拥有code ['1000']权限可见</el-button>
 
-      <el-button
-        v-auth="'2000'"
-        color="success"
-        class="mx-4">
-        拥有code ['2000']权限可见
-      </el-button>
+      <el-button v-auth="'2000'" color="success" class="mx-4">拥有code ['2000']权限可见</el-button>
 
-      <el-button
-        v-auth="['1000', '2000']"
-        color="error"
-        class="mx-4">
-        拥有code ['1000','2000']角色权限可见
-      </el-button>
+      <el-button v-auth="['1000', '2000']" color="error" class="mx-4">拥有code ['1000','2000']角色权限可见</el-button>
     </template>
   </PageWrapper>
 </template>

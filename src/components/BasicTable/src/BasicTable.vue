@@ -1,7 +1,5 @@
 <template>
-  <div
-    ref="wrapRef"
-    :class="getWrapperClass">
+  <div ref="wrapRef" :class="getWrapperClass">
     <BasicForm
       v-bind="getFormProps"
       v-if="getProps.useSearchForm"
@@ -9,76 +7,45 @@
       @register="registerForm"
       @advanced-change="redoHeight"
       @submit="handleSearchSubmit">
-      <template
-        #[replaceFormSlotKey(item)]="data"
-        v-for="item in getFormSlotKeys">
-        <slot
-          :name="item"
-          v-bind="data || {}"></slot>
+      <template #[replaceFormSlotKey(item)]="data" v-for="item in getFormSlotKeys">
+        <slot :name="item" v-bind="data || {}"></slot>
       </template>
     </BasicForm>
-    <TableHeader
-      v-if="getHeaderProps"
-      v-bind="getHeaderProps">
-      <template
-        #toolbar
-        v-if="$slots.toolbar">
+    <TableHeader v-if="getHeaderProps" v-bind="getHeaderProps">
+      <template #toolbar v-if="$slots.toolbar">
         <slot name="toolbar"></slot>
       </template>
-      <template
-        #title
-        v-if="$slots.title">
+      <template #title v-if="$slots.title">
         <slot name="title"></slot>
       </template>
-      <template
-        #headerTop
-        v-if="$slots.headerTop">
+      <template #headerTop v-if="$slots.headerTop">
         <slot name="headerTop"></slot>
       </template>
-      <template
-        #headerBottom
-        v-if="$slots.headerBottom">
+      <template #headerBottom v-if="$slots.headerBottom">
         <slot name="headerBottom"></slot>
       </template>
     </TableHeader>
-    <ElTable
-      ref="tableElRef"
-      v-bind="getBindValues"
-      v-loading="getLoading">
-      <template
-        v-for="column in columns"
-        :key="column.prop">
+    <ElTable ref="tableElRef" v-bind="getBindValues" v-loading="getLoading">
+      <template v-for="column in columns" :key="column.prop">
         <template v-if="column.customRender">
-          <ElTableColumn
-            v-bind="column"
-            :customRender="null">
+          <ElTableColumn v-bind="column" :customRender="null">
             <template #default="scope">
-              <TableRender
-                :customRender="column.customRender"
-                :scope="scope"
-                :column="column" />
+              <TableRender :customRender="column.customRender" :scope="scope" :column="column" />
             </template>
           </ElTableColumn>
         </template>
         <template v-else-if="column.type === 'action'">
           <ElTableColumn v-bind="column">
             <template #default="scope">
-              <TableAction
-                :prefixCls="`${prefixCls}-action`"
-                :column="column"
-                :scopes="scope" />
+              <TableAction :prefixCls="`${prefixCls}-action`" :column="column" :scopes="scope" />
             </template>
           </ElTableColumn>
         </template>
         <template v-else-if="column.isSlot">
-          <slot
-            :name="column.prop"
-            v-bind="column"></slot>
+          <slot :name="column.prop" v-bind="column"></slot>
         </template>
 
-        <ElTableColumn
-          v-bind="column"
-          v-else />
+        <ElTableColumn v-bind="column" v-else />
       </template>
     </ElTable>
     <TablePagination
@@ -177,29 +144,10 @@ export default defineComponent({
       getRowKey,
       reload,
       updateTableData,
-    } = useDataSource(
-      getProps,
-      tableData,
-      getTablePagination,
-      setPagination,
-      setLoading,
-      formActions.getFieldsValue,
-      emit,
-    )
+    } = useDataSource(getProps, tableData, getTablePagination, setPagination, setLoading, formActions.getFieldsValue, emit)
 
-    const {
-      getBasicEmits,
-      clearSelection,
-      getSelectionRows,
-      toggleRowSelection,
-      toggleAllSelection,
-      toggleRowExpansion,
-      setCurrentRow,
-      clearSort,
-      clearFilter,
-      doLayout,
-      sort,
-    } = useBasicTableFn(tableElRef, handleTableChange, emit)
+    const { getBasicEmits, clearSelection, getSelectionRows, toggleRowSelection, toggleAllSelection, toggleRowExpansion, setCurrentRow, clearSort, clearFilter, doLayout, sort } =
+      useBasicTableFn(tableElRef, handleTableChange, emit)
 
     const { getViewColumns, getColumns, setColumns, getCacheColumns } = useColumns(getProps, getTablePagination)
 
@@ -207,12 +155,7 @@ export default defineComponent({
 
     const { getExpandOptions, expandAll, collapseAll } = useTableExpand(getProps, getDataSourceRef, getRowKey)
 
-    const { getFormProps, replaceFormSlotKey, getFormSlotKeys, handleSearchSubmit } = useTableForm(
-      getProps,
-      slots,
-      fetch,
-      getLoading,
-    )
+    const { getFormProps, replaceFormSlotKey, getFormSlotKeys, handleSearchSubmit } = useTableForm(getProps, slots, fetch, getLoading)
 
     /**
      * 获取头部 Props
@@ -364,11 +307,7 @@ export default defineComponent({
     emit('register', tableMethods, formActions)
 
     watchEffect(() => {
-      unref(isFixedHeightPage) &&
-        props.canResize &&
-        warn(
-          "'canResize' of BasicTable may not work in PageWrapper with 'contentFullHeight' (especially in hot updates)",
-        )
+      unref(isFixedHeightPage) && props.canResize && warn("'canResize' of BasicTable may not work in PageWrapper with 'contentFullHeight' (especially in hot updates)")
     })
 
     return {

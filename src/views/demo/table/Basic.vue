@@ -12,33 +12,19 @@
       showCheckboxColumn
       :border="border">
       <template #address="{ label, prop }">
-        <el-table-column
-          :label="label"
-          :prop="prop">
+        <el-table-column :label="label" :prop="prop">
           <template #default="scope">
             {{ scope.row.address }}
           </template>
         </el-table-column>
       </template>
       <template #toolbar>
-        <el-button
-          type="primary"
-          @click="toggleSelection">
-          切换选中
-        </el-button>
-        <el-button
-          type="primary"
-          @click="toggleBorder">
+        <el-button type="primary" @click="toggleSelection">切换选中</el-button>
+        <el-button type="primary" @click="toggleBorder">
           {{ !border ? '显示边框' : '隐藏边框' }}
         </el-button>
-        <el-button
-          type="primary"
-          @click="toggleLoading">
-          开启loading
-        </el-button>
-        <el-button
-          type="primary"
-          @click="toggleStripe">
+        <el-button type="primary" @click="toggleLoading">开启loading</el-button>
+        <el-button type="primary" @click="toggleStripe">
           {{ !stripe ? '显示斑马纹' : '隐藏斑马纹' }}
         </el-button>
       </template>

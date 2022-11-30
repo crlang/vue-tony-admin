@@ -1,7 +1,5 @@
 <template>
-  <PageWrapper
-    title="懒加载自定义动画示例"
-    description="懒加载组件显示动画">
+  <PageWrapper title="懒加载自定义动画示例" description="懒加载组件显示动画">
     <div class="lazy-base-demo-wrap">
       <h1>向下滚动</h1>
       <div class="lazy-base-demo-box">

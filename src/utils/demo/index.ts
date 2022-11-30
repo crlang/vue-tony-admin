@@ -1,8 +1,4 @@
-export function randomNumber(
-  minNum,
-  maxNum: number | undefined = undefined,
-  decimalNum: number | undefined = undefined,
-): number {
+export function randomNumber(minNum, maxNum: number | undefined = undefined, decimalNum: number | undefined = undefined): number {
   let max = 0
   let min = 0
   minNum <= maxNum ? ((min = minNum), (max = maxNum)) : ((min = maxNum), (max = minNum))

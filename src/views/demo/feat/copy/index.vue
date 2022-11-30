@@ -1,17 +1,9 @@
 <template>
   <PageWrapper title="文本复制示例">
-    <CollapseContainer
-      class="w-full h-32 bg-white rounded-md"
-      title="Copy Example">
+    <CollapseContainer class="w-full h-32 bg-white rounded-md" title="Copy Example">
       <div class="flex justify-center">
-        <el-input
-          placeholder="请输入"
-          v-model="value" />
-        <el-button
-          type="primary"
-          @click="handleCopy">
-          Copy
-        </el-button>
+        <el-input placeholder="请输入" v-model="value" />
+        <el-button type="primary" @click="handleCopy">Copy</el-button>
       </div>
     </CollapseContainer>
   </PageWrapper>

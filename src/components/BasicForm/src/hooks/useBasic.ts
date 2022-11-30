@@ -20,10 +20,7 @@ export function useBasicFormFn({ formElRef, emit }: UseBasicFnContext) {
   function validate(callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void): Promise<void> {
     return getUseInstance<FormActionMethods>(formElRef, 'form')?.validate(callback)
   }
-  function validateField(
-    props?: Arrayable<FormItemProp>,
-    callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void,
-  ): Promise<void> {
+  function validateField(props?: Arrayable<FormItemProp>, callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void): Promise<void> {
     return getUseInstance<FormActionMethods>(formElRef, 'form')?.validateField(props, callback)
   }
   function resetFields(props?: Arrayable<FormItemProp>): void {

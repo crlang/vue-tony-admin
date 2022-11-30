@@ -1,19 +1,11 @@
 <template>
   <div>
-    <BasicTable
-      @register="registerTable"
-      @fetch-success="onFetchSuccess">
+    <BasicTable @register="registerTable" @fetch-success="onFetchSuccess">
       <template #toolbar>
-        <el-button
-          type="primary"
-          @click="handleCreate">
-          新增菜单
-        </el-button>
+        <el-button type="primary" @click="handleCreate">新增菜单</el-button>
       </template>
     </BasicTable>
-    <MenuDrawer
-      @register="registerDrawer"
-      @success="handleSuccess" />
+    <MenuDrawer @register="registerDrawer" @success="handleSuccess" />
   </div>
 </template>
 

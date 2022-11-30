@@ -1,7 +1,5 @@
 <template>
-  <ElCard
-    shadow="never"
-    :class="[prefixCls, { 'is-center': center }]">
+  <ElCard shadow="never" :class="[prefixCls, { 'is-center': center }]">
     <template #header>
       <div>{{ title || '' }}</div>
       <slot name="extra"></slot>
@@ -81,8 +79,8 @@ $prefix-cls: '#{$tonyname}-card-grid';
     cursor: pointer;
     border: 0;
     border-radius: 0;
-    box-shadow: 1px 0 var(--border-color-light), 0 1px var(--border-color-light), 1px 1px var(--border-color-light),
-      1px 0 var(--border-color-light) inset, 0 1px var(--border-color-light) inset;
+    box-shadow: 1px 0 var(--border-color-light), 0 1px var(--border-color-light), 1px 1px var(--border-color-light), 1px 0 var(--border-color-light) inset,
+      0 1px var(--border-color-light) inset;
     transition: all 0.3s;
 
     &:hover {

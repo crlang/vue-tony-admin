@@ -1,7 +1,5 @@
 <template>
-  <CollapseContainer
-    title="基本设置"
-    :canExpan="false">
+  <CollapseContainer title="基本设置" :canExpan="false">
     <el-row :gutter="24">
       <el-col :span="14">
         <BasicForm @register="register" />
@@ -22,11 +20,7 @@
         </div>
       </el-col>
     </el-row>
-    <el-button
-      type="primary"
-      @click="handleSubmit">
-      更新基本信息
-    </el-button>
+    <el-button type="primary" @click="handleSubmit">更新基本信息</el-button>
   </CollapseContainer>
 </template>
 

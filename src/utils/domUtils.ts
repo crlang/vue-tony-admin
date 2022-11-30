@@ -27,7 +27,7 @@ export function hasClass(el: Element, cls: string) {
   if (el.classList) {
     return el.classList.contains(cls)
   } else {
-    return (` ${el.className} `).indexOf(` ${cls} `) > -1
+    return ` ${el.className} `.indexOf(` ${cls} `) > -1
   }
 }
 

@@ -11,10 +11,7 @@
       @delete="handleDelete"
       :accept="['png', 'jpg', 'jpeg', 'webp', 'svg']" />
 
-    <el-alert
-      type="error"
-      class="my-4"
-      title="如果需要演示上传功能,需要在test/server中运行test服务器" />
+    <el-alert type="error" class="my-4" title="如果需要演示上传功能,需要在test/server中运行test服务器" />
 
     <BasicUpload
       @change="handleChange"

@@ -1,7 +1,5 @@
 <template>
-  <div
-    :class="getAppLogoClass"
-    @click="goHome">
+  <div :class="getAppLogoClass" @click="goHome">
     <img src="@/assets/images/logo.png" />
     <span v-show="showTitle">{{ title }}</span>
   </div>

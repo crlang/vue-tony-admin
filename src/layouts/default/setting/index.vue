@@ -1,8 +1,6 @@
 <template>
   <div>
-    <span
-      style="width: 100%; text-align: center"
-      @click="openDrawer(true)">
+    <span style="width: 100%; text-align: center" @click="openDrawer(true)">
       <SvgIcon name="setting" />
     </span>
     <SettingDrawer @register="register" />

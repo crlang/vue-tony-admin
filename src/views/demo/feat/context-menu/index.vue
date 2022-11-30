@@ -1,21 +1,11 @@
 <template>
   <PageWrapper title="右键菜单示例">
     <CollapseContainer title="Simple">
-      <el-button
-        type="primary"
-        @contextmenu="handleContext">
-        Right Click on me
-      </el-button>
+      <el-button type="primary" @contextmenu="handleContext">Right Click on me</el-button>
     </CollapseContainer>
 
-    <CollapseContainer
-      title="Multiple"
-      class="mt-4">
-      <el-button
-        type="primary"
-        @contextmenu="handleMultipleContext">
-        Right Click on me
-      </el-button>
+    <CollapseContainer title="Multiple" class="mt-4">
+      <el-button type="primary" @contextmenu="handleMultipleContext">Right Click on me</el-button>
     </CollapseContainer>
   </PageWrapper>
 </template>

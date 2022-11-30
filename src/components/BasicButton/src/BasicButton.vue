@@ -1,19 +1,10 @@
 <template>
-  <ElButton
-    v-bind="getBindValues"
-    :class="getButtonClass"
-    @click="onClick">
+  <ElButton v-bind="getBindValues" :class="getButtonClass" @click="onClick">
     <template #default="data">
       <div :class="`${prefixCls}__inner`">
-        <Icon
-          :name="preIcon"
-          v-if="preIcon"
-          :size="iconSize" />
+        <Icon :name="preIcon" v-if="preIcon" :size="iconSize" />
         <slot v-bind="data || {}"></slot>
-        <Icon
-          :name="sufIcon"
-          v-if="sufIcon"
-          :size="iconSize" />
+        <Icon :name="sufIcon" v-if="sufIcon" :size="iconSize" />
       </div>
     </template>
   </ElButton>

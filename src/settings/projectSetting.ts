@@ -1,13 +1,7 @@
 import type { ProjectConfig } from '#/config'
 import { MenuTypeEnum, MenuModeEnum, TriggerEnum, MixSidebarTriggerEnum } from '@/enums/menuEnum'
 import { CacheTypeEnum } from '@/enums/cacheEnum'
-import {
-  ContentEnum,
-  PermissionModeEnum,
-  RouterTransitionEnum,
-  SettingButtonPositionEnum,
-  SessionTimeoutProcessingEnum,
-} from '@/enums/appEnum'
+import { ContentEnum, PermissionModeEnum, RouterTransitionEnum, SettingButtonPositionEnum, SessionTimeoutProcessingEnum } from '@/enums/appEnum'
 import { headerColor, primaryColor, sidebarColor } from './designSetting'
 
 /**
@@ -330,10 +324,10 @@ let setting: ProjectConfig = {
      */
     split: false,
     /**
-      * 顶部菜单 - 菜单的位置
-      *
-      * Top menu - the position of the menu
-      */
+     * 顶部菜单 - 菜单的位置
+     *
+     * Top menu - the position of the menu
+     */
     topMenuAlign: 'center',
     /**
      * 混合菜单 - 菜单展开方式，支持 click/hover

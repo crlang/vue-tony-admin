@@ -1,7 +1,5 @@
 <template>
-  <PageWrapper
-    title="Tree 函数示例"
-    contentBackground>
+  <PageWrapper title="Tree 函数示例" contentBackground>
     <div class="demo-tree-btns">
       <el-button @click="checkAll(true)">全选</el-button>
       <el-button @click="checkAll(false)">全不选</el-button>
@@ -30,10 +28,7 @@
       <el-button @click="deleteNodeByKey">删除2-2-0节点</el-button>
     </div>
     <div class="demo-tree-btns">
-      <el-input
-        class="mb-2"
-        v-model="filterTreeNodeKey"
-        placeholder="请输入筛选内容" />
+      <el-input class="mb-2" v-model="filterTreeNodeKey" placeholder="请输入筛选内容" />
     </div>
     <el-card header="函数操作">
       <el-tree

@@ -18,7 +18,7 @@ export function useLayoutHeight() {
    * Set header height
    * @param val
    */
-  function setHeaderHeight(val:number) {
+  function setHeaderHeight(val: number) {
     headerHeightRef.value = val
   }
   /**
@@ -27,7 +27,7 @@ export function useLayoutHeight() {
    * Set footer height
    * @param val
    */
-  function setFooterHeight(val:number) {
+  function setFooterHeight(val: number) {
     footerHeightRef.value = val
   }
   return { headerHeightRef, footerHeightRef, setHeaderHeight, setFooterHeight }

@@ -1,7 +1,5 @@
 <template>
-  <ElTimePicker
-    clearable
-    v-model:modelValue="state" />
+  <ElTimePicker clearable v-model:modelValue="state" />
 </template>
 
 <script lang="ts">

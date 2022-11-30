@@ -2,16 +2,12 @@
   <PageWrapper contentBackground>
     <BasicTable @register="registerTable">
       <template #id="{ label, prop }">
-        <el-table-column
-          :label="label"
-          :prop="prop">
+        <el-table-column :label="label" :prop="prop">
           <template #default="scope">ID: {{ scope.row.id }}</template>
         </el-table-column>
       </template>
       <template #no="{ label, prop }">
-        <el-table-column
-          :label="label"
-          :prop="prop">
+        <el-table-column :label="label" :prop="prop">
           <template #default="scope">
             <el-tag type="success">
               {{ scope.row.no }}
@@ -20,20 +16,14 @@
         </el-table-column>
       </template>
       <template #avatar="{ label, prop }">
-        <el-table-column
-          :label="label"
-          :prop="prop">
+        <el-table-column :label="label" :prop="prop">
           <template #default="scope">
-            <el-avatar
-              :size="60"
-              :src="scope.row.avatar" />
+            <el-avatar :size="60" :src="scope.row.avatar" />
           </template>
         </el-table-column>
       </template>
       <template #category="{ label, prop }">
-        <el-table-column
-          :label="label"
-          :prop="prop">
+        <el-table-column :label="label" :prop="prop">
           <template #default="scope">
             <el-tag type="success">
               {{ scope.row.category }}

@@ -5,24 +5,17 @@
     :rules="getFormRules"
     ref="formRef">
     <el-form-item prop="mobile">
-      <el-input
-        v-model="formData.mobile"
-        placeholder="手机号码" />
+      <el-input v-model="formData.mobile" placeholder="手机号码" />
     </el-form-item>
     <el-form-item prop="sms">
-      <countdown-input
-        v-model="formData.sms"
-        placeholder="短信验证码"
-        @keypress.enter="handleLogin" />
+      <countdown-input v-model="formData.sms" placeholder="短信验证码" @keypress.enter="handleLogin" />
     </el-form-item>
     <el-form-item>
       <el-button
         type="primary"
         @click="handleLogin"
         :loading="loading"
-        class="login--submit">
-        登录
-      </el-button>
+        class="login--submit">登录</el-button>
     </el-form-item>
   </el-form>
 </template>

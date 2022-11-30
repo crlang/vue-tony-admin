@@ -69,9 +69,7 @@ export default defineComponent({
       if (['ElInput', 'ElInputNumber'].includes(component)) {
         return '请输入'
       }
-      if (
-        ['ElSelect', 'ElCascader', 'ElDatePicker', 'ElTimePicker', 'ElTimeSelect', 'ElSelectV2'].includes(component)
-      ) {
+      if (['ElSelect', 'ElCascader', 'ElDatePicker', 'ElTimePicker', 'ElTimeSelect', 'ElSelectV2'].includes(component)) {
         return '请选择'
       }
       return ''
@@ -309,9 +307,7 @@ export default defineComponent({
             compSlot.default = () =>
               compAttr.options.map((k: any) => {
                 return (
-                  <ElCheckbox
-                    {...k}
-                    label={k.value}>
+                  <ElCheckbox {...k} label={k.value}>
                     {k.label}
                   </ElCheckbox>
                 )
@@ -320,9 +316,7 @@ export default defineComponent({
             compSlot.default = () =>
               compAttr.options.map((k: any) => {
                 return (
-                  <ElRadio
-                    {...k}
-                    label={k.value}>
+                  <ElRadio {...k} label={k.value}>
                     {k.label}
                   </ElRadio>
                 )
@@ -331,9 +325,7 @@ export default defineComponent({
         }
 
         return (
-          <Comp
-            {...compAttr}
-            options={null}>
+          <Comp {...compAttr} options={null}>
             {compSlot}
           </Comp>
         )
@@ -374,12 +366,7 @@ export default defineComponent({
       // has help message
       return (
         <span>
-          {renderLabel}{' '}
-          <BasicHelp
-            placement='top'
-            class='mx-1'
-            text={getHelpMessage}
-          />
+          {renderLabel} <BasicHelp placement='top' class='mx-1' text={getHelpMessage} />
         </span>
       )
     }
@@ -415,10 +402,7 @@ export default defineComponent({
         }
 
         return (
-          <ElFormItem
-            prop={field}
-            {...(itemProps as Recordable)}
-            rules={handleRules()}>
+          <ElFormItem prop={field} {...(itemProps as Recordable)} rules={handleRules()}>
             {{
               label: () => renderLabelHelpMessage(),
               default: () => getContent(),
@@ -459,9 +443,7 @@ export default defineComponent({
 
       return (
         isIfShow && (
-          <ElCol
-            {...realColProps}
-            v-show={isShow}>
+          <ElCol {...realColProps} v-show={isShow}>
             {getContent()}
           </ElCol>
         )

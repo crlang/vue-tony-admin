@@ -7,9 +7,7 @@
       </div>
     </template>
     <List>
-      <template
-        v-for="item in dynamicInfoItems"
-        :key="item.title">
+      <template v-for="item in dynamicInfoItems" :key="item.title">
         <ListItem>
           <template #title>
             <div class="dync-title">{{ item.name }}</div>
@@ -19,10 +17,7 @@
             </div>
           </template>
           <template #thumb>
-            <img
-              :src="item.avatar"
-              :alt="item.name"
-              width="32" />
+            <img :src="item.avatar" :alt="item.name" width="32" />
           </template>
           <template #description>
             {{ item.date }}

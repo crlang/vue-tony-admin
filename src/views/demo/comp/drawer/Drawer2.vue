@@ -5,11 +5,7 @@
     title="Drawer Title"
     width="50%">
     Drawer Info.
-    <el-button
-      type="primary"
-      @click="closeDrawer">
-      内部关闭drawer
-    </el-button>
+    <el-button type="primary" @click="closeDrawer">内部关闭drawer</el-button>
   </BasicDrawer>
 </template>
 

@@ -1,9 +1,6 @@
 <template>
   <div :class="prefixCls">
-    <div
-      :class="`${prefixCls}__unlock`"
-      @click="handleShowForm(false)"
-      v-show="showDate">
+    <div :class="`${prefixCls}__unlock`" @click="handleShowForm(false)" v-show="showDate">
       <SvgIcon name="lock" :size="32" />
       <span>点击解锁</span>
     </div>
@@ -11,9 +8,7 @@
     <div :class="`${prefixCls}__box`">
       <div :class="`${prefixCls}__hour`">
         <span>{{ hour }}</span>
-        <span
-          v-show="showDate"
-          class="meridiem">
+        <span v-show="showDate" class="meridiem">
           {{ meridiem }}
         </span>
       </div>
@@ -23,13 +18,8 @@
     </div>
 
     <transition name="fade-slide">
-      <div
-        :class="`${prefixCls}-entry`"
-        @click="handleShowForm(true)"
-        v-show="!showDate">
-        <div
-          :class="`${prefixCls}-entry-content`"
-          @click.stop="">
+      <div :class="`${prefixCls}-entry`" @click="handleShowForm(true)" v-show="!showDate">
+        <div :class="`${prefixCls}-entry-content`" @click.stop="">
           <div :class="`${prefixCls}-entry__header`">
             <img :src="userinfo.avatar || headerImg" />
             <p>{{ userinfo.realName }}</p>
@@ -42,9 +32,7 @@
               @keypress.enter="unLock()" />
             <SvgIcon :name="loading ? 'loading' : 'right'" :spin="loading" />
           </div>
-          <div
-            :class="`${prefixCls}-entry__extra`"
-            @click="goLogin">
+          <div :class="`${prefixCls}-entry__extra`" @click="goLogin">
             <el-tooltip content="返回登录">
               <SvgIcon :size="32" name="poweroff" />
             </el-tooltip>
@@ -277,7 +265,6 @@ $prefix-cls: '#{$tonyname}-lock-page';
       :deep(.el-input__inner) {
         --el-input-text-color: rgba(255, 255, 255, 1);
       }
-
     }
 
     &__extra {

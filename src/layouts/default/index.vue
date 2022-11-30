@@ -1,7 +1,5 @@
 <template>
-  <ElContainer
-    :class="[layoutClass]"
-    v-bind="lockEvents">
+  <ElContainer :class="[layoutClass]" v-bind="lockEvents">
     <LayoutHeader fixed v-if="getShowFullHeaderRef" />
     <LayoutSideBar v-if="getShowSidebar || getIsMobile" />
     <ElContainer :class="`${prefixCls}-main`">

@@ -1,9 +1,6 @@
 <template>
   <div class="m-5 result-error">
-    <el-result
-      icon="error"
-      title="提交失败"
-      sub-title="请核对并修改以下信息后，再重新提交。">
+    <el-result icon="error" title="提交失败" sub-title="请核对并修改以下信息后，再重新提交。">
       <template #extra>
         <el-button type="primary">返回修改</el-button>
       </template>
@@ -12,16 +9,12 @@
     <div class="result-error__content">
       <div class="result-error__content-title">您提交的内容有如下错误：</div>
       <div class="result-error__content-item">
-        <SvgIcon
-          name="close"
-          class="result-error__content-icon" />
+        <SvgIcon name="close" class="result-error__content-icon" />
         您的账户已被冻结
         <el-link class="ml-4">立即解冻 ></el-link>
       </div>
       <div class="result-error__content-item">
-        <SvgIcon
-          name="close"
-          class="result-error__content-icon" />
+        <SvgIcon name="close" class="result-error__content-icon" />
         您的账户还不具备申请资格
         <el-link class="ml-4">立即解冻 ></el-link>
       </div>

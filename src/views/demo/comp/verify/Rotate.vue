@@ -1,10 +1,7 @@
 <template>
   <PageWrapper title="旋转校验示例">
     <div class="ty-demo">
-      <RotateDragVerify
-        :src="img"
-        ref="el"
-        @success="handleSuccess" />
+      <RotateDragVerify :src="img" ref="el" @success="handleSuccess" />
     </div>
   </PageWrapper>
 </template>

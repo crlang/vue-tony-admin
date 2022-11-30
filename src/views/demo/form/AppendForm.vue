@@ -1,22 +1,10 @@
 <template>
   <PageWrapper title="表单增删示例">
     <CollapseContainer title="表单增删">
-      <BasicForm
-        @register="register"
-        @submit="handleSubmit">
+      <BasicForm @register="register" @submit="handleSubmit">
         <template #add="{ field }">
-          <el-button
-            v-if="Number(field) === 0"
-            style="width: 42px"
-            @click="add">
-            +
-          </el-button>
-          <el-button
-            v-if="field > 0"
-            style="width: 42px"
-            @click="del(field)">
-            -
-          </el-button>
+          <el-button v-if="Number(field) === 0" style="width: 42px" @click="add">+</el-button>
+          <el-button v-if="field > 0" style="width: 42px" @click="del(field)">-</el-button>
         </template>
       </BasicForm>
     </CollapseContainer>

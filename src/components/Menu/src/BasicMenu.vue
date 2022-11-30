@@ -4,13 +4,8 @@
     mode="horizontal"
     :class="getMenuClass"
     :router="true">
-    <template
-      v-for="item in items"
-      :key="item.path">
-      <BasicSubMenuItem
-        :item="item"
-        :prefixCls="`${prefixCls}-item`"
-        :isHorizontal="isHorizontal" />
+    <template v-for="item in items" :key="item.path">
+      <BasicSubMenuItem :item="item" :prefixCls="`${prefixCls}-item`" :isHorizontal="isHorizontal" />
     </template>
   </ElMenu>
 </template>
@@ -62,9 +57,7 @@ export default defineComponent({
     const getIsTopMenu = computed(() => {
       const { type, mode } = props
 
-      return (
-        (type === MenuTypeEnum.TOP_MENU && mode === MenuModeEnum.HORIZONTAL) || (props.isHorizontal && unref(getSplit))
-      )
+      return (type === MenuTypeEnum.TOP_MENU && mode === MenuModeEnum.HORIZONTAL) || (props.isHorizontal && unref(getSplit))
     })
 
     const getMenuClass = computed(() => {

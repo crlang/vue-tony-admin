@@ -2,10 +2,7 @@
   <PageWrapper title="虚拟滚动示例">
     <el-divider>基础滚动示例</el-divider>
     <div class="virtual-scroll-demo-wrap">
-      <VirtualScroll
-        :itemHeight="60"
-        :listData="data"
-        :height="300">
+      <VirtualScroll :itemHeight="60" :listData="data" :height="300">
         <template #default="{ item, index }">
           <div class="virtual-scroll-demo__item">{{ index }} - {{ item.title }}</div>
         </template>

@@ -10,15 +10,7 @@ export function getLogColumns(): BasicColumn[] {
       width: 80,
       customRender: ({ text }) => {
         const color =
-          text === ErrorTypeEnum.VUE
-            ? 'success'
-            : text === ErrorTypeEnum.RESOURCE
-              ? 'warning'
-              : text === ErrorTypeEnum.PROMISE
-                ? 'primary'
-                : ErrorTypeEnum.AJAX
-                  ? 'danger'
-                  : 'info'
+          text === ErrorTypeEnum.VUE ? 'success' : text === ErrorTypeEnum.RESOURCE ? 'warning' : text === ErrorTypeEnum.PROMISE ? 'primary' : ErrorTypeEnum.AJAX ? 'danger' : 'info'
 
         return <ElTag type={color}>{() => text}</ElTag>
       },

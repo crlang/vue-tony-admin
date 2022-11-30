@@ -1,21 +1,12 @@
 <template>
-  <ElTooltip
-    v-if="redo"
-    placement="top"
-    content="刷新">
+  <ElTooltip v-if="redo" placement="top" content="刷新">
     <SvgIcon name="reload" @click="handleRedo" />
   </ElTooltip>
-  <ElTooltip
-    v-if="size"
-    placement="top"
-    content="密度">
+  <ElTooltip v-if="size" placement="top" content="密度">
     <SvgIcon :name="`size-${sizeRef}`" @click="handleSize" />
   </ElTooltip>
 
-  <ElTooltip
-    v-if="fullscreen"
-    placement="top"
-    content="全屏">
+  <ElTooltip v-if="fullscreen" placement="top" content="全屏">
     <SvgIcon @click="toggle" :name="isFullscreen ? 'shrink' : 'arrowsalt'" />
   </ElTooltip>
 </template>

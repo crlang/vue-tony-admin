@@ -1,12 +1,6 @@
 <template>
-  <PageWrapper
-    title="引导页"
-    description="用于给用户的指引操作">
-    <el-button
-      type="primary"
-      @click="handleStart">
-      开始
-    </el-button>
+  <PageWrapper title="引导页" description="用于给用户的指引操作">
+    <el-button type="primary" @click="handleStart">开始</el-button>
   </PageWrapper>
 </template>
 

@@ -1,7 +1,5 @@
 <template>
-  <span
-    @click="handleRedo"
-    title="重新加载">
+  <span @click="handleRedo" title="重新加载">
     <SvgIcon name="reload" />
   </span>
 </template>

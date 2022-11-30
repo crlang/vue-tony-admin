@@ -1,8 +1,5 @@
 <template>
-  <PageWrapper
-    title="后台权限示例"
-    contentBackground
-    description="目前mock了两组数据， id为1 和 2 具体返回的菜单可以在mock/sys/menu.ts内查看">
+  <PageWrapper title="后台权限示例" contentBackground description="目前mock了两组数据， id为1 和 2 具体返回的菜单可以在mock/sys/menu.ts内查看">
     <CurrentPermissionMode />
 
     <el-alert
@@ -14,16 +11,8 @@
     <div class="mt-4">
       权限切换:
       <el-button-group>
-        <el-button
-          @click="switchToken(1)"
-          :disabled="!isBackPremissionMode">
-          获取用户id为1的菜单
-        </el-button>
-        <el-button
-          @click="switchToken(2)"
-          :disabled="!isBackPremissionMode">
-          获取用户id为2的菜单
-        </el-button>
+        <el-button @click="switchToken(1)" :disabled="!isBackPremissionMode">获取用户id为1的菜单</el-button>
+        <el-button @click="switchToken(2)" :disabled="!isBackPremissionMode">获取用户id为2的菜单</el-button>
       </el-button-group>
 
       <el-alert

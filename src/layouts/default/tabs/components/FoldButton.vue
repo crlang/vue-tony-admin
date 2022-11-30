@@ -1,7 +1,5 @@
 <template>
-  <span
-    @click="handleFold"
-    :title="getIconText">
+  <span @click="handleFold" :title="getIconText">
     <SvgIcon :name="getIcon" />
   </span>
 </template>

@@ -44,10 +44,7 @@ export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
   return src
 }
 
-export function openWindow(
-  url: string,
-  opt?: { target?: TargetContext | string; noopener?: boolean; noreferrer?: boolean },
-) {
+export function openWindow(url: string, opt?: { target?: TargetContext | string; noopener?: boolean; noreferrer?: boolean }) {
   const { target = '__blank', noopener = true, noreferrer = true } = opt || {}
   const feature: string[] = []
 
@@ -73,9 +70,7 @@ export function getRawRoute(route: RouteLocationNormalized): RouteLocationNormal
   const { matched, ...opt } = route
   return {
     ...opt,
-    matched: (matched
-      ? matched.map((item) => ({ meta: item.meta, name: item.name, path: item.path }))
-      : undefined) as RouteRecordNormalized[],
+    matched: (matched ? matched.map((item) => ({ meta: item.meta, name: item.name, path: item.path })) : undefined) as RouteRecordNormalized[],
   }
 }
 
@@ -166,9 +161,7 @@ export function buildUUID(): string {
 export function getUseInstance<T>(instanceRef: Ref<T> | null, name: string): T | null {
   const instance = unref(instanceRef)
   if (!instance) {
-    error(
-      `The ${name} instance has not been obtained, please make sure the instance is rendered when performing the instance operation!`,
-    )
+    error(`The ${name} instance has not been obtained, please make sure the instance is rendered when performing the instance operation!`)
   }
   return instance
 }

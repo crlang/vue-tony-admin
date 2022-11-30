@@ -1,7 +1,5 @@
 <template>
-  <ElDatePicker
-    clearable
-    v-model:modelValue="state" />
+  <ElDatePicker clearable v-model:modelValue="state" />
 </template>
 
 <script lang="ts">

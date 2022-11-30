@@ -18,14 +18,10 @@
     <div class="mt-4">
       权限切换:
       <el-button-group>
-        <el-button
-          @click="changeRole(RoleEnum.ADMIN)"
-          :type="isAdmin ? 'primary' : 'default'">
+        <el-button @click="changeRole(RoleEnum.ADMIN)" :type="isAdmin ? 'primary' : 'default'">
           {{ RoleEnum.ADMIN }}
         </el-button>
-        <el-button
-          @click="changeRole(RoleEnum.TEST)"
-          :type="isTest ? 'primary' : 'default'">
+        <el-button @click="changeRole(RoleEnum.TEST)" :type="isTest ? 'primary' : 'default'">
           {{ RoleEnum.TEST }}
         </el-button>
       </el-button-group>

@@ -1,46 +1,16 @@
 <template>
   <PageWrapper title="抽屉组件使用示例">
-    <el-alert
-      title="使用 useDrawer 进行抽屉操作"
-      show-icon />
+    <el-alert title="使用 useDrawer 进行抽屉操作" show-icon />
     <Drawer1 />
 
-    <el-alert
-      title="内外同时控制显示隐藏"
-      show-icon />
-    <el-button
-      type="primary"
-      class="my-4"
-      @click="openDrawer2(true)">
-      打开Drawer
-    </el-button>
-    <el-alert
-      title="自适应高度/显示footer"
-      show-icon />
-    <el-button
-      type="primary"
-      class="my-4"
-      @click="openDrawer3(true)">
-      打开Drawer
-    </el-button>
-    <el-alert
-      title="内外数据交互"
-      show-icon />
-    <el-button
-      type="primary"
-      class="my-4"
-      @click="send">
-      打开Drawer并传递数据
-    </el-button>
-    <el-alert
-      title="详情页模式"
-      show-icon />
-    <el-button
-      type="primary"
-      class="my-4"
-      @click="openDrawer5(true)">
-      打开详情Drawer
-    </el-button>
+    <el-alert title="内外同时控制显示隐藏" show-icon />
+    <el-button type="primary" class="my-4" @click="openDrawer2(true)">打开Drawer</el-button>
+    <el-alert title="自适应高度/显示footer" show-icon />
+    <el-button type="primary" class="my-4" @click="openDrawer3(true)">打开Drawer</el-button>
+    <el-alert title="内外数据交互" show-icon />
+    <el-button type="primary" class="my-4" @click="send">打开Drawer并传递数据</el-button>
+    <el-alert title="详情页模式" show-icon />
+    <el-button type="primary" class="my-4" @click="openDrawer5(true)">打开详情Drawer</el-button>
     <Drawer2 @register="register2" />
     <Drawer3 @register="register3" />
     <Drawer4 @register="register4" />

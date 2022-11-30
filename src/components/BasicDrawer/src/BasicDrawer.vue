@@ -1,14 +1,8 @@
 <template>
-  <ElDrawer
-    @close="handleClose()"
-    v-bind="getBindValues"
-    v-model="visibleRef">
+  <ElDrawer @close="handleClose()" v-bind="getBindValues" v-model="visibleRef">
     <template #header>
       <div :class="`${prefixCls}-header`">
-        <span
-          :class="`${prefixCls}-header__back`"
-          v-if="isDetail"
-          @click="handleClose()">
+        <span :class="`${prefixCls}-header__back`" v-if="isDetail" @click="handleClose()">
           <SvgIcon name="left" />
         </span>
 
@@ -17,41 +11,27 @@
           <template v-else><slot name="header"></slot></template>
         </BasicTitle>
 
-        <span
-          :class="`${prefixCls}-header__toolbar`"
-          v-if="$slots.toolbar">
+        <span :class="`${prefixCls}-header__toolbar`" v-if="$slots.toolbar">
           <slot name="toolbar"></slot>
         </span>
       </div>
     </template>
 
-    <ScrollContainer
-      :class="`${prefixCls}-body`"
-      v-loading="getLoading"
-      :element-loading-text="loadingText">
+    <ScrollContainer :class="`${prefixCls}-body`" v-loading="getLoading" :element-loading-text="loadingText">
       <slot></slot>
     </ScrollContainer>
 
-    <div
-      :class="`${prefixCls}-footer`"
-      v-if="showFooter">
+    <div :class="`${prefixCls}-footer`" v-if="showFooter">
       <template v-if="$slots.footer">
         <slot name="footer"></slot>
       </template>
 
       <template v-else>
-        <slot
-          name="prependFooter"
-          v-if="$slots.prependFooter"></slot>
-        <ElButton
-          @click="handleClose"
-          v-bind="cancelOptions"
-          v-if="showCancelBtn">
+        <slot name="prependFooter" v-if="$slots.prependFooter"></slot>
+        <ElButton @click="handleClose" v-bind="cancelOptions" v-if="showCancelBtn">
           {{ cancelOptions.btnText || 'Cancel' }}
         </ElButton>
-        <slot
-          name="centerFooter"
-          v-if="$slots.centerFooter"></slot>
+        <slot name="centerFooter" v-if="$slots.centerFooter"></slot>
         <ElButton
           @click="handleOk"
           v-bind="confirmOptions"
@@ -59,9 +39,7 @@
           v-if="showConfirmBtn">
           {{ confirmOptions.btnText || 'Ok' }}
         </ElButton>
-        <slot
-          name="appendFooter"
-          v-if="$slots.appendFooter"></slot>
+        <slot name="appendFooter" v-if="$slots.appendFooter"></slot>
       </template>
     </div>
   </ElDrawer>

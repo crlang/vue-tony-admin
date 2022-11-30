@@ -1,17 +1,11 @@
 <template>
   <List :class="prefixCls">
     <el-row :gutter="16">
-      <template
-        v-for="item in list"
-        :key="item.title">
+      <template v-for="item in list" :key="item.title">
         <el-col :span="6">
           <ListItem :class="`${prefixCls}__item`">
-            <el-card
-              :class="`${prefixCls}__card`"
-              :bodyStyle="{ padding: 0 }">
-              <div
-                :class="`${prefixCls}__card-img`"
-                :style="{ 'background-image': 'url(' + demoImg + ')' }"></div>
+            <el-card :class="`${prefixCls}__card`" :bodyStyle="{ padding: 0 }">
+              <div :class="`${prefixCls}__card-img`" :style="{ 'background-image': 'url(' + demoImg + ')' }"></div>
 
               <div :class="`${prefixCls}__card-title`">
                 {{ item.title }}

@@ -17,11 +17,7 @@ import { onMountedOrActivated } from '@/hooks/core/onMountedOrActivated'
  * @param tableElRef
  * @param getDataSourceRef
  */
-export function useTableScroll(
-  propsRef: ComputedRef<BasicTableProps>,
-  tableElRef: Ref<ComponentRef>,
-  getDataSourceRef: ComputedRef<Recordable[]>,
-) {
+export function useTableScroll(propsRef: ComputedRef<BasicTableProps>, tableElRef: Ref<ComponentRef>, getDataSourceRef: ComputedRef<Recordable[]>) {
   let paginationEl: HTMLElement | null
   let bodyEl: HTMLElement | null
   const modalFn = useModalContext()

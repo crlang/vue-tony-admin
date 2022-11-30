@@ -1,17 +1,11 @@
 <template>
-  <CollapseContainer
-    title="安全设置"
-    :canExpan="false">
+  <CollapseContainer title="安全设置" :canExpan="false">
     <List>
-      <template
-        v-for="item in list"
-        :key="item.key">
+      <template v-for="item in list" :key="item.key">
         <ListItem>
           <template #title>
             {{ item.title }}
-            <div
-              class="extra"
-              v-if="item.extra">
+            <div class="extra" v-if="item.extra">
               {{ item.extra }}
             </div>
           </template>

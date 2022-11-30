@@ -11,7 +11,6 @@ import { updateHeaderColor, updateSidebarColor, updateColorWeak, updateGrayMode,
 import { useAppStore } from '@/store/modules/app'
 import { Persistent } from '@/utils/cache/persistent'
 import { deepMerge } from '@/utils'
-import { primaryColor } from '@/settings/designSetting'
 import { getCommonStoragePrefix, getStorageShortName } from '@/utils/env'
 
 /**
@@ -26,9 +25,8 @@ export function initAppConfigStore() {
   projCfg = deepMerge(projectSetting, projCfg || {})
 
   const { colorWeak, grayMode, themeColor, headerSetting, menuSetting, multiTabsSetting } = projCfg
-  if (themeColor && themeColor !== primaryColor) {
-    changeTheme(themeColor)
-  }
+
+  changeTheme(themeColor)
 
   initBasicHeight(headerSetting.height, multiTabsSetting.height)
 

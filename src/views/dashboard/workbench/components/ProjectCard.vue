@@ -1,21 +1,11 @@
 <template>
   <CardGrid title="项目">
     <template #extra>
-      <el-button
-        text
-        size="small">
-        更多
-      </el-button>
+      <el-button text size="small">更多</el-button>
     </template>
-    <CardGridItem
-      v-for="(item, index) in items"
-      class="project-item"
-      :key="index">
+    <CardGridItem v-for="(item, index) in items" class="project-item" :key="index">
       <span class="project-item__title">
-        <img
-          :src="item.icon"
-          width="32"
-          height="32" />
+        <img :src="item.icon" width="32" height="32" />
         <span class="ml-4">{{ item.title }}</span>
       </span>
       <div class="project-item__desc">{{ item.desc }}</div>

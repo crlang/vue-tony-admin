@@ -1,7 +1,5 @@
 <template>
-  <PageWrapper
-    title="登录过期示例"
-    description="用户登录过期示例，不再跳转登录页，直接生成页面覆盖当前页面，方便保持过期前的用户状态！">
+  <PageWrapper title="登录过期示例" description="用户登录过期示例，不再跳转登录页，直接生成页面覆盖当前页面，方便保持过期前的用户状态！">
     <el-card>
       <template #header>
         <div>
@@ -10,18 +8,8 @@
           )
         </div>
       </template>
-      <el-button
-        type="primary"
-        plain
-        @click="test1">
-        HttpStatus == 401
-      </el-button>
-      <el-button
-        class="ml-4"
-        type="primary"
-        @click="test2">
-        Response.code == 401
-      </el-button>
+      <el-button type="primary" plain @click="test1">HttpStatus == 401</el-button>
+      <el-button class="ml-4" type="primary" @click="test2">Response.code == 401</el-button>
     </el-card>
   </PageWrapper>
 </template>

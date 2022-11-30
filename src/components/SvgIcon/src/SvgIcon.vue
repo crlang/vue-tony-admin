@@ -1,13 +1,7 @@
 <template>
-  <span
-    :class="[`${prefixCls}`, spin && `${prefixCls}-spin`]"
-    :style="getStyle">
-    <svg
-      aria-hidden="true"
-      :style="getSvgStyle">
-      <use
-        :xlink:href="symbolId"
-        :fill="color" />
+  <span :class="[`${prefixCls}`, spin && `${prefixCls}-spin`]" :style="getStyle">
+    <svg aria-hidden="true" :style="getSvgStyle">
+      <use :xlink:href="symbolId" :fill="color" />
     </svg>
   </span>
 </template>

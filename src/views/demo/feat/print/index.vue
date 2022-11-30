@@ -1,18 +1,12 @@
 <template>
   <PageWrapper title="打印示例">
-    <el-button
-      type="primary"
-      @click="jsonPrint">
-      Json Print
-    </el-button>
+    <el-button type="primary" @click="jsonPrint">Json Print</el-button>
 
     <el-button
       type="primary"
       class="ml-5"
       :loading="printLoading"
-      @click="imagePrint">
-      Image Print
-    </el-button>
+      @click="imagePrint">Image Print</el-button>
   </PageWrapper>
 </template>
 
@@ -40,10 +34,7 @@ export default defineComponent({
 
     function imagePrint() {
       printJS({
-        printable: [
-          'https://anncwb.github.io/anncwb/images/preview1.png',
-          'https://anncwb.github.io/anncwb/images/preview2.png',
-        ],
+        printable: ['https://anncwb.github.io/anncwb/images/preview1.png', 'https://anncwb.github.io/anncwb/images/preview2.png'],
         type: 'image',
         header: 'Multiple Images',
         imageStyle: 'width:100%;',

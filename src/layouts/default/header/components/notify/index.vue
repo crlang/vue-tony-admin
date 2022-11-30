@@ -6,27 +6,16 @@
       width="300px"
       :popper-class="`${prefixCls}__overlay`">
       <template #reference>
-        <ElBadge
-          :value="count"
-          is-dot>
+        <ElBadge :value="count" is-dot>
           <SvgIcon name="bells" />
         </ElBadge>
       </template>
 
-      <ElTabs
-        :class="`${prefixCls}__tabs`"
-        stretch>
-        <template
-          v-for="item in listData"
-          :key="item.key">
+      <ElTabs :class="`${prefixCls}__tabs`" stretch>
+        <template v-for="item in listData" :key="item.key">
           <ElTabPane :label="item.name">
-            <NoticeList
-              :list="item.list"
-              v-if="item.key === '1'"
-              @title-click="onNoticeClick" />
-            <NoticeList
-              :list="item.list"
-              v-else />
+            <NoticeList :list="item.list" v-if="item.key === '1'" @title-click="onNoticeClick" />
+            <NoticeList :list="item.list" v-else />
             <div :class="`${prefixCls}__more`">查看更多</div>
           </ElTabPane>
         </template>

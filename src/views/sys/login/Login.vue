@@ -1,12 +1,8 @@
 <template>
   <div :class="prefixCls">
     <div :class="`${prefixCls}__bg`">
-      <img
-        src="@/assets/images/login_bg_light.jpg"
-        :class="`${prefixCls}__bg--light`" />
-      <img
-        src="@/assets/images/login_bg_dark.jpg"
-        :class="`${prefixCls}__bg--dark`" />
+      <img src="@/assets/images/login_bg_light.jpg" :class="`${prefixCls}__bg--light`" />
+      <img src="@/assets/images/login_bg_dark.jpg" :class="`${prefixCls}__bg--dark`" />
     </div>
 
     <el-row :class="`${prefixCls}__inner`">
@@ -16,13 +12,8 @@
             欢迎使用
             <span>{{ title }}</span>
           </h1>
-          <p>
-            {{ title }} 基于 element plus ，并且使用了最新的 vue3, vite2, TypeScript
-            等主流技术开发，开箱即用的中后台前端解决方案。
-          </p>
-          <p>
-            基于 element plus ，并且使用了最新的 vue3, vite2, TypeScript 等主流技术开发，开箱即用的中后台前端解决方案。
-          </p>
+          <p>{{ title }} 基于 element plus ，并且使用了最新的 vue3, vite2, TypeScript 等主流技术开发，开箱即用的中后台前端解决方案。</p>
+          <p>基于 element plus ，并且使用了最新的 vue3, vite2, TypeScript 等主流技术开发，开箱即用的中后台前端解决方案。</p>
         </div>
       </el-col>
       <el-col :span="10">
@@ -36,15 +27,9 @@
             <p>Element/Vue3/Typescript 最佳的选择</p>
           </div>
           <div :class="`${prefixCls}__form`">
-            <el-tabs
-              v-if="getShow"
-              v-model="activeName">
-              <el-tab-pane
-                label="账号登录"
-                name="account" />
-              <el-tab-pane
-                label="手机号登录"
-                name="mobile" />
+            <el-tabs v-if="getShow" v-model="activeName">
+              <el-tab-pane label="账号登录" name="account" />
+              <el-tab-pane label="手机号登录" name="mobile" />
             </el-tabs>
             <LoginForm />
             <ForgetPasswordForm />
@@ -52,9 +37,7 @@
             <MobileForm />
           </div>
 
-          <div
-            :class="`${prefixCls}__regnew`"
-            v-if="getShow">
+          <div :class="`${prefixCls}__regnew`" v-if="getShow">
             没有账号？
             <span @click="setLoginState(LoginStateEnum.REGISTER)">注册</span>
           </div>
@@ -106,11 +89,7 @@ export default defineComponent({
     }
 
     const getShow = computed(() => {
-      return (
-        unref(getLoginState) === LoginStateEnum.LOGIN ||
-        unref(getLoginState) === LoginStateEnum.MOBILE ||
-        unref(getLoginState) === LoginStateEnum.QR_CODE
-      )
+      return unref(getLoginState) === LoginStateEnum.LOGIN || unref(getLoginState) === LoginStateEnum.MOBILE || unref(getLoginState) === LoginStateEnum.QR_CODE
     })
 
     watch(

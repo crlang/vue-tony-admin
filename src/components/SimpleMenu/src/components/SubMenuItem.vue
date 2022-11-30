@@ -1,22 +1,12 @@
 <template>
   <li :class="getClass">
     <template v-if="!getCollapse">
-      <div
-        :class="`${prefixCls}-title`"
-        @click.stop="handleClick"
-        :style="getItemStyle">
+      <div :class="`${prefixCls}-title`" @click.stop="handleClick" :style="getItemStyle">
         <slot name="title"></slot>
-        <SvgIcon
-          name="down"
-          :size="12"
-          :class="`${prefixCls}-title-icon`" />
+        <SvgIcon name="down" :size="12" :class="`${prefixCls}-title-icon`" />
       </div>
-      <transition
-        name="submenu-expand"
-        mode="out-in">
-        <ul
-          :class="prefixCls"
-          v-show="opened">
+      <transition name="submenu-expand" mode="out-in">
+        <ul :class="prefixCls" v-show="opened">
           <slot></slot>
         </ul>
       </transition>
@@ -31,9 +21,7 @@
       @hide="handleVisibleChange(false)"
       :popper-class="`${prefixCls}-popover`">
       <template #reference>
-        <div
-          :class="getSubClass"
-          v-bind="getEvents(false)">
+        <div :class="getSubClass" v-bind="getEvents(false)">
           <div
             :class="[
               {

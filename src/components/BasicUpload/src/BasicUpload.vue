@@ -1,24 +1,14 @@
 <template>
-  <div
-    v-if="showThumb"
-    :style="getThumbStyle"
-    :class="`${prefixCls}-entry-thumb`">
+  <div v-if="showThumb" :style="getThumbStyle" :class="`${prefixCls}-entry-thumb`">
     <template v-if="fileList?.length">
       <div :class="`${prefixCls}-entry-thumb__img`">
-        <img
-          :src="fileList[0]"
-          :alt="fileList[0]" />
+        <img :src="fileList[0]" :alt="fileList[0]" />
         <div :class="`${prefixCls}-entry-thumb__img-inner`">
-          <div
-            :class="`${prefixCls}-entry-thumb__img--upload`"
-            @click="openUpload()">
+          <div :class="`${prefixCls}-entry-thumb__img--upload`" @click="openUpload()">
             <SvgIcon name="cloud-upload" />
             上传
           </div>
-          <div
-            :class="`${prefixCls}-entry-thumb__img--preview`"
-            v-if="getProps.showPreview"
-            @click="openPreview()">
+          <div :class="`${prefixCls}-entry-thumb__img--preview`" v-if="getProps.showPreview" @click="openPreview()">
             <SvgIcon name="eye" />
             预览
             <template v-if="fileList.length && showPreviewNumber">({{ fileList.length }})</template>
@@ -27,34 +17,24 @@
       </div>
     </template>
     <template v-else>
-      <div
-        :class="`${prefixCls}-entry-thumb__btn`"
-        @click="openUpload()">
+      <div :class="`${prefixCls}-entry-thumb__btn`" @click="openUpload()">
         <SvgIcon name="cloud-upload" />
       </div>
     </template>
   </div>
-  <ElButtonGroup
-    :class="`${prefixCls}-entry-simple`"
-    v-else>
-    <ElButton
-      type="primary"
-      @click="openUpload()">
+  <ElButtonGroup :class="`${prefixCls}-entry-simple`" v-else>
+    <ElButton type="primary" @click="openUpload()">
       <SvgIcon name="cloud-upload" class="mr-1" />
       <span>上传</span>
     </ElButton>
-    <ElTooltip
-      placement="bottom"
-      v-if="showPreview">
+    <ElTooltip placement="bottom" v-if="showPreview">
       <template #content>
         已上传
         <template v-if="fileList.length">
           {{ fileList.length }}
         </template>
       </template>
-      <ElButton
-        @click="openPreview()"
-        v-if="getProps.showPreview">
+      <ElButton @click="openPreview()" v-if="getProps.showPreview">
         <SvgIcon name="eye" />
         <template v-if="fileList.length && showPreviewNumber">{{ fileList.length }}</template>
       </ElButton>

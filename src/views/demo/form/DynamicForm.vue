@@ -7,17 +7,11 @@
       <el-button @click="resetField">重置表单字段</el-button>
     </div>
     <CollapseContainer title="动态表单示例,动态根据表单内其他值改变">
-      <BasicForm
-        @register="register"
-        @submit="handleSubmit" />
+      <BasicForm @register="register" @submit="handleSubmit" />
     </CollapseContainer>
 
-    <CollapseContainer
-      class="mt-5"
-      title="componentProps动态改变">
-      <BasicForm
-        @register="register1"
-        @submit="handleSubmit" />
+    <CollapseContainer class="mt-5" title="componentProps动态改变">
+      <BasicForm @register="register1" @submit="handleSubmit" />
     </CollapseContainer>
   </PageWrapper>
 </template>

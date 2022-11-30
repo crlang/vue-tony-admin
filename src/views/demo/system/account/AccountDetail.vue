@@ -5,46 +5,23 @@
     headerClass="py-0-imp"
     contentBackground>
     <template #toolbar>
-      <el-button
-        size="small"
-        type="danger">
-        禁用账号
-      </el-button>
-      <el-button
-        size="small"
-        type="primary">
-        修改密码
-      </el-button>
+      <el-button size="small" type="danger">禁用账号</el-button>
+      <el-button size="small" type="primary">修改密码</el-button>
     </template>
     <template #extra>
-      <el-tabs
-        type="card"
-        class="mt-4"
-        v-model="currentKey">
-        <el-tab-pane
-          name="detail"
-          label="用户资料" />
-        <el-tab-pane
-          name="logs"
-          label="操作日志" />
+      <el-tabs type="card" class="mt-4" v-model="currentKey">
+        <el-tab-pane name="detail" label="用户资料" />
+        <el-tab-pane name="logs" label="操作日志" />
       </el-tabs>
     </template>
 
     <div class="pt-4 m-4">
       <template v-if="currentKey == 'detail'">
-        <div
-          v-for="i in 10"
-          :key="i">
-          这是用户{{ userId }}资料Tab
-        </div>
+        <div v-for="i in 10" :key="i">这是用户{{ userId }}资料Tab</div>
       </template>
 
       <template v-if="currentKey == 'logs'">
-        <div
-          v-for="i in 10"
-          :key="i">
-          这是用户{{ userId }}操作日志Tab
-        </div>
+        <div v-for="i in 10" :key="i">这是用户{{ userId }}操作日志Tab</div>
       </template>
     </div>
   </PageWrapper>

@@ -113,18 +113,12 @@ export default defineComponent({
     return () => {
       const { title, subTitle, btnText, icon, handler, status } = unref(getMapValue) || {}
       return (
-        <ElResult
-          class={prefixCls}
-          status={status as any}
-          title={props.title || title}
-          sub-title={props.subTitle || subTitle}>
+        <ElResult class={prefixCls} status={status as any} title={props.title || title} sub-title={props.subTitle || subTitle}>
           {{
             icon: () => (icon ? <img src={icon} /> : null),
             extra: () =>
               btnText && (
-                <ElButton
-                  type='primary'
-                  onClick={handler}>
+                <ElButton type='primary' onClick={handler}>
                   {() => btnText}
                 </ElButton>
               ),

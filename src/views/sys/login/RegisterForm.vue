@@ -5,24 +5,16 @@
     :rules="getFormRules"
     ref="formRef">
     <el-form-item prop="account">
-      <el-input
-        v-model="formData.account"
-        placeholder="账号" />
+      <el-input v-model="formData.account" placeholder="账号" />
     </el-form-item>
     <el-form-item prop="mobile">
-      <el-input
-        v-model="formData.mobile"
-        placeholder="手机号码" />
+      <el-input v-model="formData.mobile" placeholder="手机号码" />
     </el-form-item>
     <el-form-item prop="sms">
-      <CountdownInput
-        v-model="formData.sms"
-        placeholder="短信验证码" />
+      <CountdownInput v-model="formData.sms" placeholder="短信验证码" />
     </el-form-item>
     <el-form-item prop="password">
-      <StrengthMeter
-        v-model="formData.password"
-        placeholder="密码" />
+      <StrengthMeter v-model="formData.password" placeholder="密码" />
     </el-form-item>
     <el-form-item prop="confirmPassword">
       <el-input
@@ -32,25 +24,15 @@
         show-password />
     </el-form-item>
     <el-form-item prop="policy">
-      <el-checkbox
-        v-model="formData.policy"
-        :checked="formData.policy">
-        我同意xxx隐私政策
-      </el-checkbox>
+      <el-checkbox v-model="formData.policy" :checked="formData.policy">我同意xxx隐私政策</el-checkbox>
     </el-form-item>
     <el-button
       type="primary"
       class="login--submit"
       @click="handleRegister"
       :loading="loading"
-      :disabled="formData.policy === false">
-      注册
-    </el-button>
-    <el-button
-      @click="handleBackLogin"
-      class="login--back">
-      返回
-    </el-button>
+      :disabled="formData.policy === false">注册</el-button>
+    <el-button @click="handleBackLogin" class="login--back">返回</el-button>
   </el-form>
 </template>
 

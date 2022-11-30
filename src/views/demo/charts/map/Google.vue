@@ -1,7 +1,5 @@
 <template>
-  <div
-    ref="wrapRef"
-    :style="{ height, width }"></div>
+  <div ref="wrapRef" :style="{ height, width }"></div>
 </template>
 <script lang="ts">
 import { defineComponent, ref, nextTick, unref, onMounted } from 'vue'

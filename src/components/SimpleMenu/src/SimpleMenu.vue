@@ -7,9 +7,7 @@
     :class="prefixCls"
     :activeSubMenuNames="activeSubMenuNames"
     @select="handleSelect">
-    <template
-      v-for="item in items"
-      :key="item.path">
+    <template v-for="item in items" :key="item.path">
       <SimpleSubMenu
         :item="item"
         :parent="true"

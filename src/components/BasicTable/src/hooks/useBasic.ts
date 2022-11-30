@@ -7,17 +7,11 @@ import { error } from '@/utils/log'
  *
  * Please refer to Element Plus documentation for method usage
  */
-export function useBasicTableFn(
-  tableRef: Ref<TableActionMethods>,
-  handleTableChange: (...arg: any[]) => void,
-  emit: EmitType,
-) {
+export function useBasicTableFn(tableRef: Ref<TableActionMethods>, handleTableChange: (...arg: any[]) => void, emit: EmitType) {
   function getTable() {
     const table = unref(tableRef)
     if (!table) {
-      error(
-        'The table instance has not been obtained, please make sure that the table has been rendered when performing the table operation!',
-      )
+      error('The table instance has not been obtained, please make sure that the table has been rendered when performing the table operation!')
     }
     return table as TableActionMethods
   }

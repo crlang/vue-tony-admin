@@ -45,15 +45,7 @@ export interface UseEventParams {
  *
  * Reactive event listener
  */
-export function useEventListener({
-  el = window,
-  name,
-  listener,
-  options,
-  autoRemove = true,
-  isDebounce = true,
-  wait = 80,
-}: UseEventParams): { removeEvent: RemoveEventFn } {
+export function useEventListener({ el = window, name, listener, options, autoRemove = true, isDebounce = true, wait = 80 }: UseEventParams): { removeEvent: RemoveEventFn } {
   let remove: RemoveEventFn = () => {}
   const isAddRef = ref(false)
 

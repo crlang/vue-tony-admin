@@ -1,17 +1,8 @@
 <template>
   <PageWrapper title="点内外部触发事件">
-    <el-link
-      href="#main-out"
-      type="primary"
-      class="mb-4">
-      跳出框架外页面
-    </el-link>
-    <ClickOutside
-      @click-outside="handleClickOutside"
-      class="flex justify-center">
-      <div
-        @click="innerClick"
-        class="demo-box">
+    <el-link href="#main-out" type="primary" class="mb-4">跳出框架外页面</el-link>
+    <ClickOutside @click-outside="handleClickOutside" class="flex justify-center">
+      <div @click="innerClick" class="demo-box">
         {{ text }}
       </div>
     </ClickOutside>

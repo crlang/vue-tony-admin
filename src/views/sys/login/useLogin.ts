@@ -88,8 +88,7 @@ export function useFormRules(formData?: Recordable) {
         password: passwordFormRule,
         confirmPassword: [
           {
-            validator: (rule: any, value: any, callback: any) =>
-              validateConfirmPassword(rule, value, callback, 'password'),
+            validator: (rule: any, value: any, callback: any) => validateConfirmPassword(rule, value, callback, 'password'),
             trigger: 'blur',
           },
         ],

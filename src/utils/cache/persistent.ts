@@ -4,16 +4,7 @@ import type { RouteLocationNormalized } from 'vue-router'
 
 import { createLocalStorage, createSessionStorage } from '@/utils/cache'
 import { Memory } from './memory'
-import {
-  TOKEN_KEY,
-  USER_INFO_KEY,
-  ROLES_KEY,
-  LOCK_INFO_KEY,
-  PROJ_CFG_KEY,
-  APP_LOCAL_CACHE_KEY,
-  APP_SESSION_CACHE_KEY,
-  MULTIPLE_TABS_KEY,
-} from '@/enums/cacheEnum'
+import { TOKEN_KEY, USER_INFO_KEY, ROLES_KEY, LOCK_INFO_KEY, PROJ_CFG_KEY, APP_LOCAL_CACHE_KEY, APP_SESSION_CACHE_KEY, MULTIPLE_TABS_KEY } from '@/enums/cacheEnum'
 import projectSetting from '@/settings/projectSetting'
 import { toRaw } from 'vue'
 import { pick, omit } from 'lodash-es'

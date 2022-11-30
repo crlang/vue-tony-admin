@@ -1,45 +1,27 @@
 <template>
   <ElHeader :class="getHeaderClass">
     <div :class="`${prefixCls}-left`">
-      <AppLogo
-        v-if="getShowHeaderLogo || getIsMobile"
-        :class="`${prefixCls}-logo`"
-        :style="getLogoWidth" />
-      <LayoutTrigger
-        :class="`${prefixCls}-trigger`"
-        v-if="(getShowContent && getShowHeaderTrigger && !getSplit && !getIsMixSidebar) || getIsMobile" />
+      <AppLogo v-if="getShowHeaderLogo || getIsMobile" :class="`${prefixCls}-logo`" :style="getLogoWidth" />
+      <LayoutTrigger :class="`${prefixCls}-trigger`" v-if="(getShowContent && getShowHeaderTrigger && !getSplit && !getIsMixSidebar) || getIsMobile" />
       <LayoutBreadcrumb v-if="getShowContent && getShowBread" />
     </div>
 
     <div :class="`${prefixCls}-menu`" v-if="getShowTopMenu && !getIsMobile">
-      <LayoutMenu
-        :isHorizontal="true"
-        :splitType="getSplitType"
-        :menuMode="getMenuMode" />
+      <LayoutMenu :isHorizontal="true" :splitType="getSplitType" :menuMode="getMenuMode" />
     </div>
 
     <div :class="`${prefixCls}-action`">
-      <AppSearch
-        :class="`${prefixCls}-action__item `"
-        v-if="getShowSearch" />
+      <AppSearch :class="`${prefixCls}-action__item `" v-if="getShowSearch" />
 
-      <ErrorAction
-        v-if="getUseErrorHandle"
-        :class="`${prefixCls}-action__item`" />
+      <ErrorAction v-if="getUseErrorHandle" :class="`${prefixCls}-action__item`" />
 
-      <Notify
-        v-if="getShowNotice"
-        :class="`${prefixCls}-action__item`" />
+      <Notify v-if="getShowNotice" :class="`${prefixCls}-action__item`" />
 
-      <FullScreen
-        v-if="getShowFullScreen"
-        :class="`${prefixCls}-action__item`" />
+      <FullScreen v-if="getShowFullScreen" :class="`${prefixCls}-action__item`" />
 
       <UserDropDown :class="`${prefixCls}-action__item`" />
 
-      <SettingDrawer
-        v-if="getShowSetting"
-        :class="`${prefixCls}-action__item`" />
+      <SettingDrawer v-if="getShowSetting" :class="`${prefixCls}-action__item`" />
     </div>
   </ElHeader>
 </template>
@@ -84,19 +66,10 @@ export default defineComponent({
   },
   setup(props) {
     const { prefixCls } = useDesign('layout-header')
-    const { getShowTopMenu, getShowHeaderTrigger, getSplit, getIsMixMode, getMenuWidth, getIsMixSidebar } =
-      useMenuSetting()
+    const { getShowTopMenu, getShowHeaderTrigger, getSplit, getIsMixMode, getMenuWidth, getIsMixSidebar } = useMenuSetting()
     const { getUseErrorHandle, getShowSettingButton, getSettingButtonPosition } = useRootSetting()
 
-    const {
-      getShowFullScreen,
-      getShowNotice,
-      getShowContent,
-      getShowBread,
-      getShowHeaderLogo,
-      getShowHeader,
-      getShowSearch,
-    } = useHeaderSetting()
+    const { getShowFullScreen, getShowNotice, getShowContent, getShowBread, getShowHeaderLogo, getShowHeader, getShowSearch } = useHeaderSetting()
 
     const { getIsMobile } = useAppInject()
 

@@ -8,9 +8,7 @@
       v-model:modelValue="innerValueRef"
       :disabled="disabled" />
     <div :class="`${prefixCls}-bar`">
-      <div
-        :class="`${prefixCls}-bar--fill`"
-        :data-score="getPasswordStrength"></div>
+      <div :class="`${prefixCls}-bar--fill`" :data-score="getPasswordStrength"></div>
     </div>
   </div>
 </template>

@@ -5,10 +5,7 @@
     :class="prefixCls"
     v-model="currentSelect">
     <template #append>
-      <ElPopover
-        :width="560"
-        trigger="click"
-        placement="bottom">
+      <ElPopover :width="560" trigger="click" placement="bottom">
         <div :class="`${prefixCls}__search`">
           <ElInput
             v-model="searckKeyword"
@@ -16,9 +13,7 @@
             @input="handleSearchChange"
             clearable />
         </div>
-        <div
-          :class="`${prefixCls}__list`"
-          v-if="currentList.length">
+        <div :class="`${prefixCls}__list`" v-if="currentList.length">
           <ScrollContainer>
             <ul>
               <li
@@ -39,9 +34,7 @@
         </template>
 
         <template #reference>
-          <span
-            :class="`${prefixCls}__icon`"
-            v-if="isSvgMode && currentSelect">
+          <span :class="`${prefixCls}__icon`" v-if="isSvgMode && currentSelect">
             <SvgIcon :name="currentSelect" />
           </span>
           <span :class="`${prefixCls}__search`" v-else>

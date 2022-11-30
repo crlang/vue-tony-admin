@@ -4,10 +4,7 @@
     :style="spinStyle"
     v-loading="loading"
     :element-loading-text="loadingText">
-    <ScrollContainer
-      ref="wrapperRef"
-      v-if="dyncHeight"
-      :class="prefixCls">
+    <ScrollContainer ref="wrapperRef" v-if="dyncHeight" :class="prefixCls">
       <div ref="innerRef"><slot></slot></div>
     </ScrollContainer>
     <template v-else><slot></slot></template>

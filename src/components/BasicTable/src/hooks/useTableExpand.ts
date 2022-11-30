@@ -13,11 +13,7 @@ import { warn } from '@/utils/log'
  * @param tableData
  * @param emit
  */
-export function useTableExpand(
-  propsRef: ComputedRef<BasicTableProps>,
-  getDataSourceRef: ComputedRef<Recordable[]>,
-  getRowKey: ComputedRef<string | undefined>,
-) {
+export function useTableExpand(propsRef: ComputedRef<BasicTableProps>, getDataSourceRef: ComputedRef<Recordable[]>, getRowKey: ComputedRef<string | undefined>) {
   /**
    * 展开的key
    *

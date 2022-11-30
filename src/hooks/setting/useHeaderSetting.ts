@@ -17,8 +17,7 @@ import { MenuModeEnum } from '@/enums/menuEnum'
 export function useHeaderSetting() {
   const { getFullContent } = useFullContent()
   const appStore = useAppStore()
-  const { getMenuMode, getSplit, getShowHeaderTrigger, getIsSidebarType, getIsMixSidebar, getIsTopMenu } =
-  useMenuSetting()
+  const { getMenuMode, getSplit, getShowHeaderTrigger, getIsSidebarType, getIsMixSidebar, getIsTopMenu } = useMenuSetting()
   const { getShowBreadCrumb, getShowLogo } = useRootSetting()
 
   /**
@@ -35,13 +34,7 @@ export function useHeaderSetting() {
    * 获取是否完整头部状态
    */
   const getShowFullHeaderRef = computed(() => {
-    return (
-      !unref(getFullContent) &&
-      unref(getShowMixHeaderRef) &&
-      unref(getShowHeader) &&
-      !unref(getIsTopMenu) &&
-      !unref(getIsMixSidebar)
-    )
+    return !unref(getFullContent) && unref(getShowMixHeaderRef) && unref(getShowHeader) && !unref(getIsTopMenu) && !unref(getIsMixSidebar)
   })
 
   /**

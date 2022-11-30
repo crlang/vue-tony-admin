@@ -3,9 +3,7 @@
     <div class="scroll-wrap">
       <ScrollContainer class="mt-4">
         <ul class="p-3">
-          <li
-            v-for="(k, i) in litdata"
-            :key="i">
+          <li v-for="(k, i) in litdata" :key="i">
             {{ k }}
           </li>
         </ul>

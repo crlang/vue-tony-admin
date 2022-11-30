@@ -1,15 +1,8 @@
 <template>
   <Teleport to="body">
-    <transition
-      name="zoom-fade"
-      mode="out-in">
-      <div
-        :class="getClass"
-        @click.stop
-        v-if="visible">
-        <div
-          :class="`${prefixCls}-content`"
-          v-click-outside="handleClose">
+    <transition name="zoom-fade" mode="out-in">
+      <div :class="getClass" @click.stop v-if="visible">
+        <div :class="`${prefixCls}-content`" v-click-outside="handleClose">
           <div :class="`${prefixCls}-input__wrapper`">
             <ElInput
               :class="`${prefixCls}-input`"
@@ -20,23 +13,12 @@
               @input="handleSearch">
               <template #prefix><SvgIcon name="search" /></template>
             </ElInput>
-            <span
-              :class="`${prefixCls}-cancel`"
-              @click="handleClose">
-              取消
-            </span>
+            <span :class="`${prefixCls}-cancel`" @click="handleClose">取消</span>
           </div>
 
-          <div
-            :class="`${prefixCls}-nodata`"
-            v-show="getIsNotData">
-            暂无搜索结果
-          </div>
+          <div :class="`${prefixCls}-nodata`" v-show="getIsNotData">暂无搜索结果</div>
 
-          <ul
-            :class="`${prefixCls}-list`"
-            v-show="!getIsNotData"
-            ref="scrollWrap">
+          <ul :class="`${prefixCls}-list`" v-show="!getIsNotData" ref="scrollWrap">
             <li
               :ref="setRefs(index)"
               v-for="(item, index) in searchResult"
@@ -92,11 +74,7 @@ const { prefixCls } = useDesign('header-search-modal')
 const [refs, setRefs] = useRefs()
 const { getIsMobile } = useAppInject()
 
-const { handleSearch, searchResult, keyword, activeIndex, handleEnter, handleMouseenter } = useMenuSearch(
-  refs,
-  scrollWrap,
-  emit,
-)
+const { handleSearch, searchResult, keyword, activeIndex, handleEnter, handleMouseenter } = useMenuSearch(refs, scrollWrap, emit)
 
 const getIsNotData = computed(() => !keyword || unref(searchResult).length === 0)
 

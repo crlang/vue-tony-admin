@@ -78,8 +78,7 @@ export class VAxios {
         headers: { ignoreCancelToken },
       } = config
 
-      const ignoreCancel =
-        ignoreCancelToken !== undefined ? ignoreCancelToken : this.options.requestOptions?.ignoreCancelToken
+      const ignoreCancel = ignoreCancelToken !== undefined ? ignoreCancelToken : this.options.requestOptions?.ignoreCancelToken
 
       !ignoreCancel && axiosCanceler.addPending(config)
       if (typeof requestInterceptors === 'function') {
@@ -89,8 +88,7 @@ export class VAxios {
     }, undefined)
 
     // Request interceptor error capture
-    typeof requestInterceptorsCatch === 'function' &&
-      this.axiosInstance.interceptors.request.use(undefined, requestInterceptorsCatch)
+    typeof requestInterceptorsCatch === 'function' && this.axiosInstance.interceptors.request.use(undefined, requestInterceptorsCatch)
 
     // Response result interceptor processing
     this.axiosInstance.interceptors.response.use((res: AxiosResponse<any>) => {
@@ -102,8 +100,7 @@ export class VAxios {
     }, undefined)
 
     // Response result interceptor error capture
-    typeof responseInterceptorsCatch === 'function' &&
-      this.axiosInstance.interceptors.response.use(undefined, responseInterceptorsCatch)
+    typeof responseInterceptorsCatch === 'function' && this.axiosInstance.interceptors.response.use(undefined, responseInterceptorsCatch)
   }
 
   /**
@@ -149,11 +146,7 @@ export class VAxios {
     const headers = config.headers || this.options.headers
     const contentType = headers?.['Content-Type'] || headers?.['content-type']
 
-    if (
-      contentType !== ContentTypeEnum.FORM_URLENCODED ||
-      !Reflect.has(config, 'data') ||
-      config.method?.toUpperCase() === RequestEnum.GET
-    ) {
+    if (contentType !== ContentTypeEnum.FORM_URLENCODED || !Reflect.has(config, 'data') || config.method?.toUpperCase() === RequestEnum.GET) {
       return config
     }
 

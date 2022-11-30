@@ -5,11 +5,7 @@ export interface CreateStorageParams {
   storage: Storage
   timeout?: Nullable<number>
 }
-export const createStorage = ({
-  prefixKey = '',
-  storage = sessionStorage,
-  timeout = null,
-}: Partial<CreateStorageParams> = {}) => {
+export const createStorage = ({ prefixKey = '', storage = sessionStorage, timeout = null }: Partial<CreateStorageParams> = {}) => {
   /**
    *Cache class
    *Construction parameters can be passed into sessionStorage, localStorage,

@@ -1,12 +1,8 @@
 <template>
   <div :class="prefixCls">
-    <ElTooltip
-      content="错误日志"
-      placement="bottom">
+    <ElTooltip content="错误日志" placement="bottom">
       <span @click="handleToErrorList">
-        <ElBadge
-          :value="getCount"
-          :max="99">
+        <ElBadge :value="getCount" :max="99">
           <SvgIcon name="bug" />
         </ElBadge>
       </span>

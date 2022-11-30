@@ -1,21 +1,11 @@
 <template>
-  <ElBreadcrumb
-    separator="/"
-    :class="prefixCls">
-    <ElBreadcrumbItem
-      v-for="route in routes"
-      :key="route.name">
-      <Icon
-        :name="getIcon(route)"
-        class="mr-1"
-        v-if="getShowBreadCrumbIcon && getIcon(route)" />
+  <ElBreadcrumb separator="/" :class="prefixCls">
+    <ElBreadcrumbItem v-for="route in routes" :key="route.name">
+      <Icon :name="getIcon(route)" class="mr-1" v-if="getShowBreadCrumbIcon && getIcon(route)" />
       <span v-if="!hasRedirect(routes, route)">
         {{ route.name || route.meta.title }}
       </span>
-      <router-link
-        v-else
-        to=""
-        @click="handleClick(route, routes, $event)">
+      <router-link v-else to="" @click="handleClick(route, routes, $event)">
         {{ route.name || route.meta.title }}
       </router-link>
     </ElBreadcrumbItem>

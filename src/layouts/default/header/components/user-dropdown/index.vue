@@ -2,24 +2,17 @@
   <div>
     <ElDropdown @command="handleMenuClick">
       <div :class="prefixCls">
-        <img
-          :class="`${prefixCls}__avatar`"
-          :src="getUserInfo.avatar" />
+        <img :class="`${prefixCls}__avatar`" :src="getUserInfo.avatar" />
         <span :class="`${prefixCls}__name`">{{ getUserInfo.realName }}</span>
       </div>
 
       <template #dropdown>
         <ElDropdownMenu :class="`${prefixCls}-menulist`">
-          <ElDropdownItem
-            command="doc"
-            v-if="getShowDoc">
+          <ElDropdownItem command="doc" v-if="getShowDoc">
             <SvgIcon class="mr-2" name="filetext" />
             <span>文档</span>
           </ElDropdownItem>
-          <ElDropdownItem
-            v-if="getUseLockPage"
-            :divided="getShowDoc"
-            command="lock">
+          <ElDropdownItem v-if="getUseLockPage" :divided="getShowDoc" command="lock">
             <SvgIcon class="mr-2" name="lock" />
             <span>锁定屏幕</span>
           </ElDropdownItem>

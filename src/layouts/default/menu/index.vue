@@ -34,16 +34,7 @@ export default defineComponent({
   setup(props) {
     const go = useGo()
 
-    const {
-      getMenuMode,
-      getMenuType,
-      getCollapsed,
-      getCollapsedShowTitle,
-      getAccordion,
-      getIsHorizontal,
-      getIsSidebarType,
-      getSplit,
-    } = useMenuSetting()
+    const { getMenuMode, getMenuType, getCollapsed, getCollapsedShowTitle, getAccordion, getIsHorizontal, getIsSidebarType, getSplit } = useMenuSetting()
     const { getShowLogo } = useRootSetting()
 
     const { prefixCls } = useDesign('layout-menu')
@@ -52,19 +43,12 @@ export default defineComponent({
 
     const { getIsMobile } = useAppInject()
 
-    const getComputedMenuMode = computed(() =>
-      unref(getIsMobile) ? MenuModeEnum.INLINE : props.menuMode || unref(getMenuMode),
-    )
+    const getComputedMenuMode = computed(() => (unref(getIsMobile) ? MenuModeEnum.INLINE : props.menuMode || unref(getMenuMode)))
 
     const getIsShowLogo = computed(() => unref(getShowLogo) && unref(getIsSidebarType))
 
     const getUseScroll = computed(() => {
-      return (
-        !unref(getIsHorizontal) &&
-        (unref(getIsSidebarType) ||
-          props.splitType === MenuSplitTyeEnum.LEFT ||
-          props.splitType === MenuSplitTyeEnum.NONE)
-      )
+      return !unref(getIsHorizontal) && (unref(getIsSidebarType) || props.splitType === MenuSplitTyeEnum.LEFT || props.splitType === MenuSplitTyeEnum.NONE)
     })
 
     const getWrapperStyle = computed((): CSSProperties => {
@@ -106,23 +90,14 @@ export default defineComponent({
     function renderHeader() {
       if (!unref(getIsShowLogo) && !unref(getIsMobile)) return null
 
-      return (
-        <AppLogo
-          showTitle={!unref(getCollapsed)}
-          class={unref(getLogoClass)}
-        />
-      )
+      return <AppLogo showTitle={!unref(getCollapsed)} class={unref(getLogoClass)} />
     }
 
     function renderMenu() {
       const { menus, ...menuProps } = unref(getCommonProps)
       if (!menus || !menus.length) return null
       return !props.isHorizontal ? (
-        <SimpleMenu
-          {...menuProps}
-          isSplitMenu={unref(getSplit)}
-          items={menus}
-        />
+        <SimpleMenu {...menuProps} isSplitMenu={unref(getSplit)} items={menus} />
       ) : (
         <BasicMenu
           {...(menuProps as any)}
@@ -139,11 +114,7 @@ export default defineComponent({
       return (
         <>
           {renderHeader()}
-          {unref(getUseScroll) ? (
-            <ScrollContainer style={unref(getWrapperStyle)}>{() => renderMenu()}</ScrollContainer>
-          ) : (
-            renderMenu()
-          )}
+          {unref(getUseScroll) ? <ScrollContainer style={unref(getWrapperStyle)}>{() => renderMenu()}</ScrollContainer> : renderMenu()}
         </>
       )
     }

@@ -1,13 +1,7 @@
 <template>
-  <ElInput
-    v-bind="$attrs"
-    :class="prefixCls"
-    v-model:modelValue="innerValueRef">
+  <ElInput v-bind="$attrs" :class="prefixCls" v-model:modelValue="innerValueRef">
     <template #append>
-      <ElButton
-        :disabled="isStart"
-        @click="handleStart"
-        :loading="loading">
+      <ElButton :disabled="isStart" @click="handleStart" :loading="loading">
         {{ getButtonText }}
       </ElButton>
     </template>

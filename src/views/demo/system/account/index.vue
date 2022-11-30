@@ -1,37 +1,20 @@
 <template>
-  <PageWrapper
-    contentFullHeight
-    fixedHeight>
-    <el-row
-      class="dept-wrap"
-      :gutter="16">
-      <el-col
-        :span="6"
-        class="dept-tree">
+  <PageWrapper contentFullHeight fixedHeight>
+    <el-row class="dept-wrap" :gutter="16">
+      <el-col :span="6" class="dept-tree">
         <DeptTree @select="handleSelect" />
       </el-col>
 
-      <el-col
-        :span="18"
-        class="dept-table">
-        <BasicTable
-          @register="registerTable"
-          :searchInfo="searchInfo">
+      <el-col :span="18" class="dept-table">
+        <BasicTable @register="registerTable" :searchInfo="searchInfo">
           <template #toolbar>
-            <el-button
-              type="primary"
-              size="small"
-              @click="handleCreate">
-              新增账号
-            </el-button>
+            <el-button type="primary" size="small" @click="handleCreate">新增账号</el-button>
           </template>
         </BasicTable>
       </el-col>
     </el-row>
 
-    <AccountModal
-      @register="registerModal"
-      @success="handleSuccess" />
+    <AccountModal @register="registerModal" @success="handleSuccess" />
   </PageWrapper>
 </template>
 

@@ -1,11 +1,6 @@
 <template>
-  <li
-    :class="getClass"
-    @click.stop="handleClickItem"
-    :style="getCollapse ? {} : getItemStyle">
-    <ElTooltip
-      placement="right"
-      v-if="showTooptip">
+  <li :class="getClass" @click.stop="handleClickItem" :style="getCollapse ? {} : getItemStyle">
+    <ElTooltip placement="right" v-if="showTooptip">
       <div :class="`${prefixCls}--tooltip`">
         <slot></slot>
       </div>

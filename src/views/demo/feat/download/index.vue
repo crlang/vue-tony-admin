@@ -1,36 +1,16 @@
 <template>
   <PageWrapper title="文件下载示例">
     <el-alert title="根据后台接口文件流下载" />
-    <el-button
-      type="primary"
-      class="my-4"
-      @click="handleDownByData">
-      文件流下载
-    </el-button>
+    <el-button type="primary" class="my-4" @click="handleDownByData">文件流下载</el-button>
 
     <el-alert title="根据文件地址下载文件" />
-    <el-button
-      type="primary"
-      class="my-4"
-      @click="handleDownloadByUrl">
-      文件地址下载
-    </el-button>
+    <el-button type="primary" class="my-4" @click="handleDownloadByUrl">文件地址下载</el-button>
 
     <el-alert title="base64流下载" />
-    <el-button
-      type="primary"
-      class="my-4"
-      @click="handleDownloadByBase64">
-      base64流下载
-    </el-button>
+    <el-button type="primary" class="my-4" @click="handleDownloadByBase64">base64流下载</el-button>
 
     <el-alert title="图片Url下载,如果有跨域问题，需要处理图片跨域" />
-    <el-button
-      type="primary"
-      class="my-4"
-      @click="handleDownloadByOnlineUrl">
-      图片Url下载
-    </el-button>
+    <el-button type="primary" class="my-4" @click="handleDownloadByOnlineUrl">图片Url下载</el-button>
   </PageWrapper>
 </template>
 
@@ -55,10 +35,7 @@ export default defineComponent({
     }
 
     function handleDownloadByOnlineUrl() {
-      downloadByOnlineUrl(
-        'https://img-blog.csdnimg.cn/2eb16a7d1ea1418f8e0569331abbfc86.png',
-        '2eb16a7d1ea1418f8e0569331abbfc86.png',
-      )
+      downloadByOnlineUrl('https://img-blog.csdnimg.cn/2eb16a7d1ea1418f8e0569331abbfc86.png', '2eb16a7d1ea1418f8e0569331abbfc86.png')
     }
     return {
       handleDownloadByUrl,

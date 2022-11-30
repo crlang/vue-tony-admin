@@ -7,9 +7,7 @@
     :custom-class="prefixCls">
     <div :class="`${prefixCls}__entry`">
       <div :class="`${prefixCls}__header`">
-        <img
-          :src="avatar"
-          :class="`${prefixCls}__header-img`" />
+        <img :src="avatar" :class="`${prefixCls}__header-img`" />
         <p :class="`${prefixCls}__header-name`">
           {{ getRealName }}
         </p>
@@ -18,10 +16,7 @@
       <BasicForm @register="registerForm" />
 
       <div :class="`${prefixCls}__footer`">
-        <ElButton
-          type="primary"
-          class="mt-2"
-          @click="handleLock">锁定</ElButton>
+        <ElButton type="primary" class="mt-2" @click="handleLock">锁定</ElButton>
       </div>
     </div>
   </BasicModal>

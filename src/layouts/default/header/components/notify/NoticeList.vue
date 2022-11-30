@@ -1,31 +1,16 @@
 <template>
   <List :class="prefixCls">
-    <template
-      v-for="item in list"
-      :key="item.title">
-      <ListItem
-        style="display: block"
-        :class="[prefixCls + '__item', { 'is-read': item.titleDelete }]"
-        @click="handleTitleClick(item)">
-        <template
-          #thumb
-          v-if="item.avatar">
-          <ElAvatar
-            style="--el-avatar-bg-color: #fff"
-            class="avatar"
-            :src="item.avatar" />
+    <template v-for="item in list" :key="item.title">
+      <ListItem style="display: block" :class="[prefixCls + '__item', { 'is-read': item.titleDelete }]" @click="handleTitleClick(item)">
+        <template #thumb v-if="item.avatar">
+          <ElAvatar style="--el-avatar-bg-color: #fff" class="avatar" :src="item.avatar" />
         </template>
 
         <template #title>
           <div class="title">
             <span>{{ item.title }}</span>
-            <div
-              class="extra"
-              v-if="item.extra">
-              <ElTag
-                class="tag"
-                size="small"
-                :type="item.color">
+            <div class="extra" v-if="item.extra">
+              <ElTag class="tag" size="small" :type="item.color">
                 {{ item.extra }}
               </ElTag>
             </div>
@@ -34,9 +19,7 @@
 
         <template #description>
           <div>
-            <div
-              class="description"
-              v-if="item.description">
+            <div class="description" v-if="item.description">
               {{ item.description }}
             </div>
             <div class="datetime">

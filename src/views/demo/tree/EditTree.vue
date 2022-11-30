@@ -3,16 +3,12 @@
     <el-row :gutter="16">
       <el-col :span="12">
         <el-card header="右侧操作按钮/自定义图标">
-          <el-tree
-            :data="treeData"
-            :render-content="actionList" />
+          <el-tree :data="treeData" :render-content="actionList" />
         </el-card>
       </el-col>
       <el-col :span="12">
         <el-card header="右键菜单">
-          <el-tree
-            :data="treeData"
-            @node-contextmenu="getRightMenuList" />
+          <el-tree :data="treeData" @node-contextmenu="getRightMenuList" />
         </el-card>
       </el-col>
     </el-row>

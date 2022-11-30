@@ -1,7 +1,5 @@
 <template>
-  <div
-    :class="`${prefixCls}-dom`"
-    :style="getDomStyle"></div>
+  <div :class="`${prefixCls}-dom`" :style="getDomStyle"></div>
   <div
     v-click-outside="handleClickOutside"
     :style="getWrapStyle"
@@ -13,9 +11,7 @@
       },
     ]"
     v-bind="getMenuEvents">
-    <AppLogo
-      :showTitle="false"
-      :class="`${prefixCls}-logo`" />
+    <AppLogo :showTitle="false" :class="`${prefixCls}-logo`" />
 
     <ScrollContainer>
       <ul :class="`${prefixCls}-module`">
@@ -29,10 +25,7 @@
           v-bind="getItemEvents(item)"
           v-for="item in menuModules"
           :key="item.path">
-          <SimpleMenuTag
-            :item="item"
-            collapseParent
-            dot />
+          <SimpleMenuTag :item="item" collapseParent dot />
           <div :class="`${prefixCls}-module__item-inner`">
             <Icon
               v-if="item.icon || item.meta?.icon"
@@ -44,14 +37,9 @@
         </li>
       </ul>
     </ScrollContainer>
-    <LayoutTrigger
-      :class="`${prefixCls}-trigger`"
-      sider />
+    <LayoutTrigger :class="`${prefixCls}-trigger`" sider />
 
-    <div
-      :class="`${prefixCls}-menu-list`"
-      ref="sideRef"
-      :style="getMenuStyle">
+    <div :class="`${prefixCls}-menu-list`" ref="sideRef" :style="getMenuStyle">
       <div
         :class="[
           `${prefixCls}-menu-list__title`,
@@ -60,22 +48,14 @@
           },
         ]">
         <span class="text">{{ activeMenu?.name && activeMenu.name }}</span>
-        <span
-          class="pushpin"
-          @click="handleFixedMenu">
+        <span class="pushpin" @click="handleFixedMenu">
           <SvgIcon :name="getMixSideFixed ? 'pushpin-fill' : 'pushpin'" />
         </span>
       </div>
       <ScrollContainer :class="`${prefixCls}-menu-list__content`">
-        <SimpleMenu
-          :items="childrenMenus"
-          mixSider
-          @menu-click="handleMenuClick" />
+        <SimpleMenu :items="childrenMenus" mixSider @menu-click="handleMenuClick" />
       </ScrollContainer>
-      <div
-        v-show="getShowDragBar && openMenu"
-        :class="`${prefixCls}-drag-bar`"
-        ref="dragBarRef"></div>
+      <div v-show="getShowDragBar && openMenu" :class="`${prefixCls}-drag-bar`" ref="dragBarRef"></div>
     </div>
   </div>
 </template>
@@ -129,17 +109,8 @@ export default defineComponent({
 
     const { prefixCls } = useDesign('layout-mix-sider')
     const go = useGo()
-    const {
-      getMenuWidth,
-      getCanDrag,
-      getCloseMixSidebarOnChange,
-      getMixSideTrigger,
-      getRealWidth,
-      getMixSideFixed,
-      setMenuSetting,
-      getIsMixSidebar,
-      getCollapsed,
-    } = useMenuSetting()
+    const { getMenuWidth, getCanDrag, getCloseMixSidebarOnChange, getMixSideTrigger, getRealWidth, getMixSideFixed, setMenuSetting, getIsMixSidebar, getCollapsed } =
+      useMenuSetting()
 
     // const { title } = useGlobSetting()
 

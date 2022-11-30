@@ -1,18 +1,10 @@
 <template>
-  <PageWrapper
-    title="带参数菜单（路由）"
-    description="支持多级参数">
+  <PageWrapper title="带参数菜单（路由）" description="支持多级参数">
     当前参数：{{ params }}
     <br />
     输入参数切换路由：
-    <el-input
-      v-model="value"
-      placeholder="建议为url标准字符，输入后点击切换" />
-    <el-button
-      type="primary"
-      @click="handleClickGo">
-      切换路由
-    </el-button>
+    <el-input v-model="value" placeholder="建议为url标准字符，输入后点击切换" />
+    <el-button type="primary" @click="handleClickGo">切换路由</el-button>
     <br />
     切换路由后
     <ul>

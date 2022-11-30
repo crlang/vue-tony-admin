@@ -1,23 +1,16 @@
 <template>
   <div :class="prefixCls">
-    <ElButton
-      type="primary"
-      @click="handleCopy">
+    <ElButton type="primary" @click="handleCopy">
       <SvgIcon name="copy" class="mr-1" />
       <span>拷贝</span>
     </ElButton>
 
-    <ElButton
-      type="warning"
-      @click="handleResetSetting"
-      class="my-3">
+    <ElButton type="warning" @click="handleResetSetting" class="my-3">
       <SvgIcon name="reload" class="mr-1" />
       <span>重置</span>
     </ElButton>
 
-    <ElButton
-      type="danger"
-      @click="handleClearAndRedo">
+    <ElButton type="danger" @click="handleClearAndRedo">
       <SvgIcon name="poweroff" class="mr-1" />
       <span>清空缓存并返回登录页</span>
     </ElButton>

@@ -16,10 +16,7 @@ import { PAGE_SIZE } from '../const'
  * @param propsRef
  * @param getPaginationRef
  */
-export function useColumns(
-  propsRef: ComputedRef<BasicTableProps>,
-  getPaginationRef: ComputedRef<boolean | ElePagination>,
-) {
+export function useColumns(propsRef: ComputedRef<BasicTableProps>, getPaginationRef: ComputedRef<boolean | ElePagination>) {
   let cacheColumns = unref(propsRef).columns
   const columnsRef = ref(cacheColumns)
   const { hasPermission } = usePermission()

@@ -9,10 +9,7 @@
     @register="register"
     :showCancelBtn="false"
     :showConfirmBtn="false">
-    <FileList
-      :dataSource="fileListRef"
-      :columns="columns"
-      :actionColumn="actionColumn" />
+    <FileList :dataSource="fileListRef" :columns="columns" :actionColumn="actionColumn" />
   </BasicModal>
 </template>
 

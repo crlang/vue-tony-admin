@@ -1,19 +1,9 @@
 <template>
-  <PageWrapper
-    contentBackground
-    contentFullHeight>
+  <PageWrapper contentBackground contentFullHeight>
     <BasicTable @register="registerTable">
       <template #toolbar>
-        <el-button
-          type="primary"
-          @click="handleReloadCurrent">
-          刷新当前页
-        </el-button>
-        <el-button
-          type="primary"
-          @click="handleReload">
-          跳转第2页
-        </el-button>
+        <el-button type="primary" @click="handleReloadCurrent">刷新当前页</el-button>
+        <el-button type="primary" @click="handleReload">跳转第2页</el-button>
       </template>
     </BasicTable>
   </PageWrapper>

@@ -1,8 +1,6 @@
 <template>
   <div :class="[prefixCls, getAlign]">
-    <template
-      v-for="action in getActions"
-      :key="action?.id">
+    <template v-for="action in getActions" :key="action?.id">
       <el-button
         text
         size="small"

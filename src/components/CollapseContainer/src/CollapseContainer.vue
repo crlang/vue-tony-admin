@@ -1,8 +1,6 @@
 <template>
   <div :class="prefixCls">
-    <div
-      :class="`${prefixCls}__header`"
-      v-if="title || $slots.title || $slots.action">
+    <div :class="`${prefixCls}__header`" v-if="title || $slots.title || $slots.action">
       <BasicTitle :helpMessage="helpMessage">
         <template v-if="title">{{ title }}</template>
         <template v-else><slot name="title"></slot></template>
@@ -18,24 +16,18 @@
     <div :class="`${prefixCls}__body`">
       <ExpandTransition v-if="canExpan">
         <ElSkeleton v-if="loading" />
-        <div
-          v-else
-          v-show="show">
+        <div v-else v-show="show">
           <slot></slot>
         </div>
       </ExpandTransition>
       <template v-else>
         <ElSkeleton v-if="loading" />
-        <div
-          v-else
-          v-show="show">
+        <div v-else v-show="show">
           <slot></slot>
         </div>
       </template>
     </div>
-    <div
-      :class="`${prefixCls}__footer`"
-      v-if="$slots.footer">
+    <div :class="`${prefixCls}__footer`" v-if="$slots.footer">
       <slot name="footer"></slot>
     </div>
   </div>

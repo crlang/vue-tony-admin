@@ -5,9 +5,7 @@
     title="Modal Title"
     @visible-change="handleVisibleChange">
     <div class="p-4">
-      <BasicForm
-        @register="registerForm"
-        :model="model" />
+      <BasicForm @register="registerForm" :model="model" />
     </div>
   </BasicModal>
 </template>

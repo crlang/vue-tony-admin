@@ -1,21 +1,14 @@
 <template>
-  <div
-    v-if="getMenuFixed && !getIsMobile"
-    :style="getHiddenDomStyle"
-    v-show="showClassSideBarRef"></div>
+  <div v-if="getMenuFixed && !getIsMobile" :style="getHiddenDomStyle" v-show="showClassSideBarRef"></div>
   <ElAside
     v-show="showClassSideBarRef"
     ref="sideRef"
     :class="getSiderClass"
     :width="getMenuWidthX">
-    <LayoutMenu
-      :menuMode="getMode"
-      :splitType="getSplitType" />
+    <LayoutMenu :menuMode="getMode" :splitType="getSplitType" />
     <DragBar ref="dragBarRef" />
     <template v-if="getShowTrigger">
-      <LayoutTrigger
-        :class="`${prefixCls}-trigger`"
-        sider />
+      <LayoutTrigger :class="`${prefixCls}-trigger`" sider />
     </template>
   </ElAside>
 </template>

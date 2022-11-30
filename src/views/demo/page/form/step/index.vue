@@ -1,8 +1,5 @@
 <template>
-  <PageWrapper
-    title="分步表单"
-    contentBackground
-    description=" 将一个冗长或用户不熟悉的表单任务分成多个步骤，指导用户完成。">
+  <PageWrapper title="分步表单" contentBackground description=" 将一个冗长或用户不熟悉的表单任务分成多个步骤，指导用户完成。">
     <div class="step-form-form">
       <el-steps :active="current">
         <el-step title="填写转账信息" />
@@ -11,18 +8,13 @@
       </el-steps>
     </div>
     <div class="mt-5">
-      <Step1
-        @next="handleStep1Next"
-        v-show="current === 0" />
+      <Step1 @next="handleStep1Next" v-show="current === 0" />
       <Step2
         @prev="handleStepPrev"
         @next="handleStep2Next"
         v-show="current === 1"
         v-if="initSetp2" />
-      <Step3
-        v-show="current === 3"
-        @redo="handleRedo"
-        v-if="initSetp3" />
+      <Step3 v-show="current === 3" @redo="handleRedo" v-if="initSetp3" />
     </div>
   </PageWrapper>
 </template>

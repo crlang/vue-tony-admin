@@ -147,9 +147,7 @@ export function useFormEvents({
       schemaList = [...schemaData]
     }
 
-    const hasField = schemaList.every(
-      (item) => item.component === 'ElDivider' || (Reflect.has(item, 'field') && item.field),
-    )
+    const hasField = schemaList.every((item) => item.component === 'ElDivider' || (Reflect.has(item, 'field') && item.field))
 
     if (!hasField) {
       error('All form items must have a `field` field present')

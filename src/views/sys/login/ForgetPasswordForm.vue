@@ -5,34 +5,21 @@
     v-if="getShow"
     ref="formRef">
     <el-form-item prop="account">
-      <el-input
-        v-model="formData.account"
-        placeholder="账号" />
+      <el-input v-model="formData.account" placeholder="账号" />
     </el-form-item>
     <el-form-item prop="mobile">
-      <el-input
-        v-model="formData.mobile"
-        placeholder="手机号码" />
+      <el-input v-model="formData.mobile" placeholder="手机号码" />
     </el-form-item>
     <el-form-item prop="sms">
-      <CountdownInput
-        v-model="formData.sms"
-        placeholder="短信验证码"
-        @keypress.enter="handleReset" />
+      <CountdownInput v-model="formData.sms" placeholder="短信验证码" @keypress.enter="handleReset" />
     </el-form-item>
     <el-form-item class="enter-x">
       <el-button
         type="primary"
         class="login--submit"
         @click="handleReset"
-        :loading="loading">
-        重置
-      </el-button>
-      <el-button
-        class="login--back"
-        @click="handleBackLogin">
-        返回
-      </el-button>
+        :loading="loading">重置</el-button>
+      <el-button class="login--back" @click="handleBackLogin">返回</el-button>
     </el-form-item>
   </el-form>
 </template>

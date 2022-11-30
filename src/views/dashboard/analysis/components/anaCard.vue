@@ -1,19 +1,13 @@
 <template>
-  <el-row
-    class="ana-card"
-    :gutter="32">
-    <template
-      v-for="item in CardList"
-      :key="item.title">
+  <el-row class="ana-card" :gutter="32">
+    <template v-for="item in CardList" :key="item.title">
       <el-col :span="8">
         <el-card shadow="always">
           <div class="ana-card--li">
             <div class="ana-card--left">
               <div class="ana-card--title dashboard-analysis__title">{{ item.title }}</div>
               <div class="ana-card--subject">{{ item.subject }}</div>
-              <div
-                class="ana-card--compare"
-                :class="[{ 'is-down': item.scale < 0, 'is-up': item.scale > 0 }]">
+              <div class="ana-card--compare" :class="[{ 'is-down': item.scale < 0, 'is-up': item.scale > 0 }]">
                 <span class="t1">{{ item.value }}</span>
                 <SvgIcon class="t2" :name="item.scale > 0 ? 'rise' : item.scale < 0 ? 'fall' : 'minus'" />
                 <span class="t3">{{ Math.abs(item.scale) }}%</span>

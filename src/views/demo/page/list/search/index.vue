@@ -1,7 +1,5 @@
 <template>
-  <PageWrapper
-    :class="prefixCls"
-    title="搜索列表">
+  <PageWrapper :class="prefixCls" title="搜索列表">
     <template #extra>
       <BasicForm
         :class="`${prefixCls}__header-form`"
@@ -14,21 +12,15 @@
 
     <div :class="`${prefixCls}__container`">
       <List>
-        <template
-          v-for="item in list"
-          :key="item.id">
+        <template v-for="item in list" :key="item.id">
           <ListItem>
             <template #title>
               <p :class="`${prefixCls}__title`">
                 {{ item.title }}
               </p>
               <div>
-                <template
-                  v-for="tag in item.description"
-                  :key="tag">
-                  <el-tag
-                    class="mb-2 mr-2"
-                    size="small">
+                <template v-for="tag in item.description" :key="tag">
+                  <el-tag class="mb-2 mr-2" size="small">
                     {{ tag }}
                   </el-tag>
                 </template>
@@ -39,9 +31,7 @@
                 {{ item.content }}
               </div>
               <div :class="`${prefixCls}__action`">
-                <template
-                  v-for="action in metaActions"
-                  :key="action.icon">
+                <template v-for="action in metaActions" :key="action.icon">
                   <div :class="`${prefixCls}__action-item`">
                     <Icon
                       v-if="action.icon"

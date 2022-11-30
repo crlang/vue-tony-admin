@@ -1,7 +1,5 @@
 <template>
-  <PageWrapper
-    title="基础详情页"
-    contentBackground>
+  <PageWrapper title="基础详情页" contentBackground>
     <BasicDescription
       title="退款申请"
       size="small"
@@ -17,12 +15,8 @@
       :column="3"
       :data="personData"
       :schema="personSchema" />
-    <BasicTable
-      v-bind="registerRefundTableFields"
-      @register="registerRefundTable" />
-    <BasicTable
-      v-bind="registerTimeTableFields"
-      @register="registerTimeTable" />
+    <BasicTable v-bind="registerRefundTableFields" @register="registerRefundTable" />
+    <BasicTable v-bind="registerTimeTableFields" @register="registerTimeTable" />
   </PageWrapper>
 </template>
 
@@ -31,16 +25,7 @@ import { defineComponent, reactive } from 'vue'
 import { BasicDescription } from '@/components/BasicDescription'
 import { BasicTable, useTable } from '@/components/BasicTable'
 
-import {
-  refundSchema,
-  refundData,
-  personSchema,
-  personData,
-  refundTableSchema,
-  refundTimeTableSchema,
-  refundTableData,
-  refundTimeTableData,
-} from './data'
+import { refundSchema, refundData, personSchema, personData, refundTableSchema, refundTimeTableSchema, refundTableData, refundTimeTableData } from './data'
 
 export default defineComponent({
   components: { BasicDescription, BasicTable },

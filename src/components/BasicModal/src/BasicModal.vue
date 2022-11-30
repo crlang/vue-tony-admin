@@ -1,29 +1,18 @@
 <template>
-  <ElDialog
-    v-bind="getBindValues"
-    :showClose="false"
-    v-model:modelValue="visibleRef">
+  <ElDialog v-bind="getBindValues" :showClose="false" v-model:modelValue="visibleRef">
     <template #header>
-      <ModalHeader
-        v-bind="getHeaderBindValues"
-        @fullscreen="handleFullscreen"
-        @cancel="handleCancel">
+      <ModalHeader v-bind="getHeaderBindValues" @fullscreen="handleFullscreen" @cancel="handleCancel">
         <template #header>
           <slot name="header"></slot>
         </template>
       </ModalHeader>
     </template>
 
-    <ModalWrapper
-      ref="modalWrapperRef"
-      v-bind="getWrapperBindValue"
-      @height-change="handleHeightChange">
+    <ModalWrapper ref="modalWrapperRef" v-bind="getWrapperBindValue" @height-change="handleHeightChange">
       <slot></slot>
     </ModalWrapper>
 
-    <template
-      #footer
-      v-if="showFooter">
+    <template #footer v-if="showFooter">
       <div :class="`${prefixCls}-footer`">
         <template v-if="$slots.footer">
           <slot name="footer"></slot>
@@ -31,10 +20,7 @@
 
         <template v-else>
           <slot name="prependFooter"></slot>
-          <ElButton
-            v-bind="cancelOptions"
-            @click="handleCancel"
-            v-if="showCancelBtn">
+          <ElButton v-bind="cancelOptions" @click="handleCancel" v-if="showCancelBtn">
             {{ cancelOptions?.btnText || 'Cancel' }}
           </ElButton>
           <slot name="centerFooter"></slot>

@@ -12,12 +12,7 @@ import { isEqual } from 'lodash-es'
  * @param changeEvent
  * @param emitValue
  */
-export function useRuleFormItem<T extends Recordable>(
-  props: T,
-  key: keyof T = 'modelValue',
-  changeEvent = 'change',
-  emitValue?: '',
-) {
+export function useRuleFormItem<T extends Recordable>(props: T, key: keyof T = 'modelValue', changeEvent = 'change', emitValue?: '') {
   const instance = getCurrentInstance()
   const emit = instance?.emit
 

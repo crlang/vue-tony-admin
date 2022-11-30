@@ -1,9 +1,6 @@
 <template>
   <div class="step2">
-    <el-alert
-      type="error"
-      title="确认转账后，资金将直接打入对方账户，无法退回。"
-      show-icon />
+    <el-alert type="error" title="确认转账后，资金将直接打入对方账户，无法退回。" show-icon />
     <div class="step2-msg">
       <el-descriptions :column="1">
         <el-descriptions-item label="付款账户">test@alipay.com</el-descriptions-item>

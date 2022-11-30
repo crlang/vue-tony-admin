@@ -1,12 +1,8 @@
 <template>
   <ScrollContainer>
-    <div
-      ref="wrapperRef"
-      :class="prefixCls">
+    <div ref="wrapperRef" :class="prefixCls">
       <el-tabs tab-position="left">
-        <template
-          v-for="item in settingList"
-          :key="item.key">
+        <template v-for="item in settingList" :key="item.key">
           <el-tab-pane :label="item.name">
             <component :is="item.component" />
           </el-tab-pane>

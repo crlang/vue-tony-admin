@@ -1,7 +1,5 @@
 <template>
-  <span
-    :class="getTagClass"
-    v-if="getShowTag">
+  <span :class="getTagClass" v-if="getShowTag">
     {{ getContent }}
   </span>
 </template>

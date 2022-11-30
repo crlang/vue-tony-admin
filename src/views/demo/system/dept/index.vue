@@ -2,16 +2,10 @@
   <div>
     <BasicTable @register="registerTable">
       <template #toolbar>
-        <el-button
-          type="primary"
-          @click="handleCreate">
-          新增部门
-        </el-button>
+        <el-button type="primary" @click="handleCreate">新增部门</el-button>
       </template>
     </BasicTable>
-    <DeptModal
-      @register="registerModal"
-      @success="handleSuccess" />
+    <DeptModal @register="registerModal" @success="handleSuccess" />
   </div>
 </template>
 

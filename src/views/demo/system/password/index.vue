@@ -1,14 +1,7 @@
 <template>
-  <PageWrapper
-    title="修改当前用户密码"
-    description="修改成功后会自动退出当前登录！">
-    <CollapseContainer
-      title="基础示例"
-      :canExpan="false">
-      <BasicForm
-        @register="register"
-        @submit="handleSubmit"
-        @reset="resetFields">
+  <PageWrapper title="修改当前用户密码" description="修改成功后会自动退出当前登录！">
+    <CollapseContainer title="基础示例" :canExpan="false">
+      <BasicForm @register="register" @submit="handleSubmit" @reset="resetFields">
         <template #newpassword="{ model, field }">
           <StrengthMeter v-model:modelValue="model[field]" />
         </template>

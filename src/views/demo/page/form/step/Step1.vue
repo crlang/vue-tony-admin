@@ -3,14 +3,9 @@
     <div class="step1-form">
       <BasicForm @register="register">
         <template #fac="{ model, field }">
-          <el-input
-            v-model="model[field]"
-            class="pay-input">
+          <el-input v-model="model[field]" class="pay-input">
             <template #prepend>
-              <el-select
-                v-model="model['pay']"
-                class="pay-select"
-                style="width: 110px">
+              <el-select v-model="model['pay']" class="pay-select" style="width: 110px">
                 <el-option value="zfb">支付宝</el-option>
                 <el-option value="yl">银联</el-option>
               </el-select>

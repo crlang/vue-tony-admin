@@ -116,3 +116,16 @@ $border-color: #8697a8;
 
 // 边框色-浅
 $border-color-light: #eaedf0;
+
+// =================================
+// =========== mix-theme-color =========
+// =================================
+$elname: '--el-color-primary';
+@mixin MixElPrimaryThemeColor {
+  @for $i from 1 through 9 {
+    $percentage: $i * 10%;
+
+    #{$elname}-light-#{$i}: color.mix($white-color, $primary-color, $percentage);
+    #{$elname}-dark-#{$i}: color.mix($black-color, $primary-color, $percentage);
+  }
+}

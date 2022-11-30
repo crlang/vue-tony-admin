@@ -1,8 +1,6 @@
 <template>
   <PageWrapper title="WebSocket 示例">
-    <el-row
-      :gutter="24"
-      class="pb-4">
+    <el-row :gutter="24" class="pb-4">
       <el-col :span="8">
         <el-card class="mb-4">
           <template #header>
@@ -11,16 +9,10 @@
               <el-tag :type="getTagColor">{{ status }}</el-tag>
             </div>
           </template>
-          <el-input
-            v-model="server"
-            placeholder="Please input"
-            class="input-with-select">
+          <el-input v-model="server" placeholder="Please input" class="input-with-select">
             <template #prepend>服务地址</template>
             <template #append>
-              <el-button
-                :type="getIsOpen ? 'danger' : 'primary'"
-                @click="toggle"
-                :loading="status === 'CONNECTING'">
+              <el-button :type="getIsOpen ? 'danger' : 'primary'" @click="toggle" :loading="status === 'CONNECTING'">
                 {{ getIsOpen ? '关闭连接' : status === 'CONNECTING' ? '连接中...' : '开启连接' }}
               </el-button>
             </template>
@@ -41,19 +33,14 @@
             block
             class="mt-4"
             :disabled="!getIsOpen"
-            @click="handlerSend">
-            发送
-          </el-button>
+            @click="handlerSend">发送</el-button>
         </el-card>
       </el-col>
       <el-col :span="16">
         <el-card header="消息记录">
           <div class="min-h-85 overflow-auto">
             <ul>
-              <li
-                v-for="item in getList"
-                class="mt-2"
-                :key="item.time">
+              <li v-for="item in getList" class="mt-2" :key="item.time">
                 <div class="flex items-center">
                   <span class="mr-2 text-primary">收到消息:</span>
                   <span>{{ formatToDateTime(item.time) }}</span>

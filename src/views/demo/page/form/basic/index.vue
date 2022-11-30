@@ -1,8 +1,5 @@
 <template>
-  <PageWrapper
-    title="基础表单"
-    contentBackground
-    description="表单页用于向用户收集或验证信息，基础表单常见于数据项较少的表单场景。">
+  <PageWrapper title="基础表单" contentBackground description="表单页用于向用户收集或验证信息，基础表单常见于数据项较少的表单场景。">
     <el-row>
       <el-col
         :xl="{ span: 10, offset: 7 }"

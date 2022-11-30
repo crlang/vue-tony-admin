@@ -1,19 +1,13 @@
 <template>
   <PageWrapper title="关于">
     <template #extra>
-      <a
-        :href="GITHUB_URL"
-        target="_blank"
-        style="color: var(--primary-color)">
+      <a :href="GITHUB_URL" target="_blank" style="color: var(--primary-color)">
         {{ name }}
       </a>
-      是一个基于Vue3.0、Vite、 Ant-Design-Vue 、TypeScript
-      的后台解决方案，目标是为中大型项目开发,提供现成的开箱解决方案及丰富的示例,原则上不会限制任何代码用于商用。
+      是一个基于Vue3.0、Vite、 Ant-Design-Vue 、TypeScript 的后台解决方案，目标是为中大型项目开发,提供现成的开箱解决方案及丰富的示例,原则上不会限制任何代码用于商用。
     </template>
     <BasicDescription @register="infoRegister" />
-    <BasicDescription
-      @register="register"
-      class="my-4" />
+    <BasicDescription @register="register" class="my-4" />
     <BasicDescription @register="registerDev" />
   </PageWrapper>
 </template>
