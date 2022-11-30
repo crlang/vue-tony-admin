@@ -54,12 +54,13 @@
 import type { Menu as MenuType } from '@/router/types'
 
 import { defineComponent, computed } from 'vue'
+
 import { useDesign } from '@/hooks/web/useDesign'
 import Icon from '@/components/Icon'
+import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
 
 import MenuItem from './components/MenuItem.vue'
 import SubMenu from './components/SubMenuItem.vue'
-import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
 
 export default defineComponent({
   name: 'SimpleSubMenu',

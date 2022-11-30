@@ -2,7 +2,6 @@ import type { Menu } from '@/router/types'
 import type { PropType } from 'vue'
 
 import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum'
-type MenuMode = 'horizontal' | 'vertical' | 'inline'
 
 export const basicProps = {
   items: {
@@ -15,7 +14,7 @@ export const basicProps = {
     default: 20,
   },
   mode: {
-    type: String as PropType<MenuMode>,
+    type: String as PropType<'horizontal' | 'vertical' | 'inline'>,
     default: MenuModeEnum.INLINE,
   },
 

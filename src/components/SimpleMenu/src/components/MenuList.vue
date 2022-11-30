@@ -7,20 +7,12 @@
 <script lang="ts">
 import type { SubMenuProvider } from './types'
 
-import {
-  defineComponent,
-  ref,
-  computed,
-  onMounted,
-  watchEffect,
-  watch,
-  nextTick,
-  getCurrentInstance,
-  provide,
-} from 'vue'
+import { defineComponent, ref, computed, onMounted, watchEffect, watch, nextTick, getCurrentInstance, provide } from 'vue'
+
 import { useDesign } from '@/hooks/web/useDesign'
-import { createSimpleRootMenuContext } from './useSimpleMenuContext'
 import mitt from '@/utils/mitt'
+
+import { createSimpleRootMenuContext } from './useSimpleMenuContext'
 
 export default defineComponent({
   name: 'MenuList',

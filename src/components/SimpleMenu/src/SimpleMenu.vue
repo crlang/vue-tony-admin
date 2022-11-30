@@ -23,15 +23,17 @@
 import type { MenuState } from './types'
 import type { Menu as MenuType } from '@/router/types'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
+
 import { defineComponent, computed, ref, unref, reactive, toRefs, watch } from 'vue'
+import { useRouter } from 'vue-router'
+
 import { useDesign } from '@/hooks/web/useDesign'
-import MenuList from './components/MenuList.vue'
-import SimpleSubMenu from './SimpleSubMenu.vue'
 import { listenerRouteChange } from '@/logics/mitt/routeChange'
 import { REDIRECT_NAME } from '@/router/constant'
-import { useRouter } from 'vue-router'
 import { isHttpUrl, openWindow } from '@/utils'
 
+import MenuList from './components/MenuList.vue'
+import SimpleSubMenu from './SimpleSubMenu.vue'
 import { useOpenKeys } from './useOpenKeys'
 
 export default defineComponent({

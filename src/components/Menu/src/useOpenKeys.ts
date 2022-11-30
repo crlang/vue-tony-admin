@@ -2,20 +2,14 @@ import { MenuModeEnum } from '@/enums/menuEnum'
 import type { Menu as MenuType } from '@/router/types'
 import type { MenuState } from './types'
 
-import { computed, Ref, toRaw } from 'vue'
-
-import { unref } from 'vue'
+import { computed, Ref, toRaw, unref } from 'vue'
 import { uniq } from 'lodash-es'
+
 import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
 import { getAllParentPath } from '@/router/helper/menuHelper'
 import { useTimeoutFn } from '@/hooks/core/useTimeout'
 
-export function useOpenKeys(
-  menuState: MenuState,
-  menus: Ref<MenuType[]>,
-  mode: Ref<MenuModeEnum>,
-  accordion: Ref<boolean>,
-) {
+export function useOpenKeys(menuState: MenuState, menus: Ref<MenuType[]>, mode: Ref<MenuModeEnum>, accordion: Ref<boolean>) {
   const { getCollapsed, getIsMixSidebar } = useMenuSetting()
 
   async function setOpenKeys(path: string) {

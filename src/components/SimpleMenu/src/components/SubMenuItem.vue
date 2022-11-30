@@ -62,24 +62,16 @@
 <script lang="ts">
 import type { SubMenuProvider } from './types'
 
-import {
-  defineComponent,
-  computed,
-  unref,
-  getCurrentInstance,
-  toRefs,
-  reactive,
-  provide,
-  onBeforeMount,
-  inject,
-} from 'vue'
+import { defineComponent, computed, unref, getCurrentInstance, toRefs, reactive, provide, onBeforeMount, inject } from 'vue'
 import { ElPopover } from 'element-plus'
+import { isObject } from '@vueuse/core'
+
 import { useDesign } from '@/hooks/web/useDesign'
-import { useMenuItem } from './useMenu'
-import { useSimpleRootMenuContext } from './useSimpleMenuContext'
 import { SvgIcon } from '@/components/SvgIcon'
 import mitt from '@/utils/mitt'
-import { isObject } from '@vueuse/core'
+
+import { useMenuItem } from './useMenu'
+import { useSimpleRootMenuContext } from './useSimpleMenuContext'
 
 const DELAY = 200
 export default defineComponent({

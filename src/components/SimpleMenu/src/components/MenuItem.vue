@@ -24,7 +24,9 @@
 <script lang="ts">
 import { defineComponent, ref, computed, unref, getCurrentInstance, watch } from 'vue'
 import { ElTooltip } from 'element-plus'
+
 import { useDesign } from '@/hooks/web/useDesign'
+
 import { useMenuItem } from './useMenu'
 import { useSimpleRootMenuContext } from './useSimpleMenuContext'
 

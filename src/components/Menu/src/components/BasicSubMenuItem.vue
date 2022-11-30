@@ -26,6 +26,7 @@ import type { Menu as MenuType } from '@/router/types'
 
 import { defineComponent, computed } from 'vue'
 import { ElSubMenu, ElMenuItem } from 'element-plus'
+
 import { itemProps } from '../props'
 import MenuItemContent from './MenuItemContent.vue'
 
