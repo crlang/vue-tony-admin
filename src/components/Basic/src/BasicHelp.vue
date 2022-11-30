@@ -30,7 +30,7 @@ export default defineComponent({
      * Theme effect
      */
     effect: {
-      type: String as PropType<ThemeType>,
+      type: String,
       default: 'dark',
     },
     /**
