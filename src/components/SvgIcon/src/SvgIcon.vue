@@ -35,7 +35,7 @@ export default defineComponent({
      * Icon size
      */
     size: {
-      type: [Number, String],
+      type: Number,
       default: 0,
     },
     /**
@@ -62,8 +62,8 @@ export default defineComponent({
      * Icon rotate (deg)
      */
     rotate: {
-      type: String,
-      default: '0deg',
+      type: Number,
+      default: 0,
     },
     /**
      * SymbolId 命名前缀，如无特殊使用，可不予理会
@@ -87,17 +87,12 @@ export default defineComponent({
      */
     const getStyle = computed((): CSSProperties => {
       const { size } = props
-      let s = parseInt(size) || ''
-      if (!s) {
-        s = '1rem'
-      } else {
-        s = `${s}px`
-      }
+      const s = parseInt(size, 10)
       return {
-        fontSize: s,
-        lineHeight: s,
+        fontSize: s ? `${s}px` : 'inherit',
       }
     })
+
     /**
      * 获取图标样式
      *
@@ -108,7 +103,7 @@ export default defineComponent({
       if (!rotate) return {}
 
       return {
-        transform: `rotate(${rotate})`,
+        transform: `rotate(${rotate}deg)`,
       }
     })
 
@@ -121,16 +116,21 @@ export default defineComponent({
 $prefix-cls: '#{$tonyname}-svg-icon';
 
 .#{$prefix-cls} {
+  display: inline-flex;
   overflow: hidden;
+  justify-self: center;
+  align-self: center;
 
   svg {
     display: block;
     width: 1em;
     height: 1em;
     overflow: hidden;
+    font-size: 1em;
+    line-height: 1em;
+    transition: transform 0.25s linear;
     /* stylelint-disable-next-line value-keyword-case */
     fill: currentColor;
-    transition: transform 0.25s linear;
   }
 
   &-spin {
