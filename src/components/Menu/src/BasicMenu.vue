@@ -9,6 +9,7 @@
       :key="item.path">
       <BasicSubMenuItem
         :item="item"
+        :prefixCls="`${prefixCls}-item`"
         :isHorizontal="isHorizontal" />
     </template>
   </ElMenu>
@@ -131,6 +132,7 @@ export default defineComponent({
     })
 
     return {
+      prefixCls,
       getInlineCollapseOptions,
       getMenuClass,
       handleOpenChange,

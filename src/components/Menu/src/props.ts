@@ -38,6 +38,7 @@ export const itemProps = {
     type: Object as PropType<Menu>,
     default: {},
   },
+  prefixCls: String,
   level: Number,
   showTitle: Boolean,
   isHorizontal: Boolean,

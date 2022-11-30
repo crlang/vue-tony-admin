@@ -10,7 +10,7 @@
     :index="item.path"
     popper-class="app-top-menu-popup">
     <template #title>
-      <MenuItemContent :item="item" />
+      <MenuItemContent :item="item" :class="`${prefixCls}-content`" />
     </template>
 
     <template
@@ -26,7 +26,6 @@ import type { Menu as MenuType } from '@/router/types'
 
 import { defineComponent, computed } from 'vue'
 import { ElSubMenu, ElMenuItem } from 'element-plus'
-import { useDesign } from '@/hooks/web/useDesign'
 import { itemProps } from '../props'
 import MenuItemContent from './MenuItemContent.vue'
 
@@ -36,8 +35,6 @@ export default defineComponent({
   components: { ElSubMenu, ElMenuItem, MenuItemContent },
   props: itemProps,
   setup(props) {
-    const { prefixCls } = useDesign('basic-menu-item')
-
     const getShowMenu = computed(() => !props.item.meta?.hideMenu)
     function menuHasChildren(menuTreeItem: MenuType): boolean {
       return (
@@ -48,7 +45,6 @@ export default defineComponent({
       )
     }
     return {
-      prefixCls,
       menuHasChildren,
       getShowMenu,
     }
