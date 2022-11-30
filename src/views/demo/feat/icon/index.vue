@@ -27,7 +27,7 @@
     </CardGrid>
 
     <CardGrid
-      title="IconIfy 组件使用"
+      title="Icon 组件使用 Iconify、Svg "
       center>
       <CardGridItem>
         <Icon
@@ -43,6 +43,22 @@
       <CardGridItem>
         <Icon
           name="ep:arrow-right"
+          :size="30" />
+      </CardGridItem>
+      <CardGridItem>
+        <Icon
+          name="arrowdown|svg"
+          :size="30" />
+      </CardGridItem>
+      <CardGridItem>
+        <Icon
+          name="arrowleft|svg"
+          spin
+          :size="30" />
+      </CardGridItem>
+      <CardGridItem>
+        <Icon
+          name="arrowright|svg"
           :size="30" />
       </CardGridItem>
     </CardGrid>

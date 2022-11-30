@@ -8,37 +8,43 @@
         <el-card
           class="box-card"
           shadow="hover">
-          <ElButton preIcon="ion:layers-outline">Default</ElButton>
-          <ElButton
+          <template #header>
+            <div class="card-header">basic button (custom components)</div>
+          </template>
+          <BasicButton preIcon="ep:element-plus">Default</BasicButton>
+          <BasicButton
             type="primary"
-            preIcon="ion:layers-outline">
+            preIcon="ep:element-plus">
             Primary
-          </ElButton>
+          </BasicButton>
 
-          <ElButton
-            sufIcon="ion:layers-outline"
+          <BasicButton
+            sufIcon="ep:element-plus"
             type="success">
             Success
-          </ElButton>
-          <ElButton
-            sufIcon="ion:layers-outline"
+          </BasicButton>
+          <BasicButton
+            sufIcon="ep:element-plus"
             :iconSize="22"
             type="info">
             Large Icon
-          </ElButton>
+          </BasicButton>
 
-          <ElButton shadow>Shadow</ElButton>
-          <ElButton
+          <BasicButton shadow>Shadow</BasicButton>
+          <BasicButton
             shadow
             type="primary">
             Success
-          </ElButton>
+          </BasicButton>
         </el-card>
       </el-col>
       <el-col :span="12">
         <el-card
           class="box-card"
           shadow="hover">
+          <template #header>
+            <div class="card-header">normal</div>
+          </template>
           <el-button>Default</el-button>
           <el-button type="primary">Primary</el-button>
           <el-button type="success">Success</el-button>
@@ -52,6 +58,9 @@
         <el-card
           class="box-card"
           shadow="hover">
+          <template #header>
+            <div class="card-header">plain</div>
+          </template>
           <el-button plain>Default</el-button>
           <el-button
             type="primary"
@@ -85,7 +94,7 @@
           class="box-card"
           shadow="hover">
           <template #header>
-            <div class="card-header">round button</div>
+            <div class="card-header">round</div>
           </template>
 
           <el-button round>Default</el-button>
@@ -121,7 +130,7 @@
           class="box-card"
           shadow="hover">
           <template #header>
-            <div class="card-header">Text button</div>
+            <div class="card-header">text</div>
           </template>
 
           <el-button text>Text ElButton</el-button>
@@ -137,7 +146,7 @@
           class="box-card"
           shadow="hover">
           <template #header>
-            <div class="card-header">icon button</div>
+            <div class="card-header">icon</div>
           </template>
 
           <el-button
@@ -175,7 +184,7 @@
           class="box-card"
           shadow="hover">
           <template #header>
-            <div class="card-header">Group button</div>
+            <div class="card-header">group</div>
           </template>
 
           <el-button-group>
@@ -212,7 +221,7 @@
           class="box-card"
           shadow="hover">
           <template #header>
-            <div class="card-header">Disabled button</div>
+            <div class="card-header">disabled</div>
           </template>
 
           <el-button disabled>Default</el-button>
@@ -248,7 +257,7 @@
           class="box-card"
           shadow="hover">
           <template #header>
-            <div class="card-header">Disabled plain button</div>
+            <div class="card-header">disabled plain</div>
           </template>
 
           <el-button
@@ -295,7 +304,7 @@
           class="box-card"
           shadow="hover">
           <template #header>
-            <div class="card-header">Loading button</div>
+            <div class="card-header">loading</div>
           </template>
 
           <div class="flex">
@@ -318,7 +327,7 @@
           class="box-card"
           shadow="hover">
           <template #header>
-            <div class="card-header">Sizes</div>
+            <div class="card-header">sizes</div>
           </template>
 
           <el-button>Default</el-button>
@@ -346,8 +355,10 @@ import { defineComponent, ref } from 'vue'
 import { ElRow, ElCol, ElCard, ElButton, ElButtonGroup } from 'element-plus'
 import { Search, Edit, Check, Message, Star, Delete, ArrowLeft, Share, ArrowRight } from '@element-plus/icons-vue'
 
+import { BasicButton } from '@/components/BasicButton'
+
 export default defineComponent({
-  components: { ElRow, ElCol, ElCard, ElButton, ElButtonGroup },
+  components: { ElRow, ElCol, ElCard, ElButton, ElButtonGroup, BasicButton },
   setup() {
     const loading = ref(false)
 

@@ -36,6 +36,9 @@ export default defineComponent({
       pagination: { pageSize: 30 },
       showIndexColumn: true,
       showTableSetting: true,
+      tableSetting: {
+        size: true,
+      },
       columns: getBasicColumns(),
     })
     function handleReloadCurrent() {

@@ -22,17 +22,18 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { ElCard, ElTree, ElRow, ElCol } from 'element-plus'
-import { treeData } from './data'
 import { useContextMenu } from '@/hooks/web/useContextMenu'
 import { CreateContextMenuOptions } from '@/components/ContextMenu'
 import { SvgIcon } from '@/components/SvgIcon'
+
+import { treeData } from './data'
 
 export default defineComponent({
   components: { ElCard, ElTree, ElRow, ElCol },
   setup() {
     const [createContextMenu] = useContextMenu()
 
-    function handleSend() {
+    function handleSend(_node, _data, _store) {
       // do something
     }
 
