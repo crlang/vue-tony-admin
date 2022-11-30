@@ -27,13 +27,8 @@
                 :class="{ 'is-actived': currentSelect === icon }"
                 @click="handleClick(icon)"
                 :title="icon">
-                <SvgIcon
-                  v-if="isSvgMode"
-                  :name="icon" />
-                <Icon
-                  :name="icon"
-                  size="36"
-                  v-else />
+                <SvgIcon v-if="isSvgMode" :name="icon" />
+                <Icon :name="icon" v-else />
                 <div>{{ icon }}</div>
               </li>
             </ul>
@@ -49,9 +44,7 @@
             v-if="isSvgMode && currentSelect">
             <SvgIcon :name="currentSelect" />
           </span>
-          <span
-            :class="`${prefixCls}__search`"
-            v-else>
+          <span :class="`${prefixCls}__search`" v-else>
             <Icon :name="currentSelect || 'ion:apps-outline'" />
           </span>
         </template>
@@ -68,7 +61,7 @@ import svgIcons from 'virtual:svg-icons-names'
 import { useDesign } from '@/hooks/web/useDesign'
 import { ScrollContainer } from '@/components/ScrollContainer'
 import Icon from '@/components/Icon'
-import SvgIcon from '@/components/SvgIcon'
+import { SvgIcon } from '@/components/SvgIcon'
 import { useCopyToClipboard } from '@/hooks/web/useCopyToClipboard'
 import { useMessage } from '@/hooks/web/useMessage'
 
@@ -223,10 +216,22 @@ $prefix-cls: '#{$tonyname}-icon-picker';
       flex-wrap: wrap;
 
       > li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: calc(20% - 24px);
+        padding: 6px;
         margin: 12px;
+        font-size: 36px;
         color: var(--text-secondary-color);
         text-align: center;
+        cursor: pointer;
+        border: 1px solid var(--border-color-light);
+        flex-direction: column;
+
+        &:hover {
+          background: var(--background-regular-color);
+        }
 
         > div {
           font-size: 12px;
@@ -238,24 +243,14 @@ $prefix-cls: '#{$tonyname}-icon-picker';
         }
       }
     }
-
-    .eleicon {
-      padding: 12px;
-      cursor: pointer;
-      border: 1px solid var(--border-color);
-
-      &:hover {
-        background: var(--background-secondary-color);
-      }
-    }
   }
 
   &__icon,
   &__search {
-    svg {
-      width: 16px;
-      height: 16px;
-    }
+    display: flex;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
   }
 }
 </style>
