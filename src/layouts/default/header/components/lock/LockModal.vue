@@ -111,7 +111,9 @@ $prefix-cls: '#{$tonyname}-header-lock-modal';
 .#{$prefix-cls} {
   &__entry {
     position: relative;
+    max-width: 600px;
     padding: 130px 30px 30px;
+    margin: 0 auto;
     border-radius: 10px;
 
     .el-form-item__label {

@@ -1,37 +1,37 @@
 <template>
-  <ElDropdown @command="handleMenuClick">
-    <div :class="[prefixCls, itemClass]">
-      <img
-        :class="`${prefixCls}__avatar`"
-        :src="getUserInfo.avatar" />
-      <span :class="`${prefixCls}__name`">
-        {{ getUserInfo.realName }}
-      </span>
-    </div>
+  <div>
+    <ElDropdown @command="handleMenuClick">
+      <div :class="prefixCls">
+        <img
+          :class="`${prefixCls}__avatar`"
+          :src="getUserInfo.avatar" />
+        <span :class="`${prefixCls}__name`">{{ getUserInfo.realName }}</span>
+      </div>
 
-    <template #dropdown>
-      <ElDropdownMenu :class="`${prefixCls}-menulist`">
-        <ElDropdownItem
-          command="doc"
-          v-if="getShowDoc">
-          <SvgIcon class="mr-2" name="filetext" />
-          <span>文档</span>
-        </ElDropdownItem>
-        <ElDropdownItem
-          v-if="getUseLockPage"
-          :divided="getShowDoc"
-          command="lock">
-          <SvgIcon class="mr-2" name="lock" />
-          <span>锁定屏幕</span>
-        </ElDropdownItem>
-        <ElDropdownItem command="logout">
-          <SvgIcon class="mr-2" name="poweroff" />
-          <span>退出系统</span>
-        </ElDropdownItem>
-      </ElDropdownMenu>
-    </template>
-  </ElDropdown>
-  <LockAction @register="register" />
+      <template #dropdown>
+        <ElDropdownMenu :class="`${prefixCls}-menulist`">
+          <ElDropdownItem
+            command="doc"
+            v-if="getShowDoc">
+            <SvgIcon class="mr-2" name="filetext" />
+            <span>文档</span>
+          </ElDropdownItem>
+          <ElDropdownItem
+            v-if="getUseLockPage"
+            :divided="getShowDoc"
+            command="lock">
+            <SvgIcon class="mr-2" name="lock" />
+            <span>锁定屏幕</span>
+          </ElDropdownItem>
+          <ElDropdownItem command="logout">
+            <SvgIcon class="mr-2" name="poweroff" />
+            <span>退出系统</span>
+          </ElDropdownItem>
+        </ElDropdownMenu>
+      </template>
+    </ElDropdown>
+    <LockAction @register="register" />
+  </div>
 </template>
 
 <script lang="ts">
@@ -48,8 +48,6 @@ import { SvgIcon } from '@/components/SvgIcon'
 import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
 
 import headerImg from '@/assets/images/header.jpg'
-
-type MenuEvent = 'logout' | 'doc' | 'lock'
 
 export default defineComponent({
   name: 'UserDropdown',
@@ -75,30 +73,16 @@ export default defineComponent({
 
     const [register, { openModal }] = useModal()
 
-    function handleLock() {
-      openModal(true)
-    }
-
-    //  login out
-    function handleLoginOut() {
-      userStore.confirmLoginOut()
-    }
-
-    // open doc
-    function openDoc() {
-      openWindow(DOC_URL)
-    }
-
-    function handleMenuClick(e: MenuEvent) {
+    function handleMenuClick(e: 'logout' | 'doc' | 'lock') {
       switch (e) {
       case 'logout':
-        handleLoginOut()
+        userStore.confirmLoginOut()
         break
       case 'doc':
-        openDoc()
+        openWindow(DOC_URL)
         break
       case 'lock':
-        handleLock()
+        openModal(true)
         break
       }
     }
@@ -114,14 +98,15 @@ export default defineComponent({
   },
 })
 </script>
+
 <style lang="scss">
 $prefix-cls: '#{$tonyname}-header-user-dropdown';
 
 .#{$prefix-cls} {
   display: flex;
   align-items: center;
-  width: auto;
-  height: var(--header-height);
+  width: 100%;
+  height: 100%;
   padding: 0 0 0 10px;
   padding-right: 10px;
   overflow: hidden;

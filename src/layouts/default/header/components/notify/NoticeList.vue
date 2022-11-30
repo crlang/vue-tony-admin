@@ -50,7 +50,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, ref, watch } from 'vue'
+import { defineComponent } from 'vue'
 import { ElAvatar, ElTag } from 'element-plus'
 
 import { useDesign } from '@/hooks/web/useDesign'
@@ -70,43 +70,18 @@ export default defineComponent({
       type: Array as PropType<ListItemType[]>,
       default: () => [],
     },
-    pageSize: {
-      type: [Boolean, Number] as PropType<Boolean | Number>,
-      default: 5,
-    },
-    page: {
-      type: Number,
-      default: 1,
-    },
-    titleRows: {
-      type: Number,
-      default: 1,
-    },
-    descRows: {
-      type: Number,
-      default: 2,
-    },
     onTitleClick: {
-      type: Function as PropType<(Recordable) => void>,
+      type: Function as PropType<(record: ListItemType) => void>,
     },
   },
-  emits: ['update:page'],
   setup(props) {
     const { prefixCls } = useDesign('header-notify-list')
-    const current = ref(props.page || 1)
-    watch(
-      () => props.page,
-      (v) => {
-        current.value = v
-      },
-    )
-    const isTitleClickable = computed(() => !!props.onTitleClick)
 
     function handleTitleClick(item: ListItemType) {
       props.onTitleClick && props.onTitleClick(item)
     }
 
-    return { prefixCls, handleTitleClick, isTitleClickable }
+    return { prefixCls, handleTitleClick }
   },
 })
 </script>

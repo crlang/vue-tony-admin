@@ -60,23 +60,22 @@ export default defineComponent({
   },
 })
 </script>
-<style lang="scss" scoped>
-$normal-color: rgba(0, 0, 0, 0.45);
-$hover-color: rgba(0, 0, 0, 0.85);
+
+<style lang="scss">
 $prefix-cls: '#{$tonyname}-layout-footer';
 
 .#{$prefix-cls} {
-  color: $normal-color;
+  color: rgba(0, 0, 0, 0.45);
   text-align: center;
 
   &__links {
     margin-bottom: 8px;
 
     a {
-      color: $normal-color;
+      color: rgba(0, 0, 0, 0.45);
 
       &:hover {
-        color: $hover-color;
+        color: rgba(0, 0, 0, 0.85);
       }
     }
   }
@@ -85,7 +84,7 @@ $prefix-cls: '#{$tonyname}-layout-footer';
     margin: 0 30px;
 
     &:hover {
-      color: $hover-color;
+      color: rgba(0, 0, 0, 0.85);
     }
   }
 }

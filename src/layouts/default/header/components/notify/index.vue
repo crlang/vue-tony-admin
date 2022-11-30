@@ -27,10 +27,7 @@
             <NoticeList
               :list="item.list"
               v-else />
-            <div :class="`${prefixCls}__more`">
-              查看更多
-              <span v-if="item.list.length !== 0">({{ item.list.length }})</span>
-            </div>
+            <div :class="`${prefixCls}__more`">查看更多</div>
           </ElTabPane>
         </template>
       </ElTabs>
@@ -39,6 +36,8 @@
 </template>
 
 <script lang="ts">
+import type { ListItem } from './data'
+
 import { computed, defineComponent, ref } from 'vue'
 import { ElPopover, ElBadge, ElTabs, ElTabPane } from 'element-plus'
 
@@ -47,7 +46,7 @@ import { SvgIcon } from '@/components/SvgIcon'
 import { useMessage } from '@/hooks/web/useMessage'
 
 import NoticeList from './NoticeList.vue'
-import { tabListData, ListItem } from './data'
+import { tabListData } from './data'
 
 export default defineComponent({
   components: { ElPopover, ElBadge, ElTabs, ElTabPane, SvgIcon, NoticeList },

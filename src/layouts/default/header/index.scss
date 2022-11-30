@@ -26,9 +26,6 @@ $prefix-cls: '#{$tonyname}-layout-header';
       }
     }
 
-    // .#{$header-trigger-prefix-cls} {
-    //   padding: 0 4px 0 8px !important;
-    // }
     .#{$prefix-cls}-action {
       padding-right: 4px;
     }
@@ -61,7 +58,7 @@ $prefix-cls: '#{$tonyname}-layout-header';
     .#{$prefix-cls}-trigger {
       display: flex;
       align-items: center;
-      height: 100%;
+      height: 80%;
       padding: 0 10px;
       cursor: pointer;
 
@@ -92,8 +89,9 @@ $prefix-cls: '#{$tonyname}-layout-header';
       display: flex;
       justify-content: center;
       align-items: center;
-      width: var(--header-height);
-      height: var(--header-height);
+      height: calc(var(--header-height) * 0.8);
+      max-width: calc(var(--header-height) * 3);
+      min-width: var(--header-height);
       padding: 0;
       font-size: 1.2em;
       color: inherit;
@@ -107,6 +105,8 @@ $prefix-cls: '#{$tonyname}-layout-header';
         display: flex;
         justify-content: center;
         align-items: center;
+        width: 100%;
+        height: 100%;
 
         svg {
           width: 1em;
@@ -114,30 +114,36 @@ $prefix-cls: '#{$tonyname}-layout-header';
         }
       }
 
+      .el-dropdown {
+        width: 100%;
+        height: 100%;
+      }
+
       .el-badge {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
+        height: 100%;
 
         &__content {
           position: absolute;
-          top: -8px;
-          right: calc(50% - 16px);
-          width: 16px;
-          height: 16px;
-          padding: 0;
+          top: 8px;
+          right: 8px;
+          height: auto;
+          padding: 2px 4px;
           font-size: 12px;
-          line-height: 16px;
+          line-height: 1;
           border: none;
           transform: none;
         }
 
         &__content.is-dot {
-          top: -3px;
-          right: calc(50% - 12px);
+          top: 12px;
+          right: 12px;
           width: 6px;
           height: 6px;
+          padding: 0;
         }
       }
     }

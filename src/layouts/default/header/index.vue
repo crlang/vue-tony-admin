@@ -1,8 +1,6 @@
 <template>
   <ElHeader :class="getHeaderClass">
-    <!-- left start -->
     <div :class="`${prefixCls}-left`">
-      <!-- logo -->
       <AppLogo
         v-if="getShowHeaderLogo || getIsMobile"
         :class="`${prefixCls}-logo`"
@@ -12,19 +10,14 @@
         v-if="(getShowContent && getShowHeaderTrigger && !getSplit && !getIsMixSidebar) || getIsMobile" />
       <LayoutBreadcrumb v-if="getShowContent && getShowBread" />
     </div>
-    <!-- left end -->
 
-    <!-- menu start -->
     <div :class="`${prefixCls}-menu`" v-if="getShowTopMenu && !getIsMobile">
       <LayoutMenu
         :isHorizontal="true"
         :splitType="getSplitType"
-        :menuMode="getMenuMode"
-      />
+        :menuMode="getMenuMode" />
     </div>
-    <!-- menu-end -->
 
-    <!-- action  -->
     <div :class="`${prefixCls}-action`">
       <AppSearch
         :class="`${prefixCls}-action__item `"
@@ -42,7 +35,7 @@
         v-if="getShowFullScreen"
         :class="`${prefixCls}-action__item`" />
 
-      <UserDropDown :itemClass="`${prefixCls}-action__item`" />
+      <UserDropDown :class="`${prefixCls}-action__item`" />
 
       <SettingDrawer
         v-if="getShowSetting"
