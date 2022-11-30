@@ -13,7 +13,7 @@
   </ElTooltip>
 
   <ElTooltip
-    v-if="fullScreen"
+    v-if="fullscreen"
     placement="top"
     content="全屏">
     <SvgIcon @click="toggle" :name="isFullscreen ? 'shrink' : 'arrowsalt'" />
@@ -38,8 +38,7 @@ export default defineComponent({
   props: {
     redo: Boolean,
     size: Boolean,
-    setting: Boolean,
-    fullScreen: Boolean,
+    fullscreen: Boolean,
   },
   setup() {
     const table = useTableContext()

@@ -584,7 +584,7 @@ export interface TableSetting {
    *
    * full screen
    */
-  fullScreen?: boolean
+  fullscreen?: boolean
 }
 
 /**

@@ -61,7 +61,7 @@ export default defineComponent({
     const getSettingProps = computed(() => {
       return {
         redo: true,
-        fullScreen: true,
+        fullscreen: true,
         size: false,
         ...(props.tableSetting || {}),
       } as TableSettingType
