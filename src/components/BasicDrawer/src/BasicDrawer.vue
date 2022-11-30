@@ -115,9 +115,10 @@ export default defineComponent({
         ...(unref(propsRef) as Recordable),
       } as BasicDrawerProps
 
-      opts.customClass = `${prefixCls} ${opts?.customClass || ''} ${prefixCls}-${instance?.uid}`
-
-      return opts
+      return {
+        ...opts,
+        customClass: `${prefixCls} ${opts?.customClass || ''} ${prefixCls}-${instance?.uid}`,
+      }
     })
 
     /**
@@ -255,10 +256,6 @@ $prefix-cls: '#{$tonyname}-basic-drawer';
     margin-bottom: 0;
   }
 
-  /*   .scrollbar > .scrollbar__bar.is-horizontal {
-    display: none;
-  } */
-
   &-header {
     display: flex;
     align-items: center;
@@ -282,7 +279,6 @@ $prefix-cls: '#{$tonyname}-basic-drawer';
       display: flex;
       align-items: center;
       padding: 0;
-      margin-left: 16px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
