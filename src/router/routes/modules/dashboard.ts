@@ -18,7 +18,6 @@ const dashboard: AppRouteModule = {
       name: 'Analysis',
       component: () => import('@/views/dashboard/analysis/index.vue'),
       meta: {
-        // affix: true,
         icon: 'ep:data-line',
         title: '分析页',
       },

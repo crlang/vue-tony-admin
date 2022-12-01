@@ -2,7 +2,7 @@ import type { AppRouteModule } from '@/router/types'
 
 import { LAYOUT } from '@/router/constant'
 
-const dashboard: AppRouteModule = {
+const about: AppRouteModule = {
   path: '/about',
   name: 'About',
   component: LAYOUT,
@@ -27,4 +27,4 @@ const dashboard: AppRouteModule = {
   ],
 }
 
-export default dashboard
+export default about

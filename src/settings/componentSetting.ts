@@ -64,9 +64,7 @@ export default {
     /**
      * 根据字段显示哪些分页内容
      *
-     * Which paginated content to display based on fields
-     *
-     * All optional: 'total, sizes, prev, pager, next, jumper'
+     * Which paginated content to display based on fields. All optional: 'total, sizes, prev, pager, next, jumper'
      */
     pageLayoutOptions: 'total, prev, pager, next, jumper',
     /**

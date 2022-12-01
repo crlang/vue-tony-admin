@@ -17,13 +17,13 @@ declare module 'vue-router' {
      */
     title: string
     /**
-     * 是否忽略权限
+     * 是否忽略权限，只在权限模式为Role的时候有效
      *
      * Whether to ignore permissions
      */
     ignoreAuth?: boolean
     /**
-     * 角色信息
+     * 角色信息，只在权限模式为Role的时候有效
      *
      * role info
      */
@@ -107,15 +107,15 @@ declare module 'vue-router' {
      */
     isLink?: boolean
     /**
-     * 是否只为菜单构建
+     * 忽略路由。用于在ROUTE_MAPPING以及BACK权限模式下，生成对应的菜单而忽略路由。
      *
-     * Whether to build only for menus
+     * Routes are ignored. It is used to generate the corresponding menu and ignore the routing in the ROUTE_MAPPING and BACK permission modes.
      */
     ignoreRoute?: boolean
     /**
-     * 隐藏子路由的路径
+     * 是否在子级菜单的完整path中忽略本级path
      *
-     * Hide path for children
+     * Whether to ignore the current level path in the full path of the submenu
      */
     hidePathForChildren?: boolean
   }

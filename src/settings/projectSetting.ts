@@ -270,9 +270,9 @@ let setting: ProjectConfig = {
      */
     collapsed: false,
     /**
-     * Whether to display the menu name when folding the menu
-     *
      * 折叠菜单时是否显示菜单名称
+     *
+     * Whether to display the menu name when folding the menu
      */
     collapsedShowTitle: false,
     /**
