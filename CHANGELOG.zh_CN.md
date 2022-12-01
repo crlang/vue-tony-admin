@@ -1,21 +1,38 @@
-## [0.5.6](https://github.com/crlang/vue-tony-admin/compare/0.5.5...0.5.6) (2022-10-21)
-
+## [0.5.7](https://github.com/crlang/vue-tony-admin/compare/0.5.6...0.5.7) (2022-12-01)
 
 ### Bug Fixes
 
-* 修复菜单拖动后拖动条消失、修复顶部菜单无法动态对齐 ([8fb569f](https://github.com/crlang/vue-tony-admin/commit/8fb569ff070cf8630c79b2e649353433e86945b9))
-* 修复锁屏输入空白 ([4217c2d](https://github.com/crlang/vue-tony-admin/commit/4217c2db1b44c7cbfe38b8efedfda85f3336a079))
-* 修复undefined引起的错误 ([e8fb534](https://github.com/crlang/vue-tony-admin/commit/e8fb53421e5505c4828a3af37cbd7ab0f73fe934))
-* 移除is判断 ([4fb1f24](https://github.com/crlang/vue-tony-admin/commit/4fb1f246d50305b0dab386aa6a3ad3a09b16f57c))
-* 优化更友好的项目配置区域 ([87219cc](https://github.com/crlang/vue-tony-admin/commit/87219cc9ef11e484457879cac11c3b3003e85ab9))
-* isObject 改为 @vueuse/core 调用能达到更好的判断效果 ([cb9a325](https://github.com/crlang/vue-tony-admin/commit/cb9a325af6638c44c5899cc19d74b024ac71e26c))
-
+- 功能优化、移除部分钩子 ([2e2ce42](https://github.com/crlang/vue-tony-admin/commit/2e2ce42ad5f917466de9d1f1e1a495db6c3594ee))
+- 头部组件内容优化 ([721c268](https://github.com/crlang/vue-tony-admin/commit/721c268d1bb9a15bac6e683c9131e54ee10bc228))
+- 修复页面动画引起的滚动条波动 ([79c07e8](https://github.com/crlang/vue-tony-admin/commit/79c07e806d804a14372d78b0d74c4e3a59164eb0))
+- 修复页面过渡动画失效 ([c029661](https://github.com/crlang/vue-tony-admin/commit/c029661bd85fa0ca80cc1e90dda6ad6c0bec5516))
+- 移除 effect proptype ([bb7afed](https://github.com/crlang/vue-tony-admin/commit/bb7afed127a6a906041ac89ff553af772e634217))
+- 优化图标统一视觉，调整系统的图标为 svg，调整 iconify 图标示例为 ep 图标库 ([9f112e4](https://github.com/crlang/vue-tony-admin/commit/9f112e4b6996e7712a6dfb25a63a32955a4e30e3))
+- 主题色更改规则更新，支持 CSS 或 JS 动态更新 ([362e8e9](https://github.com/crlang/vue-tony-admin/commit/362e8e91a59efd2dd7b544f77db40d698c87f77a))
+- **BasicTable:** 调整设置的 fullScreen 字段为 fullscreen ([9246a6d](https://github.com/crlang/vue-tony-admin/commit/9246a6d0e89b8714a5e9f295c383604913ee5a03))
+- demo 示例更新 ([52ba203](https://github.com/crlang/vue-tony-admin/commit/52ba20377c71f95d2e4e47537c34dda55a189a6e))
+- **IconPicker:** 优化显示效果 ([c51f4ed](https://github.com/crlang/vue-tony-admin/commit/c51f4edacdd2f00dac906bab647f2e4e440318f4))
+- **SvgIcon:** 调整 size、rotate 限制为数值 ([d92d655](https://github.com/crlang/vue-tony-admin/commit/d92d655d3fcd04460f22f05192b4d29ce76f7f31))
 
 ### Features
 
-* 新增可配置动态头部按钮 ([01498d7](https://github.com/crlang/vue-tony-admin/commit/01498d7b7661fc9b0bca67f14ebf925cbb4712ed))
-* 新增项目配置按钮开关 ([95f43e6](https://github.com/crlang/vue-tony-admin/commit/95f43e6df6b1fa24ab43651fb2c080cfe7719b76))
+- **Icon:** 支持引入本地 svg 图标 ([7fcaefa](https://github.com/crlang/vue-tony-admin/commit/7fcaefad50f1df2389ed2eea10b3baa194a0ed11))
 
+## [0.5.6](https://github.com/crlang/vue-tony-admin/compare/0.5.5...0.5.6) (2022-10-21)
+
+### Bug Fixes
+
+- 修复菜单拖动后拖动条消失、修复顶部菜单无法动态对齐 ([8fb569f](https://github.com/crlang/vue-tony-admin/commit/8fb569ff070cf8630c79b2e649353433e86945b9))
+- 修复锁屏输入空白 ([4217c2d](https://github.com/crlang/vue-tony-admin/commit/4217c2db1b44c7cbfe38b8efedfda85f3336a079))
+- 修复 undefined 引起的错误 ([e8fb534](https://github.com/crlang/vue-tony-admin/commit/e8fb53421e5505c4828a3af37cbd7ab0f73fe934))
+- 移除 is 判断 ([4fb1f24](https://github.com/crlang/vue-tony-admin/commit/4fb1f246d50305b0dab386aa6a3ad3a09b16f57c))
+- 优化更友好的项目配置区域 ([87219cc](https://github.com/crlang/vue-tony-admin/commit/87219cc9ef11e484457879cac11c3b3003e85ab9))
+- isObject 改为 @vueuse/core 调用能达到更好的判断效果 ([cb9a325](https://github.com/crlang/vue-tony-admin/commit/cb9a325af6638c44c5899cc19d74b024ac71e26c))
+
+### Features
+
+- 新增可配置动态头部按钮 ([01498d7](https://github.com/crlang/vue-tony-admin/commit/01498d7b7661fc9b0bca67f14ebf925cbb4712ed))
+- 新增项目配置按钮开关 ([95f43e6](https://github.com/crlang/vue-tony-admin/commit/95f43e6df6b1fa24ab43651fb2c080cfe7719b76))
 
 ## [0.5.5](https://github.com/crlang/vue-tony-admin/compare/0.5.4...0.5.5) (2022-08-21)
 

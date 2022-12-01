@@ -1,22 +1,38 @@
-## [0.5.6](https://github.com/crlang/vue-tony-admin/compare/0.5.5...0.5.6) (2022-10-21)
-
+## [0.5.7](https://github.com/crlang/vue-tony-admin/compare/0.5.6...0.5.7) (2022-12-01)
 
 ### Bug Fixes
 
-* Repair the menu, the drag bar disappears after dragging, and the top menu cannot be dynamically aligned ([8fb569f](https://github.com/crlang/vue-tony-admin/commit/8fb569ff070cf8630c79b2e649353433e86945b9))
-* Repair lock screen input blank ([4217c2d](https://github.com/crlang/vue-tony-admin/commit/4217c2db1b44c7cbfe38b8efedfda85f3336a079))
-* Fix undefined errors ([e8fb534](https://github.com/crlang/vue-tony-admin/commit/e8fb53421e5505c4828a3af37cbd7ab0f73fe934))
-* Remove is judgment ([4fb1f24](https://github.com/crlang/vue-tony-admin/commit/4fb1f246d50305b0dab386aa6a3ad3a09b16f57c))
-* Optimize more friendly project configuration area ([87219cc](https://github.com/crlang/vue-tony-admin/commit/87219cc9ef11e484457879cac11c3b3003e85ab9))
-* Changing the isObject to @ vueuse/core calls can achieve better judgment results ([cb9a325](https://github.com/crlang/vue-tony-admin/commit/cb9a325af6638c44c5899cc19d74b024ac71e26c))
-
+- Function optimization, remove some hooks ([2e2ce42](https://github.com/crlang/vue-tony-admin/commit/2e2ce42ad5f917466de9d1f1e1a495db6c3594ee))
+- Head component content optimization ([721c268](https://github.com/crlang/vue-tony-admin/commit/721c268d1bb9a15bac6e683c9131e54ee10bc228))
+- Fix scroll bar fluctuation caused by page animation ([79c07e8](https://github.com/crlang/vue-tony-admin/commit/79c07e806d804a14372d78b0d74c4e3a59164eb0))
+- Fix page transition animation failure ([c029661](https://github.com/crlang/vue-tony-admin/commit/c029661bd85fa0ca80cc1e90dda6ad6c0bec5516))
+- remove effect proptype ([bb7afed](https://github.com/crlang/vue-tony-admin/commit/bb7afed127a6a906041ac89ff553af772e634217))
+- Optimize icon unified vision, adjust system icon to svg, adjust iconify icon example to ep icon library ([9f112e4](https://github.com/crlang/vue-tony-admin/commit/9f112e4b6996e7712a6dfb25a63a32955a4e30e3))
+- The theme color change rule update, support CSS or JS dynamic update ([362e8e9](https://github.com/crlang/vue-tony-admin/commit/362e8e91a59efd2dd7b544f77db40d698c87f77a))
+- **BasicTable:** Adjust the setting's fullScreen field to fullscreen ([9246a6d](https://github.com/crlang/vue-tony-admin/commit/9246a6d0e89b8714a5e9f295c383604913ee5a03))
+- demo update ([52ba203](https://github.com/crlang/vue-tony-admin/commit/52ba20377c71f95d2e4e47537c34dda55a189a6e))
+- **IconPicker:** Optimize the display effect ([c51f4ed](https://github.com/crlang/vue-tony-admin/commit/c51f4edacdd2f00dac906bab647f2e4e440318f4))
+- **SvgIcon:** Adjust size and rotate to be limited to numerical values ([d92d655](https://github.com/crlang/vue-tony-admin/commit/d92d655d3fcd04460f22f05192b4d29ce76f7f31))
 
 ### Features
 
-* add configurable dynamic head button ([01498d7](https://github.com/crlang/vue-tony-admin/commit/01498d7b7661fc9b0bca67f14ebf925cbb4712ed))
-* add item configuration button switch ([95f43e6](https://github.com/crlang/vue-tony-admin/commit/95f43e6df6b1fa24ab43651fb2c080cfe7719b76))
+- **Icon:** Support importing local svg icons ([7fcaefa](https://github.com/crlang/vue-tony-admin/commit/7fcaefad50f1df2389ed2eea10b3baa194a0ed11))
 
+## [0.5.6](https://github.com/crlang/vue-tony-admin/compare/0.5.5...0.5.6) (2022-10-21)
 
+### Bug Fixes
+
+- Repair the menu, the drag bar disappears after dragging, and the top menu cannot be dynamically aligned ([8fb569f](https://github.com/crlang/vue-tony-admin/commit/8fb569ff070cf8630c79b2e649353433e86945b9))
+- Repair lock screen input blank ([4217c2d](https://github.com/crlang/vue-tony-admin/commit/4217c2db1b44c7cbfe38b8efedfda85f3336a079))
+- Fix undefined errors ([e8fb534](https://github.com/crlang/vue-tony-admin/commit/e8fb53421e5505c4828a3af37cbd7ab0f73fe934))
+- Remove is judgment ([4fb1f24](https://github.com/crlang/vue-tony-admin/commit/4fb1f246d50305b0dab386aa6a3ad3a09b16f57c))
+- Optimize more friendly project configuration area ([87219cc](https://github.com/crlang/vue-tony-admin/commit/87219cc9ef11e484457879cac11c3b3003e85ab9))
+- Changing the isObject to @ vueuse/core calls can achieve better judgment results ([cb9a325](https://github.com/crlang/vue-tony-admin/commit/cb9a325af6638c44c5899cc19d74b024ac71e26c))
+
+### Features
+
+- add configurable dynamic head button ([01498d7](https://github.com/crlang/vue-tony-admin/commit/01498d7b7661fc9b0bca67f14ebf925cbb4712ed))
+- add item configuration button switch ([95f43e6](https://github.com/crlang/vue-tony-admin/commit/95f43e6df6b1fa24ab43651fb2c080cfe7719b76))
 
 ## [0.5.5](https://github.com/crlang/vue-tony-admin/compare/0.5.4...0.5.5) (2022-08-21)
 
