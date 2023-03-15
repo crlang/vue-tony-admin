@@ -1,3 +1,14 @@
+# [0.6.0](https://github.com/crlang/vue-tony-admin/compare/0.5.7...0.6.0) (2023-03-15)
+
+### Bug Fixes
+
+- **Icon:** 调整 size 支持字符串输入 ([1e28f50](https://github.com/crlang/vue-tony-admin/commit/1e28f507e314acd162e5e199bb0a373d5e26b51e))
+- **SvgIcon:** 调整 size 支持字符串输入 ([44d95e9](https://github.com/crlang/vue-tony-admin/commit/44d95e92aaf9a9091a56dc42cb0c4d45f099e1ad))
+
+### Features
+
+- 升级 Element Plus 版本至最新版 2.3.0、升级 Vite 版本至 3.2.5、及其它依赖升级最新版 ([9ccd2e1](https://github.com/crlang/vue-tony-admin/commit/9ccd2e1610b831be119677eb93fb21b6aabc1126))
+
 ## [0.5.7](https://github.com/crlang/vue-tony-admin/compare/0.5.6...0.5.7) (2022-12-01)
 
 ### Bug Fixes
