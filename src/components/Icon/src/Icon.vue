@@ -44,7 +44,7 @@ export default defineComponent({
      * Icon size
      */
     size: {
-      type: Number,
+      type: [Number, String],
       default: 0,
     },
     /**
