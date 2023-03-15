@@ -1,4 +1,3 @@
-
 # Element Plus Types and Props
 
-Sync Ver: `2.1.7`
+Sync Ver: `2.3.0`

@@ -39,12 +39,12 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         // @/xxxx => src/xxxx
         {
           find: /@\//,
-          replacement: pathResolve('src') + '/',
+          replacement: `${pathResolve('src')}/`,
         },
         // #/xxxx => types/xxxx
         {
           find: /#\//,
-          replacement: pathResolve('types') + '/',
+          replacement: `${pathResolve('types')}/`,
         },
       ],
     },
@@ -63,17 +63,9 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       target: 'es2015',
       outDir: OUTPUT_DIR,
       minify: 'esbuild',
-      // terserOptions: {
-      //   compress: {
-      //     keep_infinity: true,
-      //     drop_debugger: true,
-      //     // Used to delete console in production environment
-      //     drop_console: VITE_DROP_CONSOLE,
-      //   },
-      // },
-      // Turning off brotliSize display can slightly reduce packaging time
-      brotliSize: false,
-      // 合并所有CSS文件
+      // Enable/disable gzip-compressed size reporting. Compressing large output files can be slow, so disabling this may increase build performance for large projects.
+      reportCompressedSize: false,
+      // Merge all CSS files
       cssCodeSplit: false,
       chunkSizeWarningLimit: 500,
       emptyOutDir: true,
@@ -82,7 +74,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           compact: true,
           sourcemap: false,
           sourcemapExcludeSources: true,
-          // JS 分类处理
+          // JS classification processing
           // chunkFileNames: 'assets/js/[name]-[hash].js',
           // entryFileNames: 'assets/js/[name]-[hash].js',
         },

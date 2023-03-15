@@ -5,7 +5,7 @@
     :width="800"
     :close-on-click-modal="false"
     :close-on-press-escape="false"
-    :custom-class="prefixCls"
+    :class="prefixCls"
     @register="register"
     :showCancelBtn="false"
     :showConfirmBtn="false">

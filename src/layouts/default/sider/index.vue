@@ -1,10 +1,7 @@
 <template>
   <ElDrawer
     v-if="getIsMobile"
-    direction="ltr"
-    :customClass="prefixCls"
-    :size="getMenuWidth"
-    :modelValue="!getCollapsed"
+    v-bind="getBindValues"
     @close="handleClose">
     <Sider />
   </ElDrawer>
@@ -13,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, unref, computed } from 'vue'
 import { ElDrawer } from 'element-plus'
 
 import { useAppInject } from '@/hooks/web/useAppInject'
@@ -31,13 +28,24 @@ export default defineComponent({
     const { getIsMobile } = useAppInject()
     const { setMenuSetting, getCollapsed, getMenuWidth, getIsMixSidebar } = useMenuSetting()
 
+    const getBindValues = computed(() => {
+      const opts = {
+        direction: 'ltr',
+        class: prefixCls,
+        // customClass: prefixCls, // compatible
+        size: unref(getMenuWidth),
+        modelValue: !unref(getCollapsed),
+      }
+      return opts
+    })
+
     function handleClose() {
       setMenuSetting({
         collapsed: true,
       })
     }
 
-    return { prefixCls, getIsMobile, getCollapsed, handleClose, getMenuWidth, getIsMixSidebar }
+    return { prefixCls, getBindValues, getIsMobile, getCollapsed, handleClose, getMenuWidth, getIsMixSidebar }
   },
 })
 </script>

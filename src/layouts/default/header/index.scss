@@ -82,6 +82,7 @@ $prefix-cls: '#{$tonyname}-layout-header';
 
   &-action {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     min-width: 180px;
 

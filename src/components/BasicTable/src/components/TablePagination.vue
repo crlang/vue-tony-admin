@@ -11,7 +11,7 @@
 <script lang="ts">
 import { defineComponent, computed, ref, unref, watch, watchEffect } from 'vue'
 import { ElPagination } from 'element-plus'
-import zhCn from 'element-plus/lib/locale/lang/zh-cn'
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import { omit } from 'lodash-es'
 
 import { PAGE_SIZE, PAGE_POSITION_ALIGN } from '../const'

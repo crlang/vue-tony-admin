@@ -19,8 +19,8 @@ import type {
   PaginationProps,
   FormItemRule,
   FormRules,
-  ComponentSize,
   PopconfirmProps,
+  TableProps,
   ElMessageBoxOptions,
   NotificationOptions,
   Action,
@@ -41,7 +41,7 @@ import {
   paginationProps,
   popconfirmProps,
   notificationProps,
-  componentSizes,
+  descriptionProps,
   formProps,
   formItemProps,
   dropdownMenuProps,
@@ -92,13 +92,11 @@ export type EleNotification = NotificationOptions
 
 export const EleFormProps = formProps
 export type EleForm = FormProps
+export type EleFormRules = FormRules
 
 export const EleFormItemProps = formItemProps
 export type EleFormItem = FormItemProps
-
 export type EleFormItemRule = FormItemRule
-
-export type EleFormRules = FormRules
 
 export const EleDropdownProps = dropdownProps
 export type EleDropdown = ExtractPropTypes<typeof dropdownProps>
@@ -109,6 +107,9 @@ export type EleDropdownMenu = ExtractPropTypes<typeof dropdownMenuProps>
 export const EleDropdownItemProps = dropdownItemProps
 export type EleDropdownItem = ExtractPropTypes<typeof dropdownItemProps>
 
+export const EleDescriptionsProps = descriptionProps
+export type EleDescriptions = ExtractPropTypes<typeof descriptionProps>
+
 //
 // 杂项
 // MISC
@@ -116,36 +117,8 @@ export type EleActionPopconfirmAction = Action
 
 // 以下为临时方案，由于 Element Plus 未全局导出 Prop ，只能自建或通过引入组件方式定义组件 Prop
 // The following is a temporary solution. Since Element Plus does not export Prop globally, it can only define component Prop by itself or by introducing components
-import TableDefault from 'element-plus/es/components/table/src/table/defaults'
-import TableColumn from 'element-plus/es/components/table/src/table-column/defaults'
-
-export const EleDescriptionsProps = {
-  border: {
-    type: Boolean,
-    default: false,
-  },
-  column: {
-    type: Number,
-    default: 3,
-  },
-  direction: {
-    type: String as PropType<'horizontal' | 'vertical'>,
-    default: 'horizontal',
-  },
-  size: {
-    type: String as PropType<ComponentSize>,
-    validator: (v: string) => componentSizes.includes(v),
-  },
-  title: {
-    type: String,
-    default: '',
-  },
-  extra: {
-    type: String,
-    default: '',
-  },
-}
-export type EleDescriptions = ExtractPropTypes<typeof EleDescriptionsProps>
+import TableDefault from 'element-plus/lib/components/table/src/table/defaults'
+import TableColumn from 'element-plus/lib/components/table/src/table-column/defaults'
 
 export const EleDescriptionsItemProps = {
   label: {
@@ -184,7 +157,7 @@ export const EleDescriptionsItemProps = {
 export type EleDescriptionsItem = Partial<ExtractPropTypes<typeof EleDescriptionsItemProps>>
 
 export const EleTableProps = TableDefault
-export type EleTable = Partial<ExtractPropTypes<typeof TableDefault>>
+export type EleTable = TableProps
 
 export const EleTableColumnProps = TableColumn
 export type EleTableColumn = Partial<ExtractPropTypes<typeof TableColumn>>

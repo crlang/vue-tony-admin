@@ -4,7 +4,7 @@
     v-bind="$attrs"
     :close-on-click-modal="false"
     :close-on-press-escape="false"
-    custom-class="upload-modal"
+    class="upload-modal"
     @register="register"
     @confirm="handleConfirm"
     :closeFn="handleCloseFn"

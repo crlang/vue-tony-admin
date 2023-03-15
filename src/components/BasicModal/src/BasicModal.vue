@@ -107,7 +107,9 @@ export default defineComponent({
         ...unref(getProps),
         fullscreen: unref(fullscreenRef),
       }
-      opts.customClass = `${prefixCls} ${opts?.customClass || ''} ${prefixCls}-${instance?.uid}`
+      const className = `${prefixCls} ${opts?.class || ''} ${prefixCls}-${instance?.uid}`
+      opts.class = className
+      // opts.customClass = className // compatible
 
       // 绑定组件Porps前，移除自定义附加项
       // Before binding component Porps, remove custom add-ons

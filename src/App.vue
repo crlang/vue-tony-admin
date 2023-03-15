@@ -1,5 +1,5 @@
 <template>
-  <ElConfigProvider :locale="zhCn">
+  <ElConfigProvider :locale="locale">
     <AppProvider>
       <RouterView />
     </AppProvider>
@@ -13,9 +13,11 @@ import { AppProvider } from '@/components/Application'
 import { useTitle } from '@/hooks/web/useTitle'
 // 默认载入了Element Plus的中文
 // The Chinese of Element Plus is loaded by default
-import zhCn from 'element-plus/lib/locale/lang/zh-cn'
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 
 useTitle()
+
+const locale = zhCn
 
 let isProdEnv = false
 try {

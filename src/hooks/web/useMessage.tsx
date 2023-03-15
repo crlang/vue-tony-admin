@@ -36,7 +36,7 @@ interface BasicMessageOptions {
    *
    * Custom popup class
    */
-  customClass?: string
+  class?: string
   /**
    * 消息支持的类型
    *
@@ -98,12 +98,14 @@ export function useMessage() {
    * @param options NotificationOptions
    */
   function createNotification(options: NotificationOptions): Promise<EleActionPopconfirmAction> {
-    const { title, content, message, position = 'top-right', customClass, type, duration = 4500 } = options
+    const { title, content, message, position = 'top-right', type, duration = 4500 } = options
+    const className = options.class || null
 
     return ElNotification({
       title,
       message: content || message,
-      customClass,
+      class: className,
+      // customClass: className, // compatible
       type,
       position,
       duration,
@@ -117,14 +119,16 @@ export function useMessage() {
    * @param options MessageBoxOptions
    */
   function createConfirm(options: MessageBoxOptions): Promise<EleActionPopconfirmAction> {
-    const { title, content, message, confirmText = '确认', cancelText = '取消', customClass = '', type } = options
+    const { title, content, message, confirmText = '确认', cancelText = '取消', type } = options
     const { prefixCls } = useDesign('confirm-popup')
+    const className = `${prefixCls} ${prefixCls}__${type} ${options.class || ''}`
 
     return ElMessageBox.confirm(content || message, title, {
       confirmButtonText: confirmText,
       cancelButtonText: cancelText,
       showClose: false,
-      customClass: `${prefixCls} ${prefixCls}__${type} ${customClass}`,
+      class: className,
+      // customClass: className, // compatible
     })
   }
 
@@ -136,13 +140,15 @@ export function useMessage() {
    * @param type EleElMessageBox['type']
    */
   function createModalOptions(options: MessageBoxOptions, type: EleElMessageBox['type']): Promise<EleActionPopconfirmAction> {
-    const { title, content, message, confirmText, cancelText, customClass } = options
+    const { title, content, message, confirmText, cancelText } = options
+    const className = options.class || null
 
     return ElMessageBox.alert(content || message, title, {
       confirmButtonText: confirmText || '确认',
       cancelButtonText: cancelText || '取消',
       type,
-      customClass,
+      class: className,
+      // customClass: className, // compatible
     })
   }
 
@@ -196,7 +202,8 @@ export function useMessage() {
   const createLoading = (title: string, duration = 0) =>
     ElMessage({
       type: 'info',
-      customClass: 'el-message--loading',
+      class: 'el-message--loading',
+      // customClass: 'el-message--loading', // compatible
       duration, // If 0, you need to run ElMessage.closeAll() to close
       message: h('div', { style: 'display:flex;align-items:center;' }, [h(SvgIcon, { name: 'loading', spin: true }), h('span', { style: 'margin-left: 12px' }, title)]),
     })

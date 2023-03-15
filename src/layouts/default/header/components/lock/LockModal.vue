@@ -4,7 +4,7 @@
     @register="register"
     :width="600"
     :showFooter="false"
-    :custom-class="prefixCls">
+    :class="prefixCls">
     <div :class="`${prefixCls}__entry`">
       <div :class="`${prefixCls}__header`">
         <img :src="avatar" :class="`${prefixCls}__header-img`" />
