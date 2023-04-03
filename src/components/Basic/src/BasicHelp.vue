@@ -95,8 +95,9 @@ export default defineComponent({
 $prefix-cls: '#{$tonyname}-basic-help';
 
 .#{$prefix-cls} {
-  display: inline-block;
-  margin-left: 6px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin-left: 4px;
   font-size: 0.875rem;
   color: var(--text-secondary-color);
   cursor: pointer;

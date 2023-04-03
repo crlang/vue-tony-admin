@@ -1,23 +1,18 @@
 <template>
-  <div :class="getAppLogoClass" @click="goHome">
+  <div :class="prefixCls" @click="goHome">
     <img src="@/assets/images/logo.png" />
     <span v-show="showTitle">{{ title }}</span>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
 import { useGlobSetting } from '@/hooks/setting'
 import { useGo } from '@/hooks/web/usePage'
 import { useDesign } from '@/hooks/web/useDesign'
 import { PageEnum } from '@/enums/pageEnum'
 import { useUserStore } from '@/store/modules/user'
 
-const props = defineProps({
-  /**
-   * The theme of the current parent component
-   */
-  theme: { type: String as PropType<ThemeType> },
+defineProps({
   /**
    * Whether to show title
    */
@@ -28,8 +23,6 @@ const { prefixCls } = useDesign('app-logo')
 const userStore = useUserStore()
 const { title } = useGlobSetting()
 const go = useGo()
-
-const getAppLogoClass = computed(() => [prefixCls, props.theme])
 
 function goHome() {
   go(userStore.getUserInfo.homePath || PageEnum.BASE_HOME)
@@ -42,18 +35,18 @@ $prefix-cls: '#{$tonyname}-app-logo';
 .#{$prefix-cls} {
   display: flex;
   align-items: center;
+  font-family: var(--font-family-logo);
+  font-size: 32px;
+  font-weight: 600;
   cursor: pointer;
 
   > img {
     width: 32px;
-    height: 32px;
+    min-height: 32px;
   }
 
   > span {
     margin-left: 16px;
-    font-family: var(--font-family-logo);
-    font-size: 32px;
-    font-weight: 600;
   }
 }
 </style>
