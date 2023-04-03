@@ -92,13 +92,13 @@ export default defineComponent({
         ...props,
         ...(unref(propsRef) as Recordable),
       } as BasicDrawerProps
-      const className = `${prefixCls} ${opts?.class || ''} ${prefixCls}-${instance?.uid}`
+      const className = `${prefixCls} ${opts?.customClass || ''} ${prefixCls}-${instance?.uid}`
 
       return {
         ...opts,
-        class: className,
-        // customClass: className, // compatible
-      }
+        class: className, // compatible 2.3+
+        customClass: className,
+      } as BasicDrawerProps
     })
 
     /**

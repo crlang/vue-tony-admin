@@ -10,6 +10,8 @@
 </template>
 
 <script lang="ts">
+import type { EleDrawer } from '@/components/ElementPlus'
+
 import { defineComponent, unref, computed } from 'vue'
 import { ElDrawer } from 'element-plus'
 
@@ -31,12 +33,12 @@ export default defineComponent({
     const getBindValues = computed(() => {
       const opts = {
         direction: 'ltr',
-        class: prefixCls,
-        // customClass: prefixCls, // compatible
+        class: prefixCls, // compatible 2.3+
+        customClass: prefixCls,
         size: unref(getMenuWidth),
         modelValue: !unref(getCollapsed),
       }
-      return opts
+      return opts as EleDrawer
     })
 
     function handleClose() {
