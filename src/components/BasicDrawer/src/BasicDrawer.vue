@@ -214,10 +214,11 @@ $prefix-cls: '#{$tonyname}-basic-drawer';
 
 .#{$prefix-cls} {
   line-height: 1;
+  --el-drawer-bg-color: var(--background-primary-color);
 
   .el-drawer__header {
     height: 60px;
-    padding: 0;
+    padding: 0 16px;
     margin: 0;
     color: var(--text-primary-color);
   }

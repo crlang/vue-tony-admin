@@ -179,7 +179,7 @@ $prefix-cls: '#{$tonyname}-login';
     min-height: 580px;
     padding: 4rem;
     overflow: auto;
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-primary-color);
   }
 
   &__mode {

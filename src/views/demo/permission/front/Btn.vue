@@ -81,3 +81,9 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+.el-divider {
+  --el-bg-color: var(--background-primary-color);
+}
+</style>

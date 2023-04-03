@@ -1,16 +1,12 @@
 <template>
   <div :class="getClass" ref="wrapperRef">
     <div v-if="getShowheader" ref="headerRef" :class="getHeaderClass">
-      <div v-if="getTitle" :class="`${prefixCls}-header__title`">
-        {{ getTitle }}
-      </div>
+      <div v-if="getTitle" :class="`${prefixCls}-header__title`">{{ getTitle }}</div>
       <template v-else>
         <slot name="title"></slot>
       </template>
 
-      <div v-if="getDesc" :class="`${prefixCls}-header__description`">
-        {{ getDesc }}
-      </div>
+      <div v-if="getDesc" :class="`${prefixCls}-header__description`">{{ getDesc }}</div>
       <template v-else>
         <slot name="description"></slot>
       </template>
@@ -68,12 +64,6 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
-    /**
-     * 头部是否固定
-     *
-     * Whether the header is fixed
-     */
-    headerFixed: Boolean,
     /**
      * 头部 class
      *
@@ -148,24 +138,20 @@ export default defineComponent({
     })
 
     const getHeaderClass = computed(() => {
-      const { headerFixed, headerClass } = props
+      const { headerClass } = props
       return [
         `${prefixCls}-header`,
         headerClass,
-        {
-          [`${prefixCls}-header--fixed`]: headerFixed,
-        },
       ]
     })
 
     const getContentClass = computed(() => {
-      const { contentBackground, contentFullHeight, contentClass } = props
+      const { contentBackground, contentClass } = props
       return [
         `${prefixCls}-content`,
         contentClass,
         {
           [`${prefixCls}-content--background`]: contentBackground,
-          [`${prefixCls}-content--full`]: contentFullHeight,
         },
       ]
     })
@@ -196,17 +182,8 @@ $prefix-cls: '#{$tonyname}-page-wrapper';
   &-header {
     position: relative;
     padding: 16px;
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-primary-color);
     box-shadow: var(--card-shadow);
-
-    &--fixed {
-      position: sticky;
-      top: 0;
-      right: 0;
-      left: 0;
-      z-index: 999;
-      box-shadow: var(--card-shadow);
-    }
 
     &__title {
       font-size: 20px;
@@ -240,7 +217,7 @@ $prefix-cls: '#{$tonyname}-page-wrapper';
     }
 
     &--background {
-      background-color: var(--background-secondary-color);
+      background-color: var(--background-primary-color);
     }
   }
 
@@ -248,22 +225,28 @@ $prefix-cls: '#{$tonyname}-page-wrapper';
     display: flex;
     align-items: center;
     width: 100%;
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-primary-color);
     border-top: 1px solid var(--border-color);
     box-shadow: 0 -6px 16px -8px rgba(0, 0, 0, 0.08), 0 -9px 28px 0 rgba(0, 0, 0, 0.05), 0 -12px 48px 16px rgba(0, 0, 0, 0.03);
   }
 
   &--full {
     display: flex;
-    height: 100%;
     flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+    .#{$prefix-cls}-header {
+      flex-shrink: 0;
+    }
+
+    .#{$prefix-cls}-content {
+      flex-grow: 1;
+      overflow: auto;
+    }
 
     .#{$prefix-cls}-footer {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 11;
+      flex-shrink: 0;
     }
   }
 }

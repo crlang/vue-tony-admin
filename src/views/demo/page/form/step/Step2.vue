@@ -87,7 +87,11 @@ export default defineComponent({
 
   &-msg {
     padding: 24px;
-    background: var(--background-secondary-color);
+    background: var(--background-main-color);
+  }
+
+  .el-descriptions {
+    --el-fill-color-blank: none;
   }
 }
 </style>

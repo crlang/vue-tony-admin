@@ -53,8 +53,10 @@ $disabled-bg-color: color.scale($disabled-color, $lightness: 30%, $alpha: -85%);
 // =================================
 // ============== text-color =======
 // =================================
-
 // 主文本色
+$text-main: #1b222a;
+
+// 基础文本色
 $text-primary: #44566c;
 
 // 常规文本色
@@ -73,7 +75,10 @@ $text-disabled: #c0c4cc;
 // =========== background-color ====
 // =================================
 // 主背景色
-$background-primary: #f8fafb;
+$background-main: #f1f2f3;
+
+// 基础背景色
+$background-primary: #fff;
 
 // 常规背景色
 $background-regular: #f2f4f6;
@@ -81,19 +86,19 @@ $background-regular: #f2f4f6;
 // 副背景色
 $background-secondary: #fff;
 
-// 占位背景色-待定
+// 占位背景色-unused
 $background-placeholder: #fff;
 
-// 禁用背景色-待定
+// 禁用背景色-unused
 $background-disabled: #fff;
 
-// 特殊-框架背景颜色
+// 特殊-框架背景颜色-unused
 $layout-background: $background-primary;
 
-// 特殊-页面背景颜色
+// 特殊-页面背景颜色-unused
 $page-background: $background-regular;
 
-// 特殊-组件背景颜色
+// 特殊-组件背景颜色-unused
 $component-background: $background-secondary;
 
 // =================================

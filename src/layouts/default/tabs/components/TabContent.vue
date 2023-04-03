@@ -5,8 +5,8 @@
     @visible-change="handleContext"
     :popper-class="`${prefixCls}__popper`"
     @command="handleMenuEvent">
-    <span v-if="getIsTabs">{{ getTitle }}</span>
-    <SvgIcon v-else name="down" />
+    <span v-if="getIsTabs" :class="`${prefixCls}--text`">{{ getTitle }}</span>
+    <SvgIcon v-else name="down" :class="`${prefixCls}--icon`" />
     <template #dropdown>
       <ElDropdownMenu>
         <ElDropdownItem

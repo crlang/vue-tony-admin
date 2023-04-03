@@ -173,7 +173,7 @@ $prefix-cls: '#{$tonyname}-header-search-modal';
   &-input {
     width: 100%;
     height: 3rem;
-    font-size: 1.5em;
+    font-size: 1em;
     color: var(--text-primary-color);
     border-radius: var(--radius-base);
   }
@@ -250,7 +250,7 @@ $prefix-cls: '#{$tonyname}-header-search-modal';
       > span > span {
         padding: 4px;
         margin-right: 8px;
-        background-color: var(--background-main-color);
+        background-color: #dee4e7;
         box-shadow: 0 2px 4px rgba(169, 194, 209, 0.55);
       }
     }

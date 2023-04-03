@@ -118,7 +118,7 @@ export default defineComponent({
   }
 
   thead {
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-main-color);
   }
 
   th,

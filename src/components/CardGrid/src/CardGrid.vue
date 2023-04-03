@@ -48,7 +48,7 @@ $prefix-cls: '#{$tonyname}-card-grid';
 
 .#{$prefix-cls} {
   overflow: visible;
-  background: var(--background-secondary-color);
+  background: var(--background-primary-color);
 
   .el-card__header {
     display: flex;

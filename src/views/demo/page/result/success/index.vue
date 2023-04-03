@@ -53,7 +53,11 @@ export default defineComponent({
 
   &__content {
     padding: 24px 40px;
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-main-color);
+
+    .el-descriptions {
+      --el-fill-color-blank: none;
+    }
   }
 }
 </style>

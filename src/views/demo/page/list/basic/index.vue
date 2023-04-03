@@ -112,7 +112,7 @@ export default defineComponent({
     padding: 24px;
     margin-bottom: 16px;
     text-align: center;
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-primary-color);
 
     &-col {
       &:not(:last-child) {

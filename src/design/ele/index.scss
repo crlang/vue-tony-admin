@@ -1,8 +1,102 @@
 // components
 $ele-button: 'el-button';
+$ele-popper: 'el-popper';
+$ele-tabs: 'el-tabs';
+$ele-dropdown-menu: 'el-dropdown-menu';
+$ele-table: 'el-table';
+$ele-pagination: 'el-pagination';
+$ele-card: 'el-card';
+$ele-tree: 'el-tree';
+$ele-descriptions: 'el-descriptions';
+$ele-divider: 'el-divider';
+$ele-alert: 'el-alert';
 
 .#{$ele-button} {
   &.is-text {
     padding: 0;
+  }
+
+  &:focus-visible {
+    border: none;
+    outline: none;
+  }
+}
+
+.#{$ele-popper} {
+
+  &.is-light,
+  &.is-dark {
+    --el-bg-color-overlay: var(--background-primary-color);
+    --el-text-color-regular: var(--text-primary-color);
+
+    border: none;
+  }
+}
+
+.#{$ele-tabs} {
+  --el-border-color-light: var(--border-color-light);
+  --el-text-color-primary: var(--text-primary-color);
+}
+
+.#{$ele-dropdown-menu} {
+  &__item {
+    &:not(.is-disabled) {
+      &:focus {
+        color: inherit;
+        background: none;
+        border: none;
+      }
+
+      &:hover {
+        color: var(--text-regular-color);
+        background: var(--background-regular-color);
+      }
+    }
+
+    &--divided {
+      --el-border-color-lighter: var(--border-color-light);
+    }
+  }
+}
+
+.#{$ele-table} {
+  --el-table-bg-color: var(--background-main-color);
+  --el-bg-color: var(--background-main-color);
+  --el-table-header-bg-color: var(--background-main-color);
+  --el-fill-color-lighter: var(--background-regular-color);
+  --el-table-tr-bg-color: var(--background-primary-color);
+  --el-table-row-hover-bg-color: var(--background-main-color);
+}
+
+.#{$ele-pagination} {
+  --el-pagination-button-bg-color: var(--background-main-color);
+  --el-pagination-hover-color: var(--primary-color);
+}
+
+.#{$ele-card} {
+  --el-text-color-primary: var(--text-primary-color);
+  --el-card-bg-color: var(--background-primary-color);
+}
+
+.#{$ele-tree} {
+  --el-tree-text-color: var(--text-primary-color);
+  --el-fill-color-blank: var(--background-primary-color);
+}
+
+.#{$ele-descriptions} {
+  --el-text-color-regular: var(--text-main-color);
+  --el-descriptions-item-bordered-label-background: var(--background-main-color);
+  --el-text-color-primary: var(--text-primary-color);
+  --el-fill-color-blank: var(--background-primary-color);
+}
+
+.#{$ele-divider} {
+  --el-bg-color: var(--background-main-color);
+  --el-border-color: var(--border-color);
+}
+
+.#{$ele-alert} {
+  &--info {
+    --el-alert-bg-color: var(--background-primary-color);
   }
 }

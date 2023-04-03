@@ -25,7 +25,7 @@ export const headerColor = '#ffffff'
 export const sidebarColor = '#001529'
 
 /**
- * 黑暗模式全局颜色
+ * 黑暗模式全局颜色 - unused
  *
  * Dark mode global color
  */

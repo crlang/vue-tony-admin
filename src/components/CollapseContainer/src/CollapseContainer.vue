@@ -72,7 +72,7 @@ export default defineComponent({
 $prefix-cls: '#{$tonyname}-collapse-container';
 
 .#{$prefix-cls} {
-  background-color: var(--background-secondary-color);
+  background-color: var(--background-primary-color);
   border-radius: var(--radius-base);
 
   &__header {

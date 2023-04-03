@@ -28,3 +28,11 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss">
+.setting-drawer {
+  .el-divider {
+    --el-bg-color: var(--background-primary-color);
+  }
+}
+</style>

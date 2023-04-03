@@ -34,6 +34,11 @@
   -webkit-appearance: button;
 }
 
+:focus-visible {
+  border: none;
+  outline: none;
+}
+
 [type='search'] {
   outline-offset: -2px;
   /* stylelint-disable-next-line property-no-vendor-prefix */

@@ -59,7 +59,7 @@ $prefix-cls: '#{$tonyname}-basic-title';
   font-size: 1rem;
   font-weight: normal;
   line-height: 1.5rem;
-  color: var(--text-primary-color);
+  color: var(--text-main-color);
   cursor: pointer;
   user-select: none;
 

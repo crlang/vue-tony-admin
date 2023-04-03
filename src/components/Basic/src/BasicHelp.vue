@@ -103,18 +103,7 @@ $prefix-cls: '#{$tonyname}-basic-help';
   cursor: pointer;
 
   &:hover {
-    color: var(--primary-color);
-  }
-
-  svg {
-    width: 1em;
-    height: 1em;
-  }
-
-  &__wrap {
-    p {
-      margin-bottom: 0;
-    }
+    color: var(--text-primary-color);
   }
 }
 </style>

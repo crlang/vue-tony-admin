@@ -224,7 +224,7 @@ export default defineComponent({
     }
 
     return () => (
-      <BasicDrawer {...attrs} title={'项目配置'} size={480} showFooter class='setting-drawer'>
+      <BasicDrawer {...attrs} title={'项目配置'} size={480} showFooter customClass='setting-drawer'>
         {{
           default: () => (
             <>

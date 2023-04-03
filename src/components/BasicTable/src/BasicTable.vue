@@ -341,7 +341,7 @@ $prefix-cls: '#{$tonyname}-basic-table';
 .#{$prefix-cls} {
   max-width: 100%;
   padding: 32px 24px 16px;
-  background: var(--background-secondary-color);
+  background: var(--background-primary-color);
 
   &.is-shadow {
     box-shadow: var(--card-shadow);

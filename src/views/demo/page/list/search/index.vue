@@ -106,7 +106,7 @@ export default defineComponent({
 
   &__container {
     padding: 12px;
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-primary-color);
   }
 
   &__title {

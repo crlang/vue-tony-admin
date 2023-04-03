@@ -154,35 +154,27 @@ $prefix-cls: '#{$tonyname}-lock-page';
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 30px;
 
-    @media screen and (max-width: 768px) {
+    @media only screen and (max-width: 767px) {
       span:not(.meridiem) {
         font-size: 160px;
       }
     }
-
-    @media screen and (min-width: 768px) {
+    @media only screen and (min-width: 768px) {
       span:not(.meridiem) {
         font-size: 160px;
       }
     }
-
-    @media screen and (max-width: 576px) {
-      span:not(.meridiem) {
-        font-size: 90px;
-      }
-    }
-    @media screen and (min-width: 992px) {
+    @media only screen and (min-width: 992px) {
       span:not(.meridiem) {
         font-size: 220px;
       }
     }
-
-    @media screen and (min-width: 1200px) {
+    @media only screen and (min-width: 1200px) {
       span:not(.meridiem) {
         font-size: 260px;
       }
     }
-    @media screen and (min-width: 1600px) {
+    @media only screen and (min-width: 1920px) {
       span:not(.meridiem) {
         font-size: 320px;
       }

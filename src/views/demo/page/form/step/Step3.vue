@@ -47,6 +47,10 @@ export default defineComponent({
 .desc-wrap {
   padding: 24px 40px;
   margin-top: 24px;
-  background-color: var(--background-secondary-color);
+  background-color: var(--background-main-color);
+
+  .el-descriptions {
+    --el-fill-color-blank: none;
+  }
 }
 </style>

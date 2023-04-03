@@ -41,7 +41,7 @@ export default defineComponent({
 
   &__content {
     padding: 24px 40px;
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-main-color);
 
     &-title {
       margin-bottom: 16px;
@@ -57,6 +57,10 @@ export default defineComponent({
 
     &-icon {
       margin-right: 8px;
+    }
+
+    .el-descriptions {
+      --el-fill-color-blank: none;
     }
   }
 }

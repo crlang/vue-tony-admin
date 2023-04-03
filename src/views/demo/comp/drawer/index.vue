@@ -1,6 +1,6 @@
 <template>
   <PageWrapper title="抽屉组件使用示例">
-    <el-alert title="使用 useDrawer 进行抽屉操作" show-icon />
+    <el-alert type="error" title="使用 useDrawer 进行抽屉操作" show-icon />
     <Drawer1 />
 
     <el-alert title="内外同时控制显示隐藏" show-icon />

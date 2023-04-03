@@ -270,6 +270,8 @@ export default defineComponent({
 $prefix-cls: '#{$tonyname}-basic-modal';
 
 .#{$prefix-cls} {
+  --el-dialog-bg-color: var(--background-primary-color);
+
   display: flex;
   flex-direction: column;
   overflow: hidden;
