@@ -1,6 +1,7 @@
 <script lang="tsx">
 import type { BasicDescProps, DescActionMethods } from './typing'
 import type { CollapseContainerProps } from '@/components/CollapseContainer'
+import type { EleDescriptions } from '@/components/ElementPlus'
 
 import { defineComponent, computed, ref, unref } from 'vue'
 import { ElDescriptions, ElDescriptionsItem } from 'element-plus'
@@ -65,7 +66,7 @@ export default defineComponent({
       // Before binding component Porps, remove custom add-ons
       const customOpts = Object.keys(customProps)
 
-      return omit(opts, customOpts) as BasicDescProps
+      return omit(opts, customOpts) as EleDescriptions
     })
 
     /**
