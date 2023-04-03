@@ -17,4 +17,4 @@ export const OUTPUT_DIR = 'dist'
  *
  * Build the development environment version
  */
-export const BUILD_VERSION = '0.6.0'
+export const BUILD_VERSION = '0.6.1'

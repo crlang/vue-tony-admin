@@ -1,3 +1,15 @@
+## [0.6.1](https://github.com/crlang/vue-tony-admin/compare/0.6.0...0.6.1) (2023-04-03)
+
+### Bug Fixes
+
+- Optimization type definition ([3fdeff4](https://github.com/crlang/vue-tony-admin/commit/3fdeff4a26fe9504233ed72cb7f67100eb884e28))
+- Optimize logo and help component interface ([62bc8d1](https://github.com/crlang/vue-tony-admin/commit/62bc8d1f1cdd6fc3f6f878bd6c1e6d930504ba43))
+
+### Features
+
+- Upgrade Element Plus version to the latest version 2.3.2 ([3a4c91a](https://github.com/crlang/vue-tony-admin/commit/3a4c91a00fee619b851edbcdb31468e5d3419c68))
+- **BasicTable:** Added defaultValue attribute, the default value is displayed when the list item does not exist ([b8ff761](https://github.com/crlang/vue-tony-admin/commit/b8ff76173f0d280dba84a80bbf67c0389968302f))
+
 # [0.6.0](https://github.com/crlang/vue-tony-admin/compare/0.5.7...0.6.0) (2023-03-15)
 
 ### Bug Fixes

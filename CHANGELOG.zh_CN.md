@@ -1,3 +1,15 @@
+## [0.6.1](https://github.com/crlang/vue-tony-admin/compare/0.6.0...0.6.1) (2023-04-03)
+
+### Bug Fixes
+
+- 优化类型定义 ([3fdeff4](https://github.com/crlang/vue-tony-admin/commit/3fdeff4a26fe9504233ed72cb7f67100eb884e28))
+- 优化 logo、help 组件界面 ([62bc8d1](https://github.com/crlang/vue-tony-admin/commit/62bc8d1f1cdd6fc3f6f878bd6c1e6d930504ba43))
+
+### Features
+
+- 升级 Element Plus 版本至最新版 2.3.2 ([3a4c91a](https://github.com/crlang/vue-tony-admin/commit/3a4c91a00fee619b851edbcdb31468e5d3419c68))
+- **BasicTable:** 新增 defaultValue 属性，列表项不存在时显示其默认值 ([b8ff761](https://github.com/crlang/vue-tony-admin/commit/b8ff76173f0d280dba84a80bbf67c0389968302f))
+
 # [0.6.0](https://github.com/crlang/vue-tony-admin/compare/0.5.7...0.6.0) (2023-03-15)
 
 ### Bug Fixes
