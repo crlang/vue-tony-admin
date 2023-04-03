@@ -720,6 +720,12 @@ export interface BasicColumn extends EleTableColumn {
    */
   defaultHidden?: boolean
   /**
+   * 当内容为空时，显示默认内容
+   *
+   * When the content is empty, display the default content
+   */
+  defaultValue?: string
+  /**
    * 是否自定义渲染
    *
    * Whether to customize the rendering
