@@ -64,10 +64,10 @@ export const EleImageProps = imageProps
 export type EleImage = ImageProps
 
 export const EleDialogProps = dialogProps
-export type EleDialog = DialogProps
+export type EleDialog = DialogProps & { class?: string; customClass?: string }
 
 export const EleDrawerProps = drawerProps
-export type EleDrawer = DrawerProps
+export type EleDrawer = DrawerProps & { class?: string; customClass?: string }
 
 export const EleMessageProps = messageProps
 export type EleMessage = MessageProps
@@ -119,42 +119,6 @@ export type EleActionPopconfirmAction = Action
 // The following is a temporary solution. Since Element Plus does not export Prop globally, it can only define component Prop by itself or by introducing components
 import TableDefault from 'element-plus/lib/components/table/src/table/defaults'
 import TableColumn from 'element-plus/lib/components/table/src/table-column/defaults'
-
-export const EleDescriptionsItemProps = {
-  label: {
-    type: String,
-    default: '',
-  },
-  span: {
-    type: Number,
-    default: 1,
-  },
-  width: {
-    type: [String, Number],
-    default: '',
-  },
-  minWidth: {
-    type: [String, Number],
-    default: '',
-  },
-  align: {
-    type: String as PropType<'left' | 'center' | 'right'>,
-    default: 'left',
-  },
-  labelAlign: {
-    type: String as PropType<'left' | 'center' | 'right'>,
-    default: '',
-  },
-  className: {
-    type: String,
-    default: '',
-  },
-  labelClassName: {
-    type: String,
-    default: '',
-  },
-}
-export type EleDescriptionsItem = Partial<ExtractPropTypes<typeof EleDescriptionsItemProps>>
 
 export const EleTableProps = TableDefault
 export type EleTable = TableProps

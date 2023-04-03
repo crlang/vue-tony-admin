@@ -39,6 +39,7 @@
 </template>
 
 <script lang="ts">
+import type { EleDialog } from '@/components/ElementPlus'
 import type { BasicModalProps, ModalInstanceMethods, ModalCustomHeader, ModalCustomContent } from './typing'
 
 import { defineComponent, computed, ref, watch, unref, watchEffect, getCurrentInstance, nextTick } from 'vue'
@@ -107,15 +108,15 @@ export default defineComponent({
         ...unref(getProps),
         fullscreen: unref(fullscreenRef),
       }
-      const className = `${prefixCls} ${opts?.class || ''} ${prefixCls}-${instance?.uid}`
+      const className = `${prefixCls} ${opts?.customClass || ''} ${prefixCls}-${instance?.uid}`
       opts.class = className
-      // opts.customClass = className // compatible
+      opts.customClass = className
 
       // 绑定组件Porps前，移除自定义附加项
       // Before binding component Porps, remove custom add-ons
       const customOpts = Object.keys(customProps)
 
-      return omit(opts, customOpts)
+      return omit(opts, customOpts) as EleDialog
     })
 
     /**

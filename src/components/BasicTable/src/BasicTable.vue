@@ -58,7 +58,7 @@
 </template>
 
 <script lang="ts">
-import type { ElePagination } from '@/components/ElementPlus'
+import type { ElePagination, EleTable } from '@/components/ElementPlus'
 import type { BasicTableProps, TableActionMethods } from './typing'
 
 import { defineComponent, ref, computed, unref, watchEffect, inject } from 'vue'
@@ -210,7 +210,7 @@ export default defineComponent({
       // Before binding component Porps, remove custom add-ons
       const customOpts = Object.keys(customProps)
 
-      return omit(opts, customOpts) as BasicTableProps
+      return omit(opts, customOpts) as EleTable
     })
     /**
      * 获取表格外框类

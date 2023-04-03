@@ -34,6 +34,7 @@
 
 <script lang="ts">
 import type { FormActionMethods, BasicFormProps, BasicFormSchema, AdvanceState } from './typing'
+import type { EleForm } from '@/components/ElementPlus'
 
 import { defineComponent, reactive, ref, computed, unref, onMounted, watch, nextTick } from 'vue'
 import { ElForm, ElRow } from 'element-plus'
@@ -130,7 +131,7 @@ export default defineComponent({
       // Before binding component Porps, remove custom add-ons
       const customOpts = Object.keys(customProps)
 
-      return omit(opts, customOpts)
+      return omit(opts, customOpts) as EleForm
     })
     /**
      * 获取并处理表单数据结构
