@@ -162,7 +162,7 @@ const transform: AxiosTransform = {
       if (code === 'ECONNABORTED' && message.indexOf('timeout') !== -1) {
         errMessage = '接口请求超时,请刷新页面重试'
       }
-      if (err?.includes('Network Error')) {
+      if (err?.includes('Network Error') || error?.message === 'Network Error') {
         errMessage = '网络异常，请检查您的网络连接是否正常'
       }
 

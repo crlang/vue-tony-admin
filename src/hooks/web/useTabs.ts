@@ -49,6 +49,11 @@ export function useTabs(_router?: Router) {
    * Get current tab
    */
   function getCurrentTab() {
+    const canIUse = canIUseTabs
+    if (!canIUse) {
+      return
+    }
+
     const route = unref(currentRoute)
     return tabStore.getTabList.find((item) => item.path === route.path)!
   }

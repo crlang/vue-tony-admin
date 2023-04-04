@@ -242,6 +242,12 @@ export function useMessage() {
      * Loading message
      */
     loading: createLoading,
+    /**
+     * 关闭所有弹出的消息
+     *
+     * Close all message
+     */
+    closeAll: ElMessage.closeAll,
   }
 
   return {
