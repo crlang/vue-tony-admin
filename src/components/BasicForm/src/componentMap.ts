@@ -20,6 +20,7 @@ import {
   ElRate,
   ElSlider,
   ElInputNumber,
+  ElTreeSelect,
 } from 'element-plus'
 
 /**
@@ -51,6 +52,7 @@ componentMap.set('ElCascader', ElCascader)
 componentMap.set('ElRate', ElRate)
 componentMap.set('ElSlider', ElSlider)
 componentMap.set('ElInputNumber', ElInputNumber)
+componentMap.set('ElTreeSelect', ElTreeSelect)
 // Custom
 componentMap.set('ElTimePicker', TimePicker)
 componentMap.set('ElDatePicker', DatePicker)

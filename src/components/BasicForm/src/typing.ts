@@ -158,6 +158,7 @@ export type ComponentType =
   | 'ElRate'
   | 'ElSlider'
   | 'ElInputNumber'
+  | 'ElTreeSelect'
 
 /**
  * 展开/收起状态

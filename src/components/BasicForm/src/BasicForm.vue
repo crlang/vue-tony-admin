@@ -290,11 +290,10 @@ $prefix-cls: '#{$tonyname}-basic-form';
 .#{$prefix-cls} {
   position: relative;
 
-  .el-col {
-    .el-select,
-    .el-input {
-      width: 100%;
-    }
+  .el-select,
+  .el-cascader,
+  .el-input {
+    width: 100%;
   }
 }
 </style>

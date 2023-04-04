@@ -69,7 +69,7 @@ export default defineComponent({
       if (['ElInput', 'ElInputNumber'].includes(component)) {
         return '请输入'
       }
-      if (['ElSelect', 'ElCascader', 'ElDatePicker', 'ElTimePicker', 'ElTimeSelect', 'ElSelectV2'].includes(component)) {
+      if (['ElSelect', 'ElCascader', 'ElDatePicker', 'ElTimePicker', 'ElTimeSelect', 'ElSelectV2', 'ElTreeSelect'].includes(component)) {
         return '请选择'
       }
       return ''
@@ -214,17 +214,17 @@ export default defineComponent({
           // 处理 min 规则的内容
           // Process the content of the 'min' rule
           if (Reflect.has(rule, 'min') && !rule.validator) {
-            rule.message = rule.message || `内容长度必须大于 ${rule.min} 位`
+            rule.message = `内容长度必须大于 ${rule.min} 位`
           }
           // 处理 max 规则的内容
           // Process the content of the 'max' rule
           if (Reflect.has(rule, 'max') && !rule.validator) {
-            rule.message = rule.message || `内容长度必须小于 ${rule.max} 位`
+            rule.message = `内容长度必须小于 ${rule.max} 位`
           }
           // 处理 len 规则的内容
           // Process the content of the 'len' rule
           if (Reflect.has(rule, 'len') && !rule.validator) {
-            rule.message = rule.message || `内容长度必须为 ${rule.len} 位`
+            rule.message = `内容长度必须为 ${rule.len} 位`
           }
         }
       }
@@ -365,8 +365,9 @@ export default defineComponent({
 
       // has help message
       return (
-        <span>
-          {renderLabel} <BasicHelp placement='top' class='mx-1' text={getHelpMessage} />
+        <span style='display:inline-flex;align-items:center;'>
+          <span>{renderLabel}</span>
+          <BasicHelp placement='top' class='mx-1' text={getHelpMessage} />
         </span>
       )
     }
