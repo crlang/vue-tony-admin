@@ -94,6 +94,7 @@ $prefix-cls: '#{$tonyname}-layout-header';
       max-width: calc(var(--header-height) * 3);
       min-width: var(--header-height);
       padding: 0;
+      margin-right: 4px;
       font-size: 1.2em;
       color: inherit;
       cursor: pointer;

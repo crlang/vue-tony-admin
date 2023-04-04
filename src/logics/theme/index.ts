@@ -124,7 +124,7 @@ function dyncGenerateColor(color?: string) {
     text: isDark ? lighten(color, 75) : darken(color, 75),
     textHover: isDark ? lighten(color, 90) : darken(color, 90),
     background: color,
-    backgroundHover: isDark ? lighten(color, 5) : darken(color, 5),
+    backgroundHover: isDark ? lighten(color, 10) : darken(color, 10),
   }
 }
 

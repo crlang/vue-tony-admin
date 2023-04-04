@@ -35,10 +35,10 @@ export const darkMainColor = '#141414'
  *
  * Dark mode header color
  */
-export const darkHeaderColor = '#151515'
+export const darkHeaderColor = '#0E121B'
 /**
  * 黑暗模式侧边栏颜色
  *
  * Dark mode sidebar color
  */
-export const darkSidebarColor = '#161616'
+export const darkSidebarColor = '#0E121B'

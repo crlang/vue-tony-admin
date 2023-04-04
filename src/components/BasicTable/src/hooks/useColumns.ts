@@ -55,7 +55,7 @@ export function useColumns(propsRef: ComputedRef<BasicTableProps>, getPagination
       return hasPermission(column.auth) && isIfShow(column)
     })
       .map((column) => {
-      // Set default value
+        // Set default value
         if (column.defaultValue && column.defaultValue !== 0) {
           column.formatter = (row, { property, columnKey }) => {
             const item = row[property || columnKey]
