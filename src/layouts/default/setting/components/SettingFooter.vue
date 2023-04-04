@@ -49,7 +49,7 @@ export default defineComponent({
       unref(isSuccessRef) &&
         createSuccessModal({
           title: '操作成功',
-          content: '复制配置成功,请到 src/settings/projectSetting.ts 中的 /* do something */ 粘贴替换！',
+          message: '复制配置成功,请到 src/settings/projectSetting.ts 中的 /* do something */ 粘贴替换！',
         })
     }
     function handleResetSetting() {

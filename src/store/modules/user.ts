@@ -158,7 +158,7 @@ export const useUserStore = defineStore({
       createConfirm({
         iconType: 'warning',
         title: '温馨提醒',
-        content: '是否确认退出系统?',
+        message: '是否确认退出系统?',
       }).then((k) => {
         if (k === 'confirm') {
           this.logout(true)

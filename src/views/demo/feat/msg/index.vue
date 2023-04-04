@@ -55,21 +55,21 @@ export default defineComponent({
     function handleConfirm(type: 'warning' | 'error' | 'success' | 'info') {
       createConfirm({
         title: 'Tip',
-        content: 'content message...',
+        message: 'content message...',
         type,
       })
     }
     function handleSuccessModal() {
-      createSuccessModal({ title: 'Tip', content: 'content message...' })
+      createSuccessModal({ title: 'Tip', message: 'content message...' })
     }
     function handleErrorModal() {
-      createErrorModal({ title: 'Tip', content: 'content message...' })
+      createErrorModal({ title: 'Tip', message: 'content message...' })
     }
     function handleWarningModal() {
-      createWarningModal({ title: 'Tip', content: 'content message...' })
+      createWarningModal({ title: 'Tip', message: 'content message...' })
     }
     function handleInfoModal() {
-      createInfoModal({ title: 'Tip', content: 'content message...' })
+      createInfoModal({ title: 'Tip', message: 'content message...' })
     }
     function handleNotify(type: 'warning' | 'error' | 'success' | 'info') {
       createNotification({

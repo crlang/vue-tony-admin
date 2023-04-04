@@ -66,7 +66,7 @@ export function checkStatus(status: number, msg: string, errorMessageMode: Error
 
   if (errMessage) {
     if (errorMessageMode === 'modal') {
-      createErrorModal({ title: '错误提示', content: errMessage })
+      createErrorModal({ title: '错误提示', message: errMessage })
     } else if (errorMessageMode === 'message') {
       error({ message: errMessage, key: `global_error_message_status_${status}` })
     }

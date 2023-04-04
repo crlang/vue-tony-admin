@@ -55,7 +55,7 @@ export default defineComponent({
     }
 
     function openMsgPopup() {
-      createConfirm({ title: '是否删除？', content: '注意：删除后将无法找回内容！', type: 'warning' })
+      createConfirm({ title: '是否删除？', message: '注意：删除后将无法找回内容！', type: 'warning' })
         .then((act) => {
           createMessage.success(`点击了 ${act}`)
         })

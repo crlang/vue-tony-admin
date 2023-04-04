@@ -36,7 +36,7 @@ export default defineComponent({
     function getFormValues() {
       createInfoModal({
         title: '温馨提示',
-        content: JSON.stringify(getFormRef().getFieldsValue()),
+        message: JSON.stringify(getFormRef().getFieldsValue()),
       })
     }
 

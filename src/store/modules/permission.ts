@@ -173,10 +173,7 @@ export const usePermissionStore = defineStore({
       case PermissionModeEnum.BACK:
         const { createMessage } = useMessage()
 
-        createMessage.loading({
-          content: '菜单加载中...',
-          duration: 1,
-        })
+        createMessage.loading('菜单加载中...', 1000)
 
         // !Simulate to obtain permission codes from the background,
         // this function may only need to be executed once, and the actual project can be put at the right time by itself
