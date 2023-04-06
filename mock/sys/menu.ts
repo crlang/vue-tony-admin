@@ -162,7 +162,6 @@ const sysRoute = {
         hideMenu: true,
         title: '账号详情',
         ignoreKeepAlive: true,
-        showMenu: false,
         currentActiveMenu: '/system/account',
       },
       component: '/demo/system/account/AccountDetail',

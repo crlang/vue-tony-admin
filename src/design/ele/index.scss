@@ -14,6 +14,7 @@ $ele-select-dropdown: 'el-select-dropdown';
 $ele-tag: 'el-tag';
 $ele-cascader-panel: 'el-cascader-panel';
 $ele-input: 'el-input';
+$ele-input-number: 'el-input-number';
 
 .#{$ele-button} {
   &.is-text {
@@ -80,17 +81,19 @@ $ele-input: 'el-input';
 .#{$ele-pagination} {
   --el-pagination-button-bg-color: var(--background-main-color);
   --el-pagination-hover-color: var(--primary-color);
+  --el-disabled-bg-color: var(--border-color);
 }
 
 .#{$ele-card} {
   --el-text-color-primary: var(--text-primary-color);
   --el-card-bg-color: var(--background-primary-color);
+  --el-bg-color-overlay: var(--background-primary-color); /* fix dark */
 }
 
 .#{$ele-tree} {
   --el-tree-text-color: var(--text-primary-color);
-  --el-fill-color-blank: var(--background-primary-color);
-  --el-color-primary-light-9: var(--background-secondary-color);
+  --el-fill-color-blank: transparent;
+  --el-tree-node-hover-bg-color: var(--background-secondary-color);
 }
 
 .#{$ele-descriptions} {
@@ -116,8 +119,15 @@ $ele-input: 'el-input';
 }
 
 .#{$ele-tag} {
+  &--light {
+    --el-tag-bg-color: var(--background-secondary-color);
+    --el-tag-border-color: var(--background-secondary-color);
+  }
+
   &--info {
     --el-fill-color: var(--background-secondary-color);
+    --el-color-info-light-9: var(--background-secondary-color); /* fix dark */
+    --el-color-info-light-8: var(--background-secondary-color); /* fix dark */
   }
 }
 
@@ -126,5 +136,9 @@ $ele-input: 'el-input';
 }
 
 .#{$ele-input} {
+  --el-fill-color-light: var(--background-secondary-color);
+}
+
+.#{$ele-input-number} {
   --el-fill-color-light: var(--background-secondary-color);
 }

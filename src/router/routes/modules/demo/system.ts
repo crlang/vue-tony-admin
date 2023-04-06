@@ -29,7 +29,6 @@ const system: AppRouteModule = {
         hideMenu: true,
         title: '账号详情',
         ignoreKeepAlive: true,
-        showMenu: false,
         currentActiveMenu: '/system/account',
       },
       component: () => import('@/views/demo/system/account/AccountDetail.vue'),
