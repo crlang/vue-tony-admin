@@ -10,6 +10,13 @@ const { table } = componentSetting
 export const ROW_KEY = 'key'
 
 /**
+ * 内容对齐方式
+ *
+ * Column alignment
+ */
+export const COLUMN_POSITION_ALIGN = table.defaultColumnAlign || 'left'
+
+/**
  * 每页显示数量选项
  *
  * Display quantity per page option

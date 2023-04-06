@@ -680,7 +680,7 @@ export interface TableActionItem extends EleButton {
    *
    * Judging whether to display by condition
    */
-  ifShow?: boolean | ((action: TableActionItem) => boolean)
+  ifShow?: boolean | ((column: BasicColumn, scopes: scopeInfo, action: TableActionItem) => boolean)
   /**
    * 操作列的点击回调，当为确认按钮模式时，将会在确认弹窗操作后触发回调
    *
@@ -740,5 +740,5 @@ export interface BasicColumn extends EleTableColumn {
    *
    * Whether to display, can be judged by conditions
    */
-  ifShow?: boolean | ((action: BasicColumn) => boolean)
+  ifShow?: boolean | ((column: BasicColumn) => boolean)
 }

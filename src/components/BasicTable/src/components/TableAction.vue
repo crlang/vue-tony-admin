@@ -104,6 +104,7 @@ export default defineComponent({
      */
     function isIfShow(action: TableActionItem): boolean {
       const ifShow = action.ifShow
+      const { column, scopes } = props
 
       let isIfShow = true
 
@@ -111,7 +112,7 @@ export default defineComponent({
         isIfShow = ifShow
       }
       if (typeof ifShow === 'function') {
-        isIfShow = ifShow(action)
+        isIfShow = ifShow(column, scopes, action)
       }
       return isIfShow
     }

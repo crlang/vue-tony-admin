@@ -13,6 +13,12 @@ export default {
    */
   table: {
     /**
+     * 内容区的对齐方式，可选 'left/center/right'
+     *
+     * Column alignment, optional 'left/center/right'
+     */
+    defaultColumnAlign: 'left',
+    /**
      * 请求接口的相关字段，支持嵌套格式 xxx.xxx.xxx
      *
      * Basic configuration of the request interface, support xxx.xxx.xxx
@@ -48,7 +54,7 @@ export default {
      *
      * Pagination alignment position, optional 'left/center/right'
      */
-    defaultPageAlign: 'left',
+    defaultPageAlign: 'center',
     /**
      * 分页的页码大小
      *

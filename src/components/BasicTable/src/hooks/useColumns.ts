@@ -7,7 +7,7 @@ import { cloneDeep, isEqual } from 'lodash-es'
 
 import { usePermission } from '@/hooks/web/usePermission'
 
-import { PAGE_SIZE } from '../const'
+import { PAGE_SIZE, COLUMN_POSITION_ALIGN } from '../const'
 
 /**
  * 处理表格列
@@ -194,7 +194,7 @@ export function useColumns(propsRef: ComputedRef<BasicTableProps>, getPagination
 function handleItem(item: BasicColumn) {
   const { columnKey, prop, children } = item
 
-  item.align = item.align || 'center'
+  item.align = item.align || COLUMN_POSITION_ALIGN
 
   if (!columnKey) {
     item.columnKey = prop

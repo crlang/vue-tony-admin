@@ -15,6 +15,7 @@ $ele-tag: 'el-tag';
 $ele-cascader-panel: 'el-cascader-panel';
 $ele-input: 'el-input';
 $ele-input-number: 'el-input-number';
+$ele-date-table: 'el-date-table';
 
 .#{$ele-button} {
   &.is-text {
@@ -141,4 +142,8 @@ $ele-input-number: 'el-input-number';
 
 .#{$ele-input-number} {
   --el-fill-color-light: var(--background-secondary-color);
+}
+
+.#{$ele-date-table} {
+  --el-datepicker-inrange-bg-color: var(--background-secondary-color);
 }
