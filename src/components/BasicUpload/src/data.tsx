@@ -2,7 +2,8 @@ import type { FileBasicColumn, FileItem, PreviewFileItem } from './typing'
 
 import { UploadResultStatus } from './typing'
 
-import { ElButton, ElButtonGroup, ElProgress, ElTag } from 'element-plus'
+import { ElButton, ElButtonGroup, ElProgress, ElTag, ElText } from 'element-plus'
+import { Warning } from '@element-plus/icons-vue'
 
 import { isImgTypeByName } from './helper'
 import UploadThumb from './components/UploadThumb.vue'
@@ -26,12 +27,20 @@ export function createTableColumns(): FileBasicColumn[] {
     {
       prop: 'name',
       label: '文件名',
-      align: 'left',
       customRender: ({ text, record }) => {
         const { percent, status: uploadStatus } = (record as FileItem) || {}
         let status: '' | 'success' | 'exception' | 'warning'
+        let errorMsg = record?.responseData?.message || null
         if (uploadStatus === UploadResultStatus.ERROR) {
           status = 'exception'
+          if (errorMsg) {
+            errorMsg = (
+              <ElText class='mt-1' type='error' truncated>
+                <Warning style='width: 1em;height: 1em;vertical-align: middle;margin-right: 4px;display: inline-block;' />
+                {errorMsg}
+              </ElText>
+            )
+          }
         } else if (uploadStatus === UploadResultStatus.UPLOADING) {
           status = ''
         } else if (uploadStatus === UploadResultStatus.SUCCESS) {
@@ -43,6 +52,7 @@ export function createTableColumns(): FileBasicColumn[] {
               {text}
             </p>
             <ElProgress percentage={percent} text-inside={true} stroke-width={24} status={status} />
+            {errorMsg}
           </span>
         )
       },
@@ -114,7 +124,6 @@ export function createPreviewColumns(): FileBasicColumn[] {
     {
       prop: 'name',
       label: '文件名',
-      align: 'left',
     },
   ]
 }

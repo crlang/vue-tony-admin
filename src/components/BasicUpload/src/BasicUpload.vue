@@ -235,7 +235,7 @@ $prefix-cls: '#{$tonyname}-basic-upload';
       overflow: hidden;
       color: var(--text-primary-color);
       cursor: pointer;
-      background: var(--white-color);
+      background: var(--background-primary-color);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-base);
       transition: all 0.15s;

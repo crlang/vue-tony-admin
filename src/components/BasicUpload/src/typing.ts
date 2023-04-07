@@ -59,7 +59,7 @@ export interface FileItem {
    *
    * Upload response results
    */
-  responseData?: UploadApiResult
+  responseData?: UploadApiResult | string
   /**
    * 唯一ID
    *

@@ -40,14 +40,17 @@
 
 <script lang="ts">
 import type { FileItem } from '../typing'
+
 import { defineComponent, ref, toRefs, unref, computed } from 'vue'
 import { ElButton, ElUpload, ElAlert } from 'element-plus'
+import { get } from 'lodash-es'
 
 import { BasicModal, useModalInner } from '@/components/BasicModal'
 import { EleButton } from '@/components/ElementPlus'
 import { useMessage } from '@/hooks/web/useMessage'
 import { buildUUID } from '@/utils'
 import { error } from '@/utils/log'
+import componentSetting from '@/settings/componentSetting'
 
 import { UploadResultStatus } from '../typing'
 import { uploadProps } from '../props'
@@ -231,6 +234,7 @@ export default defineComponent({
      * @param item FileItem
      */
     async function uploadApiByItem(item: FileItem) {
+      const { upload } = componentSetting
       const { api, uploadName, uploadParams } = props
       // 必须要存在 api 函数
       if (!api || typeof api !== 'function') {
@@ -248,11 +252,21 @@ export default defineComponent({
         params.file = item.file
         params[uploadName] = item.file
         const { data } = await api(params, onUploadProgress)
-        item.status = UploadResultStatus.SUCCESS
-        item.responseData = data
-        return {
-          success: true,
-          error: null,
+        const result = get(data, upload.urlField)
+        if (result) {
+          item.status = UploadResultStatus.SUCCESS
+          item.responseData = result
+          return {
+            success: true,
+            error: null,
+          }
+        } else {
+          item.status = UploadResultStatus.ERROR
+          item.responseData = data
+          return {
+            success: false,
+            error: data?.message || data,
+          }
         }
       } catch (e) {
         item.status = UploadResultStatus.ERROR
@@ -302,8 +316,8 @@ export default defineComponent({
 
       for (const item of fileListRef.value) {
         const { status, responseData } = item
-        if (status === UploadResultStatus.SUCCESS && responseData) {
-          fileList.push(responseData.url)
+        if (status === UploadResultStatus.SUCCESS && typeof responseData === 'string') {
+          fileList.push(responseData)
         }
       }
       if (fileList.length <= 0) {

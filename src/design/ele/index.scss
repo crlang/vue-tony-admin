@@ -16,6 +16,8 @@ $ele-cascader-panel: 'el-cascader-panel';
 $ele-input: 'el-input';
 $ele-input-number: 'el-input-number';
 $ele-date-table: 'el-date-table';
+$ele-time-panel: 'el-time-panel';
+$ele-progress: 'el-progress';
 
 .#{$ele-button} {
   &.is-text {
@@ -28,9 +30,58 @@ $ele-date-table: 'el-date-table';
     }
   }
 
+  &:hover {
+    --el-button-hover-bg-color: transparent;
+    --el-button-hover-border-color: var(--border-color);
+  }
+
   &:focus-visible {
     border: none;
     outline: none;
+  }
+
+  &--success.is-disabled {
+    opacity: 0.8;
+    --el-button-disabled-bg-color: var(--el-color-success);
+    --el-button-disabled-border-color: var(--el-color-success);
+
+    &:hover,
+    &:focus {
+      opacity: 0.6;
+    }
+  }
+
+  &--warning.is-disabled {
+    opacity: 0.8;
+    --el-button-disabled-bg-color: var(--el-color-warning);
+    --el-button-disabled-border-color: var(--el-color-warning);
+
+    &:hover,
+    &:focus {
+      opacity: 0.6;
+    }
+  }
+
+  &--danger.is-disabled {
+    opacity: 0.8;
+    --el-button-disabled-bg-color: var(--el-color-danger);
+    --el-button-disabled-border-color: var(--el-color-danger);
+
+    &:hover,
+    &:focus {
+      opacity: 0.6;
+    }
+  }
+
+  &--primary.is-disabled {
+    opacity: 0.8;
+    --el-button-disabled-bg-color: var(--el-color-primary);
+    --el-button-disabled-border-color: var(--el-color-primary);
+
+    &:hover,
+    &:focus {
+      opacity: 0.6;
+    }
   }
 }
 
@@ -146,4 +197,12 @@ $ele-date-table: 'el-date-table';
 
 .#{$ele-date-table} {
   --el-datepicker-inrange-bg-color: var(--background-secondary-color);
+}
+
+.#{$ele-time-panel} {
+  --el-fill-color-light: var(--background-secondary-color);
+}
+
+.#{$ele-progress} {
+  --el-border-color-lighter: var(--background-secondary-color);
 }
