@@ -18,6 +18,7 @@ $ele-input-number: 'el-input-number';
 $ele-date-table: 'el-date-table';
 $ele-time-panel: 'el-time-panel';
 $ele-progress: 'el-progress';
+$ele-image: 'el-image';
 
 .#{$ele-button} {
   &.is-text {
@@ -152,7 +153,7 @@ $ele-progress: 'el-progress';
   --el-text-color-regular: var(--text-main-color);
   --el-descriptions-item-bordered-label-background: var(--background-main-color);
   --el-text-color-primary: var(--text-primary-color);
-  --el-fill-color-blank: var(--background-primary-color);
+  --el-fill-color-blank: transparent;
 }
 
 .#{$ele-divider} {
@@ -205,4 +206,8 @@ $ele-progress: 'el-progress';
 
 .#{$ele-progress} {
   --el-border-color-lighter: var(--background-secondary-color);
+}
+
+.#{$ele-image} {
+  --el-text-color-regular: var(--background-secondary-color);
 }
