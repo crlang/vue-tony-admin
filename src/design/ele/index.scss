@@ -31,11 +31,6 @@ $ele-image: 'el-image';
     }
   }
 
-  &:hover {
-    --el-button-hover-bg-color: transparent;
-    --el-button-hover-border-color: var(--border-color);
-  }
-
   &:focus-visible {
     border: none;
     outline: none;
