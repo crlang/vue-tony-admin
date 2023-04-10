@@ -20,7 +20,11 @@
       </el-button>
     </template>
     <div style="display: flex; align-items: center; margin-bottom: 8px">
-      <ElAlert :title="getHelpText" type="info" :closable="false" />
+      <ElAlert
+        style="--el-alert-padding: 8px 0;"
+        :title="getHelpText"
+        type="info"
+        :closable="false" />
       <ElUpload
         action="emptyUrl"
         :accept="getStringAccept"
@@ -82,7 +86,7 @@ export default defineComponent({
       helpTextRef: helpText,
       maxNumberRef: maxNumber,
       maxSizeRef: maxSize,
-    })
+    }, previewFileList)
 
     const { createMessage } = useMessage()
 

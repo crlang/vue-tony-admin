@@ -56,17 +56,20 @@ export function getBase64WithFile(file: File) {
  *
  * Check upload limit and convert to help text
  */
-export function useUploadType({
-  acceptRef,
-  helpTextRef,
-  maxNumberRef,
-  maxSizeRef,
-}: {
-  acceptRef: Ref<string[]>
-  helpTextRef: Ref<string>
-  maxNumberRef: Ref<number>
-  maxSizeRef: Ref<number>
-}) {
+export function useUploadType(
+  {
+    acceptRef,
+    helpTextRef,
+    maxNumberRef,
+    maxSizeRef,
+  }: {
+    acceptRef: Ref<string[]>
+    helpTextRef: Ref<string>
+    maxNumberRef: Ref<number>
+    maxSizeRef: Ref<number>
+  },
+  uploadedList: Ref<String[]>,
+) {
   /**
    * 获取可支持文件扩展名类型
    *
@@ -111,17 +114,18 @@ export function useUploadType({
 
     const accept = unref(acceptRef)
     if (accept.length > 0) {
-      helpTexts.push(`支持${accept.join(',')}格式`)
+      helpTexts.push(`支持 ${accept.join(',')} 格式`)
     }
 
     const maxSize = unref(maxSizeRef)
     if (maxSize) {
-      helpTexts.push(`单个文件不超过${maxSize}MB`)
+      helpTexts.push(`单个文件不超过 ${maxSize} MB`)
     }
 
-    const maxNumber = unref(maxNumberRef)
+    const maxNumber = unref(maxNumberRef) - unref(uploadedList).length
+
     if (maxNumber && maxNumber !== Infinity) {
-      helpTexts.push(`最多只能上传${maxNumber}个文件`)
+      helpTexts.push(`最多只能上传 ${maxNumber} 个文件`)
     }
     return helpTexts.join('，')
   })

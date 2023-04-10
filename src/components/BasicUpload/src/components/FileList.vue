@@ -51,6 +51,27 @@ export default defineComponent({
     return () => {
       const { columns, actionColumn, dataSource } = props
       const columnList = [...columns, actionColumn]
+      let bodyContent: JSX.Element | JSX.Element[] | null = null
+
+      if (dataSource?.length) {
+        bodyContent = dataSource.map((record = {}, index) => {
+          return (
+            <tr key={`${index + record.name || ''}`}>
+              {columnList.map((item) => {
+                const { prop = '', customRender, align = 'center' } = item
+                const render = typeof customRender === 'function'
+                return (
+                  <td class={align} key={prop}>
+                    {render ? customRender?.({ text: record[prop], record }) : record[prop]}
+                  </td>
+                )
+              })}
+            </tr>
+          )
+        })
+      } else {
+        bodyContent = <tr><td colspan='5' style='text-align: center;'>无数据</td></tr>
+      }
       return (
         <table class='basic-upload-file-table'>
           <colgroup>
@@ -75,23 +96,7 @@ export default defineComponent({
               })}
             </tr>
           </thead>
-          <tbody>
-            {dataSource.map((record = {}, index) => {
-              return (
-                <tr key={`${index + record.name || ''}`}>
-                  {columnList.map((item) => {
-                    const { prop = '', customRender, align = 'center' } = item
-                    const render = typeof customRender === 'function'
-                    return (
-                      <td class={align} key={prop}>
-                        {render ? customRender?.({ text: record[prop], record }) : record[prop]}
-                      </td>
-                    )
-                  })}
-                </tr>
-              )
-            })}
-          </tbody>
+          <tbody>{bodyContent}</tbody>
         </table>
       )
     }
