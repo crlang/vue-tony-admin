@@ -397,7 +397,6 @@ $prefix-cls: '#{$tonyname}-basic-table';
   &-action {
     display: flex;
     align-items: center;
-    margin: 0 12px;
 
     &.left {
       justify-content: flex-start;
@@ -419,12 +418,8 @@ $prefix-cls: '#{$tonyname}-basic-table';
         margin-right: 4px;
       }
 
-      &:first-child {
+      + .el-button {
         margin-left: 12px;
-      }
-
-      &:last-child {
-        margin-right: 12px;
       }
     }
   }
