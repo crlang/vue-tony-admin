@@ -31,48 +31,28 @@ $ele-image: 'el-image';
     }
   }
 
+  &.is-disabled,
+  &.is-disabled:hover,
+  &.is-disabled:focus,
+  &:hover,
+  &:focus,
   &:focus-visible {
-    border: none;
+    color: var(--el-button-text-color);
+    background-color: var(--el-button-border-color);
+    border-color: var(--el-button-bg-color);
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:focus-visible {
     outline: none;
   }
 
-  &--success.is-disabled {
+  &.is-disabled {
     opacity: 0.8;
-    --el-button-disabled-bg-color: var(--el-color-success);
-    --el-button-disabled-border-color: var(--el-color-success);
-
-    &:hover,
-    &:focus {
-      opacity: 0.6;
-    }
-  }
-
-  &--warning.is-disabled {
-    opacity: 0.8;
-    --el-button-disabled-bg-color: var(--el-color-warning);
-    --el-button-disabled-border-color: var(--el-color-warning);
-
-    &:hover,
-    &:focus {
-      opacity: 0.6;
-    }
-  }
-
-  &--danger.is-disabled {
-    opacity: 0.8;
-    --el-button-disabled-bg-color: var(--el-color-danger);
-    --el-button-disabled-border-color: var(--el-color-danger);
-
-    &:hover,
-    &:focus {
-      opacity: 0.6;
-    }
-  }
-
-  &--primary.is-disabled {
-    opacity: 0.8;
-    --el-button-disabled-bg-color: var(--el-color-primary);
-    --el-button-disabled-border-color: var(--el-color-primary);
+    filter: brightness(1.2);
 
     &:hover,
     &:focus {
