@@ -27,6 +27,9 @@ $ele-image: 'el-image';
     &:not(.is-disabled):hover,
     &:not(.is-disabled):focus {
       background: none;
+    }
+
+    &:not(.is-disabled):hover {
       opacity: 0.6;
     }
   }

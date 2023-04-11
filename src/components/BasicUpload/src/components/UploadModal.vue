@@ -173,7 +173,7 @@ export default defineComponent({
      */
     function checkFileSize(size = 0) {
       if (maxSize.value && size / 1024 / 1024 >= maxSize.value) {
-        createMessage.error(`只能上传不超过${maxSize}MB的文件!`)
+        createMessage.error(`只能上传不超过${maxSize.value}MB的文件!`)
         return false
       }
       return true

@@ -1,10 +1,20 @@
 $simple-menu: '#{$tonyname}-simple-menu';
 $simple-submenu: '#{$tonyname}-simple-submenu';
 
+@mixin MixSiderBG {
+  color: var(--sider-text-color);
+  background: var(--sider-background-color);
+}
 @mixin MixSiderHover {
   color: var(--sider-text-hover-color);
   background: var(--sider-background-hover-color);
 }
+
+// @mixin MixSiderDarker {
+//   color: var(--sider-text-color);
+//   background: var(--sider-background-darker-color);
+// }
+
 @mixin MixSiderActiveColor {
   color: var(--white-color);
   background-color: var(--primary-color);
@@ -28,6 +38,7 @@ $simple-submenu: '#{$tonyname}-simple-submenu';
     cursor: pointer;
     user-select: none;
     flex-wrap: wrap;
+    @include MixSiderBG();
 
     &:hover {
       @include MixSiderHover();
@@ -49,6 +60,14 @@ $simple-submenu: '#{$tonyname}-simple-submenu';
       top: 50%;
       right: 16px;
       transform: translateY(-50%);
+    }
+
+    .#{$simple-menu}-item {
+      @include MixSiderBG();
+
+      &:hover {
+        @include MixSiderHover();
+      }
     }
 
     &--active {
