@@ -73,6 +73,7 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',
@@ -322,16 +323,8 @@ module.exports = {
     ],
     'no-unreachable': 2,
     'no-unsafe-finally': 2,
-    'no-unused-vars': [
-      2,
-      {
-        vars: 'all',
-        args: 'all',
-        ignoreRestSiblings: false,
-        argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_',
-      },
-    ],
+    // 和 @typescript-eslint/no-unused-vars 二选一
+    'no-unused-vars': 'off',
     // 'no-useless-call': 2,
     'no-useless-computed-key': 2,
     'no-useless-constructor': 2,

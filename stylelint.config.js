@@ -16,8 +16,10 @@ module.exports = {
     },
   ],
   plugins: ['stylelint-scss', 'stylelint-order'],
-  // rule detail: https://stylelint.io/user-guide/rules/
-  // 规则详情: http://stylelint.cn/user-guide/rules/
+  // rule detail: https://stylelint.io/user-guide/rules
+  // rule config: https://stylelint.io/user-guide/configure
+  // 规则详情: https://stylelint.cn/user-guide/rules
+  // 规则配置：https://stylelint.cn/user-guide/configure
   rules: {
     'scss/at-import-partial-extension': 'always',
     'scss/at-mixin-argumentless-call-parentheses': 'always',
@@ -29,7 +31,13 @@ module.exports = {
     'number-leading-zero': 'always',
     'number-no-trailing-zeros': true,
     'string-quotes': 'single',
-    'length-zero-no-unit': true,
+    'length-zero-no-unit': [
+      true,
+      {
+        disableFix: true,
+        severity: 'warning',
+      },
+    ],
     'value-keyword-case': 'lower',
     'shorthand-property-no-redundant-values': true,
     'keyframe-declaration-no-important': true,
@@ -50,6 +58,18 @@ module.exports = {
     'no-duplicate-selectors': true,
     'no-eol-whitespace': true,
     'no-invalid-double-slash-comments': null,
+    'declaration-block-no-redundant-longhand-properties': [
+      true,
+      {
+        ignoreShorthands: ['flex-flow'],
+      },
+    ],
+    'declaration-block-no-duplicate-properties': [true,
+      {
+        disableFix: true,
+        severity: 'warning',
+      },
+    ],
     'selector-pseudo-class-no-unknown': [
       true,
       {
