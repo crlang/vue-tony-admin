@@ -1,9 +1,8 @@
 module.exports = {
   extends: [
-    'stylelint-config-standard-scss',
+    'stylelint-config-recommended-scss',
     'stylelint-config-recommended-vue/scss',
     'stylelint-config-prettier',
-    'css-properties-sorting',
   ],
   overrides: [
     {
@@ -282,5 +281,5 @@ module.exports = {
       'speak',
     ],
   },
-  ignoreFiles: ['**/*.js', '**/*.ts', '**/*.jsx', '**/*.tsx', '**/*.html'],
+  ignoreFiles: ['**/*.js', '**/*.json', '**/*.ts', '**/*.jsx', '**/*.tsx', '**/*.html'],
 }

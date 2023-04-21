@@ -114,6 +114,7 @@
     "iconify.excludes": [
       "el",
       "eva"
-    ]
+    ],
+    "vue.features.codeActions.enable": false
   }
 }
