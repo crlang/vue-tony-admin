@@ -1,18 +1,21 @@
-import { createProdMockServer } from 'vite-plugin-mock/es/createProdMockServer'
+// import { createProdMockServer } from 'vite-plugin-mock/client'
 
-const modules = import.meta.globEager('./**/*.ts')
+// import menuModule from './sys/menu'
+// import userModule from './sys/user'
+// import accountModule from './demo/account'
+// import selectDemoModule from './demo/select-demo'
+// import systemModule from './demo/system'
+// import tableDemoModule from './demo/table-demo'
+// import treeDemoModule from './demo/tree-demo'
 
-const mockModules: any[] = []
-Object.keys(modules).forEach((key) => {
-  if (key.includes('/_')) {
-    return
-  }
-  mockModules.push(...modules[key].default)
-})
-
-/**
- * Used in a production environment. Need to manually import all modules
- */
 export function setupProdMockServer() {
-  createProdMockServer(mockModules)
+  // createProdMockServer([
+  //   ...menuModule,
+  //   ...userModule,
+  //   ...accountModule,
+  //   ...selectDemoModule,
+  //   ...systemModule,
+  //   ...tableDemoModule,
+  //   ...treeDemoModule,
+  // ])
 }

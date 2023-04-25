@@ -150,7 +150,6 @@ $prefix-cls: '#{$tonyname}-multiple-tabs';
         line-height: 1;
         visibility: hidden;
         opacity: 0;
-        transition: none;
         transition: all 0.1s linear;
 
         &:hover {

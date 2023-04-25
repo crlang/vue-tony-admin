@@ -23,13 +23,13 @@ module.exports = {
     'scss/at-import-partial-extension': 'always',
     'scss/at-mixin-argumentless-call-parentheses': 'always',
     'scss/at-mixin-pattern': null,
-    'color-hex-case': 'lower',
+    // 'color-hex-case': 'lower', // v15
     'color-no-invalid-hex': true,
     'font-family-name-quotes': 'always-unless-keyword',
     'function-url-quotes': 'always',
-    'number-leading-zero': 'always',
-    'number-no-trailing-zeros': true,
-    'string-quotes': 'single',
+    // 'number-leading-zero': 'always', // v15
+    // 'number-no-trailing-zeros': true, // v15
+    'string-quotes': 'single', // v15
     'length-zero-no-unit': [
       true,
       {
@@ -40,8 +40,8 @@ module.exports = {
     'value-keyword-case': 'lower',
     'shorthand-property-no-redundant-values': true,
     'keyframe-declaration-no-important': true,
-    'declaration-colon-space-after': 'always',
-    'declaration-colon-space-before': 'never',
+    // 'declaration-colon-space-after': 'always', // v15
+    // 'declaration-colon-space-before': 'never', // v15
     'custom-property-empty-line-before': 'never',
     'selector-class-pattern': '^[a-z-]+([a-z0-9]?|[a-z0-9\\-\\_]*[a-z0-9])$',
     'selector-id-pattern': '^[a-z]+([a-z0-9]?|[a-z0-9\\-\\_]*[a-z0-9])$',
@@ -51,11 +51,11 @@ module.exports = {
     'color-function-notation': 'legacy',
     'alpha-value-notation': 'number',
     'unit-no-unknown': true,
-    indentation: 2,
+    // indentation: 2, // v15
     'max-nesting-depth': 4,
-    'max-empty-lines': 1,
+    // 'max-empty-lines': 1, // v15
     'no-duplicate-selectors': true,
-    'no-eol-whitespace': true,
+    // 'no-eol-whitespace': true, // v15
     'no-invalid-double-slash-comments': null,
     'declaration-block-no-redundant-longhand-properties': [
       true,

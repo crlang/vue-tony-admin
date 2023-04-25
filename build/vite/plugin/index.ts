@@ -3,10 +3,9 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import legacy from '@vitejs/plugin-legacy'
 import purgeIcons from 'vite-plugin-purge-icons'
-import { configOptimizationPersist } from './persist'
 import { configHtmlPlugin } from './html'
 import { configPwaConfig } from './pwa'
-import { configMockPlugin } from './mock'
+// import configMockPlugin from './mock'
 import { configCompressPlugin } from './compress'
 import { configVisualizerConfig } from './visualizer'
 import { configImageminPlugin } from './imagemin'
@@ -14,7 +13,7 @@ import { configSvgIconsPlugin } from './svgSprite'
 import { configHmrPlugin } from './hmr'
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
-  const { VITE_USE_IMAGEMIN, VITE_USE_MOCK, VITE_LEGACY, VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE } =
+  const { VITE_USE_IMAGEMIN, VITE_LEGACY, VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE } =
     viteEnv
 
   const vitePlugins: (Plugin | Plugin[])[] = [
@@ -22,9 +21,6 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     vue(),
     // have to
     vueJsx(),
-
-    // Optimize first dev loading speed
-    ...configOptimizationPersist(),
   ]
 
   // TODO
@@ -40,7 +36,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   vitePlugins.push(configSvgIconsPlugin(isBuild))
 
   // vite-plugin-mock
-  VITE_USE_MOCK && vitePlugins.push(configMockPlugin(isBuild))
+  // VITE_USE_MOCK && vitePlugins.push(configMockPlugin(isBuild))
 
   // vite-plugin-purge-icons
   vitePlugins.push(purgeIcons())

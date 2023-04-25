@@ -1,5 +1,6 @@
 import { MockMethod } from 'vite-plugin-mock'
-import { resultError, resultSuccess, getRequestToken, requestParams } from '../_util'
+
+import { getRequestToken, requestParams, resultError, resultSuccess } from '../_util'
 
 export function createFakeUserList() {
   return [
@@ -51,7 +52,9 @@ export default [
     method: 'post',
     response: ({ body }) => {
       const { username, password } = body
-      const checkUser = createFakeUserList().find((item) => item.username === username && password === item.password)
+      const checkUser = createFakeUserList().find(
+        (item) => item.username === username && password === item.password,
+      )
       if (!checkUser) {
         return resultError('Incorrect account or password！')
       }
@@ -107,6 +110,14 @@ export default [
         return resultError('Invalid token!')
       }
       return resultSuccess(undefined, { message: 'Token has been destroyed' })
+    },
+  },
+  {
+    url: '/basic-api/testRetry',
+    statusCode: 405,
+    method: 'get',
+    response: () => {
+      return resultError('Error!')
     },
   },
 ] as MockMethod[]
