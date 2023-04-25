@@ -358,16 +358,16 @@ $prefix-cls: '#{$tonyname}-basic-table';
 
     &__inner {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       margin-bottom: 8px;
     }
 
     &__toolbar {
       display: flex;
-      justify-content: flex-end;
-      align-items: center;
       flex: 1;
+      align-items: center;
+      justify-content: flex-end;
 
       > * {
         margin-right: 8px;

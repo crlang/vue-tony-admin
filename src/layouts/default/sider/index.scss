@@ -84,18 +84,18 @@ $layout-mix-sider: '#{$tonyname}-layout-mix-sider';
         bottom: 0;
         left: 0;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0 2px;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 2px;
         overflow: hidden;
       }
     }
 
     &__icon {
+      flex-shrink: 0;
       margin-bottom: 8px;
       font-size: 16px;
-      flex-shrink: 0;
       transition: var(--t-base);
     }
 
@@ -116,8 +116,8 @@ $layout-mix-sider: '#{$tonyname}-layout-mix-sider';
     left: 0;
     z-index: 3;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     width: var(--side-width);
     height: var(--side-width);
     color: var(--sider-text-color);
@@ -150,8 +150,8 @@ $layout-mix-sider: '#{$tonyname}-layout-mix-sider';
       top: 0;
       bottom: 0;
       left: 0;
-      border-left: 1px solid var(--sider-text-color);
       content: '';
+      border-left: 1px solid var(--sider-text-color);
       opacity: 0.25;
     }
 
@@ -167,22 +167,22 @@ $layout-mix-sider: '#{$tonyname}-layout-mix-sider';
       color: var(--sider-text-color);
       text-overflow: ellipsis;
       white-space: nowrap;
-      opacity: 0;
       visibility: hidden;
+      opacity: 0;
 
       &::after {
         position: absolute;
         right: 24px;
         bottom: 0;
         left: 24px;
-        border-bottom: 1px solid var(--sider-text-color);
         content: '';
+        border-bottom: 1px solid var(--sider-text-color);
         opacity: 0.25;
       }
 
       &.show {
-        opacity: 1;
         visibility: visible;
+        opacity: 1;
         transition: var(--t-base);
       }
 
@@ -191,8 +191,8 @@ $layout-mix-sider: '#{$tonyname}-layout-mix-sider';
         top: 0;
         right: 0;
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
         width: var(--header-height);
         height: var(--header-height);
         cursor: pointer;

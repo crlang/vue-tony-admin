@@ -77,8 +77,8 @@ $prefix-cls: '#{$tonyname}-collapse-container';
 
   &__header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     height: 44px;
     padding: 0 12px;
     border-bottom: 1px solid var(--border-color-light);
@@ -94,9 +94,9 @@ $prefix-cls: '#{$tonyname}-collapse-container';
 
   &__action {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
     flex: 1;
+    align-items: center;
+    justify-content: flex-end;
   }
 }
 </style>

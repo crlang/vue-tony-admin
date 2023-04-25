@@ -155,18 +155,18 @@ $prefix-cls: '#{$tonyname}-header-search-modal';
 
   &-content {
     position: relative;
+    flex-direction: column;
     width: 40rem;
     margin: 0 auto auto;
     background-color: var(--background-primary-color);
     border-radius: 1rem;
     box-shadow: 0 1.5rem 3.25rem -0.5rem rgba(0, 0, 0, 0.25);
-    flex-direction: column;
   }
 
   &-input__wrapper {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 1rem;
   }
 
@@ -193,8 +193,8 @@ $prefix-cls: '#{$tonyname}-header-search-modal';
 
   &-nodata {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     width: 100%;
     height: 7.5rem;
     color: var(--text-secondary-color);

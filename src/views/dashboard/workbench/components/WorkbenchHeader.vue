@@ -63,9 +63,9 @@ const userinfo = computed(() => userStore.getUserInfo)
 
   &__statistic {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
     flex-grow: 1;
+    align-items: center;
+    justify-content: flex-end;
 
     .statistic-item {
       position: relative;
@@ -86,8 +86,8 @@ const userinfo = computed(() => userStore.getUserInfo)
         top: 10%;
         right: 0;
         bottom: 10%;
-        border-right: 1px solid #ccc;
         content: '';
+        border-right: 1px solid #ccc;
       }
     }
   }

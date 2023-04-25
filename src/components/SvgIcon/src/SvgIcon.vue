@@ -111,9 +111,9 @@ $prefix-cls: '#{$tonyname}-svg-icon';
 
 .#{$prefix-cls} {
   display: inline-flex;
-  overflow: hidden;
-  justify-self: center;
   align-self: center;
+  justify-self: center;
+  overflow: hidden;
 
   svg {
     display: block;
@@ -122,9 +122,9 @@ $prefix-cls: '#{$tonyname}-svg-icon';
     overflow: hidden;
     font-size: 1em;
     line-height: 1em;
-    transition: transform 0.25s linear;
     /* stylelint-disable-next-line value-keyword-case */
     fill: currentColor;
+    transition: transform 0.25s linear;
   }
 
   &-spin {

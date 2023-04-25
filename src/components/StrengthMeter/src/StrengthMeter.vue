@@ -111,12 +111,12 @@ $prefix-cls: '#{$tonyname}-strength-meter';
       display: block;
       width: 20%;
       height: inherit;
+      content: '';
       background-color: transparent;
+      filter: brightness(1.1);
       border-color: var(--border-color-light);
       border-style: solid;
       border-width: 0 5px;
-      content: '';
-      filter: brightness(1.1);
     }
 
     &::before {

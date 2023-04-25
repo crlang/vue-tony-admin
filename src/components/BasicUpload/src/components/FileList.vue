@@ -107,8 +107,8 @@ export default defineComponent({
 <style lang="scss">
 .basic-upload-file-table {
   width: 100%;
-  border: 1px solid var(--border-color);
   border-collapse: collapse;
+  border: 1px solid var(--border-color);
 
   .center {
     text-align: center;

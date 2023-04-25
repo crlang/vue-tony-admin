@@ -109,19 +109,19 @@ B.parent-cat.pcc__title
   --sec-popup-zindex: #{$sec-popup-zindex};
   --sec-mask-zindex: #{$sec-mask-zindex};
 
-  @media only screen and (max-width: 767px) {
+  @media only screen and (width <= 767px) {
     // xs
   }
-  @media only screen and (min-width: 768px) {
+  @media only screen and (width >= 768px) {
     // sm
   }
-  @media only screen and (min-width: 992px) {
+  @media only screen and (width >= 992px) {
     // md
   }
-  @media only screen and (min-width: 1200px) {
+  @media only screen and (width >= 1200px) {
     // lg
   }
-  @media only screen and (min-width: 1920px) {
+  @media only screen and (width >= 1920px) {
     // xl
   }
 
@@ -237,11 +237,11 @@ body {
   font-family: var(--font-family-base);
   font-size: inherit;
   font-weight: 500;
+  font-feature-settings: normal;
+  font-variant: normal;
   line-height: 1.45;
   color: inherit;
   background: var(--background-main-color);
-  font-feature-settings: normal;
-  font-variant: normal;
 }
 
 #app {

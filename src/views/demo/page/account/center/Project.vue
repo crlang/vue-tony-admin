@@ -59,8 +59,8 @@ export default defineComponent({
     &-img {
       width: 100%;
       padding-bottom: 50%;
-      background-position: center center;
       background-repeat: no-repeat;
+      background-position: center center;
       background-size: cover;
     }
 

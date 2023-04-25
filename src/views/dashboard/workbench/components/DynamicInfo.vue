@@ -37,8 +37,8 @@ import { List, ListItem } from '@/components/List'
 <style scoped>
 .dync-card-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
 .dync-title {

@@ -51,8 +51,8 @@ $prefix-cls: '#{$tonyname}-header-error-action';
 .#{$prefix-cls} {
   .el-badge {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     width: 100%;
 
     // &__content {

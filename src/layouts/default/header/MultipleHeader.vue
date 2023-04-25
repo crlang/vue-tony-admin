@@ -99,8 +99,8 @@ export default defineComponent({
 $prefix-cls: '#{$tonyname}-layout-multiple-header';
 
 .#{$prefix-cls} {
-  transition: width var(--t-fast);
   flex: 0 0 auto;
+  transition: width var(--t-fast);
 
   &--fixed {
     position: fixed;

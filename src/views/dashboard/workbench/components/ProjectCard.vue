@@ -34,8 +34,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 .project-card-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
 .project-item {

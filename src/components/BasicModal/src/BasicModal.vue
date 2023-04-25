@@ -278,14 +278,14 @@ $prefix-cls: '#{$tonyname}-basic-modal';
 
   .el-dialog {
     &__header {
+      flex-shrink: 0;
       padding: 0;
       margin: 0;
-      flex-shrink: 0;
     }
 
     &__body {
-      padding: 0;
       flex-grow: 1;
+      padding: 0;
       overflow: hidden;
     }
 
@@ -297,8 +297,8 @@ $prefix-cls: '#{$tonyname}-basic-modal';
 
   &-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding-left: 16px;
     font-size: 16px;
 
@@ -308,8 +308,8 @@ $prefix-cls: '#{$tonyname}-basic-modal';
 
       > span {
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
         width: 56px;
         height: 56px;
         color: var(--text-secondary-color);

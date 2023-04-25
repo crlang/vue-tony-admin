@@ -210,8 +210,9 @@ $prefix-cls: '#{$tonyname}-icon-picker';
 
       > li {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
+        justify-content: center;
         width: calc(20% - 24px);
         padding: 6px;
         margin: 12px;
@@ -220,7 +221,6 @@ $prefix-cls: '#{$tonyname}-icon-picker';
         text-align: center;
         cursor: pointer;
         border: 1px solid var(--border-color-light);
-        flex-direction: column;
 
         &:hover {
           background: var(--background-regular-color);

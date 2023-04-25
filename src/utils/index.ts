@@ -1,5 +1,5 @@
 import type { RouteLocationNormalized, RouteRecordNormalized } from 'vue-router'
-import type { App, Ref } from 'vue'
+import type { App, Ref, Component } from 'vue'
 import type { SFCInstallWithContext, SFCWithInstall } from '#/utils'
 
 import { unref } from 'vue'
@@ -74,28 +74,31 @@ export function getRawRoute(route: RouteLocationNormalized): RouteLocationNormal
   }
 }
 
-/**
- * 注册组件
- *
- * Install component
- * @param main component
- * @param extra alias
- */
-export const withInstall = <T, E extends Record<string, any>>(main: T, extra?: E) => {
-  // eslint-disable-next-line prettier/prettier
-  (main as SFCWithInstall<T>).install = (app): void => {
-    for (const comp of [main, ...Object.values(extra ?? {})]) {
-      app.component(comp.name, comp)
-    }
-  }
+// https://github.com/vant-ui/vant/issues/8302
+type EventShim = {
+  new (...args: any[]): {
+    $props: {
+      onClick?: (...args: any[]) => void;
+    };
+  };
+};
 
-  if (extra) {
-    for (const [key, comp] of Object.entries(extra)) {
-      // eslint-disable-next-line prettier/prettier
-      (main as any)[key] = comp
+export type WithInstall<T> = T & {
+  install(app: App): void;
+} & EventShim;
+
+export type CustomComponent = Component & { displayName?: string };
+
+export const withInstall = <T extends CustomComponent>(component: T, alias?: string) => {
+  (component as Record<string, unknown>).install = (app: App) => {
+    const compName = component.name || component.displayName
+    if (!compName) return
+    app.component(compName, component)
+    if (alias) {
+      app.config.globalProperties[alias] = component
     }
   }
-  return main as SFCWithInstall<T> & E
+  return component as WithInstall<T>
 }
 
 /**

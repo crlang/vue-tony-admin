@@ -131,8 +131,8 @@ $prefix-cls: '#{$tonyname}-layout-sideBar';
     left: 0;
     z-index: 11;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     padding: 10px 0;
     color: var(--sider-text-color);
     cursor: pointer;
@@ -143,8 +143,8 @@ $prefix-cls: '#{$tonyname}-layout-sideBar';
       top: 0;
       right: 0;
       left: 0;
-      border-top: 1px solid var(--sider-text-color);
       content: '';
+      border-top: 1px solid var(--sider-text-color);
       opacity: 0.25;
     }
 

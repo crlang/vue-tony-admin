@@ -74,8 +74,8 @@ $prefix-cls: '#{$tonyname}-basic-title';
     width: 3px;
     height: 80%;
     margin-right: 4px;
-    background-color: var(--primary-color);
     content: '';
+    background-color: var(--primary-color);
   }
 
   &-help {

@@ -290,10 +290,10 @@ $prefix-cls: '#{$tonyname}-virtual-scroll';
 .#{$prefix-cls} {
   position: relative;
   display: block;
+  flex: 1 1 auto;
   width: 100%;
   max-width: 100%;
   overflow: auto;
-  flex: 1 1 auto;
   line-height: 1;
 
   &__container {

@@ -228,8 +228,8 @@ $prefix-cls: '#{$tonyname}-basic-upload';
     &__btn {
       position: relative;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       width: var(--thumb-size);
       height: var(--thumb-size);
       overflow: hidden;
@@ -261,17 +261,17 @@ $prefix-cls: '#{$tonyname}-basic-upload';
         left: 10%;
         z-index: 3;
         color: var(--text-primary-reverse);
-        opacity: 0;
         visibility: hidden;
-        transform: translateY(-50%);
+        opacity: 0;
         transition: all 0.15s;
+        transform: translateY(-50%);
       }
 
       &--upload,
       &--preview {
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
         width: 100%;
         height: 44px;
         margin-bottom: 8px;
@@ -299,9 +299,9 @@ $prefix-cls: '#{$tonyname}-basic-upload';
         right: 0;
         bottom: 0;
         left: 0;
-        background: rgba(0, 0, 0, 0.35);
-        content: '';
         visibility: hidden;
+        content: '';
+        background: rgba(0, 0, 0, 0.35);
       }
 
       &:hover {
@@ -310,8 +310,8 @@ $prefix-cls: '#{$tonyname}-basic-upload';
         }
 
         .#{$prefix-cls}-entry-thumb__img-inner {
-          opacity: 1;
           visibility: visible;
+          opacity: 1;
         }
       }
     }

@@ -117,8 +117,8 @@ export default defineComponent({
 
 .demo-custom-verify {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
   > svg {
     width: 1.3em;

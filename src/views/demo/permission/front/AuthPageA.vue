@@ -10,8 +10,8 @@ export default defineComponent({})
 <style lang="scss" scoped>
 .auth-page {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: 300px;
   font-size: 24px;
   color: #fff;

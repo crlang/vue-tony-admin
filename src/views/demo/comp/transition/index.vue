@@ -100,8 +100,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 .box {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 200px;
   height: 200px;
   margin-top: 20px;

@@ -44,8 +44,8 @@ $prefix-cls: '#{$tonyname}-multiple-tabs';
     &-btn {
       position: relative;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       width: var(--tabs-height);
       height: var(--tabs-height);
       cursor: pointer;
@@ -58,8 +58,8 @@ $prefix-cls: '#{$tonyname}-multiple-tabs';
 
     .el-dropdown {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       width: 100%;
       height: 100%;
       color: inherit;
@@ -71,8 +71,8 @@ $prefix-cls: '#{$tonyname}-multiple-tabs';
 
     &--icon {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       width: 100%;
       height: 100%;
     }
@@ -110,8 +110,8 @@ $prefix-cls: '#{$tonyname}-multiple-tabs';
     &-next {
       top: -2px;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       width: 20px;
       height: 100%;
       color: var(--el-text-color-primary);
@@ -148,8 +148,8 @@ $prefix-cls: '#{$tonyname}-multiple-tabs';
       .is-icon-close {
         width: 0;
         line-height: 1;
-        opacity: 0;
         visibility: hidden;
+        opacity: 0;
         transition: none;
         transition: all 0.1s linear;
 
@@ -174,8 +174,8 @@ $prefix-cls: '#{$tonyname}-multiple-tabs';
           position: absolute;
           inset: 0;
           z-index: -1;
-          background: var(--primary-bg-color);
           content: '';
+          background: var(--primary-bg-color);
           opacity: 0.8;
         }
 
@@ -183,8 +183,8 @@ $prefix-cls: '#{$tonyname}-multiple-tabs';
           width: 16px;
           height: 16px;
           line-height: 1;
-          opacity: 1;
           visibility: visible;
+          opacity: 1;
         }
       }
     }

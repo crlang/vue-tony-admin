@@ -64,8 +64,8 @@ $prefix-cls: '#{$tonyname}-basic-button';
 .#{$prefix-cls} {
   &__inner {
     display: inline-flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
     > .eleicon {
       &:first-child {

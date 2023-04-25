@@ -92,10 +92,10 @@ export default defineComponent({
 
 <style lang="scss">
 .demo-tree-action {
-  flex-grow: 1;
   display: flex;
-  justify-content: space-between;
+  flex-grow: 1;
   align-items: center;
+  justify-content: space-between;
   white-space: nowrap;
 
   > div {

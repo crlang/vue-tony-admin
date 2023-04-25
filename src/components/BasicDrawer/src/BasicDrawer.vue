@@ -225,11 +225,11 @@ $prefix-cls: '#{$tonyname}-basic-drawer';
 
   .el-drawer__body {
     display: flex;
+    flex: 1;
+    flex-direction: column;
     width: 100%;
     padding: 0;
     overflow: hidden;
-    flex: 1;
-    flex-direction: column;
   }
 
   .scrollbar__wrap {
@@ -244,12 +244,12 @@ $prefix-cls: '#{$tonyname}-basic-drawer';
 
     &__back {
       display: flex;
-      justify-content: center;
+      flex-shrink: 0;
       align-items: center;
+      justify-content: center;
       width: 60px;
       height: 60px;
       cursor: pointer;
-      flex-shrink: 0;
 
       &:hover {
         color: var(--primary-color);
@@ -258,12 +258,12 @@ $prefix-cls: '#{$tonyname}-basic-drawer';
 
     &__title {
       display: flex;
+      flex: 1;
       align-items: center;
       padding: 0;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      flex: 1;
     }
 
     &__toolbar {
@@ -272,20 +272,20 @@ $prefix-cls: '#{$tonyname}-basic-drawer';
   }
 
   &-body {
+    flex-grow: 1;
     width: auto;
     height: auto;
-    flex-grow: 1;
     padding: 0 16px;
   }
 
   &-footer {
     display: flex;
-    justify-content: flex-end;
+    flex-shrink: 0;
     align-items: center;
+    justify-content: flex-end;
     width: 100%;
     height: 48px;
     padding: 0 16px;
-    flex-shrink: 0;
   }
 }
 </style>

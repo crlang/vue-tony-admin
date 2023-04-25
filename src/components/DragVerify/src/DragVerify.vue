@@ -356,10 +356,10 @@ $prefix-cls: '#{$tonyname}-basic-drag-verify';
   position: relative;
   overflow: hidden;
   text-align: center;
+  user-select: none;
   background-color: var(--white-color);
   border: 1px solid var(--border-color-light);
   border-radius: var(--varify-radius);
-  user-select: none;
 
   &-bar {
     position: absolute;
@@ -378,11 +378,11 @@ $prefix-cls: '#{$tonyname}-basic-drag-verify';
     position: absolute;
     top: 0;
     font-size: 12px;
-    text-size-adjust: none;
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #333), color-stop(0.4, #333), color-stop(0.5, #fff), color-stop(0.6, #333), color-stop(1, #333));
-    animation: slidetounlock 3s infinite;
-    background-clip: text;
     user-select: none;
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #333), color-stop(0.4, #333), color-stop(0.5, #fff), color-stop(0.6, #333), color-stop(1, #333));
+    background-clip: text;
+    animation: slidetounlock 3s infinite;
+    text-size-adjust: none;
 
     > span {
       display: inline-block;
@@ -402,8 +402,8 @@ $prefix-cls: '#{$tonyname}-basic-drag-verify';
     top: 0;
     left: 0;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     cursor: move;
     background-color: var(--background-primary-color);
     border-radius: var(--varify-radius);

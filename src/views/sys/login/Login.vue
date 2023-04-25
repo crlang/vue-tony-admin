@@ -116,11 +116,11 @@ $prefix-cls: '#{$tonyname}-login';
 
 .#{$prefix-cls} {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  flex-direction: column;
 
   &__inner {
     width: 100%;
@@ -148,11 +148,11 @@ $prefix-cls: '#{$tonyname}-login';
   &__left {
     position: relative;
     display: flex;
-    justify-content: flex-end;
-    height: 100vh;
-    max-width: 80%;
-    padding: 0 2.5rem 6rem;
     flex-direction: column;
+    justify-content: flex-end;
+    max-width: 80%;
+    height: 100vh;
+    padding: 0 2.5rem 6rem;
     color: var(--text-primary-color);
 
     > h1 {
@@ -192,13 +192,13 @@ $prefix-cls: '#{$tonyname}-login';
 
   &__logo {
     display: flex;
+    flex-direction: column;
     align-items: center;
     font-size: 1.875rem;
     font-weight: 700;
     line-height: 1;
     letter-spacing: 2px;
     white-space: nowrap;
-    flex-direction: column;
 
     > p {
       margin: 2.5rem 0;
@@ -247,8 +247,8 @@ $prefix-cls: '#{$tonyname}-login';
 
   .login--submit {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     width: 100%;
     height: 44px;
     padding: 0;

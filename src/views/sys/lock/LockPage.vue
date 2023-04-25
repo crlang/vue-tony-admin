@@ -112,8 +112,8 @@ $prefix-cls: '#{$tonyname}-lock-page';
   left: 0;
   z-index: 1001;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   background: #000;
 
   &__unlock {
@@ -121,14 +121,14 @@ $prefix-cls: '#{$tonyname}-lock-page';
     top: 0;
     z-index: 3;
     display: flex;
+    flex-direction: column;
     align-items: center;
     padding: 12px;
     color: rgba(255, 255, 255, 0.85);
     text-align: center;
     cursor: pointer;
-    animation: sectimer 1s ease-in infinite;
     transition: all 0.5s linear;
-    flex-direction: column;
+    animation: sectimer 1s ease-in infinite;
 
     &:hover {
       color: rgba(255, 255, 255, 0.95);
@@ -146,35 +146,35 @@ $prefix-cls: '#{$tonyname}-lock-page';
   &__minute {
     position: relative;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     width: 48%;
     font-weight: 700;
     color: rgba(255, 255, 255, 0.65);
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 30px;
 
-    @media only screen and (max-width: 767px) {
+    @media only screen and (width <= 767px) {
       span:not(.meridiem) {
         font-size: 160px;
       }
     }
-    @media only screen and (min-width: 768px) {
+    @media only screen and (width >= 768px) {
       span:not(.meridiem) {
         font-size: 160px;
       }
     }
-    @media only screen and (min-width: 992px) {
+    @media only screen and (width >= 992px) {
       span:not(.meridiem) {
         font-size: 220px;
       }
     }
-    @media only screen and (min-width: 1200px) {
+    @media only screen and (width >= 1200px) {
       span:not(.meridiem) {
         font-size: 260px;
       }
     }
-    @media only screen and (min-width: 1920px) {
+    @media only screen and (width >= 1920px) {
       span:not(.meridiem) {
         font-size: 320px;
       }
@@ -204,8 +204,8 @@ $prefix-cls: '#{$tonyname}-lock-page';
     top: 0;
     left: 0;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);

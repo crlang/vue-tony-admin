@@ -150,8 +150,8 @@ $prefix-cls: '#{$tonyname}-app-icon';
 
 .#{$prefix-cls} {
   display: inline-flex;
-  justify-self: center;
   align-self: center;
+  justify-self: center;
 
   svg {
     width: 1em;

@@ -29,14 +29,14 @@ export default defineComponent({
 .lazy-base-demo {
   &-wrap {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 70%;
     height: 2000px;
     margin: 20px auto;
     text-align: center;
     background-color: var(--background-primary-color);
-    flex-direction: column;
 
     h1 {
       height: 1300px;

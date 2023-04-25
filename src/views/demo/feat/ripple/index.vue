@@ -19,8 +19,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 .demo-box {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 300px;
   height: 300px;
   font-size: 24px;

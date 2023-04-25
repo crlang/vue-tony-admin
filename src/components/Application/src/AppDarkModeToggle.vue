@@ -38,8 +38,8 @@ $prefix-cls: '#{$tonyname}-dark-switch';
 .#{$prefix-cls} {
   position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   width: 50px;
   height: 26px;
   padding: 0 6px;

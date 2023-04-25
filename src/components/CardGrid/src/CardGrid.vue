@@ -58,17 +58,17 @@ $prefix-cls: '#{$tonyname}-card-grid';
   }
 
   .el-card__body {
-    clear: both;
     padding: 0;
     margin: -1px 0 0 -1px;
+    clear: both;
 
     &::after {
       display: block;
-      clear: both;
       height: 0;
+      clear: both;
       font-size: 0;
-      content: '.';
       visibility: hidden;
+      content: '.';
     }
   }
 
@@ -91,9 +91,9 @@ $prefix-cls: '#{$tonyname}-card-grid';
   &.is-center {
     .#{$prefix-cls}__item {
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
   }
 }

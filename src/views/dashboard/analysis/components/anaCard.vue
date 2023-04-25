@@ -88,8 +88,8 @@ function getBarColor(v: number) {
 
     > .t2 {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       width: 1.875rem;
       height: 1.875rem;
       color: var(--text-secondary-color);
@@ -141,9 +141,9 @@ function getBarColor(v: number) {
       bottom: 0;
       left: 0;
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
 
       > span {
         margin-top: 0.5rem;

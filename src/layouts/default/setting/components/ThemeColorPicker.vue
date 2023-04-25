@@ -61,9 +61,9 @@ $prefix-cls: '#{$tonyname}-setting-theme-picker';
 
 .#{$prefix-cls} {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   margin: 16px 0;
-  flex-wrap: wrap;
 
   &__item {
     width: 20px;
@@ -78,8 +78,8 @@ $prefix-cls: '#{$tonyname}-setting-theme-picker';
 
     &--active {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       border: 1px solid var(--primary-color);
 
       svg {

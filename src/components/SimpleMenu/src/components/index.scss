@@ -30,6 +30,7 @@ $simple-submenu: '#{$tonyname}-simple-submenu';
     position: relative;
     z-index: 1;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     padding: 14px 28px;
     overflow: hidden;
@@ -37,7 +38,6 @@ $simple-submenu: '#{$tonyname}-simple-submenu';
     white-space: nowrap;
     cursor: pointer;
     user-select: none;
-    flex-wrap: wrap;
     @include MixSiderBG();
 
     &:hover {
@@ -47,12 +47,12 @@ $simple-submenu: '#{$tonyname}-simple-submenu';
     // Popup -> Tooltip
     &--tooltip {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
       width: 100%;
       width: var(--el-aside-width);
       height: var(--el-aside-width);
-      flex-direction: column;
     }
 
     &-icon {
@@ -96,8 +96,8 @@ $simple-submenu: '#{$tonyname}-simple-submenu';
 
     &--opened {
       > .#{$simple-submenu}-item-title > .#{$simple-submenu}-item-title-icon {
-        transform: translateY(-50%) rotate(180deg);
         transition: all var(--t-fast) var(--t-smooth);
+        transform: translateY(-50%) rotate(180deg);
       }
     }
 
@@ -129,8 +129,8 @@ $simple-submenu: '#{$tonyname}-simple-submenu';
       @include MenuBasicItem();
       @include MenuSimpleItem();
       > .#{$simple-submenu}-item-title > .#{$simple-submenu}-item-title-icon {
-        transform: translateY(-50%) rotate(-90deg);
         transition: all var(--t-fast) var(--t-smooth);
+        transform: translateY(-50%) rotate(-90deg);
       }
 
       .#{$simple-submenu}-item--opened {
@@ -177,8 +177,8 @@ $simple-submenu: '#{$tonyname}-simple-submenu';
     // Popup
     .#{$simple-submenu}-item--popup {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       width: var(--el-aside-width);
       height: var(--el-aside-width);
     }

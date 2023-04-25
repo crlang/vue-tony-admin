@@ -135,8 +135,8 @@ $prefix-cls: '#{$tonyname}-app-exception-page';
 
 .#{$prefix-cls} {
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
 
   > .el-result__icon {
     > img {

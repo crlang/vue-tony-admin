@@ -54,8 +54,8 @@ $ele-image: 'el-image';
   }
 
   &.is-disabled {
-    opacity: 0.8;
     filter: brightness(1.2);
+    opacity: 0.8;
 
     &:hover,
     &:focus {
