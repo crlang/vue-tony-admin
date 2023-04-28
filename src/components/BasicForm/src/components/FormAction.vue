@@ -1,6 +1,6 @@
 <template>
   <ElCol v-bind="actionColOptions">
-    <ElFormItem>
+    <ElFormItem :class="prefixCls+'-submit-btns'">
       <slot name="resetBefore"></slot>
       <ElButton
         type="default"
@@ -54,7 +54,10 @@ export default defineComponent({
     SvgIcon,
   },
   inheritAttrs: false,
-  props: formActionProps,
+  props: {
+    ...formActionProps,
+    prefixCls: String,
+  },
   emits: ['toggle-advanced'],
   setup(props, { emit }) {
     /**

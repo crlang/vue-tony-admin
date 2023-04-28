@@ -22,7 +22,11 @@
         </FormItem>
       </template>
 
-      <FormAction v-bind="getActionProps" v-if="getProps.showActionButtonGroup" @toggle-advanced="handleToggleAdvanced">
+      <FormAction
+        v-bind="getActionProps"
+        :prefixCls="prefixCls"
+        v-if="getProps.showActionButtonGroup"
+        @toggle-advanced="handleToggleAdvanced">
         <template #[item]="data" v-for="item in ['resetBefore', 'submitBefore', 'advanceBefore', 'advanceAfter']">
           <slot :name="item" v-bind="data || {}"></slot>
         </template>
