@@ -1,19 +1,19 @@
-import { defHttp } from '@/utils/http/axios'
-import { DemoParams, DemoListGetResultModel } from './model/tableModel'
+import type { DemoParams, DemoListGetResultModel } from './model/tableModel'
+
+// import { defHttp } from '@/utils/http/axios'
+import { GetApiData } from '@/apidata/index'
 
 enum Api {
   DEMO_LIST = '/table/getDemoList',
 }
 
-/**
- * @description: Get sample list value
- */
-
-export const demoListApi = (params: DemoParams) =>
-  defHttp.get<DemoListGetResultModel>({
+export const demoListApi = (params: DemoParams) => {
+  // return defHttp.get<DemoListGetResultModel>({
+  return GetApiData<DemoListGetResultModel>({
     url: Api.DEMO_LIST,
     params,
     headers: {
       ignoreCancelToken: true,
     },
   })
+}

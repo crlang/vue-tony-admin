@@ -1,11 +1,11 @@
-import { createFakeUserList } from '../sys/user'
-import { MockMethod } from 'vite-plugin-mock'
-import { resultError, resultPageSuccess, resultSuccess } from '../_util'
+import Mock from 'mockjs'
+
+import { createFailMsg, createFakeUserList, createPagination, createSuccessMsg } from '../util'
 
 const accountList = (() => {
   const result: any[] = []
   for (let index = 0; index < 20; index++) {
-    result.push({
+    result.push(Mock.mock({
       id: `${index}`,
       account: '@first',
       email: '@email',
@@ -14,7 +14,7 @@ const accountList = (() => {
       createTime: '@datetime',
       remark: '@cword(10,20)',
       'status|1': ['0', '1'],
-    })
+    }))
   }
   return result
 })()
@@ -22,7 +22,7 @@ const accountList = (() => {
 const roleList = (() => {
   const result: any[] = []
   for (let index = 0; index < 4; index++) {
-    result.push({
+    result.push(Mock.mock({
       id: index + 1,
       orderNo: `${index + 1}`,
       roleName: ['超级管理员', '管理员', '文章管理员', '普通用户'][index],
@@ -31,7 +31,7 @@ const roleList = (() => {
       remark: '@cword(10,20)',
       menu: [['0', '1', '2'], ['0', '1'], ['0', '2'], ['2']][index],
       'status|1': ['0', '1'],
-    })
+    }))
   }
   return result
 })()
@@ -39,7 +39,7 @@ const roleList = (() => {
 const deptList = (() => {
   const result: any[] = []
   for (let index = 0; index < 3; index++) {
-    result.push({
+    result.push(Mock.mock({
       id: `${index}`,
       deptName: ['华东分部', '华南分部', '西北分部'][index],
       orderNo: index + 1,
@@ -62,7 +62,7 @@ const deptList = (() => {
         }
         return children
       })(),
-    })
+    }))
   }
   return result
 })()
@@ -70,7 +70,7 @@ const deptList = (() => {
 const menuList = (() => {
   const result: any[] = []
   for (let index = 0; index < 3; index++) {
-    result.push({
+    result.push(Mock.mock({
       id: `${index}`,
       icon: ['ep:data-line', 'ep:key', 'ep:compass'][index],
       component: 'LAYOUT',
@@ -127,78 +127,106 @@ const menuList = (() => {
         }
         return children
       })(),
-    })
+    }))
   }
   return result
 })()
 
 export default [
   {
-    url: '/basic-api/system/getAccountList',
+    url: '/system/getAccountList',
     timeout: 100,
     method: 'get',
-    response: ({ query }) => {
-      const { page = 1, pageSize = 20 } = query
-      return resultPageSuccess(page, pageSize, accountList)
+    response: (params) => {
+      const { page = 1, pageSize = 20 } = params
+
+      return new Promise((resolve) => {
+        const pageData = createPagination(page, pageSize, accountList)
+
+        return resolve(createSuccessMsg({
+          items: pageData,
+          total: accountList.length,
+        }))
+      })
     },
   },
   {
-    url: '/basic-api/system/getRoleListByPage',
+    url: '/system/getRoleListByPage',
     timeout: 100,
     method: 'get',
-    response: ({ query }) => {
-      const { page = 1, pageSize = 20 } = query
-      return resultPageSuccess(page, pageSize, roleList)
+    response: (params) => {
+      const { page = 1, pageSize = 20 } = params
+
+      return new Promise((resolve) => {
+        const pageData = createPagination(page, pageSize, roleList)
+
+        return resolve(createSuccessMsg({
+          items: pageData,
+          total: roleList.length,
+        }))
+      })
     },
   },
   {
-    url: '/basic-api/system/setRoleStatus',
+    url: '/system/setRoleStatus',
     timeout: 500,
     method: 'post',
-    response: ({ query }) => {
-      const { id, status } = query
-      return resultSuccess({ id, status })
+    response: (params) => {
+      const { id, status } = params
+
+      return new Promise((resolve) => {
+        return resolve(createSuccessMsg({ id, status }))
+      })
     },
   },
   {
-    url: '/basic-api/system/getAllRoleList',
+    url: '/system/getAllRoleList',
     timeout: 100,
     method: 'get',
     response: () => {
-      return resultSuccess(roleList)
+      return new Promise((resolve) => {
+        return resolve(createSuccessMsg(roleList))
+      })
     },
   },
   {
-    url: '/basic-api/system/getDeptList',
+    url: '/system/getDeptList',
     timeout: 100,
     method: 'get',
     response: () => {
-      return resultSuccess(deptList)
+      return new Promise((resolve) => {
+        return resolve(createSuccessMsg(deptList))
+      })
     },
   },
   {
-    url: '/basic-api/system/getMenuList',
+    url: '/system/getMenuList',
     timeout: 100,
     method: 'get',
     response: () => {
-      return resultSuccess(menuList)
+      return new Promise((resolve) => {
+        return resolve(createSuccessMsg(menuList))
+      })
     },
   },
   {
-    url: '/basic-api/system/accountExist',
+    url: '/system/accountExist',
     timeout: 500,
     method: 'post',
-    response: ({ body }) => {
-      const { account } = body || {}
-      const demoUser = createFakeUserList()
-      if (account && account.indexOf('admin') !== -1) {
-        return resultError('该字段不能包含admin')
-      } else {
-        if (demoUser.some((k) => k.username === account)) {
-          return resultError(`${account} is exist`)
+    response: (params) => {
+      const { account } = params
+
+      return new Promise((resolve, reject) => {
+        const demoUser = createFakeUserList()
+        if (account && account.indexOf('admin') !== -1) {
+          return reject(createFailMsg('该字段不能包含admin'))
+        } else {
+          if (demoUser.some((k) => k.username === account)) {
+            return reject(createFailMsg(`${account} 已存在`))
+          }
+          return resolve(createSuccessMsg(`${account} 可用`))
         }
-        return resultSuccess(`${account} can use`)
-      }
+      })
     },
   },
-] as MockMethod[]
+]

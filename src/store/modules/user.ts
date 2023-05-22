@@ -1,5 +1,4 @@
 import type { UserInfo } from '#/store'
-import type { ErrorMessageMode } from '#/axios'
 import { defineStore } from 'pinia'
 import { store } from '@/store'
 import { RoleEnum } from '@/enums/roleEnum'
@@ -21,7 +20,6 @@ interface UserState {
   sessionTimeout?: boolean
   lastUpdateTime: number
 }
-
 export const useUserStore = defineStore({
   id: 'app-user',
   state: (): UserState => ({
@@ -57,6 +55,7 @@ export const useUserStore = defineStore({
     setToken(info: string | undefined) {
       this.token = info || '' // for null or undefined value
       setAuthCache(TOKEN_KEY, info)
+      localStorage.setItem('apitoken', info)
     },
     setRoleList(roleList: RoleEnum[]) {
       this.roleList = roleList
@@ -79,27 +78,18 @@ export const useUserStore = defineStore({
     /**
      * @description: login
      */
-    async login(
-      params: LoginParams & {
-        goHome?: boolean
-        mode?: ErrorMessageMode
-      },
-    ): Promise<GetUserInfoModel | null> {
+    async login(params: LoginParams) {
       try {
-        const { goHome = true, mode, ...loginParams } = params
-        const data = await loginApi(loginParams, mode)
-        const { token } = data
-
+        const data = await loginApi(params)
         // save token
-        this.setToken(token)
-        return this.afterLoginAction(goHome)
+        this.setToken(data?.token)
+        return this.afterLoginAction(true)
       } catch (error) {
         return Promise.reject(error)
       }
     },
     async afterLoginAction(goHome?: boolean): Promise<GetUserInfoModel | null> {
       if (!this.getToken) return null
-      // get user info
       const userInfo = await this.getUserInfoAction()
 
       const sessionTimeout = this.sessionTimeout
@@ -121,15 +111,14 @@ export const useUserStore = defineStore({
     },
     async getUserInfoAction(): Promise<UserInfo | null> {
       if (!this.getToken) return null
+
       const userInfo = await getUserInfo()
       const { roles = [] } = userInfo
       if (Array.isArray(roles)) {
         const roleList = roles.map((item) => item.value) as RoleEnum[]
         this.setRoleList(roleList)
-      } else {
-        userInfo.roles = []
-        this.setRoleList([])
       }
+
       this.setUserInfo(userInfo)
       return userInfo
     },

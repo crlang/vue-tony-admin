@@ -19,7 +19,6 @@ Vue Tony Admin is a free and open source management side frontend template. Base
 - **🎨 Variable Themes**: Configurable themes
 - **👓 Dark Mode**: One step ahead of dark mode support
 - **🌐 Internationalization**: Built-in perfect internationalization solution
-- **🧩 Mock Data** Built-in mock data scheme
 - **🔒 Permission Control** Built-in perfect dynamic routing permission generation scheme
 - **🎫 Easy-to-use components** Encapsulation 30+ common and easy-to-use components
 

@@ -26,7 +26,7 @@ export default defineComponent({
   setup() {
     const userStore = useUserStore()
     async function test1() {
-      // 示例网站生产环境用的是mock数据，不能返回Http状态码，
+      // 示例网站生产环境用的是假数据，不能返回Http状态码，
       // 所以在生产环境直接改变状态来达到测试效果
       if (import.meta.env.PROD) {
         userStore.setToken(undefined)

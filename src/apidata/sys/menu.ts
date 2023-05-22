@@ -1,6 +1,4 @@
-import { resultSuccess, resultError, getRequestToken, requestParams } from '../_util'
-import { MockMethod } from 'vite-plugin-mock'
-import { createFakeUserList } from './user'
+import { createFailMsg, createFakeUserList, createSuccessMsg, getFakeUserToken } from '../util'
 
 // single
 const dashboardRoute = {
@@ -236,34 +234,32 @@ const linkRoute = {
 
 export default [
   {
-    url: '/basic-api/getMenuList',
+    url: '/getMenuList',
     timeout: 1000,
     method: 'get',
-    response: (request: requestParams) => {
-      const token = getRequestToken(request)
-      if (!token) {
-        return resultError('Invalid token!')
-      }
-      const checkUser = createFakeUserList().find((item) => item.token === token)
-      if (!checkUser) {
-        return resultError('Invalid user token!')
-      }
-      const id = checkUser.userId
-      let menu: Object[]
-      switch (id) {
-      case '1':
-        dashboardRoute.redirect = `${dashboardRoute.path}/${dashboardRoute.children[0].path}`
-        menu = [dashboardRoute, authRoute, levelRoute, sysRoute, linkRoute]
-        break
-      case '2':
-        dashboardRoute.redirect = `${dashboardRoute.path}/${dashboardRoute.children[1].path}`
-        menu = [dashboardRoute, authRoute, levelRoute, linkRoute]
-        break
-      default:
-        menu = []
-      }
+    response: (_params) => {
+      return new Promise((resolve, reject) => {
+        const checkUser = createFakeUserList().find((item) => item.token === getFakeUserToken())
+        if (!checkUser) {
+          return reject(createFailMsg('用户信息错误或不存在'))
+        }
 
-      return resultSuccess(menu)
+        const id = checkUser.userId
+        let menu: Object[]
+        switch (id) {
+        case '1':
+          dashboardRoute.redirect = `${dashboardRoute.path}/${dashboardRoute.children[0].path}`
+          menu = [dashboardRoute, authRoute, levelRoute, sysRoute, linkRoute]
+          break
+        case '2':
+          dashboardRoute.redirect = `${dashboardRoute.path}/${dashboardRoute.children[1].path}`
+          menu = [dashboardRoute, authRoute, levelRoute, linkRoute]
+          break
+        default:
+          menu = []
+        }
+        return resolve(createSuccessMsg(menu))
+      })
     },
   },
-] as MockMethod[]
+]

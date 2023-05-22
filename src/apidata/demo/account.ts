@@ -1,6 +1,4 @@
-import { MockMethod } from 'vite-plugin-mock'
-import { resultSuccess, resultError } from '../_util'
-import { ResultEnum } from '@/enums/httpEnum'
+import { createFailMsg, createSuccessMsg } from '../util'
 
 const userInfo = {
   name: 'Tony',
@@ -45,27 +43,33 @@ const userInfo = {
 
 export default [
   {
-    url: '/basic-api/account/getAccountInfo',
+    url: '/account/getAccountInfo',
     timeout: 1000,
     method: 'get',
     response: () => {
-      return resultSuccess(userInfo)
+      return new Promise((resolve) => {
+        return resolve(createSuccessMsg(userInfo))
+      })
     },
   },
   {
-    url: '/basic-api/user/sessionTimeout',
+    url: '/user/sessionTimeout',
     method: 'post',
     statusCode: 401,
     response: () => {
-      return resultError()
+      return new Promise((_, reject) => {
+        return reject(createFailMsg(null))
+      })
     },
   },
   {
-    url: '/basic-api/user/tokenExpired',
+    url: '/user/tokenExpired',
     method: 'post',
     statusCode: 200,
     response: () => {
-      return resultError('Token Expired!', { code: ResultEnum.TIMEOUT as number })
+      return new Promise((_, reject) => {
+        return reject(createFailMsg('Token 已过期', 401))
+      })
     },
   },
-] as MockMethod[]
+]

@@ -1,7 +1,5 @@
 import { BasicPageParams, BasicFetchResult } from '@/api/model/baseModel'
-/**
- * @description: Request list interface parameters
- */
+
 export type DemoParams = BasicPageParams
 
 export interface DemoListItem {
@@ -15,7 +13,4 @@ export interface DemoListItem {
   status: number
 }
 
-/**
- * @description: Request list return value
- */
 export type DemoListGetResultModel = BasicFetchResult<DemoListItem>

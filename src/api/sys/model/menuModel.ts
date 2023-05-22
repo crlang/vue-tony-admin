@@ -10,7 +10,4 @@ export interface RouteItem {
   children?: RouteItem[]
 }
 
-/**
- * @description: Get menu return value
- */
 export type getMenuListResultModel = RouteItem[]

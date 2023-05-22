@@ -61,9 +61,6 @@ export interface RoleListItem {
   createTime: string
 }
 
-/**
- * @description: Request list return value
- */
 export type AccountListGetResultModel = BasicFetchResult<AccountListItem>
 
 export type DeptListGetResultModel = BasicFetchResult<DeptListItem>

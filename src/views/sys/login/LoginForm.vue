@@ -49,7 +49,6 @@ const formData = reactive({
   password: '123456',
 })
 const { validForm } = useFormValid(formRef)
-
 const getShow = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN)
 
 async function handleLogin() {
@@ -60,7 +59,6 @@ async function handleLogin() {
     const userInfo = await userStore.login({
       password: formData.password,
       username: formData.account,
-      mode: 'none',
     })
     if (userInfo) {
       createNotification({

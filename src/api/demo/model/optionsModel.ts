@@ -9,7 +9,4 @@ export interface selectParams {
   id: number | string
 }
 
-/**
- * @description: Request list return value
- */
 export type DemoOptionsGetResultModel = BasicFetchResult<DemoOptionsItem>

@@ -47,7 +47,6 @@ export default defineComponent({
   setup() {
     const [registerTable] = useTable({
       title: '自定义列内容',
-      titleHelpMessage: '表格中所有头像、图片均为mock生成，仅用于演示图片占位',
       api: demoListApi,
       columns: getCustomCellColumns(),
       border: true,

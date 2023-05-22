@@ -1,14 +1,13 @@
-import { defHttp } from '@/utils/http/axios'
-import { getMenuListResultModel } from './model/menuModel'
+import type { getMenuListResultModel } from './model/menuModel'
+
+// import { defHttp } from '@/utils/http/axios'
+import { GetApiData } from '@/apidata/index'
 
 enum Api {
   GetMenuList = '/getMenuList',
 }
 
-/**
- * @description: Get user menu based on id
- */
-
 export const getMenuList = () => {
-  return defHttp.get<getMenuListResultModel>({ url: Api.GetMenuList })
+  // return defHttp.get<getMenuListResultModel>({ url: Api.GetMenuList })
+  return GetApiData<getMenuListResultModel>({ url: Api.GetMenuList })
 }

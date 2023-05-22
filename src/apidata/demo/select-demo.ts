@@ -1,5 +1,4 @@
-import { MockMethod } from 'vite-plugin-mock'
-import { resultSuccess } from '../_util'
+import { createSuccessMsg } from '../util'
 
 const demoList = (keyword) => {
   const result = {
@@ -16,12 +15,15 @@ const demoList = (keyword) => {
 
 export default [
   {
-    url: '/basic-api/select/getDemoOptions',
+    url: '/select/getDemoOptions',
     timeout: 1000,
     method: 'get',
-    response: ({ query }) => {
-      const { keyword } = query
-      return resultSuccess(demoList(keyword))
+    response: (params) => {
+      const { keyword } = params
+
+      return new Promise((resolve) => {
+        return resolve(createSuccessMsg(demoList(keyword)))
+      })
     },
   },
-] as MockMethod[]
+]
