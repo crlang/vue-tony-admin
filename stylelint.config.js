@@ -1,9 +1,5 @@
 module.exports = {
-  extends: [
-    'stylelint-config-standard-scss',
-    'stylelint-config-recommended-vue',
-    'stylelint-config-prettier',
-  ],
+  extends: ['stylelint-config-standard-scss', 'stylelint-config-recommended-vue', 'stylelint-config-prettier'],
   overrides: [
     {
       files: ['*.vue', '**/*.vue'],
@@ -29,7 +25,7 @@ module.exports = {
     'function-url-quotes': 'always',
     // 'number-leading-zero': 'always', // v15
     // 'number-no-trailing-zeros': true, // v15
-    'string-quotes': 'single', // v15
+    // 'string-quotes': 'single', // v15
     'length-zero-no-unit': [
       true,
       {
@@ -63,7 +59,8 @@ module.exports = {
         ignoreShorthands: ['flex-flow', 'inset'],
       },
     ],
-    'declaration-block-no-duplicate-properties': [true,
+    'declaration-block-no-duplicate-properties': [
+      true,
       {
         disableFix: true,
         severity: 'warning',
@@ -130,17 +127,7 @@ module.exports = {
       },
       {
         // Position.
-        properties: [
-          'position',
-          'inset',
-          'inset-block',
-          'inset-inline',
-          'top',
-          'right',
-          'bottom',
-          'left',
-          'z-index',
-        ],
+        properties: ['position', 'inset', 'inset-block', 'inset-inline', 'top', 'right', 'bottom', 'left', 'z-index'],
       },
       {
         // Display mode.
@@ -148,15 +135,7 @@ module.exports = {
       },
       {
         // Flexible boxes.
-        properties: [
-          'flex',
-          'flex-basis',
-          'flex-direction',
-          'flex-flow',
-          'flex-grow',
-          'flex-shrink',
-          'flex-wrap',
-        ],
+        properties: ['flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap'],
       },
       {
         // Grid layout.
@@ -187,17 +166,7 @@ module.exports = {
       },
       {
         // Layout alignment.
-        properties: [
-          'place-content',
-          'place-items',
-          'place-self',
-          'align-content',
-          'align-items',
-          'align-self',
-          'justify-content',
-          'justify-items',
-          'justify-self',
-        ],
+        properties: ['place-content', 'place-items', 'place-self', 'align-content', 'align-items', 'align-self', 'justify-content', 'justify-items', 'justify-self'],
       },
       {
         // Order.
