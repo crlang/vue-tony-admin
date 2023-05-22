@@ -1,4 +1,4 @@
-import { withInstall, withNoopInstall } from '@/utils'
+import { withInstall } from '@/utils'
 import list from './src/index.vue'
 import listItem from './src/item.vue'
 
@@ -6,5 +6,5 @@ import listItem from './src/item.vue'
 export const List = withInstall(list, {
   listItem,
 })
-export const ListItem = withNoopInstall(listItem)
+export const ListItem = withInstall(listItem)
 export default List

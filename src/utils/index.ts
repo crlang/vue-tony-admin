@@ -3,8 +3,6 @@ import type { App, Ref, Component } from 'vue'
 import type { SFCInstallWithContext, SFCWithInstall } from '#/utils'
 
 import { unref } from 'vue'
-// eslint-disable-next-line vue/prefer-import-from-vue
-import { NOOP } from '@vue/shared'
 
 import { error } from './log'
 import { isObject } from '@vueuse/core'
@@ -78,16 +76,16 @@ export function getRawRoute(route: RouteLocationNormalized): RouteLocationNormal
 type EventShim = {
   new (...args: any[]): {
     $props: {
-      onClick?: (...args: any[]) => void;
-    };
-  };
-};
+      onClick?: (...args: any[]) => void
+    }
+  }
+}
 
 export type WithInstall<T> = T & {
-  install(app: App): void;
-} & EventShim;
+  install(app: App): void
+} & EventShim
 
-export type CustomComponent = Component & { displayName?: string };
+export type CustomComponent = Component & { displayName?: string }
 
 export const withInstall = <T extends CustomComponent>(component: T, alias?: string) => {
   (component as Record<string, unknown>).install = (app: App) => {
@@ -118,19 +116,6 @@ export const withInstallFunction = <T>(fn: T, name: string) => {
   }
 
   return fn as SFCInstallWithContext<T>
-}
-
-/**
- * 注册循环组件
- *
- * Register the loop component
- * @param component component
- */
-export const withNoopInstall = <T>(component: T) => {
-  // eslint-disable-next-line prettier/prettier
-  (component as SFCWithInstall<T>).install = NOOP
-
-  return component as SFCWithInstall<T>
 }
 
 export function buildUUID(): string {

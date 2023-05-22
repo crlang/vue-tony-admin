@@ -53,13 +53,13 @@ git clone https://github.com/crlang/vue-tony-admin.git
 cd vue-tony-admin
 
 # installation dependencies
-yarn install
+pnpm install
 
 # run
-yarn dev
+pnpm dev
 
 # build
-yarn build
+pnpm build
 
 ```
 

@@ -48,13 +48,13 @@ git clone https://github.com/crlang/vue-tony-admin.git
 cd vue-tony-admin
 
 # 安装依赖
-yarn install
+pnpm install
 
 # 运行
-yarn dev
+pnpm dev
 
 # 打包
-yarn build
+pnpm build
 
 ```
 

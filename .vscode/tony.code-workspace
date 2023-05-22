@@ -2,7 +2,7 @@
   "folders": [
     {
       "path": ".."
-    },
+    }
   ],
   "settings": {
     "editor.formatOnSave": false,
@@ -48,7 +48,7 @@
       "screenshots": true,
       "yarn-error.log": true,
       "**/.yarn": true,
-      "**/.svg": true,
+      "**/.svg": true
     },
     "files.exclude": {
       "**/.cache": true,
@@ -74,32 +74,19 @@
       "**/yarn.lock": true
     },
     "stylelint.enable": true,
-    "stylelint.packageManager": "yarn",
-    "stylelint.validate": [
-      "css",
-      "postcss",
-      "scss",
-      "vue",
-      "sass"
-   ],
+    "stylelint.packageManager": "pnpm",
+    "stylelint.validate": ["css", "postcss", "scss", "vue", "sass"],
     "workbench.settings.enableNaturalLanguageSearch": false,
     "path-intellisense.mappings": {
       "@/": "${workspaceRoot}/src",
-      "#/": "${workspaceRoot}/types",
+      "#/": "${workspaceRoot}/types"
     },
     "typescript.updateImportsOnFileMove.enabled": "always",
     "workbench.sideBar.location": "left",
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true
     },
-    "eslint.validate": [
-      "javascript",
-      "typescript",
-      "html",
-      "vue",
-      "tsx",
-      "typescriptreact"
-    ],
+    "eslint.validate": ["javascript", "typescript", "html", "vue", "tsx", "typescriptreact"],
     "i18n-ally.localesPaths": ["src/locales/lang"],
     "i18n-ally.keystyle": "nested",
     "i18n-ally.sortKeys": true,
@@ -111,10 +98,7 @@
     "i18n-ally.enabledFrameworks": ["vue", "react"],
     "volar.codeLens.scriptSetupTools": true,
     "volar.icon.preview": true,
-    "iconify.excludes": [
-      "el",
-      "eva"
-    ],
+    "iconify.excludes": ["el", "eva"],
     "vue.features.codeActions.enable": false
   }
 }
