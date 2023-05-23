@@ -1,3 +1,23 @@
+## [0.7.1](https://github.com/crlang/vue-tony-admin/compare/0.6.1...0.7.1) (2023-05-23)
+
+## Breaking changes
+
+- Upgraded to Vite4, adjusted the packaging method, increased the packaging speed by 2.2 times, and increased the loading speed by 3.1 times
+- Migrate from yarn to pnpm for better dependency handling
+
+### Bug Fixes
+
+- Fix upload prompt error ([dca617c](https://github.com/crlang/vue-tony-admin/commit/dca617ce00fe36e65d65e73b71e1cf6a7895d20f))
+- Fix bug, useMessage supports closeAll method ([d0cc3b8](https://github.com/crlang/vue-tony-admin/commit/d0cc3b8c9e6e1250d5fd6a5f83e4cb120cad73ec))
+- Remove useMessage content field content, keep message as content display ([6c31085](https://github.com/crlang/vue-tony-admin/commit/6c310859b1c1914f41d51b36504a921feb4f6b49))
+- **BasicTable:** Add column default sorting configuration ([67289b3](https://github.com/crlang/vue-tony-admin/commit/67289b3165e810ca215f9fdadc71f88fdf127c9a))
+- **BasicUpload:** Fix the return value failed to return according to the global configuration ([ae48396](https://github.com/crlang/vue-tony-admin/commit/ae483964bbad14924b2f1787a8d4ca71d3c87382))
+- **BasicUpload:** Tips for Optimizing No Data and Uploaded Quantities ([4ea5488](https://github.com/crlang/vue-tony-admin/commit/4ea5488e0d0f9951484403195dda48a8c922635b))
+
+### Features
+
+- **BasicForm:** Support ElTreeSelect component, fix validation rule error ([c31564d](https://github.com/crlang/vue-tony-admin/commit/c31564dd0058cd68d000eed56ce554619dc1d84a))
+
 ## [0.6.1](https://github.com/crlang/vue-tony-admin/compare/0.6.0...0.6.1) (2023-04-03)
 
 ### Bug Fixes

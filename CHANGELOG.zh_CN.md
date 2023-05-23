@@ -1,3 +1,23 @@
+## [0.7.1](https://github.com/crlang/vue-tony-admin/compare/0.6.1...0.7.1) (2023-05-23)
+
+## Breaking changes
+
+- 升级至 Vite4，调整打包方式，提升了 2.2 倍打包速度，提升了 3.1 倍加载速度
+- 由 yarn 迁移至 pnpm，更好的依赖处理
+
+### Bug Fixes
+
+- 修复上传提示错误 ([dca617c](https://github.com/crlang/vue-tony-admin/commit/dca617ce00fe36e65d65e73b71e1cf6a7895d20f))
+- 修复 bug、useMessage 支持 closeAll 方法 ([d0cc3b8](https://github.com/crlang/vue-tony-admin/commit/d0cc3b8c9e6e1250d5fd6a5f83e4cb120cad73ec))
+- 移除 useMessage 内容字段 content，保留 message 作为内容展示 ([6c31085](https://github.com/crlang/vue-tony-admin/commit/6c310859b1c1914f41d51b36504a921feb4f6b49))
+- **BasicTable:** 新增列默认排序配置 ([67289b3](https://github.com/crlang/vue-tony-admin/commit/67289b3165e810ca215f9fdadc71f88fdf127c9a))
+- **BasicUpload:** 修复返回值未能根据全局配置返回 ([ae48396](https://github.com/crlang/vue-tony-admin/commit/ae483964bbad14924b2f1787a8d4ca71d3c87382))
+- **BasicUpload:** 优化无数据及已上传数量的提示 ([4ea5488](https://github.com/crlang/vue-tony-admin/commit/4ea5488e0d0f9951484403195dda48a8c922635b))
+
+### Features
+
+- **BasicForm:** 支持 ElTreeSelect 组件，修复校验规则错误 ([c31564d](https://github.com/crlang/vue-tony-admin/commit/c31564dd0058cd68d000eed56ce554619dc1d84a))
+
 ## [0.6.1](https://github.com/crlang/vue-tony-admin/compare/0.6.0...0.6.1) (2023-04-03)
 
 ### Bug Fixes
