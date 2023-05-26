@@ -6,56 +6,69 @@
 <h1>Vue Tony Admin</h1>
 </div>
 
-**中文** | [English](./README.md)
+**中文** | [English](./README.en-US.md)
 
 ## 简介
 
-Vue Tony Admin 是一个免费开源的中后台前端模板。基于`Element Plus`，并且使用了最新的`vue3`,`vite2`,`TypeScript`等主流技术开发，开箱即用的中后台前端解决方案。
+Vue Tony Admin 是一个基于`Element Plus`框架的免费开源的中后台模版。使用了最新的`Vue3`,`Vite4`,`TypeScript`等主流技术开发，开箱即用的中后台前端解决方案。
 
 ## 特性
 
-- **🎉 最新技术栈**：使用 Vue3/vite2/TypeScript 等前端前沿技术开发
-- **🧪 丰富场景**：多达 60+丰富的真实场景示例
-- **🎨 可变主题**：可配置的主题
-- **👓 暗黑模式**：领先一步的暗黑模式支持
-- **🌐 国际化**：内置完善的国际化方案
-- **🧩 数据交互** 拟真实的数据交互
-- **🔒 权限控制** 内置完善的动态路由权限生成方案
-- **🎫 易用组件** 封装 30+常见易用的组件
+- **技术栈**：使用 Vue3/vite4/TypeScript 等前端前沿技术开发
+- **场景**：多达 60+的真实场景示例
+- **主题**：可配置的主题及灵活的布局
+- **暗黑模式**：友好的暗黑模式支持
+- **国际化**：内置完善的国际化中文方案
+- **交互**：拟真实的数据交互
+- **权限**：内置完善的动态路由权限生成方案
+- **组件**：封装 30+常见易用的组件
 
 ## 预览
 
 - [Github](https://crlang.github.io/vue-tony-admin-site)
-- [本地预览](https://tony.crlang.com/vue-tony-admin-site)
+- [Gitee(国内加速)](https://crlang.gitee.io/vue-tony-admin-site)
+- [Tony 官网](https://tony.crlang.com/vue-tony-admin-site)
+
+## 文档
+
+[Tony Admin 文档](https://tony.crlang.com/doc/)
 
 ## 指南
 
-- [Tony](http://tony.crlang.com/doc/) - Tony Admin 文档
-- [Vue3](https://v3.cn.vuejs.org/) - Vue3 文档
-- [Element-Plus](https://element-plus.gitee.io/) - Element Plus 文档
-- [TypeScript](https://www.tslang.cn/docs/home.html) - TypeScript 文档
-- [Vite](https://cn.vitejs.dev/) - Vite2 配置
-- [Mock.js](http://mockjs.com/examples.html) - mockjs 示例
+- [Vue3](https://cn.vuejs.org/) - Vue3 文档
+- [Element Plus](https://element-plus.org/zh-CN/guide/design.html) - Element Plus 文档
+- [TypeScript](https://www.typescriptlang.org/docs/) - TypeScript 文档
+- [VueUse](https://vueuse.org/functions.html) - VueUse 文档
+- [Es6+](http://es6.ruanyifeng.com/) - ECMAScript 6 入门教程
+- [Pinia](https://pinia.vuejs.org/zh/) - Pinia 文档
+- [Vue Router](https://router.vuejs.org/zh/) - Vue.js 路由文档
+- [Vite](https://cn.vitejs.dev/) - Vite 文档
+- [Mock.js](http://mockjs.com/examples.html) - Mockjs 示例
 
 ## 安装使用
 
+- 获取代码
+
 ```bash
+git clone https://gitee.com/crlang/vue-tony-admin.git
+```
 
-# 获取项目代码
-git clone https://github.com/crlang/vue-tony-admin.git
+- 安装依赖
 
-# 进入目录
-cd vue-tony-admin
-
-# 安装依赖
+```bash
 pnpm install
+```
 
-# 运行
+- 运行
+
+```bash
 pnpm dev
+```
 
-# 打包
+- 打包
+
+```bash
 pnpm build
-
 ```
 
 ## 更新日志
@@ -64,7 +77,8 @@ pnpm build
 
 ## 项目地址
 
-- [vue-tony-admin](https://github.com/crlang/vue-tony-admin)
+- [Gitee(国内加速)](https://gitee.com/crlang/vue-tony-admin)
+- [Github](https://github.com/crlang/vue-tony-admin)
 
 ## 如何贡献
 
@@ -109,18 +123,6 @@ pnpm build
 ## 维护者
 
 [@CRLang](https://github.com/crlang)
-
-## 捐赠
-
-如果你觉得这个项目对你有帮助，你可以帮作者买一杯奶茶表示支持!
-
-<img alt="Tony Admin donate" width="400" height="200" src="https://crlang.com/sponsor2.png">
-
--- <a href="https://www.paypal.com/paypalme/crlang123">Paypal Me</a> --
-
-## 感谢
-
-感谢 Vue、Antd、Vben、Element Plus 提供的开源支持
 
 ## License
 

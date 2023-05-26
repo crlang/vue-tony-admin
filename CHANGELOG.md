@@ -4,6 +4,7 @@
 
 - Upgraded to Vite4, adjusted the packaging method, increased the packaging speed by 2.2 times, and increased the loading speed by 3.1 times
 - Migrate from yarn to pnpm for better dependency handling
+- Adjust the way the Mock server requests
 
 ### Bug Fixes
 
