@@ -23,9 +23,14 @@ Vue Tony Admin is a free and open source mid-backend template based on `Element 
 - **Permission**: Built-in perfect dynamic routing permission generation scheme
 - **Components**: Package 30+ common and easy-to-use components
 
+## Document
+
+[Tony Admin](https://tony.crlang.com/)
+
 ## Preview
 
 - [Github](https://crlang.github.io/vue-tony-admin-site)
+- [Gitee](https://crlang.gitee.io/vue-tony-admin-site)
 - [Tony Site](https://tony.crlang.com/vue-tony-admin-site)
 
 ## Preparation

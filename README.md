@@ -23,15 +23,15 @@ Vue Tony Admin 是一个基于`Element Plus`框架的免费开源的中后台模
 - **权限**：内置完善的动态路由权限生成方案
 - **组件**：封装 30+常见易用的组件
 
+## 文档
+
+[Tony Admin 文档](https://tony.crlang.com/)
+
 ## 预览
 
 - [Github](https://crlang.github.io/vue-tony-admin-site)
 - [Gitee(国内加速)](https://crlang.gitee.io/vue-tony-admin-site)
 - [Tony 官网](https://tony.crlang.com/vue-tony-admin-site)
-
-## 文档
-
-[Tony Admin 文档](https://tony.crlang.com/doc/)
 
 ## 指南
 
