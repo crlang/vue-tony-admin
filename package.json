@@ -12,7 +12,7 @@
     "dev": "vite",
     "build": "cross-env NODE_ENV=production NODE_OPTIONS=--max-old-space-size=8192 pnpm vite build",
     "build:site": "cross-env NODE_ENV=production NODE_OPTIONS=--max-old-space-size=8192 pnpm vite build --mode site",
-    "build:test": "cross-env NODE_OPTIONS=--max-old-space-size=8192 pnpm vite build --mode test",
+    "build:test": "cross-env NODE_ENV=production NODE_OPTIONS=--max-old-space-size=8192 pnpm vite build --mode test",
     "build:no-cache": "pnpm clean:cache && npm run build",
     "preview": "npm run build && vite preview",
     "type:check": "vue-tsc --noEmit --skipLibCheck",

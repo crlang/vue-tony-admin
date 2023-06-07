@@ -53,15 +53,18 @@ declare global {
   }
 
   declare interface ViteEnv {
-    VITE_PORT: number
-    VITE_PUBLIC_PATH: string
     VITE_GLOB_APP_TITLE: string
     VITE_GLOB_APP_SHORT_NAME: string
-    VITE_USE_CDN: boolean
-    VITE_DROP_CONSOLE: boolean
+    VITE_PROXY_PORT: string
+    VITE_PROXY_AUTO_OPEN: string
+    VITE_PROXY_ADDRESS: string
+    VITE_GLOB_API_URL: string
+    VITE_GLOB_UPLOAD_URL: string
+    VITE_GLOB_API_URL_PREFIX: string
+    VITE_SITE_BASE_PATH: string
+    VITE_DROP_CONSOLE: string
     VITE_BUILD_COMPRESS: 'gzip' | 'brotli' | 'none'
-    VITE_LEGACY: boolean
-    VITE_GENERATE_UI: string
+    VITE_LEGACY: string
   }
 
   declare function parseInt(s: string | number, radix?: number): number
@@ -82,7 +85,5 @@ declare global {
 }
 
 declare module 'vue' {
-  export type JSXComponent<Props = any> =
-    | { new (): ComponentPublicInstance<Props> }
-    | FunctionalComponent<Props>;
+  export type JSXComponent<Props = any> = { new (): ComponentPublicInstance<Props> } | FunctionalComponent<Props>
 }

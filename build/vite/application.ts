@@ -5,11 +5,10 @@ import { defineConfig, loadEnv, mergeConfig, type UserConfig } from 'vite'
 
 import { createPlugins } from './plugins'
 import { createProxy } from './utils/proxy'
-import { commonConfig } from './common'
 
 interface DefineOptions {
-  overrides?: UserConfig;
-  options?: {};
+  overrides?: UserConfig
+  options?: {}
 }
 
 function defineApplicationConfig(defineOptions: DefineOptions = {}) {
@@ -18,15 +17,7 @@ function defineApplicationConfig(defineOptions: DefineOptions = {}) {
   return defineConfig(async({ command, mode }) => {
     const root = process.cwd()
     const isBuild = command === 'build'
-    const {
-      VITE_SITE_BASE_PATH,
-      VITE_BUILD_COMPRESS,
-      VITE_DROP_CONSOLE,
-      VITE_ENABLE_ANALYZE,
-      VITE_PROXY_PORT,
-      VITE_PROXY_ADDRESS,
-      VITE_PROXY_AUTO_OPEN,
-    } = loadEnv(mode, root)
+    const { VITE_SITE_BASE_PATH, VITE_BUILD_COMPRESS, VITE_DROP_CONSOLE, VITE_ENABLE_ANALYZE, VITE_PROXY_PORT, VITE_PROXY_ADDRESS, VITE_PROXY_AUTO_OPEN } = loadEnv(mode, root)
     const defineData = await createDefineData(root)
     const plugins = await createPlugins({
       isBuild,
@@ -60,15 +51,19 @@ function defineApplicationConfig(defineOptions: DefineOptions = {}) {
       esbuild: {
         drop: VITE_DROP_CONSOLE === 'true' ? ['console', 'debugger'] : undefined,
       },
-      server: isBuild ? null : {
-        host: true,
-        port: VITE_PROXY_PORT,
-        proxy: createProxy(VITE_PROXY_ADDRESS),
-        open: VITE_PROXY_AUTO_OPEN === 'true',
-      },
+      server: isBuild
+        ? null
+        : {
+          host: true,
+          port: VITE_PROXY_PORT,
+          proxy: createProxy(VITE_PROXY_ADDRESS),
+          open: VITE_PROXY_AUTO_OPEN === 'true',
+        },
       build: {
         target: 'es2015',
         cssTarget: 'chrome80',
+        reportCompressedSize: false,
+        chunkSizeWarningLimit: 1500,
         rollupOptions: {
           output: {
             manualChunks: {
@@ -89,9 +84,7 @@ function defineApplicationConfig(defineOptions: DefineOptions = {}) {
       plugins,
     }
 
-    const mergedConfig = mergeConfig(commonConfig, applicationConfig)
-
-    return mergeConfig(mergedConfig, overrides)
+    return mergeConfig(applicationConfig, overrides)
   })
 }
 
