@@ -5,7 +5,7 @@
       <span v-if="!hasRedirect(routes, route)">
         {{ route.name || route.meta.title }}
       </span>
-      <router-link v-else to="" @click="handleClick(route, routes, $event)">
+      <router-link v-else to="" @click="handleClick(route, $event)">
         {{ route.name || route.meta.title }}
       </router-link>
     </ElBreadcrumbItem>
@@ -99,10 +99,9 @@ export default defineComponent({
       }).filter((item) => !item.meta?.hideBreadcrumb)
     }
 
-    function handleClick(route: RouteLocationMatched, paths: string[], e: Event) {
+    function handleClick(route: RouteLocationMatched, e: Event) {
       e?.preventDefault()
-      const { children, redirect, meta } = route
-
+      const { children, redirect, meta, path } = route
       if (children?.length && !redirect) {
         e?.stopPropagation()
         return
@@ -111,19 +110,10 @@ export default defineComponent({
         return
       }
 
-      if (redirect && typeof redirect === 'string') {
+      if (typeof redirect === 'string') {
         go(redirect)
-      } else {
-        let goPath = ''
-        if (paths.length === 1) {
-          goPath = paths[0]
-        } else {
-          const ps = paths.slice(1)
-          const lastPath = ps.pop() || ''
-          goPath = `${lastPath}`
-        }
-        goPath = /^\//.test(goPath) ? goPath : `/${goPath}`
-        go(goPath)
+      } else if (typeof path === 'string') {
+        go(path)
       }
     }
 
