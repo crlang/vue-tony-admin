@@ -146,8 +146,8 @@ export type ComponentType =
   | 'ElDivider'
   | 'ElInput'
   | 'ElSelect'
-  | 'ElDatePicker'
-  | 'ElTimePicker'
+  // | 'ElDatePicker'
+  // | 'ElTimePicker'
   // | 'ElRadio'
   | 'ElRadioGroup'
   // | 'ElRadioButton'
@@ -159,6 +159,10 @@ export type ComponentType =
   | 'ElSlider'
   | 'ElInputNumber'
   | 'ElTreeSelect'
+  | 'CustomDatePicker'
+  | 'CustomTimePicker'
+  | 'CustomTreeSelect'
+  | 'CustomSelect'
 
 /**
  * 展开/收起状态

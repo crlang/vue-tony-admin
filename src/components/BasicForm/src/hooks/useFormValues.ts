@@ -74,13 +74,34 @@ export function useFormValues({ defaultValueRef, getSchema, formModel, getProps 
    *
    * Initialize default values
    */
-  function initDefault() {
+  async function initDefault() {
     const schemas = unref(getSchema)
+    console.log('schemas', schemas)
     const obj: Recordable = {}
     for (let i = 0; i < schemas.length; i++) {
       const item = schemas[i]
-      const { defaultValue, component } = item
+      const { defaultValue, component, componentProps } = item
       obj[item.field] = defaultValue
+
+      if (typeof componentProps?.itemsApi === 'function') {
+        if (!componentProps?.items || componentProps.items?.length === 0) {
+          let params
+
+          if (typeof componentProps?.apiRequestFn === 'function') {
+            params = componentProps.apiRequestFn(item, schemas)
+          }
+
+          let res = (await item.componentProps.itemsApi(params)) || []
+          if (typeof componentProps?.apiResponseFn === 'function') {
+            res = componentProps.apiResponseFn(res, item)
+          }
+
+          item.componentProps.items = res
+          if (component === 'CustomTreeSelect') {
+            item.componentProps.data = res
+          }
+        }
+      }
 
       if (component === 'ElDivider') {
         continue
@@ -103,7 +124,7 @@ export function useFormValues({ defaultValueRef, getSchema, formModel, getProps 
       }
 
       // date - dayjs
-      const dateComponent = ['ElDatePicker', 'ElTimePicker']
+      const dateComponent = ['CustomDatePicker', 'CustomTimePicker']
       if (dateComponent.includes(component)) {
         const { transformDateFn } = unref(getProps)
         if (typeof transformDateFn === 'function') {

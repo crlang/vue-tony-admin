@@ -1,5 +1,4 @@
 <script lang="tsx">
-import type { InternalRuleItem } from 'async-validator'
 import type { EleFormItemRule } from '@/components/ElementPlus'
 
 import { defineComponent, computed, unref, toRaw } from 'vue'
@@ -49,6 +48,7 @@ export default defineComponent({
       if (typeof componentProps === 'function') {
         componentProps = componentProps({ schema, tableAction, formModel, formAction }) ?? {}
       }
+      // todo: 后续考虑替换这个SB的ElDivider为自定义组件
       if (schema.component === 'ElDivider') {
         componentProps = {
           direction: 'horizontal',
@@ -66,12 +66,16 @@ export default defineComponent({
      * @param component ComponentType
      */
     function createPlaceholderMessage(component: ComponentType) {
-      if (['ElInput', 'ElInputNumber'].includes(component)) {
+      const inputComponents = ['ElInput', 'ElInputNumber']
+      if (inputComponents.includes(component)) {
         return '请输入'
       }
-      if (['ElSelect', 'ElCascader', 'ElDatePicker', 'ElTimePicker', 'ElTimeSelect', 'ElSelectV2', 'ElTreeSelect'].includes(component)) {
+
+      const selectComponents = ['ElSelect', 'ElCascader', 'ElTimeSelect', 'ElSelectV2', 'ElTreeSelect', 'CustomTreeSelect', 'CustomSelect', 'CustomDatePicker', 'CustomTimePicker']
+      if (selectComponents.includes(component)) {
         return '请选择'
       }
+
       return ''
     }
 
@@ -163,7 +167,7 @@ export default defineComponent({
        *
        * Validation rules when processing required fields
        */
-      function validator(rule: InternalRuleItem, value: any, callback: any) {
+      function validator(rule: any, value: any, callback: any) {
         const msg = (rule.message || defaultMsg) as string
         if (value === undefined || value === null) {
           // null
@@ -293,19 +297,20 @@ export default defineComponent({
 
       // input component set
       if (!renderComponentContent) {
-        const compSlot = {} as any
+        const compSlot = {
+          default: () => {},
+        }
 
-        // 尝试设置具有选项的表单项组件
         // Trying to set a form item component with options
-        if (compAttr?.options?.length) {
+        if (compAttr?.items?.length) {
           if (component === 'ElSelect') {
             compSlot.default = () =>
-              compAttr.options.map((k: any) => {
+              compAttr.items.map((k: any) => {
                 return <ElOption {...k} />
               })
           } else if (component === 'ElCheckboxGroup') {
             compSlot.default = () =>
-              compAttr.options.map((k: any) => {
+              compAttr.items.map((k: any) => {
                 return (
                   <ElCheckbox {...k} label={k.value}>
                     {k.label}
@@ -314,7 +319,7 @@ export default defineComponent({
               })
           } else if (component === 'ElRadioGroup') {
             compSlot.default = () =>
-              compAttr.options.map((k: any) => {
+              compAttr.items.map((k: any) => {
                 return (
                   <ElRadio {...k} label={k.value}>
                     {k.label}
@@ -325,7 +330,7 @@ export default defineComponent({
         }
 
         return (
-          <Comp {...compAttr} options={null}>
+          <Comp {...compAttr} items={null} api={null}>
             {compSlot}
           </Comp>
         )

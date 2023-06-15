@@ -28,8 +28,10 @@ import {
  *
  * Import custom form item components
  */
-import DatePicker from './components/DatePicker.vue'
-import TimePicker from './components/TimePicker.vue'
+import CustomDatePicker from './components/CustomDatePicker.vue'
+import CustomTimePicker from './components/CustomTimePicker.vue'
+import CustomTreeSelect from './components/CustomTreeSelect.vue'
+import CustomSelect from './components/CustomSelect.vue'
 
 /**
  * 注册导入的组件
@@ -54,8 +56,10 @@ componentMap.set('ElSlider', ElSlider)
 componentMap.set('ElInputNumber', ElInputNumber)
 componentMap.set('ElTreeSelect', ElTreeSelect)
 // Custom
-componentMap.set('ElTimePicker', TimePicker)
-componentMap.set('ElDatePicker', DatePicker)
+componentMap.set('CustomDatePicker', CustomDatePicker)
+componentMap.set('CustomTimePicker', CustomTimePicker)
+componentMap.set('CustomTreeSelect', CustomTreeSelect)
+componentMap.set('CustomSelect', CustomSelect)
 
 /**
  * 注册新的表单项组件

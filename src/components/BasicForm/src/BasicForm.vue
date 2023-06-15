@@ -245,7 +245,7 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      initDefault()
+      // initDefault()
       expose(formActionType)
       emit('register', formActionType)
     })
@@ -258,14 +258,11 @@ export default defineComponent({
           isInitedDefaultRef.value = true
 
           nextTick(() => {
-            try {
-              modalFn?.redoModalHeight()
-            } catch (error) {
-              // try redo modal height
-            }
+            modalFn?.redoModalHeight?.()
           })
         }
       },
+      { immediate: true },
     )
 
     return {
