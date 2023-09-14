@@ -34,15 +34,15 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue'
-import { ElSkeleton } from 'element-plus'
+import { ref, defineComponent } from 'vue';
+import { ElSkeleton } from 'element-plus';
 
-import { useDesign } from '@/hooks/web/useDesign'
-import { ExpandTransition } from '@/components/Transition'
-import { BasicTitle } from '@/components/Basic'
-import { SvgIcon } from '@/components/SvgIcon'
+import { useDesign } from '@/hooks/web/useDesign';
+import { ExpandTransition } from '@/components/Transition';
+import { BasicTitle } from '@/components/Basic';
+import { SvgIcon } from '@/components/SvgIcon';
 
-import { basicProps } from './props'
+import { basicProps } from './props';
 
 export default defineComponent({
   name: 'CollapseContainer',
@@ -50,22 +50,22 @@ export default defineComponent({
   props: basicProps,
   emits: ['expand'],
   setup(_, { emit }) {
-    const show = ref(true)
+    const show = ref(true);
 
-    const { prefixCls } = useDesign('collapse-container')
+    const { prefixCls } = useDesign('collapse-container');
 
     function handleExpand() {
-      show.value = !show.value
-      emit('expand', show.value)
+      show.value = !show.value;
+      emit('expand', show.value);
     }
 
     return {
       prefixCls,
       show,
       handleExpand,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss">

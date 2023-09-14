@@ -1,5 +1,5 @@
 <template>
-  <el-row class="ana-site" :gutter="32">
+  <el-row class="ana-site" :gutter="32" v-if="datainfo">
     <el-col :span="16">
       <el-card shadow="always">
         <template #header>
@@ -17,7 +17,7 @@
             </div>
           </div>
         </template>
-        <OrderAnalysisBar :type="dateType" />
+        <OrderAnalysisBar :type="dateType" :datainfo="datainfo.orderBar || []" />
       </el-card>
     </el-col>
     <el-col :span="8">
@@ -25,52 +25,52 @@
         <template #header>
           <div class="dashboard-analysis__title">任务进度</div>
         </template>
-        <OrderAnalysis :type="dateType" />
+        <OrderAnalysis :type="dateType" :datainfo="datainfo.orderGauge || []" />
       </el-card>
     </el-col>
   </el-row>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, unref, watch } from 'vue'
-import { ElRow, ElCol, ElCard, ElSelect, ElOption, ElDatePicker } from 'element-plus'
-import { dateType as DateType } from '../data'
-import OrderAnalysis from './OrderAnalysis.vue'
-import OrderAnalysisBar from './OrderAnalysisBar.vue'
+import { defineComponent, ref } from 'vue';
+import { ElLoading, ElRow, ElCol, ElCard, ElSelect, ElOption, ElDatePicker } from 'element-plus';
+
+import OrderAnalysis from './OrderAnalysis.vue';
+import OrderAnalysisBar from './OrderAnalysisBar.vue';
+import { DateModeType } from '../data';
 
 export default defineComponent({
   components: { ElRow, ElCol, ElCard, ElSelect, ElOption, ElDatePicker, OrderAnalysis, OrderAnalysisBar },
+  directives: {
+    loading: ElLoading.directive,
+  },
   props: {
     loading: {
       type: Boolean,
     },
+    datainfo: {
+      type: Object as PropType<Recordable>,
+      default: null,
+    },
   },
-  emits: ['dateType'],
-  setup(_, { emit }) {
-    const dateVal = ref([new Date(), new Date()])
-    const dateType = ref<DateType>('quarter')
+  setup() {
+    const dateVal = ref<any>([new Date(), new Date()]);
+    const dateType = ref<DateModeType>('quarter');
     const dateOptions = ref([
-      { value: 'day', label: 'Day' },
-      { value: 'week', label: 'Week' },
-      { value: 'month', label: 'Month' },
-      { value: 'quarter', label: 'Quarter' },
-      { value: 'year', label: 'Year' },
-    ])
-
-    watch(
-      () => unref(dateType),
-      (v) => {
-        emit('dateType', v)
-      },
-    )
+      { value: 'day', label: '按日' },
+      { value: 'week', label: '按周' },
+      { value: 'month', label: '按月' },
+      { value: 'quarter', label: '按季度' },
+      { value: 'year', label: '按年' },
+    ]);
 
     return {
       dateType,
       dateVal,
       dateOptions,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

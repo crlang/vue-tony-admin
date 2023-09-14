@@ -5,28 +5,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref } from 'vue';
 
-import { useTabs } from '@/hooks/web/useTabs'
-import { SvgIcon } from '@/components/SvgIcon'
+import { useTabs } from '@/hooks/web/useTabs';
+import { SvgIcon } from '@/components/SvgIcon';
 
 export default defineComponent({
   name: 'TabRedo',
   components: { SvgIcon },
 
   setup() {
-    const loading = ref(false)
+    const loading = ref(false);
 
-    const { refreshPage } = useTabs()
+    const { refreshPage } = useTabs();
 
     async function handleRedo() {
-      loading.value = true
-      await refreshPage()
+      loading.value = true;
+      await refreshPage();
       setTimeout(() => {
-        loading.value = false
-      }, 1200)
+        loading.value = false;
+      }, 1200);
     }
-    return { handleRedo, loading }
+    return { handleRedo, loading };
   },
-})
+});
 </script>

@@ -1,7 +1,7 @@
-import { BasicColumn } from '@/components/BasicTable'
-import { BasicFormSchema } from '@/components/BasicForm'
-import { h } from 'vue'
-import { ElTag } from 'element-plus'
+import { BasicColumn } from '@/components/BasicTable';
+import { BasicFormSchema } from '@/components/BasicForm';
+import { h } from 'vue';
+import { ElTag } from 'element-plus';
 
 export const columns: BasicColumn[] = [
   {
@@ -20,11 +20,11 @@ export const columns: BasicColumn[] = [
     prop: 'status',
     width: 100,
     customRender: ({ record }) => {
-      const status = record.status
-      const enable = ~~status === 0
-      const color = enable ? 'success' : 'danger'
-      const text = enable ? '启用' : '停用'
-      return h(ElTag, { type: color }, () => text)
+      const status = record.status;
+      const enable = ~~status === 0;
+      const color = enable ? 'success' : 'danger';
+      const text = enable ? '启用' : '停用';
+      return h(ElTag, { type: color }, () => text);
     },
   },
   {
@@ -36,7 +36,7 @@ export const columns: BasicColumn[] = [
     label: '备注',
     prop: 'remark',
   },
-]
+];
 
 export const searchFormSchema: BasicFormSchema[] = [
   {
@@ -57,7 +57,7 @@ export const searchFormSchema: BasicFormSchema[] = [
     },
     colProps: { span: 8 },
   },
-]
+];
 
 export const formSchema: BasicFormSchema[] = [
   {
@@ -94,4 +94,4 @@ export const formSchema: BasicFormSchema[] = [
       type: 'textarea',
     },
   },
-]
+];

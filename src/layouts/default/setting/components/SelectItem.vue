@@ -17,13 +17,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, computed } from 'vue'
-import { ElSelect, ElOption } from 'element-plus'
+import { defineComponent, PropType, computed } from 'vue';
+import { ElSelect, ElOption } from 'element-plus';
 
-import { useDesign } from '@/hooks/web/useDesign'
+import { useDesign } from '@/hooks/web/useDesign';
 
-import { baseHandler } from '../handler'
-import { HandlerEnum } from '../enum'
+import { baseHandler } from '../handler';
+import { HandlerEnum } from '../enum';
 
 export default defineComponent({
   name: 'SelectItem',
@@ -50,21 +50,21 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { prefixCls } = useDesign('setting-select-item')
+    const { prefixCls } = useDesign('setting-select-item');
     const getBindValue = computed(() => {
-      return props.def ? { modelValue: props.def, defaultValue: props.initValue || props.def } : {}
-    })
+      return props.def ? { modelValue: props.def, defaultValue: props.initValue || props.def } : {};
+    });
 
     function handleChange(v: any) {
-      props.event && baseHandler(props.event, v)
+      props.event && baseHandler(props.event, v);
     }
     return {
       prefixCls,
       handleChange,
       getBindValue,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

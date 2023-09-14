@@ -19,39 +19,42 @@
 </template>
 
 <script lang="ts">
-import type { ScrollActionType } from '@/components/ScrollContainer'
+import type { ScrollActionType } from '@/components/ScrollContainer';
 
-import { defineComponent, ref, unref } from 'vue'
-import { ElButton } from 'element-plus'
-import { ScrollContainer } from '@/components/ScrollContainer'
-import { litdata } from './data'
+import { defineComponent, ref, unref } from 'vue';
+import { ElButton } from 'element-plus';
+
+import { ScrollContainer } from '@/components/ScrollContainer';
+
+import { litdata } from './data';
 
 export default defineComponent({
   components: { ElButton, ScrollContainer },
   setup() {
-    const scrollRef = ref<Nullable<ScrollActionType>>(null)
+    const scrollRef = ref<Nullable<ScrollActionType>>(null);
+
     const getScroll = () => {
-      const scroll = unref(scrollRef)
+      const scroll = unref(scrollRef);
       if (!scroll) {
-        throw new Error('scroll is Null')
+        throw new Error('scroll is Null');
       }
-      return scroll
-    }
+      return scroll;
+    };
 
     function scrollTo(top: number) {
-      getScroll().scrollTo(top)
+      getScroll().scrollTo(top);
     }
     function scrollBottom() {
-      getScroll().scrollBottom()
+      getScroll().scrollBottom();
     }
     return {
       litdata,
       scrollTo,
       scrollRef,
       scrollBottom,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

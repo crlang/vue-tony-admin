@@ -1,35 +1,33 @@
-import * as echarts from 'echarts/core'
+import * as echarts from 'echarts/core';
 
 // echarts 图表并没有全部引入
 
 import {
   BarChart, // 柱状图
-  LineChart,
-  PieChart,
-  MapChart,
-  // PictorialBarChart,
-  // RadarChart,
-  GaugeChart,
-} from 'echarts/charts'
+  LineChart, // 折线图
+  PieChart, // 饼状图
+  MapChart, // 地图
+  GaugeChart, // 仪表盘
+} from 'echarts/charts';
 
 import {
-  TitleComponent,
-  TooltipComponent,
-  GridComponent,
-  PolarComponent,
-  AriaComponent,
-  ParallelComponent,
-  LegendComponent,
-  RadarComponent,
-  ToolboxComponent,
-  DataZoomComponent,
-  VisualMapComponent,
-  TimelineComponent,
-  CalendarComponent,
-  GraphicComponent,
-} from 'echarts/components'
+  LegendComponent, // Legend
+  TitleComponent, // Title
+  TooltipComponent, // Tooltip
+  GridComponent, // Grid
+  PolarComponent, // Polar
+  AriaComponent, // Aria
+  ParallelComponent, // Parallel
+  ToolboxComponent, // Toolbox
+  DataZoomComponent, // DataZoom
+  VisualMapComponent, // VisualMap
+  TimelineComponent, // Timeline
+  CalendarComponent, // Calendar
+  GraphicComponent, // Graphic
+} from 'echarts/components';
 
-import { SVGRenderer } from 'echarts/renderers'
+// SVG渲染
+import { SVGRenderer } from 'echarts/renderers';
 
 echarts.use([
   LegendComponent,
@@ -39,21 +37,18 @@ echarts.use([
   PolarComponent,
   AriaComponent,
   ParallelComponent,
-  BarChart, // 柱状图
-  LineChart,
-  PieChart,
-  MapChart,
-  // RadarChart,
-  // PictorialBarChart,
-  GaugeChart,
-  SVGRenderer,
-  RadarComponent,
   ToolboxComponent,
   DataZoomComponent,
   VisualMapComponent,
   TimelineComponent,
   CalendarComponent,
   GraphicComponent,
-])
+  BarChart,
+  LineChart,
+  PieChart,
+  MapChart,
+  GaugeChart,
+  SVGRenderer,
+]);
 
-export default echarts
+export default echarts;

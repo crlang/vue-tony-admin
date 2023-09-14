@@ -26,7 +26,7 @@
         </el-button>
       </el-button-group>
     </div>
-    <el-divider>组件方式判断权限(有需要可以自行全局注册)</el-divider>
+    <BasicDivider>组件方式判断权限(有需要可以自行全局注册)</BasicDivider>
     <Authority :value="RoleEnum.ADMIN">
       <el-button type="primary" class="mx-4">拥有admin角色权限可见</el-button>
     </Authority>
@@ -39,14 +39,14 @@
       <el-button type="danger" class="mx-4">拥有[test,admin]角色权限可见</el-button>
     </Authority>
 
-    <el-divider>函数方式方式判断权限(适用于函数内部过滤)</el-divider>
+    <BasicDivider>函数方式方式判断权限(适用于函数内部过滤)</BasicDivider>
     <el-button v-if="hasPermission(RoleEnum.ADMIN)" type="primary" class="mx-4">拥有admin角色权限可见</el-button>
 
     <el-button v-if="hasPermission(RoleEnum.TEST)" type="success" class="mx-4">拥有test角色权限可见</el-button>
 
     <el-button v-if="hasPermission([RoleEnum.TEST, RoleEnum.ADMIN])" type="danger" class="mx-4">拥有[test,admin]角色权限可见</el-button>
 
-    <el-divider>指令方式方式判断权限(该方式不能动态修改权限.)</el-divider>
+    <BasicDivider>指令方式方式判断权限(该方式不能动态修改权限.)</BasicDivider>
     <el-button v-auth="RoleEnum.ADMIN" type="primary" class="mx-4">拥有admin角色权限可见</el-button>
 
     <el-button v-auth="RoleEnum.TEST" type="success" class="mx-4">拥有test角色权限可见</el-button>
@@ -56,19 +56,20 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
-import { ElButton, ElDivider, ElButtonGroup, ElAlert } from 'element-plus'
-import CurrentPermissionMode from '../CurrentPermissionMode.vue'
-import { useUserStore } from '@/store/modules/user'
-import { RoleEnum } from '@/enums/roleEnum'
-import { usePermission } from '@/hooks/web/usePermission'
-import { Authority } from '@/components/Authority'
+import { computed, defineComponent } from 'vue';
+import { ElButton, ElButtonGroup, ElAlert } from 'element-plus';
+import CurrentPermissionMode from '../CurrentPermissionMode.vue';
+import { useUserStore } from '@/store/modules/user';
+import { RoleEnum } from '@/enums/roleEnum';
+import { usePermission } from '@/hooks/web/usePermission';
+import { Authority } from '@/components/Authority';
+import { BasicDivider } from '@/components/Basic';
 
 export default defineComponent({
-  components: { ElButton, ElDivider, ElButtonGroup, ElAlert, CurrentPermissionMode, Authority },
+  components: { ElButton, ElButtonGroup, ElAlert, BasicDivider, CurrentPermissionMode, Authority },
   setup() {
-    const { changeRole, hasPermission } = usePermission()
-    const userStore = useUserStore()
+    const { changeRole, hasPermission } = usePermission();
+    const userStore = useUserStore();
 
     return {
       userStore,
@@ -77,13 +78,7 @@ export default defineComponent({
       isTest: computed(() => userStore.getRoleList.includes(RoleEnum.TEST)),
       changeRole,
       hasPermission,
-    }
+    };
   },
-})
+});
 </script>
-
-<style lang="scss" scoped>
-.el-divider {
-  --el-bg-color: var(--background-primary-color);
-}
-</style>

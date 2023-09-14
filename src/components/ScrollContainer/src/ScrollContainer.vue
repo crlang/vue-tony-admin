@@ -5,20 +5,20 @@
 </template>
 
 <script lang="ts">
-import type { ScrollActionType } from './typing'
+import type { ScrollActionType } from './typing';
 
-import { defineComponent, ref, unref, nextTick } from 'vue'
+import { defineComponent, ref, unref, nextTick } from 'vue';
 
-import { Scrollbar } from '@/components/Scrollbar'
-import { useScrollTo } from '@/hooks/event/useScrollTo'
-import { useDesign } from '@/hooks/web/useDesign'
+import { Scrollbar } from '@/components/Scrollbar';
+import { useScrollTo } from '@/hooks/event/useScrollTo';
+import { useDesign } from '@/hooks/web/useDesign';
 
 export default defineComponent({
   name: 'ScrollContainer',
   components: { Scrollbar },
   setup(_, { expose }) {
-    const scrollbarRef = ref<Nullable<ScrollActionType>>(null)
-    const { prefixCls } = useDesign('scroll-container')
+    const scrollbarRef = ref<Nullable<ScrollActionType>>(null);
+    const { prefixCls } = useDesign('scroll-container');
 
     /**
      * 滚动到指定位置
@@ -26,20 +26,20 @@ export default defineComponent({
      * Scroll to the specified position
      */
     function scrollTo(to: number, duration = 500) {
-      const scrollbar = unref(scrollbarRef)
-      if (!scrollbar) return
+      const scrollbar = unref(scrollbarRef);
+      if (!scrollbar) return;
 
       nextTick(() => {
-        const wrap = unref(scrollbar.wrap)
-        if (!wrap) return
+        const wrap = unref(scrollbar.wrap);
+        if (!wrap) return;
 
         const { start } = useScrollTo({
           el: wrap,
           to,
           duration,
-        })
-        start()
-      })
+        });
+        start();
+      });
     }
 
     /**
@@ -48,10 +48,10 @@ export default defineComponent({
      * Get the scroll container Dom
      */
     function getScrollWrap() {
-      const scrollbar = unref(scrollbarRef)
-      if (!scrollbar) return null
+      const scrollbar = unref(scrollbarRef);
+      if (!scrollbar) return null;
 
-      return scrollbar.wrap
+      return scrollbar.wrap;
     }
 
     /**
@@ -60,21 +60,21 @@ export default defineComponent({
      * Scroll to the bottom
      */
     function scrollBottom() {
-      const scrollbar = unref(scrollbarRef)
-      if (!scrollbar) return
+      const scrollbar = unref(scrollbarRef);
+      if (!scrollbar) return;
 
       nextTick(() => {
-        const wrap = unref(scrollbar.wrap) as any
-        if (!wrap) return
+        const wrap = unref(scrollbar.wrap) as any;
+        if (!wrap) return;
 
         // 获取当前容器高度，然后滚动
-        const scrollHeight = wrap.scrollHeight as number
+        const scrollHeight = wrap.scrollHeight as number;
         const { start } = useScrollTo({
           el: wrap,
           to: scrollHeight,
-        })
-        start()
-      })
+        });
+        start();
+      });
     }
 
     const scrollAction: ScrollActionType = {
@@ -82,17 +82,17 @@ export default defineComponent({
       scrollTo,
       scrollBottom,
       getScrollWrap,
-    }
+    };
 
-    expose(scrollAction)
+    expose(scrollAction);
 
     return {
       prefixCls,
       scrollbarRef,
       ...scrollAction,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss">

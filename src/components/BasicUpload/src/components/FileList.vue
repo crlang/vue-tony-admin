@@ -1,9 +1,9 @@
 <script lang="tsx">
-import type { FileBasicColumn } from '../typing'
+import type { FileBasicColumn } from '../typing';
 
-import { defineComponent, CSSProperties, watch, nextTick } from 'vue'
+import { defineComponent, CSSProperties, watch, nextTick } from 'vue';
 
-import { useModalContext } from '@/components/BasicModal'
+import { useModalContext } from '@/components/BasicModal';
 
 export default defineComponent({
   name: 'FileList',
@@ -37,71 +37,77 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const modalFn = useModalContext()
+    const modalFn = useModalContext();
 
     watch(
       () => props.dataSource,
       () => {
         nextTick(() => {
-          modalFn?.redoModalHeight?.()
-        })
+          modalFn?.redoModalHeight?.();
+        });
       },
-    )
+    );
 
     return () => {
-      const { columns, actionColumn, dataSource } = props
-      const columnList = [...columns, actionColumn]
-      let bodyContent: JSX.Element | JSX.Element[] | null = null
+      const { columns, actionColumn, dataSource } = props;
+      const columnList = [...columns, actionColumn];
+      let bodyContent: JSX.Element | JSX.Element[] | null = null;
 
       if (dataSource?.length) {
         bodyContent = dataSource.map((record = {}, index) => {
           return (
             <tr key={`${index + record.name || ''}`}>
               {columnList.map((item) => {
-                const { prop = '', customRender, align = 'center' } = item
-                const render = typeof customRender === 'function'
+                const { prop = '', customRender, align = 'center' } = item;
+                const render = typeof customRender === 'function';
                 return (
                   <td class={align} key={prop}>
                     {render ? customRender?.({ text: record[prop], record }) : record[prop]}
                   </td>
-                )
+                );
               })}
             </tr>
-          )
-        })
+          );
+        });
       } else {
-        bodyContent = <tr><td colspan='5' style='text-align: center;'>无数据</td></tr>
+        bodyContent = (
+          <tr>
+            <td colspan='5' style='text-align: center;'>
+              无数据
+            </td>
+          </tr>
+        );
       }
       return (
         <table class='basic-upload-file-table'>
           <colgroup>
             {columnList.map((item) => {
-              const { width = 0, prop } = item
+              const { width = 0, prop } = item;
               const style: CSSProperties = {
                 width: `${width}px`,
                 minWidth: `${width}px`,
-              }
-              return <col style={width ? style : {}} key={prop} />
+              };
+              return <col style={width ? style : {}} key={prop} />;
             })}
           </colgroup>
           <thead>
             <tr>
               {columnList.map((item) => {
-                const { label = '', align = 'center', prop } = item
+                const { label = '', align = 'center', prop } = item;
                 return (
                   <th class={align} key={prop}>
                     {label}
                   </th>
-                )
+                );
               })}
             </tr>
           </thead>
           <tbody>{bodyContent}</tbody>
         </table>
-      )
-    }
+      );
+    };
   },
-})
+});
 </script>
 
 <style lang="scss">

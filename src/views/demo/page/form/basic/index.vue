@@ -13,17 +13,17 @@
 </template>
 
 <script lang="ts">
-import { BasicForm, useForm } from '@/components/BasicForm'
-import { ElRow, ElCol } from 'element-plus'
-import { defineComponent } from 'vue'
-import { schemas } from './data'
-import { useMessage } from '@/hooks/web/useMessage'
+import { BasicForm, useForm } from '@/components/BasicForm';
+import { ElRow, ElCol } from 'element-plus';
+import { defineComponent } from 'vue';
+import { schemas } from './data';
+import { useMessage } from '@/hooks/web/useMessage';
 
 export default defineComponent({
   name: 'FormBasicPage',
   components: { ElRow, ElCol, BasicForm },
   setup() {
-    const { createMessage } = useMessage()
+    const { createMessage } = useMessage();
     const [register, { validate, setFormProps }] = useForm({
       labelWidth: 160,
       colProps: {
@@ -38,32 +38,32 @@ export default defineComponent({
         btnText: '提交',
       },
       submitFn: customSubmitFunc,
-    })
+    });
 
     async function customSubmitFunc() {
       try {
-        await validate()
+        await validate();
         setFormProps({
           submitButtonOptions: {
             loading: true,
           },
-        })
+        });
         setTimeout(() => {
           setFormProps({
             submitButtonOptions: {
               loading: false,
             },
-          })
-          createMessage.success('提交成功！')
-        }, 2000)
+          });
+          createMessage.success('提交成功！');
+        }, 2000);
       } catch (error) {
         // -
       }
     }
 
-    return { register }
+    return { register };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

@@ -33,44 +33,44 @@
 </template>
 
 <script lang="ts">
-import type { TableActionMethods } from '@/components/BasicTable'
+import type { TableActionMethods } from '@/components/BasicTable';
 
-import { defineComponent, ref, unref } from 'vue'
-import { ElButton, ElTableColumn } from 'element-plus'
-import { BasicTable } from '@/components/BasicTable'
-import { getBasicColumns } from './data'
-import { demoListApi } from '@/api/demo/table'
+import { defineComponent, ref, unref } from 'vue';
+import { ElButton, ElTableColumn } from 'element-plus';
+import { BasicTable } from '@/components/BasicTable';
+import { getBasicColumns } from './data';
+import { demoListApi } from '@/api/demo/table';
 
 export default defineComponent({
   components: { ElButton, ElTableColumn, BasicTable },
   setup() {
-    const loading = ref(false)
-    const stripe = ref(true)
-    const border = ref(true)
-    const tableRef = ref<Nullable<TableActionMethods>>(null) // 定义table ref，记得在末尾 return
+    const loading = ref(false);
+    const stripe = ref(true);
+    const border = ref(true);
+    const tableRef = ref<Nullable<TableActionMethods>>(null); // 定义table ref，记得在末尾 return
 
     function getTable() {
-      const table = unref(tableRef)
+      const table = unref(tableRef);
       if (!table) {
-        throw new Error('tableAction is null')
+        throw new Error('tableAction is null');
       }
-      return table as TableActionMethods
+      return table as TableActionMethods;
     }
 
     function toggleSelection() {
-      getTable().toggleAllSelection()
+      getTable().toggleAllSelection();
     }
     function toggleStripe() {
-      stripe.value = !stripe.value
+      stripe.value = !stripe.value;
     }
     function toggleLoading() {
-      loading.value = true
+      loading.value = true;
       setTimeout(() => {
-        loading.value = false
-      }, 3000)
+        loading.value = false;
+      }, 3000);
     }
     function toggleBorder() {
-      border.value = !border.value
+      border.value = !border.value;
     }
 
     return {
@@ -84,7 +84,7 @@ export default defineComponent({
       toggleLoading,
       toggleBorder,
       demoListApi,
-    }
+    };
   },
-})
+});
 </script>

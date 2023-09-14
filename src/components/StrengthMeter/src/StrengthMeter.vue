@@ -14,13 +14,13 @@
 </template>
 
 <script lang="ts">
-import type { ZxcvbnResult } from '@zxcvbn-ts/core'
+import type { ZxcvbnResult } from '@zxcvbn-ts/core';
 
-import { defineComponent, computed, ref, watch, unref, watchEffect } from 'vue'
-import { ElInput } from 'element-plus'
-import { zxcvbn } from '@zxcvbn-ts/core'
+import { defineComponent, computed, ref, watch, unref, watchEffect } from 'vue';
+import { ElInput } from 'element-plus';
+import { zxcvbn } from '@zxcvbn-ts/core';
 
-import { useDesign } from '@/hooks/web/useDesign'
+import { useDesign } from '@/hooks/web/useDesign';
 
 export default defineComponent({
   name: 'StrengthMeter',
@@ -51,8 +51,8 @@ export default defineComponent({
   },
   emits: ['score-change', 'change', 'update:modelValue'],
   setup(props, { emit }) {
-    const innerValueRef = ref<string>('')
-    const { prefixCls } = useDesign('strength-meter')
+    const innerValueRef = ref<string>('');
+    const { prefixCls } = useDesign('strength-meter');
 
     /**
      * 监听复杂度变化
@@ -60,34 +60,34 @@ export default defineComponent({
      * Monitor complexity changes
      */
     const getPasswordStrength = computed(() => {
-      const { disabled } = props
-      if (disabled) return -1
-      const innerValue = unref(innerValueRef)
-      const zxc = zxcvbn(unref(innerValueRef)) as ZxcvbnResult
-      const score = innerValue ? zxc.score : -1
-      emit('score-change', score)
-      return score
-    })
+      const { disabled } = props;
+      if (disabled) return -1;
+      const innerValue = unref(innerValueRef);
+      const zxc = zxcvbn(unref(innerValueRef)) as ZxcvbnResult;
+      const score = innerValue ? zxc.score : -1;
+      emit('score-change', score);
+      return score;
+    });
 
     watchEffect(() => {
-      innerValueRef.value = props.modelValue || ''
-    })
+      innerValueRef.value = props.modelValue || '';
+    });
 
     watch(
       () => unref(innerValueRef),
       (val) => {
-        emit('update:modelValue', val)
-        emit('change', val)
+        emit('update:modelValue', val);
+        emit('change', val);
       },
-    )
+    );
 
     return {
       getPasswordStrength,
       prefixCls,
       innerValueRef,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss">
@@ -133,7 +133,9 @@ $prefix-cls: '#{$tonyname}-strength-meter';
       height: inherit;
       background-color: transparent;
       border-radius: inherit;
-      transition: width 0.5s ease-in-out, background 0.25s;
+      transition:
+        width 0.5s ease-in-out,
+        background 0.25s;
 
       &[data-score='0'] {
         width: 20%;

@@ -1,9 +1,9 @@
 /**
  * Package file volume analysis
  */
-import type { PluginOption } from 'vite'
+import type { PluginOption } from 'vite';
 
-import visualizer from 'rollup-plugin-visualizer'
+import visualizer from 'rollup-plugin-visualizer';
 
 export function configVisualizerConfig() {
   return visualizer({
@@ -11,5 +11,5 @@ export function configVisualizerConfig() {
     open: true,
     gzipSize: true,
     brotliSize: true,
-  }) as PluginOption
+  }) as PluginOption;
 }

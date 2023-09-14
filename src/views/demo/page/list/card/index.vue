@@ -4,29 +4,29 @@
       基于Vue Next, TypeScript, Ant Design Vue实现的一套完整的企业级后台管理系统。
       <div :class="`${prefixCls}__link`">
         <a>
-          <Icon name="bx:bx-paper-plane" color="#1890ff" />
+          <SvgIcon name="m_guide" color="var(--primary-color)" />
           <span>开始</span>
         </a>
         <a>
-          <Icon name="carbon:warning" color="#1890ff" />
+          <SvgIcon name="info-cirlce-o" color="var(--primary-color)" />
           <span>简介</span>
         </a>
         <a>
-          <Icon name="ion:document-text-outline" color="#1890ff" />
+          <SvgIcon name="filetext" color="var(--primary-color)" />
           <span>文档</span>
         </a>
       </div>
     </template>
 
     <div :class="`${prefixCls}__content`">
-      <List>
+      <BasicList>
         <el-row :gutter="16">
           <template v-for="item in list" :key="item.title">
             <el-col :span="6">
-              <ListItem :class="`${prefixCls}__card-item`">
+              <BasicListItem :class="`${prefixCls}__card-item`">
                 <el-card :class="`${prefixCls}__card`" :bodyStyle="{ padding: 0 }">
                   <div :class="`${prefixCls}__card-title`">
-                    <Icon
+                    <SvgIcon
                       class="icon"
                       size="50"
                       v-if="item.icon"
@@ -36,38 +36,38 @@
                   </div>
                   <div :class="`${prefixCls}__card-detail`">基于 Vue3, TypeScript, Element Plus 实现的一套完整的企业级后台管理系统</div>
                 </el-card>
-              </ListItem>
+              </BasicListItem>
             </el-col>
           </template>
         </el-row>
-      </List>
+      </BasicList>
     </div>
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElRow, ElCol, ElCard } from 'element-plus'
-import Icon from '@/components/Icon'
-import { cardList } from './data'
-import { List, ListItem } from '@/components/List'
+import { defineComponent } from 'vue';
+import { ElRow, ElCol, ElCard } from 'element-plus';
+import { SvgIcon } from '@/components/SvgIcon';
+import { cardList } from './data';
+import { BasicList, BasicListItem } from '@/components/BasicList';
 
 export default defineComponent({
   components: {
     ElRow,
     ElCol,
     ElCard,
-    Icon,
-    List,
-    ListItem,
+    SvgIcon,
+    BasicList,
+    BasicListItem,
   },
   setup() {
     return {
       prefixCls: 'list-card',
       list: cardList,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>
@@ -77,6 +77,8 @@ export default defineComponent({
     font-size: 14px;
 
     a {
+      display: inline-flex;
+      align-items: center;
       margin-right: 30px;
     }
 

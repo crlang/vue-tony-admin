@@ -1,24 +1,24 @@
-import { nextTick, onMounted, onActivated } from 'vue'
+import { nextTick, onMounted, onActivated } from 'vue';
 
 /**
- * 当页面安装后或者激活后触发回调
+ * 在 OnMounted 或者 OnActivated 时触发
  *
- * When the page is mounted or activated, a callback is triggered
+ * Triggered on OnMounted or OnActivated
  * @param hook callback func
  */
-export function onMountedOrActivated(hook: Fn) {
-  let mounted: boolean
+export function onMountedOrActivated(hook: AnyFunction) {
+  let mounted: boolean;
 
   onMounted(() => {
-    hook()
+    hook();
     nextTick(() => {
-      mounted = true
-    })
-  })
+      mounted = true;
+    });
+  });
 
   onActivated(() => {
     if (mounted) {
-      hook()
+      hook();
     }
-  })
+  });
 }

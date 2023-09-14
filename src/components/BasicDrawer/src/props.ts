@@ -1,6 +1,6 @@
-import type { EleButton } from '@/components/ElementPlus'
+import type { EleButton } from '@/components/ElementPlus';
 
-import { EleDrawerProps } from '@/components/ElementPlus'
+import { EleDrawerProps } from '@/components/ElementPlus';
 
 export const customProps = {
   modelValue: { type: Boolean },
@@ -85,7 +85,7 @@ export const customProps = {
       type: 'default',
     },
   },
-}
+};
 
 export const basicProps = {
   ...EleDrawerProps,
@@ -95,4 +95,4 @@ export const basicProps = {
   },
   modelValue: { type: Boolean },
   ...customProps,
-}
+};

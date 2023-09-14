@@ -1,11 +1,7 @@
 <template>
-  <el-form
-    v-if="getShow"
-    :model="formData"
-    :rules="getFormRules"
-    ref="formRef">
-    <el-form-item prop="account">
-      <el-input v-model="formData.account" placeholder="账号" />
+  <el-form :model="formData" :rules="getFormRules" ref="formRef">
+    <el-form-item prop="username">
+      <el-input v-model="formData.username" placeholder="账号" />
     </el-form-item>
     <el-form-item prop="mobile">
       <el-input v-model="formData.mobile" placeholder="手机号码" />
@@ -19,11 +15,12 @@
     <el-form-item prop="confirmPassword">
       <el-input
         v-model="formData.confirmPassword"
+        type="password"
         placeholder="确认密码"
         clearable
         show-password />
     </el-form-item>
-    <el-form-item prop="policy">
+    <el-form-item>
       <el-checkbox v-model="formData.policy" :checked="formData.policy">我同意xxx隐私政策</el-checkbox>
     </el-form-item>
     <el-button
@@ -36,52 +33,66 @@
   </el-form>
 </template>
 
-<script lang="ts" setup>
-import { reactive, ref, unref, computed } from 'vue'
-import { ElCheckbox, ElButton, ElForm, ElFormItem, ElInput, ElNotification } from 'element-plus'
+<script lang="ts">
+import { defineComponent, reactive, ref } from 'vue';
+import { ElCheckbox, ElButton, ElForm, ElFormItem, ElInput } from 'element-plus';
 
-import { StrengthMeter } from '@/components/StrengthMeter'
-import { CountdownInput } from '@/components/CountdownInput'
+import { StrengthMeter } from '@/components/StrengthMeter';
+import { CountdownInput } from '@/components/CountdownInput';
+import { useMessage } from '@/hooks/web/useMessage';
 
-import { useLoginState, LoginStateEnum, useFormRules, useFormValid } from './useLogin'
+import { useLoginState, useFormRules, useFormValid } from './useLogin';
 
-const { handleBackLogin, getLoginState } = useLoginState()
+export default defineComponent({
+  components: { ElCheckbox, ElButton, ElForm, ElFormItem, ElInput, StrengthMeter, CountdownInput },
+  setup() {
+    const { handleBackLogin } = useLoginState();
 
-const formRef = ref()
-const loading = ref(false)
-const formData = reactive({
-  account: '',
-  password: '',
-  confirmPassword: '',
-  mobile: '',
-  sms: '',
-  policy: false,
-})
+    const formRef = ref();
+    const loading = ref(false);
+    const formData = reactive({
+      username: '',
+      password: '',
+      confirmPassword: '',
+      mobile: '',
+      sms: '',
+      policy: false,
+    });
 
-const { getFormRules } = useFormRules(formData)
-const { validForm } = useFormValid(formRef)
+    const { getFormRules } = useFormRules(formData);
+    const { validForm } = useFormValid(formRef);
+    const { createNotification } = useMessage();
 
-const getShow = computed(() => unref(getLoginState) === LoginStateEnum.REGISTER)
+    async function handleRegister() {
+      const vf = await validForm();
+      if (!vf) return;
 
-async function handleRegister() {
-  const vf = await validForm()
-  if (!vf) return
+      try {
+        loading.value = true;
+        createNotification({
+          title: '注册成功',
+          message: '欢迎加入',
+          type: 'success',
+        });
+      } catch (error: any) {
+        createNotification({
+          title: '错误提示',
+          message: error.message || '网络异常，请检查您的网络连接是否正常',
+          type: 'error',
+        });
+      } finally {
+        loading.value = false;
+      }
+    }
 
-  try {
-    loading.value = true
-    ElNotification({
-      title: '注册成功',
-      message: '欢迎加入',
-      type: 'success',
-    })
-  } catch (error: any) {
-    ElNotification({
-      title: '错误提示',
-      message: error.message || '网络异常，请检查您的网络连接是否正常',
-      type: 'error',
-    })
-  } finally {
-    loading.value = false
-  }
-}
+    return {
+      formRef,
+      formData,
+      getFormRules,
+      handleRegister,
+      loading,
+      handleBackLogin,
+    };
+  },
+});
 </script>

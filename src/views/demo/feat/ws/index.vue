@@ -58,10 +58,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, watchEffect, computed, toRefs } from 'vue'
-import { ElRow, ElCol, ElInput, ElCard, ElButton, ElTag } from 'element-plus'
-import { useWebSocket } from '@vueuse/core'
-import { formatToDateTime } from '@/utils/dateUtil'
+import { defineComponent, reactive, watchEffect, computed, toRefs } from 'vue';
+import { ElRow, ElCol, ElInput, ElCard, ElButton, ElTag } from 'element-plus';
+import { useWebSocket } from '@vueuse/core';
+import { formatToDateTime } from '@/utils/dateUtil';
 
 export default defineComponent({
   components: {
@@ -77,45 +77,45 @@ export default defineComponent({
       server: 'ws://localhost:3300/test',
       sendValue: '',
       recordList: [] as { id: number; time: number; res: string }[],
-    })
+    });
 
     const { status, data, send, close, open } = useWebSocket(state.server, {
       autoReconnect: false,
       heartbeat: true,
-    })
+    });
 
     watchEffect(() => {
       if (data.value) {
         try {
-          const res = JSON.parse(data.value)
-          state.recordList.push(res)
+          const res = JSON.parse(data.value);
+          state.recordList.push(res);
         } catch (error) {
           state.recordList.push({
             res: data.value,
             id: Math.ceil(Math.random() * 1000),
             time: new Date().getTime(),
-          })
+          });
         }
       }
-    })
+    });
 
-    const getIsOpen = computed(() => status.value === 'OPEN')
-    const getTagColor = computed(() => (getIsOpen.value ? 'success' : 'danger'))
+    const getIsOpen = computed(() => status.value === 'OPEN');
+    const getTagColor = computed(() => (getIsOpen.value ? 'success' : 'danger'));
 
     const getList = computed(() => {
-      return [...state.recordList].reverse()
-    })
+      return [...state.recordList].reverse();
+    });
 
     function handlerSend() {
-      send(state.sendValue)
-      state.sendValue = ''
+      send(state.sendValue);
+      state.sendValue = '';
     }
 
     function toggle() {
       if (getIsOpen.value) {
-        close()
+        close();
       } else {
-        open()
+        open();
       }
     }
     return {
@@ -127,7 +127,7 @@ export default defineComponent({
       toggle,
       getIsOpen,
       getTagColor,
-    }
+    };
   },
-})
+});
 </script>

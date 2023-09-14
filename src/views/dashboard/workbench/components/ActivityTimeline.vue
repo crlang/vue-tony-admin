@@ -1,9 +1,9 @@
 <template>
-  <el-card shadow="always">
-    <template #header><div class="el-card__header--title">活动进度</div></template>
+  <el-card shadow="hover">
+    <template #header><div class="el-card__header--title">项目进度</div></template>
     <el-timeline>
       <el-timeline-item
-        v-for="(activity, index) in activities"
+        v-for="(activity, index) in datainfo"
         :key="index"
         :type="activity.type"
         :color="activity.color"
@@ -17,42 +17,24 @@
   </el-card>
 </template>
 
-<script lang="ts" setup>
-import { ElCard, ElTimeline, ElTimelineItem } from 'element-plus'
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { ElCard, ElTimeline, ElTimelineItem } from 'element-plus';
 
-const activities = [
-  {
-    content: 'Custom icon',
-    desc: 'Custom icon',
-    timestamp: '2018-04-12 20:46',
-    size: 'large',
-    type: 'primary',
+import { DashboardProgressInfo } from '@/api/types';
+
+export default defineComponent({
+  components: { ElCard, ElTimeline, ElTimelineItem },
+  props: {
+    datainfo: {
+      type: Array as PropType<DashboardProgressInfo[]>,
+      default: () => [],
+    },
   },
-  {
-    content: 'Custom color',
-    desc: 'Custom icon',
-    timestamp: '2018-04-03 20:46',
-    color: '#0bbd87',
+  setup() {
+    return {};
   },
-  {
-    content: 'Custom size',
-    desc: 'Custom icon',
-    timestamp: '2018-04-03 20:46',
-    size: 'large',
-  },
-  {
-    content: 'Custom hollow',
-    desc: 'Custom icon',
-    timestamp: '2018-04-03 20:46',
-    type: 'primary',
-    hollow: true,
-  },
-  {
-    content: 'Default node',
-    desc: 'Custom icon',
-    timestamp: '2018-04-03 20:46',
-  },
-]
+});
 </script>
 
 <style lang="scss" scoped>

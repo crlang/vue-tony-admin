@@ -10,34 +10,37 @@
         <div :class="`${prefixCls}__left`">
           <h1>
             欢迎使用
-            <span>{{ title }}</span>
+            <span>Tony Admin</span>
           </h1>
-          <p>{{ title }} 基于 element plus ，并且使用了最新的 vue3, vite2, TypeScript 等主流技术开发，开箱即用的中后台前端解决方案。</p>
-          <p>基于 element plus ，并且使用了最新的 vue3, vite2, TypeScript 等主流技术开发，开箱即用的中后台前端解决方案。</p>
+          <p>Tony Admin 基于 Element Plus ，并且使用了最新的 Vue3.x、Vite4.x、TypeScript5.x 等主流技术开发，开箱即用的中后台前端解决方案。</p>
         </div>
       </el-col>
       <el-col :span="10">
         <div :class="`${prefixCls}__right`">
           <div :class="`${prefixCls}__mode`">
-            <AppDarkModeToggle v-if="!sessionTimeout" />
+            <AppDarkModeToggle />
           </div>
 
           <div :class="`${prefixCls}__logo`">
             <AppLogo />
-            <p>Element/Vue3/Typescript 最佳的选择</p>
+            <p>Element/Vue/Typescript 最佳的选择</p>
           </div>
           <div :class="`${prefixCls}__form`">
-            <el-tabs v-if="getShow" v-model="activeName">
+            <el-tabs v-if="getShowTabs" v-model:model-value="activeName">
               <el-tab-pane label="账号登录" name="account" />
               <el-tab-pane label="手机号登录" name="mobile" />
             </el-tabs>
-            <LoginForm />
-            <ForgetPasswordForm />
-            <RegisterForm />
-            <MobileForm />
+            <!-- 账号登录 -->
+            <LoginForm v-if="getShowAccount" />
+            <!-- 手机号登录 -->
+            <MobileForm v-else-if="getShowMobile" />
+            <!-- 注册 -->
+            <RegisterForm v-if="getShowRegister" />
+            <!-- 忘记密码 -->
+            <ForgetPasswordForm v-if="getShowForget" />
           </div>
 
-          <div :class="`${prefixCls}__regnew`" v-if="getShow">
+          <div :class="`${prefixCls}__regnew`" v-if="getShowAccount">
             没有账号？
             <span @click="setLoginState(LoginStateEnum.REGISTER)">注册</span>
           </div>
@@ -48,17 +51,18 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, unref, watch } from 'vue'
-import { ElRow, ElCol, ElTabs, ElTabPane } from 'element-plus'
-import { AppLogo } from '@/components/Application'
-import { AppDarkModeToggle } from '@/components/Application'
-import LoginForm from './LoginForm.vue'
-import ForgetPasswordForm from './ForgetPasswordForm.vue'
-import RegisterForm from './RegisterForm.vue'
-import MobileForm from './MobileForm.vue'
-import { useDesign } from '@/hooks/web/useDesign'
-import { useLoginState, LoginStateEnum } from './useLogin'
-import { useGlobSetting } from '@/hooks/setting'
+import { computed, defineComponent, ref, unref, watch } from 'vue';
+import { ElRow, ElCol, ElTabs, ElTabPane } from 'element-plus';
+
+import { AppLogo, AppDarkModeToggle } from '@/components/Application';
+import { useDesign } from '@/hooks/web/useDesign';
+import { useGlobSetting } from '@/hooks/setting';
+
+import LoginForm from './LoginForm.vue';
+import ForgetPasswordForm from './ForgetPasswordForm.vue';
+import RegisterForm from './RegisterForm.vue';
+import MobileForm from './MobileForm.vue';
+import { useLoginState, LoginStateEnum } from './useLogin';
 
 export default defineComponent({
   components: {
@@ -73,42 +77,43 @@ export default defineComponent({
     AppLogo,
     AppDarkModeToggle,
   },
-  props: {
-    sessionTimeout: {
-      type: Boolean,
-    },
-  },
   setup() {
-    const { prefixCls } = useDesign('login')
-    const { setLoginState, getLoginState } = useLoginState()
-    const { title } = useGlobSetting()
-    const activeName = ref('account')
+    const { prefixCls } = useDesign('login');
+    const { setLoginState, getLoginState } = useLoginState();
+    const { title } = useGlobSetting();
+    const activeName = ref('account');
     const activeNameExt = {
       account: LoginStateEnum.LOGIN,
       mobile: LoginStateEnum.MOBILE,
-    }
+    };
 
-    const getShow = computed(() => {
-      return unref(getLoginState) === LoginStateEnum.LOGIN || unref(getLoginState) === LoginStateEnum.MOBILE || unref(getLoginState) === LoginStateEnum.QR_CODE
-    })
+    const getShowTabs = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN || unref(getLoginState) === LoginStateEnum.MOBILE);
+    const getShowAccount = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN);
+    const getShowMobile = computed(() => unref(getLoginState) === LoginStateEnum.MOBILE);
+    const getShowRegister = computed(() => unref(getLoginState) === LoginStateEnum.REGISTER);
+    const getShowForget = computed(() => unref(getLoginState) === LoginStateEnum.RESET_PASSWORD);
 
     watch(
       () => unref(activeName),
       (v) => {
-        v && setLoginState(activeNameExt[v])
+        v && setLoginState(activeNameExt[v]);
       },
-    )
+    );
 
     return {
       prefixCls,
       title,
+      getShowTabs,
+      getShowAccount,
+      getShowMobile,
+      getShowRegister,
+      getShowForget,
       setLoginState,
-      getShow,
       LoginStateEnum,
       activeName,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss">
@@ -262,6 +267,12 @@ $prefix-cls: '#{$tonyname}-login';
     padding: 0;
     margin: 0;
     line-height: 42px;
+  }
+
+  .login--verifyimg {
+    .el-input-group__append {
+      padding: 0;
+    }
   }
 }
 

@@ -56,7 +56,7 @@ export enum TriggerEnum {
   HEADER = 'HEADER',
 }
 
-export type Mode = 'vertical' | 'vertical-right' | 'horizontal' | 'inline'
+export type Mode = 'vertical' | 'vertical-right' | 'horizontal' | 'inline';
 
 /**
  * 菜单模式

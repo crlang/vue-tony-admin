@@ -9,10 +9,9 @@ import type {
   AccountListGetResultModel,
   RolePageListGetResultModel,
   RoleListGetResultModel,
-} from './model/systemModel'
+} from './model/systemModel';
 
-// import { defHttp } from '@/utils/http/axios'
-import { GetApiData } from '@/apidata/index'
+import { defHttp } from '@/utils/http/axios';
 
 enum Api {
   AccountList = '/system/getAccountList',
@@ -25,36 +24,29 @@ enum Api {
 }
 
 export const getAccountList = (params: AccountParams) => {
-  // return defHttp.get<AccountListGetResultModel>({ url: Api.AccountList, params })
-  return GetApiData<AccountListGetResultModel>({ url: Api.AccountList, params })
-}
+  return defHttp.get<AccountListGetResultModel>({ url: Api.AccountList, params });
+};
 
 export const getDeptList = (params?: DeptListItem) => {
-  // return defHttp.get<DeptListGetResultModel>({ url: Api.DeptList, params })
-  return GetApiData<DeptListGetResultModel>({ url: Api.DeptList, params })
-}
+  return defHttp.get<DeptListGetResultModel>({ url: Api.DeptList, params });
+};
 
 export const getMenuList = (params?: MenuParams) => {
-  // return defHttp.get<MenuListGetResultModel>({ url: Api.MenuList, params })
-  return GetApiData<MenuListGetResultModel>({ url: Api.MenuList, params })
-}
+  return defHttp.get<MenuListGetResultModel>({ url: Api.MenuList, params });
+};
 
 export const getRoleListByPage = (params?: RolePageParams) => {
-  // return defHttp.get<RolePageListGetResultModel>({ url: Api.RolePageList, params })
-  return GetApiData<RolePageListGetResultModel>({ url: Api.RolePageList, params })
-}
+  return defHttp.get<RolePageListGetResultModel>({ url: Api.RolePageList, params });
+};
 
 export const getAllRoleList = (params?: RoleParams) => {
-  // return defHttp.get<RoleListGetResultModel>({ url: Api.GetAllRoleList, params })
-  return GetApiData<RoleListGetResultModel>({ url: Api.GetAllRoleList, params })
-}
+  return defHttp.get<RoleListGetResultModel>({ url: Api.GetAllRoleList, params });
+};
 
 export const setRoleStatus = (id: number, status: string) => {
-  // return defHttp.post({ url: Api.setRoleStatus, params: { id, status } })
-  return GetApiData({ url: Api.setRoleStatus, params: { id, status } })
-}
+  return defHttp.post({ url: Api.setRoleStatus, params: { id, status } });
+};
 
 export const isAccountExist = (account: string) => {
-  // return defHttp.post({ url: Api.IsAccountExist, params: { account } }, { errorMessageMode: 'none' })
-  return GetApiData({ url: Api.IsAccountExist, params: { account } }, { errorMessageMode: 'none' })
-}
+  return defHttp.post({ url: Api.IsAccountExist, params: { account } }, { errorMessageMode: 'none' });
+};

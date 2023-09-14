@@ -5,7 +5,7 @@
         <el-row>
           <el-col :span="8">
             <div :class="`${prefixCls}-top__avatar`">
-              <img width="70" :src="avatar" />
+              <ElImage style="width: 70px" :src="avatar" />
               <span>Tony</span>
               <div>海纳百川，有容乃大</div>
             </div>
@@ -14,7 +14,7 @@
             <div :class="`${prefixCls}-top__detail`">
               <template v-for="detail in details" :key="detail.title">
                 <p class="mb-3">
-                  <Icon :name="detail.icon" />
+                  <SvgIcon :name="detail.icon" />
                   {{ detail.title }}
                 </p>
               </template>
@@ -34,7 +34,7 @@
       <el-col :span="8" :class="`${prefixCls}-col`">
         <CollapseContainer :class="`${prefixCls}-top__team`" title="团队" :canExpan="false">
           <div v-for="(team, index) in teams" :key="index" :class="`${prefixCls}-top__team-item`">
-            <Icon :name="team.icon" :color="team.color" />
+            <SvgIcon :name="team.icon" :color="team.color" />
             <span>{{ team.title }}</span>
           </div>
         </CollapseContainer>
@@ -53,17 +53,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import { ElRow, ElCol, ElTabs, ElTabPane, ElTag } from 'element-plus'
-import { CollapseContainer } from '@/components/CollapseContainer'
-import Icon from '@/components/Icon'
-import ArticleList from './ArticleList.vue'
-import Application from './Application.vue'
-import Project from './Project.vue'
+import { defineComponent, computed } from 'vue';
+import { ElRow, ElCol, ElTabs, ElTabPane, ElTag, ElImage } from 'element-plus';
+import { CollapseContainer } from '@/components/CollapseContainer';
+import { SvgIcon } from '@/components/SvgIcon';
+import ArticleList from './ArticleList.vue';
+import Application from './Application.vue';
+import Project from './Project.vue';
 
-import headerImg from '@/assets/images/header.jpg'
-import { tags, teams, details, achieveList } from './data'
-import { useUserStore } from '@/store/modules/user'
+import { tags, teams, details, achieveList } from './data';
+import { useUserStore } from '@/store/modules/user';
 
 export default defineComponent({
   components: {
@@ -73,14 +72,15 @@ export default defineComponent({
     ElTabPane,
     ElTag,
     CollapseContainer,
-    Icon,
+    SvgIcon,
     ArticleList,
     Application,
     Project,
+    ElImage,
   },
   setup() {
-    const userStore = useUserStore()
-    const avatar = computed(() => userStore.getUserInfo.avatar || headerImg)
+    const userStore = useUserStore();
+    const avatar = computed(() => userStore.getUserInfo.avatar);
     return {
       prefixCls: 'account-center',
       avatar,
@@ -88,9 +88,9 @@ export default defineComponent({
       teams,
       details,
       achieveList,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

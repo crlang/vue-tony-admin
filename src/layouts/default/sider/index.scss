@@ -74,7 +74,6 @@ $layout-mix-sider: '#{$tonyname}-layout-mix-sider';
         &:hover {
           @include MixSiderActiveHover();
         }
-
       }
 
       &-inner {
@@ -184,22 +183,6 @@ $layout-mix-sider: '#{$tonyname}-layout-mix-sider';
         visibility: visible;
         opacity: 1;
         transition: var(--t-base);
-      }
-
-      .pushpin {
-        position: absolute;
-        top: 0;
-        right: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: var(--header-height);
-        height: var(--header-height);
-        cursor: pointer;
-
-        &:hover {
-          @include MixSiderHover();
-        }
       }
     }
 

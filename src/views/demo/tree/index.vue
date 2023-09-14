@@ -57,9 +57,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, reactive, ref } from 'vue'
-import { ElRow, ElCol, ElCard, ElTree, ElButton, ElLoading } from 'element-plus'
-import { treeData } from './data'
+import { defineComponent, nextTick, reactive, ref } from 'vue';
+import { ElRow, ElCol, ElCard, ElTree, ElButton, ElLoading } from 'element-plus';
+
+import { treeData } from './data';
 
 export default defineComponent({
   components: { ElRow, ElCol, ElCard, ElTree, ElButton },
@@ -67,56 +68,56 @@ export default defineComponent({
     loading: ElLoading.directive,
   },
   setup() {
-    const asyncTreeRef = ref(null)
-    const asyncExpandTreeRef = ref(null)
-    const asyncTreeData = ref([])
-    const treeLoading = ref(false)
-    const asyncTreeExpand = ref(false)
+    const asyncTreeRef = ref(null);
+    const asyncExpandTreeRef = ref(null);
+    const asyncTreeData = ref([]);
+    const treeLoading = ref(false);
+    const asyncTreeExpand = ref(false);
 
     const ajaxProps = reactive({
       children: 'children',
       label: 'title',
-    })
+    });
 
     const ajaxTree = reactive([
       {
         title: 'parent ',
         key: '0-0',
       },
-    ])
+    ]);
 
     function handleCheck() {
       // do something
     }
 
     function loadTreeData() {
-      treeLoading.value = true
+      treeLoading.value = true;
       // 以下是模拟异步获取数据
       setTimeout(() => {
         // 设置数据源
-        asyncTreeData.value = JSON.parse(JSON.stringify(treeData))
-        treeLoading.value = false
+        asyncTreeData.value = JSON.parse(JSON.stringify(treeData));
+        treeLoading.value = false;
         // 展开全部
         nextTick(() => {
-          asyncTreeExpand.value = true
-        })
-      }, 2000)
+          asyncTreeExpand.value = true;
+        });
+      }, 2000);
     }
 
     function onLoadData(node, resolve) {
       if (node.level === 0) {
-        return resolve(ajaxTree)
+        return resolve(ajaxTree);
       }
       if (node.level > 1) {
         if (node.data.leaf || node.level > 5) {
-          return resolve([])
+          return resolve([]);
         } else {
           return resolve([
             {
               title: `zone${node.data.key}`,
               key: `${node.data.key}-1`,
             },
-          ])
+          ]);
         }
       }
 
@@ -131,10 +132,10 @@ export default defineComponent({
             title: 'zone',
             key: '2-2',
           },
-        ])
+        ]);
 
-        resolve(data)
-      }, 500)
+        resolve(data);
+      }, 500);
     }
     return {
       treeData,
@@ -148,9 +149,9 @@ export default defineComponent({
       asyncTreeExpand,
       loadTreeData,
       treeLoading,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

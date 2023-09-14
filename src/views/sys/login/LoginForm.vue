@@ -1,14 +1,22 @@
 <template>
-  <el-form
-    v-show="getShow"
-    :model="formData"
-    :rules="getFormRules"
-    ref="formRef">
-    <el-form-item prop="account">
-      <el-input v-model="formData.account" placeholder="账号 admin/tony" />
+  <el-form :model="formData" :rules="getFormRules" ref="formRef">
+    <el-form-item prop="username">
+      <el-input v-model="formData.username" placeholder="账号" />
     </el-form-item>
-    <el-form-item prop="password" class="mb-1">
-      <el-input v-model="formData.password" placeholder="密码 123456" @keypress.enter="handleLogin" />
+    <el-form-item prop="password">
+      <el-input type="password" v-model="formData.password" placeholder="密码" />
+    </el-form-item>
+    <el-form-item prop="imgCode" class="mb-1">
+      <el-input type="hidden" v-model="formData.icv" />
+      <el-input
+        v-model="formData.imgCode"
+        placeholder="图形验证码"
+        class="login--verifyimg"
+        @keypress.enter="handleLogin">
+        <template #append>
+          <el-image :src="base64CodeImg" @click="getCodeImg()" />
+        </template>
+      </el-input>
     </el-form-item>
     <el-row class="mt-3">
       <el-col :span="12">
@@ -28,54 +36,95 @@
   </el-form>
 </template>
 
-<script lang="ts" setup>
-import { reactive, ref, unref, computed } from 'vue'
-import { ElRow, ElCol, ElCheckbox, ElButton, ElForm, ElFormItem, ElInput } from 'element-plus'
-import { useMessage } from '@/hooks/web/useMessage'
-import { useUserStore } from '@/store/modules/user'
-import { LoginStateEnum, useLoginState, useFormRules, useFormValid } from './useLogin'
+<script lang="ts">
+import { defineComponent, reactive, ref, onMounted } from 'vue';
+import { ElRow, ElCol, ElCheckbox, ElButton, ElForm, ElFormItem, ElInput, ElImage } from 'element-plus';
 
-const { createNotification } = useMessage()
-const userStore = useUserStore()
-const { setLoginState, getLoginState } = useLoginState()
-const { getFormRules } = useFormRules()
+import { useMessage } from '@/hooks/web/useMessage';
+import { useUserStore } from '@/store/modules/user';
 
-const formRef = ref()
-const loading = ref(false)
-const rememberMe = ref(false)
+import { ApiVerifyCodeImg } from '@/api/basic';
 
-const formData = reactive({
-  account: 'admin',
-  password: '123456',
-})
-const { validForm } = useFormValid(formRef)
-const getShow = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN)
+import { LoginStateEnum, useLoginState, useFormRules, useFormValid } from './useLogin';
 
-async function handleLogin() {
-  await validForm()
+export default defineComponent({
+  components: { ElRow, ElCol, ElCheckbox, ElButton, ElForm, ElFormItem, ElInput, ElImage },
+  setup() {
+    const { createNotification } = useMessage();
+    const userStore = useUserStore();
+    const { setLoginState } = useLoginState();
+    const { getFormRules } = useFormRules();
 
-  try {
-    loading.value = true
-    const userInfo = await userStore.login({
-      password: formData.password,
-      username: formData.account,
-    })
-    if (userInfo) {
-      createNotification({
-        title: '登录成功',
-        type: 'success',
-        message: `欢迎回来: ${userInfo.realName}`,
-        duration: 3000,
-      })
+    const formRef = ref();
+    const loading = ref(false);
+    const rememberMe = ref(false);
+    const base64CodeImg = ref('');
+
+    const formData = reactive({
+      username: '',
+      password: '',
+      icv: '',
+      imgCode: '',
+    });
+    const { validForm } = useFormValid(formRef);
+
+    function getCodeImg() {
+      ApiVerifyCodeImg()
+        .then((res) => {
+          formData.icv = res.icv;
+          base64CodeImg.value = res.base64;
+        })
+        .catch(() => {});
     }
-  } catch (error: any) {
-    createNotification({
-      title: '错误提示',
-      type: 'error',
-      message: error.message || '网络异常，请检查您的网络连接是否正常',
-    })
-  } finally {
-    loading.value = false
-  }
-}
+
+    async function handleLogin() {
+      const vf = await validForm();
+      if (!vf) return;
+
+      try {
+        loading.value = true;
+        const userInfo = await userStore.login({
+          username: formData.username,
+          password: formData.password,
+          icv: formData.icv,
+          imgCode: formData.imgCode,
+        });
+        if (userInfo) {
+          createNotification({
+            title: '登录成功',
+            type: 'success',
+            message: `欢迎回来: ${userInfo.nickname}`,
+            duration: 3000,
+          });
+        }
+      } catch (error: any) {
+        // createNotification({
+        //   title: '错误提示',
+        //   type: 'error',
+        //   message: error.message || '网络异常，请检查您的网络连接是否正常',
+        // });
+      } finally {
+        loading.value = false;
+      }
+    }
+
+    onMounted(() => {
+      getCodeImg();
+    });
+
+    return {
+      formRef,
+      formData,
+      getFormRules,
+      rememberMe,
+      base64CodeImg,
+      getCodeImg,
+      handleLogin,
+      loading,
+
+      LoginStateEnum,
+      setLoginState,
+    };
+  },
+});
 </script>

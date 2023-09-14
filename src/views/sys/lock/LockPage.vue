@@ -21,8 +21,8 @@
       <div :class="`${prefixCls}-entry`" @click="handleShowForm(true)" v-show="!showDate">
         <div :class="`${prefixCls}-entry-content`" @click.stop="">
           <div :class="`${prefixCls}-entry__header`">
-            <img :src="userinfo.avatar || headerImg" />
-            <p>{{ userinfo.realName }}</p>
+            <ElImage :class="`${prefixCls}-entry__header-img`" :src="userinfo.avatar" />
+            <div :class="`${prefixCls}-entry__header-desc`">{{ userinfo.nickname }}</div>
           </div>
           <div :class="`${prefixCls}-entry__input`">
             <el-input
@@ -51,54 +51,76 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import { ref, computed } from 'vue'
-import { ElInput, ElTooltip } from 'element-plus'
-import { useUserStore } from '@/store/modules/user'
-import { useLockStore } from '@/store/modules/lock'
-import { useNow } from './useNow'
-import { useDesign } from '@/hooks/web/useDesign'
-import headerImg from '@/assets/images/header.jpg'
-import { useMessage } from '@/hooks/web/useMessage'
-import { SvgIcon } from '@/components/SvgIcon'
+<script lang="ts">
+import { defineComponent, ref, computed } from 'vue';
+import { ElInput, ElTooltip, ElImage } from 'element-plus';
+import { useUserStore } from '@/store/modules/user';
+import { useLockStore } from '@/store/modules/lock';
+import { useNow } from './useNow';
+import { useDesign } from '@/hooks/web/useDesign';
+import { useMessage } from '@/hooks/web/useMessage';
+import { SvgIcon } from '@/components/SvgIcon';
 
-const password = ref('')
-const loading = ref(false)
-const showDate = ref(true)
+export default defineComponent({
+  components: { ElInput, ElTooltip, ElImage, SvgIcon },
+  setup() {
+    const password = ref('');
+    const loading = ref(false);
+    const showDate = ref(true);
 
-const { prefixCls } = useDesign('lock-page')
-const lockStore = useLockStore()
-const userStore = useUserStore()
-const { createMessage } = useMessage()
+    const { prefixCls } = useDesign('lock-page');
+    const lockStore = useLockStore();
+    const userStore = useUserStore();
+    const { createMessage } = useMessage();
 
-const { hour, month, minute, meridiem, year, day, week } = useNow(true)
+    const { hour, month, minute, meridiem, year, day, week } = useNow(true);
 
-const userinfo = computed(() => {
-  return userStore.getUserInfo || {}
-})
+    const userinfo = computed(() => {
+      return userStore.getUserInfo || {};
+    });
 
-async function unLock() {
-  if (!password.value) {
-    return
-  }
-  const pwd = password.value
-  try {
-    loading.value = true
-    const res = await lockStore.unLock(pwd)
-    !res && createMessage.error('锁屏密码错误')
-  } finally {
-    loading.value = false
-  }
-}
+    async function unLock() {
+      if (!password.value) {
+        return;
+      }
+      const pwd = password.value;
+      try {
+        loading.value = true;
+        const res = await lockStore.unLock(pwd);
+        !res && createMessage.error('锁屏密码错误');
+      } finally {
+        loading.value = false;
+      }
+    }
 
-function goLogin() {
-  userStore.logout(true)
-  lockStore.resetLockInfo()
-}
+    function goLogin() {
+      userStore.logout(true);
+      lockStore.resetLockInfo();
+    }
 
-function handleShowForm(show = false) {
-  showDate.value = show
-}
+    function handleShowForm(show = false) {
+      showDate.value = show;
+    }
+
+    return {
+      prefixCls,
+      year,
+      month,
+      week,
+      day,
+      hour,
+      minute,
+      meridiem,
+      showDate,
+      userinfo,
+      password,
+      loading,
+      goLogin,
+      unLock,
+      handleShowForm,
+    };
+  },
+});
 </script>
 
 <style lang="scss" scoped>
@@ -218,13 +240,14 @@ $prefix-cls: '#{$tonyname}-lock-page';
     &__header {
       text-align: center;
 
-      > img {
+      &-img {
         width: 120px;
+        height: 120px;
         margin: 0 auto;
         border-radius: 50%;
       }
 
-      > p {
+      &-desc {
         margin: 8px 0 12px;
         font-size: 18px;
         font-weight: 500;

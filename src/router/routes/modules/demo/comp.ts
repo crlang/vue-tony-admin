@@ -1,6 +1,6 @@
-import type { AppRouteModule, MenuTag } from '@/router/types'
+import type { AppRouteModule } from '@/router/types';
 
-import { getParentLayout, LAYOUT } from '@/router/constant'
+import { getParentLayout, LAYOUT } from '@/router/constant';
 
 const comp: AppRouteModule = {
   path: '/comp',
@@ -9,13 +9,8 @@ const comp: AppRouteModule = {
   redirect: '/comp/basic',
   meta: {
     orderNo: 2,
-    icon: 'ep:coin',
+    icon: 'm_coin',
     title: '组件',
-    tag: {
-      type: 'success',
-      content: 'New',
-      dot: false,
-    } as MenuTag,
   },
 
   children: [
@@ -24,7 +19,7 @@ const comp: AppRouteModule = {
       name: 'BasicDemo',
       component: () => import('@/views/demo/comp/button/index.vue'),
       meta: {
-        icon: 'ep:coin',
+        icon: 'm_coin',
         title: '基础组件',
       },
     },
@@ -35,12 +30,12 @@ const comp: AppRouteModule = {
       redirect: '/comp/form/basic',
       component: getParentLayout('FormDemo'),
       meta: {
-        title: 'Form',
-        tag: {
-          type: 'error',
-          content: 'Hot',
-          dot: false,
-        } as MenuTag,
+        title: 'Form表单',
+        // tag: {
+        //   type: 'error',
+        //   content: 'Hot',
+        //   dot: false,
+        // } as MenuTag,
       },
       children: [
         {
@@ -56,7 +51,7 @@ const comp: AppRouteModule = {
           name: 'UseFormDemo',
           component: () => import('@/views/demo/form/UseForm.vue'),
           meta: {
-            title: 'useForm',
+            title: 'UseForm方式',
           },
         },
         {
@@ -64,7 +59,7 @@ const comp: AppRouteModule = {
           name: 'RefFormDemo',
           component: () => import('@/views/demo/form/RefForm.vue'),
           meta: {
-            title: 'RefForm',
+            title: 'RefForm方式',
           },
         },
         {
@@ -84,14 +79,6 @@ const comp: AppRouteModule = {
           },
         },
         {
-          path: 'dynamicForm',
-          name: 'DynamicFormDemo',
-          component: () => import('@/views/demo/form/DynamicForm.vue'),
-          meta: {
-            title: '动态表单',
-          },
-        },
-        {
           path: 'customerForm',
           name: 'CustomerFormDemo',
           component: () => import('@/views/demo/form/CustomerForm.vue'),
@@ -107,6 +94,14 @@ const comp: AppRouteModule = {
             title: '表单增删示例',
           },
         },
+        {
+          path: 'linkage',
+          name: 'FormLinkageDemo',
+          component: () => import('@/views/demo/form/LinkageForm.vue'),
+          meta: {
+            title: '表单内容联动',
+          },
+        },
       ],
     },
     {
@@ -115,14 +110,13 @@ const comp: AppRouteModule = {
       redirect: '/comp/table/basic',
       component: getParentLayout('TableDemo'),
       meta: {
-        title: 'Table',
-        tag: {
-          type: 'error',
-          content: 'Hot',
-          dot: false,
-        } as MenuTag,
+        title: 'Table表格',
+        // tag: {
+        //   type: 'error',
+        //   content: 'Hot',
+        //   dot: false,
+        // } as MenuTag,
       },
-
       children: [
         {
           path: 'basic',
@@ -207,6 +201,45 @@ const comp: AppRouteModule = {
       ],
     },
     {
+      path: 'modal',
+      name: 'ModalDemo',
+      component: () => import('@/views/demo/modal/index.vue'),
+      meta: {
+        title: 'Modal弹窗',
+        // tag: {
+        //   type: 'warn',
+        //   content: 'Hot',
+        //   dot: true,
+        // } as MenuTag,
+      },
+    },
+    {
+      path: 'drawer',
+      name: 'DrawerDemo',
+      component: () => import('@/views/demo/drawer/index.vue'),
+      meta: {
+        title: 'Drawer抽屉',
+        // tag: {
+        //   type: 'primary',
+        //   content: 'Hot',
+        //   dot: true,
+        // } as MenuTag,
+      },
+    },
+    {
+      path: 'desc',
+      name: 'DescDemo',
+      component: () => import('@/views/demo/description/index.vue'),
+      meta: {
+        title: 'Description详情',
+        // tag: {
+        //   type: 'primary',
+        //   content: 'Hot',
+        //   dot: true,
+        // } as MenuTag,
+      },
+    },
+    {
       path: 'transition',
       name: 'transitionDemo',
       component: () => import('@/views/demo/comp/transition/index.vue'),
@@ -217,7 +250,7 @@ const comp: AppRouteModule = {
     {
       path: 'timestamp',
       name: 'TimeDemo',
-      component: () => import('@/views/demo/comp/time/index.vue'),
+      component: () => import('@/views/demo/comp/timestamp/index.vue'),
       meta: {
         title: '相对时间',
       },
@@ -300,69 +333,6 @@ const comp: AppRouteModule = {
         },
       ],
     },
-
-    {
-      path: 'modal',
-      name: 'ModalDemo',
-      component: () => import('@/views/demo/comp/modal/index.vue'),
-      meta: {
-        title: '弹窗扩展',
-        tag: {
-          type: 'warn',
-          content: 'Hot',
-          dot: true,
-        } as MenuTag,
-      },
-    },
-    {
-      path: 'drawer',
-      name: 'DrawerDemo',
-      component: () => import('@/views/demo/comp/drawer/index.vue'),
-      meta: {
-        title: '抽屉扩展',
-        tag: {
-          type: 'primary',
-          content: 'Hot',
-          dot: true,
-        } as MenuTag,
-      },
-    },
-    {
-      path: 'desc',
-      name: 'DescDemo',
-      component: () => import('@/views/demo/comp/desc/index.vue'),
-      meta: {
-        title: '详情组件',
-      },
-    },
-
-    {
-      path: 'lazy',
-      name: 'LazyDemo',
-      component: getParentLayout('LazyDemo'),
-      redirect: '/comp/lazy/basic',
-      meta: {
-        title: '懒加载组件',
-      },
-      children: [
-        {
-          path: 'basic',
-          name: 'BasicLazyDemo',
-          component: () => import('@/views/demo/comp/lazy/index.vue'),
-          meta: {
-            title: '基础示例',
-          },
-        },
-        {
-          path: 'transition',
-          name: 'BasicTransitionDemo',
-          component: () => import('@/views/demo/comp/lazy/Transition.vue'),
-          meta: {
-            title: '动画效果',
-          },
-        },
-      ],
-    },
     {
       path: 'verify',
       name: 'VerifyDemo',
@@ -414,7 +384,15 @@ const comp: AppRouteModule = {
         title: 'Loading',
       },
     },
+    {
+      path: 'lazy',
+      name: 'LazyDemo',
+      component: () => import('@/views/demo/comp/lazy/index.vue'),
+      meta: {
+        title: '懒加载',
+      },
+    },
   ],
-}
+};
 
-export default comp
+export default comp;

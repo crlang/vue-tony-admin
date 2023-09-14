@@ -18,8 +18,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElResult, ElButton, ElDescriptions, ElDescriptionsItem } from 'element-plus'
+import { defineComponent } from 'vue';
+import { ElResult, ElButton, ElDescriptions, ElDescriptionsItem } from 'element-plus';
 
 export default defineComponent({
   components: {
@@ -32,12 +32,13 @@ export default defineComponent({
   setup(_, { emit }) {
     return {
       redo: () => {
-        emit('redo')
+        emit('redo');
       },
-    }
+    };
   },
-})
+});
 </script>
+
 <style lang="scss" scoped>
 .step3 {
   width: 600px;

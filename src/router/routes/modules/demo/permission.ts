@@ -1,7 +1,7 @@
-import type { AppRouteModule } from '@/router/types'
+import type { AppRouteModule } from '@/router/types';
 
-import { getParentLayout, LAYOUT } from '@/router/constant'
-import { RoleEnum } from '@/enums/roleEnum'
+import { getParentLayout, LAYOUT } from '@/router/constant';
+import { RoleEnum } from '@/enums/roleEnum';
 
 const permission: AppRouteModule = {
   path: '/permission',
@@ -10,7 +10,7 @@ const permission: AppRouteModule = {
   redirect: '/permission/front/page',
   meta: {
     orderNo: 6,
-    icon: 'ep:key',
+    icon: 'm_key',
     title: '权限管理',
   },
 
@@ -86,6 +86,6 @@ const permission: AppRouteModule = {
       ],
     },
   ],
-}
+};
 
-export default permission
+export default permission;

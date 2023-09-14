@@ -1,6 +1,6 @@
-import type { AppRouteModule } from '@/router/types'
+import type { AppRouteModule } from '@/router/types';
 
-import { LAYOUT } from '@/router/constant'
+import { LAYOUT } from '@/router/constant';
 
 const setup: AppRouteModule = {
   path: '/setup',
@@ -10,7 +10,7 @@ const setup: AppRouteModule = {
   meta: {
     orderNo: 10,
     hideChildrenInMenu: true,
-    icon: 'ep:guide',
+    icon: 'm_guide',
     title: '引导页',
   },
   children: [
@@ -20,11 +20,11 @@ const setup: AppRouteModule = {
       component: () => import('@/views/demo/setup/index.vue'),
       meta: {
         title: '引导页',
-        icon: 'ep:guide',
+        icon: 'm_guide',
         hideMenu: true,
       },
     },
   ],
-}
+};
 
-export default setup
+export default setup;

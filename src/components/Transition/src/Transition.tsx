@@ -3,9 +3,9 @@
  * Description: For more details see: https://vuejs.org/guide/built-ins/transition.html#the-transition-component
  */
 
-import { defineComponent, Transition, TransitionGroup } from 'vue'
+import { defineComponent, Transition, TransitionGroup } from 'vue';
 
-import { getSlot } from '@/utils/helper/tsxHelper'
+import { getSlot } from '@/utils/helper/tsxHelper';
 
 type Mode = 'in-out' | 'out-in' | 'default' | undefined
 
@@ -51,19 +51,19 @@ export function createSimpleTransition(name: string, origin = 'top center 0', mo
     },
     setup(props, { slots, attrs }) {
       const onBeforeEnter = (el: HTMLElement) => {
-        el.style.transformOrigin = props.origin
-      }
+        el.style.transformOrigin = props.origin;
+      };
 
       return () => {
-        const Tag = !props.group ? Transition : TransitionGroup
+        const Tag = !props.group ? Transition : TransitionGroup;
         return (
           <Tag name={name} mode={props.mode} {...attrs} onBeforeEnter={onBeforeEnter}>
             {() => getSlot(slots)}
           </Tag>
-        )
-      }
+        );
+      };
     },
-  })
+  });
 }
 
 /**
@@ -102,10 +102,10 @@ export function createJavascriptTransition(name: string, functions: Recordable, 
             onLeaveCancelled={functions.afterLeave}>
             {() => getSlot(slots)}
           </Transition>
-        )
-      }
+        );
+      };
     },
-  })
+  });
 }
 
 /**
@@ -115,78 +115,78 @@ export function createJavascriptTransition(name: string, functions: Recordable, 
  * @param x Is it horizontal?
  */
 export function createExpandFn(x = false) {
-  let a = 'height'
-  let b = 'paddingTop'
-  let c = 'paddingBottom'
-  let d = 'oldPaddingTop'
-  let e = 'oldPaddingBottom'
-  const f = 'overflow'
-  const g = 'oldOverflow'
-  let h = 'scrollHeight'
+  let a = 'height';
+  let b = 'paddingTop';
+  let c = 'paddingBottom';
+  let d = 'oldPaddingTop';
+  let e = 'oldPaddingBottom';
+  const f = 'overflow';
+  const g = 'oldOverflow';
+  let h = 'scrollHeight';
 
   if (x) {
-    a = 'width'
-    b = 'paddingLeft'
-    c = 'paddingRight'
-    d = 'oldPaddingLeft'
-    e = 'oldPaddingRight'
-    h = 'scrollWidth'
+    a = 'width';
+    b = 'paddingLeft';
+    c = 'paddingRight';
+    d = 'oldPaddingLeft';
+    e = 'oldPaddingRight';
+    h = 'scrollWidth';
   }
 
   return {
     beforeEnter(el: HTMLElement) {
       // if (!el.dataset) el.dataset = {}
-      el.dataset[d] = el.style[b]
-      el.dataset[e] = el.style[c]
+      el.dataset[d] = el.style[b];
+      el.dataset[e] = el.style[c];
 
-      el.style[a] = '0'
-      el.style[b] = '0'
-      el.style[c] = '0'
+      el.style[a] = '0';
+      el.style[b] = '0';
+      el.style[c] = '0';
     },
 
     enter(el: HTMLElement) {
-      el.dataset[g] = el.style[f]
+      el.dataset[g] = el.style[f];
       // if (el[h] !== 0) {
       //   el.style[a] = el[h] + 'px'
       //   el.style[b] = el.dataset[d] as string
       //   el.style[c] = el.dataset[e] as string
       // } else {
-      el.style[a] = ''
-      el.style[b] = el.dataset[d] as string
-      el.style[c] = el.dataset[e] as string
+      el.style[a] = '';
+      el.style[b] = el.dataset[d] as string;
+      el.style[c] = el.dataset[e] as string;
       // }
 
-      el.style[f] = 'hidden'
+      el.style[f] = 'hidden';
     },
 
     afterEnter(el: HTMLElement) {
-      el.style[a] = ''
-      el.style[f] = el.dataset[g] as string
+      el.style[a] = '';
+      el.style[f] = el.dataset[g] as string;
     },
 
     beforeLeave(el: HTMLElement) {
       // if (!el.dataset) el.dataset = {}
-      el.dataset[d] = el.style[b]
-      el.dataset[e] = el.style[c]
-      el.dataset[g] = el.style[f]
+      el.dataset[d] = el.style[b];
+      el.dataset[e] = el.style[c];
+      el.dataset[g] = el.style[f];
 
-      el.style[a] = `${el[h]}px`
-      el.style[f] = 'hidden'
+      el.style[a] = `${el[h]}px`;
+      el.style[f] = 'hidden';
     },
 
     leave(el: HTMLElement) {
       if (el[h] !== 0) {
-        el.style[a] = '0'
-        el.style[b] = '0'
-        el.style[c] = '0'
+        el.style[a] = '0';
+        el.style[b] = '0';
+        el.style[c] = '0';
       }
     },
 
     afterLeave(el: HTMLElement) {
-      el.style[a] = ''
-      el.style[f] = el.dataset[g] as string
-      el.style[b] = el.dataset[d] as string
-      el.style[c] = el.dataset[e] as string
+      el.style[a] = '';
+      el.style[f] = el.dataset[g] as string;
+      el.style[b] = el.dataset[d] as string;
+      el.style[c] = el.dataset[e] as string;
     },
-  }
+  };
 }

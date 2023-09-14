@@ -1,6 +1,6 @@
 <template>
   <el-row class="ana-card" :gutter="32">
-    <template v-for="item in CardList" :key="item.title">
+    <template v-for="item in datainfo" :key="item.title">
       <el-col :span="8">
         <el-card shadow="always">
           <div class="ana-card--li">
@@ -40,28 +40,42 @@
   </el-row>
 </template>
 
-<script lang="ts" setup>
-import { ElRow, ElCol, ElCard, ElProgress } from 'element-plus'
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { ElLoading, ElRow, ElCol, ElCard, ElProgress } from 'element-plus';
 
-import { SvgIcon } from '@/components/SvgIcon'
+import { SvgIcon } from '@/components/SvgIcon';
 
-import { CardList } from '../data'
-
-defineProps({
-  loading: {
-    type: Boolean,
+export default defineComponent({
+  components: { ElRow, ElCol, ElCard, ElProgress, SvgIcon },
+  directives: {
+    loading: ElLoading.directive,
   },
-})
+  props: {
+    loading: {
+      type: Boolean,
+    },
+    datainfo: {
+      type: Array as PropType<Recordable[]>,
+      default: () => [],
+    },
+  },
+  setup() {
+    function getBarColor(v: number) {
+      if (v < 30) {
+        return '#09B66D';
+      } else if (v < 70) {
+        return '#FDBF5E';
+      }
 
-function getBarColor(v: number) {
-  if (v < 30) {
-    return '#09B66D'
-  } else if (v < 70) {
-    return '#FDBF5E'
-  }
+      return '#FF3D57';
+    }
 
-  return '#FF3D57'
-}
+    return {
+      getBarColor,
+    };
+  },
+});
 </script>
 
 <style lang="scss" scoped>

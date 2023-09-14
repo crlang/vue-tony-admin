@@ -25,5 +25,5 @@
 </template>
 
 <script lang="ts" setup>
-import { SvgIcon } from '@/components/SvgIcon'
+import { SvgIcon } from '@/components/SvgIcon';
 </script>

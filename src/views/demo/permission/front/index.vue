@@ -35,18 +35,18 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
-import { ElButton, ElAlert, ElButtonGroup } from 'element-plus'
-import CurrentPermissionMode from '../CurrentPermissionMode.vue'
-import { useUserStore } from '@/store/modules/user'
-import { RoleEnum } from '@/enums/roleEnum'
-import { usePermission } from '@/hooks/web/usePermission'
+import { computed, defineComponent } from 'vue';
+import { ElButton, ElAlert, ElButtonGroup } from 'element-plus';
+import CurrentPermissionMode from '../CurrentPermissionMode.vue';
+import { useUserStore } from '@/store/modules/user';
+import { RoleEnum } from '@/enums/roleEnum';
+import { usePermission } from '@/hooks/web/usePermission';
 
 export default defineComponent({
   components: { ElButton, ElAlert, ElButtonGroup, CurrentPermissionMode },
   setup() {
-    const { changeRole } = usePermission()
-    const userStore = useUserStore()
+    const { changeRole } = usePermission();
+    const userStore = useUserStore();
 
     return {
       userStore,
@@ -54,7 +54,7 @@ export default defineComponent({
       isAdmin: computed(() => userStore.getRoleList.includes(RoleEnum.ADMIN)),
       isTest: computed(() => userStore.getRoleList.includes(RoleEnum.TEST)),
       changeRole,
-    }
+    };
   },
-})
+});
 </script>

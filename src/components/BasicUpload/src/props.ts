@@ -1,4 +1,4 @@
-import { FileBasicColumn } from './typing'
+import { FileBasicColumn } from './typing';
 
 export const uploadProps = {
   /**
@@ -82,7 +82,7 @@ export const uploadProps = {
     type: Object as PropType<Recordable>,
     default: {},
   },
-}
+};
 
 export const fileListProps = {
   /**
@@ -112,7 +112,7 @@ export const fileListProps = {
     type: Array as PropType<Recordable[]>,
     default: null,
   },
-}
+};
 
 export const customProps = {
   /**
@@ -169,9 +169,9 @@ export const customProps = {
     type: Boolean,
     default: false,
   },
-}
+};
 
 export const basicProps = {
   ...uploadProps,
   ...customProps,
-}
+};

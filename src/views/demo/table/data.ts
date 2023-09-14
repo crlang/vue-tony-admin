@@ -1,7 +1,7 @@
-import { BasicFormProps, BasicFormSchema } from '@/components/BasicForm'
-import { BasicColumn } from '@/components/BasicTable'
-import { ElTag } from 'element-plus'
-import { h } from 'vue'
+import { BasicFormProps, BasicFormSchema } from '@/components/BasicForm';
+import { BasicColumn } from '@/components/BasicTable';
+import { ElTag } from 'element-plus';
+import { h } from 'vue';
 
 export function getBasicColumns(): BasicColumn[] {
   return [
@@ -25,9 +25,9 @@ export function getBasicColumns(): BasicColumn[] {
       ],
       // filterMultiple: false,
       customRender: ({ record }) => {
-        const color = record.sex === 1 ? 'success' : 'danger'
-        const text = record.sex === 1 ? '男' : '女'
-        return h(ElTag, { type: color }, () => text)
+        const color = record.sex === 1 ? 'success' : 'danger';
+        const text = record.sex === 1 ? '男' : '女';
+        return h(ElTag, { type: color }, () => text);
       },
     },
     {
@@ -57,7 +57,7 @@ export function getBasicColumns(): BasicColumn[] {
       sortable: true,
       prop: 'endTime',
     },
-  ]
+  ];
 }
 
 export function getBasicShortColumns(): BasicColumn[] {
@@ -83,7 +83,7 @@ export function getBasicShortColumns(): BasicColumn[] {
       prop: 'no',
       width: 80,
     },
-  ]
+  ];
 }
 
 export function getCustomCellColumns(): BasicColumn[] {
@@ -142,11 +142,11 @@ export function getCustomCellColumns(): BasicColumn[] {
       label: '结束时间',
       prop: 'endTime',
     },
-  ]
+  ];
 }
 
 export const getAdvanceSchema = (itemNumber = 6): BasicFormSchema[] => {
-  const arr: any = []
+  const arr: any = [];
   for (let index = 0; index < itemNumber; index++) {
     arr.push({
       field: `field${index}`,
@@ -156,10 +156,10 @@ export const getAdvanceSchema = (itemNumber = 6): BasicFormSchema[] => {
         lg: 12,
         xl: 8,
       },
-    })
+    });
   }
-  return arr
-}
+  return arr;
+};
 
 export function getFormConfig(): Partial<BasicFormProps> {
   return {
@@ -188,7 +188,7 @@ export function getFormConfig(): Partial<BasicFormProps> {
         },
       },
     ],
-  }
+  };
 }
 
 export function getTotalColumns(): BasicColumn[] {
@@ -209,9 +209,9 @@ export function getTotalColumns(): BasicColumn[] {
         { text: '女', value: '2' },
       ],
       customRender: ({ record }) => {
-        const color = record.sex === 1 ? 'success' : 'danger'
-        const text = record.sex === 1 ? '男' : '女'
-        return h(ElTag, { type: color }, () => text)
+        const color = record.sex === 1 ? 'success' : 'danger';
+        const text = record.sex === 1 ? '男' : '女';
+        return h(ElTag, { type: color }, () => text);
       },
     },
     {
@@ -226,7 +226,7 @@ export function getTotalColumns(): BasicColumn[] {
       label: '地址',
       prop: 'address',
     },
-  ]
+  ];
 }
 
 export function getAuthColumns(): BasicColumn[] {
@@ -259,5 +259,5 @@ export function getAuthColumns(): BasicColumn[] {
       label: '结束时间',
       prop: 'endTime',
     },
-  ]
+  ];
 }

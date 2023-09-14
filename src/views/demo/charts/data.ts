@@ -1,4 +1,4 @@
-import { randomNumber } from '@/utils/demo'
+import { randomNumber } from '@/utils/demo';
 
 export const mapData = () => {
   const _cityData: any = [
@@ -38,54 +38,54 @@ export const mapData = () => {
     '香港特别行政区',
     '澳门特别行政区',
     '',
-  ]
+  ];
 
   return _cityData.map((k) => {
     return {
       name: k,
       value: randomNumber(100000),
-    }
-  })
-}
+    };
+  });
+};
 
 export const getLineData = () => {
-  const category: any[] = []
-  let dottedBase = +new Date()
-  const lineData: any[] = []
-  const barData: any[] = []
+  const category: any[] = [];
+  let dottedBase = +new Date();
+  const lineData: any[] = [];
+  const barData: any[] = [];
 
   for (let i = 0; i < 20; i++) {
-    const date = new Date((dottedBase += 1000 * 3600 * 24))
-    category.push([date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-'))
-    const b = randomNumber(3000)
-    const d = randomNumber(3000)
-    barData.push(b)
-    lineData.push(d + b)
+    const date = new Date((dottedBase += 1000 * 3600 * 24));
+    category.push([date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-'));
+    const b = randomNumber(3000);
+    const d = randomNumber(3000);
+    barData.push(b);
+    lineData.push(d + b);
   }
-  return { barData, category, lineData }
-}
+  return { barData, category, lineData };
+};
 
 export const getNightingaleData = () => {
-  const dt: any[] = []
+  const dt: any[] = [];
   for (let i = 1; i < 10; i++) {
-    dt.push({ value: 10 * i, name: `Nightingale ${i}` })
+    dt.push({ value: 10 * i, name: `Nightingale ${i}` });
   }
-  return dt
-}
+  return dt;
+};
 
 export const getPieData = () => {
-  const category: any[] = []
-  let dottedBase = +new Date()
-  const lineData: any[] = []
-  const barData: any[] = []
+  const category: any[] = [];
+  let dottedBase = +new Date();
+  const lineData: any[] = [];
+  const barData: any[] = [];
 
   for (let i = 0; i < 20; i++) {
-    const date = new Date((dottedBase += 1000 * 3600 * 24))
-    category.push([date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-'))
-    const b = Math.random() * 200
-    const d = Math.random() * 200
-    barData.push(b)
-    lineData.push(d + b)
+    const date = new Date((dottedBase += 1000 * 3600 * 24));
+    category.push([date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-'));
+    const b = Math.random() * 200;
+    const d = Math.random() * 200;
+    barData.push(b);
+    lineData.push(d + b);
   }
-  return { barData, category, lineData }
-}
+  return { barData, category, lineData };
+};

@@ -1,28 +1,16 @@
 <template>
   <PageWrapper :class="prefixCls" title="搜索列表">
-    <template #extra>
-      <BasicForm
-        :class="`${prefixCls}__header-form`"
-        :labelWidth="100"
-        :schemas="schemas"
-        :showActionButtonGroup="false"
-        autoSubmitOnEnter
-        @submit="handleSubmit" />
-    </template>
-
     <div :class="`${prefixCls}__container`">
-      <List>
-        <template v-for="item in list" :key="item.id">
-          <ListItem>
+      <BasicList :dataSource="list">
+        <template #renderItem="{ item }">
+          <BasicListItem>
             <template #title>
               <p :class="`${prefixCls}__title`">
                 {{ item.title }}
               </p>
               <div>
                 <template v-for="tag in item.description" :key="tag">
-                  <el-tag class="mb-2 mr-2" size="small">
-                    {{ tag }}
-                  </el-tag>
+                  <el-tag class="mb-2 mr-2" size="small" type="success">{{ tag }}</el-tag>
                 </template>
               </div>
             </template>
@@ -33,7 +21,7 @@
               <div :class="`${prefixCls}__action`">
                 <template v-for="action in metaActions" :key="action.icon">
                   <div :class="`${prefixCls}__action-item`">
-                    <Icon
+                    <SvgIcon
                       v-if="action.icon"
                       :class="`${prefixCls}__action-icon`"
                       :name="action.icon"
@@ -44,56 +32,53 @@
                 <span :class="`${prefixCls}__time`">{{ item.time }}</span>
               </div>
             </template>
-          </ListItem>
+          </BasicListItem>
         </template>
-      </List>
+      </BasicList>
     </div>
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElTag } from 'element-plus'
-import Icon from '@/components/Icon'
-import { BasicForm } from '@/components/BasicForm'
-import { searchList as list, schemas } from './data'
-import { List, ListItem } from '@/components/List'
-import { useMessage } from '@/hooks/web/useMessage'
+import { defineComponent } from 'vue';
+import { ElTag } from 'element-plus';
+import { SvgIcon } from '@/components/SvgIcon';
+import { searchList as list } from './data';
+import { BasicList, BasicListItem } from '@/components/BasicList';
+import { useMessage } from '@/hooks/web/useMessage';
 
 export default defineComponent({
   components: {
     ElTag,
-    Icon,
-    BasicForm,
-    List,
-    ListItem,
+    SvgIcon,
+    BasicList,
+    BasicListItem,
   },
   setup() {
-    const { createMessage } = useMessage()
+    const { createMessage } = useMessage();
 
     const metaActions = [
-      { icon: 'ep:star', text: '156', color: '#018ffb' },
-      { icon: 'ep:promotion', text: '156', color: '#459ae8' },
-      { icon: 'ep:comment', text: '2', color: '#42d27d' },
-    ]
+      { icon: 'demo_star', text: '156', color: '#018ffb' },
+      { icon: 'demo_promotion', text: '156', color: '#459ae8' },
+      { icon: 'demo_comment', text: '2', color: '#42d27d' },
+    ];
 
     function handleSubmit(v: any) {
       if (!v.field1) {
-        createMessage.error(JSON.stringify(v))
+        createMessage.error(JSON.stringify(v));
       } else {
-        createMessage.success(JSON.stringify(v))
+        createMessage.success(JSON.stringify(v));
       }
     }
 
     return {
       prefixCls: 'list-search',
       list,
-      schemas,
       metaActions,
       handleSubmit,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

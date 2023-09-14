@@ -1,4 +1,6 @@
-*, ::before, ::after {
+*,
+::before,
+::after {
   box-sizing: border-box;
 }
 
@@ -17,7 +19,8 @@
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
-::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
   height: auto;
 }
 
@@ -56,14 +59,21 @@ a {
   text-decoration: inherit;
 }
 
-h1,h2,h3,h4,h5,h6,p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   padding: 0;
   margin: 0;
   font-size: inherit;
   font-weight: inherit;
 }
 
-input, textarea {
+input,
+textarea {
   padding: 0;
   margin: 0;
   line-height: inherit;
@@ -75,7 +85,9 @@ img {
   height: auto;
 }
 
-img, svg, iframe {
+img,
+svg,
+iframe {
   display: inline-block;
   vertical-align: top;
 }
@@ -101,7 +113,7 @@ textarea {
   resize: vertical;
 }
 
-input::placeholder ,
+input::placeholder,
 textarea::placeholder {
   color: co.$text-placeholder;
   opacity: 1;

@@ -10,26 +10,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { ElLink } from 'element-plus'
+import { defineComponent, ref } from 'vue';
+import { ElLink } from 'element-plus';
 
-import { ClickOutside } from '@/components/ClickOutside'
+import { ClickOutside } from '@/components/ClickOutside';
 
 export default defineComponent({
   components: { ElLink, ClickOutside },
   setup() {
-    const text = ref('Click')
+    const text = ref('Click');
 
     function handleClickOutside() {
-      text.value = 'Click Out Side'
+      text.value = 'Click Out Side';
     }
 
     function innerClick() {
-      text.value = 'Click Inner'
+      text.value = 'Click Inner';
     }
-    return { innerClick, handleClickOutside, text }
+    return { innerClick, handleClickOutside, text };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

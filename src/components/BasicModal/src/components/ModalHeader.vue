@@ -21,13 +21,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElTooltip } from 'element-plus'
+import { defineComponent } from 'vue';
+import { ElTooltip } from 'element-plus';
 
-import { BasicTitle } from '@/components/Basic'
-import { SvgIcon } from '@/components/SvgIcon'
+import { BasicTitle } from '@/components/Basic';
+import { SvgIcon } from '@/components/SvgIcon';
 
-import { headerProps } from '../props'
+import { headerProps } from '../props';
 
 export default defineComponent({
   name: 'BasicModalHeader',
@@ -48,10 +48,10 @@ export default defineComponent({
      * @param e
      */
     function handleTitleDbClick(e: Event) {
-      if (!props.showFullscreen) return
-      e.stopPropagation()
+      if (!props.showFullscreen) return;
+      e.stopPropagation();
 
-      handleFullscreen(e)
+      handleFullscreen(e);
     }
 
     /**
@@ -61,7 +61,7 @@ export default defineComponent({
      * @param e
      */
     function handleCancel(e: Event) {
-      emit('cancel', e)
+      emit('cancel', e);
     }
 
     /**
@@ -71,16 +71,16 @@ export default defineComponent({
      * @param e
      */
     function handleFullscreen(e: Event) {
-      e?.stopPropagation()
-      e?.preventDefault()
-      emit('fullscreen')
+      e?.stopPropagation();
+      e?.preventDefault();
+      emit('fullscreen');
     }
 
     return {
       handleCancel,
       handleFullscreen,
       handleTitleDbClick,
-    }
+    };
   },
-})
+});
 </script>

@@ -1,8 +1,8 @@
-import type { ElePagination, EleTable, EleTableColumn, EleButton, EleActionPopconfirmAction } from '@/components/ElementPlus'
-import type { FormActionMethods, BasicFormProps } from '@/components/BasicForm'
-import type { MessageBoxOptions } from '@/hooks/web/useMessage'
+import type { ElePagination, EleTable, EleTableColumn, EleButton, EleActionPopconfirmAction } from '@/components/ElementPlus';
+import type { FormActionMethods, BasicFormProps } from '@/components/BasicForm';
+import type { MessageBoxOptions } from '@/hooks/web/useMessage';
 
-import { RoleEnum } from '@/enums/roleEnum'
+import { RoleEnum } from '@/enums/roleEnum';
 
 /**
  * 表格基础Props
@@ -16,152 +16,152 @@ export interface BasicTableProps extends EleTable {
    *
    * Table header title
    */
-  title?: string
+  title?: string;
   /**
    * 标题右侧的帮助提示
    *
    * Title help message
    */
-  titleHelpMessage?: string | string[]
+  titleHelpMessage?: string | string[];
   /**
    * 是否显示更多设置
    *
    * Whether to show more settings
    */
-  showTableSetting?: boolean
+  showTableSetting?: boolean;
   /**
    * 设置的选项
    *
    * Setting item
    */
-  tableSetting?: TableSetting
+  tableSetting?: TableSetting;
   // main
   /**
    * 表格数据源，当存在 api 函数时，可为空
    *
    * Table data source, nullable when there is an api function
    */
-  dataSource?: Recordable[]
+  dataSource?: Recordable[];
   /**
    * 表格列配置
    *
    * Table column configuration
    */
-  columns: BasicColumn[]
+  columns: BasicColumn[];
   /**
    * api 函数，请求后台数据
    *
    * api function, requesting data from the server
    */
-  api?: (...arg: any) => Promise<any>
+  api?: (...arg: any) => Promise<any>;
   /**
    * 接口结果字段匹配
    *
    * Interface result field match
    */
-  fetchSetting?: Partial<FetchSetting>
+  fetchSetting?: Partial<FetchSetting>;
   /**
    * 是否自动创建key
    *
    * Whether to automatically create a key
    */
-  autoCreateKey?: boolean
+  autoCreateKey?: boolean;
   /**
    * 请求列表之前请求
    *
    * Request list before request
    */
-  beforeFetchFn?: (data: Recordable) => Recordable
+  beforeFetchFn?: (data: Recordable) => Recordable;
   /**
    * 请求列表之后请求
    *
    * Request list after request
    */
-  afterFetchFn?: (data: Recordable[]) => Recordable[]
+  afterFetchFn?: (data: Recordable[]) => Recordable[];
   /**
    * 搜索时的参数过滤
    *
    * Parameter filtering when searching
    */
-  searchFn?: (data: Recordable) => Recordable
+  searchFn?: (data: Recordable) => Recordable;
   /**
    * 排序时的参数过滤
    *
    * Parameter filtering when sorting
    */
-  sortFn?: (data: ColumnSorterResult) => Recordable
+  sortFn?: (data: ColumnSorterResult) => Recordable;
   /**
    * 筛选时的参数过滤
    *
    * Parameter filtering when filtering
    */
-  filterFn?: (data: Recordable[]) => Recordable[]
+  filterFn?: (data: Recordable[]) => Recordable[];
   /**
    * 是否立即请求
    *
    * whether to request now
    */
-  immediate?: boolean
+  immediate?: boolean;
   /**
    * 额外的搜索参数
    *
    * Additional search parameters
    */
-  searchInfo?: Recordable
+  searchInfo?: Recordable;
   /**
    * 是否使用搜索表单
    *
    * Whether to use a search form
    */
-  useSearchForm?: boolean
+  useSearchForm?: boolean;
   /**
    * 搜索表单配置
    *
    * Search form configuration
    */
-  formConfig?: Partial<BasicFormProps>
+  formConfig?: Partial<BasicFormProps>;
   /**
    * 是否显示序号列
    *
    * Whether to show the serial number column
    */
-  showIndexColumn?: boolean
+  showIndexColumn?: boolean;
   /**
    * 是否显示选择列
    *
    * whether to show checkbox columns
    */
-  showCheckboxColumn?: boolean
+  showCheckboxColumn?: boolean;
   /**
    * 是否自动调整表格大小
    *
    * Whether to automatically adjust the table size
    */
-  canResize?: boolean
+  canResize?: boolean;
   /**
    * 是否显示盒子阴影
    *
    * Whether to show box shadow
    */
-  isShadow?: Boolean
+  isShadow?: Boolean;
   /**
    * 分页导航配置
    *
    * Pagination Configuration
    */
-  pagination?: Partial<ElePagination> | boolean
+  pagination?: Partial<ElePagination> | boolean;
   /**
    * 是否加载状态
    *
    * Whether the status is being loaded
    */
-  loading?: boolean
+  loading?: boolean;
   /**
    * 子项的所在的字段名称，一般用在展开表格
    *
    * The name of the field where the child item is located, generally used to expand the table
    */
-  childrenColumnName?: string
+  childrenColumnName?: string;
 
   // Element Plus Table event
   // 请查看官方使用文档
@@ -169,82 +169,82 @@ export interface BasicTableProps extends EleTable {
   /**
    * 当用户手动勾选数据行的 Checkbox 时触发的事件
    */
-  onSelect?: (selection, row) => void
+  onSelect?: (selection, row) => void;
   /**
    * 当用户手动勾选全选 Checkbox 时触发的事件
    */
-  onSelectAll?: (selection) => void
+  onSelectAll?: (selection) => void;
   /**
    * 当选择项发生变化时会触发该事件
    */
-  onSelectionChange?: (selection) => void
+  onSelectionChange?: (selection) => void;
   /**
    * 当单元格 hover 进入时会触发该事件
    */
-  onCellMouseEnter?: (row, column, cell, event) => void
+  onCellMouseEnter?: (row, column, cell, event) => void;
   /**
    * 当单元格 hover 退出时会触发该事件
    */
-  onCellMouseLeave?: (row, column, cell, event) => void
+  onCellMouseLeave?: (row, column, cell, event) => void;
   /**
    * 当某个单元格被点击时会触发该事件
    */
-  onCellClick?: (row, column, cell, event) => void
+  onCellClick?: (row, column, cell, event) => void;
   /**
    * 当某个单元格被双击击时会触发该事件
    */
-  onCellDblclick?: (row, column, cell, event) => void
+  onCellDblclick?: (row, column, cell, event) => void;
   /**
    * 当某个单元格被鼠标右键点击时会触发该事件
    */
-  onCellContextmenu?: (row, column, cell, event) => void
+  onCellContextmenu?: (row, column, cell, event) => void;
   /**
    * 当某一行被点击时会触发该事件
    */
-  onRowClick?: (row, column, event) => void
+  onRowClick?: (row, column, event) => void;
   /**
    * 当某一行被鼠标右键点击时会触发该事件
    */
-  onRowContextmenu?: (row, column, event) => void
+  onRowContextmenu?: (row, column, event) => void;
   /**
    * 当某一行被双击时会触发该事件
    */
-  onRowDblclick?: (row, column, event) => void
+  onRowDblclick?: (row, column, event) => void;
   /**
    * 当某一列的表头被点击时会触发该事件
    */
-  onHeaderClick?: (column, event) => void
+  onHeaderClick?: (column, event) => void;
   /**
    * 当某一列的表头被鼠标右键点击时触发该事件
    */
-  onHeaderContextmenu?: (column, event) => void
+  onHeaderContextmenu?: (column, event) => void;
   /**
    * 当表格的排序条件发生变化的时候会触发该事件
    */
-  onSortChange?: ({ column, prop, order }) => void
+  onSortChange?: ({ column, prop, order }) => void;
   /**
    * column 的 key， 如果需要使用 filter-change 事件，则需要此属性标识是哪个 column 的筛选条件
    */
-  onFilterChange?: (filters) => void
+  onFilterChange?: (filters) => void;
   /**
    * 当表格的当前行发生变化的时候会触发该事件，如果要高亮当前行，请打开表格的 highlight-current-row 属性
    */
-  onCurrentChange?: (currentRow, oldCurrentRow) => void
+  onCurrentChange?: (currentRow, oldCurrentRow) => void;
   /**
    * 当拖动表头改变了列的宽度的时候会触发该事件
    */
-  onHeaderDragend?: (newWidth, oldWidth, column, event) => void
+  onHeaderDragend?: (newWidth, oldWidth, column, event) => void;
   /**
    * 当用户对某一行展开或者关闭的时候会触发该事件（展开行时，回调的第二个参数为 expandedRows；树形表格时第二参数为 expanded）
    */
-  onExpandChange?: (row, expandedRows_or_expanded) => void
+  onExpandChange?: (row, expandedRows_or_expanded) => void;
 }
 
-export declare type ColumnSortOrder = 'ascending' | 'descending' | null
+export declare type ColumnSortOrder = 'ascending' | 'descending' | null;
 
 export interface TableCustomRecord<T = Recordable> {
-  record?: T
-  index?: number
+  record?: T;
+  index?: number;
 }
 
 /**
@@ -258,19 +258,19 @@ export interface ColumnSorterResult {
    *
    * Column data
    */
-  column: EleTableColumn
+  column: EleTableColumn;
   /**
    * 排序
    *
    * Order
    */
-  order: ColumnSortOrder
+  order: ColumnSortOrder;
   /**
    * Prop 字段
    *
    * Prop
    */
-  prop: string
+  prop: string;
 }
 
 /**
@@ -284,25 +284,25 @@ export interface FetchParams {
    *
    * Current page
    */
-  page?: number
+  page?: number;
   /**
    * 搜索参数
    *
    * Search params
    */
-  searchInfo?: Recordable
+  searchInfo?: Recordable;
   /**
    * 排序参数
    *
    * Sort params
    */
-  sortInfo?: Recordable
+  sortInfo?: Recordable;
   /**
    * 筛选参数
    *
    * Filter params
    */
-  filterInfo?: Recordable
+  filterInfo?: Recordable;
 }
 
 /**
@@ -316,31 +316,31 @@ export interface GetColumnsParams {
    *
    * whether to ignore index column
    */
-  ignoreIndex?: boolean
+  ignoreIndex?: boolean;
   /**
    * 是否忽略操作列
    *
    * whether to ignore action column
    */
-  ignoreAction?: boolean
+  ignoreAction?: boolean;
   /**
    * 是否忽略复选框列
    *
    * whether to ignore checkbox column
    */
-  ignoreCheckbox?: boolean
+  ignoreCheckbox?: boolean;
   /**
    * 是否忽略展开列
    *
    * whether to ignore expand column
    */
-  ignoreExpand?: boolean
+  ignoreExpand?: boolean;
   /**
    * 是否需要重新排序
    *
    * Does it need to be reordered
    */
-  sort?: boolean
+  sort?: boolean;
 }
 
 /**
@@ -354,73 +354,73 @@ export interface TableActionMethods {
    *
    * Set table props
    */
-  setTableProps: (props: Partial<BasicTableProps>) => void
+  setTableProps: (props: Partial<BasicTableProps>) => void;
   /**
    * 获取表格列
    *
    * Get table columns
    */
-  getColumns: (opt?: GetColumnsParams) => BasicColumn[]
+  getColumns: (opt?: GetColumnsParams) => BasicColumn[];
   /**
    * 更新列，支持列数据或者prop字段集
    *
    * Set columns, Support column data or prop field set
    */
-  setColumns: (columns: BasicColumn[] | string[]) => void
+  setColumns: (columns: BasicColumn[] | string[]) => void;
   /**
    * 获取缓存列
    *
    * Get cache columns
    */
-  getCacheColumns: () => BasicColumn[]
+  getCacheColumns: () => BasicColumn[];
   /**
    * 更新加载状态
    *
    * Set loading state
    */
-  setLoading: (loading: boolean) => void
+  setLoading: (loading: boolean) => void;
   /**
    * 重载表格数据
    *
    * Reload table data
    */
-  reload: (opt?: FetchParams) => Promise<void>
+  reload: (opt?: FetchParams) => Promise<void>;
   /**
    * 处理表格数据
    *
    * Handling of tabular data
    */
-  getDataSource: <T = Recordable>() => T[]
+  getDataSource: <T = Recordable>() => T[];
   /**
    * 获取未处理的原始的接口数据
    *
    * Get unprocessed raw api data
    */
-  getRawDataSource: <T = Recordable>() => T
+  getRawDataSource: <T = Recordable>() => T;
   /**
    * 更新表格数据
    *
    * Set table data
    */
-  setTableData: <T = Recordable>(values: T[]) => void
+  setTableData: <T = Recordable>(values: T[]) => void;
   /**
    * 更新表格数据，与 updateTableDataRecord 不同的是，这个可以单独修改某行的某个字段
    *
    * Update table data, unlike updateTableDataRecord, this one can modify a field of a row individually
    */
-  updateTableData: (index: number, prop: string, value: any) => Recordable
+  updateTableData: (index: number, prop: string, value: any) => Recordable;
   /**
    * 根据 key 更新指定行的整行的记录，key必须存在
    *
    * Update the record of the entire row of the specified row according to the key, key must exist
    */
-  updateTableDataRecord: (rowKey: string | number, record: Recordable) => Recordable | void
+  updateTableDataRecord: (rowKey: string | number, record: Recordable) => Recordable | void;
   /**
    * 根据 rowKey 删除指定行记录
    *
    * Delete the specified row record according to the rowKey
    */
-  deleteTableDataRecord: (rowKey: string | number) => Recordable | void
+  deleteTableDataRecord: (rowKey: string | number) => Recordable | void;
   /**
    * 插入一条记录，如果索引存在，则插入索引的位置，否则插入最后的位置
    *
@@ -428,46 +428,46 @@ export interface TableActionMethods {
    * @param record 插入的记录
    * @param index 索引
    */
-  insertTableDataRecord: (record: Recordable, index?: number) => Recordable | void
+  insertTableDataRecord: (record: Recordable, index?: number) => Recordable | void;
   /**
    * 根据 rowKey 查找所在行记录
    *
    * Find the row record based on the rowKey
    */
-  findTableDataRecord: (rowKey: string | number) => Recordable | void
+  findTableDataRecord: (rowKey: string | number) => Recordable | void;
   /**
    * 刷新高度-重新计算表格高度
    *
    * Redo height - recalculates table height
    */
-  redoHeight: () => void
+  redoHeight: () => void;
   /**
    * 更新分页信息
    *
    * Set pagination
    * @param info ElePagination
    */
-  setPagination: (info: Partial<ElePagination>) => void
+  setPagination: (info: Partial<ElePagination>) => void;
   /**
    * 获取分页信息
    *
    * Get pagination
    */
-  getPagination: () => Partial<ElePagination> | boolean
+  getPagination: () => Partial<ElePagination> | boolean;
   /**
    * 展开全部-树形表格
    *
    * Expand all
    */
-  expandAll: () => void
+  expandAll: () => void;
   /**
    * 收起全部-树形表格
    *
    * Collapse all
    */
-  collapseAll: () => void
+  collapseAll: () => void;
 
-  emit?: EmitType
+  emit?: EmitType;
 
   // Element Plus Table func
   // 请查看官方使用文档
@@ -475,43 +475,43 @@ export interface TableActionMethods {
   /**
    * 用于多选表格，清空用户的选择
    */
-  clearSelection: () => void
+  clearSelection: () => void;
   /**
    * 返回当前选中的行
    */
-  getSelectionRows: () => void
+  getSelectionRows: () => void;
   /**
    * 用于多选表格，切换某一行的选中状态， 如果使用了第二个参数，则可直接设置这一行选中与否
    */
-  toggleRowSelection: (row: any, selected: boolean) => void
+  toggleRowSelection: (row: any, selected: boolean) => void;
   /**
    * 用于多选表格，切换全选和全不选
    */
-  toggleAllSelection: () => void
+  toggleAllSelection: () => void;
   /**
    * 用于可扩展的表格或树表格，如果某行被扩展，则切换。 使用第二个参数，您可以直接设置该行应该被扩展或折叠。
    */
-  toggleRowExpansion: (row: any, expanded: boolean) => void
+  toggleRowExpansion: (row: any, expanded: boolean) => void;
   /**
    * 用于单选表格，设定某一行为选中行， 如果调用时不加参数，则会取消目前高亮行的选中状态。
    */
-  setCurrentRow: (row: any) => void
+  setCurrentRow: (row: any) => void;
   /**
    * 用于清空排序条件，数据会恢复成未排序的状态
    */
-  clearSort: () => void
+  clearSort: () => void;
   /**
    * 	传入由 columnKey 组成的数组以清除指定列的过滤条件。 如果没有参数，清除所有过滤器
    */
-  clearFilter: (columnKeys: string[]) => void
+  clearFilter: (columnKeys: string[]) => void;
   /**
    * 对 Table 进行重新布局。 当表格可见性变化时，您可能需要调用此方法以获得正确的布局
    */
-  doLayout: () => void
+  doLayout: () => void;
   /**
    * 手动排序表格。 参数 prop 属性指定排序列，order 指定排序顺序。
    */
-  sort: (prop: string, order: string) => void
+  sort: (prop: string, order: string) => void;
 }
 
 export type UseTableMethod = TableActionMethods & {
@@ -520,8 +520,8 @@ export type UseTableMethod = TableActionMethods & {
    *
    * Get form instance func
    */
-  getFormRef: () => FormActionMethods
-}
+  getFormRef: () => FormActionMethods;
+};
 
 /**
  * 请求响应字段匹配设置，支持多重嵌套，如 a.b.c
@@ -530,29 +530,41 @@ export type UseTableMethod = TableActionMethods & {
  */
 export interface FetchSetting {
   /**
+   * 发起请求的页码参数字段
+   *
+   * The page number parameter field that initiated the request
+   */
+  currentPageField: string;
+  /**
+   * 发起请求的分页大小参数字段
+   *
+   * Paging size parameter fields for initiating requests
+   */
+  currentSizeField: string;
+  /**
    * 请求结果的页码字段
    *
    * Page field for request result
    */
-  pageField: string
+  pageField: string;
   /**
-   * 请求结果的页码大小字段
+   * 请求结果的分页大小字段
    *
-   * Size field for request result
+   * Paging size field for request results
    */
-  sizeField: string
+  sizeField: string;
   /**
    * 请求结果的列表字段
    *
    * List field for request result
    */
-  listField: string
+  listField: string;
   /**
    * 请求结果的总数字段
    *
    * Total field for request result
    */
-  totalField: string
+  totalField: string;
 }
 
 /**
@@ -566,19 +578,19 @@ export interface TableSetting {
    *
    * Redo
    */
-  redo?: boolean
+  redo?: boolean;
   /**
    * 密度
    *
    * Density
    */
-  size?: boolean
+  size?: boolean;
   /**
    * 全屏
    *
    * full screen
    */
-  fullscreen?: boolean
+  fullscreen?: boolean;
 }
 
 /**
@@ -592,19 +604,19 @@ export interface scopeInfo {
    *
    * Current column
    */
-  row: Record
+  row: Record;
   /**
    * 所在列
    *
    * Current column
    */
-  column: EleTableColumn
+  column: EleTableColumn;
   /**
    * 所在索引
    *
    * Current index
    */
-  $index: number
+  $index: number;
 }
 
 /**
@@ -618,31 +630,31 @@ export interface TableColumnRender {
    *
    * Current content
    */
-  text: string
+  text: string;
   /**
    * 当前所在索引
    *
    * Current index
    */
-  index: number
+  index: number;
   /**
    * 当前行的数据
    *
    * Data of the current row
    */
-  record: Record
+  record: Record;
   /**
    * 继承官方内容，内容为当前行(row)，当前列(column)，当前索引($index)
    *
    * Inherit the official content, exist row/column/$index
    */
-  scope: scopeInfo
+  scope: scopeInfo;
   /**
    * 当前列的数据
    *
    * Current column data
    */
-  column: BasicColumn
+  column: BasicColumn;
 }
 
 /**
@@ -652,41 +664,35 @@ export interface TableColumnRender {
  */
 export interface TableActionItem extends EleButton {
   /**
-   * Svg 图标的名称
-   *
-   * Svg name
-   */
-  svgName?: string
-  /**
-   * 常规图标的名称
+   * Svg图标的名称
    *
    * Icon name
    */
-  iconName?: string
+  iconName?: string;
   /**
    * 如果有，将转为弹窗确认按钮模式
    *
    * If there is, it will switch to popup confirmation button mode
    */
-  popConfirm?: MessageBoxOptions
+  popConfirm?: MessageBoxOptions;
   /**
    * 通过权限判断是否显示
    *
    * Judging whether to display by permission
    */
-  auth?: RoleEnum | RoleEnum[] | string | string[]
+  auth?: RoleEnum | RoleEnum[] | string | string[];
   /**
    * 通过条件判断是否显示
    *
    * Judging whether to display by condition
    */
-  ifShow?: boolean | ((column: BasicColumn, scopes: scopeInfo, action: TableActionItem) => boolean)
+  ifShow?: boolean | ((column: BasicColumn, scopes: scopeInfo, action: TableActionItem) => boolean);
   /**
    * 操作列的点击回调，当为确认按钮模式时，将会在确认弹窗操作后触发回调
    *
    * Click callback for action column, when it is in the confirmation button mode, the callback will be triggered after confirming the popup operation
    */
-  callback?: (info: scopeInfo, action?: EleActionPopconfirmAction) => void
+  callback?: (info: scopeInfo, action?: EleActionPopconfirmAction) => void;
 }
 
 /**
@@ -700,45 +706,45 @@ export interface BasicColumn extends EleTableColumn {
    *
    * The item of the operation column, when this field exists, the default current column is the operation column
    */
-  actions?: TableActionItem[]
+  actions?: TableActionItem[];
   /**
    * 子项
    *
    * Children
    */
-  children?: BasicColumn[]
+  children?: BasicColumn[];
   /**
    * 是否插槽模式
    *
    * Whether the slot mode
    */
-  isSlot?: boolean
+  isSlot?: boolean;
   /**
    * 是否默认隐藏
    *
    * Whether to hide by default
    */
-  defaultHidden?: boolean
+  defaultHidden?: boolean;
   /**
    * 当内容为空时，显示默认内容
    *
    * When the content is empty, display the default content
    */
-  defaultValue?: string
+  defaultValue?: string;
   /**
    * 是否自定义渲染
    *
    * Whether to customize the rendering
    */
-  customRender?: (info: TableColumnRender) => void
+  customRender?: (info: TableColumnRender) => void;
   /**
    * 当前列的数据权限
    */
-  auth?: RoleEnum | RoleEnum[] | string | string[]
+  auth?: RoleEnum | RoleEnum[] | string | string[];
   /**
    * 是否显示，可通过条件判断
    *
    * Whether to display, can be judged by conditions
    */
-  ifShow?: boolean | ((column: BasicColumn) => boolean)
+  ifShow?: boolean | ((column: BasicColumn) => boolean);
 }

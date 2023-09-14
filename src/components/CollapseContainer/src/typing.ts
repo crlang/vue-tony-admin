@@ -1,5 +1,5 @@
-import type { ExtractOptionProp } from 'vue'
+import type { ExtractOptionProp } from 'vue';
 
-import { basicProps } from './props'
+import { basicProps } from './props';
 
-export type CollapseContainerProps = ExtractOptionProp<typeof basicProps>
+export type CollapseContainerProps = ExtractOptionProp<typeof basicProps>;

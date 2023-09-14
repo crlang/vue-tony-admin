@@ -12,36 +12,36 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, unref, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { computed, defineComponent, unref, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-import { DOC_URL, GITHUB_URL, SITE_URL } from '@/settings/siteSetting'
-import { useDesign } from '@/hooks/web/useDesign'
-import { openWindow } from '@/utils'
-import { useRootSetting } from '@/hooks/setting/useRootSetting'
+import { DOC_URL, GITHUB_URL, SITE_URL } from '@/settings/siteSetting';
+import { useDesign } from '@/hooks/web/useDesign';
+import { openWindow } from '@/utils';
+import { useRootSetting } from '@/hooks/setting/useRootSetting';
 
-import { useLayoutHeight } from '../content/useContentViewHeight'
+import { useLayoutHeight } from '../content/useContentViewHeight';
 
 export default defineComponent({
   name: 'LayoutFooter',
   components: {},
   setup() {
-    const { getShowFooter } = useRootSetting()
-    const { currentRoute } = useRouter()
-    const { prefixCls } = useDesign('layout-footer')
+    const { getShowFooter } = useRootSetting();
+    const { currentRoute } = useRouter();
+    const { prefixCls } = useDesign('layout-footer');
 
-    const footerRef = ref<ComponentRef>(null)
-    const { setFooterHeight } = useLayoutHeight()
+    const footerRef = ref<ComponentRef>(null);
+    const { setFooterHeight } = useLayoutHeight();
 
     const getShowLayoutFooter = computed(() => {
       if (unref(getShowFooter)) {
-        const footerEl = unref(footerRef)?.$el
-        setFooterHeight(footerEl?.offsetHeight || 0)
+        const footerEl = unref(footerRef)?.$el;
+        setFooterHeight(footerEl?.offsetHeight || 0);
       } else {
-        setFooterHeight(0)
+        setFooterHeight(0);
       }
-      return unref(getShowFooter) && !unref(currentRoute).meta?.hiddenFooter
-    })
+      return unref(getShowFooter) && !unref(currentRoute).meta?.hiddenFooter;
+    });
 
     return {
       getShowLayoutFooter,
@@ -51,9 +51,9 @@ export default defineComponent({
       SITE_URL,
       openWindow,
       footerRef,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss">

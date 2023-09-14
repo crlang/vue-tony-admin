@@ -1,12 +1,12 @@
 <template>
-  <List :class="prefixCls">
+  <BasicList :class="prefixCls">
     <el-row :gutter="16">
       <template v-for="item in list" :key="item.title">
         <el-col :span="6">
-          <ListItem :class="`${prefixCls}__item`">
+          <BasicListItem :class="`${prefixCls}__item`">
             <el-card :class="`${prefixCls}__card`" :bodyStyle="{ padding: 0 }">
               <div :class="`${prefixCls}__card-title`">
-                <Icon
+                <SvgIcon
                   class="icon"
                   v-if="item.icon"
                   :name="item.icon"
@@ -23,42 +23,42 @@
                 新增用户：
                 <span>{{ item.new }}</span>
               </div>
-              <Icon
+              <SvgIcon
                 :class="`${prefixCls}__card-download`"
                 v-if="item.download"
                 size="20"
                 :name="item.download" />
             </el-card>
-          </ListItem>
+          </BasicListItem>
         </el-col>
       </template>
     </el-row>
-  </List>
+  </BasicList>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElRow, ElCol, ElCard } from 'element-plus'
-import Icon from '@/components/Icon'
-import { applicationList } from './data'
-import { List, ListItem } from '@/components/List'
+import { defineComponent } from 'vue';
+import { ElRow, ElCol, ElCard } from 'element-plus';
+import { SvgIcon } from '@/components/SvgIcon';
+import { applicationList } from './data';
+import { BasicList, BasicListItem } from '@/components/BasicList';
 
 export default defineComponent({
   components: {
     ElRow,
     ElCol,
     ElCard,
-    ListItem,
-    List,
-    Icon,
+    BasicList,
+    BasicListItem,
+    SvgIcon,
   },
   setup() {
     return {
       prefixCls: 'account-center',
       list: applicationList,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

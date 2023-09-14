@@ -70,11 +70,11 @@
             <el-descriptions-item label="过期时间">2017-08-08</el-descriptions-item>
             <el-descriptions-item label="描述" :span="2">这段描述很长很长很长很长很长很长很长很长很长很长很长很长很长很长...</el-descriptions-item>
           </el-descriptions>
-          <el-divider />
+          <BasicDivider />
           <el-descriptions title="组名称" :column="1">
             <el-descriptions-item label="学名">Citrullus lanatus (Thunb.) Matsum. et Nakai一年生蔓生藤本；茎、枝粗壮，具明显的棱。卷须较粗..</el-descriptions-item>
           </el-descriptions>
-          <el-divider />
+          <BasicDivider />
           <el-descriptions title="组名称" :column="1">
             <el-descriptions-item label="负责人">付小小</el-descriptions-item>
             <el-descriptions-item label="角色码">1234568</el-descriptions-item>
@@ -91,10 +91,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from 'vue'
-import { ElButton, ElTabs, ElTabPane, ElDescriptions, ElDescriptionsItem, ElStep, ElSteps, ElCard, ElDivider, ElEmpty } from 'element-plus'
-import { BasicTable, useTable } from '@/components/BasicTable'
-import { refundTimeTableData, refundTimeTableSchema } from './data'
+import { defineComponent, reactive, ref } from 'vue';
+import { ElButton, ElTabs, ElTabPane, ElDescriptions, ElDescriptionsItem, ElStep, ElSteps, ElCard, ElEmpty } from 'element-plus';
+
+import { BasicTable, useTable } from '@/components/BasicTable';
+import { BasicDivider } from '@/components/Basic';
+
+import { refundTimeTableData, refundTimeTableSchema } from './data';
 
 export default defineComponent({
   components: {
@@ -106,25 +109,25 @@ export default defineComponent({
     ElStep,
     ElSteps,
     ElCard,
-    ElDivider,
     ElEmpty,
+    BasicDivider,
     BasicTable,
   },
   setup() {
-    const tabActivedName = ref('detail')
+    const tabActivedName = ref('detail');
     const registerTimeTableFields = reactive<any>({
       title: '退货进度',
       columns: refundTimeTableSchema,
       dataSource: refundTimeTableData,
       showIndexColumn: false,
       scroll: { y: 300 },
-    })
-    const [registerTimeTable] = useTable()
+    });
+    const [registerTimeTable] = useTable();
     return {
       registerTimeTableFields,
       registerTimeTable,
       tabActivedName,
-    }
+    };
   },
-})
+});
 </script>

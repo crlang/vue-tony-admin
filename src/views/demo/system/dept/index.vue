@@ -10,21 +10,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElButton } from 'element-plus'
+import { defineComponent } from 'vue';
+import { ElButton } from 'element-plus';
 
-import { BasicTable, useTable } from '@/components/BasicTable'
-import { getDeptList } from '@/api/demo/system'
+import { BasicTable, useTable } from '@/components/BasicTable';
+import { getDeptList } from '@/api/demo/system';
 
-import { useModal } from '@/components/BasicModal'
-import DeptModal from './DeptModal.vue'
-import { columns, searchFormSchema } from './data'
+import { useModal } from '@/components/BasicModal';
+import DeptModal from './DeptModal.vue';
+import { columns, searchFormSchema } from './data';
 
 export default defineComponent({
   name: 'DeptManagement',
   components: { ElButton, BasicTable, DeptModal },
   setup() {
-    const [registerModal, { openModal }] = useModal()
+    const [registerModal, { openModal }] = useModal();
     const [registerTable, { reload }] = useTable({
       title: '部门列表',
       api: getDeptList,
@@ -33,12 +33,12 @@ export default defineComponent({
         {
           actions: [
             {
-              iconName: 'clarity:note-edit-line',
+              iconName: 'note-edit-line',
               btnText: '编辑',
               callback: handleEdit,
             },
             {
-              iconName: 'ep:delete',
+              iconName: 'delete',
               type: 'danger',
               btnText: '删除',
               popConfirm: {
@@ -59,19 +59,19 @@ export default defineComponent({
       showTableSetting: true,
       border: true,
       showIndexColumn: false,
-    })
+    });
 
     function handleCreate() {
       openModal(true, {
         isUpdate: false,
-      })
+      });
     }
 
     function handleEdit({ row }) {
       openModal(true, {
         record: row,
         isUpdate: true,
-      })
+      });
     }
 
     function handleDelete() {
@@ -79,7 +79,7 @@ export default defineComponent({
     }
 
     function handleSuccess() {
-      reload()
+      reload();
     }
 
     return {
@@ -89,7 +89,7 @@ export default defineComponent({
       handleEdit,
       handleDelete,
       handleSuccess,
-    }
+    };
   },
-})
+});
 </script>

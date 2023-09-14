@@ -12,7 +12,7 @@
       </div>
       <div :class="`${prefixCls}__toolbar`">
         <slot name="toolbar"></slot>
-        <ElDivider direction="vertical" v-if="$slots.toolbar && showTableSetting" />
+        <BasicDivider direction="vertical" v-if="$slots.toolbar && showTableSetting" />
         <div :class="`${prefixCls}__toolbar-setting`" v-if="showTableSetting">
           <TableSetting v-bind="getSettingProps" />
         </div>
@@ -25,19 +25,18 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
-import { ElDivider } from 'element-plus'
+import { computed, defineComponent } from 'vue';
 
-import { BasicTitle } from '@/components/Basic'
+import { BasicTitle, BasicDivider } from '@/components/Basic';
 
-import TableSetting from './TableSetting.vue'
-import { headerProps } from '../props'
-import { TableSetting as TableSettingType } from '../typing'
+import TableSetting from './TableSetting.vue';
+import { headerProps } from '../props';
+import { TableSetting as TableSettingType } from '../typing';
 
 export default defineComponent({
   name: 'BasicTableHeader',
   components: {
-    ElDivider,
+    BasicDivider,
     BasicTitle,
     TableSetting,
   },
@@ -52,10 +51,10 @@ export default defineComponent({
         fullscreen: true,
         size: false,
         ...(props.tableSetting || {}),
-      } as TableSettingType
-    })
+      } as TableSettingType;
+    });
 
-    return { getSettingProps }
+    return { getSettingProps };
   },
-})
+});
 </script>

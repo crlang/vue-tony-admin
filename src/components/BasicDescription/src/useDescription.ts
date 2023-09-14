@@ -1,22 +1,22 @@
-import type { BasicDescProps, DescActionMethods, UseDescReturnType } from './typing'
+import type { BasicDescProps, DescActionMethods, UseDescReturnType } from './typing';
 
-import { ref, getCurrentInstance, unref } from 'vue'
+import { ref, getCurrentInstance, unref } from 'vue';
 
-import { isProdMode } from '@/utils/env'
-import { error } from '@/utils/log'
+import { isProdMode } from '@/utils/env';
+import { error } from '@/utils/log';
 
 /**
- * 定义使用实例
+ * 使用描述实例
  *
- * Define use instance
+ * Use the description instance
  * @param props DescriptionProps
  */
 export function useDescription(props?: Partial<BasicDescProps>): UseDescReturnType {
   if (!getCurrentInstance()) {
-    error('useDescription() can only be used inside setup() or functional components!')
+    error('useDescription() can only be used inside setup() or functional components!');
   }
-  const desc = ref<Nullable<DescActionMethods>>(null)
-  const loaded = ref(false)
+  const desc = ref<Nullable<DescActionMethods>>(null);
+  const loaded = ref(false);
   /**
    * 注册实例
    *
@@ -25,11 +25,11 @@ export function useDescription(props?: Partial<BasicDescProps>): UseDescReturnTy
    */
   function register(instance: DescActionMethods) {
     if (unref(loaded) && isProdMode()) {
-      return
+      return;
     }
-    desc.value = instance
-    props && instance.setDescProps(props)
-    loaded.value = true
+    desc.value = instance;
+    props && instance.setDescProps(props);
+    loaded.value = true;
   }
 
   const methods: DescActionMethods = {
@@ -40,9 +40,9 @@ export function useDescription(props?: Partial<BasicDescProps>): UseDescReturnTy
      * @param props DescriptionProps
      */
     setDescProps: (descProps: Partial<BasicDescProps>): void => {
-      unref(desc)?.setDescProps(descProps)
+      unref(desc)?.setDescProps(descProps);
     },
-  }
+  };
 
-  return [register, methods]
+  return [register, methods];
 }

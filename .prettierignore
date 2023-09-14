@@ -4,5 +4,7 @@
 **/*.svg
 **/*.sh
 **/*.html
+**/*.tsx
+**/*.jsx
 
 /public/*

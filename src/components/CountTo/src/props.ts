@@ -37,7 +37,7 @@ export const basicProps = {
     type: Number,
     default: 0,
     validator(v: number) {
-      return v >= 0
+      return v >= 0;
     },
   },
   /**
@@ -76,4 +76,4 @@ export const basicProps = {
    * Digital animation transition curves
    */
   transition: { type: String, default: 'linear' },
-}
+};

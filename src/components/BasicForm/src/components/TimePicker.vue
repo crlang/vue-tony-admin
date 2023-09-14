@@ -3,9 +3,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElTimePicker } from 'element-plus'
-import { useRuleFormItem } from '@/hooks/component/useFormItem'
+import { defineComponent } from 'vue';
+import { ElTimePicker } from 'element-plus';
+import { useRuleFormItem } from '@/hooks/component/useFormItem';
 
 export default defineComponent({
   name: 'TimePicker',
@@ -15,9 +15,9 @@ export default defineComponent({
   },
   emits: ['change'],
   setup(props) {
-    const [state] = useRuleFormItem(props)
+    const [state] = useRuleFormItem(props);
 
-    return { state }
+    return { state };
   },
-})
+});
 </script>

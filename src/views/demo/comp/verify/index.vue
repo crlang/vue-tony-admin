@@ -47,46 +47,46 @@
 </template>
 
 <script lang="ts">
-import type { DragVerifyActionType, PassingData } from '@/components/DragVerify'
+import type { DragVerifyActionType, PassingData } from '@/components/DragVerify';
 
-import { defineComponent, ref } from 'vue'
-import { ElButton } from 'element-plus'
+import { defineComponent, ref } from 'vue';
+import { ElButton } from 'element-plus';
 
-import { BasicDragVerify } from '@/components/DragVerify'
-import { useMessage } from '@/hooks/web/useMessage'
-import { SvgIcon } from '@/components/SvgIcon'
+import { BasicDragVerify } from '@/components/DragVerify';
+import { useMessage } from '@/hooks/web/useMessage';
+import { SvgIcon } from '@/components/SvgIcon';
 
 export default defineComponent({
   components: { ElButton, BasicDragVerify, SvgIcon },
   setup() {
-    const verifyState = ref(false)
-    const el1 = ref<Nullable<DragVerifyActionType>>(null)
-    const el2 = ref<Nullable<DragVerifyActionType>>(null)
-    const el3 = ref<Nullable<DragVerifyActionType>>(null)
-    const el4 = ref<Nullable<DragVerifyActionType>>(null)
-    const el5 = ref<Nullable<DragVerifyActionType>>(null)
+    const verifyState = ref(false);
+    const el1 = ref<Nullable<DragVerifyActionType>>(null);
+    const el2 = ref<Nullable<DragVerifyActionType>>(null);
+    const el3 = ref<Nullable<DragVerifyActionType>>(null);
+    const el4 = ref<Nullable<DragVerifyActionType>>(null);
+    const el5 = ref<Nullable<DragVerifyActionType>>(null);
 
-    const { createMessage } = useMessage()
+    const { createMessage } = useMessage();
 
     function handleSuccess(data: PassingData) {
-      const { time } = data
-      createMessage.success(`校验成功,耗时${time}秒`)
+      const { time } = data;
+      createMessage.success(`校验成功,耗时${time}秒`);
     }
 
     function handleCustomSuccess(data: PassingData) {
-      const { time } = data
-      verifyState.value = true
-      createMessage.success(`自定义校验成功,耗时${time}秒`)
+      const { time } = data;
+      verifyState.value = true;
+      createMessage.success(`自定义校验成功,耗时${time}秒`);
     }
 
     function handleBtnClick(elRef: Nullable<DragVerifyActionType>, name = '') {
       if (!elRef) {
-        return
+        return;
       }
       if (name === 'el1') {
-        verifyState.value = false
+        verifyState.value = false;
       }
-      elRef.resume()
+      elRef.resume();
     }
 
     return {
@@ -99,9 +99,9 @@ export default defineComponent({
       handleCustomSuccess,
       handleSuccess,
       handleBtnClick,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

@@ -17,10 +17,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { BasicTable, useTable, BasicColumn } from '@/components/BasicTable'
-import { demoListApi } from '@/api/demo/table'
-import { ElTableColumn } from 'element-plus'
+import { defineComponent } from 'vue';
+import { BasicTable, useTable, BasicColumn } from '@/components/BasicTable';
+import { demoListApi } from '@/api/demo/table';
+import { ElTableColumn } from 'element-plus';
 
 export default defineComponent({
   components: { ElTableColumn, BasicTable },
@@ -86,7 +86,7 @@ export default defineComponent({
           },
         ],
       },
-    ]
+    ];
     const [registerTable] = useTable({
       title: 'TableAction组件及固定列示例',
       api: demoListApi,
@@ -94,7 +94,7 @@ export default defineComponent({
       canResize: true,
       showCheckboxColumn: true,
       border: true,
-    })
+    });
     function handleDelete() {
       // do something
     }
@@ -106,7 +106,7 @@ export default defineComponent({
       registerTable,
       handleDelete,
       handleOpen,
-    }
+    };
   },
-})
+});
 </script>

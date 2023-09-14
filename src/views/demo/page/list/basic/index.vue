@@ -19,16 +19,9 @@
 
     <CollapseContainer title="常规列表">
       <div :class="`${prefixCls}__content`">
-        <List :pagination="pagination">
-          <template v-for="item in list" :key="item.id">
-            <ListItem class="list">
-              <template #thumb>
-                <Icon
-                  class="icon"
-                  v-if="item.icon"
-                  :name="item.icon"
-                  :color="item.color" />
-              </template>
+        <BasicList :dataSource="list" :pagination="pagination">
+          <template #renderItem="{ item }">
+            <BasicListItem class="list">
               <template #title>
                 <span>{{ item.title }}</span>
                 <div class="extra" v-if="item.extra">
@@ -53,44 +46,55 @@
                   <el-progress :percentage="item.percent" />
                 </div>
               </template>
-            </ListItem>
+            </BasicListItem>
           </template>
-        </List>
+        </BasicList>
       </div>
     </CollapseContainer>
 
     <CollapseContainer class="my-4" title="基础列表">
       <div :class="`${prefixCls}__content`">
-        <List>
-          <ListItem
-            v-for="k in 20"
-            :key="k"
-            title="Tony Admin"
-            :thumb="`https://himg.bdimg.com/sys/portrait/hotitem/wildkid/${k + 26}`">
-            <template #description>基于 Vue3, TypeScript, Element Plus 实现的一套完整的企业级后台管理系统</template>
-          </ListItem>
-        </List>
+        <BasicList :api="mockApi">
+          <template #renderItem="{ item, index }">
+            <BasicListItem :title="item.title" :thumb="`https://himg.bdimg.com/sys/portrait/hotitem/wildkid/${index + 26}`">
+              <template #description>{{ item.description }}</template>
+            </BasicListItem>
+          </template>
+        </BasicList>
       </div>
     </CollapseContainer>
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElRow, ElCol, ElProgress } from 'element-plus'
-import Icon from '@/components/Icon'
-import { cardList } from './data'
-import { List, ListItem } from '@/components/List'
-import { CollapseContainer } from '@/components/CollapseContainer'
+import { defineComponent } from 'vue';
+import { ElRow, ElCol, ElProgress } from 'element-plus';
+import { cardList } from './data';
+import { BasicList, BasicListItem } from '@/components/BasicList';
+import { CollapseContainer } from '@/components/CollapseContainer';
+
+function mockApi({ page = 1, pageSize = 20 }) {
+  return new Promise<any>((resolve, reject) => {
+    if ((page - 0) * pageSize > cardList.length) {
+      return reject(null);
+    }
+    const res = {
+      page: page,
+      pageSize: pageSize,
+      items: cardList.slice((page - 1) * pageSize, page * pageSize),
+      total: cardList.length,
+    };
+    return resolve(res);
+  });
+}
 
 export default defineComponent({
   components: {
     ElRow,
     ElCol,
     ElProgress,
-    Icon,
-    List,
-    ListItem,
+    BasicList,
+    BasicListItem,
     CollapseContainer,
   },
   setup() {
@@ -101,9 +105,10 @@ export default defineComponent({
         show: true,
         pageSize: 3,
       },
-    }
+      mockApi,
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

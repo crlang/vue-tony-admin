@@ -1,35 +1,36 @@
-import type { Directive, DirectiveBinding } from 'vue'
+import type { Directive, DirectiveBinding } from 'vue';
 
-import { usePermission } from '@/hooks/web/usePermission'
+import { usePermission } from '@/hooks/web/usePermission';
 
 /**
  * 判断是否有权限
  *
  * Determine whether there is permission
- *
  * @param el Element
- * @param binding DirectiveBinding
+ * @param binding
  */
 function isAuth(el: Element, binding: any) {
-  const { hasPermission } = usePermission()
+  const { hasPermission } = usePermission();
 
-  const value = binding.value
-  if (!value) return
+  const value = binding.value;
+  if (!value) return;
   if (!hasPermission(value)) {
-    el.parentNode?.removeChild(el)
+    el.parentNode?.removeChild(el);
   }
 }
 
+const mounted = (el: Element, binding: DirectiveBinding<any>) => {
+  isAuth(el, binding);
+};
+
 /**
- * 用于组件、按钮权限等细粒度控制
+ * 权限控制元素节点内容
  *
- * For fine-grained control of components, button permissions, etc.
- * @Example v-auth="RoleEnum.TEST"
+ * Permission Control Element Node Content
+ * @Example v-auth="Fn"
  */
 const authDirective: Directive = {
-  mounted(el: Element, binding: DirectiveBinding<any>) {
-    isAuth(el, binding)
-  },
-}
+  mounted,
+};
 
-export default authDirective
+export default authDirective;

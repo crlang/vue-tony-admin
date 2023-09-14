@@ -1,20 +1,21 @@
-import { useAppProviderContext } from '@/components/Application'
-import { computed, unref } from 'vue'
+import { computed, unref } from 'vue';
+
+import { useAppProviderContext } from '@/components/Application';
 
 /**
- * 使用应用载入
+ * 应用载入
  *
- * Reactive app inject
+ * App inject
  */
 export function useAppInject() {
-  const values = useAppProviderContext()
+  const values = useAppProviderContext();
 
   /**
    * 是否手机端
    */
-  const getIsMobile = computed(() => unref(values.isMobile))
+  const getIsMobile = computed(() => unref(values.isMobile));
 
   return {
     getIsMobile,
-  }
+  };
 }

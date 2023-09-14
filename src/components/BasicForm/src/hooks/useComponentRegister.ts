@@ -1,9 +1,9 @@
-import type { Component } from 'vue'
-import type { ComponentType } from '../typing'
+import type { Component } from 'vue';
 
-import { tryOnUnmounted } from '@vueuse/core'
+import { tryOnUnmounted } from '@vueuse/core';
 
-import { add, del } from '../componentMap'
+import { add, del } from '../componentMap';
+import { ComponentType } from '../types';
 
 /**
  * 注册自定义表单项组件
@@ -13,8 +13,8 @@ import { add, del } from '../componentMap'
  * @param comp Component
  */
 export function useComponentRegister(compName: ComponentType, comp: Component) {
-  add(compName, comp)
+  add(compName, comp);
   tryOnUnmounted(() => {
-    del(compName)
-  })
+    del(compName);
+  });
 }

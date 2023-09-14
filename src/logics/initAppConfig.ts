@@ -3,15 +3,15 @@
  *
  * Application configuration
  */
-import type { ProjectConfig } from '#/config'
+import type { ProjectConfig } from '#/config';
 
-import { PROJ_CFG_KEY } from '@/enums/cacheEnum'
-import projectSetting from '@/settings/projectSetting'
-import { updateHeaderColor, updateSidebarColor, updateColorWeak, updateGrayMode, changeTheme, initBasicHeight } from '@/logics/theme'
-import { useAppStore } from '@/store/modules/app'
-import { Persistent } from '@/utils/cache/persistent'
-import { deepMerge } from '@/utils'
-import { getCommonStoragePrefix, getStorageShortName } from '@/utils/env'
+import { PROJ_CFG_KEY } from '@/enums/cacheEnum';
+import projectSetting from '@/settings/projectSetting';
+import { updateHeaderColor, updateSidebarColor, updateColorWeak, updateGrayMode, changeTheme, initBasicHeight } from '@/logics/theme';
+import { useAppStore } from '@/store/modules/app';
+import { Persistent } from '@/utils/cache/persistent';
+import { deepMerge } from '@/utils';
+import { getCommonStoragePrefix, getStorageShortName } from '@/utils/env';
 
 /**
  * 初始项目配置
@@ -19,28 +19,28 @@ import { getCommonStoragePrefix, getStorageShortName } from '@/utils/env'
  * Initial project configuration
  */
 export function initAppConfigStore() {
-  const appStore = useAppStore()
+  const appStore = useAppStore();
 
-  let projCfg: ProjectConfig = Persistent.getLocal(PROJ_CFG_KEY) as ProjectConfig
-  projCfg = deepMerge(projectSetting, projCfg || {})
+  let projCfg: ProjectConfig = Persistent.getLocal(PROJ_CFG_KEY) as ProjectConfig;
+  projCfg = deepMerge(projectSetting, projCfg || {});
 
-  const { colorWeak, grayMode, themeColor, headerSetting, menuSetting, multiTabsSetting } = projCfg
+  const { colorWeak, grayMode, themeColor, headerSetting, menuSetting, multiTabsSetting } = projCfg;
 
-  changeTheme(themeColor)
+  changeTheme(themeColor);
 
-  initBasicHeight(headerSetting.height, multiTabsSetting.height)
+  initBasicHeight(headerSetting.height, multiTabsSetting.height);
 
-  grayMode && updateGrayMode(grayMode)
-  colorWeak && updateColorWeak(colorWeak)
+  grayMode && updateGrayMode(grayMode);
+  colorWeak && updateColorWeak(colorWeak);
 
-  appStore.setProjectConfig(projCfg)
+  appStore.setProjectConfig(projCfg);
 
-  updateHeaderColor(headerSetting.bgColor)
-  updateSidebarColor(menuSetting.bgColor)
+  updateHeaderColor(headerSetting.bgColor);
+  updateSidebarColor(menuSetting.bgColor);
 
   setTimeout(() => {
-    clearObsoleteStorage()
-  }, 16)
+    clearObsoleteStorage();
+  }, 16);
 }
 
 /**
@@ -50,14 +50,14 @@ export function initAppConfigStore() {
  * This method is used to delete useless keys
  */
 export function clearObsoleteStorage() {
-  const commonPrefix = getCommonStoragePrefix()
-  const shortPrefix = getStorageShortName()
+  const commonPrefix = getCommonStoragePrefix();
+  const shortPrefix = getStorageShortName();
 
-  ;[localStorage, sessionStorage].forEach((item: Storage) => {
+  [localStorage, sessionStorage].forEach((item: Storage) => {
     Object.keys(item).forEach((key) => {
       if (key && key.startsWith(commonPrefix) && !key.startsWith(shortPrefix)) {
-        item.removeItem(key)
+        item.removeItem(key);
       }
-    })
-  })
+    });
+  });
 }

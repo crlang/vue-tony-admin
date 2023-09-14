@@ -17,11 +17,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, toRef } from 'vue'
-import { ElSkeleton } from 'element-plus'
+import { defineComponent, onMounted, ref, toRef } from 'vue';
+import { ElSkeleton } from 'element-plus';
 
-import { useDesign } from '@/hooks/web/useDesign'
-import { useIntersectionObserver } from '@/hooks/event/useIntersectionObserver'
+import { useDesign } from '@/hooks/web/useDesign';
+import { useIntersectionObserver } from '@/hooks/event/useIntersectionObserver';
 
 export default defineComponent({
   name: 'LazyContainer',
@@ -80,10 +80,10 @@ export default defineComponent({
   },
   emits: ['init'],
   setup(props, { emit }) {
-    const elRef = ref()
-    const isInit = ref(false)
-    const loading = ref(false)
-    const { prefixCls } = useDesign('lazy-container')
+    const elRef = ref();
+    const isInit = ref(false);
+    const loading = ref(false);
+    const { prefixCls } = useDesign('lazy-container');
 
     /**
      * 如果设置了延迟时间，会在指定时间之后自动加载
@@ -91,11 +91,11 @@ export default defineComponent({
      * If a delay time is set, it will be loaded automatically after the specified time
      */
     function immediateInit() {
-      const { timeout } = props
+      const { timeout } = props;
       timeout &&
         setTimeout(() => {
-          init()
-        }, timeout)
+          init();
+        }, timeout);
     }
 
     /**
@@ -104,14 +104,14 @@ export default defineComponent({
      * Initialize container contents
      */
     function init() {
-      loading.value = true
+      loading.value = true;
 
       setTimeout(() => {
-        if (isInit.value) return
+        if (isInit.value) return;
 
-        isInit.value = true
-        emit('init')
-      }, props.maxWaitingTime || 120)
+        isInit.value = true;
+        emit('init');
+      }, props.maxWaitingTime || 120);
     }
     /**
      * 初始化加载视图容器
@@ -119,23 +119,23 @@ export default defineComponent({
      * Initialize loading view container
      */
     function initIntersectionObserver() {
-      const { timeout, direction, threshold } = props
+      const { timeout, direction, threshold } = props;
       // 设置了延后加载将不再触发延时加载
-      if (timeout) return
+      if (timeout) return;
 
       /**
        * 提前加载距离
        *
        * early loading distance
        */
-      let rootMargin = '0px'
+      let rootMargin = '0px';
       switch (direction) {
-      case 'vertical':
-        rootMargin = `${threshold} 0px`
-        break
-      case 'horizontal':
-        rootMargin = `0px ${threshold}`
-        break
+        case 'vertical':
+          rootMargin = `${threshold} 0px`;
+          break;
+        case 'horizontal':
+          rootMargin = `0px ${threshold}`;
+          break;
       }
 
       try {
@@ -143,34 +143,34 @@ export default defineComponent({
           rootMargin,
           target: toRef(elRef.value, '$el'),
           onIntersect: (entries: any[]) => {
-            const isIntersecting = entries[0].isIntersecting || entries[0].intersectionRatio
+            const isIntersecting = entries[0].isIntersecting || entries[0].intersectionRatio;
             if (isIntersecting) {
-              init()
+              init();
               if (observer) {
-                stop()
+                stop();
               }
             }
           },
           root: toRef(props, 'viewport'),
-        })
+        });
       } catch (e) {
-        init()
+        init();
       }
     }
 
     onMounted(() => {
-      immediateInit()
-      initIntersectionObserver()
-    })
+      immediateInit();
+      initIntersectionObserver();
+    });
 
     return {
       prefixCls,
       elRef,
       isInit,
       loading,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss">

@@ -7,9 +7,9 @@
 </template>
 
 <script lang="ts">
-import type { CSSProperties } from 'vue'
-import { defineComponent, computed } from 'vue'
-import { useDesign } from '@/hooks/web/useDesign'
+import type { CSSProperties } from 'vue';
+import { defineComponent, computed } from 'vue';
+import { useDesign } from '@/hooks/web/useDesign';
 
 export default defineComponent({
   name: 'SvgIcon',
@@ -70,9 +70,9 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { prefixCls } = useDesign('svg-icon')
+    const { prefixCls } = useDesign('svg-icon');
     // svg symbolId
-    const symbolId = computed(() => `#${props.prefix}-${props.name}`)
+    const symbolId = computed(() => `#${props.prefix}-${props.name}`);
 
     /**
      * 获取图标外框样式
@@ -80,12 +80,12 @@ export default defineComponent({
      * Get svg wrap style
      */
     const getStyle = computed((): CSSProperties => {
-      const { size } = props
-      const s = parseInt(size, 10)
+      const { size } = props;
+      const s = parseInt(size, 10);
       return {
         fontSize: s ? `${s}px` : 'inherit',
-      }
-    })
+      };
+    });
 
     /**
      * 获取图标样式
@@ -93,17 +93,17 @@ export default defineComponent({
      * Get svg style
      */
     const getSvgStyle = computed((): CSSProperties => {
-      const { rotate = '' } = props
-      if (!rotate) return {}
+      const { rotate = '' } = props;
+      if (!rotate) return {};
 
       return {
         transform: `rotate(${rotate}deg)`,
-      }
-    })
+      };
+    });
 
-    return { symbolId, prefixCls, getStyle, getSvgStyle }
+    return { symbolId, prefixCls, getStyle, getSvgStyle };
   },
-})
+});
 </script>
 
 <style lang="scss">

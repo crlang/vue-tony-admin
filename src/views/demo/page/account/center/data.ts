@@ -1,16 +1,16 @@
 export interface ListItem {
-  title: string
-  icon: string
-  color?: string
+  title: string;
+  icon: string;
+  color?: string;
 }
 
 export interface TabItem {
-  key: string
-  name: string
-  component: string
+  key: string;
+  name: string;
+  component: string;
 }
 
-export const tags: string[] = ['很有想法的', '专注设计', '川妹子', '大长腿', '海纳百川', '前端开发', 'vue3']
+export const tags: string[] = ['很有想法的', '专注设计', '川妹子', '大长腿', '海纳百川', '前端开发', 'vue3'];
 export const teams: ListItem[] = [
   {
     icon: 'ep:element-plus',
@@ -42,7 +42,7 @@ export const teams: ListItem[] = [
     title: '程序员日常',
     color: '#ff4000',
   },
-]
+];
 
 export const details: ListItem[] = [
   {
@@ -57,7 +57,7 @@ export const details: ListItem[] = [
     icon: 'ep:element-plus',
     title: '福建省厦门市',
   },
-]
+];
 
 export const achieveList: TabItem[] = [
   {
@@ -75,23 +75,23 @@ export const achieveList: TabItem[] = [
     name: '项目',
     component: 'Project',
   },
-]
+];
 
 export const articleList = (() => {
-  const result: any[] = []
+  const result: any[] = [];
   for (let i = 0; i < 4; i++) {
     result.push({
       title: 'Tony Admin',
       description: ['Tony', '设计语言', 'Typescript'],
       content: '基于Vue Next, TypeScript, Ant Design实现的一套完整的企业级后台管理系统。',
       time: '2020-11-14 11:20',
-    })
+    });
   }
-  return result
-})()
+  return result;
+})();
 
 export const applicationList = (() => {
-  const result: any[] = []
+  const result: any[] = [];
   for (let i = 0; i < 8; i++) {
     result.push({
       title: 'Tony Admin',
@@ -100,18 +100,18 @@ export const applicationList = (() => {
       active: '100',
       new: '1,799',
       download: 'bx:bx-download',
-    })
+    });
   }
-  return result
-})()
+  return result;
+})();
 
 export const projectList = (() => {
-  const result: any[] = []
+  const result: any[] = [];
   for (let i = 0; i < 8; i++) {
     result.push({
       title: 'Tony Admin',
       content: '基于Vue Next, TypeScript, Ant Design实现的一套完整的企业级后台管理系统。',
-    })
+    });
   }
-  return result
-})()
+  return result;
+})();

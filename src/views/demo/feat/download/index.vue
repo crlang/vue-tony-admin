@@ -15,34 +15,34 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElButton, ElAlert } from 'element-plus'
-import { downloadByUrl, downloadByData, downloadByBase64, downloadByOnlineUrl } from '@/utils/file/download'
-import imgBase64 from './imgBase64'
+import { defineComponent } from 'vue';
+import { ElButton, ElAlert } from 'element-plus';
+import { downloadByUrl, downloadByData, downloadByBase64, downloadByOnlineUrl } from '@/utils/file/download';
+import imgBase64 from './imgBase64';
 
 export default defineComponent({
   components: { ElButton, ElAlert },
   setup() {
     function handleDownByData() {
-      downloadByData('text content', 'testName.txt')
+      downloadByData('text content', 'testName.txt');
     }
     function handleDownloadByUrl() {
-      downloadByUrl('https://www.7-zip.org/a/7z2107-x64.exe', '7z2107-x64.exe', '_self')
+      downloadByUrl('https://www.7-zip.org/a/7z2107-x64.exe', '7z2107-x64.exe', '_self');
     }
 
     function handleDownloadByBase64() {
-      downloadByBase64(imgBase64, 'moon.svg')
+      downloadByBase64(imgBase64, 'moon.svg');
     }
 
     function handleDownloadByOnlineUrl() {
-      downloadByOnlineUrl('https://img-blog.csdnimg.cn/2eb16a7d1ea1418f8e0569331abbfc86.png', '2eb16a7d1ea1418f8e0569331abbfc86.png')
+      downloadByOnlineUrl('https://img-blog.csdnimg.cn/2eb16a7d1ea1418f8e0569331abbfc86.png', '2eb16a7d1ea1418f8e0569331abbfc86.png');
     }
     return {
       handleDownloadByUrl,
       handleDownByData,
       handleDownloadByBase64,
       handleDownloadByOnlineUrl,
-    }
+    };
   },
-})
+});
 </script>

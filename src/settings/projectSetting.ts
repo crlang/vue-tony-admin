@@ -1,8 +1,10 @@
-import type { ProjectConfig } from '#/config'
-import { MenuTypeEnum, MenuModeEnum, TriggerEnum, MixSidebarTriggerEnum } from '@/enums/menuEnum'
-import { CacheTypeEnum } from '@/enums/cacheEnum'
-import { ContentEnum, PermissionModeEnum, RouterTransitionEnum, SettingButtonPositionEnum, SessionTimeoutProcessingEnum } from '@/enums/appEnum'
-import { headerColor, primaryColor, sidebarColor } from './designSetting'
+import type { ProjectConfig } from '#/config';
+
+import { MenuTypeEnum, MenuModeEnum, TriggerEnum, MixSidebarTriggerEnum } from '@/enums/menuEnum';
+import { CacheTypeEnum } from '@/enums/cacheEnum';
+import { PermissionModeEnum, RouterTransitionEnum, SettingButtonPositionEnum } from '@/enums/appEnum';
+
+import { headerColor, primaryColor, sidebarColor } from './designSetting';
 
 /**
  * 这是项目配置项，修改完后请清理缓存即可立即生效，如不会修改具体配置，请在项目可视化配置中心，拷贝自定义配置后的内容到下方 `do something` 位置粘贴
@@ -36,7 +38,7 @@ let setting: ProjectConfig = {
    *
    * `Settings` button position
    */
-  settingButtonPosition: SettingButtonPositionEnum.AUTO,
+  settingButtonPosition: SettingButtonPositionEnum.HEADER,
 
   /**
    * 权限模式
@@ -51,13 +53,6 @@ let setting: ProjectConfig = {
    * Permission-related cache is stored in sessionStorage or localStorage
    */
   permissionCacheType: CacheTypeEnum.LOCAL,
-
-  /**
-   * 处理会话超时方式
-   *
-   * Session timeout processing
-   */
-  sessionTimeoutProcessing: SessionTimeoutProcessingEnum.ROUTE_JUMP,
 
   /**
    * 主题颜色
@@ -81,32 +76,11 @@ let setting: ProjectConfig = {
   colorWeak: false,
 
   /**
-   * 隐藏头部、侧边菜单、标签栏等，只显示内容区。通常需要嵌入至第三方时很有用
-   *
-   * Hide the header, side menu, tab bar, etc., and only show the content area. Often useful when embedding into third parties
-   */
-  fullContent: false,
-
-  /**
-   * 内容区显示模式
-   *
-   * Content area display mode
-   */
-  contentMode: ContentEnum.FULL,
-
-  /**
    * 是否显示Logo
    *
    * Whether to display the logo
    */
   showLogo: true,
-
-  /**
-   * 是否显示脚部
-   *
-   * Whether to show footer
-   */
-  showFooter: false,
 
   /**
    * 是否开启KeepAlive缓存，建议在开发时关闭缓存
@@ -225,12 +199,6 @@ let setting: ProjectConfig = {
      * Whether to show the notification button
      */
     showNotice: true,
-    /**
-     * 是否显示菜单搜索
-     *
-     * Whether to display the menu search
-     */
-    showSearch: true,
   },
 
   /**
@@ -257,12 +225,6 @@ let setting: ProjectConfig = {
      * Menu background color
      */
     bgColor: sidebarColor,
-    /**
-     * 是否固定左侧菜单
-     *
-     * Whether to fix the left menu
-     */
-    fixed: true,
     /**
      * 是否默认收起菜单
      *
@@ -335,12 +297,6 @@ let setting: ProjectConfig = {
      * Mixed menu, menu expansion method, support click/hover
      */
     mixSideTrigger: MixSidebarTriggerEnum.CLICK,
-    /**
-     * 混合菜单 - 是否固定展开的菜单
-     *
-     * Mixed menu, whether to fix the expanded menu
-     */
-    mixSideFixed: false,
   },
 
   /**
@@ -378,11 +334,11 @@ let setting: ProjectConfig = {
      */
     showRedo: true,
     /**
-     * 是否显示折叠按钮
+     * 是否显示全屏按钮
      *
-     * Whether to show the collapse button
+     * Whether to show the fullscreen button
      */
-    showFold: true,
+    showFullscreen: true,
   },
 
   /**
@@ -392,16 +348,9 @@ let setting: ProjectConfig = {
    */
   transitionSetting: {
     /**
-     * 是否开启页面切换动画
+     * 路由基础切换动画(为None时无动画效果)
      *
-     * Whether to open the page switching animation
-     */
-    enable: true,
-
-    /**
-     * 路由基础切换动画
-     *
-     * Route basic switching animation
+     * Route basic switching animation(No animation effect when it is None)
      */
     basicTransition: RouterTransitionEnum.FADE_SIDE,
 
@@ -417,7 +366,7 @@ let setting: ProjectConfig = {
      */
     openNProgress: true,
   },
-}
+};
 
 setting = {
   ...setting,
@@ -426,6 +375,6 @@ setting = {
   // ↓↓↓↓↓↓↓↓
   /* do something */
   // ↑↑↑↑↑↑↑↑
-}
+};
 
-export default setting
+export default setting;

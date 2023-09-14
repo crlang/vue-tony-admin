@@ -1,6 +1,6 @@
-import { CollapseContainerProps } from '@/components/CollapseContainer'
-import { EleDescriptionsProps } from '@/components/ElementPlus'
-import { DescItem } from './typing'
+import { CollapseContainerProps } from '@/components/CollapseContainer';
+import { EleDescriptionsProps } from '@/components/ElementPlus';
+import { DescItem } from './typing';
 
 export const customProps = {
   /**
@@ -17,7 +17,9 @@ export const customProps = {
    *
    * Description data
    */
-  data: { type: Object },
+  data: {
+    type: Object as PropType<Recordable>,
+  },
   /**
    * 是否包含折叠组件
    *
@@ -36,9 +38,9 @@ export const customProps = {
     type: Object as PropType<CollapseContainerProps>,
     default: null,
   },
-}
+};
 
 export const basicProps = {
   ...EleDescriptionsProps,
   ...customProps,
-}
+};

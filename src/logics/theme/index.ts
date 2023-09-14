@@ -1,28 +1,28 @@
-import { useDark, useToggle } from '@vueuse/core'
+import { useDark, useToggle } from '@vueuse/core';
 
-import { primaryColor, darkHeaderColor, darkSidebarColor } from '@/settings/designSetting'
-import { useAppStore } from '@/store/modules/app'
-import { colorIsDark, darken, lighten } from '@/utils/color'
+import { primaryColor, darkHeaderColor, darkSidebarColor } from '@/settings/designSetting';
+import { useAppStore } from '@/store/modules/app';
+import { colorIsDark, darken, lighten } from '@/utils/color';
 
-const HEADER_HEIGHT = '--header-height'
-const TABS_HEIGHT = '--tabs-height'
+const HEADER_HEIGHT = '--header-height';
+const TABS_HEIGHT = '--tabs-height';
 
-const HEADER_BG_COLOR = '--header-background-color'
-const HEADER_BG_HOVER_COLOR = '--header-background-hover-color'
-const HEADER_TEXT_COLOR = '--header-text-color'
-const HEADER_TEXT_HOVER_COLOR = '--header-text-hover-color'
+const HEADER_BG_COLOR = '--header-background-color';
+const HEADER_BG_HOVER_COLOR = '--header-background-hover-color';
+const HEADER_TEXT_COLOR = '--header-text-color';
+const HEADER_TEXT_HOVER_COLOR = '--header-text-hover-color';
 
-const SIDER_BG_COLOR = '--sider-background-color'
-const SIDER_BG_HOVER_COLOR = '--sider-background-hover-color'
-const SIDER_TEXT_COLOR = '--sider-text-color'
-const SIDER_TEXT_HOVER_COLOR = '--sider-text-hover-color'
+const SIDER_BG_COLOR = '--sider-background-color';
+const SIDER_BG_HOVER_COLOR = '--sider-background-hover-color';
+const SIDER_TEXT_COLOR = '--sider-text-color';
+const SIDER_TEXT_HOVER_COLOR = '--sider-text-hover-color';
 
 /**
  * 是否黑暗模式
  *
  * Whether dark mode
  */
-export const isDark = useDark()
+export const isDark = useDark();
 
 /**
  * 更新主题暗模式
@@ -30,7 +30,7 @@ export const isDark = useDark()
  * Update theme dark mode
  * @param mode 模式
  */
-export const toggleDarkMode = useToggle(isDark)
+export const toggleDarkMode = useToggle(isDark);
 
 /**
  * 修改主题颜色
@@ -39,24 +39,24 @@ export const toggleDarkMode = useToggle(isDark)
  * @param color
  */
 export async function changeTheme(color: string) {
-  const appStore = useAppStore()
-  color = color || primaryColor
-  if (!color) return
+  const appStore = useAppStore();
+  color = color || primaryColor;
+  if (!color) return;
 
   appStore.setProjectConfig({
     themeColor: color,
-  })
+  });
 
-  setCssVar('--primary-color', color)
+  setCssVar('--primary-color', color);
 
   // Update Element Plus theme color
-  setCssVar('--el-color-primary', color)
-  setCssVar('--el-color-primary-light-3', lighten(color, 30))
-  setCssVar('--el-color-primary-light-5', lighten(color, 50))
-  setCssVar('--el-color-primary-light-7', lighten(color, 70))
-  setCssVar('--el-color-primary-light-8', lighten(color, 80))
-  setCssVar('--el-color-primary-light-9', lighten(color, 90))
-  setCssVar('--el-color-primary-dark-2', darken(color, 20))
+  setCssVar('--el-color-primary', color);
+  setCssVar('--el-color-primary-light-3', lighten(color, 30));
+  setCssVar('--el-color-primary-light-5', lighten(color, 50));
+  setCssVar('--el-color-primary-light-7', lighten(color, 70));
+  setCssVar('--el-color-primary-light-8', lighten(color, 80));
+  setCssVar('--el-color-primary-light-9', lighten(color, 90));
+  setCssVar('--el-color-primary-dark-2', darken(color, 20));
 }
 
 /**
@@ -66,23 +66,23 @@ export async function changeTheme(color: string) {
  * @param color
  */
 export function updateHeaderColor(color?: string) {
-  const appStore = useAppStore()
-  color = color || appStore?.getHeaderSetting?.bgColor || '#151515'
+  const appStore = useAppStore();
+  color = color || appStore?.getHeaderSetting?.bgColor || '#151515';
 
   // dark mode
   if (isDark.value) {
-    color = darkHeaderColor
+    color = darkHeaderColor;
   }
 
-  const dyncColor = dyncGenerateColor(color)
+  const dyncColor = dyncGenerateColor(color);
 
   // color
-  setCssVar(HEADER_BG_COLOR, dyncColor.background)
-  setCssVar(HEADER_TEXT_COLOR, dyncColor.text)
+  setCssVar(HEADER_BG_COLOR, dyncColor.background);
+  setCssVar(HEADER_TEXT_COLOR, dyncColor.text);
 
   // hover color
-  setCssVar(HEADER_BG_HOVER_COLOR, dyncColor.backgroundHover)
-  setCssVar(HEADER_TEXT_HOVER_COLOR, dyncColor.textHover)
+  setCssVar(HEADER_BG_HOVER_COLOR, dyncColor.backgroundHover);
+  setCssVar(HEADER_TEXT_HOVER_COLOR, dyncColor.textHover);
 }
 
 /**
@@ -92,23 +92,23 @@ export function updateHeaderColor(color?: string) {
  * @param color
  */
 export function updateSidebarColor(color?: string) {
-  const appStore = useAppStore()
-  color = color || appStore?.getMenuSetting?.bgColor || '#212121'
+  const appStore = useAppStore();
+  color = color || appStore?.getMenuSetting?.bgColor || '#212121';
 
   // dark mode
   if (isDark.value) {
-    color = darkSidebarColor
+    color = darkSidebarColor;
   }
 
-  const dyncColor = dyncGenerateColor(color)
+  const dyncColor = dyncGenerateColor(color);
 
   // color
-  setCssVar(SIDER_BG_COLOR, dyncColor.background)
-  setCssVar(SIDER_TEXT_COLOR, dyncColor.text)
+  setCssVar(SIDER_BG_COLOR, dyncColor.background);
+  setCssVar(SIDER_TEXT_COLOR, dyncColor.text);
 
   // hover color
-  setCssVar(SIDER_BG_HOVER_COLOR, dyncColor.backgroundHover)
-  setCssVar(SIDER_TEXT_HOVER_COLOR, dyncColor.textHover)
+  setCssVar(SIDER_BG_HOVER_COLOR, dyncColor.backgroundHover);
+  setCssVar(SIDER_TEXT_HOVER_COLOR, dyncColor.textHover);
 }
 
 /**
@@ -118,14 +118,14 @@ export function updateSidebarColor(color?: string) {
  * @param color
  */
 function dyncGenerateColor(color?: string) {
-  const isDark = colorIsDark(color)
+  const isDark = colorIsDark(color);
 
   return {
     text: isDark ? lighten(color, 75) : darken(color, 75),
     textHover: isDark ? lighten(color, 90) : darken(color, 90),
     background: color,
     backgroundHover: isDark ? lighten(color, 10) : darken(color, 10),
-  }
+  };
 }
 
 /**
@@ -137,11 +137,11 @@ function dyncGenerateColor(color?: string) {
  * @param target HTMLElement
  */
 export function toggleClass(flag: boolean, clsName: string, target?: HTMLElement) {
-  const targetEl = target || document.body
+  const targetEl = target || document.body;
   if (targetEl.classList.contains(clsName)) {
-    !flag && targetEl.classList.remove(clsName)
+    !flag && targetEl.classList.remove(clsName);
   } else {
-    flag && targetEl.classList.add(clsName)
+    flag && targetEl.classList.add(clsName);
   }
 }
 
@@ -154,8 +154,8 @@ export function toggleClass(flag: boolean, clsName: string, target?: HTMLElement
  * @param target
  */
 export function setCssVar(prop: string, val: any, target?: HTMLElement = null) {
-  const targetEl = target || document.documentElement
-  targetEl.style.setProperty(prop, val)
+  const targetEl = target || document.documentElement;
+  targetEl.style.setProperty(prop, val);
 }
 
 /**
@@ -166,8 +166,8 @@ export function setCssVar(prop: string, val: any, target?: HTMLElement = null) {
  * @param target HTMLElement
  */
 export function getCssVar(prop: string, target?: HTMLElement = null) {
-  const targetEl = target || document.documentElement
-  return getComputedStyle(targetEl).getPropertyValue(prop) || ''
+  const targetEl = target || document.documentElement;
+  return getComputedStyle(targetEl).getPropertyValue(prop) || '';
 }
 
 /**
@@ -176,11 +176,11 @@ export function getCssVar(prop: string, target?: HTMLElement = null) {
  * Set to gray mode
  */
 export function updateGrayMode(gray: boolean) {
-  const appStore = useAppStore()
-  toggleClass(gray, 'gray-mode', document.documentElement)
+  const appStore = useAppStore();
+  toggleClass(gray, 'gray-mode', document.documentElement);
   appStore.setProjectConfig({
     grayMode: gray,
-  })
+  });
 }
 
 /**
@@ -189,11 +189,11 @@ export function updateGrayMode(gray: boolean) {
  * Set to color weak mode
  */
 export function updateColorWeak(colorWeak: boolean) {
-  const appStore = useAppStore()
-  toggleClass(colorWeak, 'weak-mode', document.documentElement)
+  const appStore = useAppStore();
+  toggleClass(colorWeak, 'weak-mode', document.documentElement);
   appStore.setProjectConfig({
     colorWeak: colorWeak,
-  })
+  });
 }
 
 /**
@@ -202,6 +202,6 @@ export function updateColorWeak(colorWeak: boolean) {
  * Initialize page base module size
  */
 export function initBasicHeight(headerHeight, tabsHeight) {
-  setCssVar(HEADER_HEIGHT, `${headerHeight}px`)
-  setCssVar(TABS_HEIGHT, `${tabsHeight}px`)
+  setCssVar(HEADER_HEIGHT, `${headerHeight}px`);
+  setCssVar(TABS_HEIGHT, `${tabsHeight}px`);
 }

@@ -25,9 +25,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { ElAlert, ElButton } from 'element-plus'
-import { ElLoading } from 'element-plus'
+import { defineComponent, ref } from 'vue';
+import { ElAlert, ElButton, ElLoading } from 'element-plus';
 
 export default defineComponent({
   components: { ElAlert, ElButton },
@@ -35,34 +34,34 @@ export default defineComponent({
     loading: ElLoading.directive,
   },
   setup() {
-    const wrapEl = ref<string | HTMLElement>()
+    const wrapEl = ref<string | HTMLElement>();
 
-    const loadingRef = ref(false)
-    const boxLoadingRef = ref(false)
-    const fullscreenLoading = ref(false)
+    const loadingRef = ref(false);
+    const boxLoadingRef = ref(false);
+    const fullscreenLoading = ref(false);
 
     function openCompFullLoading() {
-      fullscreenLoading.value = true
+      fullscreenLoading.value = true;
       setTimeout(() => {
-        fullscreenLoading.value = false
-      }, 2000)
+        fullscreenLoading.value = false;
+      }, 2000);
     }
 
     function openCompAbsolute() {
-      boxLoadingRef.value = true
+      boxLoadingRef.value = true;
       setTimeout(() => {
-        boxLoadingRef.value = false
-      }, 2000)
+        boxLoadingRef.value = false;
+      }, 2000);
     }
 
     function openFnFullLoading() {
       const loading = ElLoading.service({
         lock: true,
         text: 'Loading',
-      })
+      });
       setTimeout(() => {
-        loading.close()
-      }, 2000)
+        loading.close();
+      }, 2000);
     }
 
     function openFnWrapLoading() {
@@ -71,17 +70,17 @@ export default defineComponent({
         lock: true,
         text: 'Loading',
         background: 'rgba(0, 0, 0, 0.7)',
-      })
+      });
       setTimeout(() => {
-        loading.close()
-      }, 2000)
+        loading.close();
+      }, 2000);
     }
 
     function openDirectiveLoading() {
-      loadingRef.value = true
+      loadingRef.value = true;
       setTimeout(() => {
-        loadingRef.value = false
-      }, 2000)
+        loadingRef.value = false;
+      }, 2000);
     }
 
     return {
@@ -94,7 +93,7 @@ export default defineComponent({
       loadingRef,
       boxLoadingRef,
       openDirectiveLoading,
-    }
+    };
   },
-})
+});
 </script>

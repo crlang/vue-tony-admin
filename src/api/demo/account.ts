@@ -1,7 +1,6 @@
-import type { GetAccountInfoModel } from './model/accountModel'
+import type { GetAccountInfoModel } from './model/accountModel';
 
-// import { defHttp } from '@/utils/http/axios'
-import { GetApiData } from '@/apidata/index'
+import { defHttp } from '@/utils/http/axios';
 
 enum Api {
   ACCOUNT_INFO = '/account/getAccountInfo',
@@ -10,16 +9,14 @@ enum Api {
 }
 
 export const accountInfoApi = () => {
-  // return defHttp.get<GetAccountInfoModel>({ url: Api.ACCOUNT_INFO })
-  return GetApiData<GetAccountInfoModel>({ url: Api.ACCOUNT_INFO })
-}
+  return defHttp.get<GetAccountInfoModel>({ url: Api.ACCOUNT_INFO });
+};
 
 export const sessionTimeoutApi = () => {
-  // return defHttp.post<void>({ url: Api.SESSION_TIMEOUT })
-  return GetApiData<void>({ url: Api.SESSION_TIMEOUT })
-}
+  return defHttp.post<void>({ url: Api.SESSION_TIMEOUT });
+  // return GetApiData<void>({ url: Api.SESSION_TIMEOUT })
+};
 
 export const tokenExpiredApi = () => {
-  // return defHttp.post<void>({ url: Api.TOKEN_EXPIRED })
-  return GetApiData<void>({ url: Api.TOKEN_EXPIRED })
-}
+  return defHttp.post<void>({ url: Api.TOKEN_EXPIRED });
+};

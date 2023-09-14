@@ -1,10 +1,10 @@
 <script lang="tsx">
-import type { Slot, CSSProperties } from 'vue'
+import type { Slot, CSSProperties } from 'vue';
 
-import { defineComponent, computed, ref, unref, reactive, onMounted, watch, nextTick, onBeforeUnmount } from 'vue'
-import { useDesign } from '@/hooks/web/useDesign'
+import { defineComponent, computed, ref, unref, reactive, onMounted, watch, nextTick, onBeforeUnmount } from 'vue';
+import { useDesign } from '@/hooks/web/useDesign';
 
-type NOS = PropType<string | number | undefined>
+type NOS = PropType<string | number | undefined>;
 
 export default defineComponent({
   name: 'VirtualScroll',
@@ -90,14 +90,14 @@ export default defineComponent({
     minWidth: [Number, String] as NOS,
   },
   setup(props, { slots }) {
-    const wrapElRef = ref<HTMLDivElement | null>(null)
+    const wrapElRef = ref<HTMLDivElement | null>(null);
     const state = reactive({
       first: 0,
       last: 0,
       scrollTop: 0,
-    })
+    });
 
-    const { prefixCls } = useDesign('virtual-scroll')
+    const { prefixCls } = useDesign('virtual-scroll');
 
     /**
      * 获取预加载数量
@@ -105,32 +105,32 @@ export default defineComponent({
      * Get the number of preloads
      */
     const getBenchRef = computed(() => {
-      return parseInt(props.bench, 10)
-    })
+      return parseInt(props.bench, 10);
+    });
     /**
      * 获取单个数据项的高度
      *
      * Get the height of a data item
      */
     const getItemHeightRef = computed(() => {
-      return parseInt(props.itemHeight, 10)
-    })
+      return parseInt(props.itemHeight, 10);
+    });
     /**
      * 获取渲染的第一条数据条目位置
      *
      * Get the position of the first rendered data entry
      */
     const getFirstToRenderRef = computed(() => {
-      return Math.max(0, state.first - unref(getBenchRef))
-    })
+      return Math.max(0, state.first - unref(getBenchRef));
+    });
     /**
      * 获取渲染的最后一条数据条目位置
      *
      * Get the last rendered data entry position
      */
     const getLastToRenderRef = computed(() => {
-      return Math.min((props.listData || []).length, state.last + unref(getBenchRef))
-    })
+      return Math.min((props.listData || []).length, state.last + unref(getBenchRef));
+    });
     /**
      * 设置滚动框容器的高度
      *
@@ -139,30 +139,30 @@ export default defineComponent({
     const getContainerStyleRef = computed((): CSSProperties => {
       return {
         height: convertToUnit((props.listData || []).length * unref(getItemHeightRef)),
-      }
-    })
+      };
+    });
     /**
      * 设置滚动框的宽度、高度
      *
      * Set the width and height of the scroll box
      */
     const getWrapStyleRef = computed((): CSSProperties => {
-      const styles: Recordable<string> = {}
-      const height = convertToUnit(props.height)
-      const minHeight = convertToUnit(props.minHeight)
-      const minWidth = convertToUnit(props.minWidth)
-      const maxHeight = convertToUnit(props.maxHeight)
-      const maxWidth = convertToUnit(props.maxWidth)
-      const width = convertToUnit(props.width)
+      const styles: Recordable<string> = {};
+      const height = convertToUnit(props.height);
+      const minHeight = convertToUnit(props.minHeight);
+      const minWidth = convertToUnit(props.minWidth);
+      const maxHeight = convertToUnit(props.maxHeight);
+      const maxWidth = convertToUnit(props.maxWidth);
+      const width = convertToUnit(props.width);
 
-      if (height) styles.height = height
-      if (minHeight) styles.minHeight = minHeight
-      if (minWidth) styles.minWidth = minWidth
-      if (maxHeight) styles.maxHeight = maxHeight
-      if (maxWidth) styles.maxWidth = maxWidth
-      if (width) styles.width = width
-      return styles
-    })
+      if (height) styles.height = height;
+      if (minHeight) styles.minHeight = minHeight;
+      if (minWidth) styles.minWidth = minWidth;
+      if (maxHeight) styles.maxHeight = maxHeight;
+      if (maxWidth) styles.maxWidth = maxWidth;
+      if (width) styles.width = width;
+      return styles;
+    });
 
     /**
      * 转化为合法CSS单位
@@ -171,11 +171,11 @@ export default defineComponent({
      */
     function convertToUnit(str: string | number | null | undefined, unit = 'px'): string | undefined {
       if (str == null || str === '') {
-        return undefined
+        return undefined;
       } else if (isNaN(+str!)) {
-        return String(str)
+        return String(str);
       } else {
-        return `${Number(str)}${unit}`
+        return `${Number(str)}${unit}`;
       }
     }
 
@@ -185,13 +185,13 @@ export default defineComponent({
      * Get the last data item position
      */
     function getLast(first: number): number {
-      const wrapEl = unref(wrapElRef)
+      const wrapEl = unref(wrapElRef);
       if (!wrapEl) {
-        return 0
+        return 0;
       }
-      const height = parseInt(props.height || 0, 10) || wrapEl.clientHeight
+      const height = parseInt(props.height || 0, 10) || wrapEl.clientHeight;
 
-      return first + Math.ceil(height / unref(getItemHeightRef))
+      return first + Math.ceil(height / unref(getItemHeightRef));
     }
 
     /**
@@ -200,7 +200,7 @@ export default defineComponent({
      * Get the position of the first data item
      */
     function getFirst(): number {
-      return Math.floor(state.scrollTop / unref(getItemHeightRef))
+      return Math.floor(state.scrollTop / unref(getItemHeightRef));
     }
 
     /**
@@ -209,13 +209,13 @@ export default defineComponent({
      * Handling scroll changes
      */
     function onScroll() {
-      const wrapEl = unref(wrapElRef)
+      const wrapEl = unref(wrapElRef);
       if (!wrapEl) {
-        return
+        return;
       }
-      state.scrollTop = wrapEl.scrollTop
-      state.first = getFirst()
-      state.last = getLast(state.first)
+      state.scrollTop = wrapEl.scrollTop;
+      state.first = getFirst();
+      state.last = getLast(state.first);
     }
 
     /**
@@ -224,8 +224,8 @@ export default defineComponent({
      * Render visible range data items
      */
     function renderChildren() {
-      const { listData = [] } = props
-      return listData.slice(unref(getFirstToRenderRef), unref(getLastToRenderRef)).map(genChild)
+      const { listData = [] } = props;
+      return listData.slice(unref(getFirstToRenderRef), unref(getLastToRenderRef)).map(genChild);
     }
 
     /**
@@ -234,44 +234,44 @@ export default defineComponent({
      * Render the specified data item
      */
     function genChild(item: any, index: number) {
-      index += unref(getFirstToRenderRef)
+      index += unref(getFirstToRenderRef);
 
-      const height = convertToUnit(unref(getItemHeightRef))
-      const top = convertToUnit(index * unref(getItemHeightRef))
-      const slotFn = slots['default'] as Slot
+      const height = convertToUnit(unref(getItemHeightRef));
+      const top = convertToUnit(index * unref(getItemHeightRef));
+      const slotFn = slots['default'] as Slot;
       return (
         <div class={`${prefixCls}__item`} style={{ top, height }} key={index}>
           {{ default: () => slotFn({ index, item }) }}
         </div>
-      )
+      );
     }
 
     watch([() => props.itemHeight, () => props.height], () => {
-      onScroll()
-    })
+      onScroll();
+    });
 
     // 监听滚动
     onMounted(() => {
-      state.last = getLast(0)
+      state.last = getLast(0);
       nextTick(() => {
-        const wrapEl = unref(wrapElRef)
+        const wrapEl = unref(wrapElRef);
         if (!wrapEl) {
-          return
+          return;
         }
-        wrapEl.addEventListener('scroll', onScroll)
-      })
-    })
+        wrapEl.addEventListener('scroll', onScroll);
+      });
+    });
 
     // 移除滚动监听
     onBeforeUnmount(() => {
       nextTick(() => {
-        const wrapEl = unref(wrapElRef)
+        const wrapEl = unref(wrapElRef);
         if (!wrapEl) {
-          return
+          return;
         }
-        wrapEl.removeEventListener('scroll', onScroll)
-      })
-    })
+        wrapEl.removeEventListener('scroll', onScroll);
+      });
+    });
 
     return () => (
       <div class={prefixCls} style={unref(getWrapStyleRef)} ref={wrapElRef}>
@@ -279,9 +279,9 @@ export default defineComponent({
           {renderChildren()}
         </div>
       </div>
-    )
+    );
   },
-})
+});
 </script>
 
 <style lang="scss">

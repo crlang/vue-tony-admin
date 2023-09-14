@@ -25,32 +25,32 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import { ElButton, ElAlert, ElButtonGroup } from 'element-plus'
-import CurrentPermissionMode from '../CurrentPermissionMode.vue'
-import { RoleEnum } from '@/enums/roleEnum'
-import { usePermission } from '@/hooks/web/usePermission'
-import { useUserStore } from '@/store/modules/user'
-import { PermissionModeEnum } from '@/enums/appEnum'
-import { useAppStore } from '@/store/modules/app'
+import { defineComponent, computed } from 'vue';
+import { ElButton, ElAlert, ElButtonGroup } from 'element-plus';
+import CurrentPermissionMode from '../CurrentPermissionMode.vue';
+import { RoleEnum } from '@/enums/roleEnum';
+import { usePermission } from '@/hooks/web/usePermission';
+import { useUserStore } from '@/store/modules/user';
+import { PermissionModeEnum } from '@/enums/appEnum';
+import { useAppStore } from '@/store/modules/app';
 
 export default defineComponent({
   components: { ElButton, ElAlert, ElButtonGroup, CurrentPermissionMode },
   setup() {
-    const { refreshMenu } = usePermission()
-    const userStore = useUserStore()
-    const appStore = useAppStore()
+    const { refreshMenu } = usePermission();
+    const userStore = useUserStore();
+    const appStore = useAppStore();
 
-    const isBackPremissionMode = computed(() => appStore.getProjectConfig.permissionMode === PermissionModeEnum.BACK)
+    const isBackPremissionMode = computed(() => appStore.getProjectConfig.permissionMode === PermissionModeEnum.BACK);
 
     async function switchToken(userId: number) {
       // 本函数切换用户登录Token的部分仅用于演示，实际生产时切换身份应当重新登录
-      const token = `fakeToken${userId}`
-      userStore.setToken(token)
+      const token = `fakeToken${userId}`;
+      userStore.setToken(token);
 
       // 重新获取用户信息和菜单
-      userStore.getUserInfoAction()
-      refreshMenu()
+      userStore.getUserInfoAction();
+      refreshMenu();
     }
 
     return {
@@ -58,7 +58,7 @@ export default defineComponent({
       refreshMenu,
       switchToken,
       isBackPremissionMode,
-    }
+    };
   },
-})
+});
 </script>

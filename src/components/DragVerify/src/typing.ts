@@ -4,7 +4,7 @@
  * Instance function
  */
 export interface DragVerifyActionType {
-  resume: () => void
+  resume: () => void;
 }
 
 /**
@@ -13,8 +13,8 @@ export interface DragVerifyActionType {
  * Return data after passing
  */
 export interface PassingData {
-  isPassing: boolean
-  time: number
+  isPassing: boolean;
+  time: number;
 }
 
 /**
@@ -23,7 +23,7 @@ export interface PassingData {
  * Return data when moving
  */
 export interface MoveData {
-  event: MouseEvent | TouchEvent
-  moveDistance: number
-  moveX: number
+  event: MouseEvent | TouchEvent;
+  moveDistance: number;
+  moveX: number;
 }

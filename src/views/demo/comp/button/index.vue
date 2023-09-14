@@ -1,18 +1,23 @@
 <template>
-  <PageWrapper contentFullHeight title="基础组件" description="基础组件依赖于element-plus,组件库已有的基础组件,项目中不会再次进行demo展示（二次封装组件除外）">
+  <PageWrapper title="基础组件" description="基础组件依赖于element-plus,组件库已有的基础组件,项目中不会再次进行demo展示（二次封装组件除外）">
     <el-row :gutter="12">
       <el-col :span="24">
         <el-card class="box-card" shadow="hover">
           <template #header>
             <div class="card-header">basic button (custom components)</div>
           </template>
-          <BasicButton preIcon="ep:element-plus">Default</BasicButton>
-          <BasicButton type="primary" preIcon="ep:element-plus">Primary</BasicButton>
+          <BasicButton preIcon="moon">Default</BasicButton>
+          <BasicDivider direction="vertical" />
+          <BasicButton type="primary" preIcon="moon">Primary</BasicButton>
+          <BasicDivider direction="vertical" />
 
-          <BasicButton sufIcon="ep:element-plus" type="success">Success</BasicButton>
-          <BasicButton sufIcon="ep:element-plus" :iconSize="22" type="info">Large Icon</BasicButton>
+          <BasicButton sufIcon="moon" type="success">Success</BasicButton>
+          <BasicDivider direction="vertical" />
+          <BasicButton sufIcon="moon" :iconSize="22" type="info">Large Icon</BasicButton>
 
+          <BasicDivider direction="vertical" />
           <BasicButton shadow>Shadow</BasicButton>
+          <BasicDivider direction="vertical" />
           <BasicButton shadow type="primary">Success</BasicButton>
         </el-card>
       </el-col>
@@ -163,22 +168,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { ElRow, ElCol, ElCard, ElButton, ElButtonGroup } from 'element-plus'
-import { Search, Edit, Check, Message, Star, Delete, ArrowLeft, Share, ArrowRight } from '@element-plus/icons-vue'
+import { defineComponent, ref } from 'vue';
+import { ElRow, ElCol, ElCard, ElButton, ElButtonGroup } from 'element-plus';
+import { Search, Edit, Check, Message, Star, Delete, ArrowLeft, Share, ArrowRight } from '@element-plus/icons-vue';
 
-import { BasicButton } from '@/components/BasicButton'
+import { BasicButton } from '@/components/BasicButton';
+import { BasicDivider } from '@/components/Basic';
 
 export default defineComponent({
-  components: { ElRow, ElCol, ElCard, ElButton, ElButtonGroup, BasicButton },
+  components: { ElRow, ElCol, ElCard, ElButton, ElButtonGroup, BasicButton, BasicDivider },
   setup() {
-    const loading = ref(false)
+    const loading = ref(false);
 
     function onLoading() {
-      loading.value = true
+      loading.value = true;
       setTimeout(() => {
-        loading.value = false
-      }, 3e3)
+        loading.value = false;
+      }, 3e3);
     }
     return {
       Search,
@@ -192,9 +198,9 @@ export default defineComponent({
       Share,
       loading,
       onLoading,
-    }
+    };
   },
-})
+});
 </script>
 
 <style scoped>

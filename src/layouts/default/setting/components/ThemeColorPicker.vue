@@ -9,13 +9,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import { SvgIcon } from '@/components/SvgIcon'
+import { defineComponent, PropType } from 'vue';
+import { SvgIcon } from '@/components/SvgIcon';
 
-import { useDesign } from '@/hooks/web/useDesign'
+import { useDesign } from '@/hooks/web/useDesign';
 
-import { baseHandler } from '../handler'
-import { HandlerEnum } from '../enum'
+import { baseHandler } from '../handler';
+import { HandlerEnum } from '../enum';
 
 export default defineComponent({
   name: 'ThemeColorPicker',
@@ -33,10 +33,10 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { prefixCls } = useDesign('setting-theme-picker')
+    const { prefixCls } = useDesign('setting-theme-picker');
 
     function handleClick(color: string) {
-      props.event && baseHandler(props.event, color)
+      props.event && baseHandler(props.event, color);
     }
 
     const getItemCls = (color: string) => {
@@ -45,15 +45,15 @@ export default defineComponent({
         {
           [`${prefixCls}__item--active`]: props.def === color,
         },
-      ]
-    }
+      ];
+    };
     return {
       prefixCls,
       getItemCls,
       handleClick,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss">
@@ -66,8 +66,8 @@ $prefix-cls: '#{$tonyname}-setting-theme-picker';
   margin: 16px 0;
 
   &__item {
-    width: 20px;
-    height: 20px;
+    width: 36px;
+    height: 36px;
     cursor: pointer;
     border: 1px solid #ddd;
     border-radius: 2px;

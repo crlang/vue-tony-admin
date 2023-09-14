@@ -1,16 +1,16 @@
-import type { CreateContextMenuOptions, ContextMenuProps } from './typing'
+import type { CreateContextMenuOptions, ContextMenuProps } from './typing';
 
-import { createVNode, render } from 'vue'
+import { createVNode, render } from 'vue';
 
-import contextMenuVue from './ContextMenu.vue'
+import contextMenuVue from './ContextMenu.vue';
 
 const menuManager: {
-  domList: Element[]
-  resolve: Fn
+  domList: Element[];
+  resolve: Fn;
 } = {
   domList: [],
   resolve: () => {},
-}
+};
 
 /**
  * 创建右键菜单
@@ -19,16 +19,16 @@ const menuManager: {
  * @param options CreateContextMenuOptions
  */
 export const createContextMenu = function(options: CreateContextMenuOptions) {
-  const { event = null, showIcon = true, styles = {}, items, width } = options || {}
+  const { event = null, showIcon = true, styles = {}, items, width } = options || {};
 
-  event && event?.preventDefault()
+  event && event?.preventDefault();
 
-  if (typeof window === 'undefined') return
+  if (typeof window === 'undefined') return;
 
   return new Promise((resolve) => {
-    const body = document.body
+    const body = document.body;
 
-    const container = document.createElement('div')
+    const container = document.createElement('div');
     const propsData: Partial<ContextMenuProps> = {
       event,
       styles,
@@ -36,48 +36,48 @@ export const createContextMenu = function(options: CreateContextMenuOptions) {
       items,
       width,
       axis: { x: event?.clientX || 0, y: event?.clientY || 0 },
-    }
+    };
 
     /** create VNode */
-    const vm = createVNode(contextMenuVue, propsData)
+    const vm = createVNode(contextMenuVue, propsData);
     /** render VNode */
-    render(vm, container)
+    render(vm, container);
 
     const handleClick = function() {
-      menuManager.resolve('')
-    }
+      menuManager.resolve('');
+    };
 
-    menuManager.domList.push(container)
+    menuManager.domList.push(container);
 
     const remove = function() {
       menuManager.domList.forEach((dom: Element) => {
         try {
-          dom && body.removeChild(dom)
+          dom && body.removeChild(dom);
         } catch (error) {
           // continue
         }
-      })
-      body.removeEventListener('click', handleClick)
-      body.removeEventListener('scroll', handleClick)
-    }
+      });
+      body.removeEventListener('click', handleClick);
+      body.removeEventListener('scroll', handleClick);
+    };
 
     menuManager.resolve = function(arg) {
-      remove()
-      resolve(arg)
-    }
-    remove()
-    body.appendChild(container)
-    body.addEventListener('click', handleClick)
-    body.addEventListener('scroll', handleClick)
-  })
-}
+      remove();
+      resolve(arg);
+    };
+    remove();
+    body.appendChild(container);
+    body.addEventListener('click', handleClick);
+    body.addEventListener('scroll', handleClick);
+  });
+};
 
 /**
  * 销毁右键菜单
  */
 export const destroyContextMenu = function() {
   if (menuManager) {
-    menuManager.resolve('')
-    menuManager.domList = []
+    menuManager.resolve('');
+    menuManager.domList = [];
   }
-}
+};

@@ -14,7 +14,7 @@
         </template>
       </BasicForm>
     </div>
-    <el-divider />
+    <BasicDivider />
     <h3>说明</h3>
     <p>分步表单演示</p>
     <p>支付前请确认对方账号是否正确</p>
@@ -22,17 +22,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElInput, ElSelect, ElOption, ElDivider } from 'element-plus'
-import { BasicForm, useForm } from '@/components/BasicForm'
-import { step1Schemas } from './data'
+import { defineComponent } from 'vue';
+import { ElInput, ElSelect, ElOption } from 'element-plus';
+
+import { BasicDivider } from '@/components/Basic';
+import { BasicForm, useForm } from '@/components/BasicForm';
+import { step1Schemas } from './data';
 
 export default defineComponent({
   components: {
     ElInput,
     ElSelect,
     ElOption,
-    ElDivider,
+    BasicDivider,
     BasicForm,
   },
   emits: ['next'],
@@ -51,21 +53,22 @@ export default defineComponent({
         btnText: '下一步',
       },
       submitFn: customSubmitFunc,
-    })
+    });
 
     async function customSubmitFunc() {
       try {
-        const values = await validate()
-        emit('next', values)
+        const values = await validate();
+        emit('next', values);
       } catch (error) {
         // continue regardless of error
       }
     }
 
-    return { register }
+    return { register };
   },
-})
+});
 </script>
+
 <style lang="scss" scoped>
 .step1 {
   &-form {

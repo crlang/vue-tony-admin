@@ -1,8 +1,8 @@
 <template>
   <CollapseContainer title="新消息通知" :canExpan="false">
-    <List>
+    <BasicList>
       <template v-for="item in list" :key="item.key">
-        <ListItem>
+        <BasicListItem>
           <template #title>
             {{ item.title }}
             <el-switch
@@ -15,36 +15,37 @@
           <template #description>
             <div>{{ item.description }}</div>
           </template>
-        </ListItem>
+        </BasicListItem>
       </template>
-    </List>
+    </BasicList>
   </CollapseContainer>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
-import { ElSwitch } from 'element-plus'
-import { CollapseContainer } from '@/components/CollapseContainer'
-import { List, ListItem } from '@/components/List'
+import { defineComponent, reactive } from 'vue';
+import { ElSwitch } from 'element-plus';
+import { CollapseContainer } from '@/components/CollapseContainer';
+import { BasicList, BasicListItem } from '@/components/BasicList';
 
-import { msgNotifyList } from './data'
+import { msgNotifyList } from './data';
 
 export default defineComponent({
   components: {
     ElSwitch,
     CollapseContainer,
-    List,
-    ListItem,
+    BasicList,
+    BasicListItem,
   },
   setup() {
-    const list = reactive(msgNotifyList)
+    const list = reactive(msgNotifyList);
 
     return {
       list,
-    }
+    };
   },
-})
+});
 </script>
+
 <style lang="scss" scoped>
 .extra {
   float: right;

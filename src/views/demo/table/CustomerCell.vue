@@ -36,11 +36,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElTag, ElAvatar, ElTableColumn } from 'element-plus'
-import { BasicTable, useTable } from '@/components/BasicTable'
-import { demoListApi } from '@/api/demo/table'
-import { getCustomCellColumns } from './data'
+import { defineComponent } from 'vue';
+import { ElTag, ElAvatar, ElTableColumn } from 'element-plus';
+import { BasicTable, useTable } from '@/components/BasicTable';
+import { demoListApi } from '@/api/demo/table';
+import { getCustomCellColumns } from './data';
 
 export default defineComponent({
   components: { ElTag, ElAvatar, ElTableColumn, BasicTable },
@@ -51,11 +51,11 @@ export default defineComponent({
       columns: getCustomCellColumns(),
       border: true,
       showTableSetting: true,
-    })
+    });
 
     return {
       registerTable,
-    }
+    };
   },
-})
+});
 </script>

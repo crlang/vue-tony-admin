@@ -21,11 +21,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
-import { BasicDescription } from '@/components/BasicDescription'
-import { BasicTable, useTable } from '@/components/BasicTable'
+import { defineComponent, reactive } from 'vue';
+import { BasicDescription } from '@/components/BasicDescription';
+import { BasicTable, useTable } from '@/components/BasicTable';
 
-import { refundSchema, refundData, personSchema, personData, refundTableSchema, refundTimeTableSchema, refundTableData, refundTimeTableData } from './data'
+import { refundSchema, refundData, personSchema, personData, refundTableSchema, refundTimeTableSchema, refundTableData, refundTimeTableData } from './data';
 
 export default defineComponent({
   components: { BasicDescription, BasicTable },
@@ -38,38 +38,38 @@ export default defineComponent({
       scroll: { y: 300 },
       showSummary: true,
       summaryMethod: handleSummary,
-    })
+    });
 
-    const [registerRefundTable] = useTable()
+    const [registerRefundTable] = useTable();
 
     const registerTimeTableFields = reactive<any>({
       title: '退货进度',
       columns: refundTimeTableSchema,
       dataSource: refundTimeTableData,
       scroll: { y: 300 },
-    })
-    const [registerTimeTable] = useTable()
+    });
+    const [registerTimeTable] = useTable();
 
     function handleSummary({ columns, data }) {
-      const sums: string[] = []
-      sums[0] = '总计'
+      const sums: string[] = [];
+      sums[0] = '总计';
 
       columns.forEach((column, index) => {
-        const values = data.map((item) => Number(item[column.property]))
-        const showVals = ['t5', 't6']
+        const values = data.map((item) => Number(item[column.property]));
+        const showVals = ['t5', 't6'];
         if (showVals.includes(column.property)) {
           sums[index] = `${values.reduce((prev, curr) => {
-            const value = Number(curr)
+            const value = Number(curr);
             if (!Number.isNaN(value)) {
-              return prev + curr
+              return prev + curr;
             } else {
-              return prev
+              return prev;
             }
-          }, 0)}`
+          }, 0)}`;
         }
-      })
+      });
 
-      return sums
+      return sums;
     }
     return {
       refundTableData,
@@ -82,9 +82,9 @@ export default defineComponent({
       refundData,
       personSchema,
       personData,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

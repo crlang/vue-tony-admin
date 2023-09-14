@@ -1,6 +1,6 @@
-import type { AppRouteModule } from '@/router/types'
+import type { AppRouteModule } from '@/router/types';
 
-import { getParentLayout, LAYOUT } from '@/router/constant'
+import { getParentLayout, LAYOUT } from '@/router/constant';
 
 const feat: AppRouteModule = {
   path: '/feat',
@@ -9,7 +9,7 @@ const feat: AppRouteModule = {
   redirect: '/feat/icon',
   meta: {
     orderNo: 3,
-    icon: 'ep:compass',
+    icon: 'm_compass',
     title: '功能',
   },
 
@@ -27,15 +27,7 @@ const feat: AppRouteModule = {
       name: 'WebSocket',
       component: () => import('@/views/demo/feat/ws/index.vue'),
       meta: {
-        title: 'websocket测试',
-      },
-    },
-    {
-      path: 'session-timeout',
-      name: 'SessionTimeout',
-      component: () => import('@/views/demo/feat/session-timeout/index.vue'),
-      meta: {
-        title: '登录过期',
+        title: 'WebSocket 测试',
       },
     },
     {
@@ -241,6 +233,6 @@ const feat: AppRouteModule = {
       ],
     },
   ],
-}
+};
 
-export default feat
+export default feat;

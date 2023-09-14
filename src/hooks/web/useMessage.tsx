@@ -1,11 +1,11 @@
-import type { EleElMessageBox, EleNotification, EleActionPopconfirmAction } from '@/components/ElementPlus'
+import type { EleElMessageBox, EleNotification, EleActionPopconfirmAction } from '@/components/ElementPlus';
 
-import { h } from 'vue'
-import { ElMessage, ElMessageBox, ElNotification } from 'element-plus'
+import { h } from 'vue';
+import { ElMessage, ElMessageBox, ElNotification } from 'element-plus';
 
-import { SvgIcon } from '@/components/SvgIcon'
+import { SvgIcon } from '@/components/SvgIcon';
 
-import { useDesign } from './useDesign'
+import { useDesign } from './useDesign';
 
 /**
  * 基础信息选项
@@ -92,7 +92,7 @@ export function useMessage() {
    * @param options NotificationOptions
    */
   function createNotification(options: NotificationOptions): Promise<EleActionPopconfirmAction> {
-    const { title, message, position = 'top-right', type, duration = 4500, customClass } = options
+    const { title, message, position = 'top-right', type, duration = 4500, customClass } = options;
 
     return ElNotification({
       title,
@@ -102,7 +102,7 @@ export function useMessage() {
       type,
       position,
       duration,
-    })
+    });
   }
 
   /**
@@ -112,9 +112,9 @@ export function useMessage() {
    * @param options MessageBoxOptions
    */
   function createConfirm(options: MessageBoxOptions): Promise<EleActionPopconfirmAction> {
-    const { title, message, confirmText = '确认', cancelText = '取消', type, customClass = '' } = options
-    const { prefixCls } = useDesign('confirm-popup')
-    const className = `${prefixCls} ${prefixCls}__${type} ${customClass}`
+    const { title, message, confirmText = '确认', cancelText = '取消', type, customClass = '' } = options;
+    const { prefixCls } = useDesign('confirm-popup');
+    const className = `${prefixCls} ${prefixCls}__${type} ${customClass}`;
 
     return ElMessageBox.confirm(message, title, {
       confirmButtonText: confirmText,
@@ -122,7 +122,7 @@ export function useMessage() {
       showClose: false,
       class: className, // compatible 2.3+
       customClass: className,
-    })
+    });
   }
 
   /**
@@ -133,7 +133,7 @@ export function useMessage() {
    * @param type EleElMessageBox['type']
    */
   function createModalOptions(options: MessageBoxOptions, type: EleElMessageBox['type']): Promise<EleActionPopconfirmAction> {
-    const { title, message, confirmText, cancelText, customClass } = options
+    const { title, message, confirmText, cancelText, customClass } = options;
 
     return ElMessageBox.alert(message, title, {
       confirmButtonText: confirmText || '确认',
@@ -141,7 +141,7 @@ export function useMessage() {
       type,
       class: customClass, // compatible 2.3+
       customClass,
-    })
+    });
   }
 
   /**
@@ -151,7 +151,7 @@ export function useMessage() {
    * @param options MessageBoxOptions
    */
   function createSuccessModal(options: MessageBoxOptions) {
-    return createModalOptions(options, 'success')
+    return createModalOptions(options, 'success');
   }
 
   /**
@@ -161,7 +161,7 @@ export function useMessage() {
    * @param options MessageBoxOptions
    */
   function createErrorModal(options: MessageBoxOptions) {
-    return createModalOptions(options, 'error')
+    return createModalOptions(options, 'error');
   }
 
   /**
@@ -171,7 +171,7 @@ export function useMessage() {
    * @param options MessageBoxOptions
    */
   function createInfoModal(options: MessageBoxOptions) {
-    return createModalOptions(options, 'info')
+    return createModalOptions(options, 'info');
   }
 
   /**
@@ -181,7 +181,7 @@ export function useMessage() {
    * @param options MessageBoxOptions
    */
   function createWarningModal(options: MessageBoxOptions) {
-    return createModalOptions(options, 'warning')
+    return createModalOptions(options, 'warning');
   }
 
   /**
@@ -198,7 +198,7 @@ export function useMessage() {
       customClass: 'el-message--loading',
       duration, // If 0, you need to run ElMessage.closeAll() to close
       message: h('div', { style: 'display:flex;align-items:center;' }, [h(SvgIcon, { name: 'loading', spin: true }), h('span', { style: 'margin-left: 12px' }, title)]),
-    })
+    });
 
   /**
    * 创建消息提示中心
@@ -242,7 +242,7 @@ export function useMessage() {
      * Close all message
      */
     closeAll: ElMessage.closeAll,
-  }
+  };
 
   return {
     createMessage,
@@ -252,5 +252,5 @@ export function useMessage() {
     createErrorModal,
     createInfoModal,
     createWarningModal,
-  }
+  };
 }

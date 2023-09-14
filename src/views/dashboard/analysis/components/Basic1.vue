@@ -3,9 +3,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, Ref } from 'vue'
-import { useECharts } from '@/hooks/web/useECharts'
-import { getRandomNumberData } from '@/utils/demo'
+import { defineComponent, onMounted, ref, Ref, watch } from 'vue';
+
+import { useECharts } from '@/hooks/web/useECharts';
+
+import { DateBasicItem } from '../data';
 
 export default defineComponent({
   props: {
@@ -17,19 +19,33 @@ export default defineComponent({
       type: String,
       default: '300px',
     },
+    datainfo: {
+      type: Array as PropType<DateBasicItem[]>,
+      default: () => [],
+    },
   },
-  setup(_) {
-    const chartRef = ref<HTMLDivElement | null>(null)
-    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>)
-
+  setup(props) {
+    const chartRef = ref<HTMLDivElement | null>(null);
+    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
     const initChart = () => {
+      const list = props.datainfo || [];
+      const xdata: string[] = [];
+      const ydata: number[] = [];
+
+      if (list?.length) {
+        list.forEach((k) => {
+          xdata.push(k.name);
+          ydata.push(k.value);
+        });
+      }
+
       setOptions({
         tooltip: {
           trigger: 'axis',
         },
         xAxis: {
           type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          data: xdata,
         },
         yAxis: {
           type: 'value',
@@ -37,18 +53,26 @@ export default defineComponent({
         grid: { left: '1%', right: '1%', top: '3%', bottom: '0', containLabel: true },
         series: [
           {
-            data: getRandomNumberData(7),
+            data: ydata,
             type: 'line',
           },
         ],
-      })
-    }
+      });
+    };
 
-    onMounted(initChart)
+    watch(
+      () => props.datainfo,
+      () => {
+        initChart();
+      },
+      { deep: true },
+    );
+
+    onMounted(initChart);
 
     return {
       chartRef,
-    }
+    };
   },
-})
+});
 </script>

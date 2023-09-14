@@ -1,62 +1,64 @@
-import type { EChartsOption } from 'echarts'
-import type { Ref } from 'vue'
+import type { EChartsOption } from 'echarts';
+import type { Ref } from 'vue';
 
-import { unref, nextTick, watch, computed, ref } from 'vue'
-import { tryOnUnmounted, useDebounceFn } from '@vueuse/core'
+import { unref, nextTick, watch, computed, ref } from 'vue';
+import { tryOnUnmounted, useDebounceFn, useTimeoutFn } from '@vueuse/core';
 
-import { useTimeoutFn } from '@/hooks/core/useTimeout'
-import { useEventListener } from '@/hooks/event/useEventListener'
-import { useBreakpoint } from '@/hooks/event/useBreakpoint'
-import echarts from '@/utils/lib/echarts'
-import { isDark } from '@/logics/theme'
+import { useEventListener } from '@/hooks/event/useEventListener';
+import { useBreakpoint } from '@/hooks/event/useBreakpoint';
+import echarts from '@/utils/lib/echarts';
+import { isDark } from '@/logics/theme';
+
+import { useMenuSetting } from '../setting/useMenuSetting';
 
 /**
  * 使用Echarts图表
  *
- * Reactive Echarts
+ * Echarts
  * @param elRef
  * @param theme
  */
 export function useECharts(elRef: Ref<HTMLDivElement>, theme: 'light' | 'dark' | 'default' = 'default') {
-  let chartInstance: echarts.ECharts | null = null
-  let resizeFn: Fn = resize
-  const cacheOptions = ref({}) as Ref<EChartsOption>
-  let removeResizeFn: Fn = () => {}
+  const { getCollapsed } = useMenuSetting();
+  let chartInstance: echarts.ECharts | null = null;
+  let resizeFn: Fn = resize;
+  const cacheOptions = ref({}) as Ref<EChartsOption>;
+  let removeResizeFn: Fn = () => {};
 
-  resizeFn = useDebounceFn(resize, 200)
+  resizeFn = useDebounceFn(resize, 200);
 
   const getOptions = computed(() => {
     if (!isDark.value) {
-      return cacheOptions.value as EChartsOption
+      return cacheOptions.value as EChartsOption;
     }
     return {
       backgroundColor: 'transparent',
       ...cacheOptions.value,
-    } as EChartsOption
-  })
+    } as EChartsOption;
+  });
 
   /**
    * 初始化图表
    * @param t 主题
    */
   function initCharts(t = theme) {
-    const el = unref(elRef)
+    const el = unref(elRef);
     if (!el || !unref(el)) {
-      return
+      return;
     }
 
-    chartInstance = echarts.init(el, t)
+    chartInstance = echarts.init(el, t);
     const { removeEvent } = useEventListener({
       el: window,
       name: 'resize',
       listener: resizeFn,
-    })
-    removeResizeFn = removeEvent
-    const { widthRef, screenEnum } = useBreakpoint()
+    });
+    removeResizeFn = removeEvent;
+    const { widthRef, screenEnum } = useBreakpoint();
     if (unref(widthRef) <= screenEnum.MD || el.offsetHeight === 0) {
       useTimeoutFn(() => {
-        resizeFn()
-      }, 30)
+        resizeFn();
+      }, 30);
     }
   }
 
@@ -68,25 +70,28 @@ export function useECharts(elRef: Ref<HTMLDivElement>, theme: 'light' | 'dark' |
    * @param clear 是否先清空图表
    */
   function setOptions(options: EChartsOption, clear = true) {
-    cacheOptions.value = options
-    if (unref(elRef)?.offsetHeight === 0) {
-      useTimeoutFn(() => {
-        setOptions(unref(getOptions))
-      }, 30)
-      return
-    }
-    nextTick(() => {
-      useTimeoutFn(() => {
-        if (!chartInstance) {
-          initCharts(isDark.value ? 'dark' : 'light')
+    cacheOptions.value = options;
+    return new Promise((resolve) => {
+      if (unref(elRef)?.offsetHeight === 0) {
+        useTimeoutFn(() => {
+          setOptions(unref(getOptions));
+          resolve(null);
+        }, 30);
+      }
+      nextTick(() => {
+        useTimeoutFn(() => {
+          if (!chartInstance) {
+            initCharts(isDark.value ? 'dark' : 'light');
 
-          if (!chartInstance) return
-        }
-        clear && chartInstance?.clear()
+            if (!chartInstance) return;
+          }
+          clear && chartInstance?.clear();
 
-        chartInstance?.setOption(unref(getOptions))
-      }, 30)
-    })
+          chartInstance?.setOption(unref(getOptions));
+          resolve(null);
+        }, 30);
+      });
+    });
   }
 
   /**
@@ -95,26 +100,40 @@ export function useECharts(elRef: Ref<HTMLDivElement>, theme: 'light' | 'dark' |
    * Resize chart
    */
   function resize() {
-    chartInstance?.resize()
+    chartInstance?.resize({
+      animation: {
+        duration: 300,
+        easing: 'quadraticIn',
+      },
+    });
   }
 
   watch(
     () => isDark.value,
     (theme) => {
       if (chartInstance) {
-        chartInstance.dispose()
-        initCharts(theme as 'default')
-        setOptions(cacheOptions.value)
+        chartInstance.dispose();
+        initCharts(theme ? 'dark' : 'light');
+        setOptions(cacheOptions.value);
       }
     },
-  )
+  );
+
+  watch(
+    () => getCollapsed,
+    () => {
+      useTimeoutFn(() => {
+        resizeFn();
+      }, 300);
+    },
+  );
 
   tryOnUnmounted(() => {
-    if (!chartInstance) return
-    removeResizeFn()
-    chartInstance.dispose()
-    chartInstance = null
-  })
+    if (!chartInstance) return;
+    removeResizeFn();
+    chartInstance.dispose();
+    chartInstance = null;
+  });
 
   /**
    * 获取图表实例
@@ -123,9 +142,9 @@ export function useECharts(elRef: Ref<HTMLDivElement>, theme: 'light' | 'dark' |
    */
   function getInstance(): echarts.ECharts | null {
     if (!chartInstance) {
-      initCharts(isDark.value ? 'dark' : 'default')
+      initCharts(isDark.value ? 'dark' : 'default');
     }
-    return chartInstance
+    return chartInstance;
   }
 
   return {
@@ -133,5 +152,5 @@ export function useECharts(elRef: Ref<HTMLDivElement>, theme: 'light' | 'dark' |
     resize,
     echarts,
     getInstance,
-  }
+  };
 }

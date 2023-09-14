@@ -3,7 +3,9 @@
   &-out {
     &-enter-active,
     &-leave-active {
-      transition: opacity 0.1 ease-in-out, transform 0.15s ease-out;
+      transition:
+        opacity 0.1 ease-in-out,
+        transform 0.15s ease-out;
     }
 
     &-enter-from,
@@ -15,10 +17,11 @@
 
   /* zoom-fade */
   &-fade {
-
     &-enter-active,
     &-leave-active {
-      transition: transform 0.2s, opacity 0.3s ease-out;
+      transition:
+        transform 0.2s,
+        opacity 0.3s ease-out;
     }
 
     &-enter-from {

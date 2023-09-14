@@ -3,12 +3,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref, Ref, onMounted } from 'vue'
+import { defineComponent, PropType, ref, Ref, onMounted } from 'vue';
 
-import { useECharts } from '@/hooks/web/useECharts'
-import { mapData } from './data'
-import { registerMap } from 'echarts'
-import axios from 'axios'
+import { useECharts } from '@/hooks/web/useECharts';
+import { mapData } from './data';
+import { registerMap } from 'echarts';
+import axios from 'axios';
 
 export default defineComponent({
   props: {
@@ -22,12 +22,12 @@ export default defineComponent({
     },
   },
   setup() {
-    const chartRef = ref<HTMLDivElement | null>(null)
-    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>)
+    const chartRef = ref<HTMLDivElement | null>(null);
+    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
 
     onMounted(async() => {
-      const json = await axios.get('https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json')
-      registerMap('china', json.data)
+      const json = await axios.get('https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json');
+      registerMap('china', json.data);
       setOptions({
         visualMap: [
           {
@@ -69,9 +69,9 @@ export default defineComponent({
             data: mapData(),
           },
         ],
-      })
-    })
-    return { chartRef }
+      });
+    });
+    return { chartRef };
   },
-})
+});
 </script>

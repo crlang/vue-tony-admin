@@ -1,11 +1,12 @@
 <template>
   <div :class="getClass" :style="getDragBarStyle"></div>
 </template>
-<script lang="ts">
-import { defineComponent, computed, unref } from 'vue'
 
-import { useDesign } from '@/hooks/web/useDesign'
-import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+<script lang="ts">
+import { defineComponent, computed, unref } from 'vue';
+
+import { useDesign } from '@/hooks/web/useDesign';
+import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
 
 export default defineComponent({
   name: 'DragBar',
@@ -13,15 +14,16 @@ export default defineComponent({
     mobile: Boolean,
   },
   setup(props) {
-    const { getMiniWidthNumber, getCollapsed, getCanDrag } = useMenuSetting()
+    const { getMiniWidthNumber, getCollapsed, getCanDrag } = useMenuSetting();
 
-    const { prefixCls } = useDesign('drag-bar')
+    const { prefixCls } = useDesign('drag-bar');
     const getDragBarStyle = computed(() => {
       if (unref(getCollapsed)) {
-        return { left: `${unref(getMiniWidthNumber) - 8}px`, right: 'auto' }
+        // 此处的 4 和下方样式中的拖动条的宽度保持一致
+        return { left: `${unref(getMiniWidthNumber) - 4}px`, right: 'auto' };
       }
-      return {}
-    })
+      return {};
+    });
 
     const getClass = computed(() => {
       return [
@@ -29,17 +31,18 @@ export default defineComponent({
         {
           [`${prefixCls}--hide`]: !unref(getCanDrag) || props.mobile,
         },
-      ]
-    })
+      ];
+    });
 
     return {
       prefixCls,
       getDragBarStyle,
       getClass,
-    }
+    };
   },
-})
+});
 </script>
+
 <style lang="scss" scoped>
 $prefix-cls: '#{$tonyname}-drag-bar';
 
@@ -48,6 +51,8 @@ $prefix-cls: '#{$tonyname}-drag-bar';
   top: 0;
   right: 0;
   z-index: 200;
+
+  /** 此处的 4 和上方减去大小保持一致 */
   width: 4px;
   height: 100%;
   cursor: col-resize;

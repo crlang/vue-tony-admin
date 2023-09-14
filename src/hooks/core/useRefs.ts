@@ -1,27 +1,28 @@
-import type { Ref } from 'vue'
-import { ref, onBeforeUpdate } from 'vue'
+import type { Ref } from 'vue';
+
+import { shallowRef, onBeforeUpdate } from 'vue';
 
 /**
- * 使用Refs
+ * Ref 操作
  *
- * Reactive Refs
+ * Ref operation
  */
-export function useRefs(): [Ref<HTMLElement[]>, (index: number) => (el: HTMLElement) => void] {
-  const refs = ref([]) as Ref<HTMLElement[]>
+export function useRefs(): {
+  refs: Ref<HTMLElement[]>;
+  setRefs: (index: number) => (el: HTMLElement) => void;
+  } {
+  const refs = shallowRef([]) as Ref<HTMLElement[]>;
 
   onBeforeUpdate(() => {
-    refs.value = []
-  })
+    refs.value = [];
+  });
 
-  /**
-   * 设置 Refs
-   *
-   * Set Refs
-   * @param index
-   */
   const setRefs = (index: number) => (el: HTMLElement) => {
-    refs.value[index] = el
-  }
+    refs.value[index] = el;
+  };
 
-  return [refs, setRefs]
+  return {
+    refs,
+    setRefs,
+  };
 }

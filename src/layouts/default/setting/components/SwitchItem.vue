@@ -12,13 +12,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, computed } from 'vue'
-import { ElSwitch } from 'element-plus'
+import { defineComponent, PropType, computed } from 'vue';
+import { ElSwitch } from 'element-plus';
 
-import { useDesign } from '@/hooks/web/useDesign'
+import { useDesign } from '@/hooks/web/useDesign';
 
-import { baseHandler } from '../handler'
-import { HandlerEnum } from '../enum'
+import { baseHandler } from '../handler';
+import { HandlerEnum } from '../enum';
 
 export default defineComponent({
   name: 'SwitchItem',
@@ -38,21 +38,21 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { prefixCls } = useDesign('setting-switch-item')
+    const { prefixCls } = useDesign('setting-switch-item');
 
     const getBindValue = computed(() => {
-      return props.def ? { modelValue: props.def } : {}
-    })
+      return props.def ? { modelValue: props.def } : {};
+    });
     function handleChange(v: string | number | boolean) {
-      props.event && baseHandler(props.event, v)
+      props.event && baseHandler(props.event, v);
     }
     return {
       prefixCls,
       handleChange,
       getBindValue,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

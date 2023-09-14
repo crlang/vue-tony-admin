@@ -1,10 +1,10 @@
-import type { RouteLocationNormalized, Router } from 'vue-router'
+import type { RouteLocationNormalized, Router } from 'vue-router';
 
-import { useRouter } from 'vue-router'
-import { unref } from 'vue'
+import { useRouter } from 'vue-router';
+import { unref } from 'vue';
 
-import { useMultipleTabStore } from '@/store/modules/multipleTab'
-import { useAppStore } from '@/store/modules/app'
+import { useMultipleTabStore } from '@/store/modules/multipleTab';
+import { useAppStore } from '@/store/modules/app';
 
 enum TableActionEnum {
   REFRESH,
@@ -19,11 +19,11 @@ enum TableActionEnum {
 /**
  * 选项卡处理
  *
- * Reactive multiple tab
+ * Multiple tab
  * @param _router Router
  */
 export function useTabs(_router?: Router) {
-  const appStore = useAppStore()
+  const appStore = useAppStore();
 
   /**
    * 是否有访问权限
@@ -31,17 +31,17 @@ export function useTabs(_router?: Router) {
    * Check for access
    */
   function canIUseTabs(): boolean {
-    const { show } = appStore.getMultiTabsSetting
+    const { show } = appStore.getMultiTabsSetting;
     if (!show) {
-      throw new Error('The multi-tab page is currently not open, please open it in the settings！')
+      throw new Error('The multi-tab page is currently not open, please open it in the settings！');
     }
-    return !!show
+    return !!show;
   }
 
-  const tabStore = useMultipleTabStore()
-  const router = _router || useRouter()
+  const tabStore = useMultipleTabStore();
+  const router = _router || useRouter();
 
-  const { currentRoute } = router
+  const { currentRoute } = router;
 
   /**
    * 获取当前选项卡
@@ -49,13 +49,8 @@ export function useTabs(_router?: Router) {
    * Get current tab
    */
   function getCurrentTab() {
-    const canIUse = canIUseTabs
-    if (!canIUse) {
-      return
-    }
-
-    const route = unref(currentRoute)
-    return tabStore.getTabList.find((item) => item.path === route.path)!
+    const route = unref(currentRoute);
+    return tabStore.getTabList.find((item) => item.fullPath === route.fullPath)!;
   }
 
   /**
@@ -66,12 +61,12 @@ export function useTabs(_router?: Router) {
    * @param tab RouteLocationNormalized
    */
   async function updateTabTitle(title: string, tab?: RouteLocationNormalized) {
-    const canIUse = canIUseTabs
+    const canIUse = canIUseTabs;
     if (!canIUse) {
-      return
+      return;
     }
-    const targetTab = tab || getCurrentTab()
-    await tabStore.setTabTitle(title, targetTab)
+    const targetTab = tab || getCurrentTab();
+    await tabStore.setTabTitle(title, targetTab);
   }
 
   /**
@@ -82,12 +77,12 @@ export function useTabs(_router?: Router) {
    * @param tab RouteLocationNormalized
    */
   async function updateTabPath(path: string, tab?: RouteLocationNormalized) {
-    const canIUse = canIUseTabs
+    const canIUse = canIUseTabs;
     if (!canIUse) {
-      return
+      return;
     }
-    const targetTab = tab || getCurrentTab()
-    await tabStore.updateTabPath(path, targetTab)
+    const targetTab = tab || getCurrentTab();
+    await tabStore.updateTabPath(path, targetTab);
   }
 
   /**
@@ -98,36 +93,36 @@ export function useTabs(_router?: Router) {
    * @param tab RouteLocationNormalized
    */
   async function handleTabAction(action: TableActionEnum, tab?: RouteLocationNormalized) {
-    const canIUse = canIUseTabs
+    const canIUse = canIUseTabs;
     if (!canIUse) {
-      return
+      return;
     }
-    const currentTab = getCurrentTab()
+    const currentTab = getCurrentTab();
     switch (action) {
-    case TableActionEnum.REFRESH:
-      await tabStore.refreshPage(router)
-      break
+      case TableActionEnum.REFRESH:
+        await tabStore.refreshPage(router);
+        break;
 
-    case TableActionEnum.CLOSE_ALL:
-      await tabStore.closeAllTab(router)
-      break
+      case TableActionEnum.CLOSE_ALL:
+        await tabStore.closeAllTab(router);
+        break;
 
-    case TableActionEnum.CLOSE_LEFT:
-      await tabStore.closeLeftTabs(currentTab, router)
-      break
+      case TableActionEnum.CLOSE_LEFT:
+        await tabStore.closeLeftTabs(currentTab, router);
+        break;
 
-    case TableActionEnum.CLOSE_RIGHT:
-      await tabStore.closeRightTabs(currentTab, router)
-      break
+      case TableActionEnum.CLOSE_RIGHT:
+        await tabStore.closeRightTabs(currentTab, router);
+        break;
 
-    case TableActionEnum.CLOSE_OTHER:
-      await tabStore.closeOtherTabs(currentTab, router)
-      break
+      case TableActionEnum.CLOSE_OTHER:
+        await tabStore.closeOtherTabs(currentTab, router);
+        break;
 
-    case TableActionEnum.CLOSE_CURRENT:
-    case TableActionEnum.CLOSE:
-      await tabStore.closeTab(tab || currentTab, router)
-      break
+      case TableActionEnum.CLOSE_CURRENT:
+      case TableActionEnum.CLOSE:
+        await tabStore.closeTab(tab || currentTab, router);
+        break;
     }
   }
 
@@ -141,5 +136,5 @@ export function useTabs(_router?: Router) {
     close: (tab?: RouteLocationNormalized) => handleTabAction(TableActionEnum.CLOSE, tab),
     setTitle: (title: string, tab?: RouteLocationNormalized) => updateTabTitle(title, tab),
     updatePath: (fullPath: string, tab?: RouteLocationNormalized) => updateTabPath(fullPath, tab),
-  }
+  };
 }

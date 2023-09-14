@@ -2,7 +2,7 @@
   <PageWrapper title="上传组件示例">
     <BasicUpload
       @change="handleChange"
-      :api="uploadApi"
+      :api="ApiUpload"
       showThumb
       :modelValue="uploadList"
       uploadName="file"
@@ -15,7 +15,7 @@
 
     <BasicUpload
       @change="handleChange"
-      :api="uploadApi"
+      :api="ApiUpload"
       :modelValue="uploadList"
       uploadName="file"
       :maxSize="5"
@@ -26,34 +26,34 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { ElAlert } from 'element-plus'
+import { defineComponent, ref } from 'vue';
+import { ElAlert } from 'element-plus';
 
-import { BasicUpload } from '@/components/BasicUpload'
-import { useMessage } from '@/hooks/web/useMessage'
-import { uploadApi } from '@/api/sys/upload'
+import { BasicUpload } from '@/components/BasicUpload';
+import { useMessage } from '@/hooks/web/useMessage';
+import { ApiUpload } from '@/api/upload';
 
 export default defineComponent({
   components: { ElAlert, BasicUpload },
   setup() {
-    const { createMessage } = useMessage()
-    const uploadList = ref<string[]>()
+    const { createMessage } = useMessage();
+    const uploadList = ref<string[]>();
 
     function handleDelete(record: Recordable) {
-      createMessage.info(`移除文件`)
-      console.info(record)
+      createMessage.info(`移除文件`);
+      console.info(record);
     }
     function handleChange(list: Recordable) {
-      createMessage.info(`已上传文件`)
-      console.info(list)
+      createMessage.info(`已上传文件`);
+      console.info(list);
     }
 
     return {
       uploadList,
       handleChange,
       handleDelete,
-      uploadApi,
-    }
+      ApiUpload,
+    };
   },
-})
+});
 </script>

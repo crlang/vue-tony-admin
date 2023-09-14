@@ -20,11 +20,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, toRefs } from 'vue'
-import { ElSteps, ElStep } from 'element-plus'
-import Step1 from './Step1.vue'
-import Step2 from './Step2.vue'
-import Step3 from './Step3.vue'
+import { defineComponent, ref, reactive, toRefs } from 'vue';
+import { ElSteps, ElStep } from 'element-plus';
+import Step1 from './Step1.vue';
+import Step2 from './Step2.vue';
+import Step3 from './Step3.vue';
 
 export default defineComponent({
   name: 'FormStepPage',
@@ -36,31 +36,31 @@ export default defineComponent({
     Step3,
   },
   setup() {
-    const current = ref(0)
+    const current = ref(0);
 
     const state = reactive({
       initSetp2: false,
       initSetp3: false,
-    })
+    });
 
     function handleStep1Next() {
-      current.value++
-      state.initSetp2 = true
+      current.value++;
+      state.initSetp2 = true;
     }
 
     function handleStepPrev() {
-      current.value--
+      current.value--;
     }
 
     function handleStep2Next() {
-      current.value = 3
-      state.initSetp3 = true
+      current.value = 3;
+      state.initSetp3 = true;
     }
 
     function handleRedo() {
-      current.value = 0
-      state.initSetp2 = false
-      state.initSetp3 = false
+      current.value = 0;
+      state.initSetp2 = false;
+      state.initSetp3 = false;
     }
 
     return {
@@ -70,10 +70,11 @@ export default defineComponent({
       handleRedo,
       handleStepPrev,
       ...toRefs(state),
-    }
+    };
   },
-})
+});
 </script>
+
 <style lang="scss" scoped>
 .step-form-content {
   padding: 24px;

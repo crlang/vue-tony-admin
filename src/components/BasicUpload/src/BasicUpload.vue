@@ -56,17 +56,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch, unref, computed, CSSProperties } from 'vue'
-import { ElButton, ElButtonGroup, ElTooltip } from 'element-plus'
-import { omit } from 'lodash-es'
+import { defineComponent, ref, watch, unref, computed, CSSProperties } from 'vue';
+import { ElButton, ElButtonGroup, ElTooltip } from 'element-plus';
+import { omit } from 'lodash-es';
 
-import { useModal } from '@/components/BasicModal'
-import { SvgIcon } from '@/components/SvgIcon'
-import { useDesign } from '@/hooks/web/useDesign'
+import { useModal } from '@/components/BasicModal';
+import { SvgIcon } from '@/components/SvgIcon';
+import { useDesign } from '@/hooks/web/useDesign';
 
-import UploadModal from './components/UploadModal.vue'
-import UploadPreviewModal from './components/PreviewModal.vue'
-import { basicProps, customProps } from './props'
+import UploadModal from './components/UploadModal.vue';
+import UploadPreviewModal from './components/PreviewModal.vue';
+import { basicProps, customProps } from './props';
 
 export default defineComponent({
   name: 'BasicUpload',
@@ -75,11 +75,11 @@ export default defineComponent({
   emits: ['change', 'delete', 'preview-delete', 'update:modelValue'],
 
   setup(props, { emit, attrs }) {
-    const fileList = ref<string[]>([])
-    const { prefixCls } = useDesign('basic-upload')
+    const fileList = ref<string[]>([]);
+    const { prefixCls } = useDesign('basic-upload');
 
-    const [registerUploadModal, { openModal: openUploadModal }] = useModal()
-    const [registerPreviewModal, { openModal: openPreviewModal }] = useModal()
+    const [registerUploadModal, { openModal: openUploadModal }] = useModal();
+    const [registerPreviewModal, { openModal: openPreviewModal }] = useModal();
 
     /**
      * 是否显示预览按钮入口
@@ -87,10 +87,10 @@ export default defineComponent({
      * Whether to show the preview button entry
      */
     const showPreview = computed(() => {
-      const { emptyHidePreview } = props
-      if (!emptyHidePreview) return true
-      return emptyHidePreview ? fileList.value.length > 0 : true
-    })
+      const { emptyHidePreview } = props;
+      if (!emptyHidePreview) return true;
+      return emptyHidePreview ? fileList.value.length > 0 : true;
+    });
 
     /**
      * 获取预览图的样式
@@ -98,12 +98,12 @@ export default defineComponent({
      * Get thumb style
      */
     const getThumbStyle = computed((): CSSProperties => {
-      const { thumbSize } = props
+      const { thumbSize } = props;
 
       return {
         ['--thumb-size' as any]: `${thumbSize}px`,
-      }
-    })
+      };
+    });
     /**
      * 获取更新 Props
      *
@@ -112,8 +112,8 @@ export default defineComponent({
     const getProps = computed(() => {
       return {
         ...props,
-      }
-    })
+      };
+    });
     /**
      * 绑定上传弹窗Props
      *
@@ -123,14 +123,14 @@ export default defineComponent({
       const opts = {
         ...attrs,
         ...unref(getProps),
-      }
+      };
 
       // 绑定组件Porps前，移除自定义附加项
       // Before binding component Porps, remove custom add-ons
-      const customOpts = Object.keys(customProps)
+      const customOpts = Object.keys(customProps);
 
-      return omit(opts, customOpts)
-    })
+      return omit(opts, customOpts);
+    });
 
     /**
      * 打开上传
@@ -138,7 +138,7 @@ export default defineComponent({
      * Open upload modal
      */
     function openUpload() {
-      openUploadModal(true, unref(fileList))
+      openUploadModal(true, unref(fileList));
     }
     /**
      * 打开预览弹窗
@@ -146,7 +146,7 @@ export default defineComponent({
      * Open preview modal
      */
     function openPreview() {
-      openPreviewModal(true, unref(fileList))
+      openPreviewModal(true, unref(fileList));
     }
     /**
      * 上传弹窗文件列表改变时回调
@@ -154,9 +154,9 @@ export default defineComponent({
      * Callback when upload popup file list changes
      */
     function handleChange(urls: string[]) {
-      fileList.value = [...unref(fileList), ...(urls || [])]
-      emit('update:modelValue', fileList.value)
-      emit('change', fileList.value)
+      fileList.value = [...unref(fileList), ...(urls || [])];
+      emit('update:modelValue', fileList.value);
+      emit('change', fileList.value);
     }
 
     /**
@@ -166,9 +166,9 @@ export default defineComponent({
      * @param urls
      */
     function handlePreviewChange(urls: string[]) {
-      fileList.value = [...(urls || [])]
-      emit('update:modelValue', fileList.value)
-      emit('change', fileList.value)
+      fileList.value = [...(urls || [])];
+      emit('update:modelValue', fileList.value);
+      emit('change', fileList.value);
     }
 
     /**
@@ -178,7 +178,7 @@ export default defineComponent({
      * @param record FileItem
      */
     function handleDelete(record: Recordable) {
-      emit('delete', record)
+      emit('delete', record);
     }
 
     /**
@@ -188,16 +188,16 @@ export default defineComponent({
      * @param url
      */
     function handlePreviewDelete(url: string) {
-      emit('preview-delete', url)
+      emit('preview-delete', url);
     }
 
     watch(
       () => props.modelValue,
       (value = []) => {
-        fileList.value = Array.isArray(value) ? value : []
+        fileList.value = Array.isArray(value) ? value : [];
       },
       { immediate: true },
-    )
+    );
 
     return {
       prefixCls,
@@ -214,9 +214,9 @@ export default defineComponent({
       openPreview,
       handleDelete,
       handlePreviewDelete,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss">

@@ -2,15 +2,21 @@
   <div>
     <ElDropdown @command="handleMenuClick">
       <div :class="prefixCls">
-        <img :class="`${prefixCls}__avatar`" :src="getUserInfo.avatar" />
+        <ElImage :class="`${prefixCls}__avatar`" :src="getUserInfo.avatar">
+          <template #error>&nbsp;</template>
+        </ElImage>
         <span :class="`${prefixCls}__name`">{{ getUserInfo.realName }}</span>
       </div>
 
       <template #dropdown>
         <ElDropdownMenu :class="`${prefixCls}-menulist`">
+          <ElDropdownItem command="cpw">
+            <SvgIcon class="mr-2" name="m_key" />
+            <span>修改密码</span>
+          </ElDropdownItem>
           <ElDropdownItem command="doc" v-if="getShowDoc">
             <SvgIcon class="mr-2" name="filetext" />
-            <span>文档</span>
+            <span>开发文档</span>
           </ElDropdownItem>
           <ElDropdownItem v-if="getUseLockPage" :divided="getShowDoc" command="lock">
             <SvgIcon class="mr-2" name="lock" />
@@ -28,19 +34,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import { ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus'
+import { defineComponent, computed } from 'vue';
+import { ElDropdown, ElDropdownItem, ElDropdownMenu, ElImage } from 'element-plus';
 
-import { DOC_URL } from '@/settings/siteSetting'
-import { useUserStore } from '@/store/modules/user'
-import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
-import { useDesign } from '@/hooks/web/useDesign'
-import { useModal } from '@/components/BasicModal'
-import { openWindow } from '@/utils'
-import { SvgIcon } from '@/components/SvgIcon'
-import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
-
-import headerImg from '@/assets/images/header.jpg'
+import { DOC_URL } from '@/settings/siteSetting';
+import { useUserStore } from '@/store/modules/user';
+import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
+import { useDesign } from '@/hooks/web/useDesign';
+import { useModal } from '@/components/BasicModal';
+import { openWindow } from '@/utils';
+import { SvgIcon } from '@/components/SvgIcon';
+import { createAsyncComponent } from '@/utils/factory/createAsyncComponent';
+import { useGo } from '@/hooks/web/usePage';
 
 export default defineComponent({
   name: 'UserDropdown',
@@ -48,6 +53,7 @@ export default defineComponent({
     ElDropdown,
     ElDropdownItem,
     ElDropdownMenu,
+    ElImage,
     LockAction: createAsyncComponent(() => import('../lock/LockModal.vue')),
     SvgIcon,
   },
@@ -55,28 +61,32 @@ export default defineComponent({
     itemClass: String,
   },
   setup() {
-    const { prefixCls } = useDesign('header-user-dropdown')
-    const { getShowDoc, getUseLockPage } = useHeaderSetting()
-    const userStore = useUserStore()
+    const { prefixCls } = useDesign('header-user-dropdown');
+    const { getShowDoc, getUseLockPage } = useHeaderSetting();
+    const userStore = useUserStore();
+    const go = useGo();
 
     const getUserInfo = computed(() => {
-      const { realName = '', avatar, desc } = userStore.getUserInfo || {}
-      return { realName, avatar: avatar || headerImg, desc }
-    })
+      const { nickname = '', avatar } = userStore.getUserInfo || {};
+      return { realName: nickname, avatar };
+    });
 
-    const [register, { openModal }] = useModal()
+    const [register, { openModal }] = useModal();
 
-    function handleMenuClick(e: 'logout' | 'doc' | 'lock') {
+    function handleMenuClick(e: 'logout' | 'doc' | 'lock' | 'cpw') {
       switch (e) {
-      case 'logout':
-        userStore.confirmLoginOut()
-        break
-      case 'doc':
-        openWindow(DOC_URL)
-        break
-      case 'lock':
-        openModal(true)
-        break
+        case 'logout':
+          userStore.confirmLoginOut();
+          break;
+        case 'doc':
+          openWindow(DOC_URL);
+          break;
+        case 'lock':
+          openModal(true);
+          break;
+        case 'cpw':
+          go('/system/change_password');
+          break;
       }
     }
 
@@ -87,9 +97,9 @@ export default defineComponent({
       getShowDoc,
       register,
       getUseLockPage,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss">
@@ -112,13 +122,11 @@ $prefix-cls: '#{$tonyname}-header-user-dropdown';
     background-color: var(--header-background-hover-color);
   }
 
-  img {
-    width: 24px;
-    height: 24px;
-    margin-right: 12px;
-  }
-
   &__avatar {
+    width: 36px;
+    height: 36px;
+    margin-right: 12px;
+    background-color: var(--header-background-hover-color);
     border-radius: 50%;
   }
 

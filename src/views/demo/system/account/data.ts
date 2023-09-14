@@ -1,6 +1,6 @@
-import { isAccountExist } from '@/api/demo/system'
-import { BasicFormSchema } from '@/components/BasicForm'
-import { BasicColumn } from '@/components/BasicTable'
+import { isAccountExist } from '@/api/demo/system';
+import { BasicFormSchema } from '@/components/BasicForm';
+import { BasicColumn } from '@/components/BasicTable';
 
 export const columns: BasicColumn[] = [
   {
@@ -32,7 +32,7 @@ export const columns: BasicColumn[] = [
     label: '备注',
     prop: 'remark',
   },
-]
+];
 
 export const searchFormSchema: BasicFormSchema[] = [
   {
@@ -53,7 +53,7 @@ export const searchFormSchema: BasicFormSchema[] = [
     component: 'ElInput',
     colProps: { span: 8 },
   },
-]
+];
 
 export const accountFormSchema: BasicFormSchema[] = [
   {
@@ -72,9 +72,9 @@ export const accountFormSchema: BasicFormSchema[] = [
             isAccountExist(value)
               .then(() => resolve())
               .catch((err) => {
-                reject(err.message || '验证失败')
-              })
-          })
+                reject(err.message || '验证失败');
+              });
+          });
         },
       },
     ],
@@ -119,4 +119,4 @@ export const accountFormSchema: BasicFormSchema[] = [
       type: 'textarea',
     },
   },
-]
+];

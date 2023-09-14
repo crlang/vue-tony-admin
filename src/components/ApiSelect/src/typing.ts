@@ -3,4 +3,4 @@
  *
  * Processed option data format
  */
-export type OptionsItem = { label: string; value: string; disabled?: boolean }
+export type OptionsItem = { label: string; value: string; disabled?: boolean };

@@ -1,1 +1,1 @@
-export type ListTypes = 'card' | 'list'
+export type ListTypes = 'card' | 'list';

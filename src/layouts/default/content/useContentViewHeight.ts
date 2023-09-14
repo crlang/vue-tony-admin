@@ -1,10 +1,10 @@
-import { ref, computed, unref } from 'vue'
+import { ref, computed, unref } from 'vue';
 
-import { createPageContext } from '@/hooks/component/usePageContext'
-import { useWindowSizeFn } from '@/hooks/event/useWindowSizeFn'
+import { createPageContext } from '@/hooks/component/usePageContext';
+import { useWindowSizeFn } from '@/hooks/event/useWindowSizeFn';
 
-const headerHeightRef = ref(0)
-const footerHeightRef = ref(0)
+const headerHeightRef = ref(0);
+const footerHeightRef = ref(0);
 
 /**
  * 处理框架（含头部、内容区、脚部）高度信息
@@ -19,7 +19,7 @@ export function useLayoutHeight() {
    * @param val
    */
   function setHeaderHeight(val: number) {
-    headerHeightRef.value = val
+    headerHeightRef.value = val;
   }
   /**
    * 设置脚部高度
@@ -28,9 +28,9 @@ export function useLayoutHeight() {
    * @param val
    */
   function setFooterHeight(val: number) {
-    footerHeightRef.value = val
+    footerHeightRef.value = val;
   }
-  return { headerHeightRef, footerHeightRef, setHeaderHeight, setFooterHeight }
+  return { headerHeightRef, footerHeightRef, setHeaderHeight, setFooterHeight };
 }
 
 /**
@@ -39,27 +39,27 @@ export function useLayoutHeight() {
  * Reactive view content height
  */
 export function useContentViewHeight() {
-  const contentHeight = ref(window.innerHeight)
-  const pageHeight = ref(window.innerHeight)
+  const contentHeight = ref(window.innerHeight);
+  const pageHeight = ref(window.innerHeight);
   const getViewHeight = computed(() => {
-    return unref(contentHeight) - unref(headerHeightRef) - unref(footerHeightRef) || 0
-  })
+    return unref(contentHeight) - unref(headerHeightRef) - unref(footerHeightRef) || 0;
+  });
 
   useWindowSizeFn(
     () => {
-      contentHeight.value = window.innerHeight
+      contentHeight.value = window.innerHeight;
     },
     100,
     { immediate: true },
-  )
+  );
 
   async function setPageHeight(height: number) {
-    pageHeight.value = height
+    pageHeight.value = height;
   }
 
   createPageContext({
     contentHeight: getViewHeight,
     setPageHeight,
     pageHeight,
-  })
+  });
 }

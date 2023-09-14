@@ -1,10 +1,10 @@
-import type { BasicColumn, FetchSetting, TableSetting, ColumnSorterResult } from './typing'
-import type { BasicFormProps } from '@/components/BasicForm'
-import type { ElePagination } from '@/components/ElementPlus'
+import type { BasicColumn, FetchSetting, TableSetting, ColumnSorterResult } from './typing';
+import type { BasicFormProps } from '@/components/BasicForm';
+import type { ElePagination } from '@/components/ElementPlus';
 
-import { EleTableProps, ElePaginationProps } from '@/components/ElementPlus'
+import { EleTableProps, ElePaginationProps } from '@/components/ElementPlus';
 
-import { DEFAULT_FILTER_FN, DEFAULT_SORT_FN, FETCH_SETTING } from './const'
+import { DEFAULT_FILTER_FN, DEFAULT_SORT_FN, FETCH_SETTING } from './const';
 
 /**
  * 头部Props
@@ -45,7 +45,7 @@ export const headerProps = {
     type: Object as PropType<TableSetting>,
     default: () => {},
   },
-}
+};
 
 /**
  * 自定义Props
@@ -89,7 +89,7 @@ export const customProps = {
   fetchSetting: {
     type: Object as PropType<FetchSetting>,
     default: () => {
-      return FETCH_SETTING
+      return FETCH_SETTING;
     },
   },
   /**
@@ -227,7 +227,7 @@ export const customProps = {
     type: String,
     default: 'children',
   },
-}
+};
 
 /**
  * 分页Props
@@ -237,7 +237,7 @@ export const customProps = {
 export const paginationProps = {
   ...ElePaginationProps,
   prefixCls: String,
-}
+};
 
 /**
  * 组件Props
@@ -247,7 +247,7 @@ export const paginationProps = {
 export const basicProps = {
   ...EleTableProps,
   ...customProps,
-}
+};
 
 /**
  * ElTable 自带的 emit
@@ -273,4 +273,4 @@ export const ElTableBasicEmits = [
   'current-change',
   'header-dragend',
   'expand-change',
-]
+];

@@ -1,46 +1,64 @@
-export type ErrorMessageMode = 'none' | 'modal' | 'message' | undefined
+/** 错误消息提示类型 */
+export type ErrorMessageMode = 'none' | 'modal' | 'message' | undefined;
+/** 成功消息提示类型 */
+export type SuccessMessageMode = ErrorMessageMode;
 
 export interface RequestOptions {
-  // Splicing request parameters to url
-  joinParamsToUrl?: boolean
-  // Format request parameter time
-  formatDate?: boolean
-  // Whether to process the request result
-  isTransformResponse?: boolean
-  // Whether to return native response headers
-  // For example: use this attribute when you need to get the response headers
-  isReturnNativeResponse?: boolean
-  // Whether to join url
-  joinPrefix?: boolean
-  // Interface address, use the default apiUrl if you leave it blank
-  apiUrl?: string
-  // 请求拼接路径
-  urlPrefix?: string
-  // Error message prompt type
-  errorMessageMode?: ErrorMessageMode
-  // Whether to add a timestamp
-  joinTime?: boolean
-  ignoreCancelToken?: boolean
-  // Whether to send token in header
-  withToken?: boolean
+  /** 拼接请求参数到URL */
+  joinParamsToUrl?: boolean;
+  /** 格式化请求参数的时间 */
+  formatDate?: boolean;
+  /** 是否处理请求结果 */
+  isTransformResponse?: boolean;
+  /** 是否返回原生的响应头 */
+  isReturnNativeResponse?: boolean;
+  /** URL前缀是否加入URL */
+  joinPrefix?: boolean;
+  /** 接口地址，如果保留为空，将使用默认的url */
+  apiUrl?: string;
+  /** URL前缀 */
+  urlPrefix?: string;
+  /** 错误消息提示类型 */
+  errorMessageMode?: ErrorMessageMode;
+  /** 成功消息提示类型 */
+  successMessageMode?: SuccessMessageMode;
+  /** 是否添加时间戳 */
+  joinTime?: boolean;
+  /** 是否忽略重复请求 */
+  ignoreCancelToken?: boolean;
+  /** 请求头是否携带token */
+  withToken?: boolean;
+  /** 请求重试机制 */
+  retryRequest?: RetryRequest;
+}
+
+export interface RetryRequest {
+  /** 是否开启重试 */
+  isOpenRetry: boolean;
+  /** 重试次数 */
+  count: number;
+  /** 重试间隔时间 */
+  waitTime: number;
 }
 
 export interface Result<T = any> {
-  code: number
-  type: 'success' | 'error' | 'warning'
-  message: string
-  result: T
+  /** 业务代码 */
+  code: number;
+  /** 业务消息 */
+  message: string;
+  /** 业务数据 */
+  data: T;
 }
 
-// multipart/form-data: upload file
 export interface UploadFileParams {
-  // Other parameters
-  data?: Recordable
-  // File parameter interface field name
-  name?: string
-  // file name
-  file: File | Blob
-  // file name
-  filename?: string
-  [key: string]: any
+  /** 携带的参数 */
+  data?: Recordable;
+  /** 服务器接收文件的字段名称 */
+  name?: string;
+  /** 文件 */
+  file: File | Blob;
+  /** 文件名称 */
+  filename?: string;
+  /** 其它 */
+  [key: string]: any;
 }

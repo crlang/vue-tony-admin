@@ -1,11 +1,12 @@
 <template>
   <div ref="chartRef" :style="{ height, width }"></div>
 </template>
-<script lang="ts">
-import { defineComponent, PropType, ref, Ref, onMounted } from 'vue'
 
-import { useECharts } from '@/hooks/web/useECharts'
-import { getRandomNumberData } from '@/utils/demo'
+<script lang="ts">
+import { defineComponent, PropType, ref, Ref, onMounted } from 'vue';
+
+import { useECharts } from '@/hooks/web/useECharts';
+import { getRandomNumberData } from '@/utils/demo';
 
 export default defineComponent({
   props: {
@@ -19,10 +20,10 @@ export default defineComponent({
     },
   },
   setup() {
-    const chartRef = ref<HTMLDivElement | null>(null)
-    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>)
-    const dataAll = getRandomNumberData(10)
-    const yAxisData = ['原因1', '原因2', '原因3', '原因4', '原因5', '原因6', '原因7', '原因8', '原因9', '原因10']
+    const chartRef = ref<HTMLDivElement | null>(null);
+    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
+    const dataAll = getRandomNumberData(10);
+    const yAxisData = ['原因1', '原因2', '原因3', '原因4', '原因5', '原因6', '原因7', '原因8', '原因9', '原因10'];
     onMounted(() => {
       setOptions({
         backgroundColor: '#0f375f',
@@ -128,9 +129,9 @@ export default defineComponent({
             data: dataAll.sort(),
           },
         ],
-      })
-    })
-    return { chartRef }
+      });
+    });
+    return { chartRef };
   },
-})
+});
 </script>

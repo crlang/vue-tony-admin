@@ -1,12 +1,13 @@
 <template>
   <div ref="wrapRef" :style="{ height, width }"></div>
 </template>
+
 <script lang="ts">
-import { defineComponent, ref, nextTick, unref, onMounted } from 'vue'
+import { defineComponent, ref, nextTick, unref, onMounted } from 'vue';
 
-import { useScript } from '@/hooks/web/useScript'
+import { useScript } from '@/hooks/web/useScript';
 
-const BAI_DU_MAP_URL = 'https://api.map.baidu.com/getscript?v=3.0&ak=I5quyrrIkhGGo0d2np6rDyGEc9uXieNL&services=&s=1'
+const BAI_DU_MAP_URL = 'https://api.map.baidu.com/getscript?v=3.0&ak=I5quyrrIkhGGo0d2np6rDyGEc9uXieNL&services=&s=1';
 export default defineComponent({
   name: 'BaiduMap',
   props: {
@@ -20,26 +21,26 @@ export default defineComponent({
     },
   },
   setup() {
-    const wrapRef = ref<HTMLDivElement | null>(null)
-    const { toPromise } = useScript({ src: BAI_DU_MAP_URL })
+    const wrapRef = ref<HTMLDivElement | null>(null);
+    const { toPromise } = useScript({ src: BAI_DU_MAP_URL });
 
     async function initMap() {
-      await toPromise()
-      await nextTick()
-      const wrapEl = unref(wrapRef)
-      if (!wrapEl) return
-      const BMap = (window as any).BMap
-      const map = new BMap.Map(wrapEl)
-      const point = new BMap.Point(116.404, 39.915)
-      map.centerAndZoom(point, 15)
-      map.enableScrollWheelZoom(true)
+      await toPromise();
+      await nextTick();
+      const wrapEl = unref(wrapRef);
+      if (!wrapEl) return;
+      const BMap = (window as any).BMap;
+      const map = new BMap.Map(wrapEl);
+      const point = new BMap.Point(116.404, 39.915);
+      map.centerAndZoom(point, 15);
+      map.enableScrollWheelZoom(true);
     }
 
     onMounted(() => {
-      initMap()
-    })
+      initMap();
+    });
 
-    return { wrapRef }
+    return { wrapRef };
   },
-})
+});
 </script>

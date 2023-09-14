@@ -1,9 +1,8 @@
 <template>
-  <div v-if="getMenuFixed && !getIsMobile" :style="getHiddenDomStyle" v-show="showClassSideBarRef"></div>
   <ElAside
     v-show="showClassSideBarRef"
     ref="sideRef"
-    :class="getSiderClass"
+    :class="prefixCls"
     :width="getMenuWidthX">
     <LayoutMenu :menuMode="getMode" :splitType="getSplitType" />
     <DragBar ref="dragBarRef" />
@@ -14,115 +13,86 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, unref, CSSProperties } from 'vue'
-import { ElAside } from 'element-plus'
+import { computed, defineComponent, ref, unref } from 'vue';
+import { ElAside } from 'element-plus';
 
-import LayoutTrigger from '@/layouts/default/trigger/index.vue'
-import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum'
-import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
-import { useAppInject } from '@/hooks/web/useAppInject'
-import { useDesign } from '@/hooks/web/useDesign'
+import LayoutTrigger from '@/layouts/default/trigger/index.vue';
+import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum';
+import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
+import { useAppInject } from '@/hooks/web/useAppInject';
+import { useDesign } from '@/hooks/web/useDesign';
 
-import LayoutMenu from '../menu/index.vue'
-import { useTrigger, useDragLine } from './useLayoutSider'
-import DragBar from './DragBar.vue'
+import LayoutMenu from '../menu/index.vue';
+import { useTrigger, useDragLine } from './useLayoutSider';
+import DragBar from './DragBar.vue';
 
 export default defineComponent({
   name: 'LayoutSideBar',
   components: { ElAside, LayoutMenu, DragBar, LayoutTrigger },
   setup() {
-    const dragBarRef = ref<ElRef>(null)
-    const sideRef = ref<ElRef>(null)
+    const dragBarRef = ref<ElRef>(null);
+    const sideRef = ref<ElRef>(null);
 
-    const { getSplit, getRealWidth, getMenuHidden, getMenuFixed, getIsMixMode } = useMenuSetting()
+    const { getSplit, getRealWidth, getMenuHidden } = useMenuSetting();
 
-    const { prefixCls } = useDesign('layout-sideBar')
+    const { prefixCls } = useDesign('layout-sideBar');
 
-    const { getIsMobile } = useAppInject()
+    const { getIsMobile } = useAppInject();
 
-    const { getShowTrigger } = useTrigger(getIsMobile)
+    const { getShowTrigger } = useTrigger(getIsMobile);
 
-    useDragLine(sideRef, dragBarRef)
+    useDragLine(sideRef, dragBarRef);
 
     const getMode = computed(() => {
-      return unref(getSplit) ? MenuModeEnum.INLINE : null
-    })
+      return unref(getSplit) ? MenuModeEnum.INLINE : null;
+    });
 
     const getSplitType = computed(() => {
-      return unref(getSplit) ? MenuSplitTyeEnum.LEFT : MenuSplitTyeEnum.NONE
-    })
+      return unref(getSplit) ? MenuSplitTyeEnum.LEFT : MenuSplitTyeEnum.NONE;
+    });
 
     const showClassSideBarRef = computed(() => {
-      return unref(getSplit) ? !unref(getMenuHidden) : true
-    })
-
-    const getSiderClass = computed(() => {
-      return [
-        prefixCls,
-        {
-          [`${prefixCls}--fixed`]: unref(getMenuFixed),
-          [`${prefixCls}--mix`]: unref(getIsMixMode) && !unref(getIsMobile),
-        },
-      ]
-    })
-
-    const getHiddenDomStyle = computed((): CSSProperties => {
-      const width = `${unref(getRealWidth)}px`
-      return {
-        width: width,
-        overflow: 'hidden',
-        flex: `0 0 ${width}`,
-        maxWidth: width,
-        minWidth: width,
-        transition: 'all 0.2s ease 0s',
-      }
-    })
+      return unref(getSplit) ? !unref(getMenuHidden) : true;
+    });
 
     const getMenuWidthX = computed(() => {
-      return `${unref(getRealWidth)}px`
-    })
+      return `${unref(getRealWidth)}px`;
+    });
 
     return {
       prefixCls,
       sideRef,
       dragBarRef,
       getIsMobile,
-      getHiddenDomStyle,
-      getSiderClass,
-      getMenuFixed,
       showClassSideBarRef,
       getMenuWidthX,
       getMode,
       getSplitType,
       getShowTrigger,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss">
 $prefix-cls: '#{$tonyname}-layout-sideBar';
 
 .#{$prefix-cls} {
+  position: relative;
+  top: 0;
   z-index: 101;
+  display: flex;
+  flex-wrap: wrap;
+  width: var(--ty-aside-width, 220px);
+  height: 100%;
+  background-color: var(--sider-background-color);
   transition: all 0.2s ease 0s;
 
-  &--fixed {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    height: 100%;
-  }
+  // &--mix {
+  // }
 
-  &--mix {
-    top: var(--header-height);
-    height: calc(100% - var(--header-height));
-  }
-
-  &.el-aside {
-    background-color: var(--sider-background-color);
-  }
+  // &.el-aside {
+  // }
 
   &-trigger {
     position: absolute;

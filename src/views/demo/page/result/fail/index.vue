@@ -23,14 +23,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElResult, ElButton, ElLink } from 'element-plus'
+import { defineComponent } from 'vue';
+import { ElResult, ElButton, ElLink } from 'element-plus';
 
-import { SvgIcon } from '@/components/SvgIcon'
+import { SvgIcon } from '@/components/SvgIcon';
 
 export default defineComponent({
   components: { ElResult, ElButton, ElLink, SvgIcon },
-})
+});
 </script>
 
 <style lang="scss" scoped>

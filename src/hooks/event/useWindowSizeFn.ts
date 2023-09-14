@@ -1,54 +1,47 @@
-import { tryOnMounted, tryOnUnmounted, useDebounceFn } from '@vueuse/core'
+import { tryOnMounted, tryOnUnmounted, useDebounceFn } from '@vueuse/core';
 
-interface WindowSizeOptions {
-  once?: boolean
-  immediate?: boolean
-  // eslint-disable-next-line no-undef
-  listenerOptions?: AddEventListenerOptions | boolean
+interface UseWindowSizeOptions {
+  wait?: number;
+  once?: boolean;
+  immediate?: boolean;
+  listenerOptions?: AddEventListenerOptions | boolean;
 }
 
 /**
  * 监听窗口大小
  *
- * Reactive window resize event listener
+ * Listening window size
  * @param fn
  * @param wait
  * @param options
  */
-export function useWindowSizeFn<T>(fn: Fn<T>, wait = 150, options?: WindowSizeOptions) {
+function useWindowSizeFn(fn: AnyFunction, options: UseWindowSizeOptions = {}) {
+  const { wait = 150, immediate } = options;
   let handler = () => {
-    fn()
-  }
-  const handleSize = useDebounceFn(handler, wait)
-  handler = handleSize
+    fn();
+  };
+  const handleSize = useDebounceFn(handler, wait);
+  handler = handleSize;
 
-  /**
-   * 开始监听
-   *
-   * Start event listener
-   */
   const start = () => {
-    if (options && options.immediate) {
-      handler()
+    if (immediate) {
+      handler();
     }
-    window.addEventListener('resize', handler)
-  }
+    window.addEventListener('resize', handler);
+  };
 
-  /**
-   * 停止监听
-   *
-   * Stop event listener
-   */
   const stop = () => {
-    window.removeEventListener('resize', handler)
-  }
+    window.removeEventListener('resize', handler);
+  };
 
   tryOnMounted(() => {
-    start()
-  })
+    start();
+  });
 
   tryOnUnmounted(() => {
-    stop()
-  })
-  return [start, stop]
+    stop();
+  });
+  return { start, stop };
 }
+
+export { useWindowSizeFn, type UseWindowSizeOptions };

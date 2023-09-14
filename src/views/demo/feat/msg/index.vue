@@ -32,24 +32,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElButton } from 'element-plus'
-import { CollapseContainer } from '@/components/CollapseContainer'
-import { useMessage } from '@/hooks/web/useMessage'
+import { defineComponent } from 'vue';
+import { ElButton } from 'element-plus';
+import { CollapseContainer } from '@/components/CollapseContainer';
+import { useMessage } from '@/hooks/web/useMessage';
 
 export default defineComponent({
   components: { ElButton, CollapseContainer },
   setup() {
-    const { createMessage, createConfirm, createSuccessModal, createInfoModal, createErrorModal, createWarningModal, createNotification } = useMessage()
-    const { info, success, warning, error } = createMessage
+    const { createMessage, createConfirm, createSuccessModal, createInfoModal, createErrorModal, createWarningModal, createNotification } = useMessage();
+    const { info, success, warning, error } = createMessage;
 
     function handleLoading() {
-      const t = createMessage.loading('Loading...')
+      const t = createMessage.loading('Loading...');
 
       // Manually close loading
       setTimeout(() => {
-        t.close()
-      }, 3000)
+        t.close();
+      }, 3000);
     }
 
     function handleConfirm(type: 'warning' | 'error' | 'success' | 'info') {
@@ -57,26 +57,26 @@ export default defineComponent({
         title: 'Tip',
         message: 'content message...',
         type,
-      })
+      });
     }
     function handleSuccessModal() {
-      createSuccessModal({ title: 'Tip', message: 'content message...' })
+      createSuccessModal({ title: 'Tip', message: 'content message...' });
     }
     function handleErrorModal() {
-      createErrorModal({ title: 'Tip', message: 'content message...' })
+      createErrorModal({ title: 'Tip', message: 'content message...' });
     }
     function handleWarningModal() {
-      createWarningModal({ title: 'Tip', message: 'content message...' })
+      createWarningModal({ title: 'Tip', message: 'content message...' });
     }
     function handleInfoModal() {
-      createInfoModal({ title: 'Tip', message: 'content message...' })
+      createInfoModal({ title: 'Tip', message: 'content message...' });
     }
     function handleNotify(type: 'warning' | 'error' | 'success' | 'info') {
       createNotification({
         title: 'Tip',
         message: 'content message...',
         type,
-      })
+      });
     }
     return {
       infoMsg: info,
@@ -90,7 +90,7 @@ export default defineComponent({
       handleWarningModal,
       handleInfoModal,
       handleNotify,
-    }
+    };
   },
-})
+});
 </script>

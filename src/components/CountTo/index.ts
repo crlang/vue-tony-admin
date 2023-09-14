@@ -1,5 +1,5 @@
-import { withInstall } from '@/utils'
-import countTo from './src/CountTo.vue'
+import { withInstall } from '@/utils';
+import countTo from './src/CountTo.vue';
 
-export const CountTo = withInstall(countTo)
-export default CountTo
+export const CountTo = withInstall(countTo);
+export default CountTo;

@@ -8,21 +8,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { ElTooltip } from 'element-plus'
-import { SvgIcon } from '@/components/SvgIcon'
+import { defineComponent, ref } from 'vue';
+import { ElTooltip } from 'element-plus';
+import { SvgIcon } from '@/components/SvgIcon';
 
-import AppSearchModal from './AppSearchModal.vue'
+import AppSearchModal from './AppSearchModal.vue';
 
 export default defineComponent({
   name: 'AppSearch',
   components: { ElTooltip, AppSearchModal, SvgIcon },
   setup() {
-    const showModal = ref(false)
+    const showModal = ref(false);
 
     return {
       showModal,
-    }
+    };
   },
-})
+});
 </script>

@@ -10,21 +10,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElButton } from 'element-plus'
+import { defineComponent } from 'vue';
+import { ElButton } from 'element-plus';
 
-import { BasicTable, useTable } from '@/components/BasicTable'
-import { getRoleListByPage } from '@/api/demo/system'
+import { BasicTable, useTable } from '@/components/BasicTable';
+import { getRoleListByPage } from '@/api/demo/system';
 
-import { useDrawer } from '@/components/BasicDrawer'
-import RoleDrawer from './RoleDrawer.vue'
-import { columns, searchFormSchema } from './data'
+import { useDrawer } from '@/components/BasicDrawer';
+import RoleDrawer from './RoleDrawer.vue';
+import { columns, searchFormSchema } from './data';
 
 export default defineComponent({
   name: 'RoleManagement',
   components: { ElButton, BasicTable, RoleDrawer },
   setup() {
-    const [registerDrawer, { openDrawer }] = useDrawer()
+    const [registerDrawer, { openDrawer }] = useDrawer();
     const [registerTable, { reload }] = useTable({
       title: '角色列表',
       api: getRoleListByPage,
@@ -33,12 +33,12 @@ export default defineComponent({
         {
           actions: [
             {
-              iconName: 'clarity:note-edit-line',
+              iconName: 'note-edit-line',
               btnText: '编辑',
               callback: handleEdit,
             },
             {
-              iconName: 'ep:delete',
+              iconName: 'delete',
               type: 'danger',
               btnText: '删除',
               popConfirm: {
@@ -56,19 +56,19 @@ export default defineComponent({
       },
       useSearchForm: true,
       border: true,
-    })
+    });
 
     function handleCreate() {
       openDrawer(true, {
         isUpdate: false,
-      })
+      });
     }
 
     function handleEdit({ row }) {
       openDrawer(true, {
         record: row,
         isUpdate: true,
-      })
+      });
     }
 
     function handleDelete() {
@@ -76,7 +76,7 @@ export default defineComponent({
     }
 
     function handleSuccess() {
-      reload()
+      reload();
     }
 
     return {
@@ -86,7 +86,7 @@ export default defineComponent({
       handleEdit,
       handleDelete,
       handleSuccess,
-    }
+    };
   },
-})
+});
 </script>

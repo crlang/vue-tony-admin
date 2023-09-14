@@ -1,5 +1,5 @@
-import { withInstall } from '@/utils'
-import icon from './src/Icon.vue'
+import { withInstall } from '@/utils';
+import icon from './src/Icon.vue';
 
-export const Icon = withInstall(icon)
-export default Icon
+export const Icon = withInstall(icon);
+export default Icon;

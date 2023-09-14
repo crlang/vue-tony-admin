@@ -1,10 +1,10 @@
 <template>
   <CollapseContainer title="账号绑定" :canExpan="false">
-    <List>
+    <BasicList>
       <template v-for="item in list" :key="item.key">
-        <ListItem>
+        <BasicListItem>
           <template #thumb>
-            <Icon
+            <SvgIcon
               v-if="item.avatar"
               class="avatar"
               :name="item.avatar"
@@ -23,36 +23,37 @@
           <template #description>
             <div>{{ item.description }}</div>
           </template>
-        </ListItem>
+        </BasicListItem>
       </template>
-    </List>
+    </BasicList>
   </CollapseContainer>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElButton } from 'element-plus'
-import { CollapseContainer } from '@/components/CollapseContainer'
-import Icon from '@/components/Icon'
-import { List, ListItem } from '@/components/List'
+import { defineComponent } from 'vue';
+import { ElButton } from 'element-plus';
+import { CollapseContainer } from '@/components/CollapseContainer';
+import { SvgIcon } from '@/components/SvgIcon';
+import { BasicList, BasicListItem } from '@/components/BasicList';
 
-import { accountBindList } from './data'
+import { accountBindList } from './data';
 
 export default defineComponent({
   components: {
     ElButton,
     CollapseContainer,
-    List,
-    ListItem,
-    Icon,
+    BasicList,
+    BasicListItem,
+    SvgIcon,
   },
   setup() {
     return {
       list: accountBindList,
-    }
+    };
   },
-})
+});
 </script>
+
 <style lang="scss" scoped>
 .avatar {
   font-size: 40px !important;

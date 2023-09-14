@@ -1,10 +1,10 @@
-import type { CSSProperties } from 'vue'
-import type { Dayjs } from 'dayjs'
-import type { TableActionMethods } from '@/components/BasicTable'
-import type { EleButton, EleCol, EleRow } from '@/components/ElementPlus'
-import type { BasicFormSchema, FormActionMethods, BasicFormProps } from './typing'
+import type { CSSProperties } from 'vue';
+import type { Dayjs } from 'dayjs';
+import type { TableActionMethods } from '@/components/BasicTable';
+import type { EleButton, EleCol, EleRow } from '@/components/ElementPlus';
+import type { BasicFormSchema, FormActionMethods, BasicFormProps } from './typing';
 
-import { EleFormProps } from '@/components/ElementPlus'
+import { EleFormProps } from '@/components/ElementPlus';
 
 /**
  * 表单操作项基础Props
@@ -71,7 +71,7 @@ export const basicFormActionProps = {
     type: Number,
     default: 1,
   },
-}
+};
 
 /**
  * 表单自定义Props
@@ -169,7 +169,7 @@ export const customProps = {
   transformDateFn: {
     type: Function as PropType<Fn>,
     default: (date: Dayjs) => {
-      return date?.format('YYYY-MM-DD HH:mm:ss')
+      return date?.format('YYYY-MM-DD HH:mm:ss');
     },
   },
   /**
@@ -192,7 +192,7 @@ export const customProps = {
   tableAction: {
     type: Object as PropType<TableActionMethods>,
   },
-}
+};
 
 /**
  * 表单Props
@@ -202,7 +202,7 @@ export const customProps = {
 export const basicProps = {
   ...EleFormProps,
   ...customProps,
-}
+};
 
 /**
  * 表单操作项Props
@@ -235,7 +235,7 @@ export const formActionProps = {
    * Expand/Collapse button state
    */
   isAdvanced: Boolean,
-}
+};
 
 /**
  * 表单项的基础Props
@@ -305,4 +305,4 @@ export const basicFormItemProps = {
     type: Object as PropType<FormActionMethods>,
     default: null,
   },
-}
+};

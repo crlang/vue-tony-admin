@@ -1,26 +1,26 @@
-import type { WatchStopHandle } from 'vue'
-import type { DynamicProps } from '#/utils'
-import type { FormActionMethods } from '@/components/BasicForm'
-import type { ElePagination } from '@/components/ElementPlus'
-import type { BasicTableProps, TableActionMethods, FetchParams, BasicColumn, GetColumnsParams, UseTableMethod } from '../typing'
+import type { WatchStopHandle } from 'vue';
+import type { DynamicProps } from '#/utils';
+import type { FormActionMethods } from '@/components/BasicForm';
+import type { ElePagination } from '@/components/ElementPlus';
+import type { BasicTableProps, TableActionMethods, FetchParams, BasicColumn, GetColumnsParams, UseTableMethod } from '../typing';
 
-import { ref, onUnmounted, unref, watch } from 'vue'
+import { ref, onUnmounted, unref, watch } from 'vue';
 
-import { getDynamicProps } from '@/utils'
-import { isProdMode } from '@/utils/env'
-import { error } from '@/utils/log'
+import { getDynamicProps } from '@/utils';
+import { isProdMode } from '@/utils/env';
+import { error } from '@/utils/log';
 
 /**
- * 定义使用实例
+ * 使用表格实例
  *
- * Define use instance
+ * Use the table instance
  */
 export function useTable(tableProps?: Partial<DynamicProps<BasicTableProps>>): [(instance: TableActionMethods, formInstance: UseTableMethod) => void, UseTableMethod] {
-  const tableRef = ref<Nullable<TableActionMethods>>(null)
-  const loadedRef = ref<Nullable<boolean>>(false)
-  const formRef = ref<Nullable<UseTableMethod>>(null)
+  const tableRef = ref<Nullable<TableActionMethods>>(null);
+  const loadedRef = ref<Nullable<boolean>>(false);
+  const formRef = ref<Nullable<UseTableMethod>>(null);
 
-  let stopWatch: WatchStopHandle
+  let stopWatch: WatchStopHandle;
   /**
    * 注册实例
    *
@@ -31,29 +31,29 @@ export function useTable(tableProps?: Partial<DynamicProps<BasicTableProps>>): [
   function register(instance: TableActionMethods, formInstance: UseTableMethod) {
     isProdMode() &&
       onUnmounted(() => {
-        tableRef.value = null
-        loadedRef.value = null
-      })
+        tableRef.value = null;
+        loadedRef.value = null;
+      });
 
-    if (unref(loadedRef) && isProdMode() && instance === unref(tableRef)) return
+    if (unref(loadedRef) && isProdMode() && instance === unref(tableRef)) return;
 
-    tableRef.value = instance
-    formRef.value = formInstance
-    loadedRef.value = true
-    tableProps && instance.setTableProps(getDynamicProps(tableProps))
+    tableRef.value = instance;
+    formRef.value = formInstance;
+    loadedRef.value = true;
+    tableProps && instance.setTableProps(getDynamicProps(tableProps));
 
-    stopWatch?.()
+    stopWatch?.();
 
     stopWatch = watch(
       () => tableProps,
       () => {
-        tableProps && instance.setTableProps(getDynamicProps(tableProps))
+        tableProps && instance.setTableProps(getDynamicProps(tableProps));
       },
       {
         immediate: true,
         deep: true,
       },
-    )
+    );
   }
   /**
    * 获取实例
@@ -61,11 +61,11 @@ export function useTable(tableProps?: Partial<DynamicProps<BasicTableProps>>): [
    * Get instance
    */
   function getTableInstance() {
-    const instance = unref(tableRef)
+    const instance = unref(tableRef);
     if (!instance) {
-      error('The table instance has not been obtained, please make sure the instance is rendered when performing the instance operation!')
+      error('The table instance has not been obtained, please make sure the instance is rendered when performing the instance operation!');
     }
-    return instance
+    return instance;
   }
 
   /**
@@ -74,100 +74,100 @@ export function useTable(tableProps?: Partial<DynamicProps<BasicTableProps>>): [
    * Define instance methods
    */
   const methods: TableActionMethods & {
-    getFormRef: () => FormActionMethods
+    getFormRef: () => FormActionMethods;
   } = {
     // Element Plus
     clearSelection: () => {
-      getTableInstance().clearSelection()
+      getTableInstance().clearSelection();
     },
     toggleRowSelection: (row: any, selected: boolean) => {
-      getTableInstance().toggleRowSelection(row, selected)
+      getTableInstance().toggleRowSelection(row, selected);
     },
     toggleAllSelection: () => {
-      getTableInstance().toggleAllSelection()
+      getTableInstance().toggleAllSelection();
     },
     toggleRowExpansion: (row: any, expanded: boolean) => {
-      getTableInstance().toggleRowExpansion(row, expanded)
+      getTableInstance().toggleRowExpansion(row, expanded);
     },
     setCurrentRow: (row: any) => {
-      getTableInstance().setCurrentRow(row)
+      getTableInstance().setCurrentRow(row);
     },
     clearSort: () => {
-      getTableInstance().clearSort()
+      getTableInstance().clearSort();
     },
     clearFilter: (columnKeys: string[]) => {
-      getTableInstance().clearFilter(columnKeys)
+      getTableInstance().clearFilter(columnKeys);
     },
     doLayout: () => {
-      getTableInstance().doLayout()
+      getTableInstance().doLayout();
     },
     sort: (prop: string, order: string) => {
-      getTableInstance().sort(prop, order)
+      getTableInstance().sort(prop, order);
     },
 
     // Advanced
     reload: async(opt?: FetchParams) => {
-      getTableInstance().reload(opt)
+      getTableInstance().reload(opt);
     },
     setTableProps: (props: Partial<BasicTableProps>) => {
-      getTableInstance().setTableProps(props)
+      getTableInstance().setTableProps(props);
     },
     getColumns: ({ ignoreIndex = false }: GetColumnsParams = {}) => {
-      const columns = getTableInstance().getColumns({ ignoreIndex }) || []
-      return columns
+      const columns = getTableInstance().getColumns({ ignoreIndex }) || [];
+      return columns;
     },
     setColumns: (columns: BasicColumn[] | string[]) => {
-      getTableInstance().setColumns(columns)
+      getTableInstance().setColumns(columns);
     },
     setLoading: (loading: boolean) => {
-      getTableInstance().setLoading(loading)
+      getTableInstance().setLoading(loading);
     },
     getDataSource: () => {
-      return getTableInstance().getDataSource()
+      return getTableInstance().getDataSource();
     },
     getRawDataSource: () => {
-      return getTableInstance().getRawDataSource()
+      return getTableInstance().getRawDataSource();
     },
     setTableData: <T = Recordable>(values: T[]) => {
-      return getTableInstance().setTableData(values)
+      return getTableInstance().setTableData(values);
     },
     getCacheColumns: () => {
-      return getTableInstance().getCacheColumns()
+      return getTableInstance().getCacheColumns();
     },
     redoHeight: () => {
-      getTableInstance().redoHeight()
+      getTableInstance().redoHeight();
     },
     setPagination: (info: Partial<ElePagination>) => {
-      return getTableInstance().setPagination(info)
+      return getTableInstance().setPagination(info);
     },
     getPagination: () => {
-      return getTableInstance().getPagination()
+      return getTableInstance().getPagination();
     },
     getFormRef: () => {
-      return unref(formRef) as unknown as FormActionMethods
+      return unref(formRef) as unknown as FormActionMethods;
     },
     expandAll: () => {
-      getTableInstance().expandAll()
+      getTableInstance().expandAll();
     },
     collapseAll: () => {
-      getTableInstance().collapseAll()
+      getTableInstance().collapseAll();
     },
     deleteTableDataRecord: (rowKey: string | number) => {
-      return getTableInstance().deleteTableDataRecord(rowKey)
+      return getTableInstance().deleteTableDataRecord(rowKey);
     },
     insertTableDataRecord: (record: Recordable | Recordable[], index?: number) => {
-      return getTableInstance().insertTableDataRecord(record, index)
+      return getTableInstance().insertTableDataRecord(record, index);
     },
     updateTableDataRecord: (rowKey: string | number, record: Recordable) => {
-      return getTableInstance().updateTableDataRecord(rowKey, record)
+      return getTableInstance().updateTableDataRecord(rowKey, record);
     },
     findTableDataRecord: (rowKey: string | number) => {
-      return getTableInstance().findTableDataRecord(rowKey)
+      return getTableInstance().findTableDataRecord(rowKey);
     },
     updateTableData: (index: number, key: string, value: any) => {
-      return getTableInstance().updateTableData(index, key, value)
+      return getTableInstance().updateTableData(index, key, value);
     },
-  }
+  };
 
-  return [register, methods]
+  return [register, methods];
 }

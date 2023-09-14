@@ -1,8 +1,8 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { RoleEnum } from '@/enums/roleEnum'
-import { usePermission } from '@/hooks/web/usePermission'
-import { getSlot } from '@/utils/helper/tsxHelper'
+import { defineComponent } from 'vue';
+import { RoleEnum } from '@/enums/roleEnum';
+import { usePermission } from '@/hooks/web/usePermission';
+import { getSlot } from '@/utils/helper/tsxHelper';
 
 export default defineComponent({
   name: 'Authority',
@@ -18,25 +18,24 @@ export default defineComponent({
     },
   },
   setup(props, { slots }) {
-    const { hasPermission } = usePermission()
+    const { hasPermission } = usePermission();
 
     /**
      * 渲染插槽内容
      *
      * Render slot content
-     * @returns 权限不足返回 null
      */
     function renderAuth() {
-      const { value } = props
+      const { value } = props;
       // 为空直接返回内容
       if (!value) {
-        return getSlot(slots)
+        return getSlot(slots);
       }
 
-      return hasPermission(value) ? getSlot(slots) : null
+      return hasPermission(value) ? getSlot(slots) : null;
     }
 
-    return () => renderAuth()
+    return () => renderAuth();
   },
-})
+});
 </script>

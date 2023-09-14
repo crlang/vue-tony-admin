@@ -1,9 +1,11 @@
-import { getCurrentInstance, onBeforeUnmount, ref, Ref, shallowRef, unref } from 'vue'
+import { getCurrentInstance, onBeforeUnmount, ref, Ref, shallowRef, unref } from 'vue';
 
-import { useRafThrottle } from '@/utils/domUtils'
-import { addResizeListener, removeResizeListener } from '@/utils/event'
+import { useRafThrottle } from '@/utils/domUtils';
+import { addResizeListener, removeResizeListener } from '@/utils/event';
+import { isDef } from '@/utils/is';
 
-const domSymbol = Symbol('watermark-dom')
+const domSymbol = Symbol('watermark-dom');
+const sourceMap = new WeakMap<HTMLElement, {}>();
 
 /**
  * 元素节点的水印处理
@@ -12,14 +14,18 @@ const domSymbol = Symbol('watermark-dom')
  * @param appendEl HTMLElement
  */
 export function useWatermark(appendEl: Ref<HTMLElement | null> = ref(document.body) as Ref<HTMLElement>) {
+  const appendElRaw = unref(appendEl);
+  if (appendElRaw && sourceMap.has(appendElRaw)) {
+    return sourceMap.get(appendElRaw);
+  }
   const func = useRafThrottle(function() {
-    const el = unref(appendEl)
-    if (!el) return
-    const { clientHeight: height, clientWidth: width } = el
-    updateWatermark({ height, width })
-  })
-  const id = domSymbol.toString()
-  const watermarkEl = shallowRef<HTMLElement>()
+    const el = unref(appendEl);
+    if (!el) return;
+    const { clientHeight: height, clientWidth: width } = el;
+    updateWatermark({ height, width });
+  });
+  const id = domSymbol.toString();
+  const watermarkEl = shallowRef<HTMLElement>();
 
   /**
    * 清除节点水印
@@ -27,13 +33,13 @@ export function useWatermark(appendEl: Ref<HTMLElement | null> = ref(document.bo
    * Clear dom watermark
    */
   const clear = () => {
-    const domId = unref(watermarkEl)
-    watermarkEl.value = undefined
-    const el = unref(appendEl)
-    if (!el) return
-    domId && el.removeChild(domId)
-    removeResizeListener(el, func)
-  }
+    const domId = unref(watermarkEl);
+    watermarkEl.value = undefined;
+    const el = unref(appendEl);
+    if (!el) return;
+    domId && el.removeChild(domId);
+    removeResizeListener(el, func);
+  };
 
   /**
    * 字符串转base64格式的图片
@@ -42,21 +48,21 @@ export function useWatermark(appendEl: Ref<HTMLElement | null> = ref(document.bo
    * @param str string
    */
   function createBase64(str: string) {
-    const can = document.createElement('canvas')
-    const width = 300
-    const height = 240
-    Object.assign(can, { width, height })
+    const can = document.createElement('canvas');
+    const width = 300;
+    const height = 240;
+    Object.assign(can, { width, height });
 
-    const cans = can.getContext('2d')
+    const cans = can.getContext('2d');
     if (cans) {
-      cans.rotate((-20 * Math.PI) / 120)
-      cans.font = '15px Vedana'
-      cans.fillStyle = 'rgba(0, 0, 0, 0.15)'
-      cans.textAlign = 'left'
-      cans.textBaseline = 'middle'
-      cans.fillText(str, width / 20, height)
+      cans.rotate((-20 * Math.PI) / 120);
+      cans.font = '15px Vedana';
+      cans.fillStyle = 'rgba(0, 0, 0, 0.15)';
+      cans.textAlign = 'left';
+      cans.textBaseline = 'middle';
+      cans.fillText(str, width / 20, height);
     }
-    return can.toDataURL('image/png')
+    return can.toDataURL('image/png');
   }
 
   /**
@@ -67,21 +73,21 @@ export function useWatermark(appendEl: Ref<HTMLElement | null> = ref(document.bo
    */
   function updateWatermark(
     options: {
-      width?: number
-      height?: number
-      str?: string
+      width?: number;
+      height?: number;
+      str?: string;
     } = {},
   ) {
-    const el = unref(watermarkEl)
-    if (!el) return
-    if (options?.width) {
-      el.style.width = `${options.width}px`
+    const el = unref(watermarkEl);
+    if (!el) return;
+    if (isDef(options.width)) {
+      el.style.width = `${options.width}px`;
     }
-    if (options?.height) {
-      el.style.height = `${options.height}px`
+    if (isDef(options.height)) {
+      el.style.height = `${options.height}px`;
     }
-    if (options?.str) {
-      el.style.background = `url(${createBase64(options.str)}) left top repeat`
+    if (isDef(options.str)) {
+      el.style.background = `url(${createBase64(options.str)}) left top repeat`;
     }
   }
 
@@ -93,24 +99,25 @@ export function useWatermark(appendEl: Ref<HTMLElement | null> = ref(document.bo
    */
   const createWatermark = (str: string) => {
     if (unref(watermarkEl)) {
-      updateWatermark({ str })
-      return id
+      updateWatermark({ str });
+      return id;
     }
-    const div = document.createElement('div')
-    watermarkEl.value = div
-    div.id = id
-    div.style.pointerEvents = 'none'
-    div.style.top = '0px'
-    div.style.left = '0px'
-    div.style.position = 'absolute'
-    div.style.zIndex = '100000'
-    const el = unref(appendEl)
-    if (!el) return id
-    const { clientHeight: height, clientWidth: width } = el
-    updateWatermark({ str, width, height })
-    el.appendChild(div)
-    return id
-  }
+    const div = document.createElement('div');
+    watermarkEl.value = div;
+    div.id = id;
+    div.style.pointerEvents = 'none';
+    div.style.top = '0px';
+    div.style.left = '0px';
+    div.style.position = 'absolute';
+    div.style.zIndex = '100000';
+    const el = unref(appendEl);
+    if (!el) return id;
+    const { clientHeight: height, clientWidth: width } = el;
+    updateWatermark({ str, width, height });
+    el.appendChild(div);
+    sourceMap.set(el, { setWatermark, clear });
+    return id;
+  };
 
   /**
    * 设置水印
@@ -119,15 +126,15 @@ export function useWatermark(appendEl: Ref<HTMLElement | null> = ref(document.bo
    * @param str string
    */
   function setWatermark(str: string) {
-    createWatermark(str)
-    addResizeListener(document.documentElement, func)
-    const instance = getCurrentInstance()
+    createWatermark(str);
+    addResizeListener(document.documentElement, func);
+    const instance = getCurrentInstance();
     if (instance) {
       onBeforeUnmount(() => {
-        clear()
-      })
+        clear();
+      });
     }
   }
 
-  return { setWatermark, clear }
+  return { setWatermark, clear };
 }

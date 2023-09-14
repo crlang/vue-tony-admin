@@ -1,4 +1,4 @@
-import { BasicFormSchema } from '@/components/BasicForm'
+import { BasicFormSchema } from '@/components/BasicForm';
 
 const basicOptions: LabelValueOptions = [
   {
@@ -9,7 +9,7 @@ const basicOptions: LabelValueOptions = [
     label: '周毛毛',
     value: '2',
   },
-]
+];
 
 const storeTypeOptions: LabelValueOptions = [
   {
@@ -20,7 +20,7 @@ const storeTypeOptions: LabelValueOptions = [
     label: '公开',
     value: '2',
   },
-]
+];
 
 export const schemas: BasicFormSchema[] = [
   {
@@ -87,7 +87,7 @@ export const schemas: BasicFormSchema[] = [
       offset: 2,
     },
   },
-]
+];
 export const taskSchemas: BasicFormSchema[] = [
   {
     field: 't1',
@@ -149,4 +149,4 @@ export const taskSchemas: BasicFormSchema[] = [
       offset: 2,
     },
   },
-]
+];

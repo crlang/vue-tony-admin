@@ -1,4 +1,4 @@
-import type { RouteLocationNormalized } from 'vue-router'
+import type { RouteLocationNormalized } from 'vue-router';
 
 export enum TabContentEnum {
   TAB_TYPE,
@@ -6,9 +6,9 @@ export enum TabContentEnum {
 }
 
 export interface TabContentProps {
-  tabItem: RouteLocationNormalized
-  type?: TabContentEnum
-  trigger?: ('click' | 'hover' | 'contextmenu')[]
+  tabItem: RouteLocationNormalized;
+  type?: TabContentEnum;
+  trigger?: ('click' | 'hover' | 'contextmenu')[];
 }
 
 export enum MenuEventEnum {

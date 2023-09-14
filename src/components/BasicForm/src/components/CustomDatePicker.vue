@@ -3,10 +3,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import { ElDatePicker } from 'element-plus'
+import { defineComponent, computed } from 'vue';
+import { ElDatePicker } from 'element-plus';
 
-import { useRuleFormItem } from '@/hooks/component/useFormItem'
+import { useRuleFormItem } from '@/hooks/component/useFormItem';
 
 export default defineComponent({
   name: 'CustomDatePicker',
@@ -19,23 +19,18 @@ export default defineComponent({
   },
   emits: ['change'],
   setup(props, { attrs }) {
-    const [state] = useRuleFormItem(props)
+    const [state] = useRuleFormItem(props, 'modelValue', 'change');
 
-    /**
-     * 绑定Props
-     *
-     * Bind props
-     */
     const getBindValues = computed(() => {
       const opts = {
         clearable: true,
         ...attrs,
-      }
+      };
 
-      return opts
-    })
+      return opts;
+    });
 
-    return { getBindValues, state }
+    return { getBindValues, state };
   },
-})
+});
 </script>

@@ -13,13 +13,13 @@
 </template>
 
 <script lang="ts">
-import type { CSSProperties } from 'vue'
+import type { CSSProperties } from 'vue';
 
-import { defineComponent, ref, watch, onMounted, nextTick, unref, computed } from 'vue'
-import Iconify from '@purge-icons/generated'
+import { defineComponent, ref, watch, onMounted, nextTick, unref, computed } from 'vue';
+import Iconify from '@purge-icons/generated';
 
-import { useDesign } from '@/hooks/web/useDesign'
-import { SvgIcon } from '@/components/SvgIcon'
+import { useDesign } from '@/hooks/web/useDesign';
+import { SvgIcon } from '@/components/SvgIcon';
 
 export default defineComponent({
   name: 'Icon',
@@ -63,9 +63,9 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const elRef = ref<ElRef>(null)
+    const elRef = ref<ElRef>(null);
 
-    const { prefixCls } = useDesign('app-icon')
+    const { prefixCls } = useDesign('app-icon');
 
     /**
      * 是否SVG图标
@@ -74,10 +74,10 @@ export default defineComponent({
      */
     const getIsSvgIcon = computed(() => {
       if ((props?.name || '').indexOf('|svg') > -1) {
-        return true
+        return true;
       }
-      return false
-    })
+      return false;
+    });
 
     /**
      * 获取图标名称
@@ -85,12 +85,12 @@ export default defineComponent({
      * Get icon name
      */
     const getIconRef = computed(() => {
-      const { prefix, name } = props
+      const { prefix, name } = props;
       if (name.indexOf('|svg') > -1) {
-        return name.replace('|svg', '')
+        return name.replace('|svg', '');
       }
-      return `${prefix ? `${prefix}:` : ''}${props.name}`
-    })
+      return `${prefix ? `${prefix}:` : ''}${props.name}`;
+    });
 
     /**
      * 动态渲染图标
@@ -98,28 +98,28 @@ export default defineComponent({
      * Dynamically rendered icons
      */
     const update = async() => {
-      const el = unref(elRef)
-      if (!el) return
+      const el = unref(elRef);
+      if (!el) return;
 
-      const isSvgIcon = unref(getIsSvgIcon)
-      if (isSvgIcon) return
+      const isSvgIcon = unref(getIsSvgIcon);
+      if (isSvgIcon) return;
 
-      await nextTick()
-      const icon = unref(getIconRef)
-      if (!icon) return
+      await nextTick();
+      const icon = unref(getIconRef);
+      if (!icon) return;
 
-      const svg = Iconify.renderSVG(icon, {})
+      const svg = Iconify.renderSVG(icon, {});
       if (svg) {
-        el.textContent = ''
-        el.appendChild(svg)
+        el.textContent = '';
+        el.appendChild(svg);
       } else {
-        const span = document.createElement('span')
-        span.className = 'iconify'
-        span.dataset.icon = icon
-        el.textContent = ''
-        el.appendChild(span)
+        const span = document.createElement('span');
+        span.className = 'iconify';
+        span.dataset.icon = icon;
+        el.textContent = '';
+        el.appendChild(span);
       }
-    }
+    };
 
     /**
      * 获取svg框样式
@@ -127,22 +127,22 @@ export default defineComponent({
      * Get svg wrap style
      */
     const getWrapStyle = computed((): CSSProperties => {
-      const { size, color } = props
-      const fs = parseInt(size, 10)
+      const { size, color } = props;
+      const fs = parseInt(size, 10);
 
       return {
         fontSize: fs ? `${fs}px` : 'inherit',
         color: color,
-      }
-    })
+      };
+    });
 
-    watch(() => props.name, update, { flush: 'post' })
+    watch(() => props.name, update, { flush: 'post' });
 
-    onMounted(update)
+    onMounted(update);
 
-    return { elRef, getWrapStyle, prefixCls, getIconRef, getIsSvgIcon }
+    return { elRef, getWrapStyle, prefixCls, getIconRef, getIsSvgIcon };
   },
-})
+});
 </script>
 
 <style lang="scss">

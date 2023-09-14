@@ -12,13 +12,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { ComponentSize, ElTooltip } from 'element-plus'
-import { useFullscreen } from '@vueuse/core'
+import { defineComponent, ref } from 'vue';
+import { ComponentSize, ElTooltip } from 'element-plus';
+import { useFullscreen } from '@vueuse/core';
 
-import { SvgIcon } from '@/components/SvgIcon'
+import { SvgIcon } from '@/components/SvgIcon';
 
-import { useTableContext } from '../hooks/useTableContext'
+import { useTableContext } from '../hooks/useTableContext';
 
 export default defineComponent({
   name: 'TableSetting',
@@ -32,9 +32,9 @@ export default defineComponent({
     fullscreen: Boolean,
   },
   setup() {
-    const table = useTableContext()
-    const sizeRef = ref<ComponentSize>('default')
-    const { toggle, isFullscreen } = useFullscreen(table.wrapRef)
+    const table = useTableContext();
+    const sizeRef = ref<ComponentSize>('default');
+    const { toggle, isFullscreen } = useFullscreen(table.wrapRef);
 
     /**
      * 刷新当前页
@@ -42,7 +42,7 @@ export default defineComponent({
      * Redo table
      */
     function handleRedo() {
-      table.reload()
+      table.reload();
     }
 
     /**
@@ -52,16 +52,16 @@ export default defineComponent({
      */
     function handleSize() {
       if (sizeRef.value === 'default') {
-        sizeRef.value = 'large'
+        sizeRef.value = 'large';
       } else if (sizeRef.value === 'large') {
-        sizeRef.value = 'small'
+        sizeRef.value = 'small';
       } else {
-        sizeRef.value = 'default'
+        sizeRef.value = 'default';
       }
 
       table.setTableProps({
         size: sizeRef.value,
-      })
+      });
     }
 
     return {
@@ -70,7 +70,7 @@ export default defineComponent({
       toggle,
       handleRedo,
       handleSize,
-    }
+    };
   },
-})
+});
 </script>

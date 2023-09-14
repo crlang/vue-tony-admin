@@ -20,24 +20,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { ElInput, ElAlert, ElButton } from 'element-plus'
-import { CollapseContainer } from '@/components/CollapseContainer'
-import { useTabs } from '@/hooks/web/useTabs'
-import { useMessage } from '@/hooks/web/useMessage'
+import { defineComponent, ref } from 'vue';
+import { ElInput, ElAlert, ElButton } from 'element-plus';
+import { CollapseContainer } from '@/components/CollapseContainer';
+import { useTabs } from '@/hooks/web/useTabs';
+import { useMessage } from '@/hooks/web/useMessage';
 
 export default defineComponent({
   name: 'TabsDemo',
   components: { ElInput, ElAlert, ElButton, CollapseContainer },
   setup() {
-    const title = ref<string>('')
-    const { closeAll, closeLeft, closeRight, closeOther, closeCurrent, refreshPage, setTitle } = useTabs()
-    const { createMessage } = useMessage()
+    const title = ref<string>('');
+    const { closeAll, closeLeft, closeRight, closeOther, closeCurrent, refreshPage, setTitle } = useTabs();
+    const { createMessage } = useMessage();
     function setTabTitle() {
       if (title.value) {
-        setTitle(title.value)
+        setTitle(title.value);
       } else {
-        createMessage.error('请输入要设置的Tab标题！')
+        createMessage.error('请输入要设置的Tab标题！');
       }
     }
     return {
@@ -49,7 +49,7 @@ export default defineComponent({
       refreshPage,
       setTabTitle,
       title,
-    }
+    };
   },
-})
+});
 </script>

@@ -7,7 +7,7 @@
     :class="prefixCls">
     <div :class="`${prefixCls}__entry`">
       <div :class="`${prefixCls}__header`">
-        <img :src="avatar" :class="`${prefixCls}__header-img`" />
+        <ElImage :src="avatar" :class="`${prefixCls}__header-img`" />
         <p :class="`${prefixCls}__header-name`">
           {{ getRealName }}
         </p>
@@ -23,20 +23,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import { ElButton } from 'element-plus'
+import { defineComponent, computed } from 'vue';
+import { ElButton, ElImage } from 'element-plus';
 
-import { useDesign } from '@/hooks/web/useDesign'
-import { BasicModal, useModalInner } from '@/components/BasicModal'
-import { useUserStore } from '@/store/modules/user'
-import { useLockStore } from '@/store/modules/lock'
-import { BasicForm, useForm } from '@/components/BasicForm'
-
-import headerImg from '@/assets/images/header.jpg'
+import { useDesign } from '@/hooks/web/useDesign';
+import { BasicModal, useModalInner } from '@/components/BasicModal';
+import { useUserStore } from '@/store/modules/user';
+import { useLockStore } from '@/store/modules/lock';
+import { BasicForm, useForm } from '@/components/BasicForm';
 
 export default defineComponent({
   name: 'LockModal',
-  components: { ElButton, BasicModal, BasicForm },
+  components: { ElButton, ElImage, BasicModal, BasicForm },
   props: {
     visible: {
       type: Boolean,
@@ -44,12 +42,12 @@ export default defineComponent({
     },
   },
   setup() {
-    const { prefixCls } = useDesign('header-lock-modal')
-    const userStore = useUserStore()
-    const lockStore = useLockStore()
+    const { prefixCls } = useDesign('header-lock-modal');
+    const userStore = useUserStore();
+    const lockStore = useLockStore();
 
-    const getRealName = computed(() => userStore.getUserInfo?.realName)
-    const [register, { closeModal }] = useModalInner()
+    const getRealName = computed(() => userStore.getUserInfo?.nickname);
+    const [register, { closeModal }] = useModalInner();
 
     const [registerForm, { validateField, resetFields, getFieldsValue }] = useForm({
       showActionButtonGroup: false,
@@ -68,25 +66,25 @@ export default defineComponent({
           required: true,
         },
       ],
-    })
+    });
 
     async function handleLock() {
-      await validateField()
-      const values = getFieldsValue() as any
-      const password: string | undefined = values.password
-      closeModal()
+      await validateField();
+      const values = getFieldsValue() as any;
+      const password: string | undefined = values.password;
+      closeModal();
 
       lockStore.setLockInfo({
         isLock: true,
         pwd: password,
-      })
-      await resetFields()
+      });
+      await resetFields();
     }
 
     const avatar = computed(() => {
-      const { avatar } = userStore.getUserInfo
-      return avatar || headerImg
-    })
+      const { avatar } = userStore.getUserInfo;
+      return avatar;
+    });
 
     return {
       prefixCls,
@@ -95,9 +93,9 @@ export default defineComponent({
       registerForm,
       avatar,
       handleLock,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss">
@@ -133,6 +131,7 @@ $prefix-cls: '#{$tonyname}-header-lock-modal';
 
     &-img {
       width: 70px;
+      height: 70px;
       border-radius: 50%;
     }
 

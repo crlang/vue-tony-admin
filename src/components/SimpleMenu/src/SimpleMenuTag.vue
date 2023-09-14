@@ -5,10 +5,10 @@
 </template>
 
 <script lang="ts">
-import type { Menu } from '@/router/types'
+import type { Menu } from '@/router/types';
 
-import { defineComponent, computed } from 'vue'
-import { useDesign } from '@/hooks/web/useDesign'
+import { defineComponent, computed } from 'vue';
+import { useDesign } from '@/hooks/web/useDesign';
 
 export default defineComponent({
   name: 'SimpleMenuTag',
@@ -21,35 +21,35 @@ export default defineComponent({
     collapseParent: Boolean,
   },
   setup(props) {
-    const { prefixCls } = useDesign('simple-menu')
+    const { prefixCls } = useDesign('simple-menu');
 
     const getShowTag = computed(() => {
-      const { item } = props
+      const { item } = props;
 
-      if (!item) return false
+      if (!item) return false;
 
-      const { tag } = item
-      if (!tag) return false
+      const { tag } = item;
+      if (!tag) return false;
 
-      const { dot, content } = tag
-      if (!dot && !content) return false
-      return true
-    })
+      const { dot, content } = tag;
+      if (!dot && !content) return false;
+      return true;
+    });
 
     const getContent = computed(() => {
-      if (!getShowTag.value) return ''
+      if (!getShowTag.value) return '';
 
-      const { item, collapseParent } = props
-      const { tag } = item
-      const { dot, content } = tag!
-      return dot || collapseParent ? '' : content
-    })
+      const { item, collapseParent } = props;
+      const { tag } = item;
+      const { dot, content } = tag!;
+      return dot || collapseParent ? '' : content;
+    });
 
     const getTagClass = computed(() => {
-      const { item, collapseParent } = props
-      const { tag = {} } = item || {}
-      const { dot, type = 'error' } = tag
-      const tagCls = `${prefixCls}-tag`
+      const { item, collapseParent } = props;
+      const { tag = {} } = item || {};
+      const { dot, type = 'error' } = tag;
+      const tagCls = `${prefixCls}-tag`;
       return [
         tagCls,
         `${tagCls}--${type}`,
@@ -57,13 +57,13 @@ export default defineComponent({
           [`${tagCls}--collapse`]: collapseParent,
           [`${tagCls}--dot`]: dot || props.dot || !getContent.value,
         },
-      ]
-    })
+      ];
+    });
     return {
       getTagClass,
       getShowTag,
       getContent,
-    }
+    };
   },
-})
+});
 </script>

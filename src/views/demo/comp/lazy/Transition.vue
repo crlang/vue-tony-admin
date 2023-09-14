@@ -12,13 +12,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import TargetContent from './TargetContent.vue'
-import { LazyContainer } from '@/components/LazyContainer'
+import { defineComponent } from 'vue';
+import TargetContent from './TargetContent.vue';
+import { LazyContainer } from '@/components/LazyContainer';
 
 export default defineComponent({
   components: { LazyContainer, TargetContent },
-})
+});
 </script>
 
 <style lang="scss" scoped>

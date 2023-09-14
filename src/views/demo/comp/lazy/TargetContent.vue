@@ -5,13 +5,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElCard } from 'element-plus'
+import { defineComponent } from 'vue';
+import { ElCard } from 'element-plus';
 
 export default defineComponent({
   components: { ElCard },
   setup() {
-    return {}
+    return {};
   },
-})
+});
 </script>

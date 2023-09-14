@@ -23,67 +23,67 @@
 </template>
 
 <script lang="ts">
-import type { TableActionMethods } from '@/components/BasicTable'
+import type { TableActionMethods } from '@/components/BasicTable';
 
-import { defineComponent, ref, unref } from 'vue'
-import { ElButton } from 'element-plus'
-import { BasicTable } from '@/components/BasicTable'
-import { getBasicColumns, getBasicShortColumns } from './data'
-import { useMessage } from '@/hooks/web/useMessage'
-import { demoListApi } from '@/api/demo/table'
+import { defineComponent, ref, unref } from 'vue';
+import { ElButton } from 'element-plus';
+import { BasicTable } from '@/components/BasicTable';
+import { getBasicColumns, getBasicShortColumns } from './data';
+import { useMessage } from '@/hooks/web/useMessage';
+import { demoListApi } from '@/api/demo/table';
 
 export default defineComponent({
   components: { ElButton, BasicTable },
   setup() {
-    const tableRef = ref<Nullable<TableActionMethods>>(null)
-    const { createMessage } = useMessage()
+    const tableRef = ref<Nullable<TableActionMethods>>(null);
+    const { createMessage } = useMessage();
 
     function getTable() {
-      const table = unref(tableRef)
+      const table = unref(tableRef);
       if (!table) {
-        throw new Error('tableAction is null')
+        throw new Error('tableAction is null');
       }
-      return table
+      return table;
     }
 
     function changeLoading() {
-      getTable().setLoading(true)
+      getTable().setLoading(true);
       setTimeout(() => {
-        getTable().setLoading(false)
-      }, 1000)
+        getTable().setLoading(false);
+      }, 1000);
     }
     function changeColumns() {
-      getTable().setColumns(getBasicShortColumns())
+      getTable().setColumns(getBasicShortColumns());
     }
     function reloadTable() {
-      getTable().setColumns(getBasicColumns())
+      getTable().setColumns(getBasicColumns());
 
-      getTable().reload()
+      getTable().reload();
     }
     function getColumn() {
-      createMessage.info('请在控制台查看！')
-      console.info(getTable().getColumns())
+      createMessage.info('请在控制台查看！');
+      console.info(getTable().getColumns());
     }
 
     function getTableData() {
-      createMessage.info('请在控制台查看！')
-      console.info(getTable().getDataSource())
+      createMessage.info('请在控制台查看！');
+      console.info(getTable().getDataSource());
     }
     function getTableRawData() {
-      createMessage.info('请在控制台查看！')
-      console.info(getTable().getRawDataSource())
+      createMessage.info('请在控制台查看！');
+      console.info(getTable().getRawDataSource());
     }
 
     function getPaginationInfo() {
-      createMessage.info('请在控制台查看！')
-      console.info(getTable().getPagination())
+      createMessage.info('请在控制台查看！');
+      console.info(getTable().getPagination());
     }
 
     function setPaginationInfo() {
       getTable().setPagination({
         currentPage: 2,
-      })
-      getTable().reload()
+      });
+      getTable().reload();
     }
 
     return {
@@ -98,7 +98,7 @@ export default defineComponent({
       getTableRawData,
       getPaginationInfo,
       setPaginationInfo,
-    }
+    };
   },
-})
+});
 </script>

@@ -8,25 +8,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
-import { SvgIcon } from '@/components/SvgIcon'
-import { useDrawer } from '@/components/BasicDrawer'
+import { SvgIcon } from '@/components/SvgIcon';
+import { useDrawer } from '@/components/BasicDrawer';
 
-import SettingDrawer from './SettingDrawer'
+import SettingDrawer from './SettingDrawer';
 
 export default defineComponent({
   name: 'SettingButton',
   components: { SettingDrawer, SvgIcon },
   setup() {
-    const [register, { openDrawer }] = useDrawer()
-
+    const [register, { openDrawer }] = useDrawer();
     return {
       register,
       openDrawer,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss">

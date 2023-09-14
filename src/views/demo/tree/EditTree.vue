@@ -16,18 +16,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElCard, ElTree, ElRow, ElCol } from 'element-plus'
-import { useContextMenu } from '@/hooks/web/useContextMenu'
-import { CreateContextMenuOptions } from '@/components/ContextMenu'
-import { SvgIcon } from '@/components/SvgIcon'
+import { defineComponent } from 'vue';
+import { ElCard, ElTree, ElRow, ElCol } from 'element-plus';
 
-import { treeData } from './data'
+import { useContextMenu } from '@/hooks/web/useContextMenu';
+import { CreateContextMenuOptions } from '@/components/ContextMenu';
+import { SvgIcon } from '@/components/SvgIcon';
+
+import { treeData } from './data';
 
 export default defineComponent({
   components: { ElCard, ElTree, ElRow, ElCol },
   setup() {
-    const [createContextMenu] = useContextMenu()
+    const [createContextMenu] = useContextMenu();
 
     function handleSend(_node, _data, _store) {
       // do something
@@ -49,13 +50,13 @@ export default defineComponent({
           },
           icon: 'ep:delete',
         },
-      ]
+      ];
 
-      const contextMenuOptions: CreateContextMenuOptions = { event, items: MenuItems }
+      const contextMenuOptions: CreateContextMenuOptions = { event, items: MenuItems };
 
-      if (!contextMenuOptions.items?.length) return
+      if (!contextMenuOptions.items?.length) return;
 
-      createContextMenu(contextMenuOptions)
+      createContextMenu(contextMenuOptions);
     }
 
     function actionList(h, { node, data, store }) {
@@ -78,16 +79,16 @@ export default defineComponent({
             class: 'mr-2',
           }),
         ),
-      )
+      );
     }
 
     return {
       treeData,
       actionList,
       getRightMenuList,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss">

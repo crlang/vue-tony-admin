@@ -1,58 +1,66 @@
-import type { TabContentProps } from './types'
-import type { ComputedRef } from 'vue'
-import type { EleDropdownItem } from '@/components/ElementPlus'
+import type { TabContentProps } from './types';
+import type { ComputedRef } from 'vue';
+import type { EleDropdownItem } from '@/components/ElementPlus';
 
-import { computed, unref, reactive } from 'vue'
-import { RouteLocationNormalized, useRouter } from 'vue-router'
+import { computed, unref, reactive } from 'vue';
+import { RouteLocationNormalized, useRouter } from 'vue-router';
 
-import { useMultipleTabStore } from '@/store/modules/multipleTab'
-import { useTabs } from '@/hooks/web/useTabs'
+import { useMultipleTabStore } from '@/store/modules/multipleTab';
+import { useTabs } from '@/hooks/web/useTabs';
 
-import { MenuEventEnum } from './types'
+import { MenuEventEnum } from './types';
 
 interface DropdownItem extends EleDropdownItem {
-  icon: string
-  text?: string
+  icon: string;
+  text?: string;
 }
 
+/**
+ * 处理选项卡下拉
+ *
+ * Handle tab dropdown
+ * @param tabContentProps
+ * @param getIsTabs
+ * @returns
+ */
 export function useTabDropdown(tabContentProps: TabContentProps, getIsTabs: ComputedRef<boolean>) {
   const state = reactive({
     current: null as Nullable<RouteLocationNormalized>,
     currentIndex: 0,
-  })
+  });
 
-  const tabStore = useMultipleTabStore()
-  const { currentRoute } = useRouter()
-  const { refreshPage, closeAll, close, closeLeft, closeOther, closeRight } = useTabs()
+  const tabStore = useMultipleTabStore();
+  const { currentRoute } = useRouter();
+  const { refreshPage, closeAll, close, closeLeft, closeOther, closeRight } = useTabs();
 
   const getTargetTab = computed((): RouteLocationNormalized => {
-    return unref(getIsTabs) ? tabContentProps.tabItem : unref(currentRoute)
-  })
+    return unref(getIsTabs) ? tabContentProps.tabItem : unref(currentRoute);
+  });
 
   /**
-   * @description: drop-down list
+   * 下拉列表
    */
   const getDropMenuList = computed(() => {
     if (!unref(getTargetTab)) {
-      return
+      return;
     }
-    const { meta } = unref(getTargetTab)
-    const { path } = unref(currentRoute)
+    const { meta } = unref(getTargetTab);
+    const { path } = unref(currentRoute);
 
-    const curItem = state.current
+    const curItem = state.current;
 
-    const isCurItem = curItem ? curItem.path === path : false
+    const isCurItem = curItem ? curItem.path === path : false;
 
     // Refresh button
-    const index = state.currentIndex
-    const refreshDisabled = !isCurItem
+    const index = state.currentIndex;
+    const refreshDisabled = !isCurItem;
     // Close left
-    const closeLeftDisabled = index === 0 || !isCurItem
+    const closeLeftDisabled = index === 0 || !isCurItem;
 
-    const disabled = tabStore.getTabList.length === 1
+    const disabled = tabStore.getTabList.length === 1;
 
     // Close right
-    const closeRightDisabled = !isCurItem || (index === tabStore.getTabList.length - 1 && tabStore.getLastDragEndIndex >= 0)
+    const closeRightDisabled = !isCurItem || (index === tabStore.getTabList.length - 1 && tabStore.getLastDragEndIndex >= 0);
     const dropMenuList: DropdownItem[] = [
       {
         icon: 'reload',
@@ -93,49 +101,49 @@ export function useTabDropdown(tabContentProps: TabContentProps, getIsTabs: Comp
         text: '关闭全部标签页',
         disabled: disabled,
       },
-    ]
+    ];
 
-    return dropMenuList
-  })
+    return dropMenuList;
+  });
 
   function handleContextMenu(tabItem: RouteLocationNormalized) {
     if (!tabItem) {
-      return
+      return;
     }
-    const index = tabStore.getTabList.findIndex((tab) => tab.path === tabItem.path)
-    state.current = tabItem
-    state.currentIndex = index
+    const index = tabStore.getTabList.findIndex((tab) => tab.path === tabItem.path);
+    state.current = tabItem;
+    state.currentIndex = index;
   }
 
   // Handle right click event
   function handleMenuEvent(menu: EleDropdownItem['command']): void {
     // const { event } = menu
     switch (menu) {
-    case MenuEventEnum.REFRESH_PAGE:
-      // refresh page
-      refreshPage()
-      break
+      case MenuEventEnum.REFRESH_PAGE:
+        // refresh page
+        refreshPage();
+        break;
       // Close current
-    case MenuEventEnum.CLOSE_CURRENT:
-      close(tabContentProps.tabItem)
-      break
+      case MenuEventEnum.CLOSE_CURRENT:
+        close(tabContentProps.tabItem);
+        break;
       // Close left
-    case MenuEventEnum.CLOSE_LEFT:
-      closeLeft()
-      break
+      case MenuEventEnum.CLOSE_LEFT:
+        closeLeft();
+        break;
       // Close right
-    case MenuEventEnum.CLOSE_RIGHT:
-      closeRight()
-      break
+      case MenuEventEnum.CLOSE_RIGHT:
+        closeRight();
+        break;
       // Close other
-    case MenuEventEnum.CLOSE_OTHER:
-      closeOther()
-      break
+      case MenuEventEnum.CLOSE_OTHER:
+        closeOther();
+        break;
       // Close all
-    case MenuEventEnum.CLOSE_ALL:
-      closeAll()
-      break
+      case MenuEventEnum.CLOSE_ALL:
+        closeAll();
+        break;
     }
   }
-  return { getDropMenuList, handleMenuEvent, handleContextMenu }
+  return { getDropMenuList, handleMenuEvent, handleContextMenu };
 }

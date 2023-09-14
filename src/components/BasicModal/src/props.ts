@@ -1,6 +1,6 @@
-import type { EleButton } from '@/components/ElementPlus'
+import type { EleButton } from '@/components/ElementPlus';
 
-import { EleDialogProps } from '@/components/ElementPlus'
+import { EleDialogProps } from '@/components/ElementPlus';
 
 export const headerProps = {
   /**
@@ -30,7 +30,7 @@ export const headerProps = {
     type: [String, Array] as PropType<string | string[]>,
     default: '',
   },
-}
+};
 
 export const wrapperProps = {
   /**
@@ -56,7 +56,7 @@ export const wrapperProps = {
     type: String,
     default: '加载中...',
   },
-}
+};
 
 export const footerProps = {
   /**
@@ -101,7 +101,7 @@ export const footerProps = {
       type: 'default',
     },
   },
-}
+};
 
 export const customProps = {
   modelValue: Boolean,
@@ -132,7 +132,7 @@ export const customProps = {
    * Execute the function before closing, return true before closing
    */
   closeFn: Function as PropType<() => Promise<boolean>>,
-}
+};
 
 export const basicProps = {
   ...EleDialogProps,
@@ -146,4 +146,4 @@ export const basicProps = {
   onOpened: Function as PropType<() => void>,
   onClose: Function as PropType<() => void>,
   onClosed: Function as PropType<() => void>,
-}
+};

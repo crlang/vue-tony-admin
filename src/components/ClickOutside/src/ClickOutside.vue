@@ -5,26 +5,26 @@
 </template>
 
 <script lang="ts">
-import { ref, onMounted, defineComponent } from 'vue'
-import { onClickOutside } from '@vueuse/core'
+import { ref, onMounted, defineComponent } from 'vue';
+import { onClickOutside } from '@vueuse/core';
 
 export default defineComponent({
   name: 'ClickOutside',
   emits: ['mounted', 'clickOutside'],
   setup(_, { emit }) {
-    const wrap = ref<ElRef>(null)
+    const wrap = ref<ElRef>(null);
 
     onClickOutside(wrap, () => {
-      emit('clickOutside')
-    })
+      emit('clickOutside');
+    });
 
     onMounted(() => {
-      emit('mounted')
-    })
+      emit('mounted');
+    });
 
     return {
       wrap,
-    }
+    };
   },
-})
+});
 </script>

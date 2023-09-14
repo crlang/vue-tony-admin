@@ -3,19 +3,19 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, unref } from 'vue'
-import { useRouter } from 'vue-router'
+import { computed, defineComponent, unref } from 'vue';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
   name: 'TestTab',
   components: {},
   setup() {
-    const { currentRoute } = useRouter()
+    const { currentRoute } = useRouter();
     return {
       params: computed(() => {
-        return unref(currentRoute).params
+        return unref(currentRoute).params;
       }),
-    }
+    };
   },
-})
+});
 </script>

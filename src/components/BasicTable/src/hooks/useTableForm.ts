@@ -1,8 +1,8 @@
-import type { ComputedRef, Slots } from 'vue'
-import type { BasicFormProps } from '@/components/BasicForm'
-import type { BasicTableProps, FetchParams } from '../typing'
+import type { ComputedRef, Slots } from 'vue';
+import type { BasicFormProps } from '@/components/BasicForm';
+import type { BasicTableProps, FetchParams } from '../typing';
 
-import { unref, computed } from 'vue'
+import { unref, computed } from 'vue';
 
 /**
  * 处理表格表单
@@ -20,14 +20,14 @@ export function useTableForm(
   getLoading: ComputedRef<boolean | undefined>,
 ) {
   const getFormProps = computed((): Partial<BasicFormProps> => {
-    const { formConfig } = unref(propsRef)
-    const { submitButtonOptions } = formConfig || {}
+    const { formConfig } = unref(propsRef);
+    const { submitButtonOptions } = formConfig || {};
     return {
       showAdvancedButton: true,
       ...formConfig,
       submitButtonOptions: { loading: unref(getLoading), ...submitButtonOptions },
-    }
-  })
+    };
+  });
 
   /**
    * 获取表单自定义插槽key
@@ -35,9 +35,9 @@ export function useTableForm(
    * Get form slot keys
    */
   const getFormSlotKeys: ComputedRef<string[]> = computed(() => {
-    const keys = Object.keys(slots)
-    return keys.map((item) => (item.startsWith('form-') ? item : null)).filter((item) => !!item) as string[]
-  })
+    const keys = Object.keys(slots);
+    return keys.map((item) => (item.startsWith('form-') ? item : null)).filter((item) => !!item) as string[];
+  });
 
   /**
    * 替换成合法的表单key
@@ -46,9 +46,9 @@ export function useTableForm(
    * @param key
    */
   function replaceFormSlotKey(key: string) {
-    if (!key) return ''
+    if (!key) return '';
 
-    return key?.replace?.(/form\-/, '') || ''
+    return key?.replace?.(/form\-/, '') || '';
   }
 
   /**
@@ -58,11 +58,11 @@ export function useTableForm(
    * @param info
    */
   function handleSearchSubmit(info: Recordable) {
-    const { searchFn } = unref(propsRef)
+    const { searchFn } = unref(propsRef);
     if (typeof searchFn === 'function') {
-      info = searchFn(info) || info
+      info = searchFn(info) || info;
     }
-    fetch({ searchInfo: info, page: 1 })
+    fetch({ searchInfo: info, page: 1 });
   }
 
   return {
@@ -70,5 +70,5 @@ export function useTableForm(
     getFormSlotKeys,
     replaceFormSlotKey,
     handleSearchSubmit,
-  }
+  };
 }

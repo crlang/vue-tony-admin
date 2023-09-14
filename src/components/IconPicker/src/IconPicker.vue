@@ -47,18 +47,18 @@
 </template>
 
 <script lang="ts">
-import { ref, watchEffect, watch, unref, defineComponent } from 'vue'
-import { ElInput, ElPopover, ElEmpty } from 'element-plus'
-import svgIcons from 'virtual:svg-icons-names'
+import { ref, watchEffect, watch, unref, defineComponent } from 'vue';
+import { ElInput, ElPopover, ElEmpty } from 'element-plus';
+import svgIcons from 'virtual:svg-icons-names';
 
-import { useDesign } from '@/hooks/web/useDesign'
-import { ScrollContainer } from '@/components/ScrollContainer'
-import Icon from '@/components/Icon'
-import { SvgIcon } from '@/components/SvgIcon'
-import { useCopyToClipboard } from '@/hooks/web/useCopyToClipboard'
-import { useMessage } from '@/hooks/web/useMessage'
+import { useDesign } from '@/hooks/web/useDesign';
+import { ScrollContainer } from '@/components/ScrollContainer';
+import Icon from '@/components/Icon';
+import { SvgIcon } from '@/components/SvgIcon';
+import { useCopyToClipboard } from '@/hooks/web/useCopyToClipboard';
+import { useMessage } from '@/hooks/web/useMessage';
 
-import iconsData from './data'
+import iconsData from './data';
 
 export default defineComponent({
   name: 'IconPicker',
@@ -101,17 +101,17 @@ export default defineComponent({
   },
   emits: ['change', 'update:modelValue'],
   setup(props, { emit }) {
-    const isSvgMode = props.mode === 'svg'
-    const icons = isSvgMode ? getSvgIcons() : getIcons()
+    const isSvgMode = props.mode === 'svg';
+    const icons = isSvgMode ? getSvgIcons() : getIcons();
 
-    const currentSelect = ref('')
-    const currentList = ref(icons)
-    const searckKeyword = ref('')
+    const currentSelect = ref('');
+    const currentList = ref(icons);
+    const searckKeyword = ref('');
 
-    const { prefixCls } = useDesign('icon-picker')
+    const { prefixCls } = useDesign('icon-picker');
 
-    const { clipboardRef, isSuccessRef } = useCopyToClipboard(props.modelValue)
-    const { createMessage } = useMessage()
+    const { clipboardRef, isSuccessRef } = useCopyToClipboard(props.modelValue);
+    const { createMessage } = useMessage();
 
     /**
      * 获取本地定义的图标列表
@@ -119,15 +119,15 @@ export default defineComponent({
      * Get a list of locally defined icons
      */
     function getIcons() {
-      const data = iconsData as any
-      const prefix: string = data?.prefix ?? ''
-      let result: string[] = []
+      const data = iconsData as any;
+      const prefix: string = data?.prefix ?? '';
+      let result: string[] = [];
       if (prefix) {
-        result = (data?.icons ?? []).map((item) => `${prefix}:${item}`)
+        result = (data?.icons ?? []).map((item) => `${prefix}:${item}`);
       } else if (Array.isArray(iconsData)) {
-        result = iconsData as string[]
+        result = iconsData as string[];
       }
-      return result
+      return result;
     }
 
     /**
@@ -136,7 +136,7 @@ export default defineComponent({
      * Get local Svg file icon
      */
     function getSvgIcons() {
-      return svgIcons.map((icon) => icon.replace('icon-', ''))
+      return svgIcons.map((icon) => icon.replace('icon-', ''));
     }
 
     /**
@@ -145,11 +145,11 @@ export default defineComponent({
      * Handle click icon action
      */
     function handleClick(icon: string) {
-      currentSelect.value = icon
+      currentSelect.value = icon;
       if (props.copy) {
-        clipboardRef.value = icon
+        clipboardRef.value = icon;
         if (unref(isSuccessRef)) {
-          createMessage.success('复制图标成功!')
+          createMessage.success('复制图标成功!');
         }
       }
     }
@@ -161,23 +161,23 @@ export default defineComponent({
      */
     function handleSearchChange(value: any) {
       if (!value) {
-        currentList.value = icons
-        return
+        currentList.value = icons;
+        return;
       }
-      currentList.value = icons.filter((item) => item.includes(value))
+      currentList.value = icons.filter((item) => item.includes(value));
     }
 
     watchEffect(() => {
-      currentSelect.value = props.modelValue
-    })
+      currentSelect.value = props.modelValue;
+    });
 
     watch(
       () => currentSelect.value,
       (v) => {
-        emit('update:modelValue', v)
-        return emit('change', v)
+        emit('update:modelValue', v);
+        return emit('change', v);
       },
-    )
+    );
 
     return {
       prefixCls,
@@ -187,9 +187,9 @@ export default defineComponent({
       searckKeyword,
       handleClick,
       handleSearchChange,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss">

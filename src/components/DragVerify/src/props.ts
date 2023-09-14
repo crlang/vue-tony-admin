@@ -1,4 +1,4 @@
-import { CSSProperties } from 'vue'
+import { CSSProperties } from 'vue';
 
 export const basicProps = {
   /**
@@ -100,7 +100,7 @@ export const basicProps = {
     type: Object as PropType<CSSProperties>,
     default: {},
   },
-}
+};
 
 export const rotateProps = {
   ...basicProps,
@@ -157,4 +157,4 @@ export const rotateProps = {
     type: Number,
     default: 20,
   },
-}
+};

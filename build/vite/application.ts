@@ -1,34 +1,34 @@
-import { resolve } from 'node:path'
-import dayjs from 'dayjs'
-import { readPackageJSON } from 'pkg-types'
-import { defineConfig, loadEnv, mergeConfig, type UserConfig } from 'vite'
+import { resolve } from 'node:path';
+import dayjs from 'dayjs';
+import { readPackageJSON } from 'pkg-types';
+import { defineConfig, loadEnv, mergeConfig, type UserConfig } from 'vite';
 
-import { createPlugins } from './plugins'
-import { createProxy } from './utils/proxy'
+import { createPlugins } from './plugins';
+import { createProxy } from './utils/proxy';
 
 interface DefineOptions {
-  overrides?: UserConfig
-  options?: {}
+  overrides?: UserConfig;
+  options?: {};
 }
 
 function defineApplicationConfig(defineOptions: DefineOptions = {}) {
-  const { overrides = {} } = defineOptions
+  const { overrides = {} } = defineOptions;
 
   return defineConfig(async({ command, mode }) => {
-    const root = process.cwd()
-    const isBuild = command === 'build'
-    const { VITE_SITE_BASE_PATH, VITE_BUILD_COMPRESS, VITE_DROP_CONSOLE, VITE_ENABLE_ANALYZE, VITE_PROXY_PORT, VITE_PROXY_ADDRESS, VITE_PROXY_AUTO_OPEN } = loadEnv(mode, root)
-    const defineData = await createDefineData(root)
+    const root = process.cwd();
+    const isBuild = command === 'build';
+    const { VITE_PUBLIC_PATH, VITE_BUILD_COMPRESS, VITE_DROP_CONSOLE, VITE_ENABLE_ANALYZE, VITE_PROXY_PORT, VITE_PROXY_ADDRESS, VITE_PROXY_AUTO_OPEN } = loadEnv(mode, root);
+    const defineData = await createDefineData(root);
     const plugins = await createPlugins({
       isBuild,
       root,
       enableAnalyze: VITE_ENABLE_ANALYZE === 'true',
       compress: VITE_BUILD_COMPRESS,
-    })
+    });
 
-    const pathResolve = (pathname: string) => resolve(root, '.', pathname)
+    const pathResolve = (pathname: string) => resolve(root, '.', pathname);
     const applicationConfig: UserConfig = {
-      base: VITE_SITE_BASE_PATH,
+      base: VITE_PUBLIC_PATH,
       resolve: {
         alias: [
           {
@@ -82,27 +82,27 @@ function defineApplicationConfig(defineOptions: DefineOptions = {}) {
         },
       },
       plugins,
-    }
+    };
 
-    return mergeConfig(applicationConfig, overrides)
-  })
+    return mergeConfig(applicationConfig, overrides);
+  });
 }
 
 async function createDefineData(root: string) {
   try {
-    const pkgJson = await readPackageJSON(root)
-    const { dependencies, devDependencies, name, version } = pkgJson
+    const pkgJson = await readPackageJSON(root);
+    const { dependencies, devDependencies, name, version } = pkgJson;
 
     const __APP_INFO__ = {
       pkg: { dependencies, devDependencies, name, version },
       lastBuildTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
-    }
+    };
     return {
       __APP_INFO__: JSON.stringify(__APP_INFO__),
-    }
+    };
   } catch (error) {
-    return {}
+    return {};
   }
 }
 
-export { defineApplicationConfig }
+export { defineApplicationConfig };

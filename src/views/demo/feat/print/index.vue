@@ -11,16 +11,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { ElButton } from 'element-plus'
+import { defineComponent, ref } from 'vue';
+import { ElButton } from 'element-plus';
 
-import printJS from 'print-js'
+import printJS from 'print-js';
 
 export default defineComponent({
   name: 'AppLogo',
   components: { ElButton },
   setup() {
-    const printLoading = ref(false)
+    const printLoading = ref(false);
     function jsonPrint() {
       printJS({
         printable: [
@@ -29,7 +29,7 @@ export default defineComponent({
         ],
         properties: ['name', 'email', 'phone'],
         type: 'json',
-      })
+      });
     }
 
     function imagePrint() {
@@ -39,18 +39,18 @@ export default defineComponent({
         header: 'Multiple Images',
         imageStyle: 'width:100%;',
         onLoadingStart: function() {
-          printLoading.value = true
+          printLoading.value = true;
         },
         onLoadingEnd: function() {
-          printLoading.value = false
+          printLoading.value = false;
         },
-      })
+      });
     }
     return {
       jsonPrint,
       imagePrint,
       printLoading,
-    }
+    };
   },
-})
+});
 </script>

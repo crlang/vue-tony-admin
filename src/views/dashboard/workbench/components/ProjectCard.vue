@@ -1,9 +1,9 @@
 <template>
-  <CardGrid title="项目">
+  <CardGrid title="项目" v-if="datainfo.length">
     <template #extra>
       <el-button text size="small">更多</el-button>
     </template>
-    <CardGridItem v-for="(item, index) in items" class="project-item" :key="index">
+    <CardGridItem v-for="(item, index) in datainfo" class="project-item" :key="index">
       <span class="project-item__title">
         <img :src="item.icon" width="32" height="32" />
         <span class="ml-4">{{ item.title }}</span>
@@ -18,17 +18,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElButton } from 'element-plus'
-import { groupItems } from './data'
-import { CardGrid, CardGridItem } from '@/components/CardGrid'
+import { defineComponent } from 'vue';
+import { ElButton } from 'element-plus';
+
+import { CardGrid, CardGridItem } from '@/components/CardGrid';
+import { DashboardProjectInfo } from '@/api/types';
 
 export default defineComponent({
   components: { ElButton, CardGrid, CardGridItem },
-  setup() {
-    return { items: groupItems }
+  props: {
+    datainfo: {
+      type: Array as PropType<DashboardProjectInfo[]>,
+      default: () => [],
+    },
   },
-})
+  setup() {
+    return {};
+  },
+});
 </script>
 
 <style lang="scss" scoped>
@@ -53,6 +60,8 @@ export default defineComponent({
   }
 
   &__meta {
+    display: flex;
+    justify-content: space-between;
     margin-top: 12px;
     font-size: 12px;
     color: var(--text-secondary-color);

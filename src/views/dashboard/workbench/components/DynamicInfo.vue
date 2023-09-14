@@ -1,19 +1,18 @@
 <template>
-  <el-card shadow="always">
+  <el-card shadow="hover">
     <template #header>
       <div class="dync-card-header">
-        <div class="el-card__header--title">最新动态</div>
+        <div class="el-card__header--title">项目动态</div>
         <el-button text>更多</el-button>
       </div>
     </template>
-    <List>
-      <template v-for="item in dynamicInfoItems" :key="item.title">
-        <ListItem>
+    <BasicList>
+      <template v-for="item in datainfo" :key="item.title">
+        <BasicListItem>
           <template #title>
             <div class="dync-title">{{ item.name }}</div>
             <div class="dync-desc">
-              <!-- eslint-disable-next-line vue/no-v-html -->
-              <p v-html="item.desc"></p>
+              <p>{{ item.desc }}</p>
             </div>
           </template>
           <template #thumb>
@@ -22,16 +21,32 @@
           <template #description>
             {{ item.date }}
           </template>
-        </ListItem>
+        </BasicListItem>
       </template>
-    </List>
+    </BasicList>
   </el-card>
 </template>
 
-<script lang="ts" setup>
-import { ElCard, ElButton } from 'element-plus'
-import { dynamicInfoItems } from './data'
-import { List, ListItem } from '@/components/List'
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { ElCard, ElButton } from 'element-plus';
+
+import { BasicList, BasicListItem } from '@/components/BasicList';
+
+import { DashboardNewsInfo } from '@/api/types';
+
+export default defineComponent({
+  components: { ElCard, ElButton, BasicList, BasicListItem },
+  props: {
+    datainfo: {
+      type: Array as PropType<DashboardNewsInfo[]>,
+      default: () => [],
+    },
+  },
+  setup() {
+    return {};
+  },
+});
 </script>
 
 <style scoped>

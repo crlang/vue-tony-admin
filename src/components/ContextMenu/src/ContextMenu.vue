@@ -1,12 +1,12 @@
 <script lang="tsx">
-import type { FunctionalComponent, CSSProperties } from 'vue'
-import type { ContextMenuItem, ItemContentProps, Axis } from './typing'
+import type { FunctionalComponent, CSSProperties } from 'vue';
+import type { ContextMenuItem, ItemContentProps, Axis } from './typing';
 
-import { defineComponent, nextTick, onMounted, computed, ref, unref, onUnmounted } from 'vue'
-import { ElMenu, ElMenuItem, ElSubMenu } from 'element-plus'
+import { defineComponent, nextTick, onMounted, computed, ref, unref, onUnmounted } from 'vue';
+import { ElMenu, ElMenuItem, ElSubMenu } from 'element-plus';
 
-import Icon from '@/components/Icon'
-import { useDesign } from '@/hooks/web/useDesign'
+import { SvgIcon } from '@/components/SvgIcon';
+import { useDesign } from '@/hooks/web/useDesign';
 
 export default defineComponent({
   name: 'ContextMenu',
@@ -19,7 +19,7 @@ export default defineComponent({
     items: {
       type: Array as PropType<ContextMenuItem[]>,
       default() {
-        return []
+        return [];
       },
     },
     /**
@@ -63,15 +63,15 @@ export default defineComponent({
     axis: {
       type: Object as PropType<Axis>,
       default() {
-        return { x: 0, y: 0 }
+        return { x: 0, y: 0 };
       },
     },
   },
   setup(props) {
-    const wrapRef = ref(null)
-    const showRef = ref(false)
+    const wrapRef = ref(null);
+    const showRef = ref(false);
 
-    const { prefixCls } = useDesign('context-menu')
+    const { prefixCls } = useDesign('context-menu');
 
     /**
      * 处理菜单样式
@@ -79,21 +79,21 @@ export default defineComponent({
      * Handling menu styles
      */
     const getStyle = computed((): CSSProperties => {
-      const { axis, items, styles, width } = props
-      const { x, y } = axis || { x: 0, y: 0 }
-      const menuHeight = (items || []).length * 44
-      const menuWidth = width
-      const body = document.body
+      const { axis, items, styles, width } = props;
+      const { x, y } = axis || { x: 0, y: 0 };
+      const menuHeight = (items || []).length * 44;
+      const menuWidth = width;
+      const body = document.body;
 
-      const left = body.clientWidth < x + menuWidth ? x - menuWidth : x
-      const top = body.clientHeight < y + menuHeight ? y - menuHeight : y
+      const left = body.clientWidth < x + menuWidth ? x - menuWidth : x;
+      const top = body.clientHeight < y + menuHeight ? y - menuHeight : y;
       return {
         ...styles,
         width: `${width}px`,
         left: `${left + 1}px`,
         top: `${top + 1}px`,
-      }
-    })
+      };
+    });
 
     /**
      * 处理菜单项内容
@@ -101,14 +101,14 @@ export default defineComponent({
      * Handling menu item content
      */
     const ItemContent: FunctionalComponent<ItemContentProps> = (props) => {
-      const { item, handler, showIcon } = props
+      const { item, handler, showIcon } = props;
       return (
         <div class={`${prefixCls}__text`} onClick={handler.bind(null, item)}>
-          {showIcon && item.icon && <Icon class='mr-2' name={item.icon} />}
+          {showIcon && item.icon && <SvgIcon class='mr-2' name={item.icon} />}
           <span>{item.label}</span>
         </div>
-      )
-    }
+      );
+    };
 
     /**
      * 处理点击动作
@@ -116,13 +116,13 @@ export default defineComponent({
      * Handling clicks
      */
     function handleAction(item: ContextMenuItem, e: MouseEvent) {
-      const { handler, disabled } = item
-      if (disabled) return
+      const { handler, disabled } = item;
+      if (disabled) return;
 
-      showRef.value = false
-      e?.stopPropagation()
-      e?.preventDefault()
-      handler?.()
+      showRef.value = false;
+      e?.stopPropagation();
+      e?.preventDefault();
+      handler?.();
     }
 
     /**
@@ -132,13 +132,13 @@ export default defineComponent({
      */
     function renderMenuItem(items: ContextMenuItem[]) {
       return items.map((item) => {
-        const { disabled, label, children, divider = false } = item
+        const { disabled, label, children, divider = false } = item;
 
         const contentProps = {
           item,
           handler: handleAction,
           showIcon: props.showIcon,
-        }
+        };
 
         if (!children || children.length === 0) {
           return (
@@ -147,9 +147,9 @@ export default defineComponent({
                 <ItemContent {...contentProps} />
               </ElMenuItem>
             </>
-          )
+          );
         }
-        if (!unref(showRef)) return null
+        if (!unref(showRef)) return null;
 
         return (
           <ElSubMenu index={label} disabled={disabled} popper-class={`${prefixCls}__popup`}>
@@ -158,31 +158,31 @@ export default defineComponent({
               default: () => renderMenuItem(children),
             }}
           </ElSubMenu>
-        )
-      })
+        );
+      });
     }
 
     onMounted(() => {
-      nextTick(() => (showRef.value = true))
-    })
+      nextTick(() => (showRef.value = true));
+    });
 
     onUnmounted(() => {
-      const el = unref(wrapRef)
-      el && document.body.removeChild(el)
-    })
+      const el = unref(wrapRef);
+      el && document.body.removeChild(el);
+    });
 
     return () => {
-      if (!unref(showRef)) return null
+      if (!unref(showRef)) return null;
 
-      const { items } = props
+      const { items } = props;
       return (
         <ElMenu default-active='12' mode='vertical' collapse={true} unique-opened={true} menu-trigger='hover' class={prefixCls} ref={wrapRef} style={unref(getStyle)}>
           {renderMenuItem(items)}
         </ElMenu>
-      )
-    }
+      );
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" src="./index.scss"></style>

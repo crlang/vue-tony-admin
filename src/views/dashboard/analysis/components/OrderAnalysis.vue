@@ -3,36 +3,37 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref, Ref, watch } from 'vue'
-import { useECharts } from '@/hooks/web/useECharts'
-import { basicProps } from './props'
-import { getDateData } from '../data'
+import { defineComponent, onMounted, ref, Ref, watch } from 'vue';
+
+import { useECharts } from '@/hooks/web/useECharts';
+
+import { DateModeType, DateBasicItem } from '../data';
 
 export default defineComponent({
-  props: basicProps,
+  props: {
+    width: {
+      type: String,
+      default: '100%',
+    },
+    height: {
+      type: String,
+      default: '280px',
+    },
+    type: {
+      type: String as PropType<DateModeType>,
+      default: 'day',
+    },
+    datainfo: {
+      type: Array as PropType<DateBasicItem[]>,
+      default: () => [],
+    },
+  },
   setup(props) {
-    const chartRef = ref<HTMLDivElement | null>(null)
-    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>)
-
-    watch(
-      () => props.type,
-      (v) => {
-        if (v) {
-          initChart()
-        }
-      },
-    )
+    const chartRef = ref<HTMLDivElement | null>(null);
+    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
 
     const initChart = () => {
-      const data = computed(() => {
-        const { type } = props
-
-        return getDateData(type)
-      })
-      const gaugeData = data.value.vdata.map((k) => {
-        k.value = k.value.toString().substring(0, 2)
-        return k
-      })
+      const gaugedata = props.datainfo || [];
 
       setOptions({
         tooltip: {
@@ -53,10 +54,6 @@ export default defineComponent({
               overlap: false,
               roundCap: true,
               clip: false,
-              // itemStyle: {
-              //   borderWidth: 1,
-              //   borderColor: '#464646'
-              // }
             },
             axisLine: {
               lineStyle: {
@@ -75,7 +72,7 @@ export default defineComponent({
               show: false,
               distance: 50,
             },
-            data: gaugeData,
+            data: gaugedata,
             title: {
               show: false,
             },
@@ -84,14 +81,22 @@ export default defineComponent({
             },
           },
         ],
-      })
-    }
+      });
+    };
 
-    onMounted(initChart)
+    watch(
+      () => props.datainfo,
+      () => {
+        initChart();
+      },
+      { deep: true },
+    );
+
+    onMounted(initChart);
 
     return {
       chartRef,
-    }
+    };
   },
-})
+});
 </script>

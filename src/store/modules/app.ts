@@ -1,23 +1,23 @@
-import type { ProjectConfig, HeaderSetting, MenuSetting, TransitionSetting, MultiTabsSetting } from '#/config'
-import type { BeforeMiniState } from '#/store'
+import type { ProjectConfig, HeaderSetting, MenuSetting, TransitionSetting, MultiTabsSetting } from '#/config';
+import type { BeforeMiniState } from '#/store';
 
-import { defineStore } from 'pinia'
-import { store } from '@/store'
+import { defineStore } from 'pinia';
+import { store } from '@/store';
 
-import { PROJ_CFG_KEY } from '@/enums/cacheEnum'
-import { Persistent } from '@/utils/cache/persistent'
-import { resetRouter } from '@/router'
-import { deepMerge } from '@/utils'
+import { PROJ_CFG_KEY } from '@/enums/cacheEnum';
+import { Persistent } from '@/utils/cache/persistent';
+import { resetRouter } from '@/router';
+import { deepMerge } from '@/utils';
 
 interface AppState {
   // Page loading status
-  pageLoading: boolean
+  pageLoading: boolean;
   // project config
-  projectConfig: ProjectConfig | null
+  projectConfig: ProjectConfig | null;
   // When the window shrinks, remember some states, and restore these states when the window is restored
-  beforeMiniInfo: BeforeMiniState
+  beforeMiniInfo: BeforeMiniState;
 }
-// let timeId: TimeoutHandle
+let timeId: TimeoutHandle;
 export const useAppStore = defineStore({
   id: 'app',
   state: (): AppState => ({
@@ -26,65 +26,73 @@ export const useAppStore = defineStore({
     beforeMiniInfo: {},
   }),
   getters: {
-    getPageLoading(): boolean {
-      return this.pageLoading
+    getPageLoading(state): boolean {
+      return state.pageLoading;
     },
 
-    getBeforeMiniInfo(): BeforeMiniState {
-      return this.beforeMiniInfo
+    getBeforeMiniInfo(state): BeforeMiniState {
+      return state.beforeMiniInfo;
     },
 
-    getProjectConfig(): ProjectConfig {
-      return this.projectConfig || ({} as ProjectConfig)
+    getProjectConfig(state): ProjectConfig {
+      return state.projectConfig || ({} as ProjectConfig);
     },
 
     getHeaderSetting(): HeaderSetting {
-      return this.getProjectConfig.headerSetting
+      return this.getProjectConfig.headerSetting;
     },
+
     getMenuSetting(): MenuSetting {
-      return this.getProjectConfig.menuSetting
+      return this.getProjectConfig.menuSetting;
     },
+
     getTransitionSetting(): TransitionSetting {
-      return this.getProjectConfig.transitionSetting
+      return this.getProjectConfig.transitionSetting;
     },
+
     getMultiTabsSetting(): MultiTabsSetting {
-      return this.getProjectConfig.multiTabsSetting
+      return this.getProjectConfig.multiTabsSetting;
     },
   },
   actions: {
     setPageLoading(loading: boolean): void {
-      this.pageLoading = loading
+      this.pageLoading = loading;
     },
 
     setBeforeMiniInfo(state: BeforeMiniState): void {
-      this.beforeMiniInfo = state
+      this.beforeMiniInfo = state;
     },
 
     setProjectConfig(config: DeepPartial<ProjectConfig>): void {
-      this.projectConfig = deepMerge(this.projectConfig || {}, config)
-      Persistent.setLocal(PROJ_CFG_KEY, this.projectConfig)
+      this.projectConfig = deepMerge(this.projectConfig || {}, config);
+      Persistent.setLocal(PROJ_CFG_KEY, this.projectConfig);
+    },
+
+    setMenuSetting(setting: Partial<MenuSetting>): void {
+      this.projectConfig.menuSetting = deepMerge(this.projectConfig.menuSetting, setting);
+      Persistent.setLocal(PROJ_CFG_KEY, this.projectConfig);
     },
 
     async resetAllState() {
-      resetRouter()
-      Persistent.clearAll()
+      resetRouter();
+      Persistent.clearAll();
     },
-    // async setPageLoadingAction(loading: boolean): Promise<void> {
-    //   if (loading) {
-    //     clearTimeout(timeId)
-    //     // Prevent flicker
-    //     timeId = setTimeout(() => {
-    //       this.setPageLoading(loading)
-    //     }, 50)
-    //   } else {
-    //     this.setPageLoading(loading)
-    //     clearTimeout(timeId)
-    //   }
-    // },
+    async setPageLoadingAction(loading: boolean): Promise<void> {
+      if (loading) {
+        clearTimeout(timeId);
+        // Prevent flicker
+        timeId = setTimeout(() => {
+          this.setPageLoading(loading);
+        }, 50);
+      } else {
+        this.setPageLoading(loading);
+        clearTimeout(timeId);
+      }
+    },
   },
-})
+});
 
 // Need to be used outside the setup
 export function useAppStoreWithOut() {
-  return useAppStore(store)
+  return useAppStore(store);
 }

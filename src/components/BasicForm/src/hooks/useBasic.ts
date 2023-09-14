@@ -1,14 +1,14 @@
-import type { FormItemProp } from 'element-plus'
-import type { ValidateFieldsError } from 'async-validator'
-import type { FormActionMethods } from '../typing'
+import type { FormItemProp } from 'element-plus';
+import type { ValidateFieldsError } from 'async-validator';
 
-import { Ref } from 'vue'
+import { Ref } from 'vue';
 
-import { getUseInstance } from '@/utils'
+import { getUseInstance } from '@/utils';
+import { FormActionMethods } from '../types/formItem';
 
 interface UseBasicFnContext {
-  formElRef: Ref<FormActionMethods | null>
-  emit: EmitType
+  formElRef: Ref<FormActionMethods | null>;
+  emit: EmitType;
 }
 
 /**
@@ -18,26 +18,26 @@ interface UseBasicFnContext {
  */
 export function useBasicFormFn({ formElRef, emit }: UseBasicFnContext) {
   function validate(callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void): Promise<void> {
-    return getUseInstance<FormActionMethods>(formElRef, 'form')?.validate(callback)
+    return getUseInstance<FormActionMethods>(formElRef, 'form')?.validate(callback);
   }
   function validateField(props?: Arrayable<FormItemProp>, callback?: (isValid: boolean, invalidFields?: ValidateFieldsError) => void): Promise<void> {
-    return getUseInstance<FormActionMethods>(formElRef, 'form')?.validateField(props, callback)
+    return getUseInstance<FormActionMethods>(formElRef, 'form')?.validateField(props, callback);
   }
   function resetFields(props?: Arrayable<FormItemProp>): void {
-    return getUseInstance<FormActionMethods>(formElRef, 'form')?.resetFields(props)
+    return getUseInstance<FormActionMethods>(formElRef, 'form')?.resetFields(props);
   }
   function scrollToField(prop: FormItemProp): void {
-    return getUseInstance<FormActionMethods>(formElRef, 'form')?.scrollToField(prop)
+    return getUseInstance<FormActionMethods>(formElRef, 'form')?.scrollToField(prop);
   }
   function clearValidate(props?: Arrayable<FormItemProp>): void {
-    return getUseInstance<FormActionMethods>(formElRef, 'form')?.clearValidate(props)
+    return getUseInstance<FormActionMethods>(formElRef, 'form')?.clearValidate(props);
   }
 
   const getBasicEmits = {
     onValidate: (prop: FormItemProp, isValid: boolean, message: string) => {
-      emit('validate', prop, isValid, message)
+      emit('validate', prop, isValid, message);
     },
-  }
+  };
 
   return {
     // Element plus Events
@@ -48,5 +48,5 @@ export function useBasicFormFn({ formElRef, emit }: UseBasicFnContext) {
     resetFields,
     scrollToField,
     clearValidate,
-  }
+  };
 }

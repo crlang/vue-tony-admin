@@ -3,33 +3,13 @@
  *
  * When minimized, the sidebar width
  */
-export const SIDE_BAR_MINI_WIDTH = 48
+export const SIDE_BAR_MINI_WIDTH = 48;
 /**
  * 缩小时，侧边栏宽度
  *
  * When zoomed out, the sidebar width
  */
-export const SIDE_BAR_SHOW_TIT_MINI_WIDTH = 64
-
-/**
- * 内容显示控制
- *
- * Content Display Control
- */
-export enum ContentEnum {
-  /**
-   * 自动宽度
-   *
-   * Auto width
-   */
-  FULL = 'full',
-  /**
-   * 固定宽度
-   *
-   * Fixed width
-   */
-  FIXED = 'fixed',
-}
+export const SIDE_BAR_SHOW_TIT_MINI_WIDTH = 64;
 
 /**
  * 配置按钮位置
@@ -37,12 +17,6 @@ export enum ContentEnum {
  * Configure button position
  */
 export enum SettingButtonPositionEnum {
-  /**
-   * 自动判断
-   *
-   * Automatic judgment
-   */
-  AUTO = 'auto',
   /**
    * 头部显示
    *
@@ -55,26 +29,6 @@ export enum SettingButtonPositionEnum {
    * Fixed on the right
    */
   FIXED = 'fixed',
-}
-
-/**
- * 会话超时处理
- *
- * Session timeout handling
- */
-export enum SessionTimeoutProcessingEnum {
-  /**
-   * 路由跳转
-   *
-   * Route jump
-   */
-  ROUTE_JUMP,
-  /**
-   * 弹窗覆盖
-   *
-   * Page coverage
-   */
-  PAGE_COVERAGE,
 }
 
 /**
@@ -109,6 +63,7 @@ export enum PermissionModeEnum {
  * Route switching animation
  */
 export enum RouterTransitionEnum {
+  NONE = 'none',
   ZOOM_FADE = 'zoom-fade',
   ZOOM_OUT = 'zoom-out',
   FADE_SIDE = 'fade-slide',

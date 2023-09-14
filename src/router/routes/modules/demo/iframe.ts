@@ -1,7 +1,7 @@
-import type { AppRouteModule } from '@/router/types'
+import type { AppRouteModule } from '@/router/types';
 
-import { LAYOUT } from '@/router/constant'
-const IFrame = () => import('@/views/sys/iframe/FrameBlank.vue')
+import { LAYOUT } from '@/router/constant';
+const IFrame = () => import('@/views/sys/iframe/FrameBlank.vue');
 
 const iframe: AppRouteModule = {
   path: '/frame',
@@ -10,7 +10,7 @@ const iframe: AppRouteModule = {
   redirect: '/frame/doc',
   meta: {
     orderNo: 9,
-    icon: 'ep:top-right',
+    icon: 'm_top-right',
     title: '外部页面',
   },
 
@@ -42,6 +42,6 @@ const iframe: AppRouteModule = {
       },
     },
   ],
-}
+};
 
-export default iframe
+export default iframe;

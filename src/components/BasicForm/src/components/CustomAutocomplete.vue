@@ -1,0 +1,36 @@
+<template>
+  <ElAutocomplete v-bind="getBindValues" v-model:modelValue="state" />
+</template>
+
+<script lang="ts">
+import { defineComponent, computed } from 'vue';
+import { ElAutocomplete } from 'element-plus';
+
+import { useRuleFormItem } from '@/hooks/component/useFormItem';
+
+export default defineComponent({
+  name: 'CustomAutocomplete',
+  components: { ElAutocomplete },
+  inheritAttrs: false,
+  props: {
+    modelValue: {
+      type: [String, Number, Date, Array],
+    },
+  },
+  emits: ['change'],
+  setup(props, { attrs }) {
+    const [state] = useRuleFormItem(props, 'modelValue', 'change');
+
+    const getBindValues = computed(() => {
+      const opts = {
+        clearable: true,
+        ...attrs,
+      };
+
+      return opts;
+    });
+
+    return { getBindValues, state };
+  },
+});
+</script>

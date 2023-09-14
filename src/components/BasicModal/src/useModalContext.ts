@@ -1,6 +1,6 @@
-import { InjectionKey } from 'vue'
+import { InjectionKey } from 'vue';
 
-import { createContext, useContext } from '@/hooks/core/useContext'
+import { createContext, useContext } from '@/hooks/core/useContext';
 
 /**
  * 弹窗上下文支持的 props
@@ -13,10 +13,10 @@ export interface ModalContextProps {
    *
    * redo modal height
    */
-  redoModalHeight: () => void
+  redoModalHeight: () => void;
 }
 
-const key: InjectionKey<ModalContextProps> = Symbol()
+const key: InjectionKey<ModalContextProps> = Symbol();
 
 /**
  * 创建弹窗上下文
@@ -24,7 +24,7 @@ const key: InjectionKey<ModalContextProps> = Symbol()
  * Create modal context
  */
 export function createModalContext(context: ModalContextProps) {
-  return createContext<ModalContextProps>(context, key)
+  return createContext<ModalContextProps>(context, key);
 }
 
 /**
@@ -33,5 +33,5 @@ export function createModalContext(context: ModalContextProps) {
  * Use modal context
  */
 export function useModalContext() {
-  return useContext<ModalContextProps>(key)
+  return useContext<ModalContextProps>(key);
 }

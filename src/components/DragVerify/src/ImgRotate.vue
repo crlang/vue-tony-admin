@@ -1,13 +1,13 @@
 <script lang="tsx">
-import type { MoveData, DragVerifyActionType } from './typing'
+import type { MoveData, DragVerifyActionType } from './typing';
 
-import { defineComponent, computed, unref, reactive, watch, ref } from 'vue'
+import { defineComponent, computed, unref, reactive, watch, ref } from 'vue';
 
-import { useTimeoutFn } from '@/hooks/core/useTimeout'
-import { useDesign } from '@/hooks/web/useDesign'
+import { useDesign } from '@/hooks/web/useDesign';
 
-import BasicDragVerify from './DragVerify.vue'
-import { rotateProps } from './props'
+import BasicDragVerify from './DragVerify.vue';
+import { rotateProps } from './props';
+import { useTimeoutFn } from '@vueuse/core';
 
 export default defineComponent({
   name: 'RotateDragVerify',
@@ -15,7 +15,7 @@ export default defineComponent({
   props: rotateProps,
   emits: ['success', 'change', 'update:modelValue'],
   setup(props, { emit, attrs, expose }) {
-    const basicRef = ref<Nullable<DragVerifyActionType>>(null)
+    const basicRef = ref<Nullable<DragVerifyActionType>>(null);
     const state = reactive({
       showTip: false,
       isPassing: false,
@@ -26,8 +26,8 @@ export default defineComponent({
       startTime: 0,
       endTime: 0,
       draged: false,
-    })
-    const { prefixCls } = useDesign('basic-img-verify')
+    });
+    const { prefixCls } = useDesign('basic-img-verify');
 
     /**
      * 获取图片外框样式
@@ -35,13 +35,13 @@ export default defineComponent({
      * Get the picture wrap style
      */
     const getImgWrapStyleRef = computed(() => {
-      const { imgWrapStyle, imgSize } = props
+      const { imgWrapStyle, imgSize } = props;
       return {
         width: `${imgSize}px`,
         height: `${imgSize}px`,
         ...imgWrapStyle,
-      }
-    })
+      };
+    });
 
     /**
      * 计算角度因子
@@ -49,12 +49,12 @@ export default defineComponent({
      * Calculate the angle factor
      */
     const getFactorRef = computed(() => {
-      const { minDegree, maxDegree } = props
+      const { minDegree, maxDegree } = props;
       if (minDegree === maxDegree) {
-        return Math.floor(1 + Math.random() * 1) / 10 + 1
+        return Math.floor(1 + Math.random() * 1) / 10 + 1;
       }
-      return 1
-    })
+      return 1;
+    });
 
     /**
      * 开始拖动时间
@@ -62,7 +62,7 @@ export default defineComponent({
      * Start dragging time
      */
     function handleStart() {
-      state.startTime = new Date().getTime()
+      state.startTime = new Date().getTime();
     }
 
     /**
@@ -72,13 +72,13 @@ export default defineComponent({
      * @param data MoveData
      */
     function handleDragBarMove(data: MoveData) {
-      state.draged = true
-      const { imgSize, height, maxDegree } = props
-      const { moveX } = data
+      state.draged = true;
+      const { imgSize, height, maxDegree } = props;
+      const { moveX } = data;
 
-      const currentRotate = Math.ceil((moveX / (imgSize! - height)) * maxDegree! * unref(getFactorRef))
-      state.currentRotate = currentRotate
-      state.imgStyle = { transform: `rotateZ(${state.randomRotate - currentRotate}deg)` }
+      const currentRotate = Math.ceil((moveX / (imgSize! - height)) * maxDegree! * unref(getFactorRef));
+      state.currentRotate = currentRotate;
+      state.imgStyle = { transform: `rotateZ(${state.randomRotate - currentRotate}deg)` };
     }
 
     /**
@@ -87,11 +87,11 @@ export default defineComponent({
      * Initialize random angle after loading image
      */
     function handleImgOnLoad() {
-      const { minDegree, maxDegree } = props
+      const { minDegree, maxDegree } = props;
       // Generate random angles
-      const ranRotate = Math.floor(minDegree! + Math.random() * (maxDegree! - minDegree!))
-      state.randomRotate = ranRotate
-      state.imgStyle = { transform: `rotateZ(${ranRotate}deg)` }
+      const ranRotate = Math.floor(minDegree! + Math.random() * (maxDegree! - minDegree!));
+      state.randomRotate = ranRotate;
+      state.imgStyle = { transform: `rotateZ(${ranRotate}deg)` };
     }
 
     /**
@@ -100,24 +100,24 @@ export default defineComponent({
      * Handle drag end
      */
     function handleDragEnd() {
-      const { randomRotate, currentRotate } = state
-      const { diffDegree } = props
+      const { randomRotate, currentRotate } = state;
+      const { diffDegree } = props;
 
       // 拖动失败，恢复原位
       // Failed to drag, return to original position
       if (Math.abs(randomRotate - currentRotate) >= (diffDegree || 20)) {
-        state.imgStyle = { transform: `rotateZ(${randomRotate}deg)` }
-        state.toOrigin = true
+        state.imgStyle = { transform: `rotateZ(${randomRotate}deg)` };
+        state.toOrigin = true;
         useTimeoutFn(() => {
-          state.toOrigin = false
-          state.showTip = true
+          state.toOrigin = false;
+          state.showTip = true;
           // 时间最好与CSS动画时间保持一致
           //  The time is the same as the animation time
-        }, 300)
+        }, 300);
       } else {
-        checkPass()
+        checkPass();
       }
-      state.showTip = true
+      state.showTip = true;
     }
     /**
      * 拖动成功
@@ -125,8 +125,8 @@ export default defineComponent({
      * Drag success
      */
     function checkPass() {
-      state.isPassing = true
-      state.endTime = new Date().getTime()
+      state.isPassing = true;
+      state.endTime = new Date().getTime();
     }
 
     /**
@@ -135,39 +135,39 @@ export default defineComponent({
      * Reset drag state
      */
     function resume() {
-      state.showTip = false
-      const basicEl = unref(basicRef)
-      if (!basicEl) return
+      state.showTip = false;
+      const basicEl = unref(basicRef);
+      if (!basicEl) return;
 
-      state.isPassing = false
+      state.isPassing = false;
 
-      basicEl.resume()
-      handleImgOnLoad()
+      basicEl.resume();
+      handleImgOnLoad();
     }
 
-    expose({ resume })
+    expose({ resume });
 
     watch(
       () => state.isPassing,
       (isPassing) => {
         if (isPassing) {
-          const { startTime, endTime } = state
-          const time = (endTime - startTime) / 1000
-          emit('success', { isPassing, time: time.toFixed(1) })
-          emit('change', isPassing)
-          emit('update:modelValue', isPassing)
+          const { startTime, endTime } = state;
+          const time = (endTime - startTime) / 1000;
+          emit('success', { isPassing, time: time.toFixed(1) });
+          emit('change', isPassing);
+          emit('update:modelValue', isPassing);
         }
       },
-    )
+    );
 
     return () => {
-      const { src, width } = props
-      const { toOrigin, isPassing, startTime, endTime } = state
-      const imgCls: string[] = []
+      const { src, width } = props;
+      const { toOrigin, isPassing, startTime, endTime } = state;
+      const imgCls: string[] = [];
       if (toOrigin) {
-        imgCls.push('to-origin')
+        imgCls.push('to-origin');
       }
-      const time = (endTime - startTime) / 1000
+      const time = (endTime - startTime) / 1000;
 
       return (
         <div class={`${prefixCls}`}>
@@ -179,7 +179,7 @@ export default defineComponent({
               class={imgCls}
               style={state.imgStyle}
               onClick={() => {
-                resume()
+                resume();
               }}
               alt='verify'
             />
@@ -199,10 +199,10 @@ export default defineComponent({
             isSlot={true}
           />
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});
 </script>
 
 <style lang="scss">

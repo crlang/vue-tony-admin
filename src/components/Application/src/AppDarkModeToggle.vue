@@ -7,28 +7,28 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, unref } from 'vue'
+import { computed, unref } from 'vue';
 
-import { SvgIcon } from '@/components/SvgIcon'
-import { useDesign } from '@/hooks/web/useDesign'
-import { useRootSetting } from '@/hooks/setting/useRootSetting'
-import { updateHeaderColor, updateSidebarColor, toggleDarkMode, isDark } from '@/logics/theme'
+import { SvgIcon } from '@/components/SvgIcon';
+import { useDesign } from '@/hooks/web/useDesign';
+import { useRootSetting } from '@/hooks/setting/useRootSetting';
+import { updateHeaderColor, updateSidebarColor, toggleDarkMode, isDark } from '@/logics/theme';
 
-const { prefixCls } = useDesign('dark-switch')
-const { getShowDarkModeToggle } = useRootSetting()
+const { prefixCls } = useDesign('dark-switch');
+const { getShowDarkModeToggle } = useRootSetting();
 
 const getClass = computed(() => [
   prefixCls,
   {
     [`${prefixCls}--dark`]: unref(isDark),
   },
-])
+]);
 
 function toggleDark() {
-  toggleDarkMode()
+  toggleDarkMode();
 
-  updateHeaderColor()
-  updateSidebarColor()
+  updateHeaderColor();
+  updateSidebarColor();
 }
 </script>
 
@@ -56,7 +56,9 @@ $prefix-cls: '#{$tonyname}-dark-switch';
     height: 18px;
     background-color: var(--text-primary-reverse);
     border-radius: 50%;
-    transition: transform 0.5s, background-color 0.5s;
+    transition:
+      transform 0.5s,
+      background-color 0.5s;
     will-change: transform;
   }
 

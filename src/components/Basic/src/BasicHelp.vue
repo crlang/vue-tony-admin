@@ -1,50 +1,52 @@
 <script lang="tsx">
-import type { Placement } from 'element-plus'
+import type { Placement } from 'element-plus';
 
-import { defineComponent } from 'vue'
-import { ElTooltip } from 'element-plus'
+import { defineComponent } from 'vue';
+import { ElTooltip } from 'element-plus';
 
-import { SvgIcon } from '@/components/SvgIcon'
-import { getSlot } from '@/utils/helper/tsxHelper'
-import { useDesign } from '@/hooks/web/useDesign'
+import { SvgIcon } from '@/components/SvgIcon';
+import { getSlot } from '@/utils/helper/tsxHelper';
+import { useDesign } from '@/hooks/web/useDesign';
+
+export const BasicHelpProps = {
+  /**
+   * 文本内容，支持单条文本或多条数组
+   *
+   * Text content, supports single text or multiple arrays
+   */
+  text: {
+    type: [Array, String] as PropType<string | string[]>,
+  },
+  /**
+   * 是否显示文本索引，仅多条有效
+   */
+  showIndex: Boolean,
+  /**
+   * 主题
+   *
+   * Theme effect
+   */
+  effect: {
+    type: String,
+    default: 'dark',
+  },
+  /**
+   * 文本弹出方向
+   *
+   * Text popup direction
+   */
+  placement: {
+    type: String as PropType<Placement>,
+    default: 'right',
+  },
+};
 
 export default defineComponent({
   name: 'BasicHelp',
   components: { SvgIcon },
-  props: {
-    /**
-     * 文本内容，支持单条文本或多条数组
-     *
-     * Text content, supports single text or multiple arrays
-     */
-    text: {
-      type: [Array, String] as PropType<string | string[]>,
-    },
-    /**
-     * 是否显示文本索引，仅多条有效
-     */
-    showIndex: Boolean,
-    /**
-     * 主题
-     *
-     * Theme effect
-     */
-    effect: {
-      type: String,
-      default: 'dark',
-    },
-    /**
-     * 文本弹出方向
-     *
-     * Text popup direction
-     */
-    placement: {
-      type: String as PropType<Placement>,
-      default: 'right',
-    },
-  },
+  props: BasicHelpProps,
   setup(props, { slots }) {
-    const { prefixCls } = useDesign('basic-help')
+    const { prefixCls } = useDesign('basic-help');
 
     /**
      * 渲染内容
@@ -52,12 +54,12 @@ export default defineComponent({
      * Render content
      */
     function renderTitle() {
-      const textList = props.text || ''
+      const textList = props.text || '';
 
       // 单条内容
       // single content
       if (typeof textList === 'string') {
-        return textList
+        return textList;
       }
 
       // 多条内容
@@ -71,10 +73,10 @@ export default defineComponent({
                 {text}
               </>
             </p>
-          )
-        })
+          );
+        });
       }
-      return null
+      return null;
     }
 
     return () => {
@@ -85,10 +87,10 @@ export default defineComponent({
             default: () => <span class={prefixCls}>{getSlot(slots) || <SvgIcon name='info-cirlce-o' />}</span>,
           }}
         </ElTooltip>
-      )
-    }
+      );
+    };
   },
-})
+});
 </script>
 
 <style lang="scss">

@@ -1,7 +1,7 @@
-import type { Menu } from '@/router/types'
-import type { PropType } from 'vue'
+import type { Menu } from '@/router/types';
+import type { PropType } from 'vue';
 
-import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum'
+import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum';
 
 export const basicProps = {
   items: {
@@ -20,7 +20,7 @@ export const basicProps = {
 
   type: {
     type: String as PropType<MenuTypeEnum>,
-    default: MenuTypeEnum.MIX,
+    default: MenuTypeEnum.SIDEBAR,
   },
   inlineCollapsed: Boolean,
   mixSider: Boolean,
@@ -30,7 +30,7 @@ export const basicProps = {
     type: Boolean,
     default: true,
   },
-}
+};
 
 export const itemProps = {
   item: {
@@ -41,7 +41,7 @@ export const itemProps = {
   level: Number,
   showTitle: Boolean,
   isHorizontal: Boolean,
-}
+};
 
 export const contentProps = {
   item: {
@@ -60,4 +60,4 @@ export const contentProps = {
     type: Boolean,
     default: true,
   },
-}
+};

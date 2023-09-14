@@ -13,8 +13,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { ElRow, ElCol, ElButton } from 'element-plus'
+import { defineComponent, ref } from 'vue';
+import { ElRow, ElCol, ElButton } from 'element-plus';
+
 import {
   FadeTransition,
   FadeSlideTransition,
@@ -35,7 +36,7 @@ import {
   ZoomOutTransition,
   ExpandTransition,
   ExpandXTransition,
-} from '@/components/Transition'
+} from '@/components/Transition';
 
 export default defineComponent({
   components: {
@@ -64,7 +65,7 @@ export default defineComponent({
     ExpandXTransition,
   },
   setup() {
-    const show = ref(true)
+    const show = ref(true);
     const transitionList = [
       'Fade',
       'FadeSlide',
@@ -85,16 +86,16 @@ export default defineComponent({
       'ZoomOut',
       'Expand',
       'ExpandX',
-    ]
+    ];
 
     function start() {
-      show.value = !show.value
+      show.value = !show.value;
     }
 
-    setInterval(start, 3e3)
-    return { transitionList, show }
+    setInterval(start, 3e3);
+    return { transitionList, show };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

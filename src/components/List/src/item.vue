@@ -10,11 +10,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
-import { useDesign } from '@/hooks/web/useDesign'
+import { useDesign } from '@/hooks/web/useDesign';
 
-import ListMeta from './meta.vue'
+import ListMeta from './meta.vue';
 
 export default defineComponent({
   name: 'ListItem',
@@ -43,11 +43,11 @@ export default defineComponent({
     },
   },
   setup() {
-    const { prefixCls } = useDesign('basic-list-item')
+    const { prefixCls } = useDesign('basic-list-item');
 
     return {
       prefixCls,
-    }
+    };
   },
-})
+});
 </script>

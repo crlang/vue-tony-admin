@@ -13,16 +13,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ScrollContainer } from '@/components/ScrollContainer'
-import { litdata } from './data'
+import { defineComponent } from 'vue';
+
+import { ScrollContainer } from '@/components/ScrollContainer';
+
+import { litdata } from './data';
 
 export default defineComponent({
   components: { ScrollContainer },
   setup() {
-    return { litdata }
+    return { litdata };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

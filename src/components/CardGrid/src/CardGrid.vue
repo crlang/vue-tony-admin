@@ -9,10 +9,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElCard } from 'element-plus'
+import { defineComponent } from 'vue';
+import { ElCard } from 'element-plus';
 
-import { useDesign } from '@/hooks/web/useDesign'
+import { useDesign } from '@/hooks/web/useDesign';
 
 export default defineComponent({
   name: 'CardGrid',
@@ -34,13 +34,13 @@ export default defineComponent({
     center: Boolean,
   },
   setup() {
-    const { prefixCls } = useDesign('card-grid')
+    const { prefixCls } = useDesign('card-grid');
 
     return {
       prefixCls,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss">
@@ -79,12 +79,19 @@ $prefix-cls: '#{$tonyname}-card-grid';
     cursor: pointer;
     border: 0;
     border-radius: 0;
-    box-shadow: 1px 0 var(--border-color-light), 0 1px var(--border-color-light), 1px 1px var(--border-color-light), 1px 0 var(--border-color-light) inset,
+    box-shadow:
+      1px 0 var(--border-color-light),
+      0 1px var(--border-color-light),
+      1px 1px var(--border-color-light),
+      1px 0 var(--border-color-light) inset,
       0 1px var(--border-color-light) inset;
     transition: all 0.3s;
 
     &:hover {
-      box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.09), 0 6px 18px 4px rgba(0, 0, 0, 0.06);
+      box-shadow:
+        0 1px 2px -2px rgba(0, 0, 0, 0.12),
+        0 4px 8px rgba(0, 0, 0, 0.09),
+        0 6px 18px 4px rgba(0, 0, 0, 0.06);
     }
   }
 

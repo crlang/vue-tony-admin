@@ -1,18 +1,18 @@
-import type { GlobConfig } from '#/config'
+import type { GlobConfig } from '#/config';
 
-import { warn } from '@/utils/log'
-import { getAppEnvConfig } from '@/utils/env'
+import { warn } from '@/utils/log';
+import { getAppEnvConfig } from '@/utils/env';
 
 /**
- * 使用全局配置项
+ * 全局配置项
  *
- * Reactive global setting
+ * Global setting
  */
 export const useGlobSetting = (): Readonly<GlobConfig> => {
-  const { VITE_GLOB_APP_TITLE, VITE_GLOB_API_URL, VITE_GLOB_APP_SHORT_NAME, VITE_GLOB_API_URL_PREFIX, VITE_GLOB_UPLOAD_URL } = getAppEnvConfig()
+  const { VITE_GLOB_APP_TITLE, VITE_GLOB_API_URL, VITE_GLOB_APP_SHORT_NAME, VITE_GLOB_API_URL_PREFIX, VITE_GLOB_UPLOAD_URL } = getAppEnvConfig();
 
   if (!/[a-zA-Z\_]*/.test(VITE_GLOB_APP_SHORT_NAME)) {
-    warn(`VITE_GLOB_APP_SHORT_NAME Variables can only be characters/underscores, please modify in the environment variables and re-running.`)
+    warn(`VITE_GLOB_APP_SHORT_NAME Variables can only be characters/underscores, please modify in the environment variables and re-running.`);
   }
 
   // Take global configuration
@@ -22,6 +22,6 @@ export const useGlobSetting = (): Readonly<GlobConfig> => {
     shortName: VITE_GLOB_APP_SHORT_NAME,
     urlPrefix: VITE_GLOB_API_URL_PREFIX,
     uploadUrl: VITE_GLOB_UPLOAD_URL,
-  }
-  return glob as Readonly<GlobConfig>
-}
+  };
+  return glob as Readonly<GlobConfig>;
+};

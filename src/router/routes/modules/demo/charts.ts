@@ -1,6 +1,6 @@
-import type { AppRouteModule } from '@/router/types'
+import type { AppRouteModule } from '@/router/types';
 
-import { getParentLayout, LAYOUT } from '@/router/constant'
+import { getParentLayout, LAYOUT } from '@/router/constant';
 
 const charts: AppRouteModule = {
   path: '/charts',
@@ -9,7 +9,7 @@ const charts: AppRouteModule = {
   redirect: '/charts/echarts/map',
   meta: {
     orderNo: 5,
-    icon: 'ep:pie-chart',
+    icon: 'm_pie-chart',
     title: '图表',
   },
   children: [
@@ -97,6 +97,6 @@ const charts: AppRouteModule = {
       ],
     },
   ],
-}
+};
 
-export default charts
+export default charts;

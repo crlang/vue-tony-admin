@@ -1,6 +1,6 @@
-import { BasicColumn } from '@/components/BasicTable'
+import { BasicColumn } from '@/components/BasicTable';
 
-import { ElTag } from 'element-plus'
+import { ElTag } from 'element-plus';
 
 export const refundTimeTableSchema: BasicColumn[] = [
   {
@@ -15,7 +15,7 @@ export const refundTimeTableSchema: BasicColumn[] = [
     label: '状态',
     prop: 't3',
     customRender: ({ record }) => {
-      return <ElTag type='success'>{record.t3}</ElTag>
+      return <ElTag type='success'>{record.t3}</ElTag>;
     },
   },
   {
@@ -26,7 +26,7 @@ export const refundTimeTableSchema: BasicColumn[] = [
     label: '耗时',
     prop: 't5',
   },
-]
+];
 
 export const refundTimeTableData: any[] = [
   {
@@ -61,4 +61,4 @@ export const refundTimeTableData: any[] = [
     t4: '用户',
     t5: '1h',
   },
-]
+];

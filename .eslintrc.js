@@ -14,42 +14,7 @@ module.exports = {
     node: true,
     es6: true,
   },
-  globals: {
-    // inside vue
-    defineProps: true,
-    defineEmits: true,
-    // global.d
-    __APP_INFO__: true,
-    PropType: true,
-    VueNode: true,
-    Writable: true,
-    Nullable: true,
-    Arrayable: true,
-    Awaitable: true,
-    NonNullable: true,
-    Recordable: true,
-    ReadonlyRecordable: true,
-    Indexable: true,
-    DeepPartial: true,
-    TimeoutHandle: true,
-    IntervalHandle: true,
-    ChangeEvent: true,
-    WheelEvent: true,
-    ImportMetaEnv: true,
-    ViteEnv: true,
-    JSX: true,
-    // index.d
-    Fn: true,
-    PromiseFn: true,
-    RefType: true,
-    LabelValueOptions: true,
-    EmitType: true,
-    TargetContext: true,
-    ComponentElRef: true,
-    ComponentRef: true,
-    ElRef: true,
-    ThemeType: true,
-  },
+  globals: {},
   parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
@@ -217,7 +182,7 @@ module.exports = {
       },
     ],
     'handle-callback-err': [2, '^(err|error)$'],
-    indent: ['error', 2],
+    indent: ['error', 2, { SwitchCase: 1 }],
     'jsx-quotes': [2, 'prefer-single'],
     'key-spacing': [
       2,
@@ -356,7 +321,7 @@ module.exports = {
         allowTemplateLiterals: true,
       },
     ],
-    semi: [2, 'never'],
+    semi: [1, 'always'],
     'semi-spacing': [
       2,
       {
@@ -403,4 +368,4 @@ module.exports = {
     'array-bracket-spacing': [2, 'never'],
     'computed-property-spacing': [2, 'never'],
   },
-}
+};

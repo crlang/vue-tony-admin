@@ -27,12 +27,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { ElButton } from 'element-plus'
+import { defineComponent, ref } from 'vue';
+import { ElButton } from 'element-plus';
 
-import { CountTo } from '@/components/CountTo'
-import { CardGrid, CardGridItem } from '@/components/CardGrid'
-import { useMessage } from '@/hooks/web/useMessage'
+import { CountTo } from '@/components/CountTo';
+import { CardGrid, CardGridItem } from '@/components/CardGrid';
+import { useMessage } from '@/hooks/web/useMessage';
 
 export default defineComponent({
   components: {
@@ -42,17 +42,17 @@ export default defineComponent({
     CardGridItem,
   },
   setup() {
-    const countRef = ref()
-    const { createMessage } = useMessage()
+    const countRef = ref();
+    const { createMessage } = useMessage();
 
     function handleFinished() {
-      createMessage.success('done')
+      createMessage.success('done');
     }
     function handleStart() {
-      countRef.value.start()
+      countRef.value.start();
     }
 
-    return { countRef, handleStart, handleFinished }
+    return { countRef, handleStart, handleFinished };
   },
-})
+});
 </script>

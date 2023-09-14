@@ -1,9 +1,9 @@
-import { h } from 'vue'
-import { setRoleStatus } from '@/api/demo/system'
-import { BasicColumn } from '@/components/BasicTable'
-import { BasicFormSchema } from '@/components/BasicForm'
-import { useMessage } from '@/hooks/web/useMessage'
-import { ElSwitch } from 'element-plus'
+import { h } from 'vue';
+import { setRoleStatus } from '@/api/demo/system';
+import { BasicColumn } from '@/components/BasicTable';
+import { BasicFormSchema } from '@/components/BasicForm';
+import { useMessage } from '@/hooks/web/useMessage';
+import { ElSwitch } from 'element-plus';
 
 export const columns: BasicColumn[] = [
   {
@@ -27,7 +27,7 @@ export const columns: BasicColumn[] = [
     width: 120,
     customRender: ({ record, scope }) => {
       if (!Reflect.has(record, 'pendingStatus')) {
-        scope.row.pendingStatus = false
+        scope.row.pendingStatus = false;
       }
       return h(ElSwitch, {
         modelValue: record?.status === '0',
@@ -36,22 +36,22 @@ export const columns: BasicColumn[] = [
         inlinePrompt: true,
         loading: record?.pendingStatus,
         onChange(checked: boolean) {
-          scope.row.pendingStatus = true
-          const newStatus = checked ? '0' : '1'
-          const { createMessage } = useMessage()
+          scope.row.pendingStatus = true;
+          const newStatus = checked ? '0' : '1';
+          const { createMessage } = useMessage();
           setRoleStatus(record.id, newStatus)
             .then(() => {
-              scope.row.status = newStatus
-              createMessage.success(`已成功修改角色状态`)
+              scope.row.status = newStatus;
+              createMessage.success(`已成功修改角色状态`);
             })
             .catch(() => {
-              createMessage.error('修改角色状态失败')
+              createMessage.error('修改角色状态失败');
             })
             .finally(() => {
-              scope.row.pendingStatus = false
-            })
+              scope.row.pendingStatus = false;
+            });
         },
-      })
+      });
     },
   },
   {
@@ -63,7 +63,7 @@ export const columns: BasicColumn[] = [
     label: '备注',
     prop: 'remark',
   },
-]
+];
 
 export const searchFormSchema: BasicFormSchema[] = [
   {
@@ -84,7 +84,7 @@ export const searchFormSchema: BasicFormSchema[] = [
     },
     colProps: { span: 8 },
   },
-]
+];
 
 export const formSchema: BasicFormSchema[] = [
   {
@@ -125,4 +125,4 @@ export const formSchema: BasicFormSchema[] = [
     slot: 'menu',
     component: 'ElInput',
   },
-]
+];

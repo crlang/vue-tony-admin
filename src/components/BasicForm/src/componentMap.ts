@@ -1,66 +1,54 @@
-import type { Component } from 'vue'
-import type { ComponentType } from './typing'
+import type { Component } from 'vue';
+import type { ComponentType } from './typing';
 
 /**
  * 导入支持的官方表单项组件
  *
  * Import supported official form item components
  */
-import {
-  ElInput,
-  ElSelect,
-  ElDivider,
-  // ElRadio,
-  ElRadioGroup,
-  // ElRadioButton,
-  // ElCheckbox,
-  ElCheckboxGroup,
-  ElSwitch,
-  ElCascader,
-  ElRate,
-  ElSlider,
-  ElInputNumber,
-  ElTreeSelect,
-} from 'element-plus'
+import { ElInput, ElSwitch, ElRate, ElSlider, ElInputNumber } from 'element-plus';
 
 /**
  * 导入自定义的表单项组件
  *
  * Import custom form item components
  */
-import CustomDatePicker from './components/CustomDatePicker.vue'
-import CustomTimePicker from './components/CustomTimePicker.vue'
-import CustomTreeSelect from './components/CustomTreeSelect.vue'
-import CustomSelect from './components/CustomSelect.vue'
-
+import CustomCascader from './components/CustomCascader.vue';
+import CustomCheckbox from './components/CustomCheckbox.vue';
+import CustomDatePicker from './components/CustomDatePicker.vue';
+import CustomColorPicker from './components/CustomColorPicker.vue';
+import CustomDivider from './components/CustomDivider.vue';
+import CustomRadio from './components/CustomRadio.vue';
+import CustomSelect from './components/CustomSelect.vue';
+import CustomTimePicker from './components/CustomTimePicker.vue';
+import CustomTree from './components/CustomTree.vue';
+import CustomTreeSelect from './components/CustomTreeSelect.vue';
+import CustomAutocomplete from './components/CustomAutocomplete.vue';
 /**
  * 注册导入的组件
  *
  * Register imported components
  */
-const componentMap = new Map<ComponentType, Component>()
+const componentMap = new Map<ComponentType, Component>();
 
 // Element plus
-componentMap.set('ElInput', ElInput)
-componentMap.set('ElSelect', ElSelect)
-componentMap.set('ElDivider', ElDivider)
-// componentMap.set('ElRadio', ElRadio)
-componentMap.set('ElRadioGroup', ElRadioGroup)
-// componentMap.set('ElRadioButton', ElRadioButton)
-// componentMap.set('ElCheckbox', ElCheckbox)
-componentMap.set('ElCheckboxGroup', ElCheckboxGroup)
-componentMap.set('ElSwitch', ElSwitch)
-componentMap.set('ElCascader', ElCascader)
-componentMap.set('ElRate', ElRate)
-componentMap.set('ElSlider', ElSlider)
-componentMap.set('ElInputNumber', ElInputNumber)
-componentMap.set('ElTreeSelect', ElTreeSelect)
+componentMap.set('ElInput', ElInput);
+componentMap.set('ElSwitch', ElSwitch);
+componentMap.set('ElRate', ElRate);
+componentMap.set('ElSlider', ElSlider);
+componentMap.set('ElInputNumber', ElInputNumber);
 // Custom
-componentMap.set('CustomDatePicker', CustomDatePicker)
-componentMap.set('CustomTimePicker', CustomTimePicker)
-componentMap.set('CustomTreeSelect', CustomTreeSelect)
-componentMap.set('CustomSelect', CustomSelect)
-
+componentMap.set('CustomCascader', CustomCascader);
+componentMap.set('CustomCheckbox', CustomCheckbox);
+componentMap.set('CustomDatePicker', CustomDatePicker);
+componentMap.set('CustomColorPicker', CustomColorPicker);
+componentMap.set('CustomDivider', CustomDivider);
+componentMap.set('CustomRadio', CustomRadio);
+componentMap.set('CustomSelect', CustomSelect);
+componentMap.set('CustomTimePicker', CustomTimePicker);
+componentMap.set('CustomTree', CustomTree);
+componentMap.set('CustomTreeSelect', CustomTreeSelect);
+componentMap.set('CustomAutocomplete', CustomAutocomplete);
 /**
  * 注册新的表单项组件
  *
@@ -69,7 +57,7 @@ componentMap.set('CustomSelect', CustomSelect)
  * @param component Component
  */
 export function add(compName: ComponentType, component: Component) {
-  componentMap.set(compName, component)
+  componentMap.set(compName, component);
 }
 
 /**
@@ -79,7 +67,7 @@ export function add(compName: ComponentType, component: Component) {
  * @param compName ComponentType
  */
 export function del(compName: ComponentType) {
-  componentMap.delete(compName)
+  componentMap.delete(compName);
 }
 
-export { componentMap }
+export { componentMap };

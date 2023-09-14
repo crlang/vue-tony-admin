@@ -10,17 +10,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, toRaw } from 'vue'
-import { ElButton } from 'element-plus'
-import { BasicTable, useTable } from '@/components/BasicTable'
-import { getBasicColumns } from './data'
-import { treeDemoListApi } from '@/api/demo/tree'
-import { useMessage } from '@/hooks/web/useMessage'
+import { defineComponent, toRaw } from 'vue';
+import { ElButton } from 'element-plus';
+import { BasicTable, useTable } from '@/components/BasicTable';
+import { getBasicColumns } from './data';
+import { treeDemoListApi } from '@/api/demo/tree';
+import { useMessage } from '@/hooks/web/useMessage';
 
 export default defineComponent({
   components: { ElButton, BasicTable },
   setup() {
-    const { createMessage } = useMessage()
+    const { createMessage } = useMessage();
 
     const [register, { expandAll, collapseAll }] = useTable({
       title: '树形表格',
@@ -29,13 +29,13 @@ export default defineComponent({
       api: treeDemoListApi,
       searchInfo: { type: 2 },
       rowKey: 'code',
-    })
+    });
 
     function handleExpand(row, expand) {
-      createMessage.info(`点击了 - ${toRaw(row)?.id} - ${expand}`)
+      createMessage.info(`点击了 - ${toRaw(row)?.id} - ${expand}`);
     }
 
-    return { register, expandAll, collapseAll, handleExpand }
+    return { register, expandAll, collapseAll, handleExpand };
   },
-})
+});
 </script>

@@ -1,30 +1,26 @@
-import type { InjectionKey, ComputedRef, Ref } from 'vue'
-import { createContext, useContext } from '@/hooks/core/useContext'
+import type { InjectionKey, ComputedRef, Ref } from 'vue';
 
-/**
- * 页面上下文 Props
- *
- * Page context props
- */
+import { createContext, useContext } from '@/hooks/core/useContext';
+
 export interface PageContextProps {
   /**
    * 内容区高度
    *
    * Content height
    */
-  contentHeight: ComputedRef<number>
+  contentHeight: ComputedRef<number>;
   /**
    * 页面高度
    *
    * Page height
    */
-  pageHeight: Ref<number>
+  pageHeight: Ref<number>;
   /**
    * 设置页面高度
    *
    * Set page height
    */
-  setPageHeight: (height: number) => Promise<void>
+  setPageHeight: (height: number) => Promise<void>;
 }
 
 /**
@@ -32,7 +28,7 @@ export interface PageContextProps {
  *
  * Page context key
  */
-const key: InjectionKey<PageContextProps> = Symbol()
+const key: InjectionKey<PageContextProps> = Symbol();
 
 /**
  * 创建页面上下文
@@ -41,14 +37,14 @@ const key: InjectionKey<PageContextProps> = Symbol()
  * @param context
  */
 export function createPageContext(context: PageContextProps) {
-  return createContext<PageContextProps>(context, key, { native: true })
+  return createContext<PageContextProps>(context, key, { native: true });
 }
 
 /**
- * 使用页面上下文
+ * 页面上下文
  *
- * Reactive page Context
+ * Page Context
  */
 export function usePageContext() {
-  return useContext<PageContextProps>(key)
+  return useContext<PageContextProps>(key);
 }

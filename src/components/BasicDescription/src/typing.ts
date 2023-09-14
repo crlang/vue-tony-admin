@@ -1,5 +1,5 @@
-import type { EleDescriptions, EleDescriptionsItem } from '@/components/ElementPlus'
-import type { CollapseContainerProps } from '@/components/CollapseContainer'
+import type { EleDescriptions, EleDescriptionsItem } from '@/components/ElementPlus';
+import type { CollapseContainerProps } from '@/components/CollapseContainer';
 
 /**
  * 描述详情基础Props
@@ -12,25 +12,25 @@ export interface BasicDescProps extends EleDescriptions {
    *
    * Description configuration
    */
-  schema: DescItem[]
+  schema: DescItem[];
   /**
    * 描述数据
    *
    * Description data
    */
-  data: Recordable
+  data: Recordable;
   /**
    * 是否包含折叠组件
    *
    * Whether to include the collapse component
    */
-  useCollapse?: boolean
+  useCollapse?: boolean;
   /**
    * 折叠组件配置
    *
    * Collapse component configuration
    */
-  collapseOptions?: CollapseContainerProps
+  collapseOptions?: CollapseContainerProps;
 }
 
 /**
@@ -39,30 +39,31 @@ export interface BasicDescProps extends EleDescriptions {
  * Description data item
  */
 export interface DescItem extends EleDescriptionsItem {
+  label: string;
   /**
    * 描述项的字段名称
    *
    * The description item field name
    */
-  field: string
+  field: string;
   /**
    * 是否自定义插槽
    *
    * Whether to customize the slot
    */
-  isSlot?: boolean
+  isSlot?: boolean;
   /**
    * 是否显示当前描述项
    *
    * Whether to display the current description item
    */
-  show?: (...arg: any) => boolean
+  show?: (...arg: any) => boolean;
   /**
    * 自定义渲染描述项内容(VNode)
    *
    * Custom rendering description item content (VNode)
    */
-  render?: (val: any, data: Recordable) => JSX.Element | undefined | Element | string | number
+  render?: (val: any, data: Recordable) => JSX.Element | undefined | Element | string | number;
 }
 
 /**
@@ -71,7 +72,7 @@ export interface DescItem extends EleDescriptionsItem {
  * Instance Supported Methods
  */
 export interface DescActionMethods {
-  setDescProps(descProps: Partial<BasicDescProps>): void
+  setDescProps(descProps: Partial<BasicDescProps>): void;
 }
 
 /**
@@ -79,11 +80,11 @@ export interface DescActionMethods {
  *
  * Register description instance
  */
-export type Register = (descInstance: DescActionMethods) => void
+export type Register = (descInstance: DescActionMethods) => void;
 
 /**
  * 定义实例内容
  *
  * Define instance content
  */
-export type UseDescReturnType = [Register, DescActionMethods]
+export type UseDescReturnType = [Register, DescActionMethods];

@@ -1,6 +1,6 @@
 <template>
   <ElCol v-bind="actionColOptions">
-    <ElFormItem :class="prefixCls+'-submit-btns'">
+    <ElFormItem :class="prefixCls + '-submit-btns'">
       <slot name="resetBefore"></slot>
       <ElButton
         type="default"
@@ -34,16 +34,16 @@
 </template>
 
 <script lang="ts">
-import type { EleCol } from '@/components/ElementPlus'
+import type { EleCol } from '@/components/ElementPlus';
 
-import { defineComponent, computed } from 'vue'
-import { ElFormItem, ElCol, ElButton } from 'element-plus'
+import { defineComponent, computed } from 'vue';
+import { ElFormItem, ElCol, ElButton } from 'element-plus';
 
-import { SvgIcon } from '@/components/SvgIcon'
+import { SvgIcon } from '@/components/SvgIcon';
 
-import { useFormContext } from '../hooks/useFormContext'
-import { formActionProps } from '../props'
-import { BASIC_COL_LEN, BASIC_COL_SIZE } from '../const'
+import { useFormContext } from '../hooks/useFormContext';
+import { formActionProps } from '../props';
+import { BASIC_COL_LEN, BASIC_COL_SIZE } from '../const';
 
 export default defineComponent({
   name: 'BasicFormAction',
@@ -66,15 +66,15 @@ export default defineComponent({
      * Action column configuration
      */
     const actionColOptions = computed((): Partial<EleCol> => {
-      const { showAdvancedButton, actionSpan, actionColProps } = props
-      const actSpan = BASIC_COL_LEN - actionSpan
-      const advancedSpanObj = showAdvancedButton ? { span: actSpan < BASIC_COL_SIZE ? BASIC_COL_LEN : actSpan } : {}
+      const { showAdvancedButton, actionSpan, actionColProps } = props;
+      const actSpan = BASIC_COL_LEN - actionSpan;
+      const advancedSpanObj = showAdvancedButton ? { span: actSpan < BASIC_COL_SIZE ? BASIC_COL_LEN : actSpan } : {};
 
       return {
         ...advancedSpanObj,
         ...actionColProps,
-      }
-    })
+      };
+    });
     /**
      * 重置按钮配置
      *
@@ -83,8 +83,8 @@ export default defineComponent({
     const resetBtnOptions = computed(() => {
       return {
         ...props.resetButtonOptions,
-      }
-    })
+      };
+    });
     /**
      * 提交按钮配置
      *
@@ -93,8 +93,8 @@ export default defineComponent({
     const submitBtnOptions = computed(() => {
       return {
         ...props.submitButtonOptions,
-      }
-    })
+      };
+    });
 
     /**
      * 切换展开/收起
@@ -102,7 +102,7 @@ export default defineComponent({
      * Toggle expand/collapse
      */
     function toggleAdvanced() {
-      emit('toggle-advanced')
+      emit('toggle-advanced');
     }
 
     return {
@@ -111,7 +111,7 @@ export default defineComponent({
       submitBtnOptions,
       toggleAdvanced,
       ...useFormContext(),
-    }
+    };
   },
-})
+});
 </script>

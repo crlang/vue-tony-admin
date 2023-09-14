@@ -18,18 +18,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElButton } from 'element-plus'
-import { BasicTable, useTable } from '@/components/BasicTable'
-import { getBasicColumns, getBasicShortColumns } from './data'
-import { useMessage } from '@/hooks/web/useMessage'
-import { demoListApi } from '@/api/demo/table'
+import { defineComponent } from 'vue';
+import { ElButton } from 'element-plus';
+import { BasicTable, useTable } from '@/components/BasicTable';
+import { getBasicColumns, getBasicShortColumns } from './data';
+import { useMessage } from '@/hooks/web/useMessage';
+import { demoListApi } from '@/api/demo/table';
 
 export default defineComponent({
   components: { ElButton, BasicTable },
   setup() {
-    const { createMessage } = useMessage()
-    const columns = getBasicColumns()
+    const { createMessage } = useMessage();
+    const columns = getBasicColumns();
     const [registerTable, { setLoading, setColumns, getColumns, getDataSource, getRawDataSource, reload, getPagination, setPagination, toggleAllSelection }] = useTable({
       title: 'useTable示例',
       titleHelpMessage: '使用useTable调用表格内方法',
@@ -39,54 +39,54 @@ export default defineComponent({
       showTableSetting: true,
       onSelectionChange: (selection) => {
         // do something
-        console.info(selection)
+        console.info(selection);
       },
       showCheckboxColumn: true,
-    })
+    });
     function changeLoading() {
-      setLoading(true)
+      setLoading(true);
       setTimeout(() => {
-        setLoading(false)
-      }, 1000)
+        setLoading(false);
+      }, 1000);
     }
     function changeColumns() {
       // setColumns(['id', 'name', 'address'])
-      setColumns(getBasicShortColumns())
+      setColumns(getBasicShortColumns());
     }
     function reloadTable() {
-      setColumns(getBasicColumns())
+      setColumns(getBasicColumns());
 
-      reload()
+      reload();
     }
     function getColumn() {
-      createMessage.info('请在控制台查看！')
-      console.info(getColumns())
+      createMessage.info('请在控制台查看！');
+      console.info(getColumns());
     }
 
     function getTableData() {
-      createMessage.info('请在控制台查看！')
-      console.info(getDataSource())
+      createMessage.info('请在控制台查看！');
+      console.info(getDataSource());
     }
 
     function getTableRawData() {
-      createMessage.info('请在控制台查看！')
-      console.info(getRawDataSource())
+      createMessage.info('请在控制台查看！');
+      console.info(getRawDataSource());
     }
 
     function getPaginationInfo() {
-      createMessage.info('请在控制台查看！')
-      console.info(getPagination())
+      createMessage.info('请在控制台查看！');
+      console.info(getPagination());
     }
 
     function setPaginationInfo() {
       setPagination({
         currentPage: 2,
-      })
-      reload()
+      });
+      reload();
     }
 
     function toggleSelectedRows() {
-      toggleAllSelection()
+      toggleAllSelection();
     }
 
     return {
@@ -100,7 +100,7 @@ export default defineComponent({
       getPaginationInfo,
       setPaginationInfo,
       toggleSelectedRows,
-    }
+    };
   },
-})
+});
 </script>

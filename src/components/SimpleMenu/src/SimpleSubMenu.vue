@@ -4,10 +4,8 @@
     :name="item.path"
     :disabled="item?.disabled"
     :class="getLevelClass">
-    <Icon v-if="getIcon" :name="getIcon" />
-    <div v-if="collapsedShowTitle && getIsCollapseParent" class="mt-1 collapse-title">
-      {{ getName }}
-    </div>
+    <SvgIcon v-if="getIcon" :name="getIcon" />
+    <div v-if="collapsedShowTitle && getIsCollapseParent" :class="`${prefixCls}-collapse-title`">{{ getName }}</div>
     <template #title>
       <span :class="`${prefixCls}-sub-title`">{{ getName }}</span>
       <SimpleMenuTag :item="item" :collapseParent="getIsCollapseParent" />
@@ -19,14 +17,9 @@
     :class="getLevelClass"
     :collapsedShowTitle="collapsedShowTitle">
     <template #title>
-      <Icon v-if="getIcon" :name="getIcon" />
-      <div v-if="collapsedShowTitle && getIsCollapseParent" class="collapse-title">
-        {{ getName }}
-      </div>
-
-      <span v-show="getShowSubTitle" :class="`${prefixCls}-sub-title`">
-        {{ getName }}
-      </span>
+      <SvgIcon v-if="getIcon" :name="getIcon" />
+      <div v-if="collapsedShowTitle && getIsCollapseParent" :class="`${prefixCls}-collapse-title`">{{ getName }}</div>
+      <span v-show="getShowSubTitle" :class="`${prefixCls}-sub-title`">{{ getName }}</span>
       <SimpleMenuTag :item="item" :collapseParent="!!collapse && !!parent" />
     </template>
     <template v-for="childrenItem in item.children || []" :key="childrenItem.path">
@@ -36,16 +29,16 @@
 </template>
 
 <script lang="ts">
-import type { Menu as MenuType } from '@/router/types'
+import type { Menu as MenuType } from '@/router/types';
 
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed } from 'vue';
 
-import { useDesign } from '@/hooks/web/useDesign'
-import Icon from '@/components/Icon'
-import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
+import { useDesign } from '@/hooks/web/useDesign';
+import { SvgIcon } from '@/components/SvgIcon';
+import { createAsyncComponent } from '@/utils/factory/createAsyncComponent';
 
-import MenuItem from './components/MenuItem.vue'
-import SubMenu from './components/SubMenuItem.vue'
+import MenuItem from './components/MenuItem.vue';
+import SubMenu from './components/SubMenuItem.vue';
 
 export default defineComponent({
   name: 'SimpleSubMenu',
@@ -53,7 +46,7 @@ export default defineComponent({
     SubMenu,
     MenuItem,
     SimpleMenuTag: createAsyncComponent(() => import('./SimpleMenuTag.vue')),
-    Icon,
+    SvgIcon,
   },
   props: {
     item: {
@@ -65,24 +58,24 @@ export default defineComponent({
     collapse: Boolean,
   },
   setup(props) {
-    const { prefixCls } = useDesign('simple-menu')
+    const { prefixCls } = useDesign('simple-menu');
 
-    const getShowMenu = computed(() => !props.item?.meta?.hideMenu)
-    const getIcon = computed(() => props.item?.icon)
-    const getName = computed(() => props.item?.name)
-    const getShowSubTitle = computed(() => !props.collapse || !props.parent)
-    const getIsCollapseParent = computed(() => !!props.collapse && !!props.parent)
+    const getShowMenu = computed(() => !props.item?.meta?.hideMenu);
+    const getIcon = computed(() => props.item?.icon);
+    const getName = computed(() => props.item?.name);
+    const getShowSubTitle = computed(() => !props.collapse || !props.parent);
+    const getIsCollapseParent = computed(() => !!props.collapse && !!props.parent);
     const getLevelClass = computed(() => {
       return [
         {
           [`${prefixCls}__parent`]: props.parent,
           [`${prefixCls}__children`]: !props.parent,
         },
-      ]
-    })
+      ];
+    });
 
     function menuHasChildren(menuTreeItem: MenuType): boolean {
-      return !menuTreeItem.meta?.hideChildrenInMenu && Reflect.has(menuTreeItem, 'children') && !!menuTreeItem.children && menuTreeItem.children.length > 0
+      return !menuTreeItem.meta?.hideChildrenInMenu && Reflect.has(menuTreeItem, 'children') && !!menuTreeItem.children && menuTreeItem.children.length > 0;
     }
 
     return {
@@ -94,7 +87,7 @@ export default defineComponent({
       getShowSubTitle,
       getLevelClass,
       getIsCollapseParent,
-    }
+    };
   },
-})
+});
 </script>

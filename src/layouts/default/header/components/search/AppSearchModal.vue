@@ -48,35 +48,35 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, unref, ref, watch, nextTick } from 'vue'
-import { ElInput } from 'element-plus'
+import { computed, unref, ref, watch, nextTick } from 'vue';
+import { ElInput } from 'element-plus';
 
-import { SvgIcon } from '@/components/SvgIcon'
-import vClickOutside from '@/directives/clickOutside'
-import { useDesign } from '@/hooks/web/useDesign'
-import { useRefs } from '@/hooks/core/useRefs'
-import { useAppInject } from '@/hooks/web/useAppInject'
+import { SvgIcon } from '@/components/SvgIcon';
+import vClickOutside from '@/directives/clickOutside';
+import { useDesign } from '@/hooks/web/useDesign';
+import { useRefs } from '@/hooks/core/useRefs';
+import { useAppInject } from '@/hooks/web/useAppInject';
 
-import { useMenuSearch } from './useMenuSearch'
-import AppSearchFooter from './AppSearchFooter.vue'
+import { useMenuSearch } from './useMenuSearch';
+import AppSearchFooter from './AppSearchFooter.vue';
 
 const props = defineProps({
   visible: { type: Boolean },
-})
+});
 
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close']);
 
-const scrollWrap = ref(null)
-const inputRef = ref<Nullable<HTMLElement>>(null)
-const searchKey = ref('')
+const scrollWrap = ref(null);
+const inputRef = ref<Nullable<HTMLElement>>(null);
+const searchKey = ref('');
 
-const { prefixCls } = useDesign('header-search-modal')
-const [refs, setRefs] = useRefs()
-const { getIsMobile } = useAppInject()
+const { prefixCls } = useDesign('header-search-modal');
+const [refs, setRefs] = useRefs();
+const { getIsMobile } = useAppInject();
 
-const { handleSearch, searchResult, keyword, activeIndex, handleEnter, handleMouseenter } = useMenuSearch(refs, scrollWrap, emit)
+const { handleSearch, searchResult, keyword, activeIndex, handleEnter, handleMouseenter } = useMenuSearch(refs, scrollWrap, emit);
 
-const getIsNotData = computed(() => !keyword || unref(searchResult).length === 0)
+const getIsNotData = computed(() => !keyword || unref(searchResult).length === 0);
 
 const getClass = computed(() => {
   return [
@@ -84,23 +84,23 @@ const getClass = computed(() => {
     {
       [`${prefixCls}--mobile`]: unref(getIsMobile),
     },
-  ]
-})
+  ];
+});
 
 watch(
   () => props.visible,
   (visible: boolean) => {
     visible &&
       nextTick(() => {
-        searchKey.value = ''
-        unref(inputRef)?.focus()
-      })
+        searchKey.value = '';
+        unref(inputRef)?.focus();
+      });
   },
-)
+);
 
 function handleClose() {
-  searchResult.value = []
-  emit('close')
+  searchResult.value = [];
+  emit('close');
 }
 </script>
 

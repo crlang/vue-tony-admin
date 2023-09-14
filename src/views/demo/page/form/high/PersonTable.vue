@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { BasicTable, useTable, BasicColumn } from '@/components/BasicTable'
-import { demoListApi } from '@/api/demo/table'
+import { defineComponent } from 'vue';
+import { BasicTable, useTable, BasicColumn } from '@/components/BasicTable';
+import { demoListApi } from '@/api/demo/table';
 
 export default defineComponent({
   components: { BasicTable },
@@ -37,16 +37,16 @@ export default defineComponent({
           },
         ],
       },
-    ]
+    ];
 
     const [registerTable, { getDataSource }] = useTable({
       columns: columns,
       api: demoListApi,
       pagination: false,
-    })
+    });
 
     function handleEdit(record) {
-      record.onEdit?.(true)
+      record.onEdit?.(true);
     }
 
     function createActions(record) {
@@ -58,7 +58,7 @@ export default defineComponent({
         {
           btnText: '删除',
         },
-      ]
+      ];
     }
 
     return {
@@ -66,7 +66,7 @@ export default defineComponent({
       handleEdit,
       createActions,
       getDataSource,
-    }
+    };
   },
-})
+});
 </script>

@@ -1,6 +1,6 @@
-import type { AppRouteModule } from '@/router/types'
+import type { AppRouteModule } from '@/router/types';
 
-import { getParentLayout, LAYOUT } from '@/router/constant'
+import { getParentLayout, LAYOUT } from '@/router/constant';
 
 const level: AppRouteModule = {
   path: '/level',
@@ -9,7 +9,7 @@ const level: AppRouteModule = {
   redirect: '/level/menu1/menu1-1/menu1-1-1',
   meta: {
     orderNo: 8,
-    icon: 'ep:finished',
+    icon: 'm_finished',
     title: '多级菜单',
   },
 
@@ -62,6 +62,6 @@ const level: AppRouteModule = {
       },
     },
   ],
-}
+};
 
-export default level
+export default level;

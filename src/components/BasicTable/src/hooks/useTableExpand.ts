@@ -1,9 +1,9 @@
-import type { ComputedRef } from 'vue'
-import type { BasicTableProps } from '../typing'
+import type { ComputedRef } from 'vue';
+import type { BasicTableProps } from '../typing';
 
-import { computed, unref, ref, toRaw } from 'vue'
+import { computed, unref, ref, toRaw } from 'vue';
 
-import { warn } from '@/utils/log'
+import { warn } from '@/utils/log';
 
 /**
  * 处理展开表格
@@ -19,7 +19,7 @@ export function useTableExpand(propsRef: ComputedRef<BasicTableProps>, getDataSo
    *
    * Expand keys
    */
-  const expandRowKeys = ref<string[]>([])
+  const expandRowKeys = ref<string[]>([]);
 
   /**
    * 获取展开选项
@@ -29,8 +29,8 @@ export function useTableExpand(propsRef: ComputedRef<BasicTableProps>, getDataSo
   const getExpandOptions = computed(() => {
     return {
       expandRowKeys: unref(expandRowKeys),
-    }
-  })
+    };
+  });
 
   /**
    * 展开全部
@@ -38,8 +38,8 @@ export function useTableExpand(propsRef: ComputedRef<BasicTableProps>, getDataSo
    * Expand all
    */
   function expandAll() {
-    const keys = getTableDataKeys()
-    expandRowKeys.value = keys
+    const keys = getTableDataKeys();
+    expandRowKeys.value = keys;
   }
 
   /**
@@ -48,7 +48,7 @@ export function useTableExpand(propsRef: ComputedRef<BasicTableProps>, getDataSo
    * Collapse all
    */
   function collapseAll() {
-    expandRowKeys.value = []
+    expandRowKeys.value = [];
   }
 
   /**
@@ -58,25 +58,25 @@ export function useTableExpand(propsRef: ComputedRef<BasicTableProps>, getDataSo
    * @param data Recordable[]
    */
   function getTableDataKeys(data?: Recordable[]) {
-    const keys: string[] = []
-    const { childrenColumnName } = unref(propsRef)
-    const keyName = unref(getRowKey)
+    const keys: string[] = [];
+    const { childrenColumnName } = unref(propsRef);
+    const keyName = unref(getRowKey);
     if (!keyName) {
-      warn('cannot execute expand/collapse, "rowKey" must exist')
-      return
+      warn('cannot execute expand/collapse, "rowKey" must exist');
+      return;
     }
 
     toRaw(data || unref(getDataSourceRef)).forEach((item) => {
-      keys.push(item[keyName as string])
+      keys.push(item[keyName as string]);
 
-      const children = item[childrenColumnName || 'children']
+      const children = item[childrenColumnName || 'children'];
       if (children?.length) {
-        keys.push(...getTableDataKeys(children))
+        keys.push(...getTableDataKeys(children));
       }
-    })
+    });
 
-    return keys
+    return keys;
   }
 
-  return { getExpandOptions, expandAll, collapseAll }
+  return { getExpandOptions, expandAll, collapseAll };
 }

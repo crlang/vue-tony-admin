@@ -41,4 +41,4 @@ export const treeData = [
       { label: 'leaf 2-2-1', key: '2-2-1', isLeaf: true },
     ],
   },
-]
+];

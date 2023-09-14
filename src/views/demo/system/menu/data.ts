@@ -1,8 +1,8 @@
-import { BasicColumn } from '@/components/BasicTable'
-import { BasicFormSchema } from '@/components/BasicForm'
-import { h } from 'vue'
-import { Icon } from '@/components/Icon'
-import { ElTag } from 'element-plus'
+import { BasicColumn } from '@/components/BasicTable';
+import { BasicFormSchema } from '@/components/BasicForm';
+import { h } from 'vue';
+import { SvgIcon } from '@/components/SvgIcon';
+import { ElTag } from 'element-plus';
 
 export const columns: BasicColumn[] = [
   {
@@ -16,7 +16,7 @@ export const columns: BasicColumn[] = [
     prop: 'icon',
     width: 100,
     customRender: ({ record }) => {
-      return h(Icon, { name: record.icon })
+      return h(SvgIcon, { name: record.icon });
     },
   },
   {
@@ -38,11 +38,11 @@ export const columns: BasicColumn[] = [
     prop: 'status',
     width: 100,
     customRender: ({ record }) => {
-      const status = record.status
-      const enable = ~~status === 0
-      const color = enable ? 'success' : 'danger'
-      const text = enable ? '启用' : '停用'
-      return h(ElTag, { type: color }, () => text)
+      const status = record.status;
+      const enable = ~~status === 0;
+      const color = enable ? 'success' : 'danger';
+      const text = enable ? '启用' : '停用';
+      return h(ElTag, { type: color }, () => text);
     },
   },
   {
@@ -50,11 +50,11 @@ export const columns: BasicColumn[] = [
     prop: 'createTime',
     width: 180,
   },
-]
+];
 
-const isDir = (type: string) => type === '0'
-const isMenu = (type: string) => type === '1'
-const isButton = (type: string) => type === '2'
+const isDir = (type: string) => type === '0';
+const isMenu = (type: string) => type === '1';
+const isButton = (type: string) => type === '2';
 
 export const searchFormSchema: BasicFormSchema[] = [
   {
@@ -75,7 +75,7 @@ export const searchFormSchema: BasicFormSchema[] = [
     },
     colProps: { span: 8 },
   },
-]
+];
 
 export const formSchema: BasicFormSchema[] = [
   {
@@ -186,4 +186,4 @@ export const formSchema: BasicFormSchema[] = [
     },
     ifShow: ({ values }) => !isButton(values.type),
   },
-]
+];

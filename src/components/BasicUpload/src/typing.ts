@@ -1,4 +1,8 @@
-import { UploadApiResult } from '@/api/sys/model/uploadModel'
+export interface UploadApiResult {
+  message: string;
+  code: number;
+  url: string;
+}
 
 /**
  * 上传结果状态
@@ -17,55 +21,55 @@ export interface FileItem {
    *
    * Base64 thumb
    */
-  thumbUrl?: string
+  thumbUrl?: string;
   /**
    * 文件名称
    *
    * File name
    */
-  name: string
+  name: string;
   /**
    * 文件类型
    *
    * File type
    */
-  type?: string
+  type?: string;
   /**
    * 文件大小
    *
    * File size
    */
-  size: string | number
+  size: string | number;
   /**
    * 文件上传进度
    *
    * File upload progress
    */
-  percent: number
+  percent: number;
   /**
    * 文件
    *
    * File
    */
-  file: File
+  file: File;
   /**
    * 上传状态
    *
    * Upload status
    */
-  status?: UploadResultStatus
+  status?: UploadResultStatus;
   /**
    * 上传结果
    *
    * Upload response results
    */
-  responseData?: UploadApiResult | string
+  responseData?: UploadApiResult | string;
   /**
    * 唯一ID
    *
    * uuid
    */
-  uuid: string
+  uuid: string;
 }
 
 export interface PreviewFileItem {
@@ -74,19 +78,19 @@ export interface PreviewFileItem {
    *
    * Thumb url
    */
-  url: string
+  url: string;
   /**
    * 文件名称
    *
    * File name
    */
-  name: string
+  name: string;
   /**
    * 文件类型
    *
    * File type
    */
-  type: string
+  type: string;
 }
 
 export interface FileBasicColumn {
@@ -95,29 +99,29 @@ export interface FileBasicColumn {
    *
    * Table prop
    */
-  prop: string
+  prop: string;
   /**
    * 表格宽度
    *
    * Table width
    */
-  width?: number
+  width?: number;
   /**
    * 表格标题
    *
    * Table label
    */
-  label: string
+  label: string;
   /**
    * 对齐方式
    *
    * Table align
    */
-  align?: 'left' | 'right' | 'center'
+  align?: 'left' | 'right' | 'center';
   /**
    * 自定义渲染函数
    *
    * Custom render
    */
-  customRender?: Fn
+  customRender?: Fn;
 }

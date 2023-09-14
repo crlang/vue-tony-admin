@@ -1,6 +1,6 @@
-import { ElTag } from 'element-plus'
-import { BasicColumn } from '@/components/BasicTable'
-import { ErrorTypeEnum } from '@/enums/exceptionEnum'
+import { ElTag } from 'element-plus';
+import { BasicColumn } from '@/components/BasicTable';
+import { ErrorTypeEnum } from '@/enums/exceptionEnum';
 
 export function getLogColumns(): BasicColumn[] {
   return [
@@ -10,9 +10,9 @@ export function getLogColumns(): BasicColumn[] {
       width: 80,
       customRender: ({ text }) => {
         const color =
-          text === ErrorTypeEnum.VUE ? 'success' : text === ErrorTypeEnum.RESOURCE ? 'warning' : text === ErrorTypeEnum.PROMISE ? 'primary' : ErrorTypeEnum.AJAX ? 'danger' : 'info'
+          text === ErrorTypeEnum.VUE ? 'success' : text === ErrorTypeEnum.RESOURCE ? 'warning' : text === ErrorTypeEnum.PROMISE ? 'primary' : ErrorTypeEnum.AJAX ? 'danger' : 'info';
 
-        return <ElTag type={color}>{() => text}</ElTag>
+        return <ElTag type={color}>{() => text}</ElTag>;
       },
     },
     {
@@ -44,7 +44,7 @@ export function getLogColumns(): BasicColumn[] {
       prop: 'stack',
       label: 'stack信息',
     },
-  ]
+  ];
 }
 
 export function getDescSchema(): any {
@@ -52,6 +52,6 @@ export function getDescSchema(): any {
     return {
       field: column.prop!,
       label: column.label,
-    }
-  })
+    };
+  });
 }

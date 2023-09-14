@@ -11,15 +11,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElAlert } from 'element-plus'
+import { defineComponent } from 'vue';
+import { ElAlert } from 'element-plus';
 
-import { StrengthMeter } from '@/components/StrengthMeter'
+import { StrengthMeter } from '@/components/StrengthMeter';
 
 export default defineComponent({
   components: {
     ElAlert,
     StrengthMeter,
   },
-})
+});
 </script>

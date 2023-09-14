@@ -1,5 +1,5 @@
-import { ContentEnum, RouterTransitionEnum } from '@/enums/appEnum'
-import { MenuModeEnum, MenuTypeEnum, TopMenuAlignEnum, TriggerEnum, MixSidebarTriggerEnum } from '@/enums/menuEnum'
+import { RouterTransitionEnum } from '@/enums/appEnum';
+import { MenuModeEnum, MenuTypeEnum, TopMenuAlignEnum, TriggerEnum, MixSidebarTriggerEnum } from '@/enums/menuEnum';
 
 export enum HandlerEnum {
   CHANGE_LAYOUT,
@@ -16,32 +16,25 @@ export enum HandlerEnum {
   MENU_SHOW_SIDEBAR,
   MENU_THEME,
   MENU_SPLIT,
-  MENU_FIXED,
   MENU_CLOSE_MIX_SIDEBAR_ON_CHANGE,
   MENU_TRIGGER_MIX_SIDEBAR,
-  MENU_FIXED_MIX_SIDEBAR,
 
   // header
   HEADER_SHOW,
   HEADER_THEME,
   HEADER_FIXED,
 
-  HEADER_SEARCH,
-
+  TABS_SHOW,
   TABS_SHOW_QUICK,
   TABS_SHOW_REDO,
-  TABS_SHOW,
-  TABS_SHOW_FOLD,
+  TABS_SHOW_FULLSCREEN,
 
   LOCK_TIME,
-  FULL_CONTENT,
-  CONTENT_MODE,
   SHOW_BREADCRUMB,
   SHOW_BREADCRUMB_ICON,
   GRAY_MODE,
   COLOR_WEAK,
   SHOW_LOGO,
-  SHOW_FOOTER,
 
   ROUTER_TRANSITION,
   OPEN_PROGRESS,
@@ -52,17 +45,6 @@ export enum HandlerEnum {
   HEADER_ERROR_LOG,
   HEADER_NOTICE,
 }
-
-export const contentModeOptions = [
-  {
-    value: ContentEnum.FULL,
-    label: '流式',
-  },
-  {
-    value: ContentEnum.FIXED,
-    label: '定宽',
-  },
-]
 
 export const topMenuAlignOptions = [
   {
@@ -77,7 +59,7 @@ export const topMenuAlignOptions = [
     value: TopMenuAlignEnum.END,
     label: '居右',
   },
-]
+];
 
 export const getMenuTriggerOptions = (hideTop: boolean) => {
   return [
@@ -97,10 +79,11 @@ export const getMenuTriggerOptions = (hideTop: boolean) => {
           label: '顶部',
         },
       ]),
-  ]
-}
+  ];
+};
 
 export const routerTransitionOptions = [
+  RouterTransitionEnum.NONE,
   RouterTransitionEnum.ZOOM_FADE,
   RouterTransitionEnum.FADE,
   RouterTransitionEnum.ZOOM_OUT,
@@ -111,8 +94,8 @@ export const routerTransitionOptions = [
   return {
     label: item,
     value: item,
-  }
-})
+  };
+});
 
 export const menuTypeList = [
   {
@@ -135,7 +118,7 @@ export const menuTypeList = [
     mode: MenuModeEnum.INLINE,
     type: MenuTypeEnum.MIX_SIDEBAR,
   },
-]
+];
 
 export const mixSidebarTriggerOptions = [
   {
@@ -146,4 +129,4 @@ export const mixSidebarTriggerOptions = [
     value: MixSidebarTriggerEnum.CLICK,
     label: '点击',
   },
-]
+];

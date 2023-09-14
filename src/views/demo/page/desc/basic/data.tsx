@@ -1,13 +1,13 @@
-import { DescItem } from '@/components/BasicDescription'
-import { BasicColumn } from '@/components/BasicTable'
-import { ElTag, ElButton } from 'element-plus'
+import { DescItem } from '@/components/BasicDescription';
+import { BasicColumn } from '@/components/BasicTable';
+import { ElTag, ElButton } from 'element-plus';
 
 export const refundData = {
   a1: '1000000000',
   a2: '已取货',
   a3: '1234123421',
   a4: '3214321432',
-}
+};
 
 export const personData = {
   b1: '付小小',
@@ -15,7 +15,7 @@ export const personData = {
   b3: '菜鸟仓储',
   b4: '浙江省杭州市西湖区万塘路18号',
   b5: '无',
-}
+};
 export const refundSchema: DescItem[] = [
   {
     field: 'a1',
@@ -33,7 +33,7 @@ export const refundSchema: DescItem[] = [
     field: 'a4',
     label: '子订单',
   },
-]
+];
 export const personSchema: DescItem[] = [
   {
     field: 'b1',
@@ -55,7 +55,7 @@ export const personSchema: DescItem[] = [
     field: 'b5',
     label: '备注',
   },
-]
+];
 
 export const refundTableSchema: BasicColumn[] = [
   {
@@ -67,7 +67,7 @@ export const refundTableSchema: BasicColumn[] = [
         <ElButton text size='small'>
           {() => record.t1}
         </ElButton>
-      )
+      );
     },
   },
   {
@@ -90,7 +90,7 @@ export const refundTableSchema: BasicColumn[] = [
     label: '金额',
     prop: 't6',
   },
-]
+];
 export const refundTimeTableSchema: BasicColumn[] = [
   {
     label: '时间',
@@ -104,7 +104,7 @@ export const refundTimeTableSchema: BasicColumn[] = [
     label: '状态',
     prop: 't3',
     customRender: ({ record }) => {
-      return <ElTag type='success'>{record.t3}</ElTag>
+      return <ElTag type='success'>{record.t3}</ElTag>;
     },
   },
   {
@@ -115,7 +115,7 @@ export const refundTimeTableSchema: BasicColumn[] = [
     label: '耗时',
     prop: 't5',
   },
-]
+];
 
 export const refundTableData: any[] = [
   {
@@ -150,7 +150,7 @@ export const refundTableData: any[] = [
     t5: 2,
     t6: 2.0,
   },
-]
+];
 
 export const refundTimeTableData: any[] = [
   {
@@ -181,4 +181,4 @@ export const refundTimeTableData: any[] = [
     t4: '用户',
     t5: '1h',
   },
-]
+];

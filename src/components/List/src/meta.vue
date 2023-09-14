@@ -24,8 +24,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { useDesign } from '@/hooks/web/useDesign'
+import { defineComponent } from 'vue';
+import { useDesign } from '@/hooks/web/useDesign';
 
 export default defineComponent({
   name: 'ListMeta',
@@ -45,11 +45,11 @@ export default defineComponent({
     },
   },
   setup() {
-    const { prefixCls } = useDesign('basic-list-item-meta')
+    const { prefixCls } = useDesign('basic-list-item-meta');
 
     return {
       prefixCls,
-    }
+    };
   },
-})
+});
 </script>

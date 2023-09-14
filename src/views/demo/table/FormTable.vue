@@ -12,12 +12,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElButton, ElInput } from 'element-plus'
-import { BasicTable, useTable } from '@/components/BasicTable'
-import { getBasicColumns, getFormConfig } from './data'
-import { demoListApi } from '@/api/demo/table'
-import { useMessage } from '@/hooks/web/useMessage'
+import { defineComponent } from 'vue';
+import { ElButton, ElInput } from 'element-plus';
+import { BasicTable, useTable } from '@/components/BasicTable';
+import { getBasicColumns, getFormConfig } from './data';
+import { demoListApi } from '@/api/demo/table';
+import { useMessage } from '@/hooks/web/useMessage';
 
 export default defineComponent({
   components: { ElButton, ElInput, BasicTable },
@@ -30,20 +30,20 @@ export default defineComponent({
       useSearchForm: true,
       formConfig: getFormConfig(),
       rowKey: 'id',
-    })
-    const { createInfoModal } = useMessage()
+    });
+    const { createInfoModal } = useMessage();
 
     function getFormValues() {
       createInfoModal({
         title: '温馨提示',
         message: JSON.stringify(getFormRef().getFieldsValue()),
-      })
+      });
     }
 
     return {
       registerTable,
       getFormValues,
-    }
+    };
   },
-})
+});
 </script>

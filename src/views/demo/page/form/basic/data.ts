@@ -1,4 +1,4 @@
-import { BasicFormSchema } from '@/components/BasicForm'
+import { BasicFormSchema } from '@/components/BasicForm';
 
 export const schemas: BasicFormSchema[] = [
   {
@@ -100,7 +100,7 @@ export const schemas: BasicFormSchema[] = [
     component: 'ElSelect',
     label: ' ',
     show: ({ model }) => {
-      return model.disclosure === '2'
+      return model.disclosure === '2';
     },
     componentProps: {
       placeholder: '公开给',
@@ -121,4 +121,4 @@ export const schemas: BasicFormSchema[] = [
       ],
     },
   },
-]
+];

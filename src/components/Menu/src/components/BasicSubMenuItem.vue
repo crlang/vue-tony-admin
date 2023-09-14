@@ -18,13 +18,13 @@
 </template>
 
 <script lang="ts">
-import type { Menu as MenuType } from '@/router/types'
+import type { Menu as MenuType } from '@/router/types';
 
-import { defineComponent, computed } from 'vue'
-import { ElSubMenu, ElMenuItem } from 'element-plus'
+import { defineComponent, computed } from 'vue';
+import { ElSubMenu, ElMenuItem } from 'element-plus';
 
-import { itemProps } from '../props'
-import MenuItemContent from './MenuItemContent.vue'
+import { itemProps } from '../props';
+import MenuItemContent from './MenuItemContent.vue';
 
 export default defineComponent({
   name: 'BasicSubMenuItem',
@@ -32,14 +32,14 @@ export default defineComponent({
   components: { ElSubMenu, ElMenuItem, MenuItemContent },
   props: itemProps,
   setup(props) {
-    const getShowMenu = computed(() => !props.item.meta?.hideMenu)
+    const getShowMenu = computed(() => !props.item.meta?.hideMenu);
     function menuHasChildren(menuTreeItem: MenuType): boolean {
-      return !menuTreeItem.meta?.hideChildrenInMenu && Reflect.has(menuTreeItem, 'children') && !!menuTreeItem.children && menuTreeItem.children.length > 0
+      return !menuTreeItem.meta?.hideChildrenInMenu && Reflect.has(menuTreeItem, 'children') && !!menuTreeItem.children && menuTreeItem.children.length > 0;
     }
     return {
       menuHasChildren,
       getShowMenu,
-    }
+    };
   },
-})
+});
 </script>

@@ -1,5 +1,5 @@
-import type { ComputedRef } from 'vue'
-import type { EleButton, EleDrawer } from '@/components/ElementPlus'
+import type { ComputedRef } from 'vue';
+import type { EleButton, EleDrawer } from '@/components/ElementPlus';
 
 /**
  * 抽屉基础Props
@@ -12,67 +12,67 @@ export interface BasicDrawerProps extends EleDrawer {
    *
    * Bind value (show/hide)
    */
-  modelValue?: boolean
+  modelValue?: boolean;
   /**
    * 抽屉标题
    *
    * Drawer title
    */
-  title?: string
+  title?: string;
   /**
    * 是否为详情模式（带返回按钮）
    *
    * Whether it is in detail mode (with back button)
    */
-  isDetail?: boolean
+  isDetail?: boolean;
   /**
    * 是否显示加载状态
    *
    * Whether to show loading
    */
-  loading?: boolean
+  loading?: boolean;
   /**
    * 加载提示文字
    *
    * Loading text
    */
-  loadingText?: string
+  loadingText?: string;
   /**
    * 关闭前触发的方法
    *
    * Method triggered before closing
    */
-  closeFn?: () => Promise<boolean>
+  closeFn?: () => Promise<boolean>;
   /**
    * 是否显示脚部
    *
    * Whether to display the footer
    */
-  showFooter?: boolean
+  showFooter?: boolean;
   /**
    * 是否显示确认按钮
    *
    * Whether to show the confirm button
    */
-  showConfirmBtn?: boolean
+  showConfirmBtn?: boolean;
   /**
    * 确认按钮配置，同 ElButton
    *
    * Confirm button configuration, same as ElButton
    */
-  confirmOptions?: EleButton
+  confirmOptions?: EleButton;
   /**
    * 是否显示取消按钮
    *
    * Whether to show the cancel button
    */
-  showCancelBtn?: boolean
+  showCancelBtn?: boolean;
   /**
    * 取消按钮配置，同 ElButton
    *
    * Confirm button configuration, same as ElButton
    */
-  cancelOptions?: EleButton
+  cancelOptions?: EleButton;
 }
 
 /**
@@ -86,13 +86,13 @@ export interface DrawerInstanceMethods {
    *
    * Set drawer props
    */
-  setDrawerProps: (props: Partial<BasicDrawerProps> | boolean) => void
+  setDrawerProps: (props: Partial<BasicDrawerProps> | boolean) => void;
   /**
    * 显示/隐藏抽屉-方法内部生成
    *
    * Emit show/hide drawer - generated inside the method
    */
-  emitVisible?: (visible: boolean, uid: number) => void
+  emitVisible?: (visible: boolean, uid: number) => void;
 }
 
 /**
@@ -106,19 +106,19 @@ export interface DrawerActionMethods extends DrawerInstanceMethods {
    *
    * Open drawer
    */
-  openDrawer: <T = any>(visible?: boolean, data?: T, openOnSet?: boolean) => void
+  openDrawer: <T = any>(visible?: boolean, data?: T, openOnSet?: boolean) => void;
   /**
    * 关闭抽屉
    *
    * Close drawer
    */
-  closeDrawer: () => void
+  closeDrawer: () => void;
   /**
    * 获取抽屉状态
    *
    * Get drawer visible status
    */
-  getVisible?: ComputedRef<boolean>
+  getVisible?: ComputedRef<boolean>;
 }
 
 /**
@@ -126,7 +126,7 @@ export interface DrawerActionMethods extends DrawerInstanceMethods {
  *
  * Register instance function
  */
-export type RegisterFn = (drawerInstance: DrawerInstanceMethods, uuid?: string) => void
+export type RegisterFn = (drawerInstance: DrawerInstanceMethods, uuid?: string) => void;
 
 /**
  * 内部实例支持的方法
@@ -139,25 +139,25 @@ export interface ReturnInnerMethods extends DrawerInstanceMethods {
    *
    * Close drawer
    */
-  closeDrawer: () => void
+  closeDrawer: () => void;
   /**
    * 改变内容loading状态
    *
    * Change content loading state
    */
-  changeLoading: (loading: boolean) => void
+  changeLoading: (loading: boolean) => void;
   /**
    * 改变确认按钮loading状态
    *
    * Change the loading state of the confirm button
    */
-  changeConfirmLoading: (loading: boolean) => void
+  changeConfirmLoading: (loading: boolean) => void;
   /**
    * 获取抽屉状态
    *
    * Get drawer visible status
    */
-  getVisible?: ComputedRef<boolean>
+  getVisible?: ComputedRef<boolean>;
 }
 
 /**
@@ -165,11 +165,11 @@ export interface ReturnInnerMethods extends DrawerInstanceMethods {
  *
  * Define instance content
  */
-export type UseDrawerReturnType = [RegisterFn, DrawerActionMethods]
+export type UseDrawerReturnType = [RegisterFn, DrawerActionMethods];
 
 /**
  * 定义内部实例返回内容
  *
  * Define inner instance return content
  */
-export type UseDrawerInnerReturnType = [RegisterFn, ReturnInnerMethods]
+export type UseDrawerInnerReturnType = [RegisterFn, ReturnInnerMethods];

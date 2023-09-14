@@ -1,21 +1,23 @@
 <template>
-  <span @click="toggleCollapsed">
-    <SvgIcon :name="getCollapsed ? 'indent' : 'outdent'" />
-  </span>
+  <SiderTrigger v-if="sider" />
+  <HeaderTrigger v-else />
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
-import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
-import { SvgIcon } from '@/components/SvgIcon'
+import SiderTrigger from './SiderTrigger.vue';
+import HeaderTrigger from './HeaderTrigger.vue';
 
 export default defineComponent({
   name: 'LayoutTrigger',
-  components: { SvgIcon },
-  setup() {
-    const { getCollapsed, toggleCollapsed } = useMenuSetting()
-    return { getCollapsed, toggleCollapsed }
+  components: { SiderTrigger, HeaderTrigger },
+  props: {
+    sider: {
+      type: Boolean,
+      default: true,
+    },
   },
-})
+  setup() {},
+});
 </script>

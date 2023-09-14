@@ -32,4 +32,4 @@ export const basicProps = {
     type: [Array, String] as PropType<string | string[]>,
     default: '',
   },
-}
+};

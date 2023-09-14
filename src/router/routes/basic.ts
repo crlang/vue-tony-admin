@@ -1,5 +1,6 @@
-import type { AppRouteRecordRaw } from '@/router/types'
-import { REDIRECT_NAME, LAYOUT, EXCEPTION_COMPONENT, PAGE_NOT_FOUND_NAME } from '@/router/constant'
+import type { AppRouteRecordRaw } from '@/router/types';
+
+import { REDIRECT_NAME, LAYOUT, EXCEPTION_COMPONENT, PAGE_NOT_FOUND_NAME } from '@/router/constant';
 
 // 404 on a page
 export const PAGE_NOT_FOUND_ROUTE: AppRouteRecordRaw = {
@@ -23,7 +24,7 @@ export const PAGE_NOT_FOUND_ROUTE: AppRouteRecordRaw = {
       },
     },
   ],
-}
+};
 
 export const REDIRECT_ROUTE: AppRouteRecordRaw = {
   path: '/redirect',
@@ -36,7 +37,7 @@ export const REDIRECT_ROUTE: AppRouteRecordRaw = {
   },
   children: [
     {
-      path: '/redirect/:path(.*)',
+      path: '/redirect/:path(.*)/:_redirect_type(.*)/:_origin_params(.*)?',
       name: REDIRECT_NAME,
       component: () => import('@/views/sys/redirect/index.vue'),
       meta: {
@@ -45,7 +46,7 @@ export const REDIRECT_ROUTE: AppRouteRecordRaw = {
       },
     },
   ],
-}
+};
 
 export const ERROR_LOG_ROUTE: AppRouteRecordRaw = {
   path: '/error-log',
@@ -69,4 +70,4 @@ export const ERROR_LOG_ROUTE: AppRouteRecordRaw = {
       },
     },
   ],
-}
+};

@@ -13,14 +13,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElTabs, ElTabPane } from 'element-plus'
-import { ScrollContainer } from '@/components/ScrollContainer'
-import { settingList } from './data'
-import BaseSetting from './BaseSetting.vue'
-import SecureSetting from './SecureSetting.vue'
-import AccountBind from './AccountBind.vue'
-import MsgNotify from './MsgNotify.vue'
+import { defineComponent } from 'vue';
+import { ElTabs, ElTabPane } from 'element-plus';
+import { ScrollContainer } from '@/components/ScrollContainer';
+import { settingList } from './data';
+import BaseSetting from './BaseSetting.vue';
+import SecureSetting from './SecureSetting.vue';
+import AccountBind from './AccountBind.vue';
+import MsgNotify from './MsgNotify.vue';
 
 export default defineComponent({
   components: {
@@ -36,9 +36,9 @@ export default defineComponent({
     return {
       prefixCls: 'account-setting',
       settingList,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss">

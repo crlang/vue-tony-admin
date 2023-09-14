@@ -25,20 +25,20 @@
 </template>
 
 <script lang="ts">
-import { BasicForm, useForm } from '@/components/BasicForm'
-import { ElButton, ElCard } from 'element-plus'
-import { defineComponent, ref } from 'vue'
-import PersonTable from './PersonTable.vue'
-import { schemas, taskSchemas } from './data'
-import { useMessage } from '@/hooks/web/useMessage'
+import { BasicForm, useForm } from '@/components/BasicForm';
+import { ElButton, ElCard } from 'element-plus';
+import { defineComponent, ref } from 'vue';
+import PersonTable from './PersonTable.vue';
+import { schemas, taskSchemas } from './data';
+import { useMessage } from '@/hooks/web/useMessage';
 
 export default defineComponent({
   name: 'FormHightPage',
   components: { ElButton, ElCard, BasicForm, PersonTable },
   setup() {
-    const tableRef = ref()
+    const tableRef = ref();
 
-    const { createMessage } = useMessage()
+    const { createMessage } = useMessage();
 
     const [register, { validate }] = useForm({
       labelWidth: 120,
@@ -47,7 +47,7 @@ export default defineComponent({
       },
       schemas: schemas,
       showActionButtonGroup: false,
-    })
+    });
 
     const [registerTask, { validate: validateTaskForm }] = useForm({
       labelWidth: 120,
@@ -56,20 +56,20 @@ export default defineComponent({
       },
       schemas: taskSchemas,
       showActionButtonGroup: false,
-    })
+    });
 
     async function submitAll() {
       try {
-        await Promise.all([validate(), validateTaskForm()])
+        await Promise.all([validate(), validateTaskForm()]);
       } catch (error) {
         // continue regardless of error
-        createMessage.error('请填写完整再提交')
+        createMessage.error('请填写完整再提交');
       }
     }
 
-    return { register, registerTask, submitAll, tableRef }
+    return { register, registerTask, submitAll, tableRef };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

@@ -1,5 +1,5 @@
-import type { ComputedRef } from 'vue'
-import type { EleDialog, EleButton } from '@/components/ElementPlus'
+import type { ComputedRef } from 'vue';
+import type { EleDialog, EleButton } from '@/components/ElementPlus';
 
 /**
  * 弹窗基础Props
@@ -7,25 +7,25 @@ import type { EleDialog, EleButton } from '@/components/ElementPlus'
  * Modal Basic Props
  */
 export interface BasicModalProps extends EleDialog, ModalCustomHeader, ModalCustomContent, ModalCustomFooter {
-  modelValue: Boolean
+  modelValue: Boolean;
   /**
    * 是否显示脚部
    *
    * Whether to display the footer
    */
-  showFooter?: Boolean
+  showFooter?: Boolean;
   /**
    * 关闭后是否滚动回顶部
    *
    * Whether to scroll back to the top after closing
    */
-  scrollTop?: Boolean
+  scrollTop?: Boolean;
   /**
    * 关闭前执行函数方法
    *
    * Execute the function before closing, return true before closing
    */
-  closeFn?: () => Promise<boolean>
+  closeFn?: () => Promise<boolean>;
 }
 
 export interface ModalCustomHeader {
@@ -34,19 +34,19 @@ export interface ModalCustomHeader {
    *
    * whether to show the close icon
    */
-  showClose?: boolean
+  showClose?: boolean;
   /**
    * 是否显示全屏图标
    *
    * Whether to show the full screen icon
    */
-  showFullscreen?: boolean
+  showFullscreen?: boolean;
   /**
    * 标题帮助文本
    *
    * Help text to the right of the title
    */
-  helpMessage?: string | string[]
+  helpMessage?: string | string[];
 }
 
 export interface ModalCustomContent {
@@ -54,19 +54,19 @@ export interface ModalCustomContent {
    * 是否开启自适应高度
    * Whether to enable adaptive height
    */
-  dyncHeight?: boolean
+  dyncHeight?: boolean;
   /**
    * 是否显示加载状态
    *
    * Whether to show loading
    */
-  loading?: boolean
+  loading?: boolean;
   /**
    * 加载提示文本
    *
    * Loading text
    */
-  loadingText?: string
+  loadingText?: string;
 }
 
 export interface ModalCustomFooter {
@@ -75,25 +75,25 @@ export interface ModalCustomFooter {
    *
    * Whether to show the confirm button
    */
-  showConfirmBtn?: boolean
+  showConfirmBtn?: boolean;
   /**
    * 确定按钮配置，同 ElButton
    *
    * Confirm button configuration, same as ElButton
    */
-  confirmOptions?: EleButton
+  confirmOptions?: EleButton;
   /**
    * 是否显示取消按钮
    *
    * Whether to show the cancel button
    */
-  showCancelBtn?: boolean
+  showCancelBtn?: boolean;
   /**
    * 取消按钮配置，同 ElButton
    *
    * Confirm button configuration, same as ElButton
    */
-  cancelOptions?: EleButton
+  cancelOptions?: EleButton;
 }
 
 /**
@@ -107,19 +107,19 @@ export interface ModalInstanceMethods {
    *
    * Set modal props
    */
-  setModalProps: (props: Partial<BasicModalProps>) => void
+  setModalProps: (props: Partial<BasicModalProps>) => void;
   /**
    * 显示/隐藏弹窗-方法内部生成
    *
    * Emit show/hide modal - generated inside the method
    */
-  emitVisible?: (visible: boolean, uid: number) => void
+  emitVisible?: (visible: boolean, uid: number) => void;
   /**
    * 刷新弹窗高度
    *
    * redo modal height
    */
-  redoModalHeight?: () => void
+  redoModalHeight?: () => void;
 }
 
 /**
@@ -133,19 +133,19 @@ export interface ModalActionMethods extends ModalInstanceMethods {
    *
    * Open modal
    */
-  openModal: <T = any>(props?: boolean, data?: T, openOnSet?: boolean) => void
+  openModal: <T = any>(props?: boolean, data?: T, openOnSet?: boolean) => void;
   /**
    * 关闭弹窗
    *
    * Open modal
    */
-  closeModal: () => void
+  closeModal: () => void;
   /**
    * 获取弹窗状态
    *
    * Get modal visible status
    */
-  getVisible?: ComputedRef<boolean>
+  getVisible?: ComputedRef<boolean>;
 }
 
 /**
@@ -153,7 +153,7 @@ export interface ModalActionMethods extends ModalInstanceMethods {
  *
  * Register instance function
  */
-export type RegisterFn = (modalMethods: ModalInstanceMethods, uuid?: string) => void
+export type RegisterFn = (modalMethods: ModalInstanceMethods, uuid?: string) => void;
 
 /**
  * 内部实例支持的方法
@@ -166,31 +166,31 @@ export interface ReturnInnerMethods extends ModalInstanceMethods {
    *
    * Open modal
    */
-  closeModal: () => void
+  closeModal: () => void;
   /**
    * 改变内容loading状态
    *
    * Change content loading state
    */
-  changeLoading: (loading: boolean) => void
+  changeLoading: (loading: boolean) => void;
   /**
    * 改变确认按钮loading状态
    *
    * Change the loading state of the confirm button
    */
-  changeConfirmLoading: (loading: boolean) => void
+  changeConfirmLoading: (loading: boolean) => void;
   /**
    * 获取弹窗状态
    *
    * Get modal visible status
    */
-  getVisible?: ComputedRef<boolean>
+  getVisible?: ComputedRef<boolean>;
   /**
    * 刷新弹窗高度
    *
    * redo modal height
    */
-  redoModalHeight: () => void
+  redoModalHeight: () => void;
 }
 
 /**
@@ -198,11 +198,11 @@ export interface ReturnInnerMethods extends ModalInstanceMethods {
  *
  * Define instance content
  */
-export type UseModalReturnType = [RegisterFn, ModalActionMethods]
+export type UseModalReturnType = [RegisterFn, ModalActionMethods];
 
 /**
  * 定义内部实例返回内容
  *
  * Define inner instance return content
  */
-export type UseModalInnerReturnType = [RegisterFn, ReturnInnerMethods]
+export type UseModalInnerReturnType = [RegisterFn, ReturnInnerMethods];

@@ -1,9 +1,9 @@
-import type { AppRouteModule } from '@/router/types'
+import type { AppRouteModule } from '@/router/types';
 
-import { getParentLayout, LAYOUT } from '@/router/constant'
-import { ExceptionEnum } from '@/enums/exceptionEnum'
+import { getParentLayout, LAYOUT } from '@/router/constant';
+import { ExceptionEnum } from '@/enums/exceptionEnum';
 
-const ExceptionPage = () => import('@/views/sys/exception/Exception.vue')
+const ExceptionPage = () => import('@/views/sys/exception/Exception.vue');
 
 const page: AppRouteModule = {
   path: '/page-demo',
@@ -12,7 +12,7 @@ const page: AppRouteModule = {
   redirect: '/page-demo/form/basic',
   meta: {
     orderNo: 4,
-    icon: 'ep:reading',
+    icon: 'm_reading',
     title: '页面',
   },
   children: [
@@ -249,6 +249,6 @@ const page: AppRouteModule = {
     },
     // =============================list end=============================
   ],
-}
+};
 
-export default page
+export default page;

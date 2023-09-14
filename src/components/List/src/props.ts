@@ -1,4 +1,4 @@
-export const basicProps = {}
+export const basicProps = {};
 
 export const itemProps = {
   /**
@@ -28,4 +28,4 @@ export const itemProps = {
     type: String,
     default: '',
   },
-}
+};

@@ -5,35 +5,35 @@
         text
         size="small"
         v-bind="action.buttonProps"
+        :class="`${prefixCls}--button`"
         @click="handleClick(action)">
-        <SvgIcon :name="action.svgName" v-if="action?.svgName" />
-        <Icon :name="action.iconName" v-else-if="action?.iconName" />
-        {{ action?.btnText || '' }}
+        <SvgIcon :class="`${prefixCls}--icon`" :name="action.iconName" v-if="action?.iconName" />
+        <span :class="`${prefixCls}--text`">{{ action?.btnText || '' }}</span>
       </el-button>
     </template>
   </div>
 </template>
 
 <script lang="ts">
-import type { EleButton } from '@/components/ElementPlus'
-import type { TableActionItem, scopeInfo, BasicColumn } from '../typing'
+import type { EleButton } from '@/components/ElementPlus';
+import type { TableActionItem, scopeInfo, BasicColumn } from '../typing';
 
-import { defineComponent, computed } from 'vue'
-import { ElButton } from 'element-plus'
-import { omit } from 'lodash-es'
+import { defineComponent, computed } from 'vue';
+import { ElButton } from 'element-plus';
+import { omit } from 'lodash-es';
 
-import { usePermission } from '@/hooks/web/usePermission'
-import { SvgIcon } from '@/components/SvgIcon'
-import { Icon } from '@/components/Icon'
-import { useMessage } from '@/hooks/web/useMessage'
+import { usePermission } from '@/hooks/web/usePermission';
+import { SvgIcon } from '@/components/SvgIcon';
+import { useMessage } from '@/hooks/web/useMessage';
+import { isBoolean, isFunction } from '@/utils/is';
 
 interface TableActionItemX extends TableActionItem {
-  buttonProps: EleButton
+  buttonProps: EleButton;
 }
 
 export default defineComponent({
   name: 'TableAction',
-  components: { ElButton, SvgIcon, Icon },
+  components: { ElButton, SvgIcon },
   props: {
     prefixCls: String,
     /**
@@ -56,7 +56,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { hasPermission } = usePermission()
+    const { hasPermission } = usePermission();
 
     /**
      * 获取操作列内容
@@ -64,27 +64,26 @@ export default defineComponent({
      * Get action column content
      */
     const getActions = computed(() => {
-      const { actions = [] } = props.column
+      const { actions = [] } = props.column;
 
       const opts = actions
         .filter((action) => {
           // 过滤权限
-          return hasPermission(action.auth) && isIfShow(action)
+          return hasPermission(action.auth) && isIfShow(action);
         })
         .map((action: TableActionItem) => {
           const opt = {
             callback: action?.callback || null,
             popConfirm: action?.popConfirm || null,
-            svgName: action?.svgName || null,
             iconName: action?.iconName || null,
             btnText: action?.btnText || null,
-            buttonProps: omit(action, ['svgName', 'popConfirm', 'auth', 'ifShow', 'callback', 'btnText']) as EleButton,
-          }
+            buttonProps: omit(action, ['iconName', 'popConfirm', 'auth', 'ifShow', 'callback', 'btnText']) as EleButton,
+          };
 
-          return opt
-        })
-      return opts as TableActionItemX[]
-    })
+          return opt;
+        });
+      return opts as TableActionItemX[];
+    });
 
     /**
      * 获取对齐方式，默认左对齐
@@ -92,9 +91,9 @@ export default defineComponent({
      * Get the alignment, the default is left aligned
      */
     const getAlign = computed(() => {
-      const { align = 'left' } = props.column
-      return align
-    })
+      const { align = 'left' } = props.column;
+      return align;
+    });
 
     /**
      * 判断操作按钮是否显示
@@ -103,18 +102,18 @@ export default defineComponent({
      * @param action TableActionItem
      */
     function isIfShow(action: TableActionItem): boolean {
-      const ifShow = action.ifShow
-      const { column, scopes } = props
+      const ifShow = action.ifShow;
+      const { column, scopes } = props;
 
-      let isIfShow = true
+      let isIfShow = true;
 
-      if (typeof ifShow === 'boolean') {
-        isIfShow = ifShow
+      if (isBoolean(ifShow)) {
+        isIfShow = ifShow;
       }
-      if (typeof ifShow === 'function') {
-        isIfShow = ifShow(column, scopes, action)
+      if (isFunction(ifShow)) {
+        isIfShow = ifShow(column, scopes, action);
       }
-      return isIfShow
+      return isIfShow;
     }
 
     /**
@@ -124,20 +123,20 @@ export default defineComponent({
      * @param action TableActionItemX
      */
     function handleClick(action: TableActionItemX) {
-      const { createConfirm } = useMessage()
+      const { createConfirm } = useMessage();
 
       // 如果存在确认按钮时
       // If there is a confirmation
       if (action.popConfirm) {
         createConfirm({ ...action.popConfirm })
           .then((res) => {
-            action?.callback!(props.scopes, res)
+            action?.callback!(props.scopes, res);
           })
           .catch((err) => {
-            action?.callback!(props.scopes, err)
-          })
+            action?.callback!(props.scopes, err);
+          });
       } else {
-        action?.callback!(props.scopes)
+        action?.callback!(props.scopes);
       }
     }
 
@@ -145,7 +144,7 @@ export default defineComponent({
       getActions,
       getAlign,
       handleClick,
-    }
+    };
   },
-})
+});
 </script>

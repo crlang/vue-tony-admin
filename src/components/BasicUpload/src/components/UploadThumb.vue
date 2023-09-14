@@ -8,8 +8,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElImage } from 'element-plus'
+import { defineComponent } from 'vue';
+import { ElImage } from 'element-plus';
 
 export default defineComponent({
   name: 'UploadThumb',
@@ -17,5 +17,5 @@ export default defineComponent({
   props: {
     url: String,
   },
-})
+});
 </script>

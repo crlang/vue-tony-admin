@@ -9,19 +9,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElButton } from 'element-plus'
-import { CollapseContainer } from '@/components/CollapseContainer'
-import { useWatermark } from '@/hooks/web/useWatermark'
+import { defineComponent } from 'vue';
+import { ElButton } from 'element-plus';
+import { CollapseContainer } from '@/components/CollapseContainer';
+import { useWatermark } from '@/hooks/web/useWatermark';
 
 export default defineComponent({
   components: { ElButton, CollapseContainer },
   setup() {
-    const { setWatermark, clear } = useWatermark()
+    const { setWatermark, clear } = useWatermark();
     return {
       setWatermark,
       clear,
-    }
+    };
   },
-})
+});
 </script>

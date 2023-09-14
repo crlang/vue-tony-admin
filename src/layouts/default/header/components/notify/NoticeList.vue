@@ -1,82 +1,81 @@
 <template>
-  <List :class="prefixCls">
-    <template v-for="item in list" :key="item.title">
-      <ListItem style="display: block" :class="[prefixCls + '__item', { 'is-read': item.titleDelete }]" @click="handleTitleClick(item)">
-        <template #thumb v-if="item.avatar">
+  <BasicList :class="prefixCls" :data-source="list">
+    <template #renderItem="{ item }">
+      <BasicListItem :class="[prefixCls + '-item', { 'is-read': item.titleDelete }]" @click="handleTitleClick(item)">
+        <template #thumb v-if="vkey == '1'">
           <ElAvatar style="--el-avatar-bg-color: #fff" class="avatar" :src="item.avatar" />
         </template>
-
         <template #title>
           <div class="title">
             <span>{{ item.title }}</span>
-            <div class="extra" v-if="item.extra">
+            <div class="extra" v-if="vkey == '3'">
               <ElTag class="tag" size="small" :type="item.color">
                 {{ item.extra }}
               </ElTag>
             </div>
           </div>
         </template>
-
         <template #description>
-          <div>
-            <div class="description" v-if="item.description">
-              {{ item.description }}
-            </div>
-            <div class="datetime">
-              {{ item.datetime }}
-            </div>
+          <div :class="`${prefixCls}--desc`">
+            <div class="description" v-if="vkey == '2'">{{ item.description }}</div>
+            <div class="datetime">{{ item.datetime }}</div>
           </div>
         </template>
-      </ListItem>
+      </BasicListItem>
     </template>
-  </List>
+  </BasicList>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElAvatar, ElTag } from 'element-plus'
+import { defineComponent } from 'vue';
+import { ElAvatar, ElTag } from 'element-plus';
 
-import { useDesign } from '@/hooks/web/useDesign'
-import { List, ListItem } from '@/components/List'
+import { useDesign } from '@/hooks/web/useDesign';
+import { BasicList, BasicListItem } from '@/components/BasicList';
 
-import { ListItem as ListItemType } from './data'
+import type { ListItem } from './data';
 
 export default defineComponent({
   components: {
     ElAvatar,
     ElTag,
-    List,
-    ListItem,
+    BasicList,
+    BasicListItem,
   },
   props: {
     list: {
-      type: Array as PropType<ListItemType[]>,
+      type: Array as PropType<ListItem[]>,
       default: () => [],
     },
+    vkey: {
+      type: String,
+      default: '',
+    },
     onTitleClick: {
-      type: Function as PropType<(record: ListItemType) => void>,
+      type: Function,
     },
   },
   setup(props) {
-    const { prefixCls } = useDesign('header-notify-list')
+    const { prefixCls } = useDesign('header-notify-list');
 
-    function handleTitleClick(item: ListItemType) {
-      props.onTitleClick && props.onTitleClick(item)
+    function handleTitleClick(item) {
+      props.onTitleClick && props.onTitleClick(item);
     }
 
-    return { prefixCls, handleTitleClick }
+    return { prefixCls, handleTitleClick };
   },
-})
+});
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $prefix-cls: '#{$tonyname}-header-notify-list';
 
 .#{$prefix-cls} {
   max-height: 320px;
   overflow-y: auto;
 
-  &__item {
+  &-item {
+    display: block;
     padding: 12px 24px;
     cursor: pointer;
 

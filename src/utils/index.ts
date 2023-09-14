@@ -1,103 +1,150 @@
-import type { RouteLocationNormalized, RouteRecordNormalized } from 'vue-router'
-import type { App, Ref, Component } from 'vue'
-import type { SFCInstallWithContext, SFCWithInstall } from '#/utils'
+import type { RouteLocationNormalized, RouteRecordNormalized } from 'vue-router';
+import type { App, Ref, Component } from 'vue';
+import type { SFCInstallWithContext, SFCWithInstall } from '#/utils';
 
-import { unref } from 'vue'
+import { unref } from 'vue';
+import { intersectionWith, isEqual, mergeWith, unionWith } from 'lodash-es';
 
-import { error } from './log'
-import { isObject } from '@vueuse/core'
+import { error } from './log';
 
-export const noop = () => {}
+import { isArray, isObject } from './is';
+
+export const noop = () => {};
 
 /**
  * @description:  Set ui mount node
  */
 export function getPopupContainer(node?: HTMLElement): HTMLElement {
-  return (node?.parentNode as HTMLElement) ?? document.body
+  return (node?.parentNode as HTMLElement) ?? document.body;
 }
+
 /**
  * Add the object as a parameter to the URL
  * @param baseUrl url
  * @param obj
- * @returns {string}
  * eg:
  *  let obj = {a: '3', b: '4'}
  *  setObjToUrlParams('www.baidu.com', obj)
  *  ==>www.baidu.com?a=3&b=4
  */
 export function setObjToUrlParams(baseUrl: string, obj: any): string {
-  let parameters = ''
+  let parameters = '';
   for (const key in obj) {
-    parameters += `${key}=${encodeURIComponent(obj[key])}&`
+    parameters += `${key}=${encodeURIComponent(obj[key])}&`;
   }
-  parameters = parameters.replace(/&$/, '')
-  return /\?$/.test(baseUrl) ? baseUrl + parameters : baseUrl.replace(/\/?$/, '?') + parameters
+  parameters = parameters.replace(/&$/, '');
+  return /\?$/.test(baseUrl) ? baseUrl + parameters : baseUrl.replace(/\/?$/, '?') + parameters;
 }
 
-export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
-  let key: string
-  for (key in target) {
-    src[key] = isObject(src[key]) ? deepMerge(src[key], target[key]) : (src[key] = target[key])
+/**
+ * Recursively merge two objects.
+ * 递归合并两个对象。
+ *
+ * @param source The source object to merge from. 要合并的源对象。
+ * @param target The target object to merge into. 目标对象，合并后结果存放于此。
+ * @param mergeArrays How to merge arrays. Default is "replace".
+ *        如何合并数组。默认为replace。
+ *        - "union": Union the arrays. 对数组执行并集操作。
+ *        - "intersection": Intersect the arrays. 对数组执行交集操作。
+ *        - "concat": Concatenate the arrays. 连接数组。
+ *        - "replace": Replace the source array with the target array. 用目标数组替换源数组。
+ * @returns The merged object. 合并后的对象。
+ */
+export function deepMerge<T extends object | null | undefined, U extends object | null | undefined>(
+  source: T,
+  target: U,
+  mergeArrays: 'union' | 'intersection' | 'concat' | 'replace' = 'replace',
+): T & U {
+  if (!target) {
+    return source as T & U;
   }
-  return src
+  if (!source) {
+    return target as T & U;
+  }
+  return mergeWith({}, source, target, (sourceValue, targetValue) => {
+    if (isArray(targetValue) && isArray(sourceValue)) {
+      switch (mergeArrays) {
+        case 'union':
+          return unionWith(sourceValue, targetValue, isEqual);
+        case 'intersection':
+          return intersectionWith(sourceValue, targetValue, isEqual);
+        case 'concat':
+          return sourceValue.concat(targetValue);
+        case 'replace':
+          return targetValue;
+        default:
+          throw new Error(`Unknown merge array strategy: ${mergeArrays as string}`);
+      }
+    }
+    if (isObject(targetValue) && isObject(sourceValue)) {
+      return deepMerge(sourceValue, targetValue, mergeArrays);
+    }
+    return undefined;
+  });
 }
 
 export function openWindow(url: string, opt?: { target?: TargetContext | string; noopener?: boolean; noreferrer?: boolean }) {
-  const { target = '__blank', noopener = true, noreferrer = true } = opt || {}
-  const feature: string[] = []
+  const { target = '__blank', noopener = true, noreferrer = true } = opt || {};
+  const feature: string[] = [];
 
-  noopener && feature.push('noopener=yes')
-  noreferrer && feature.push('noreferrer=yes')
+  noopener && feature.push('noopener=yes');
+  noreferrer && feature.push('noreferrer=yes');
 
-  window.open(url, target, feature.join(','))
+  window.open(url, target, feature.join(','));
 }
 
 // dynamic use hook props
-export function getDynamicProps<T, U>(props: T): Partial<U> {
-  const ret: Recordable = {}
+export function getDynamicProps<T extends Record<string, unknown>, U>(props: T): Partial<U> {
+  const ret: Recordable = {};
 
   Object.keys(props).map((key) => {
-    ret[key] = unref((props as Recordable)[key])
-  })
+    ret[key] = unref((props as Recordable)[key]);
+  });
 
-  return ret as Partial<U>
+  return ret as Partial<U>;
 }
 
 export function getRawRoute(route: RouteLocationNormalized): RouteLocationNormalized {
-  if (!route) return route
-  const { matched, ...opt } = route
+  if (!route) return route;
+  const { matched, ...opt } = route;
   return {
     ...opt,
-    matched: (matched ? matched.map((item) => ({ meta: item.meta, name: item.name, path: item.path })) : undefined) as RouteRecordNormalized[],
-  }
+    matched: (matched
+      ? matched.map((item) => ({
+        meta: item.meta,
+        name: item.name,
+        path: item.path,
+      }))
+      : undefined) as RouteRecordNormalized[],
+  };
 }
 
 // https://github.com/vant-ui/vant/issues/8302
 type EventShim = {
   new (...args: any[]): {
     $props: {
-      onClick?: (...args: any[]) => void
-    }
-  }
-}
+      onClick?: (...args: any[]) => void;
+    };
+  };
+};
 
 export type WithInstall<T> = T & {
-  install(app: App): void
-} & EventShim
+  install(app: App): void;
+} & EventShim;
 
-export type CustomComponent = Component & { displayName?: string }
+export type CustomComponent = Component & { displayName?: string };
 
 export const withInstall = <T extends CustomComponent>(component: T, alias?: string) => {
   (component as Record<string, unknown>).install = (app: App) => {
-    const compName = component.name || component.displayName
-    if (!compName) return
-    app.component(compName, component)
+    const compName = component.name || component.displayName;
+    if (!compName) return;
+    app.component(compName, component);
     if (alias) {
-      app.config.globalProperties[alias] = component
+      app.config.globalProperties[alias] = component;
     }
-  }
-  return component as WithInstall<T>
-}
+  };
+  return component as WithInstall<T>;
+};
 
 /**
  * 注册函数式组件
@@ -105,39 +152,17 @@ export const withInstall = <T extends CustomComponent>(component: T, alias?: str
  * Register functional components
  * @param fn function
  * @param name alias
- * @returns
  */
 export const withInstallFunction = <T>(fn: T, name: string) => {
   // eslint-disable-next-line prettier/prettier
   (fn as SFCWithInstall<T>).install = (app: App) => {
     // eslint-disable-next-line prettier/prettier
-    (fn as SFCInstallWithContext<T>)._context = app._context
-    app.config.globalProperties[name] = fn
-  }
+    (fn as SFCInstallWithContext<T>)._context = app._context;
+    app.config.globalProperties[name] = fn;
+  };
 
-  return fn as SFCInstallWithContext<T>
-}
-
-export function buildUUID(): string {
-  const hexList: string[] = []
-  for (let i = 0; i <= 15; i++) {
-    hexList[i] = i.toString(16)
-  }
-
-  let uuid = ''
-  for (let i = 1; i <= 36; i++) {
-    if (i === 9 || i === 14 || i === 19 || i === 24) {
-      uuid += '-'
-    } else if (i === 15) {
-      uuid += 4
-    } else if (i === 20) {
-      uuid += hexList[(Math.random() * 4) | 8]
-    } else {
-      uuid += hexList[(Math.random() * 16) | 0]
-    }
-  }
-  return uuid.replace(/-/g, '')
-}
+  return fn as SFCInstallWithContext<T>;
+};
 
 /**
  * 获取使用示例
@@ -147,20 +172,9 @@ export function buildUUID(): string {
  * @param name instance name
  */
 export function getUseInstance<T>(instanceRef: Ref<T> | null, name: string): T | null {
-  const instance = unref(instanceRef)
+  const instance = unref(instanceRef);
   if (!instance) {
-    error(`The ${name} instance has not been obtained, please make sure the instance is rendered when performing the instance operation!`)
+    error(`The [${name}] instance has not been obtained, please make sure the instance is rendered when performing the instance operation!`);
   }
-  return instance
-}
-
-/**
- * 检查是否为http链接，仅做简单判断
- *
- * Check if it is an http link - simple judgment
- * @param val
- */
-export const isHttpUrl = (val: string) => {
-  const reg = /^http(s)?:\/\/\w+\..*$/
-  return reg.test(val)
+  return instance;
 }

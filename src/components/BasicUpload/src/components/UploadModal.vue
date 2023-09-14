@@ -21,7 +21,7 @@
     </template>
     <div style="display: flex; align-items: center; margin-bottom: 8px">
       <ElAlert
-        style="--el-alert-padding: 8px 0;"
+        style="--el-alert-padding: 8px 0"
         :title="getHelpText"
         type="info"
         :closable="false" />
@@ -43,24 +43,24 @@
 </template>
 
 <script lang="ts">
-import type { FileItem } from '../typing'
+import type { FileItem } from '../typing';
 
-import { defineComponent, ref, toRefs, unref, computed } from 'vue'
-import { ElButton, ElUpload, ElAlert } from 'element-plus'
-import { get } from 'lodash-es'
+import { defineComponent, ref, toRefs, unref, computed } from 'vue';
+import { ElButton, ElUpload, ElAlert } from 'element-plus';
+import { get } from 'lodash-es';
 
-import { BasicModal, useModalInner } from '@/components/BasicModal'
-import { EleButton } from '@/components/ElementPlus'
-import { useMessage } from '@/hooks/web/useMessage'
-import { buildUUID } from '@/utils'
-import { error } from '@/utils/log'
-import componentSetting from '@/settings/componentSetting'
+import { BasicModal, useModalInner } from '@/components/BasicModal';
+import { EleButton } from '@/components/ElementPlus';
+import { useMessage } from '@/hooks/web/useMessage';
+import { buildUUID } from '@/utils/uuid';
+import { error } from '@/utils/log';
+import componentSetting from '@/settings/componentSetting';
 
-import { UploadResultStatus } from '../typing'
-import { uploadProps } from '../props'
-import { createTableColumns, createActionColumn } from '../data'
-import { checkFileExtType, checkImgType, getBase64WithFile, useUploadType } from '../helper'
-import FileList from './FileList.vue'
+import { UploadResultStatus } from '../typing';
+import { uploadProps } from '../props';
+import { createTableColumns, createActionColumn } from '../data';
+import { checkFileExtType, checkImgType, getBase64WithFile, useUploadType } from '../helper';
+import FileList from './FileList.vue';
 
 export default defineComponent({
   components: { ElButton, ElUpload, ElAlert, BasicModal, FileList },
@@ -70,25 +70,28 @@ export default defineComponent({
   },
   emits: ['change', 'register', 'delete'],
   setup(props, { emit }) {
-    const isUploadingRef = ref(false)
-    const fileListRef = ref<FileItem[]>([])
-    const previewFileList = ref<string[]>([])
-    const { accept, helpText, maxNumber, maxSize } = toRefs(props)
+    const isUploadingRef = ref(false);
+    const fileListRef = ref<FileItem[]>([]);
+    const previewFileList = ref<string[]>([]);
+    const { accept, helpText, maxNumber, maxSize } = toRefs(props);
 
     const [register, { closeModal }] = useModalInner((data: string[]) => {
       // 接收 BasicUpload 页面传递过来的 data
       // Receive the data passed from the BasicUpload page
-      previewFileList.value = data || []
-    })
+      previewFileList.value = data || [];
+    });
 
-    const { getAccept, getStringAccept, getHelpText } = useUploadType({
-      acceptRef: accept,
-      helpTextRef: helpText,
-      maxNumberRef: maxNumber,
-      maxSizeRef: maxSize,
-    }, previewFileList)
+    const { getAccept, getStringAccept, getHelpText } = useUploadType(
+      {
+        acceptRef: accept,
+        helpTextRef: helpText,
+        maxNumberRef: maxNumber,
+        maxSizeRef: maxSize,
+      },
+      previewFileList,
+    );
 
-    const { createMessage } = useMessage()
+    const { createMessage } = useMessage();
 
     /**
      * 获取选择的文件是否已经全部上传完成
@@ -96,21 +99,21 @@ export default defineComponent({
      * Get whether the selected files have all been uploaded
      */
     const getIsSelectFile = computed(() => {
-      return fileListRef.value.length > 0 && !fileListRef.value.every((item) => item.status === UploadResultStatus.SUCCESS)
-    })
+      return fileListRef.value.length > 0 && !fileListRef.value.every((item) => item.status === UploadResultStatus.SUCCESS);
+    });
     /**
      * 获取确定按钮配置
      *
      * Get confirm button configuration
      */
     const getConfirmProps = computed((): EleButton => {
-      const someSuccess = fileListRef.value.some((item) => item.status === UploadResultStatus.SUCCESS)
+      const someSuccess = fileListRef.value.some((item) => item.status === UploadResultStatus.SUCCESS);
       return {
         btnText: '保存',
         type: 'primary',
         disabled: isUploadingRef.value || fileListRef.value.length === 0 || !someSuccess,
-      }
-    })
+      };
+    });
     /**
      * 获取取消按钮配置
      *
@@ -120,25 +123,25 @@ export default defineComponent({
       return {
         btnText: '关闭',
         disabled: isUploadingRef.value,
-      }
-    })
+      };
+    });
     /**
      * 获取是否在上传中或者上传数量超限制
      *
      * Get whether the upload is in progress or the number of uploads exceeds the limit
      */
     const getUploadState = computed((): boolean => {
-      return isUploadingRef.value || fileListRef.value.length + previewFileList.value.length >= maxNumber.value
-    })
+      return isUploadingRef.value || fileListRef.value.length + previewFileList.value.length >= maxNumber.value;
+    });
     /**
      * 获取上传按钮文字状态变化
      *
      * Get upload button text state change
      */
     const getUploadBtnText = computed(() => {
-      const someError = fileListRef.value.some((item) => item.status === UploadResultStatus.ERROR)
-      return isUploadingRef.value ? '上传中' : someError ? '重新上传失败文件' : '开始上传'
-    })
+      const someError = fileListRef.value.some((item) => item.status === UploadResultStatus.ERROR);
+      return isUploadingRef.value ? '上传中' : someError ? '重新上传失败文件' : '开始上传';
+    });
     /**
      * 检查文件数量
      *
@@ -146,10 +149,10 @@ export default defineComponent({
      */
     function checkFileLimit() {
       if (fileListRef.value.length + previewFileList.value.length > maxNumber.value) {
-        createMessage.warning(`最多只能上传${maxNumber.value}个文件`)
-        return false
+        createMessage.warning(`最多只能上传${maxNumber.value}个文件`);
+        return false;
       }
-      return true
+      return true;
     }
     /**
      * 检查文件类型
@@ -157,14 +160,14 @@ export default defineComponent({
      * Check file type
      */
     function checkFileType(file) {
-      const accept = unref(getAccept)
+      const accept = unref(getAccept);
 
       if (accept.length > 0 && !checkFileExtType(file, accept)) {
-        createMessage.error(`只能上传${accept.join(',')}格式文件`)
-        return false
+        createMessage.error(`只能上传${accept.join(',')}格式文件`);
+        return false;
       }
 
-      return true
+      return true;
     }
     /**
      * 检查文件大小
@@ -173,10 +176,10 @@ export default defineComponent({
      */
     function checkFileSize(size = 0) {
       if (maxSize.value && size / 1024 / 1024 >= maxSize.value) {
-        createMessage.error(`只能上传不超过${maxSize.value}MB的文件!`)
-        return false
+        createMessage.error(`只能上传不超过${maxSize.value}MB的文件!`);
+        return false;
       }
-      return true
+      return true;
     }
 
     /**
@@ -186,13 +189,13 @@ export default defineComponent({
      * @param file File
      */
     function beforeUpload(file: File) {
-      const { size, name } = file
+      const { size, name } = file;
 
-      if (!checkFileLimit()) return
+      if (!checkFileLimit()) return;
 
-      if (!checkFileSize(file.size || 0)) return
+      if (!checkFileSize(file.size || 0)) return;
 
-      if (!checkFileType(file)) return
+      if (!checkFileType(file)) return;
 
       const commonItem = {
         uuid: buildUUID(),
@@ -201,7 +204,7 @@ export default defineComponent({
         name,
         percent: 0,
         type: name.split('.').pop(),
-      }
+      };
       // 把文件加入待上传区
       // Add the file to the pending upload area
       if (checkImgType(file)) {
@@ -212,12 +215,12 @@ export default defineComponent({
               thumbUrl,
               ...commonItem,
             },
-          ]
-        })
+          ];
+        });
       } else {
-        fileListRef.value = [...unref(fileListRef), commonItem]
+        fileListRef.value = [...unref(fileListRef), commonItem];
       }
-      return false
+      return false;
     }
     /**
      * 移除上传列表项
@@ -226,9 +229,9 @@ export default defineComponent({
      * @param record FileItem
      */
     function handleRemove(record: FileItem) {
-      const index = fileListRef.value.findIndex((item) => item.uuid === record.uuid)
-      index !== -1 && fileListRef.value.splice(index, 1)
-      emit('delete', record)
+      const index = fileListRef.value.findIndex((item) => item.uuid === record.uuid);
+      index !== -1 && fileListRef.value.splice(index, 1);
+      emit('delete', record);
     }
 
     /**
@@ -238,46 +241,46 @@ export default defineComponent({
      * @param item FileItem
      */
     async function uploadApiByItem(item: FileItem) {
-      const { upload } = componentSetting
-      const { api, uploadName, uploadParams } = props
+      const { upload } = componentSetting;
+      const { api, uploadName, uploadParams } = props;
       // 必须要存在 api 函数
       if (!api || typeof api !== 'function') {
-        return error('upload api must exist and be a function')
+        return error('upload api must exist and be a function');
       }
 
       try {
-        item.status = UploadResultStatus.UPLOADING
+        item.status = UploadResultStatus.UPLOADING;
         const onUploadProgress = function(progressEvent: ProgressEvent) {
-          const complete = ((progressEvent.loaded / progressEvent.total) * 100) | 0
-          item.percent = complete
-        }
+          const complete = ((progressEvent.loaded / progressEvent.total) * 100) | 0;
+          item.percent = complete;
+        };
 
-        const params = uploadParams || {}
-        params.file = item.file
-        params[uploadName] = item.file
-        const { data } = await api(params, onUploadProgress)
-        const result = get(data, upload.urlField)
+        const params = uploadParams || {};
+        params.file = item.file;
+        params[uploadName] = item.file;
+        const { data } = await api(params, onUploadProgress);
+        const result = get(data, upload.urlField);
         if (result) {
-          item.status = UploadResultStatus.SUCCESS
-          item.responseData = result
+          item.status = UploadResultStatus.SUCCESS;
+          item.responseData = result;
           return {
             success: true,
             error: null,
-          }
+          };
         } else {
-          item.status = UploadResultStatus.ERROR
-          item.responseData = data
+          item.status = UploadResultStatus.ERROR;
+          item.responseData = data;
           return {
             success: false,
             error: data?.message || data,
-          }
+          };
         }
       } catch (e) {
-        item.status = UploadResultStatus.ERROR
+        item.status = UploadResultStatus.ERROR;
         return {
           success: false,
           error: e,
-        }
+        };
       }
     }
     /**
@@ -286,23 +289,23 @@ export default defineComponent({
      * Start upload
      */
     async function handleStartUpload() {
-      if (!checkFileLimit()) return
+      if (!checkFileLimit()) return;
 
       try {
-        isUploadingRef.value = true
-        const uploadFileList = fileListRef.value.filter((item) => item.status !== UploadResultStatus.SUCCESS) || []
+        isUploadingRef.value = true;
+        const uploadFileList = fileListRef.value.filter((item) => item.status !== UploadResultStatus.SUCCESS) || [];
         const data = await Promise.all(
           uploadFileList.map((item) => {
-            return uploadApiByItem(item)
+            return uploadApiByItem(item);
           }),
-        )
-        isUploadingRef.value = false
+        );
+        isUploadingRef.value = false;
         // 筛选未上传成功文件
-        const errorList = data.filter((item: any) => !item.success)
-        if (errorList.length > 0) throw errorList
+        const errorList = data.filter((item: any) => !item.success);
+        if (errorList.length > 0) throw errorList;
       } catch (e) {
-        isUploadingRef.value = false
-        throw e
+        isUploadingRef.value = false;
+        throw e;
       }
     }
     /**
@@ -311,25 +314,25 @@ export default defineComponent({
      * Save upload file
      */
     function handleConfirm() {
-      if (!checkFileLimit()) return
+      if (!checkFileLimit()) return;
 
       if (isUploadingRef.value) {
-        return createMessage.warning('请等待文件上传后，保存!')
+        return createMessage.warning('请等待文件上传后，保存!');
       }
-      const fileList: string[] = []
+      const fileList: string[] = [];
 
       for (const item of fileListRef.value) {
-        const { status, responseData } = item
+        const { status, responseData } = item;
         if (status === UploadResultStatus.SUCCESS && typeof responseData === 'string') {
-          fileList.push(responseData)
+          fileList.push(responseData);
         }
       }
       if (fileList.length <= 0) {
-        return createMessage.warning('没有上传成功的文件，无法保存!')
+        return createMessage.warning('没有上传成功的文件，无法保存!');
       }
-      fileListRef.value = []
-      closeModal()
-      emit('change', fileList)
+      fileListRef.value = [];
+      closeModal();
+      emit('change', fileList);
     }
     /**
      * 关闭上传弹窗前执行的函数
@@ -340,13 +343,13 @@ export default defineComponent({
       // 已全部上传完毕
       // All uploaded
       if (!isUploadingRef.value) {
-        fileListRef.value = []
-        return true
+        fileListRef.value = [];
+        return true;
       } else {
         // 存在上传中的文件，不允许关闭
         // There is an uploading file, it is not allowed to close
-        createMessage.warning('请等待文件上传结束后操作')
-        return false
+        createMessage.warning('请等待文件上传结束后操作');
+        return false;
       }
     }
 
@@ -368,7 +371,7 @@ export default defineComponent({
       handleCloseFn,
       getIsSelectFile,
       getUploadBtnText,
-    }
+    };
   },
-})
+});
 </script>

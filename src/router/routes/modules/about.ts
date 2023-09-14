@@ -1,6 +1,6 @@
-import type { AppRouteModule } from '@/router/types'
+import type { AppRouteModule } from '@/router/types';
 
-import { LAYOUT } from '@/router/constant'
+import { LAYOUT } from '@/router/constant';
 
 const about: AppRouteModule = {
   path: '/about',
@@ -9,7 +9,7 @@ const about: AppRouteModule = {
   redirect: '/about/index',
   meta: {
     hideChildrenInMenu: true,
-    icon: 'ep:connection',
+    icon: 'm_connection',
     title: '关于',
     orderNo: 999,
   },
@@ -20,11 +20,11 @@ const about: AppRouteModule = {
       component: () => import('@/views/sys/about/index.vue'),
       meta: {
         title: '关于',
-        icon: 'ep:connection',
+        icon: 'm_connection',
         hideMenu: true,
       },
     },
   ],
-}
+};
 
-export default about
+export default about;

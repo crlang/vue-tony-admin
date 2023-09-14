@@ -11,12 +11,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import { ElTooltip } from 'element-plus'
+import { defineComponent, PropType } from 'vue';
+import { ElTooltip } from 'element-plus';
 
-import { useDesign } from '@/hooks/web/useDesign'
+import { useDesign } from '@/hooks/web/useDesign';
 
-import { menuTypeList } from '../enum'
+import { menuTypeList } from '../enum';
 
 export default defineComponent({
   name: 'MenuTypePicker',
@@ -36,7 +36,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { prefixCls } = useDesign('setting-menu-type-picker')
+    const { prefixCls } = useDesign('setting-menu-type-picker');
     const getItemCls = (type: string) => {
       return [
         `${prefixCls}__item`,
@@ -44,15 +44,15 @@ export default defineComponent({
         {
           [`${prefixCls}__item--active`]: props.def === type,
         },
-      ]
-    }
+      ];
+    };
 
     return {
       prefixCls,
       getItemCls,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>
@@ -64,8 +64,8 @@ $prefix-cls: '#{$tonyname}-setting-menu-type-picker';
 
   &__item {
     position: relative;
-    width: 56px;
-    height: 48px;
+    width: 90px;
+    height: 60px;
     margin-right: 16px;
     overflow: hidden;
     cursor: pointer;

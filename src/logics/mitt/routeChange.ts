@@ -4,16 +4,16 @@
  * Used to monitor routing changes to change the status of menus and tabs. There is no need to monitor the route, because the route status change is affected by the page rendering time, which will be slow
  */
 
-import type { RouteLocationNormalized } from 'vue-router'
+import type { RouteLocationNormalized } from 'vue-router';
 
-import mitt from '@/utils/mitt'
-import { getRawRoute } from '@/utils'
+import mitt from '@/utils/mitt';
+import { getRawRoute } from '@/utils';
 
-const emitter = mitt()
+const emitter = mitt();
 
-const key = Symbol()
+const key = Symbol();
 
-let lastChangeTab: RouteLocationNormalized
+let lastChangeTab: RouteLocationNormalized;
 
 /**
  * 记录tab变更
@@ -22,9 +22,9 @@ let lastChangeTab: RouteLocationNormalized
  * @param lastChangeRoute RouteLocationNormalized
  */
 export function setRouteChange(lastChangeRoute: RouteLocationNormalized) {
-  const r = getRawRoute(lastChangeRoute)
-  emitter.emit(key, r)
-  lastChangeTab = r
+  const r = getRawRoute(lastChangeRoute);
+  emitter.emit(key, r);
+  lastChangeTab = r;
 }
 
 /**
@@ -35,8 +35,8 @@ export function setRouteChange(lastChangeRoute: RouteLocationNormalized) {
  * @param immediate boolean
  */
 export function listenerRouteChange(callback: (route: RouteLocationNormalized) => void, immediate = true) {
-  emitter.on(key, callback)
-  immediate && lastChangeTab && callback(lastChangeTab)
+  emitter.on(key, callback);
+  immediate && lastChangeTab && callback(lastChangeTab);
 }
 
 /**
@@ -45,5 +45,5 @@ export function listenerRouteChange(callback: (route: RouteLocationNormalized) =
  * Remove tab changes
  */
 export function removeTabChangeListener() {
-  emitter.clear()
+  emitter.all.clear();
 }

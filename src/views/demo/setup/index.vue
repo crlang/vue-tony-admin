@@ -5,16 +5,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElButton } from 'element-plus'
-import { useDesign } from '@/hooks/web/useDesign'
-import intro from 'intro.js'
-import 'intro.js/minified/introjs.min.css'
+import { defineComponent } from 'vue';
+import { ElButton } from 'element-plus';
+import { useDesign } from '@/hooks/web/useDesign';
+import intro from 'intro.js';
+import 'intro.js/minified/introjs.min.css';
 
 export default defineComponent({
   components: { ElButton },
   setup() {
-    const { prefixVar } = useDesign('')
+    const { prefixVar } = useDesign('');
 
     function handleStart() {
       intro()
@@ -36,9 +36,9 @@ export default defineComponent({
             },
           ],
         })
-        .start()
+        .start();
     }
-    return { handleStart }
+    return { handleStart };
   },
-})
+});
 </script>

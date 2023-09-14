@@ -9,12 +9,12 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, ref, unref, watch, watchEffect } from 'vue'
-import { ElInput, ElButton } from 'element-plus'
+import { computed, defineComponent, PropType, ref, unref, watch, watchEffect } from 'vue';
+import { ElInput, ElButton } from 'element-plus';
 
-import { useDesign } from '@/hooks/web/useDesign'
+import { useDesign } from '@/hooks/web/useDesign';
 
-import { useCountdown } from './useCountdown'
+import { useCountdown } from './useCountdown';
 
 export default defineComponent({
   name: 'CountdownInput',
@@ -51,10 +51,10 @@ export default defineComponent({
   },
   emits: ['change', 'update:modelValue'],
   setup(props, { emit }) {
-    const { prefixCls } = useDesign('basic-countdown-input')
-    const loading = ref(false)
-    const innerValueRef = ref()
-    const { currentCount, isStart, start } = useCountdown(props.count)
+    const { prefixCls } = useDesign('basic-countdown-input');
+    const loading = ref(false);
+    const innerValueRef = ref();
+    const { currentCount, isStart, start } = useCountdown(props.count);
 
     /**
      * 监听倒计时文本变化
@@ -62,8 +62,8 @@ export default defineComponent({
      * Monitor the countdown text change
      */
     const getButtonText = computed(() => {
-      return !unref(isStart) ? '获取验证码' : `${unref(currentCount)}秒后重新获取`
-    })
+      return !unref(isStart) ? '获取验证码' : `${unref(currentCount)}秒后重新获取`;
+    });
 
     /**
      * 启动计时
@@ -71,33 +71,33 @@ export default defineComponent({
      * Start countdown time
      */
     async function handleStart() {
-      const { sendCodeApi } = props
+      const { sendCodeApi } = props;
       // 如果有api方法，先请求后再启动
       // If there is an api method, first request and then start
       if (typeof sendCodeApi === 'function') {
-        loading.value = true
+        loading.value = true;
         try {
-          const canStart = await sendCodeApi()
-          canStart && start()
+          const canStart = await sendCodeApi();
+          canStart && start();
         } finally {
-          loading.value = false
+          loading.value = false;
         }
       } else {
-        start()
+        start();
       }
     }
 
     watchEffect(() => {
-      innerValueRef.value = props.modelValue || ''
-    })
+      innerValueRef.value = props.modelValue || '';
+    });
 
     watch(
       () => unref(innerValueRef),
       (val) => {
-        emit('update:modelValue', val)
-        emit('change', val)
+        emit('update:modelValue', val);
+        emit('change', val);
       },
-    )
+    );
 
     return {
       prefixCls,
@@ -106,7 +106,7 @@ export default defineComponent({
       innerValueRef,
       getButtonText,
       handleStart,
-    }
+    };
   },
-})
+});
 </script>

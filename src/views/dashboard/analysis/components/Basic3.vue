@@ -3,9 +3,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, Ref } from 'vue'
-import { useECharts } from '@/hooks/web/useECharts'
-import { randomNumber } from '@/utils/demo'
+import { defineComponent, onMounted, ref, Ref, watch } from 'vue';
+
+import { useECharts } from '@/hooks/web/useECharts';
+
+import { DateBasicItem } from '../data';
 
 export default defineComponent({
   props: {
@@ -17,12 +19,17 @@ export default defineComponent({
       type: String,
       default: '300px',
     },
+    datainfo: {
+      type: Array as PropType<DateBasicItem[]>,
+      default: () => [],
+    },
   },
-  setup(_) {
-    const chartRef = ref<HTMLDivElement | null>(null)
-    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>)
-
+  setup(props) {
+    const chartRef = ref<HTMLDivElement | null>(null);
+    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
     const initChart = () => {
+      const piedata = props.datainfo || [];
+
       setOptions({
         tooltip: {
           trigger: 'item',
@@ -59,23 +66,25 @@ export default defineComponent({
             labelLine: {
               show: false,
             },
-            data: [
-              { value: randomNumber(1000), name: 'Search Engine' },
-              { value: randomNumber(1000), name: 'Direct' },
-              { value: randomNumber(1000), name: 'Email' },
-              { value: randomNumber(1000), name: 'Union Ads' },
-              { value: randomNumber(1000), name: 'Video Ads' },
-            ],
+            data: piedata,
           },
         ],
-      })
-    }
+      });
+    };
 
-    onMounted(initChart)
+    watch(
+      () => props.datainfo,
+      () => {
+        initChart();
+      },
+      { deep: true },
+    );
+
+    onMounted(initChart);
 
     return {
       chartRef,
-    }
+    };
   },
-})
+});
 </script>

@@ -9,23 +9,25 @@
         <el-descriptions-item label="转账金额">500元</el-descriptions-item>
       </el-descriptions>
     </div>
-    <el-divider />
+    <BasicDivider />
     <BasicForm @register="register" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ElAlert, ElDescriptions, ElDescriptionsItem, ElDivider } from 'element-plus'
-import { BasicForm, useForm } from '@/components/BasicForm'
-import { step2Schemas } from './data'
+import { defineComponent } from 'vue';
+import { ElAlert, ElDescriptions, ElDescriptionsItem } from 'element-plus';
+
+import { BasicDivider } from '@/components/Basic';
+import { BasicForm, useForm } from '@/components/BasicForm';
+import { step2Schemas } from './data';
 
 export default defineComponent({
   components: {
     ElAlert,
     ElDescriptions,
     ElDescriptionsItem,
-    ElDivider,
+    BasicDivider,
     BasicForm,
   },
   emits: ['next', 'prev'],
@@ -47,39 +49,40 @@ export default defineComponent({
       },
       resetFn: customResetFunc,
       submitFn: customSubmitFunc,
-    })
+    });
 
     async function customResetFunc() {
-      emit('prev')
+      emit('prev');
     }
 
     async function customSubmitFunc() {
       try {
-        const values = await validate()
+        const values = await validate();
         setFormProps({
           submitButtonOptions: {
             loading: true,
             btnText: '提交',
           },
-        })
+        });
         setTimeout(() => {
           setFormProps({
             submitButtonOptions: {
               loading: false,
               btnText: '提交',
             },
-          })
-          emit('next', values)
-        }, 1500)
+          });
+          emit('next', values);
+        }, 1500);
       } catch (error) {
         // continue regardless of error
       }
     }
 
-    return { register }
+    return { register };
   },
-})
+});
 </script>
+
 <style lang="scss" scoped>
 .step2 {
   width: 450px;

@@ -1,4 +1,4 @@
-import { EleButtonProps } from '@/components/ElementPlus'
+import { EleButtonProps } from '@/components/ElementPlus';
 
 export const customProps = {
   /**
@@ -37,9 +37,9 @@ export const customProps = {
     type: Function as PropType<(...args) => any>,
     default: null,
   },
-}
+};
 
 export const basicProps = {
   ...EleButtonProps,
   ...customProps,
-}
+};

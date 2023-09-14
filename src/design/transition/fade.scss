@@ -32,7 +32,9 @@
   &-bottom {
     &-enter-active,
     &-leave-active {
-      transition: opacity 0.25s, transform 0.3s;
+      transition:
+        opacity 0.25s,
+        transform 0.3s;
     }
 
     &-enter-from {
@@ -44,7 +46,6 @@
       opacity: 0;
       transform: translateY(10%);
     }
-
   }
 
   /* fade-scale */
@@ -63,14 +64,15 @@
       opacity: 0;
       transform: scale(0.8);
     }
-
   }
 
   /* fade-top */
   &-top {
     &-enter-active,
     &-leave-active {
-      transition: opacity 0.2s, transform 0.25s;
+      transition:
+        opacity 0.2s,
+        transform 0.25s;
     }
 
     &-enter-from {
@@ -82,6 +84,5 @@
       opacity: 0;
       transform: translateY(-8%);
     }
-
   }
 }

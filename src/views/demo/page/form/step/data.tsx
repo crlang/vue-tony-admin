@@ -1,4 +1,4 @@
-import { BasicFormSchema } from '@/components/BasicForm'
+import { BasicFormSchema } from '@/components/BasicForm';
 
 export const step1Schemas: BasicFormSchema[] = [
   {
@@ -47,10 +47,10 @@ export const step1Schemas: BasicFormSchema[] = [
     renderComponentContent: () => {
       return {
         append: () => '￥',
-      }
+      };
     },
   },
-]
+];
 
 export const step2Schemas: BasicFormSchema[] = [
   {
@@ -63,4 +63,4 @@ export const step2Schemas: BasicFormSchema[] = [
       showPassword: true,
     },
   },
-]
+];

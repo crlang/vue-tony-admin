@@ -9,7 +9,7 @@
           <div class="mb-2">头像</div>
           <BasicUpload
             @change="updateAvatar"
-            :api="uploadApi"
+            :api="ApiUpload"
             :modelValue="avatar"
             uploadName="file"
             :showPreview="false"
@@ -25,19 +25,18 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted } from 'vue'
-import { ElRow, ElCol, ElButton } from 'element-plus'
-import { BasicForm, useForm } from '@/components/BasicForm'
-import { CollapseContainer } from '@/components/CollapseContainer'
+import { computed, defineComponent, onMounted } from 'vue';
+import { ElRow, ElCol, ElButton } from 'element-plus';
+import { BasicForm, useForm } from '@/components/BasicForm';
+import { CollapseContainer } from '@/components/CollapseContainer';
 
-import { useMessage } from '@/hooks/web/useMessage'
-import { BasicUpload } from '@/components/BasicUpload'
+import { useMessage } from '@/hooks/web/useMessage';
+import { BasicUpload } from '@/components/BasicUpload';
 
-import headerImg from '@/assets/images/header.jpg'
-import { accountInfoApi } from '@/api/demo/account'
-import { baseSetschemas } from './data'
-import { useUserStore } from '@/store/modules/user'
-import { uploadApi } from '@/api/sys/upload'
+import { accountInfoApi } from '@/api/demo/account';
+import { baseSetschemas } from './data';
+import { useUserStore } from '@/store/modules/user';
+import { ApiUpload } from '@/api/upload';
 
 export default defineComponent({
   components: {
@@ -49,42 +48,42 @@ export default defineComponent({
     BasicUpload,
   },
   setup() {
-    const { createMessage } = useMessage()
-    const userStore = useUserStore()
+    const { createMessage } = useMessage();
+    const userStore = useUserStore();
 
     const [register, { setFieldsValue }] = useForm({
       labelWidth: 120,
       schemas: baseSetschemas,
       showActionButtonGroup: false,
-    })
+    });
 
     onMounted(async() => {
-      const data = await accountInfoApi()
-      setFieldsValue(data)
-    })
+      const data = await accountInfoApi();
+      setFieldsValue(data);
+    });
 
     const avatar = computed(() => {
-      const { avatar } = userStore.getUserInfo
-      return [avatar || headerImg]
-    })
+      const { avatar } = userStore.getUserInfo;
+      return [avatar];
+    });
 
     function updateAvatar(src: string) {
-      const userinfo = userStore.getUserInfo
-      userinfo.avatar = src
-      userStore.setUserInfo(userinfo)
+      const userinfo = userStore.getUserInfo;
+      userinfo.avatar = src;
+      userStore.setUserInfo(userinfo);
     }
 
     return {
       avatar,
       register,
-      uploadApi: uploadApi as any,
+      ApiUpload,
       updateAvatar,
       handleSubmit: () => {
-        createMessage.success('更新成功！')
+        createMessage.success('更新成功！');
       },
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

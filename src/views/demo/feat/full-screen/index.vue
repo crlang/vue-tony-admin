@@ -20,18 +20,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { ElButton } from 'element-plus'
-import { CollapseContainer } from '@/components/CollapseContainer'
-import { useFullscreen } from '@vueuse/core'
+import { defineComponent, ref } from 'vue';
+import { ElButton } from 'element-plus';
+import { CollapseContainer } from '@/components/CollapseContainer';
+import { useFullscreen } from '@vueuse/core';
 
 export default defineComponent({
   components: { ElButton, CollapseContainer },
   setup() {
-    const domRef = ref(null)
-    const { enter, toggle, exit, isFullscreen } = useFullscreen()
+    const domRef = ref(null);
+    const { enter, toggle, exit, isFullscreen } = useFullscreen();
 
-    const { toggle: toggleDom } = useFullscreen(domRef)
+    const { toggle: toggleDom } = useFullscreen(domRef);
     return {
       enter,
       toggleDom,
@@ -39,7 +39,7 @@ export default defineComponent({
       isFullscreen,
       exit,
       domRef,
-    }
+    };
   },
-})
+});
 </script>

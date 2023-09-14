@@ -15,28 +15,28 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, unref } from 'vue'
-import { ElButton, ElInput } from 'element-plus'
-import { useRouter } from 'vue-router'
+import { computed, defineComponent, ref, unref } from 'vue';
+import { ElButton, ElInput } from 'element-plus';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
   name: 'TestMenu',
   components: { ElButton, ElInput },
   setup() {
-    const { currentRoute, replace } = useRouter()
-    const value = ref<string>('')
+    const { currentRoute, replace } = useRouter();
+    const value = ref<string>('');
 
     const handleClickGo = () => {
-      const { name } = unref(currentRoute)
-      replace({ name: name!, params: { id: unref(value) } })
-    }
+      const { name } = unref(currentRoute);
+      replace({ name: name!, params: { id: unref(value) } });
+    };
     return {
       value,
       handleClickGo,
       params: computed(() => {
-        return unref(currentRoute).params
+        return unref(currentRoute).params;
       }),
-    }
+    };
   },
-})
+});
 </script>

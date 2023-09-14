@@ -3,37 +3,47 @@
     <el-avatar
       shape="circle"
       :size="72"
-      :src="userinfo.avatar || headerImg"
+      :src="datainfo.avatar"
       class="workbench-base__avatar" />
     <div class="workbench-base__title">
-      <h1>早安， {{ userinfo.realName }} ， 祝你开心每一天！</h1>
-      <p>🎉 恭喜你！比昨日提升了 1 个名次！ 🎉</p>
+      <h1>{{ datainfo.name }}</h1>
+      <p>{{ datainfo.desc }}</p>
     </div>
     <div class="workbench-base__statistic">
       <div class="statistic-item">
         <div>项目数</div>
-        <div>10</div>
+        <div>{{ datainfo.projectCount || '--' }}</div>
       </div>
       <div class="statistic-item">
         <div>团队内排名</div>
-        <div>96/99</div>
+        <div>{{ datainfo.teamIndex || '--' }}/{{ datainfo.teamTotal || '--' }}</div>
       </div>
       <div class="statistic-item">
         <div>项目访问</div>
-        <div>4,968</div>
+        <div>{{ datainfo.projectViews || '--' }}</div>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts" setup>
-import { computed } from 'vue'
-import { ElAvatar } from 'element-plus'
-import { useUserStore } from '@/store/modules/user'
-import headerImg from '@/assets/images/header.jpg'
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { ElAvatar } from 'element-plus';
 
-const userStore = useUserStore()
-const userinfo = computed(() => userStore.getUserInfo)
+import { DashboardUserInfo } from '@/api/types';
+
+export default defineComponent({
+  components: { ElAvatar },
+  props: {
+    datainfo: {
+      type: Object as PropType<DashboardUserInfo>,
+      default: null,
+    },
+  },
+  setup() {
+    return {};
+  },
+});
 </script>
 
 <style lang="scss" scoped>

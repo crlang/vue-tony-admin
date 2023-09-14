@@ -4,6 +4,7 @@ $prefix-cls: '#{$tonyname}-layout-header';
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   height: var(--header-height);
   padding: 0;
   line-height: var(--header-height);
@@ -31,14 +32,6 @@ $prefix-cls: '#{$tonyname}-layout-header';
     }
   }
 
-  &--fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    width: 100%;
-  }
-
   &-logo {
     min-width: 200px;
     height: var(--header-height);
@@ -63,7 +56,7 @@ $prefix-cls: '#{$tonyname}-layout-header';
       cursor: pointer;
 
       &:hover {
-        background-color: var(--header-background-hover-color);
+        color: var(--header-text-hover-color);
       }
 
       svg {

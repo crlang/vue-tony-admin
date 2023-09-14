@@ -3,33 +3,37 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref, Ref, watch } from 'vue'
-import { useECharts } from '@/hooks/web/useECharts'
-import { basicProps } from './props'
-import { getDateData } from '../data'
+import { defineComponent, ref, onMounted, Ref, watch } from 'vue';
+
+import { useECharts } from '@/hooks/web/useECharts';
+
+import { DateModeType, DateBasicItem } from '../data';
 
 export default defineComponent({
-  props: basicProps,
+  props: {
+    width: {
+      type: String,
+      default: '100%',
+    },
+    height: {
+      type: String,
+      default: '280px',
+    },
+    type: {
+      type: String as PropType<DateModeType>,
+      default: 'day',
+    },
+    datainfo: {
+      type: Array as PropType<DateBasicItem[]>,
+      default: () => [],
+    },
+  },
   setup(props) {
-    const chartRef = ref<HTMLDivElement | null>(null)
-    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>)
-
-    watch(
-      () => props.type,
-      (v) => {
-        if (v) {
-          initChart()
-        }
-      },
-    )
+    const chartRef = ref<HTMLDivElement | null>(null);
+    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
 
     const initChart = () => {
-      const data = computed(() => {
-        const { type } = props
-
-        return getDateData(type)
-      })
-
+      const piedata = props.datainfo || [];
       setOptions({
         tooltip: {
           trigger: 'item',
@@ -40,7 +44,7 @@ export default defineComponent({
             type: 'pie',
             radius: '85%',
             center: ['50%', '50%'],
-            data: data.value.vdata,
+            data: piedata,
             emphasis: {
               itemStyle: {
                 shadowBlur: 10,
@@ -50,43 +54,22 @@ export default defineComponent({
             },
           },
         ],
-      })
+      });
+    };
 
-      // setOptions({
-      //   tooltip: {
-      //     trigger: 'axis',
-      //     axisPointer: {
-      //       lineStyle: {
-      //         width: 1,
-      //         color: '#22CCE2',
-      //       },
-      //     },
-      //   },
-      //   grid: { left: '1%', right: '1%', top: '2%', bottom: 0, containLabel: true },
-      //   xAxis: {
-      //     type: 'category',
-      //     data: data.value.xdata,
-      //   },
-      //   yAxis: {
-      //     type: 'value',
-      //     max: 8000,
-      //     splitNumber: 4,
-      //   },
-      //   series: [
-      //     {
-      //       data: data.value.kdata.k1,
-      //       type: 'bar',
-      //       barMaxWidth: 80,
-      //     },
-      //   ],
-      // })
-    }
+    watch(
+      () => props.datainfo,
+      () => {
+        initChart();
+      },
+      { deep: true },
+    );
 
-    onMounted(initChart)
+    onMounted(initChart);
 
     return {
       chartRef,
-    }
+    };
   },
-})
+});
 </script>

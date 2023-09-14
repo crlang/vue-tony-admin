@@ -1,9 +1,9 @@
-import { watch, unref } from 'vue'
-import { useTitle as usePageTitle } from '@vueuse/core'
-import { useRouter } from 'vue-router'
+import { watch, unref } from 'vue';
+import { useTitle as usePageTitle } from '@vueuse/core';
+import { useRouter } from 'vue-router';
 
-import { useGlobSetting } from '@/hooks/setting'
-import { REDIRECT_NAME } from '@/router/constant'
+import { useGlobSetting } from '@/hooks/setting';
+import { REDIRECT_NAME } from '@/router/constant';
 
 /**
  * 页面标题处理
@@ -11,23 +11,23 @@ import { REDIRECT_NAME } from '@/router/constant'
  * Listen to the route title and display it in the page title
  */
 export function useTitle() {
-  const { title } = useGlobSetting()
-  const { currentRoute } = useRouter()
+  const { title } = useGlobSetting();
+  const { currentRoute } = useRouter();
 
-  const pageTitle = usePageTitle()
+  const pageTitle = usePageTitle();
 
   watch(
     () => currentRoute.value.path,
     () => {
-      const route = unref(currentRoute)
+      const route = unref(currentRoute);
 
       if (route.name === REDIRECT_NAME) {
-        return
+        return;
       }
 
-      const tTitle = route?.meta?.title || ''
-      pageTitle.value = tTitle ? ` ${tTitle} - ${title} ` : `${title}`
+      const tTitle = route?.meta?.title || '';
+      pageTitle.value = tTitle ? ` ${tTitle} - ${title} ` : `${title}`;
     },
     { immediate: true },
-  )
+  );
 }

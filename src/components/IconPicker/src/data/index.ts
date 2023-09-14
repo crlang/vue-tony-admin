@@ -17,4 +17,4 @@
 export default {
   prefix: 'ep',
   icons: ['arrow-down', 'arrow-down-bold', 'arrow-left', 'arrow-left-bold', 'arrow-right', 'arrow-right-bold', 'arrow-up', 'arrow-up-bold'],
-}
+};

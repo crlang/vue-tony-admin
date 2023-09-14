@@ -3,9 +3,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref, Ref, onMounted, reactive } from 'vue'
-import { useECharts } from '@/hooks/web/useECharts'
-import { randomNumber } from '@/utils/demo'
+import { defineComponent, PropType, ref, Ref, onMounted, reactive } from 'vue';
+import { useECharts } from '@/hooks/web/useECharts';
+import { randomNumber } from '@/utils/demo';
 
 export default defineComponent({
   props: {
@@ -19,11 +19,10 @@ export default defineComponent({
     },
   },
   setup() {
-    const chartRef = ref<HTMLDivElement | null>(null)
-    const { setOptions, getInstance, echarts } = useECharts(chartRef as Ref<HTMLDivElement>)
-    const data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    let startTimes = 0
-    // eslint-disable-next-line no-undef
+    const chartRef = ref<HTMLDivElement | null>(null);
+    const { setOptions, getInstance, echarts } = useECharts(chartRef as Ref<HTMLDivElement>);
+    const data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let startTimes = 0;
     const options = reactive<echarts.EChartsOption>({
       xAxis: {
         max: 'dataMax',
@@ -59,10 +58,10 @@ export default defineComponent({
                 ['#ee0979', '#ff6a00'],
                 ['#A770EF', '#FDB99B'],
                 ['#fceabb', '#f8b500'],
-              ]
-              var index = params.dataIndex
+              ];
+              var index = params.dataIndex;
               if (params.dataIndex >= colorList.length) {
-                index = params.dataIndex - colorList.length
+                index = params.dataIndex - colorList.length;
               }
               return new echarts.graphic.LinearGradient(1, 0, 0, 0, [
                 {
@@ -73,7 +72,7 @@ export default defineComponent({
                   offset: 1,
                   color: colorList[index][1],
                 },
-              ])
+              ]);
             },
           },
           label: {
@@ -102,11 +101,11 @@ export default defineComponent({
           },
         ],
       },
-    })
+    });
 
     function run() {
       for (var i = 0; i < data.length; ++i) {
-        data[i] += randomNumber(1000)
+        data[i] += randomNumber(1000);
       }
 
       getInstance()?.setOption({
@@ -116,25 +115,24 @@ export default defineComponent({
             data,
           },
         ],
-      })
+      });
     }
 
     function updateYear(year: string) {
       // eslint-disable-next-line prettier/prettier
-      (options as any).graphic.elements[0].style.text = year
-      // eslint-disable-next-line no-undef
-      getInstance()?.setOption<echarts.EChartsOption>(options as any)
+      (options as any).graphic.elements[0].style.text = year;
+      getInstance()?.setOption<echarts.EChartsOption>(options as any);
     }
 
     onMounted(() => {
-      setOptions(options as any)
+      setOptions(options as any);
 
       setInterval(function() {
-        run()
-        updateYear(String((startTimes += 1)))
-      }, 3000)
-    })
-    return { chartRef }
+        run();
+        updateYear(String((startTimes += 1)));
+      }, 3000);
+    });
+    return { chartRef };
   },
-})
+});
 </script>
