@@ -17,12 +17,25 @@ function defineApplicationConfig(defineOptions: DefineOptions = {}) {
   return defineConfig(async({ command, mode }) => {
     const root = process.cwd();
     const isBuild = command === 'build';
-    const { VITE_PUBLIC_PATH, VITE_BUILD_COMPRESS, VITE_DROP_CONSOLE, VITE_ENABLE_ANALYZE, VITE_PROXY_PORT, VITE_PROXY_ADDRESS, VITE_PROXY_AUTO_OPEN } = loadEnv(mode, root);
+    const {
+      VITE_PUBLIC_PATH,
+      VITE_BUILD_COMPRESS,
+      VITE_DROP_CONSOLE,
+      VITE_ENABLE_ANALYZE,
+      VITE_PROXY_PORT,
+      VITE_PROXY_API_URL,
+      VITE_PROXY_UPLOAD_URL,
+      VITE_PROXY_AUTO_OPEN,
+      VITE_ENABLE_DEVTOOLS,
+      VITE_GLOB_API_URL,
+      VITE_GLOB_UPLOAD_URL,
+    } = loadEnv(mode, root);
     const defineData = await createDefineData(root);
     const plugins = await createPlugins({
       isBuild,
       root,
       enableAnalyze: VITE_ENABLE_ANALYZE === 'true',
+      enableVueDevTools: VITE_ENABLE_DEVTOOLS === 'true',
       compress: VITE_BUILD_COMPRESS,
     });
 
@@ -56,7 +69,7 @@ function defineApplicationConfig(defineOptions: DefineOptions = {}) {
         : {
           host: true,
           port: VITE_PROXY_PORT,
-          proxy: createProxy(VITE_PROXY_ADDRESS),
+          proxy: createProxy({ VITE_PROXY_API_URL, VITE_PROXY_UPLOAD_URL, VITE_GLOB_API_URL, VITE_GLOB_UPLOAD_URL }),
           open: VITE_PROXY_AUTO_OPEN === 'true',
         },
       build: {

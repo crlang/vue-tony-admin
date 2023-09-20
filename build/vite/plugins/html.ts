@@ -1,12 +1,11 @@
 /**
- * Plugin to minimize and use ejs template syntax in index.html.
- * https://github.com/anncwb/vite-plugin-html
+ * 让 index.html 支持 ejs 模板语法
  */
 import type { PluginOption } from 'vite';
 
 import { createHtmlPlugin } from 'vite-plugin-html';
 
-export function configHtmlPlugin({ isBuild }: { isBuild: boolean }) {
+export function createHtmlConfig({ isBuild }: { isBuild: boolean }) {
   const htmlPlugin: PluginOption[] = createHtmlPlugin({
     minify: isBuild,
   });

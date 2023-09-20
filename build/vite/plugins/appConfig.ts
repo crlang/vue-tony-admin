@@ -1,3 +1,6 @@
+/**
+ * 创建 app 配置文件
+ */
 import type { PluginOption } from 'vite';
 
 import colors from 'picocolors';
@@ -8,7 +11,7 @@ import { getEnvConfig } from '../utils/env';
 const GLOBAL_CONFIG_FILE_NAME = 'app.config.js';
 const PLUGIN_NAME = 'app-config';
 
-async function createAppConfigPlugin({ root, isBuild }: { root: string; isBuild: boolean }): Promise<PluginOption> {
+async function createAppConfig({ root, isBuild }: { root: string; isBuild: boolean }): Promise<PluginOption> {
   let publicPath: string;
   let source: string;
   if (!isBuild) {
@@ -91,4 +94,4 @@ async function getConfigSource(appTitle: string) {
   return source;
 }
 
-export { createAppConfigPlugin };
+export { createAppConfig };

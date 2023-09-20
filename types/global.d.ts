@@ -57,7 +57,8 @@ declare global {
     VITE_GLOB_APP_SHORT_NAME: string;
     VITE_PROXY_PORT: string;
     VITE_PROXY_AUTO_OPEN: string;
-    VITE_PROXY_ADDRESS: string;
+    VITE_PROXY_API_URL: string;
+    VITE_PROXY_UPLOAD_URL: string;
     VITE_GLOB_API_URL: string;
     VITE_GLOB_UPLOAD_URL: string;
     VITE_GLOB_API_URL_PREFIX: string;

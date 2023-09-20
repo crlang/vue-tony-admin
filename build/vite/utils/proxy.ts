@@ -2,34 +2,47 @@
  * Used to parse the .env.development proxy configuration
  */
 import type { ProxyOptions } from 'vite';
-type ProxyItem = [string, string];
 type ProxyTargetList = Record<string, ProxyOptions>;
 
 /**
  * Generate proxy
- * @param list
  */
-export function createProxy(listStr: string) {
-  let list: ProxyItem[] = [];
-  try {
-    list = JSON.parse(listStr);
-  } catch (error) {
-    console.error('proxy address error: ', error);
-  }
+export function createProxy({
+  VITE_PROXY_API_URL,
+  VITE_PROXY_UPLOAD_URL,
+  VITE_GLOB_API_URL,
+  VITE_GLOB_UPLOAD_URL,
+}: {
+  VITE_PROXY_API_URL: string;
+  VITE_PROXY_UPLOAD_URL: string;
+  VITE_GLOB_API_URL: string;
+  VITE_GLOB_UPLOAD_URL: string;
+}) {
   const ret: ProxyTargetList = {};
-  for (let i = 0; i < list.length; i++) {
-    const [prefix, target] = list[i];
-    const isHttps = /^https:\/\//.test(target);
+  const isHttps = (v) => /^https:\/\//.test(v);
 
-    // https://github.com/http-party/node-http-proxy#options
-    ret[prefix] = {
-      target: target,
+  // 代理基础接口
+  if (VITE_PROXY_API_URL !== '' && VITE_GLOB_API_URL !== '') {
+    ret[VITE_PROXY_API_URL] = {
+      target: VITE_GLOB_API_URL,
       changeOrigin: true,
       ws: true,
-      rewrite: (path) => path.replace(new RegExp(`^${prefix}`), ''),
+      rewrite: (path) => path.replace(new RegExp(`^${VITE_PROXY_API_URL}`), ''),
       // https is require secure=false
-      ...(isHttps ? { secure: false } : {}),
+      ...(isHttps(VITE_GLOB_API_URL) ? { secure: false } : {}),
     };
   }
+
+  // 代理上传接口
+  if (VITE_PROXY_UPLOAD_URL !== '' && VITE_GLOB_UPLOAD_URL !== '') {
+    ret[VITE_PROXY_UPLOAD_URL] = {
+      target: VITE_GLOB_UPLOAD_URL,
+      changeOrigin: true,
+      ws: true,
+      rewrite: (path) => path.replace(new RegExp(`^${VITE_PROXY_UPLOAD_URL}`), ''),
+      ...(isHttps(VITE_GLOB_UPLOAD_URL) ? { secure: false } : {}),
+    };
+  }
+
   return ret;
 }

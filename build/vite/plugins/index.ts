@@ -4,44 +4,49 @@ import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import DefineOptions from 'unplugin-vue-define-options/vite';
 
-import { createAppConfigPlugin } from './appConfig';
-import { configCompressPlugin } from './compress';
-import { configHtmlPlugin } from './html';
-import { configSvgIconsPlugin } from './svgSprite';
-import { configVisualizerConfig } from './visualizer';
+import { createAppConfig } from './appConfig';
+import { createCompressConfig } from './compress';
+import { createHtmlConfig } from './html';
+import { createSvgIconsConfig } from './svgSprite';
+import { createVisualizerConfig } from './visualizer';
+import { createVueDevToolsConfig } from './vuedevtools';
 
-interface Options {
+async function createPlugins({
+  isBuild,
+  root,
+  compress,
+  enableAnalyze,
+  enableVueDevTools,
+}: {
   isBuild: boolean;
   root: string;
   compress: string;
   enableAnalyze?: boolean;
-}
-
-async function createPlugins({ isBuild, root, compress, enableAnalyze }: Options) {
+  enableVueDevTools?: boolean;
+}) {
   const vitePlugins: (PluginOption | PluginOption[])[] = [vue(), vueJsx(), DefineOptions()];
 
-  const appConfigPlugin = await createAppConfigPlugin({ root, isBuild });
+  const appConfigPlugin = await createAppConfig({ root, isBuild });
   vitePlugins.push(appConfigPlugin);
 
-  // vite-plugin-html
-  vitePlugins.push(configHtmlPlugin({ isBuild }));
+  vitePlugins.push(createHtmlConfig({ isBuild }));
 
-  // vite-plugin-svg-icons
-  vitePlugins.push(configSvgIconsPlugin({ isBuild }));
+  vitePlugins.push(createSvgIconsConfig({ isBuild }));
 
-  // The following plugins only work in the production environment
   if (isBuild) {
-    // rollup-plugin-gzip
     vitePlugins.push(
-      configCompressPlugin({
+      createCompressConfig({
         compress,
       }),
     );
   }
 
-  // rollup-plugin-visualizer
+  if (enableVueDevTools) {
+    vitePlugins.push(createVueDevToolsConfig());
+  }
+
   if (enableAnalyze) {
-    vitePlugins.push(configVisualizerConfig());
+    vitePlugins.push(createVisualizerConfig());
   }
 
   return vitePlugins;
