@@ -91,7 +91,7 @@ function defineApplicationConfig(
         preprocessorOptions: {
           scss: {
             charset: false,
-            additionalData: `@use "@/design/ele/setting.scss" as *;@use "@/design/var/config.scss" as *;`,
+            additionalData: `@use "@/design/var.scss" as *;`,
           },
         },
       },

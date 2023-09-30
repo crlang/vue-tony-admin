@@ -1,0 +1,139 @@
+@use 'sass:color';
+
+// 注意：`$tonyname` 必须要和 `settings\designSetting.ts` 文件的 `prefixCls` 的保持一致
+// Note: The '$tonyname' must be consistent with the 'prefixCls' in the `settings\designSetting.ts` file
+$tonyname: tony;
+
+// ======================================
+// ============== Breakpoint ============
+// ======================================
+
+// 小屏-
+$screen-xs: 480px;
+$screen-xs-min: $screen-xs;
+
+// 小屏
+$screen-sm: 576px;
+$screen-sm-min: $screen-sm;
+
+// 中屏
+$screen-md: 768px;
+$screen-md-min: $screen-md;
+
+// 大屏
+$screen-lg: 992px;
+$screen-lg-min: $screen-lg;
+
+// 大屏+
+$screen-xl: 1200px;
+$screen-xl-min: $screen-xl;
+
+// 大屏++
+$screen-2xl: 1600px;
+$screen-2xl-min: $screen-2xl;
+
+// 大屏+++
+$screen-3xl: 1920px;
+$screen-3xl-min: $screen-3xl;
+
+// Max
+$screen-xs-max: ($screen-sm-min - 1px);
+$screen-sm-max: ($screen-md-min - 1px);
+$screen-md-max: ($screen-lg-min - 1px);
+$screen-lg-max: ($screen-xl-min - 1px);
+$screen-xl-max: ($screen-2xl-min - 1px);
+$screen-2xl-max: ($screen-3xl-min - 1px);
+
+// ======================================
+// ================ Color  ==============
+// ======================================
+
+$white-color: #fff;
+$black-color: #000;
+
+// 成功色
+$success-color: #09b66d;
+
+// 成功浅(背景)色
+$success-bg-color: color.scale($success-color, $lightness: 30%, $alpha: -85%);
+
+// 警告色
+$warning-color: #ff8a48;
+
+// 警告浅(背景)色
+$warning-bg-color: color.scale($warning-color, $lightness: 30%, $alpha: -85%);
+
+// 错误色
+$error-color: #ff3d57;
+$danger-color: #ff3d57;
+
+// 错误浅(背景)色
+$error-bg-color: color.scale($error-color, $lightness: 30%, $alpha: -85%);
+$danger-bg-color: color.scale($danger-color, $lightness: 30%, $alpha: -85%);
+
+// 文本色
+$info-color: #6c757d;
+
+// 文本浅(背景)色
+$info-bg-color: color.scale($info-color, $lightness: 30%, $alpha: -85%);
+
+// 禁用色
+$disabled-color: #6c757d;
+
+// 禁用浅(背景)色
+$disabled-bg-color: color.scale($disabled-color, $lightness: 30%, $alpha: -85%);
+
+// 主文本色
+$text-main: #1b222a;
+
+// 基础文本色
+$text-primary: #44566c;
+
+// 常规文本色
+$text-regular: #606266;
+
+// 副文本色
+$text-secondary: #8697a8;
+
+// 占位文本色
+$text-placeholder: #a8abb2;
+
+// 禁用文本色
+$text-disabled: #c0c4cc;
+
+// 主背景色
+$background-main: #f1f2f3;
+
+// 基础背景色
+$background-primary: #fff;
+
+// 常规背景色
+$background-regular: #f2f4f6;
+
+// 副背景色
+$background-secondary: #fafafa;
+
+// 边框色
+$border-color: #8697a8;
+
+// 边框色-浅
+$border-color-light: #eaedf0;
+
+// ======================================
+// ======== Animate cubic bezier ========
+// ======================================
+
+$ease-base-out: cubic-bezier(0.7, 0.3, 0.1, 1);
+$ease-base-in: cubic-bezier(0.9, 0, 0.3, 0.7);
+$ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+$ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+$ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+$ease-out-back: cubic-bezier(0.12, 0.4, 0.29, 1.46);
+$ease-in-back: cubic-bezier(0.71, -0.46, 0.88, 0.6);
+$ease-in-out-back: cubic-bezier(0.71, -0.46, 0.29, 1.46);
+$ease-out-circ: cubic-bezier(0.08, 0.82, 0.17, 1);
+$ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+$ease-in-out-circ: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+$ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+$ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+$ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);

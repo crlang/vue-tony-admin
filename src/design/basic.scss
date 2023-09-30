@@ -115,7 +115,7 @@ textarea {
 
 input::placeholder,
 textarea::placeholder {
-  color: co.$text-placeholder;
+  color: var.$text-placeholder;
   opacity: 1;
 }
 

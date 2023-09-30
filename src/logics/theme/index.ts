@@ -49,14 +49,12 @@ export async function changeTheme(color: string) {
 
   setCssVar('--primary-color', color);
 
-  // Update Element Plus theme color
+  // Cover Element Plus theme
   setCssVar('--el-color-primary', color);
-  setCssVar('--el-color-primary-light-3', lighten(color, 30));
-  setCssVar('--el-color-primary-light-5', lighten(color, 50));
-  setCssVar('--el-color-primary-light-7', lighten(color, 70));
-  setCssVar('--el-color-primary-light-8', lighten(color, 80));
-  setCssVar('--el-color-primary-light-9', lighten(color, 90));
-  setCssVar('--el-color-primary-dark-2', darken(color, 20));
+  for (let i = 1; i <= 20; i++) {
+    setCssVar(`--el-color-primary-light-${i}`, lighten(color, i * 5));
+    setCssVar(`--el-color-primary-dark-${i}`, darken(color, i * 5));
+  }
 }
 
 /**

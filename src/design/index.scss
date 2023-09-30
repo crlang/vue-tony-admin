@@ -53,21 +53,21 @@ B.parent-cat.pcc__title
 */
 
 // Basic
-@use 'var/color.scss' as co;
-
-// Element Plus
-@import 'ele/index.scss';
+@use 'var.scss' as var;
 
 // Advanced
 @import 'basic.scss';
-@import 'transition/index.scss';
+@import 'transition.scss';
 @import 'public.scss';
 
 @font-face {
   font-family: 'Urial';
   font-style: normal;
   font-weight: normal;
-  src: url('@/assets/fonts/URIAL.woff') format('woff'), url('@/assets/fonts/URIAL.woff2') format('woff2'), url('@/assets/fonts/URIAL.ttf') format('truetype');
+  src:
+    url('@/assets/fonts/URIAL.woff') format('woff'),
+    url('@/assets/fonts/URIAL.woff2') format('woff2'),
+    url('@/assets/fonts/URIAL.ttf') format('truetype');
   text-rendering: optimizelegibility;
 }
 
@@ -102,13 +102,6 @@ B.parent-cat.pcc__title
   --radius-small: 4px;
   --radius-large: 12px;
 
-  /* ZIndex */
-  --top-zindex: #{$top-zindex};
-  --popup-zindex: #{$popup-zindex};
-  --mask-zindex: #{$mask-zindex};
-  --sec-popup-zindex: #{$sec-popup-zindex};
-  --sec-mask-zindex: #{$sec-mask-zindex};
-
   @media only screen and (width <= 767px) {
     // xs
   }
@@ -126,44 +119,36 @@ B.parent-cat.pcc__title
   }
 
   /* Color */
-  --primary-color: #{co.$primary-color}; /* dead color */
-  --primary-hover-color: #{co.$primary-hover-color}; /* dead color */
-  --primary-active-color: #{co.$primary-active-color}; /* dead color */
-  --active-color: #{co.$primary-active-color}; /* dead color */
-  --primary-bg-color: #{co.$primary-bg-color}; /* dead color */
-  --success-color: #{co.$success-color}; /* dead color */
-  --success-bg-color: #{co.$success-bg-color}; /* dead color */
-  --warning-color: #{co.$warning-color}; /* dead color */
-  --warning-bg-color: #{co.$warning-bg-color}; /* dead color */
-  --danger-color: #{co.$danger-color}; /* dead color */
-  --danger-bg-color: #{co.$danger-bg-color}; /* dead color */
-  --error-color: #{co.$error-color}; /* dead color */
-  --error-bg-color: #{co.$error-bg-color}; /* dead color */
-  --black-color: #{co.$black-color}; /* dead color */
-  --white-color: #{co.$white-color}; /* dead color */
-  --disabled-color: #{co.$disabled-color};
-  --border-color: #{co.$border-color};
-  --border-color-light: #{co.$border-color-light};
+  --success-color: #{var.$success-color}; /* dead color */
+  --success-bg-color: #{var.$success-bg-color}; /* dead color */
+  --warning-color: #{var.$warning-color}; /* dead color */
+  --warning-bg-color: #{var.$warning-bg-color}; /* dead color */
+  --danger-color: #{var.$danger-color}; /* dead color */
+  --danger-bg-color: #{var.$danger-bg-color}; /* dead color */
+  --error-color: #{var.$error-color}; /* dead color */
+  --error-bg-color: #{var.$error-bg-color}; /* dead color */
+  --black-color: #{var.$black-color}; /* dead color */
+  --white-color: #{var.$white-color}; /* dead color */
+  --disabled-color: #{var.$disabled-color};
+  --border-color: #{var.$border-color};
+  --border-color-light: #{var.$border-color-light};
 
   /* Text Color */
-  --text-main-color: #{co.$text-main};
-  --text-primary-color: #{co.$text-primary};
-  --text-primary-reverse: #{co.$white-color};
-  --text-regular-color: #{co.$text-regular};
-  --text-secondary-color: #{co.$text-secondary};
+  --text-main-color: #{var.$text-main};
+  --text-primary-color: #{var.$text-primary};
+  --text-primary-reverse: #{var.$white-color};
+  --text-regular-color: #{var.$text-regular};
+  --text-secondary-color: #{var.$text-secondary};
 
   /* Background Color */
-  --background-main-color: #{co.$background-main};
-  --background-primary-color: #{co.$background-primary};
-  --background-regular-color: #{co.$background-regular};
-  --background-secondary-color: #{co.$background-secondary};
+  --background-main-color: #{var.$background-main};
+  --background-primary-color: #{var.$background-primary};
+  --background-regular-color: #{var.$background-regular};
+  --background-secondary-color: #{var.$background-secondary};
 
   /* Shadow */
   --card-shadow: 0 2px 4px rgba(169, 194, 209, 0.05), 0 12px 16px rgba(169, 194, 209, 0.1);
   --card-shadow-shape: 0 32px 32px rgba(169, 194, 209, 0.1), 0 8px 16px rgba(169, 194, 209, 0.05);
-
-  /* Mix Theme Color */
-  @include co.MixElPrimaryThemeColor();
 }
 
 html {
@@ -212,19 +197,6 @@ html {
     --card-shadow-shape: 0 32px 32px rgba(16, 19, 20, 0.1), 0 8px 16px rgba(16, 19, 20, 0.05);
 
     // ↓↓↓ Dark Exclusive ↓↓↓
-
-    // left sider
-    // --sider-background-color: var(--el-bg-color) !important;
-    // --sider-background-hover-color: var(--el-bg-color-overlay) !important;
-    // --sider-text-color: var(--el-text-color-primary) !important;
-    // --sider-text-hover-color: var(--el-text-color-regular) !important;
-
-    // top header
-    // --header-text-color: var(--el-text-color-primary) !important;
-    // --header-text-hover-color: var(--el-text-color-regular) !important;
-    // --header-background-color: var(--el-bg-color) !important;
-    // --header-background-hover-color: var(--el-bg-color-overlay) !important;
-
     // ↑↑↑ Dark Exclusive ↑↑↑
   }
 }
