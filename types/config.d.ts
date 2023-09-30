@@ -117,14 +117,42 @@ export interface GlobConfig {
   shortName: string;
 }
 export interface GlobEnvConfig {
-  // Site title
+  /** App title */
   VITE_GLOB_APP_TITLE: string;
-  // Service interface url
-  VITE_GLOB_API_URL: string;
-  // Service interface url prefix
-  VITE_GLOB_API_URL_PREFIX?: string;
-  // Project abbreviation
+  /** App name */
   VITE_GLOB_APP_SHORT_NAME: string;
-  // Upload url
-  VITE_GLOB_UPLOAD_URL?: string;
+  /** Local development proxy port */
+  VITE_PROXY_PORT: string;
+  /** Automatically open proxy address */
+  VITE_PROXY_AUTO_OPEN: string;
+  /** Enable code size statistics */
+  VITE_ENABLE_ANALYZE: string;
+  /** Enable DOM node quick lookup */
+  VITE_ENABLE_DEVTOOLS: string;
+  /** Local development proxy api prefix */
+  VITE_PROXY_API_URL: string;
+  /** Api address */
+  VITE_GLOB_API_URL: string;
+  /** Api prefix */
+  VITE_GLOB_API_URL_PREFIX: string;
+  /** [optional] Local development proxy upload api prefix */
+  VITE_PROXY_UPLOAD_URL: string;
+  /** [optional] Upload api address */
+  VITE_GLOB_UPLOAD_URL: string;
+  /** Public path */
+  VITE_PUBLIC_PAT: string;
+  /** Delete console */
+  VITE_DROP_CONSOLE: string;
+  /**
+   * Whether to enable gzip or brotli compression
+   * Optional: gzip | brotli | none
+   * If you need multiple forms, you can use `,` to separate
+   */
+  VITE_BUILD_COMPRESS: string;
+  /** Enable code size statistics */
+  VITE_ENABLE_ANALYZE: string;
+  /** Enable DOM node quick lookup */
+  VITE_ENABLE_DEVTOOLS: string;
+  /** Is it compatible with older browsers */
+  VITE_LEGACY: string;
 }

@@ -145,6 +145,9 @@ devDependencies:
   lint-staged:
     specifier: ^13.3.0
     version: registry.npmmirror.com/lint-staged@13.3.0
+  picocolors:
+    specifier: ^1.0.0
+    version: registry.npmmirror.com/picocolors@1.0.0
   pkg-types:
     specifier: ^1.0.3
     version: registry.npmmirror.com/pkg-types@1.0.3

@@ -4,7 +4,11 @@ import { warn } from '@/utils/log';
 
 import pkg from '../../package.json';
 
-const getVariableName = (title: string) => {
+/**
+ * Get the configuration file variable name
+ * @param env
+ */
+export function getVariableName(title: string) {
   function strToHex(str: string) {
     const result: string[] = [];
     for (let i = 0; i < str.length; ++i) {
@@ -15,7 +19,7 @@ const getVariableName = (title: string) => {
   }
 
   return `__PRODUCTION__${strToHex(title) || '__APP'}__CONF__`.toUpperCase().replace(/\s/g, '');
-};
+}
 
 export function getCommonStoragePrefix() {
   const { VITE_GLOB_APP_SHORT_NAME } = getAppEnvConfig();
@@ -28,24 +32,17 @@ export function getStorageShortName() {
 }
 
 export function getAppEnvConfig() {
-  const ENV_NAME = getVariableName(import.meta.env.VITE_GLOB_APP_TITLE);
+  const appName = import.meta.env.VITE_GLOB_APP_SHORT_NAME;
+  if (!/^[a-zA-Z\_]*$/.test(appName)) {
+    warn('VITE_GLOB_APP_SHORT_NAME 变量只能是字母、下划线，请在环境变量中修改并重新运行');
+  }
+
+  const ENV_NAME = getVariableName(appName);
 
   // Get the global configuration (the configuration will be extracted independently when packaging)
   const ENV = (import.meta.env.DEV ? (import.meta.env as unknown as GlobEnvConfig) : window[ENV_NAME as any]) as unknown as GlobEnvConfig;
 
-  const { VITE_GLOB_APP_TITLE, VITE_GLOB_API_URL, VITE_GLOB_APP_SHORT_NAME, VITE_GLOB_API_URL_PREFIX, VITE_GLOB_UPLOAD_URL } = ENV;
-
-  if (!/^[a-zA-Z\_]*$/.test(VITE_GLOB_APP_SHORT_NAME)) {
-    warn(`VITE_GLOB_APP_SHORT_NAME Variables can only be characters/underscores, please modify in the environment variables and re-running.`);
-  }
-
-  return {
-    VITE_GLOB_APP_TITLE,
-    VITE_GLOB_API_URL,
-    VITE_GLOB_APP_SHORT_NAME,
-    VITE_GLOB_API_URL_PREFIX,
-    VITE_GLOB_UPLOAD_URL,
-  };
+  return ENV;
 }
 
 /**

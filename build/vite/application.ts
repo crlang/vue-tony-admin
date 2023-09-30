@@ -1,4 +1,5 @@
 import { resolve } from 'node:path';
+import { cwd } from 'node:process';
 import dayjs from 'dayjs';
 import { readPackageJSON } from 'pkg-types';
 import { defineConfig, loadEnv, mergeConfig, type UserConfig } from 'vite';
@@ -6,16 +7,16 @@ import { defineConfig, loadEnv, mergeConfig, type UserConfig } from 'vite';
 import { createPlugins } from './plugins';
 import { createProxy } from './utils/proxy';
 
-interface DefineOptions {
-  overrides?: UserConfig;
-  options?: {};
-}
-
-function defineApplicationConfig(defineOptions: DefineOptions = {}) {
+function defineApplicationConfig(
+  defineOptions: {
+    overrides?: UserConfig;
+    options?: {};
+  } = {},
+) {
   const { overrides = {} } = defineOptions;
 
   return defineConfig(async({ command, mode }) => {
-    const root = process.cwd();
+    const root = cwd();
     const isBuild = command === 'build';
     const {
       VITE_PUBLIC_PATH,

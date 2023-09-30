@@ -1,6 +1,7 @@
 import { join } from 'node:path';
 import dotenv from 'dotenv';
 import { readFile } from 'fs-extra';
+import { cwd } from 'node:process';
 
 /**
  * 获取当前环境下生效的配置文件名
@@ -26,7 +27,7 @@ export async function getEnvConfig(match = 'VITE_GLOB_', confFiles = getConfFile
 
   for (const confFile of confFiles) {
     try {
-      const envPath = await readFile(join(process.cwd(), confFile), { encoding: 'utf8' });
+      const envPath = await readFile(join(cwd(), confFile), { encoding: 'utf8' });
       const env = dotenv.parse(envPath);
       envConfig = { ...envConfig, ...env };
     } catch (e) {
