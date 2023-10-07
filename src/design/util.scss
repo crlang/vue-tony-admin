@@ -115,3 +115,47 @@ $spacer: 0.25rem !default;
 .none {
   display: none;
 }
+
+.align {
+  &-baseline {
+    align-items: baseline;
+  }
+
+  &-start {
+    align-items: flex-start;
+  }
+
+  &-center {
+    align-items: center;
+  }
+
+  &-end {
+    align-items: flex-end;
+  }
+}
+
+.justify {
+  &-left {
+    justify-content: left;
+  }
+
+  &-center {
+    justify-content: center;
+  }
+
+  &-right {
+    justify-content: right;
+  }
+
+  &-around {
+    justify-content: space-around;
+  }
+
+  &-between {
+    justify-content: space-between;
+  }
+
+  &-evenly {
+    justify-content: space-evenly;
+  }
+}

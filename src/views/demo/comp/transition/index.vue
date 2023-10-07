@@ -3,7 +3,7 @@
     <el-row :gutter="16">
       <el-col :span="6" v-for="item in transitionList" :key="item">
         <component :is="`${item}Transition`">
-          <div class="box" v-show="show">
+          <div class="box">
             <div>{{ item }}</div>
           </div>
         </component>

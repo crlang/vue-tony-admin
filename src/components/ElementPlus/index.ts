@@ -78,7 +78,7 @@ import {
 } from 'element-plus';
 
 export const EleButtonProps = buttonProps;
-export type EleButton = Partial<ButtonProps> & { btnText?: string };
+export type EleButton = Partial<ButtonProps> & { btnText?: string; class?: string };
 
 export const EleColProps = colProps;
 export type EleCol = ColProps & { style?: CSSProperties };
