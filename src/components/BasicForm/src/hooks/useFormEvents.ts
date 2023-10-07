@@ -47,7 +47,6 @@ export function useFormEvents({
     const fields = unref(getSchema)
       .map((item) => item.field)
       .filter(Boolean);
-
     const validKeys: string[] = [];
     Object.keys(values).forEach((key) => {
       const value = values[key];

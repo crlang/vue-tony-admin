@@ -172,6 +172,12 @@ export interface BasicFormSchema {
    * Dynamically returns the validation rules for the current form item
    */
   dynamicRules?: (rcp: RenderCallbackParams) => EleFormItemRule[];
+  /**
+   * 表单项类名
+   *
+   * Form item class
+   */
+  class?: string;
 }
 
 /**

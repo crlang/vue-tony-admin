@@ -164,7 +164,7 @@ export default defineComponent({
             }
             if (component) {
               if (!Reflect.has(rule, 'type')) {
-                rule.type = component === 'InputNumber' || type === 'number' ? 'number' : 'string';
+                rule.type = component === 'ElInputNumber' || type === 'number' ? 'number' : 'string';
               }
 
               rule.message = rule.message || defaultMsg;
@@ -246,37 +246,6 @@ export default defineComponent({
         const compSlot = {
           default: () => {},
         };
-
-        // Trying to set a form item component with options
-        if (compAttr?.items?.length) {
-          if (component === 'ElSelect') {
-            compSlot.default = () =>
-              compAttr.items.map((k: any) => {
-                return <ElOption {...k} />;
-              });
-            // compAttr.items = null;
-          } else if (component === 'ElCheckboxGroup') {
-            compSlot.default = () =>
-              compAttr.items.map((k: any) => {
-                return (
-                  <ElCheckbox {...k} label={k.value}>
-                    {k.label}
-                  </ElCheckbox>
-                );
-              });
-            // compAttr.items = null;
-          } else if (component === 'ElRadioGroup') {
-            compSlot.default = () =>
-              compAttr.items.map((k: any) => {
-                return (
-                  <ElRadio {...k} label={k.value}>
-                    {k.label}
-                  </ElRadio>
-                );
-              });
-            // compAttr.items = null;
-          }
-        }
 
         return <Comp {...compAttr}>{compSlot}</Comp>;
       }

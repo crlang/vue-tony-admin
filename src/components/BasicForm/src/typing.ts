@@ -143,26 +143,22 @@ export interface BasicFormProps extends Partial<EleForm> {
  * Components supported by form items
  */
 export type ComponentType =
-  | 'ElDivider'
   | 'ElInput'
-  | 'ElSelect'
-  // | 'ElDatePicker'
-  // | 'ElTimePicker'
-  // | 'ElRadio'
-  | 'ElRadioGroup'
-  // | 'ElRadioButton'
-  // | 'ElCheckbox'
-  | 'ElCheckboxGroup'
   | 'ElSwitch'
-  | 'ElCascader'
   | 'ElRate'
   | 'ElSlider'
   | 'ElInputNumber'
-  | 'ElTreeSelect'
+  | 'CustomCascader'
+  | 'CustomCheckbox'
   | 'CustomDatePicker'
+  | 'CustomColorPicker'
+  | 'CustomDivider'
+  | 'CustomRadio'
+  | 'CustomSelect'
   | 'CustomTimePicker'
+  | 'CustomTree'
   | 'CustomTreeSelect'
-  | 'CustomSelect';
+  | 'CustomAutocomplete';
 
 /**
  * 展开/收起状态
