@@ -3,7 +3,7 @@ import type { AppRouteModule } from '@/router/types';
 import { getParentLayout, LAYOUT } from '@/router/constant';
 import { ExceptionEnum } from '@/enums/exceptionEnum';
 
-const ExceptionPage = () => import('@/views/sys/exception/Exception.vue');
+const ExceptionPage = () => import('@/views/core/exception/Exception.vue');
 
 const page: AppRouteModule = {
   path: '/page-demo',

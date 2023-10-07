@@ -12,5 +12,5 @@ enum Api {
  * @param params
  */
 export function ApiLogin(params: ParamsLogin) {
-  return defHttp.post<ResponseLogin>({ url: Api.Login, params }, { errorMessageMode: 'modal' });
+  return defHttp.post<ResponseLogin>({ url: Api.Login, params });
 }

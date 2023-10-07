@@ -1,7 +1,7 @@
 import type { AppRouteModule } from '@/router/types';
 
 import { LAYOUT } from '@/router/constant';
-const IFrame = () => import('@/views/sys/iframe/FrameBlank.vue');
+const IFrame = () => import('@/views/core/iframe/FrameBlank.vue');
 
 const iframe: AppRouteModule = {
   path: '/frame',
@@ -20,7 +20,7 @@ const iframe: AppRouteModule = {
       name: 'Doc',
       component: IFrame,
       meta: {
-        frameSrc: 'http://tony.crlang.com/doc/',
+        frameSrc: 'https://tony.crlang.com/',
         title: '项目文档(内嵌)',
       },
     },
@@ -30,15 +30,23 @@ const iframe: AppRouteModule = {
       component: IFrame,
       meta: {
         frameSrc: 'https://element-plus.gitee.io/zh-CN/guide/design.html',
-        title: 'element plus文档(内嵌)',
+        title: 'Element Plus文档(内嵌)',
       },
     },
     {
-      path: 'http://tony.crlang.com/doc/',
+      path: 'https://tony.crlang.com/',
       name: 'DocExternal',
       component: IFrame,
       meta: {
         title: '项目文档(外链)',
+      },
+    },
+    {
+      path: '/main-out',
+      name: 'MainOutExt',
+      component: IFrame,
+      meta: {
+        title: '页面位于主框架外',
       },
     },
   ],

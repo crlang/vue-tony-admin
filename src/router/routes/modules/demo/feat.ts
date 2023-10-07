@@ -166,7 +166,7 @@ const feat: AppRouteModule = {
     {
       path: '/error-log',
       name: 'ErrorLog',
-      component: () => import('@/views/sys/error-log/index.vue'),
+      component: () => import('@/views/core/error-log/index.vue'),
       meta: {
         title: '错误日志',
       },

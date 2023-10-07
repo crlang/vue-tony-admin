@@ -4,17 +4,11 @@ import { defHttp } from '@/utils/http/axios';
 
 enum Api {
   ACCOUNT_INFO = '/account/getAccountInfo',
-  SESSION_TIMEOUT = '/user/sessionTimeout',
   TOKEN_EXPIRED = '/user/tokenExpired',
 }
 
 export const accountInfoApi = () => {
   return defHttp.get<GetAccountInfoModel>({ url: Api.ACCOUNT_INFO });
-};
-
-export const sessionTimeoutApi = () => {
-  return defHttp.post<void>({ url: Api.SESSION_TIMEOUT });
-  // return GetApiData<void>({ url: Api.SESSION_TIMEOUT })
 };
 
 export const tokenExpiredApi = () => {

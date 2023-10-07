@@ -39,6 +39,7 @@ export interface ResponseGetUserInfo {
   teamTotal?: number;
   teamIndex?: number;
   projectViews?: number;
+  homePath?: string;
 }
 
 /**

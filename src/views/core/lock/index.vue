@@ -6,8 +6,10 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
-import LockPage from './LockPage.vue';
+
 import { useLockStore } from '@/store/modules/lock';
+
+import LockPage from './LockPage.vue';
 
 export default defineComponent({
   components: { LockPage },

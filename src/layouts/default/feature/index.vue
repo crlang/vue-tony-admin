@@ -16,7 +16,7 @@ export default defineComponent({
   name: 'LayoutFeatures',
   components: {
     ElBacktop,
-    LayoutLockPage: createAsyncComponent(() => import('@/views/sys/lock/index.vue')),
+    LayoutLockPage: createAsyncComponent(() => import('@/views/core/lock/index.vue')),
     SettingDrawer: createAsyncComponent(() => import('@/layouts/default/setting/index.vue')),
   },
   setup() {

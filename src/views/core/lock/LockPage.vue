@@ -54,12 +54,14 @@
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue';
 import { ElInput, ElTooltip, ElImage } from 'element-plus';
+
 import { useUserStore } from '@/store/modules/user';
 import { useLockStore } from '@/store/modules/lock';
-import { useNow } from './useNow';
 import { useDesign } from '@/hooks/web/useDesign';
 import { useMessage } from '@/hooks/web/useMessage';
 import { SvgIcon } from '@/components/SvgIcon';
+
+import { useNow } from './useNow';
 
 export default defineComponent({
   components: { ElInput, ElTooltip, ElImage, SvgIcon },

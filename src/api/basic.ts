@@ -5,6 +5,7 @@ const basicUri = '/v1/basic/';
 enum Api {
   GetCodeImg = `${basicUri}codeImg`,
   GetColorCode = `${basicUri}colors`,
+  GetSMSCode = `${basicUri}smscode`,
 }
 
 /**
@@ -19,4 +20,11 @@ export function ApiVerifyCodeImg() {
  */
 export function ApiBasicColor() {
   return defHttp.get<string[]>({ url: Api.GetColorCode });
+}
+
+/**
+ * 发起短信验证码
+ */
+export function ApiSMSCode() {
+  return defHttp.post<boolean>({ url: Api.GetSMSCode });
 }

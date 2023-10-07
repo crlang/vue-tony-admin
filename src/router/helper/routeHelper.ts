@@ -8,7 +8,7 @@ import { getParentLayout, LAYOUT, EXCEPTION_COMPONENT } from '@/router/constant'
 import { warn } from '@/utils/log';
 
 export type LayoutMapKey = 'LAYOUT';
-const IFRAME = () => import('@/views/sys/iframe/FrameBlank.vue');
+const IFRAME = () => import('@/views/core/iframe/FrameBlank.vue');
 
 // eslint-disable-next-line func-call-spacing
 const LayoutMap = new Map<string, () => Promise<typeof import('*.vue')>>();
