@@ -1,74 +1,55 @@
 <template>
-  <div v-if="getShowDarkModeToggle" :class="getClass" @click="toggleDark">
-    <div :class="`${prefixCls}-inner`"></div>
-    <SvgIcon name="sun" />
-    <SvgIcon name="moon" />
+  <div v-if="getShowDarkModeToggle" :class="prefixCls" @click="toggleDark">
+    <SvgIcon v-if="isDark" :class="`${prefixCls}-moon`" name="moon" />
+    <SvgIcon v-else :class="`${prefixCls}-sun`" name="sun" />
   </div>
 </template>
 
-<script lang="ts" setup>
-import { computed, unref } from 'vue';
+<script lang="ts">
+import { defineComponent } from 'vue';
 
 import { SvgIcon } from '@/components/SvgIcon';
 import { useDesign } from '@/hooks/web/useDesign';
 import { useRootSetting } from '@/hooks/setting/useRootSetting';
 import { updateHeaderColor, updateSidebarColor, toggleDarkMode, isDark } from '@/logics/theme';
 
-const { prefixCls } = useDesign('dark-switch');
-const { getShowDarkModeToggle } = useRootSetting();
+export default defineComponent({
+  components: { SvgIcon },
+  setup() {
+    const { prefixCls } = useDesign('app-dark');
+    const { getShowDarkModeToggle } = useRootSetting();
 
-const getClass = computed(() => [
-  prefixCls,
-  {
-    [`${prefixCls}--dark`]: unref(isDark),
+    function toggleDark() {
+      toggleDarkMode();
+
+      updateHeaderColor();
+      updateSidebarColor();
+    }
+
+    return {
+      prefixCls,
+      getShowDarkModeToggle,
+      toggleDark,
+      isDark,
+    };
   },
-]);
-
-function toggleDark() {
-  toggleDarkMode();
-
-  updateHeaderColor();
-  updateSidebarColor();
-}
+});
 </script>
 
 <style lang="scss">
-$prefix-cls: '#{$tonyname}-dark-switch';
+$prefix-cls: '#{$tonyname}-app-dark';
 
 .#{$prefix-cls} {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 50px;
-  height: 26px;
-  padding: 0 6px;
-  margin-left: auto;
-  color: var(--text-primary-reverse);
+  color: var(--text-primary-color);
   cursor: pointer;
-  background-color: var(--text-primary-color);
-  border-radius: 30px;
 
-  &-inner {
-    position: absolute;
-    z-index: 1;
-    width: 18px;
-    height: 18px;
-    background-color: var(--text-primary-reverse);
-    border-radius: 50%;
-    transition:
-      transform 0.5s,
-      background-color 0.5s;
-    will-change: transform;
+  &-sun {
+    color: #fbac13;
   }
 
-  &--dark {
-    border: 1px solid #c4bcbc;
-
-    .#{$prefix-cls}-inner {
-      background-color: var(--text-primary-reverse);
-      transform: translateX(calc(100% + 2px));
-    }
+  &-moon {
+    color: #fcfeda;
   }
 }
 </style>
