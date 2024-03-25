@@ -19,40 +19,83 @@ module.exports = {
     'scss/at-import-partial-extension': 'always',
     'scss/at-mixin-argumentless-call-parentheses': 'always',
     'scss/at-mixin-pattern': null,
-    // 'color-hex-case': 'lower', // v15
+    'color-hex-case': 'lower', // v15
     'color-no-invalid-hex': true,
     'font-family-name-quotes': 'always-unless-keyword',
     'function-url-quotes': 'always',
-    // 'number-leading-zero': 'always', // v15
-    // 'number-no-trailing-zeros': true, // v15
-    // 'string-quotes': 'single', // v15
+    'number-leading-zero': 'always', // v15
+    'number-no-trailing-zeros': true, // v15
+    'no-irregular-whitespace': true,
+    'string-quotes': 'single', // v15
+    'selector-combinator-space-after': 'always', // v15
+    'selector-combinator-space-before': 'always', // v15
+    'selector-list-comma-newline-after': 'always', // v15
+    'value-list-comma-space-after': 'always', // v15
+    'value-list-comma-space-before': 'never', // v15
+    'declaration-bang-space-after': 'never', // v15
+    'declaration-bang-space-before': 'always', // v15
+    'selector-type-case': 'lower',
+    'selector-type-no-unknown': [
+      true,
+      // {
+      //   ignore: [''],
+      // },
+    ],
+    'selector-combinator-allowed-list': ['>', '~', '+'],
+    'selector-max-attribute': 5,
+    'selector-max-class': 6,
+    'selector-max-combinators': 5,
+    'selector-max-compound-selectors': 6,
+    'selector-max-id': 3,
+    'selector-max-pseudo-class': 5,
+    'selector-pseudo-element-colon-notation': 'double',
     'length-zero-no-unit': [
       true,
       {
-        disableFix: true,
-        severity: 'warning',
+        ignoreFunctions: ['var', '/^--/', 'calc'],
       },
     ],
     'value-keyword-case': 'lower',
     'shorthand-property-no-redundant-values': true,
     'keyframe-declaration-no-important': true,
-    // 'declaration-colon-space-after': 'always', // v15
-    // 'declaration-colon-space-before': 'never', // v15
+    'comment-whitespace-inside': 'always',
+    'function-comma-space-after': 'always', // v15
+    'function-comma-space-before': 'never', // v15
+    'declaration-colon-space-after': 'always', // v15
+    'declaration-colon-space-before': 'never', // v15
+    'declaration-block-semicolon-newline-after': 'always', // v15
+    'declaration-block-trailing-semicolon': 'always', // v15
     'custom-property-empty-line-before': 'never',
     'selector-class-pattern': '^[a-z-]+([a-z0-9]?|[a-z0-9\\-\\_]*[a-z0-9])$',
     'selector-id-pattern': '^[a-z]+([a-z0-9]?|[a-z0-9\\-\\_]*[a-z0-9])$',
-    'no-empty-source': null,
-    'no-descending-specificity': true,
+    'block-no-empty': [
+      true,
+      {
+        severity: 'warning',
+      },
+    ],
+    'no-descending-specificity': [
+      true,
+      {
+        severity: 'warning',
+        ignore: ['selectors-within-list'],
+      },
+    ],
     'keyframes-name-pattern': null,
     'color-function-notation': 'legacy',
     'alpha-value-notation': 'number',
     'unit-no-unknown': true,
-    // indentation: 2, // v15
-    'max-nesting-depth': 4,
-    // 'max-empty-lines': 1, // v15
+    'no-extra-semicolons': true,
+    indentation: 2, // v15
+    'max-nesting-depth': 6,
+    'max-empty-lines': 1, // v15
     'no-duplicate-selectors': true,
-    // 'no-eol-whitespace': true, // v15
+    'no-eol-whitespace': true, // v15
     'no-invalid-double-slash-comments': null,
+    'function-calc-no-unspaced-operator': true,
+    'block-opening-brace-newline-after': 'always', // v15
+    'block-opening-brace-space-before': 'always', // v15
+    'selector-attribute-operator-space-after': 'always', // v15
     'declaration-block-no-redundant-longhand-properties': [
       true,
       {
@@ -75,9 +118,10 @@ module.exports = {
     'selector-pseudo-element-no-unknown': [
       true,
       {
-        ignorePseudoElements: ['v-deep'],
+        ignorePseudoElements: ['v-deep', 'deep'],
       },
     ],
+    'selector-anb-no-unmatchable': true,
     'at-rule-no-unknown': [
       true,
       {
@@ -475,5 +519,5 @@ module.exports = {
       },
     ],
   },
-  ignoreFiles: ['**/*.js', '**/*.ts', '**/*.jsx', '**/*.tsx', '**/*.html'],
-}
+  ignoreFiles: ['**/*-min.css', '**/*.min.css', '**/*.js', '**/*.ts', '**/*.jsx', '**/*.tsx', '**/*.html'],
+};
