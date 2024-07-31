@@ -1,9 +1,9 @@
-import { defHttp } from '@/utils/http/axios';
-import { ParamsLogin, ResponseLogin } from './types';
+import type { ParamsLogin, ResponseLogin } from './types'
+import { defHttp } from '@/utils/http/axios'
 
-const basicUri = '/v1/auth/';
 enum Api {
-  Login = `${basicUri}login`,
+  Login = `/auth/login`,
+  GetCodeImg = `/auth/captcha`,
 }
 
 /**
@@ -12,5 +12,12 @@ enum Api {
  * @param params
  */
 export function ApiLogin(params: ParamsLogin) {
-  return defHttp.post<ResponseLogin>({ url: Api.Login, params });
+  return defHttp.post<ResponseLogin>({ url: Api.Login, params })
+}
+
+/**
+ * 获取图像验证码
+ */
+export function ApiVerifyCodeImg() {
+  return defHttp.get({ url: Api.GetCodeImg })
 }

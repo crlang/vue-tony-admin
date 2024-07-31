@@ -1,17 +1,18 @@
-import { BasicFormSchema } from '@/components/BasicForm';
+import type { BasicFormSchema } from '@/components/BasicForm'
 
 function isAccountExist(value) {
   return new Promise<void>((resolve, reject) => {
     if (value === 'admin') {
+      // eslint-disable-next-line prefer-promise-reject-errors
       return reject({
         code: 0,
         data: null,
         message: '不能填写为admin',
-      });
+      })
     }
 
-    return resolve(null);
-  });
+    return resolve(null)
+  })
 }
 
 export const basicSchemas: BasicFormSchema[] = [
@@ -78,12 +79,12 @@ export const basicSchemas: BasicFormSchema[] = [
         required: true,
         validator: (_, value, callback) => {
           if (!value) {
-            callback(new Error('值不能为空'));
+            callback(new Error('值不能为空'))
           }
           if (value === '1') {
-            callback(new Error('值不能为1'));
+            callback(new Error('值不能为1'))
           }
-          return callback();
+          return callback()
         },
         trigger: 'change',
       },
@@ -140,10 +141,10 @@ export const basicSchemas: BasicFormSchema[] = [
           isAccountExist(value)
             .then(() => callback())
             .catch((err) => {
-              callback(new Error(err.message || '验证失败'));
-            });
+              callback(new Error(err.message || '验证失败'))
+            })
         },
       },
     ],
   },
-];
+]

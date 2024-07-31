@@ -5,7 +5,7 @@
         <keep-alive v-if="openCache" :include="getCaches">
           <component :is="Component" :key="route.fullPath" />
         </keep-alive>
-        <component v-else :is="Component" :key="route.fullPath" />
+        <component :is="Component" v-else :key="route.fullPath" />
       </transition>
     </template>
   </RouterView>
@@ -13,40 +13,40 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, unref } from 'vue';
+import { computed, defineComponent, unref } from 'vue'
 
-import FrameLayout from '@/layouts/iframe/index.vue';
-import { useRootSetting } from '@/hooks/setting/useRootSetting';
-import { useTransitionSetting } from '@/hooks/setting/useTransitionSetting';
-import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting';
-import { useMultipleTabStore } from '@/store/modules/multipleTab';
+import FrameLayout from '@/layouts/iframe/index.vue'
+import { useRootSetting } from '@/hooks/setting/useRootSetting'
+import { useTransitionSetting } from '@/hooks/setting/useTransitionSetting'
+import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting'
+import { useMultipleTabStore } from '@/store/modules/multipleTab'
 
 export default defineComponent({
   name: 'PageLayout',
   components: { FrameLayout },
   setup() {
-    const { getShowMultipleTab } = useMultipleTabSetting();
-    const tabStore = useMultipleTabStore();
+    const { getShowMultipleTab } = useMultipleTabSetting()
+    const tabStore = useMultipleTabStore()
 
-    const { getOpenKeepAlive, getCanEmbedIFramePage } = useRootSetting();
+    const { getOpenKeepAlive, getCanEmbedIFramePage } = useRootSetting()
 
-    const { getBasicTransition } = useTransitionSetting();
+    const { getBasicTransition } = useTransitionSetting()
 
-    const openCache = computed(() => unref(getOpenKeepAlive) && unref(getShowMultipleTab));
+    const openCache = computed(() => unref(getOpenKeepAlive) && unref(getShowMultipleTab))
 
     const getCaches = computed((): string[] => {
       if (!unref(getOpenKeepAlive)) {
-        return [];
+        return []
       }
-      return tabStore.getCachedTabList;
-    });
+      return tabStore.getCachedTabList
+    })
 
     return {
       openCache,
       getCaches,
       getBasicTransition,
       getCanEmbedIFramePage,
-    };
+    }
   },
-});
+})
 </script>

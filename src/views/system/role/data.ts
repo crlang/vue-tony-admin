@@ -1,10 +1,10 @@
-import { h } from 'vue';
-import { ElSwitch } from 'element-plus';
+import { h } from 'vue'
+import { ElSwitch } from 'element-plus'
 
-import { BasicColumn } from '@/components/BasicTable';
-import { BasicFormSchema } from '@/components/BasicForm';
+import type { BasicColumn } from '@/components/BasicTable'
+import type { BasicFormSchema } from '@/components/BasicForm'
 
-import { ApiRoleEdit } from '@/api/role';
+import { ApiRoleEdit } from '@/api/role'
 
 export const columns: BasicColumn[] = [
   {
@@ -24,7 +24,7 @@ export const columns: BasicColumn[] = [
     prop: 'status',
     customRender: ({ record, scope }) => {
       if (!Reflect.has(record, 'pendingStatus')) {
-        scope.row.pendingStatus = false;
+        scope.row.pendingStatus = false
       }
       return h(ElSwitch, {
         modelValue: record?.status === 0,
@@ -33,17 +33,17 @@ export const columns: BasicColumn[] = [
         inlinePrompt: true,
         loading: record?.pendingStatus,
         onChange(checked: boolean) {
-          scope.row.pendingStatus = true;
-          const newStatus = checked ? 0 : 1;
+          scope.row.pendingStatus = true
+          const newStatus = checked ? 0 : 1
           ApiRoleEdit({ id: record.id, status: newStatus })
             .then(() => {
-              scope.row.status = newStatus;
+              scope.row.status = newStatus
             })
             .finally(() => {
-              scope.row.pendingStatus = false;
-            });
+              scope.row.pendingStatus = false
+            })
         },
-      });
+      })
     },
   },
   {
@@ -54,7 +54,7 @@ export const columns: BasicColumn[] = [
     label: '创建时间',
     prop: 'createTime',
   },
-];
+]
 
 export const searchFormSchema: BasicFormSchema[] = [
   {
@@ -75,7 +75,7 @@ export const searchFormSchema: BasicFormSchema[] = [
     },
     colProps: { span: 8 },
   },
-];
+]
 
 export const formSchema: BasicFormSchema[] = [
   {
@@ -115,4 +115,4 @@ export const formSchema: BasicFormSchema[] = [
       rows: 6,
     },
   },
-];
+]

@@ -7,17 +7,17 @@
 </template>
 
 <script lang="ts">
-import type { CSSProperties } from 'vue';
-import { defineComponent, computed } from 'vue';
-import { useDesign } from '@/hooks/web/useDesign';
+import type { CSSProperties } from 'vue'
+import { computed, defineComponent } from 'vue'
+import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'SvgIcon',
   props: {
     /**
-     * 图标名称，来源于 src/assets/icons 下的svg文件名
+     * 图标名称
      *
-     * Icon name, derived from the svg file name under src/assets/icons
+     * 来源于 src/assets/icons 下的svg文件名
      */
     name: {
       type: String,
@@ -25,8 +25,6 @@ export default defineComponent({
     },
     /**
      * 图标大小
-     *
-     * Icon size
      */
     size: {
       type: [Number, String],
@@ -34,8 +32,6 @@ export default defineComponent({
     },
     /**
      * 是否旋转
-     *
-     * Whether the icon is turned on rotation
      */
     spin: {
       type: Boolean,
@@ -43,8 +39,6 @@ export default defineComponent({
     },
     /**
      * 图标颜色
-     *
-     * Icon color
      */
     color: {
       type: String,
@@ -52,8 +46,6 @@ export default defineComponent({
     },
     /**
      * 图标旋转角度(deg)
-     *
-     * Icon rotate (deg)
      */
     rotate: {
       type: Number,
@@ -61,8 +53,6 @@ export default defineComponent({
     },
     /**
      * SymbolId 命名前缀，如无特殊使用，可不予理会
-     *
-     * SymbolId naming prefix, if there is no special use, it can be ignored
      */
     prefix: {
       type: String,
@@ -70,40 +60,38 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { prefixCls } = useDesign('svg-icon');
+    const { prefixCls } = useDesign('svg-icon')
     // svg symbolId
-    const symbolId = computed(() => `#${props.prefix}-${props.name}`);
+    const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 
     /**
      * 获取图标外框样式
-     *
-     * Get svg wrap style
      */
     const getStyle = computed((): CSSProperties => {
-      const { size } = props;
-      const s = parseInt(size, 10);
+      const { size } = props
+      const s = Number.parseInt(size, 10)
       return {
         fontSize: s ? `${s}px` : 'inherit',
-      };
-    });
+      }
+    })
 
     /**
      * 获取图标样式
-     *
-     * Get svg style
      */
     const getSvgStyle = computed((): CSSProperties => {
-      const { rotate = '' } = props;
-      if (!rotate) return {};
+      const { rotate = '' } = props
+      if (!rotate) {
+        return {}
+      }
 
       return {
         transform: `rotate(${rotate}deg)`,
-      };
-    });
+      }
+    })
 
-    return { symbolId, prefixCls, getStyle, getSvgStyle };
+    return { symbolId, prefixCls, getStyle, getSvgStyle }
   },
-});
+})
 </script>
 
 <style lang="scss">
@@ -111,8 +99,7 @@ $prefix-cls: '#{$tonyname}-svg-icon';
 
 .#{$prefix-cls} {
   display: inline-flex;
-  align-self: center;
-  justify-self: center;
+  place-self: center center;
   overflow: hidden;
 
   svg {
@@ -129,12 +116,12 @@ $prefix-cls: '#{$tonyname}-svg-icon';
 
   &-spin {
     svg {
-      animation: svgLoadingCircle 1s infinite linear;
+      animation: svg-loading-circle 1s infinite linear;
     }
   }
 }
 
-@keyframes svgLoadingCircle {
+@keyframes svg-loading-circle {
   100% {
     transform: rotate(360deg);
   }

@@ -1,19 +1,22 @@
 <template>
   <BasicForm @register="registerForm" @submit="handleLogin">
     <template #imgCode="{ model, field }">
-      <el-input
+      <ElInput
         v-model="model[field]"
         placeholder="图形验证码"
         :class="`${prefixCls}--verifyimg`"
-        @keypress.enter="handleLogin(null)">
+        @keypress.enter="handleLogin(null)"
+      >
         <template #append>
-          <el-image :src="base64CodeImg" @click="getCodeImg()" />
+          <ElImage :src="base64CodeImg" @click="getCodeImg()" />
         </template>
-      </el-input>
+      </ElInput>
     </template>
     <template #rememberMe="{ model, field }">
       <div :class="`${prefixCls}--line`">
-        <el-checkbox v-model="model[field]">记住我</el-checkbox>
+        <ElCheckbox v-model="model[field]">
+          记住我
+        </ElCheckbox>
         <span @click="setLoginState(LoginStateEnum.RESET_PASSWORD)">忘记密码?</span>
       </div>
     </template>
@@ -26,16 +29,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
-import { ElCheckbox, ElInput, ElImage } from 'element-plus';
+import { defineComponent, onMounted, ref } from 'vue'
+import { ElCheckbox, ElImage, ElInput } from 'element-plus'
 
-import { useMessage } from '@/hooks/web/useMessage';
-import { useUserStore } from '@/store/modules/user';
+import { LoginStateEnum, loginFormSchema, useLoginState } from './data'
+import { useMessage } from '@/hooks/web/useMessage'
+import { useUserStore } from '@/store/modules/user'
 
-import { BasicForm, useForm } from '@/components/BasicForm';
-import { ApiVerifyCodeImg } from '@/api/basic';
-
-import { loginFormSchema, LoginStateEnum, useLoginState } from './data';
+import { BasicForm, useForm } from '@/components/BasicForm'
+import { ApiCaptchaImg } from '@/api'
 
 export default defineComponent({
   components: { ElCheckbox, ElInput, ElImage, BasicForm },
@@ -43,12 +45,12 @@ export default defineComponent({
     prefixCls: String,
   },
   setup(props) {
-    const { createMessage } = useMessage();
-    const userStore = useUserStore();
-    const { setLoginState } = useLoginState();
+    const { createMessage } = useMessage()
+    const userStore = useUserStore()
+    const { setLoginState } = useLoginState()
 
-    const formRef = ref();
-    const base64CodeImg = ref('');
+    const formRef = ref()
+    const base64CodeImg = ref('')
 
     const [registerForm, { setFieldsValue, getFieldsValue, validate }] = useForm({
       labelWidth: 0,
@@ -66,39 +68,36 @@ export default defineComponent({
       actionColProps: {
         span: 24,
       },
-    });
+    })
 
-    function getCodeImg() {
-      ApiVerifyCodeImg()
-        .then((res) => {
-          console.log('rrrrrrrr', res);
-          setFieldsValue({
-            icv: res.icv,
-          });
-          base64CodeImg.value = res.base64;
-        })
-        .catch(() => {});
+    async function getCodeImg() {
+      const res = await ApiCaptchaImg()
+      setFieldsValue({
+        icv: res.icv,
+      })
+      base64CodeImg.value = res.base64
     }
 
     async function handleLogin(values) {
       if (!values) {
-        values = getFieldsValue();
-        await validate();
+        values = getFieldsValue()
+        await validate()
       }
 
       try {
-        const userInfo = await userStore.login(values);
+        const userInfo = await userStore.login(values)
         if (userInfo) {
-          createMessage.success({ message: '登录成功' });
+          createMessage.success({ message: '登录成功' })
         }
-      } catch (error: any) {
-        createMessage.error({ message: error.message || '网络异常，请检查您的网络连接是否正常' });
+      }
+      catch (error: any) {
+        createMessage.error({ message: error.message || '网络异常，请检查您的网络连接是否正常' })
       }
     }
 
     onMounted(() => {
-      getCodeImg();
-    });
+      getCodeImg()
+    })
 
     return {
       formRef,
@@ -109,7 +108,7 @@ export default defineComponent({
 
       LoginStateEnum,
       setLoginState,
-    };
+    }
   },
-});
+})
 </script>

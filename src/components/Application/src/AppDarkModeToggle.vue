@@ -6,24 +6,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
-import { SvgIcon } from '@/components/SvgIcon';
-import { useDesign } from '@/hooks/web/useDesign';
-import { useRootSetting } from '@/hooks/setting/useRootSetting';
-import { updateHeaderColor, updateSidebarColor, toggleDarkMode, isDark } from '@/logics/theme';
+import { SvgIcon } from '@/components/SvgIcon'
+import { useDesign } from '@/hooks/web/useDesign'
+import { useRootSetting } from '@/hooks/setting/useRootSetting'
+import { isDark, toggleDarkMode, updateHeaderColor, updateSidebarColor } from '@/logics/theme'
 
 export default defineComponent({
   components: { SvgIcon },
   setup() {
-    const { prefixCls } = useDesign('app-dark');
-    const { getShowDarkModeToggle } = useRootSetting();
+    const { prefixCls } = useDesign('app-dark')
+    const { getShowDarkModeToggle } = useRootSetting()
 
     function toggleDark() {
-      toggleDarkMode();
+      toggleDarkMode()
 
-      updateHeaderColor();
-      updateSidebarColor();
+      updateHeaderColor()
+      updateSidebarColor()
     }
 
     return {
@@ -31,9 +31,9 @@ export default defineComponent({
       getShowDarkModeToggle,
       toggleDark,
       isDark,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">

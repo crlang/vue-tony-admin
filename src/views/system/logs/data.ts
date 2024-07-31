@@ -1,7 +1,7 @@
-import { BasicColumn } from '@/components/BasicTable';
-import { BasicFormSchema } from '@/components/BasicForm';
-import { h } from 'vue';
-import { isDef } from '@/utils/is';
+import { h } from 'vue'
+import type { BasicColumn } from '@/components/BasicTable'
+import type { BasicFormSchema } from '@/components/BasicForm'
+import { isDef } from '@/utils/is'
 
 export const columns: BasicColumn[] = [
   {
@@ -24,8 +24,8 @@ export const columns: BasicColumn[] = [
     prop: 'ip',
     width: 100,
     customRender: ({ record }) => {
-      const hasTotal = isDef(record.total);
-      return hasTotal ? h('div', [h('span', record.ip), h('span', `(${record.total || 0}次)`)]) : record.ip;
+      const hasTotal = isDef(record.total)
+      return hasTotal ? h('div', [h('span', record.ip), h('span', `(${record.total || 0}次)`)]) : record.ip
     },
   },
   {
@@ -60,7 +60,7 @@ export const columns: BasicColumn[] = [
     prop: 'createTime',
     width: 180,
   },
-];
+]
 
 export const searchFormSchema: BasicFormSchema[] = [
   {
@@ -112,4 +112,4 @@ export const searchFormSchema: BasicFormSchema[] = [
     component: 'ElInput',
     colProps: { span: 8 },
   },
-];
+]

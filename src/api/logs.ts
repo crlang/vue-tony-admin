@@ -1,8 +1,8 @@
-import type { ParamsLogsPage, ResponseLogsPage } from './types';
+import type { ParamsLogsPage, ResponseLogsPage } from './types'
 
-import { defHttp } from '@/utils/http/axios';
+import { defHttp } from '@/utils/http/axios'
 
-const basicUri = '/v1/logs/';
+const basicUri = '/v1/logs/'
 enum Api {
   GetLogsPage = `${basicUri}page`,
 }
@@ -11,5 +11,5 @@ enum Api {
  * 分页列表-系统日志
  */
 export function ApiLogsPage(data: ParamsLogsPage) {
-  return defHttp.post<ResponseLogsPage>({ url: Api.GetLogsPage, data });
+  return defHttp.post<ResponseLogsPage>({ url: Api.GetLogsPage, data })
 }

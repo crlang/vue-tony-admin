@@ -1,27 +1,27 @@
 <template>
   <PageWrapper title="右键菜单示例">
     <CollapseContainer title="Simple">
-      <el-button type="primary" @contextmenu="handleContext">Right Click on me</el-button>
+      <ElButton type="primary" @contextmenu="handleContext">Right Click on me</ElButton>
     </CollapseContainer>
 
     <CollapseContainer title="Multiple" class="mt-4">
-      <el-button type="primary" @contextmenu="handleMultipleContext">Right Click on me</el-button>
+      <ElButton type="primary" @contextmenu="handleMultipleContext">Right Click on me</ElButton>
     </CollapseContainer>
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElButton } from 'element-plus';
-import { useContextMenu } from '@/hooks/web/useContextMenu';
-import { CollapseContainer } from '@/components/CollapseContainer';
-import { useMessage } from '@/hooks/web/useMessage';
+import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
+import { useContextMenu } from '@/hooks/web/useContextMenu'
+import { CollapseContainer } from '@/components/CollapseContainer'
+import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
   components: { ElButton, CollapseContainer },
   setup() {
-    const [createContextMenu] = useContextMenu();
-    const { createMessage } = useMessage();
+    const [createContextMenu] = useContextMenu()
+    const { createMessage } = useMessage()
     function handleContext(e: MouseEvent) {
       createContextMenu({
         event: e,
@@ -30,18 +30,18 @@ export default defineComponent({
             label: 'New',
             icon: 'ep:plus',
             handler: () => {
-              createMessage.success('click new');
+              createMessage.success('click new')
             },
           },
           {
             label: 'Open',
             icon: 'ep:folder',
             handler: () => {
-              createMessage.success('click open');
+              createMessage.success('click open')
             },
           },
         ],
-      });
+      })
     }
 
     function handleMultipleContext(e: MouseEvent) {
@@ -61,7 +61,7 @@ export default defineComponent({
                   {
                     label: 'New1-1-1',
                     handler: () => {
-                      createMessage.success('click new');
+                      createMessage.success('click new')
                     },
                   },
                   {
@@ -77,10 +77,10 @@ export default defineComponent({
             ],
           },
         ],
-      });
+      })
     }
 
-    return { handleContext, handleMultipleContext };
+    return { handleContext, handleMultipleContext }
   },
-});
+})
 </script>

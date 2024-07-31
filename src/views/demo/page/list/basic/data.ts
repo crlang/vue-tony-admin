@@ -1,7 +1,7 @@
-import { randomNumber } from '@/utils/demo';
+import { randomNumber } from '@/utils/demo'
 
 export const cardList = (() => {
-  const result: any[] = [];
+  const result: any[] = []
   for (let i = 0; i < 70; i++) {
     result.push({
       id: i,
@@ -13,7 +13,7 @@ export const cardList = (() => {
       color: '#1890ff',
       author: 'crlang',
       percent: randomNumber(0, 100),
-    });
+    })
   }
-  return result;
-})();
+  return result
+})()

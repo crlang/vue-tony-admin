@@ -1,33 +1,33 @@
-import * as echarts from 'echarts/core';
+import * as echarts from 'echarts/core'
 
 // echarts 图表并没有全部引入
 
 import {
   BarChart, // 柱状图
-  LineChart, // 折线图
-  PieChart, // 饼状图
-  MapChart, // 地图
   GaugeChart, // 仪表盘
-} from 'echarts/charts';
+  LineChart, // 折线图
+  MapChart, // 地图
+  PieChart, // 饼状图
+} from 'echarts/charts'
 
 import {
-  LegendComponent, // Legend
-  TitleComponent, // Title
-  TooltipComponent, // Tooltip
-  GridComponent, // Grid
-  PolarComponent, // Polar
   AriaComponent, // Aria
-  ParallelComponent, // Parallel
-  ToolboxComponent, // Toolbox
-  DataZoomComponent, // DataZoom
-  VisualMapComponent, // VisualMap
-  TimelineComponent, // Timeline
   CalendarComponent, // Calendar
+  DataZoomComponent, // DataZoom
   GraphicComponent, // Graphic
-} from 'echarts/components';
+  GridComponent, // Grid
+  LegendComponent, // Legend
+  ParallelComponent, // Parallel
+  PolarComponent, // Polar
+  TimelineComponent, // Timeline
+  TitleComponent, // Title
+  ToolboxComponent, // Toolbox
+  TooltipComponent, // Tooltip
+  VisualMapComponent, // VisualMap
+} from 'echarts/components'
 
 // SVG渲染
-import { SVGRenderer } from 'echarts/renderers';
+import { SVGRenderer } from 'echarts/renderers'
 
 echarts.use([
   LegendComponent,
@@ -49,6 +49,6 @@ echarts.use([
   MapChart,
   GaugeChart,
   SVGRenderer,
-]);
+])
 
-export default echarts;
+export default echarts

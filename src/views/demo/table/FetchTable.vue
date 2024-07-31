@@ -2,19 +2,19 @@
   <PageWrapper>
     <BasicTable @register="registerTable">
       <template #toolbar>
-        <el-button type="primary" @click="handleReloadCurrent">刷新当前页</el-button>
-        <el-button type="primary" @click="handleReload">跳转第2页</el-button>
+        <ElButton type="primary" @click="handleReloadCurrent">刷新当前页</ElButton>
+        <ElButton type="primary" @click="handleReload">跳转第2页</ElButton>
       </template>
     </BasicTable>
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElButton } from 'element-plus';
-import { BasicTable, useTable } from '@/components/BasicTable';
-import { getBasicColumns } from './data';
-import { demoListApi } from '@/api/demo/table';
+import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
+import { getBasicColumns } from './data'
+import { BasicTable, useTable } from '@/components/BasicTable'
+import { demoListApi } from '@/api/demo/table'
 
 export default defineComponent({
   components: { ElButton, BasicTable },
@@ -54,22 +54,22 @@ export default defineComponent({
         totalField: 'total',
       },
       columns: getBasicColumns(),
-    });
+    })
     function handleReloadCurrent() {
-      reload();
+      reload()
     }
 
     function handleReload() {
       setPagination({
         currentPage: 2,
-      });
+      })
     }
 
     return {
       registerTable,
       handleReloadCurrent,
       handleReload,
-    };
+    }
   },
-});
+})
 </script>

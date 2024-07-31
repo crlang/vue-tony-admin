@@ -9,10 +9,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElCard } from 'element-plus';
+import { defineComponent } from 'vue'
+import { ElCard } from 'element-plus'
 
-import { useDesign } from '@/hooks/web/useDesign';
+import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'CardGrid',
@@ -22,25 +22,21 @@ export default defineComponent({
   props: {
     /**
      * 标题
-     *
-     * Title
      */
     title: String,
     /**
      * 内容项是否居中
-     *
-     * Whether the content item is centered
      */
     center: Boolean,
   },
   setup() {
-    const { prefixCls } = useDesign('card-grid');
+    const { prefixCls } = useDesign('card-grid')
 
     return {
       prefixCls,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">
@@ -50,6 +46,7 @@ $prefix-cls: '#{$tonyname}-card-grid';
   overflow: visible;
   background: var(--background-primary-color);
 
+  /* stylelint-disable-next-line selector-class-pattern */
   .el-card__header {
     display: flex;
     justify-content: space-between;
@@ -57,6 +54,7 @@ $prefix-cls: '#{$tonyname}-card-grid';
     color: var(--text-primary-color);
   }
 
+  /* stylelint-disable-next-line selector-class-pattern */
   .el-card__body {
     padding: 0;
     margin: -1px 0 0 -1px;
@@ -89,9 +87,9 @@ $prefix-cls: '#{$tonyname}-card-grid';
 
     &:hover {
       box-shadow:
-        0 1px 2px -2px rgba(0, 0, 0, 0.12),
-        0 4px 8px rgba(0, 0, 0, 0.09),
-        0 6px 18px 4px rgba(0, 0, 0, 0.06);
+        0 1px 2px -2px rgb(0 0 0 / 12%),
+        0 4px 8px rgb(0 0 0 / 9%),
+        0 6px 18px 4px rgb(0 0 0 / 6%);
     }
   }
 

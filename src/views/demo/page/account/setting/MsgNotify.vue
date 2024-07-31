@@ -1,16 +1,17 @@
 <template>
-  <CollapseContainer title="新消息通知" :canExpan="false">
+  <CollapseContainer title="新消息通知" :can-expan="false">
     <BasicList>
       <template v-for="item in list" :key="item.key">
         <BasicListItem>
           <template #title>
             {{ item.title }}
-            <el-switch
+            <ElSwitch
               v-model="item.checked"
               class="extra"
               active-text="开"
               inactive-text="关"
-              inline-prompt />
+              inline-prompt
+            />
           </template>
           <template #description>
             <div>{{ item.description }}</div>
@@ -22,12 +23,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue';
-import { ElSwitch } from 'element-plus';
-import { CollapseContainer } from '@/components/CollapseContainer';
-import { BasicList, BasicListItem } from '@/components/BasicList';
-
-import { msgNotifyList } from './data';
+import { defineComponent, reactive } from 'vue'
+import { ElSwitch } from 'element-plus'
+import { msgNotifyList } from './data'
+import { CollapseContainer } from '@/components/CollapseContainer'
+import { BasicList, BasicListItem } from '@/components/BasicList'
 
 export default defineComponent({
   components: {
@@ -37,13 +37,13 @@ export default defineComponent({
     BasicListItem,
   },
   setup() {
-    const list = reactive(msgNotifyList);
+    const list = reactive(msgNotifyList)
 
     return {
       list,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

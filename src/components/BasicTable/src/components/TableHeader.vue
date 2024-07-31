@@ -6,14 +6,14 @@
     <div :class="`${prefixCls}__inner`">
       <div :class="`${prefixCls}__title`">
         <slot v-if="$slots.title" name="title"></slot>
-        <BasicTitle v-else-if="title" :helpMessage="titleHelpMessage">
+        <BasicTitle v-else-if="title" :help-message="titleHelpMessage">
           {{ title }}
         </BasicTitle>
       </div>
       <div :class="`${prefixCls}__toolbar`">
         <slot name="toolbar"></slot>
-        <BasicDivider direction="vertical" v-if="$slots.toolbar && showTableSetting" />
-        <div :class="`${prefixCls}__toolbar-setting`" v-if="showTableSetting">
+        <BasicDivider v-if="$slots.toolbar && showTableSetting" direction="vertical" />
+        <div v-if="showTableSetting" :class="`${prefixCls}__toolbar-setting`">
           <TableSetting v-bind="getSettingProps" />
         </div>
       </div>
@@ -25,13 +25,12 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue'
 
-import { BasicTitle, BasicDivider } from '@/components/Basic';
-
-import TableSetting from './TableSetting.vue';
-import { headerProps } from '../props';
-import { TableSetting as TableSettingType } from '../typing';
+import { headerProps } from '../props'
+import type { TableSetting as TableSettingType } from '../typing'
+import TableSetting from './TableSetting.vue'
+import { BasicDivider, BasicTitle } from '@/components/Basic'
 
 export default defineComponent({
   name: 'BasicTableHeader',
@@ -51,10 +50,10 @@ export default defineComponent({
         fullscreen: true,
         size: false,
         ...(props.tableSetting || {}),
-      } as TableSettingType;
-    });
+      } as TableSettingType
+    })
 
-    return { getSettingProps };
+    return { getSettingProps }
   },
-});
+})
 </script>

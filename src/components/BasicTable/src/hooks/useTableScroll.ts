@@ -1,142 +1,136 @@
-import type { Ref, ComputedRef } from 'vue';
-import type { BasicTableProps } from '../typing';
+import type { ComputedRef, Ref } from 'vue'
 
-import { computed, unref, watch, nextTick } from 'vue';
-import { useDebounceFn } from '@vueuse/core';
+import { computed, nextTick, unref, watch } from 'vue'
+import { useDebounceFn } from '@vueuse/core'
+import type { BasicTableProps } from '../typing'
 
-import { getViewportOffset } from '@/utils/domUtils';
-import { useWindowSizeFn } from '@/hooks/event/useWindowSizeFn';
-import { useModalContext } from '@/components/BasicModal';
-import { onMountedOrActivated } from '@/hooks/core/onMountedOrActivated';
+import { getViewportOffset } from '@/utils/domUtils'
+import { useWindowSizeFn } from '@/hooks/event/useWindowSizeFn'
+import { useModalContext } from '@/components/BasicModal'
+import { onMountedOrActivated } from '@/hooks/core/onMountedOrActivated'
 
 /**
  * 处理表格高度变化及滚动
  *
- * Handling table height changes and scrolling
  * @param propsRef
  * @param tableElRef
  * @param getDataSourceRef
  */
 export function useTableScroll(propsRef: ComputedRef<BasicTableProps>, tableElRef: Ref<ComponentRef>, getDataSourceRef: ComputedRef<Recordable[]>) {
-  let paginationEl: HTMLElement | null;
-  let bodyEl: HTMLElement | null;
-  const modalFn = useModalContext();
+  let paginationEl: HTMLElement | null
+  let bodyEl: HTMLElement | null
+  const modalFn = useModalContext()
 
   // 高度刷新防抖
-  // Debounce when height changes
-  const debounceRedoHeight = useDebounceFn(redoHeight, 200);
+  const debounceRedoHeight = useDebounceFn(redoHeight, 200)
 
   /**
    * 获取自适应高度状态
-   *
-   * Get adaptive height state
    */
   const getCanResize = computed(() => {
-    const { canResize } = unref(propsRef);
-    return !!canResize;
-  });
+    const { canResize } = unref(propsRef)
+    return !!canResize
+  })
 
   /**
    * 刷新高度-重新计算表格高度
-   *
-   * Redo height - recalculates table height
    */
   function redoHeight() {
     nextTick(() => {
-      calcTableHeight();
-    });
+      calcTableHeight()
+    })
   }
 
   /**
    * 计算表格高度
-   *
-   * Calculate table height
    */
   async function calcTableHeight() {
-    const { pagination, maxHeight } = unref(propsRef);
-    const tableData = unref(getDataSourceRef);
+    const { pagination, maxHeight } = unref(propsRef)
+    const tableData = unref(getDataSourceRef)
 
-    const table = unref(tableElRef);
-    if (!table) return;
+    const table = unref(tableElRef)
+    if (!table)
+      return
 
-    const tableEl: Element = table.$el;
-    if (!tableEl) return;
+    const tableEl: Element = table.$el
+    if (!tableEl)
+      return
 
     if (!bodyEl) {
-      bodyEl = tableEl.querySelector('.el-scrollbar__view');
-      if (!bodyEl) return;
+      bodyEl = tableEl.querySelector('.el-scrollbar__view')
+      if (!bodyEl)
+        return
     }
 
     // 不需要进行计算
-    // No calculations required
     if (!unref(getCanResize) || tableData.length === 0) {
-      const event = document.createEvent('HTMLEvents');
-      event.initEvent('resize', true, true);
-      window.dispatchEvent(event);
-      return;
+      const event = document.createEvent('HTMLEvents')
+      event.initEvent('resize', true, true)
+      window.dispatchEvent(event)
+      return
     }
 
-    bodyEl.style.height = 'unset';
+    bodyEl.style.height = 'unset'
 
-    await nextTick();
-    // Add a delay to get the correct bottomIncludeBody paginationHeight headerHeight
+    await nextTick()
+    // 添加延迟以获得正确的底部IncludeBody分页Height、headerHeight
 
-    const headEl = tableEl.querySelector('.el-table__header-wrapper ');
+    const headEl = tableEl.querySelector('.el-table__header-wrapper ')
 
-    if (!headEl) return;
+    if (!headEl)
+      return
 
-    // Table height from bottom
-    const { bottomIncludeBody } = getViewportOffset(headEl);
+    const { bottomIncludeBody } = getViewportOffset(headEl)
 
-    // Pager height
-    let paginationHeight = 0;
+    let paginationHeight = 0
     if (typeof pagination !== 'boolean') {
-      paginationEl = tableEl?.nextSibling as HTMLElement;
+      paginationEl = tableEl?.nextSibling as HTMLElement
       if (paginationEl) {
-        const offsetHeight = paginationEl.offsetHeight || 0;
-        paginationHeight += offsetHeight || 0;
-      } else {
-        paginationHeight += 24;
+        const offsetHeight = paginationEl.offsetHeight || 0
+        paginationHeight += offsetHeight || 0
       }
-    } else {
-      paginationHeight = 0;
+      else {
+        paginationHeight += 24
+      }
+    }
+    else {
+      paginationHeight = 0
     }
 
-    // Header table height
-    let headerHeight = 0;
+    let headerHeight = 0
     if (headEl) {
-      headerHeight = (headEl as HTMLElement).offsetHeight;
+      headerHeight = (headEl as HTMLElement).offsetHeight
     }
 
-    let height = bottomIncludeBody - paginationHeight - headerHeight;
+    let height = bottomIncludeBody - paginationHeight - headerHeight
 
     // 如果给出了最大高度
-    // If maxHeight is given
-    height = (height > maxHeight! ? (maxHeight as number) : height) ?? height;
+    height = (height > maxHeight! ? (maxHeight as number) : height) ?? height
 
-    bodyEl.style.height = `${height}px`;
+    bodyEl.style.height = `${height}px`
 
     try {
-      modalFn?.redoModalHeight();
-    } catch (error) {
-      // try redo modal height
+      modalFn.redoModalHeight()
+    }
+    catch (error) {
+      console.error('error', error)
     }
   }
 
-  useWindowSizeFn(debounceRedoHeight, { wait: 200 });
+  useWindowSizeFn(debounceRedoHeight, { wait: 200 })
 
   onMountedOrActivated(() => {
-    debounceRedoHeight();
-  });
+    debounceRedoHeight()
+  })
 
   watch(
     () => [unref(getCanResize), unref(getDataSourceRef)?.length],
     () => {
-      debounceRedoHeight();
+      debounceRedoHeight()
     },
     {
       flush: 'post',
     },
-  );
-  return { redoHeight };
+  )
+  return { redoHeight }
 }

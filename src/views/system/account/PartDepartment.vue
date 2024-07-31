@@ -1,20 +1,21 @@
 <template>
-  <el-card header="部门列表" shadow="never">
-    <el-tree
+  <ElCard header="部门列表" shadow="never">
+    <ElTree
       :data="treeData"
       default-expand-all
       highlight-current
       :expand-on-click-node="false"
       :props="{ children: 'children', label: 'title' }"
-      @current-change="handleSelect" />
-  </el-card>
+      @current-change="handleSelect"
+    />
+  </ElCard>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
-import { ElCard, ElTree } from 'element-plus';
+import { defineComponent, onMounted, ref } from 'vue'
+import { ElCard, ElTree } from 'element-plus'
 
-import { ApiDepartmentTreeList } from '@/api/department';
+import { ApiDepartmentTreeList } from '@/api/department'
 
 export default defineComponent({
   name: 'PartDepartment',
@@ -22,20 +23,20 @@ export default defineComponent({
 
   emits: ['select'],
   setup(_, { emit }) {
-    const treeData = ref();
+    const treeData = ref()
 
     async function fetch() {
-      treeData.value = await ApiDepartmentTreeList();
+      treeData.value = await ApiDepartmentTreeList()
     }
 
     function handleSelect(nodeData) {
-      emit('select', nodeData);
+      emit('select', nodeData)
     }
 
     onMounted(() => {
-      fetch();
-    });
-    return { treeData, handleSelect };
+      fetch()
+    })
+    return { treeData, handleSelect }
   },
-});
+})
 </script>

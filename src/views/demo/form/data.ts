@@ -1,7 +1,7 @@
-import { BasicFormSchema } from '@/components/BasicForm';
-import { getRangeDate } from '@/utils/dateUtil';
-import { logWarn } from '@/utils/log';
-import { cloneDeep } from 'lodash-es';
+import { cloneDeep } from 'lodash-es'
+import type { BasicFormSchema } from '@/components/BasicForm'
+import { getRangeDate } from '@/utils/dateUtil'
+import { logWarn } from '@/utils/log'
 // import dayjs from 'dayjs';
 
 export const provincesOptions = [
@@ -17,7 +17,7 @@ export const provincesOptions = [
     value: '2',
     key: '2',
   },
-];
+]
 
 export const citiesOptionsData = {
   guangdong: [
@@ -54,7 +54,7 @@ export const citiesOptionsData = {
       key: '3',
     },
   ],
-};
+}
 
 const optionListData = [
   { label: '选项1', value: '1' },
@@ -66,7 +66,7 @@ const optionListData = [
   { label: '选项7', value: '7', disabled: true },
   { label: '选项8', value: '8' },
   { label: '选项9', value: '9' },
-];
+]
 
 const ApiDirData = [
   {
@@ -115,7 +115,7 @@ const ApiDirData = [
     value: '6',
     options: [{ label: '选项6-1', value: '6-1' }],
   },
-];
+]
 
 const ApiTreeData = [
   {
@@ -140,7 +140,7 @@ const ApiTreeData = [
       },
     ],
   },
-];
+]
 
 const basicDividerProps = {
   component: 'CustomDivider',
@@ -155,7 +155,7 @@ const basicDividerProps = {
     textColor: 'var(--primary-color)',
     textSize: 16,
   },
-};
+}
 
 export const basicSchemas: BasicFormSchema[] | undefined = [
   {
@@ -176,7 +176,7 @@ export const basicSchemas: BasicFormSchema[] | undefined = [
         onChange: () => {
           // do something
         },
-      };
+      }
     },
   },
   {
@@ -192,7 +192,7 @@ export const basicSchemas: BasicFormSchema[] | undefined = [
       return {
         prefix: () => '第',
         suffix: () => '天',
-      };
+      }
     },
   },
   {
@@ -208,7 +208,7 @@ export const basicSchemas: BasicFormSchema[] | undefined = [
       return {
         prepend: () => '第',
         append: () => '天',
-      };
+      }
     },
   },
   {
@@ -723,7 +723,7 @@ export const basicSchemas: BasicFormSchema[] | undefined = [
     componentProps: {
       valueFormat: 'YYYY-MM-DD',
       disabledDate: (time: Date) => {
-        return time.getTime() > Date.now();
+        return time.getTime() > Date.now()
       },
       shortcuts: [
         {
@@ -733,17 +733,17 @@ export const basicSchemas: BasicFormSchema[] | undefined = [
         {
           text: '昨日',
           value: () => {
-            const date = new Date();
-            date.setTime(date.getTime() - 3600 * 1000 * 24);
-            return date;
+            const date = new Date()
+            date.setTime(date.getTime() - 3600 * 1000 * 24)
+            return date
           },
         },
         {
           text: '一周前',
           value: () => {
-            const date = new Date();
-            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-            return date;
+            const date = new Date()
+            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+            return date
           },
         },
       ],
@@ -790,92 +790,92 @@ export const basicSchemas: BasicFormSchema[] | undefined = [
         {
           text: '昨日',
           value: () => {
-            const { start, end } = getRangeDate('yesterday');
-            return [start, end];
+            const { start, end } = getRangeDate('yesterday')
+            return [start, end]
           },
         },
         {
           text: '本周',
           value: () => {
-            const { start, end } = getRangeDate('week');
-            return [start, end];
+            const { start, end } = getRangeDate('week')
+            return [start, end]
           },
         },
         {
           text: '上周',
           value: () => {
-            const { start, end } = getRangeDate('lastweek');
-            return [start, end];
+            const { start, end } = getRangeDate('lastweek')
+            return [start, end]
           },
         },
         {
           text: '本月',
           value: () => {
-            const { start, end } = getRangeDate('month');
-            return [start, end];
+            const { start, end } = getRangeDate('month')
+            return [start, end]
           },
         },
         {
           text: '上月',
           value: () => {
-            const { start, end } = getRangeDate('lastmonth');
-            return [start, end];
+            const { start, end } = getRangeDate('lastmonth')
+            return [start, end]
           },
         },
         {
           text: '近3天',
           value: () => {
-            const { start, end } = getRangeDate(3);
-            return [start, end];
+            const { start, end } = getRangeDate(3)
+            return [start, end]
           },
         },
         {
           text: '近7天',
           value: () => {
-            const { start, end } = getRangeDate(7);
-            return [start, end];
+            const { start, end } = getRangeDate(7)
+            return [start, end]
           },
         },
         {
           text: '近30天',
           value: () => {
-            const { start, end } = getRangeDate(30);
-            return [start, end];
+            const { start, end } = getRangeDate(30)
+            return [start, end]
           },
         },
         {
           text: '近90天',
           value: () => {
-            const { start, end } = getRangeDate(90);
-            return [start, end];
+            const { start, end } = getRangeDate(90)
+            return [start, end]
           },
         },
         {
           text: '本季度',
           value: () => {
-            const { start, end } = getRangeDate('quarter');
-            return [start, end];
+            const { start, end } = getRangeDate('quarter')
+            return [start, end]
           },
         },
         {
           text: '上季度',
           value: () => {
-            const { start, end } = getRangeDate('lastquarter');
-            return [start, end];
+            const { start, end } = getRangeDate('lastquarter')
+            return [start, end]
           },
         },
         {
           text: '今年',
           value: () => {
-            const { start, end } = getRangeDate('year');
-            return [start, end];
+            const { start, end } = getRangeDate('year')
+            return [start, end]
           },
         },
         {
           text: '上年',
           value: () => {
-            const { start, end } = getRangeDate('lastyear');
-            return [start, end];
+            const { start, end } = getRangeDate('lastyear')
+            return [start, end]
           },
         },
       ],
@@ -989,15 +989,15 @@ export const basicSchemas: BasicFormSchema[] | undefined = [
           { value: 'vuex', link: 'vuejs/vuex' },
           { value: 'vue-router', link: 'vuejs/vue-router' },
           { value: 'babel', link: 'babel/babel' },
-        ];
+        ]
         const createFilter = (queryString: string) => {
           return (restaurant) => {
-            return restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0;
-          };
-        };
+            return restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
+          }
+        }
 
-        const results = queryString ? restaurants.filter(createFilter(queryString)) : restaurants;
-        cb(results);
+        const results = queryString ? restaurants.filter(createFilter(queryString)) : restaurants
+        cb(results)
       },
       triggerOnFocus: false,
       clearable: true,
@@ -1059,49 +1059,50 @@ export const basicSchemas: BasicFormSchema[] | undefined = [
   //     defaultExpandAll: true,
   //   },
   // },
-];
+]
 
-const treeDatabase = flatten(cloneDeep(ApiTreeData));
+const treeDatabase = flatten(cloneDeep(ApiTreeData))
 
 function flatten(arr) {
-  const result = [];
+  const result = []
   const flattenNext = (data) => {
     for (let i = 0; i < data.length; i++) {
-      const k = data[i];
+      const k = data[i]
       if (k?.children?.length) {
-        flattenNext(k?.children);
+        flattenNext(k?.children)
       }
-      result.push(k);
+      result.push(k)
     }
-  };
+  }
 
-  flattenNext(arr);
+  flattenNext(arr)
 
   // result.forEach(k => {
   //   delete k.children;
   // });
 
-  return result;
+  return result
 }
 
 function getMockApiData(keyword = '') {
   // logWarn('看控制台打印数据，接口已得到所需搜索词(apidata)', keyword);
   return new Promise<void>((resolve, reject) => {
-    const list = cloneDeep(optionListData);
+    const list = cloneDeep(optionListData)
 
     try {
       const res = {
         code: 0,
         msg: 'Success',
-        data: keyword ? list.filter((k) => k.label.indexOf(keyword) > -1) : list,
-      };
+        data: keyword ? list.filter(k => k.label.includes(keyword)) : list,
+      }
       setTimeout(() => {
-        return resolve(res);
-      }, 600);
-    } catch (error) {
-      return reject(error);
+        return resolve(res)
+      }, 600)
     }
-  });
+    catch (error) {
+      return reject(error)
+    }
+  })
 }
 
 /**
@@ -1110,7 +1111,7 @@ function getMockApiData(keyword = '') {
  */
 function getMockApiData2(params) {
   // logWarn('看控制台打印数据，接口已得到所需全部参数(apidata)', params);
-  return getMockApiData(params?.query || '');
+  return getMockApiData(params?.query || '')
 }
 
 function getMockApiData3() {
@@ -1121,20 +1122,21 @@ function getMockApiData3() {
         code: 0,
         msg: 'Success',
         data: ['#0081FF', '#0074e6', '#ff8a48', '#ff3d57'],
-      };
+      }
       setTimeout(() => {
-        return resolve(res);
-      }, 600);
-    } catch (error) {
-      return reject(error);
+        return resolve(res)
+      }, 600)
     }
-  });
+    catch (error) {
+      return reject(error)
+    }
+  })
 }
 
 function getMockApiTreeData(keyword = '') {
-  logWarn('看控制台打印数据，接口已得到所需搜索词(treedata)', keyword);
+  logWarn('看控制台打印数据，接口已得到所需搜索词(treedata)', keyword)
   return new Promise<void>((resolve, reject) => {
-    const list = cloneDeep(ApiTreeData);
+    const list = cloneDeep(ApiTreeData)
     // const flatList = flatten(cloneDeep(ApiTreeData));
 
     // function flatten(arr) {
@@ -1178,14 +1180,15 @@ function getMockApiTreeData(keyword = '') {
         code: 0,
         msg: 'Success',
         data: list,
-      };
+      }
       setTimeout(() => {
-        return resolve(res);
-      }, 600);
-    } catch (error) {
-      return reject(error);
+        return resolve(res)
+      }, 600)
     }
-  });
+    catch (error) {
+      return reject(error)
+    }
+  })
 }
 
 /**
@@ -1193,43 +1196,45 @@ function getMockApiTreeData(keyword = '') {
  * @param params
  */
 function getMockApiTreeData2(params) {
-  logWarn('看控制台打印数据，接口已得到所需全部参数(treedata)', params);
-  return getMockApiTreeData(params?.query || '');
+  logWarn('看控制台打印数据，接口已得到所需全部参数(treedata)', params)
+  return getMockApiTreeData(params?.query || '')
 }
 
 function getMockApiTreeLazyData(keyword = '') {
-  logWarn('看控制台打印数据，接口已得到所需搜索词(treedata)', keyword);
+  logWarn('看控制台打印数据，接口已得到所需搜索词(treedata)', keyword)
   return new Promise<void>((resolve, reject) => {
-    const olist = cloneDeep(ApiTreeData);
-    const list = cloneDeep(treeDatabase);
-    let newList = [];
+    const olist = cloneDeep(ApiTreeData)
+    const list = cloneDeep(treeDatabase)
+    let newList = []
 
     if (keyword === '') {
-      newList = olist;
-    } else {
-      const rs = list.filter((k) => k.label.indexOf(keyword) > -1);
+      newList = olist
+    }
+    else {
+      const rs = list.filter(k => k.label.includes(keyword))
       if (rs?.length >= 1) {
-        newList = rs[0].children;
+        newList = rs[0].children
       }
     }
 
     newList?.forEach((k) => {
-      delete k.children;
-    });
+      delete k.children
+    })
 
     try {
       const res = {
         code: 0,
         msg: 'Success',
         data: newList,
-      };
+      }
       setTimeout(() => {
-        return resolve(res);
-      }, 600);
-    } catch (error) {
-      return reject(error);
+        return resolve(res)
+      }, 600)
     }
-  });
+    catch (error) {
+      return reject(error)
+    }
+  })
 }
 
 /**
@@ -1237,8 +1242,8 @@ function getMockApiTreeLazyData(keyword = '') {
  * @param params
  */
 function getMockApiTreeLazyData2(params) {
-  logWarn('看控制台打印数据，接口已得到所需全部参数(treedata)', params);
-  return getMockApiTreeLazyData(params?.name || '');
+  logWarn('看控制台打印数据，接口已得到所需全部参数(treedata)', params)
+  return getMockApiTreeLazyData(params?.name || '')
 }
 
 export const UseSchemas: BasicFormSchema[] = [
@@ -1342,7 +1347,7 @@ export const UseSchemas: BasicFormSchema[] = [
       ],
     },
   },
-];
+]
 
 export const dyncSchemas: BasicFormSchema[] = [
   // {
@@ -1447,7 +1452,7 @@ export const dyncSchemas: BasicFormSchema[] = [
   //   },
   //   labelWidth: 200,
   // },
-];
+]
 
 export const dyncSchemas1: BasicFormSchema[] = [
   // {
@@ -1495,4 +1500,4 @@ export const dyncSchemas1: BasicFormSchema[] = [
   //     };
   //   },
   // },
-];
+]

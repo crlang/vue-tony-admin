@@ -1,14 +1,18 @@
 <template>
-  <CardGrid title="项目" v-if="datainfo.length">
+  <CardGrid v-if="datainfo.length" title="项目">
     <template #extra>
-      <el-button text size="small">更多</el-button>
+      <ElButton text size="small">
+        更多
+      </ElButton>
     </template>
-    <CardGridItem v-for="(item, index) in datainfo" class="project-item" :key="index">
+    <CardGridItem v-for="(item, index) in datainfo" :key="index" class="project-item">
       <span class="project-item__title">
-        <img :src="item.icon" width="32" height="32" />
+        <img :src="item.icon" width="32" height="32">
         <span class="ml-4">{{ item.title }}</span>
       </span>
-      <div class="project-item__desc">{{ item.desc }}</div>
+      <div class="project-item__desc">
+        {{ item.desc }}
+      </div>
       <div class="project-item__meta">
         <span>{{ item.group }}</span>
         <span>{{ item.date }}</span>
@@ -18,11 +22,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElButton } from 'element-plus';
+import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
 
-import { CardGrid, CardGridItem } from '@/components/CardGrid';
-import { DashboardProjectInfo } from '@/api/types';
+import { CardGrid, CardGridItem } from '@/components/CardGrid'
+import type { DashboardProjectInfo } from '@/api/types'
 
 export default defineComponent({
   components: { ElButton, CardGrid, CardGridItem },
@@ -33,9 +37,9 @@ export default defineComponent({
     },
   },
   setup() {
-    return {};
+    return {}
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

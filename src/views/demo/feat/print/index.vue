@@ -1,26 +1,29 @@
 <template>
   <PageWrapper title="打印示例">
-    <el-button type="primary" @click="jsonPrint">Json Print</el-button>
+    <ElButton type="primary" @click="jsonPrint">Json Print</ElButton>
 
-    <el-button
+    <ElButton
       type="primary"
       class="ml-5"
       :loading="printLoading"
-      @click="imagePrint">Image Print</el-button>
+      @click="imagePrint"
+    >
+      Image Print
+    </ElButton>
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import { ElButton } from 'element-plus';
+import { defineComponent, ref } from 'vue'
+import { ElButton } from 'element-plus'
 
-import printJS from 'print-js';
+import printJS from 'print-js'
 
 export default defineComponent({
   name: 'AppLogo',
   components: { ElButton },
   setup() {
-    const printLoading = ref(false);
+    const printLoading = ref(false)
     function jsonPrint() {
       printJS({
         printable: [
@@ -29,7 +32,7 @@ export default defineComponent({
         ],
         properties: ['name', 'email', 'phone'],
         type: 'json',
-      });
+      })
     }
 
     function imagePrint() {
@@ -38,19 +41,19 @@ export default defineComponent({
         type: 'image',
         header: 'Multiple Images',
         imageStyle: 'width:100%;',
-        onLoadingStart: function() {
-          printLoading.value = true;
+        onLoadingStart() {
+          printLoading.value = true
         },
-        onLoadingEnd: function() {
-          printLoading.value = false;
+        onLoadingEnd() {
+          printLoading.value = false
         },
-      });
+      })
     }
     return {
       jsonPrint,
       imagePrint,
       printLoading,
-    };
+    }
   },
-});
+})
 </script>

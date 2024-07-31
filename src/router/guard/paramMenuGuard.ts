@@ -1,49 +1,49 @@
-import type { Router } from 'vue-router';
-import type { Menu } from '../types';
+import type { Router } from 'vue-router'
+import type { Menu } from '../types'
 
-import { PermissionModeEnum } from '@/enums/appEnum';
-import { useAppStoreWithOut } from '@/store/modules/app';
+import { configureDynamicParamsMenu } from '../helper/menuHelper'
+import { PermissionModeEnum } from '@/enums/appEnum'
+import { useAppStoreWithOut } from '@/store/modules/app'
 
-import { usePermissionStoreWithOut } from '@/store/modules/permission';
-
-import { configureDynamicParamsMenu } from '../helper/menuHelper';
+import { usePermissionStoreWithOut } from '@/store/modules/permission'
 
 export function createParamMenuGuard(router: Router) {
-  const permissionStore = usePermissionStoreWithOut();
-  router.beforeEach(async(to, _, next) => {
-    // filter no name route
+  const permissionStore = usePermissionStoreWithOut()
+  router.beforeEach(async (to, _, next) => {
+    // 筛选无名称路由
     if (!to.name) {
-      next();
-      return;
+      next()
+      return
     }
 
-    // menu has been built.
+    // 菜单已经构建
     if (!permissionStore.getIsDynamicAddedRoute) {
-      next();
-      return;
+      next()
+      return
     }
 
-    let menus: Menu[] = [];
+    let menus: Menu[] = []
     if (isBackMode()) {
-      menus = permissionStore.getBackMenuList;
-    } else if (isRouteMappingMode()) {
-      menus = permissionStore.getFrontMenuList;
+      menus = permissionStore.getBackMenuList
     }
-    menus.forEach((item) => configureDynamicParamsMenu(item, to.params));
+    else if (isRouteMappingMode()) {
+      menus = permissionStore.getFrontMenuList
+    }
+    menus.forEach(item => configureDynamicParamsMenu(item, to.params))
 
-    next();
-  });
+    next()
+  })
 }
 
-const getPermissionMode = () => {
-  const appStore = useAppStoreWithOut();
-  return appStore.getProjectConfig.permissionMode;
-};
+function getPermissionMode() {
+  const appStore = useAppStoreWithOut()
+  return appStore.getProjectConfig.permissionMode
+}
 
-const isBackMode = () => {
-  return getPermissionMode() === PermissionModeEnum.BACK;
-};
+function isBackMode() {
+  return getPermissionMode() === PermissionModeEnum.BACK
+}
 
-const isRouteMappingMode = () => {
-  return getPermissionMode() === PermissionModeEnum.ROUTE_MAPPING;
-};
+function isRouteMappingMode() {
+  return getPermissionMode() === PermissionModeEnum.ROUTE_MAPPING
+}

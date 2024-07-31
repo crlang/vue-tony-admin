@@ -1,5 +1,5 @@
 <template>
-  <CollapseContainer title="账号绑定" :canExpan="false">
+  <CollapseContainer title="账号绑定" :can-expan="false">
     <BasicList>
       <template v-for="item in list" :key="item.key">
         <BasicListItem>
@@ -8,17 +8,19 @@
               v-if="item.avatar"
               class="avatar"
               :name="item.avatar"
-              :color="item.color" />
+              :color="item.color"
+            />
           </template>
           <template #title>
             {{ item.title }}
-            <el-button
+            <ElButton
+              v-if="item.extra"
               text
               size="small"
-              v-if="item.extra"
-              class="extra">
+              class="extra"
+            >
               {{ item.extra }}
-            </el-button>
+            </ElButton>
           </template>
           <template #description>
             <div>{{ item.description }}</div>
@@ -30,13 +32,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElButton } from 'element-plus';
-import { CollapseContainer } from '@/components/CollapseContainer';
-import { SvgIcon } from '@/components/SvgIcon';
-import { BasicList, BasicListItem } from '@/components/BasicList';
-
-import { accountBindList } from './data';
+import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
+import { accountBindList } from './data'
+import { CollapseContainer } from '@/components/CollapseContainer'
+import { SvgIcon } from '@/components/SvgIcon'
+import { BasicList, BasicListItem } from '@/components/BasicList'
 
 export default defineComponent({
   components: {
@@ -49,9 +50,9 @@ export default defineComponent({
   setup() {
     return {
       list: accountBindList,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

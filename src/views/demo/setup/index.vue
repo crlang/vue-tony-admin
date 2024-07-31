@@ -1,20 +1,20 @@
 <template>
   <PageWrapper title="引导页" description="用于给用户的指引操作">
-    <el-button type="primary" @click="handleStart">开始</el-button>
+    <ElButton type="primary" @click="handleStart">开始</ElButton>
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElButton } from 'element-plus';
-import { useDesign } from '@/hooks/web/useDesign';
-import intro from 'intro.js';
-import 'intro.js/minified/introjs.min.css';
+import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
+import intro from 'intro.js'
+import { useDesign } from '@/hooks/web/useDesign'
+import 'intro.js/minified/introjs.min.css'
 
 export default defineComponent({
   components: { ElButton },
   setup() {
-    const { prefixVar } = useDesign('');
+    const { prefixVar } = useDesign('')
 
     function handleStart() {
       intro()
@@ -36,9 +36,9 @@ export default defineComponent({
             },
           ],
         })
-        .start();
+        .start()
     }
-    return { handleStart };
+    return { handleStart }
   },
-});
+})
 </script>

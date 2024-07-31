@@ -1,20 +1,22 @@
 <template>
   <BasicModal
     v-bind="$attrs"
-    @register="register"
     title="Modal Title"
-    @visible-change="handleVisibleChange">
+    @register="register"
+    @visible-change="handleVisibleChange"
+  >
     <div class="p-4">
-      <BasicForm @register="registerForm" :model="model" />
+      <BasicForm :model="model" @register="registerForm" />
     </div>
   </BasicModal>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, nextTick } from 'vue';
+import { defineComponent, nextTick, ref } from 'vue'
 
-import { BasicModal, useModalInner } from '@/components/BasicModal';
-import { BasicForm, BasicFormSchema, useForm } from '@/components/BasicForm';
+import { BasicModal, useModalInner } from '@/components/BasicModal'
+import type { BasicFormSchema } from '@/components/BasicForm'
+import { BasicForm, useForm } from '@/components/BasicForm'
 
 export default defineComponent({
   components: { BasicModal, BasicForm },
@@ -22,7 +24,7 @@ export default defineComponent({
     userData: { type: Object },
   },
   setup(props) {
-    const modelRef = ref({});
+    const modelRef = ref({})
     const schemas: BasicFormSchema[] = [
       {
         field: 'field1',
@@ -41,7 +43,7 @@ export default defineComponent({
           span: 24,
         },
       },
-    ];
+    ]
 
     const [registerForm] = useForm({
       labelWidth: 120,
@@ -50,11 +52,13 @@ export default defineComponent({
       actionColProps: {
         span: 24,
       },
-    });
+    })
 
     const [register] = useModalInner((data) => {
-      data && onDataReceive(data);
-    });
+      if (data) {
+        onDataReceive(data)
+      }
+    })
 
     function onDataReceive(data) {
       // 方式1;
@@ -64,7 +68,7 @@ export default defineComponent({
       // });
 
       // // 方式2
-      modelRef.value = { field2: data.data, field1: data.info };
+      modelRef.value = { field2: data.data, field1: data.info }
 
       // setProps({
       //   model:{ field2: data.data, field1: data.info }
@@ -72,10 +76,12 @@ export default defineComponent({
     }
 
     function handleVisibleChange(v) {
-      v && props.userData && nextTick(() => onDataReceive(props.userData));
+      if (v && props.userData) {
+        nextTick(() => onDataReceive(props.userData))
+      }
     }
 
-    return { register, schemas, registerForm, model: modelRef, handleVisibleChange };
+    return { register, schemas, registerForm, model: modelRef, handleVisibleChange }
   },
-});
+})
 </script>

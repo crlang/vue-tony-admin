@@ -1,10 +1,11 @@
 <template>
   <div class="workbench-base">
-    <el-avatar
+    <ElAvatar
       shape="circle"
       :size="72"
       :src="datainfo.avatar"
-      class="workbench-base__avatar" />
+      class="workbench-base__avatar"
+    />
     <div class="workbench-base__title">
       <h1>{{ datainfo.name }}</h1>
       <p>{{ datainfo.desc }}</p>
@@ -27,10 +28,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElAvatar } from 'element-plus';
+import { defineComponent } from 'vue'
+import { ElAvatar } from 'element-plus'
 
-import { DashboardUserInfo } from '@/api/types';
+import type { DashboardUserInfo } from '@/api/types'
 
 export default defineComponent({
   components: { ElAvatar },
@@ -41,9 +42,9 @@ export default defineComponent({
     },
   },
   setup() {
-    return {};
+    return {}
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

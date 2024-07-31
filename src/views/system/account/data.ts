@@ -1,8 +1,8 @@
-import { ApiDepartmentTreeList } from '@/api/department';
-import { ApiRoleList } from '@/api/role';
-import { DescItem } from '@/components/BasicDescription';
-import { BasicFormSchema } from '@/components/BasicForm';
-import { BasicColumn } from '@/components/BasicTable';
+import { ApiDepartmentTreeList } from '@/api/department'
+import { ApiRoleList } from '@/api/role'
+import type { DescItem } from '@/components/BasicDescription'
+import type { BasicFormSchema } from '@/components/BasicForm'
+import type { BasicColumn } from '@/components/BasicTable'
 
 export const columns: BasicColumn[] = [
   {
@@ -33,7 +33,7 @@ export const columns: BasicColumn[] = [
     label: '创建时间',
     prop: 'createTime',
   },
-];
+]
 
 export const searchFormSchema: BasicFormSchema[] = [
   {
@@ -41,7 +41,7 @@ export const searchFormSchema: BasicFormSchema[] = [
     label: '昵称',
     component: 'ElInput',
   },
-];
+]
 
 export const accountFormSchema: BasicFormSchema[] = [
   {
@@ -128,7 +128,7 @@ export const accountFormSchema: BasicFormSchema[] = [
       ],
     },
   },
-];
+]
 
 export const accountDescSchema: DescItem[] = [
   {
@@ -215,7 +215,7 @@ export const accountDescSchema: DescItem[] = [
     field: 'updateTime',
     label: '更新时间',
   },
-];
+]
 
 export const accountLogTableSchema: BasicColumn[] = [
   {
@@ -260,4 +260,4 @@ export const accountLogTableSchema: BasicColumn[] = [
     label: '用户代理',
     prop: 'userAgent',
   },
-];
+]

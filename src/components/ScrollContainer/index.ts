@@ -1,6 +1,6 @@
-import { withInstall } from '@/utils';
-import scrollContainer from './src/ScrollContainer.vue';
+import scrollContainer from './src/ScrollContainer.vue'
+import { withInstall } from '@/utils'
 
-export * from './src/typing';
-export const ScrollContainer = withInstall(scrollContainer);
-export default ScrollContainer;
+export * from './src/typing'
+export const ScrollContainer = withInstall(scrollContainer)
+export default ScrollContainer

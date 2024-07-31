@@ -2,7 +2,7 @@
   <PageWrapper title="自定义组件示例">
     <BasicForm @register="register" @submit="handleSubmit">
       <template #field4="{ model, field }">
-        <el-input v-model:modelValue="model[field]" placeholder="自定义slot" />
+        <ElInput v-model:modelValue="model[field]" placeholder="自定义slot" />
       </template>
       <template #countdown="{ model, field }">
         <CountdownInput v-model:modelValue="model[field]" />
@@ -12,20 +12,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElInput } from 'element-plus';
+import { defineComponent } from 'vue'
+import { ElInput } from 'element-plus'
 
-import { useForm, BasicForm } from '@/components/BasicForm';
-import { useMessage } from '@/hooks/web/useMessage';
-import { CountdownInput } from '@/components/CountdownInput';
-import { logLog } from '@/utils/log';
-
-import { basicSchemas } from './CustomerForm-data';
+import { basicSchemas } from './CustomerForm-data'
+import { BasicForm, useForm } from '@/components/BasicForm'
+import { useMessage } from '@/hooks/web/useMessage'
+import { CountdownInput } from '@/components/CountdownInput'
+import { logLog } from '@/utils/log'
 
 export default defineComponent({
   components: { ElInput, BasicForm, CountdownInput },
   setup() {
-    const { createMessage } = useMessage();
+    const { createMessage } = useMessage()
 
     const [register] = useForm({
       labelWidth: 120,
@@ -33,17 +32,17 @@ export default defineComponent({
       actionColProps: {
         span: 24,
       },
-    });
+    })
 
     function handleSubmit(values) {
-      logLog('提交内容', values);
-      createMessage.success('提交成功');
+      logLog('提交内容', values)
+      createMessage.success('提交成功')
     }
 
     return {
       register,
       handleSubmit,
-    };
+    }
   },
-});
+})
 </script>

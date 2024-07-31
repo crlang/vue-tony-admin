@@ -1,38 +1,37 @@
 <template>
-  <PageWrapper contentFullHeight fixedHeight>
-    <el-row class="dept-wrap" :gutter="16">
-      <el-col :span="6" :xs="24" class="dept-tree">
+  <PageWrapper content-full-height fixed-height>
+    <ElRow class="dept-wrap" :gutter="16">
+      <ElCol :span="6" :xs="24" class="dept-tree">
         <PartDepartment @select="handleSelect" />
-      </el-col>
+      </ElCol>
 
-      <el-col :span="18" :xs="24" class="dept-table">
-        <BasicTable @register="registerTable" :searchInfo="searchInfo">
+      <ElCol :span="18" :xs="24" class="dept-table">
+        <BasicTable :search-info="searchInfo" @register="registerTable">
           <template #toolbar>
-            <el-button type="primary" @click="handleCreate">新增账号</el-button>
+            <ElButton type="primary" @click="handleCreate">新增账号</ElButton>
           </template>
         </BasicTable>
-      </el-col>
-    </el-row>
+      </ElCol>
+    </ElRow>
 
     <EditModal @register="registerModal" @success="handleSuccess" />
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue';
-import { ElRow, ElCol, ElButton } from 'element-plus';
+import { defineComponent, reactive } from 'vue'
+import { ElButton, ElCol, ElRow } from 'element-plus'
 
-import { BasicTable, useTable } from '@/components/BasicTable';
-import { ApiUserPage } from '@/api/user';
-import { useGo } from '@/hooks/web/usePage';
+import EditModal from './EditModal.vue'
+import { columns, searchFormSchema } from './data'
+import PartDepartment from './PartDepartment.vue'
+import { BasicTable, useTable } from '@/components/BasicTable'
+import { ApiUserDel, ApiUserPage } from '@/api/user'
+import { useGo } from '@/hooks/web/usePage'
 
-import { useModal } from '@/components/BasicModal';
-import EditModal from './EditModal.vue';
+import { useModal } from '@/components/BasicModal'
 
-import { ResponseDepartmentInfo } from '@/api/types';
-import { ApiUserDel } from '@/api/user';
-import { searchFormSchema, columns } from './data';
-import PartDepartment from './PartDepartment.vue';
+import type { ResponseDepartmentInfo } from '@/api/types'
 
 export default defineComponent({
   name: 'AccountManagement',
@@ -45,17 +44,17 @@ export default defineComponent({
     EditModal,
   },
   setup() {
-    const go = useGo();
+    const go = useGo()
 
-    const [registerModal, { openModal }] = useModal();
+    const [registerModal, { openModal }] = useModal()
 
     function handleCreate() {
       openModal(true, {
         isUpdate: false,
-      });
+      })
     }
 
-    const searchInfo = reactive<Recordable>({});
+    const searchInfo = reactive<Recordable>({})
     const [registerTable, { reload }] = useTable({
       api: ApiUserPage,
       rowKey: 'id',
@@ -94,36 +93,36 @@ export default defineComponent({
       },
       useSearchForm: true,
       border: true,
-    });
+    })
 
     function handleEdit({ row }) {
       openModal(true, {
         record: row,
         isUpdate: true,
-      });
+      })
     }
 
     function handleDelete({ row }, type) {
       if (type === 'confirm') {
         ApiUserDel(row.id)
           .then(() => {
-            reload();
+            reload()
           })
-          .catch(() => {});
+          .catch(() => {})
       }
     }
 
     function handleSuccess() {
-      reload();
+      reload()
     }
 
     function handleSelect(deptItem: ResponseDepartmentInfo) {
-      searchInfo.group = deptItem?.id;
-      reload();
+      searchInfo.group = deptItem?.id
+      reload()
     }
 
     function handleView({ row }) {
-      go(`/system/account/info?id=${row.id}`);
+      go(`/system/account/info?id=${row.id}`)
     }
 
     return {
@@ -136,7 +135,7 @@ export default defineComponent({
       handleSuccess,
       handleSelect,
       handleView,
-    };
+    }
   },
-});
+})
 </script>

@@ -1,4 +1,4 @@
-import { BasicFormSchema } from '@/components/BasicForm';
+import type { BasicFormSchema } from '@/components/BasicForm'
 
 export const formSchema: BasicFormSchema[] = [
   {
@@ -39,15 +39,15 @@ export const formSchema: BasicFormSchema[] = [
           required: true,
           validator: (_, value) => {
             if (!value) {
-              return Promise.reject('密码不能为空');
+              return Promise.reject(new Error('密码不能为空'))
             }
             if (value !== values.passwordNew) {
-              return Promise.reject('两次输入的密码不一致!');
+              return Promise.reject(new Error('两次输入的密码不一致'))
             }
-            return Promise.resolve();
+            return Promise.resolve()
           },
         },
-      ];
+      ]
     },
   },
-];
+]

@@ -1,5 +1,5 @@
-import { withInstall } from '@/utils';
-import lazyContainer from './src/LazyContainer.vue';
+import lazyContainer from './src/LazyContainer.vue'
+import { withInstall } from '@/utils'
 
-export const LazyContainer = withInstall(lazyContainer);
-export default LazyContainer;
+export const LazyContainer = withInstall(lazyContainer)
+export default LazyContainer

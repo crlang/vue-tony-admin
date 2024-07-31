@@ -2,9 +2,11 @@
   <PageWrapper title="虚拟滚动示例">
     <BasicDivider>基础滚动示例</BasicDivider>
     <div class="virtual-scroll-demo-wrap">
-      <VirtualScroll :itemHeight="60" :listData="data" :height="300">
+      <VirtualScroll :item-height="60" :list-data="data" :height="300">
         <template #default="{ item, index }">
-          <div class="virtual-scroll-demo__item">{{ index }} - {{ item.title }}</div>
+          <div class="virtual-scroll-demo__item">
+            {{ index }} - {{ item.title }}
+          </div>
         </template>
       </VirtualScroll>
     </div>
@@ -12,10 +14,11 @@
     <BasicDivider>即使不可见，也预先加载50条数据，防止空白</BasicDivider>
     <div class="virtual-scroll-demo-wrap">
       <VirtualScroll
-        :listData="data"
-        :itemHeight="60"
+        :list-data="data"
+        :item-height="60"
         :height="300"
-        :bench="50">
+        :bench="50"
+      >
         <template #default="{ item }">
           <div class="virtual-scroll-demo__item">
             {{ item.title }}
@@ -27,19 +30,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
-import { BasicDivider } from '@/components/Basic';
-import { VirtualScroll } from '@/components/VirtualScroll';
-
-import { data } from './data';
+import { data } from './data'
+import { BasicDivider } from '@/components/Basic'
+import { VirtualScroll } from '@/components/VirtualScroll'
 
 export default defineComponent({
   components: { BasicDivider, VirtualScroll },
   setup() {
-    return { data };
+    return { data }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

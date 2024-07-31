@@ -1,6 +1,6 @@
-import type { AppRouteModule } from '@/router/types';
+import type { AppRouteModule } from '@/router/types'
 
-import { LAYOUT } from '@/router/constant';
+import { LAYOUT } from '@/router/constant'
 
 const dashboard: AppRouteModule = {
   path: '/dashboard',
@@ -32,6 +32,6 @@ const dashboard: AppRouteModule = {
       },
     },
   ],
-};
+}
 
-export default dashboard;
+export default dashboard

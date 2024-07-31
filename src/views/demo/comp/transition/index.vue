@@ -1,42 +1,42 @@
 <template>
   <PageWrapper title="动画组件示例">
-    <el-row :gutter="16">
-      <el-col :span="6" v-for="item in transitionList" :key="item">
+    <ElRow :gutter="16">
+      <ElCol v-for="item in transitionList" :key="item" :span="6">
         <component :is="`${item}Transition`">
           <div class="box">
             <div>{{ item }}</div>
           </div>
         </component>
-      </el-col>
-    </el-row>
+      </ElCol>
+    </ElRow>
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import { ElRow, ElCol, ElButton } from 'element-plus';
+import { defineComponent, ref } from 'vue'
+import { ElButton, ElCol, ElRow } from 'element-plus'
 
 import {
-  FadeTransition,
-  FadeSlideTransition,
-  FadeBottomTransition,
-  FadeScaleTransition,
-  FadeTopTransition,
-  ScaleTransition,
-  ScaleRotateTransition,
-  SlideTransition,
-  SlideXTransition,
-  SlideReverseTransition,
-  SlideXReverseTransition,
-  ScrollTransition,
-  ScrollXTransition,
-  ScrollReverseTransition,
-  ScrollXReverseTransition,
-  ZoomFadeTransition,
-  ZoomOutTransition,
   ExpandTransition,
   ExpandXTransition,
-} from '@/components/Transition';
+  FadeBottomTransition,
+  FadeScaleTransition,
+  FadeSlideTransition,
+  FadeTopTransition,
+  FadeTransition,
+  ScaleRotateTransition,
+  ScaleTransition,
+  ScrollReverseTransition,
+  ScrollTransition,
+  ScrollXReverseTransition,
+  ScrollXTransition,
+  SlideReverseTransition,
+  SlideTransition,
+  SlideXReverseTransition,
+  SlideXTransition,
+  ZoomFadeTransition,
+  ZoomOutTransition,
+} from '@/components/Transition'
 
 export default defineComponent({
   components: {
@@ -65,7 +65,7 @@ export default defineComponent({
     ExpandXTransition,
   },
   setup() {
-    const show = ref(true);
+    const show = ref(true)
     const transitionList = [
       'Fade',
       'FadeSlide',
@@ -86,16 +86,16 @@ export default defineComponent({
       'ZoomOut',
       'Expand',
       'ExpandX',
-    ];
+    ]
 
     function start() {
-      show.value = !show.value;
+      show.value = !show.value
     }
 
-    setInterval(start, 3e3);
-    return { transitionList, show };
+    setInterval(start, 3e3)
+    return { transitionList, show }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

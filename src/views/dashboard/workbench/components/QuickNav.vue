@@ -1,6 +1,6 @@
 <template>
   <CardGrid center title="快捷导航">
-    <CardGridItem vertical v-for="(item, index) in datainfo" :key="index">
+    <CardGridItem v-for="(item, index) in datainfo" :key="index" vertical>
       <SvgIcon :name="item.icon" :color="item.color" size="20" />
       <span class="text-md mt-2">{{ item.title }}</span>
     </CardGridItem>
@@ -8,12 +8,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
-import { SvgIcon } from '@/components/SvgIcon';
-import { CardGrid, CardGridItem } from '@/components/CardGrid';
+import { SvgIcon } from '@/components/SvgIcon'
+import { CardGrid, CardGridItem } from '@/components/CardGrid'
 
-import { DashboardNavInfo } from '@/api/types';
+import type { DashboardNavInfo } from '@/api/types'
 
 export default defineComponent({
   components: { CardGrid, CardGridItem, SvgIcon },
@@ -24,7 +24,7 @@ export default defineComponent({
     },
   },
   setup() {
-    return {};
+    return {}
   },
-});
+})
 </script>

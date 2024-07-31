@@ -1,4 +1,4 @@
-import { DescItem } from '@/components/BasicDescription';
+import type { DescItem } from '@/components/BasicDescription'
 
 export const demoData: Recordable = {
   username: 'tony',
@@ -10,7 +10,7 @@ export const demoData: Recordable = {
   sex: '男',
   certy: '3504256199xxxxxxxxx',
   tag: 'orange',
-};
+}
 export const schema: DescItem[] = [
   {
     field: 'username',
@@ -20,14 +20,14 @@ export const schema: DescItem[] = [
     field: 'tag',
     label: '标签',
     show: (item) => {
-      return item.age > 99;
+      return item.age > 99
     },
   },
   {
     field: 'nickName',
     label: '昵称',
     render: (val, item) => {
-      return `${item.username}-${val}`;
+      return `${item.username}-${val}`
     },
   },
   {
@@ -43,4 +43,4 @@ export const schema: DescItem[] = [
     field: 'addr',
     label: '地址',
   },
-];
+]

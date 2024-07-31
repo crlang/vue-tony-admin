@@ -1,13 +1,21 @@
 <template>
   <PageWrapper title="滚动组件函数示例">
     <div class="my-4">
-      <el-button @click="scrollTo(100)">滚动到100px位置</el-button>
-      <el-button @click="scrollTo(800)">滚动到800px位置</el-button>
-      <el-button @click="scrollTo(0)">滚动到顶部</el-button>
-      <el-button @click="scrollBottom()">滚动到底部</el-button>
+      <ElButton @click="scrollTo(100)">
+        滚动到100px位置
+      </ElButton>
+      <ElButton @click="scrollTo(800)">
+        滚动到800px位置
+      </ElButton>
+      <ElButton @click="scrollTo(0)">
+        滚动到顶部
+      </ElButton>
+      <ElButton @click="scrollBottom()">
+        滚动到底部
+      </ElButton>
     </div>
     <div class="scroll-wrap">
-      <ScrollContainer class="mt-4" ref="scrollRef">
+      <ScrollContainer ref="scrollRef" class="mt-4">
         <ul class="p-3">
           <li v-for="(k, i) in litdata" :key="i">
             {{ k }}
@@ -19,42 +27,41 @@
 </template>
 
 <script lang="ts">
-import type { ScrollActionType } from '@/components/ScrollContainer';
+import { defineComponent, ref, unref } from 'vue'
+import { ElButton } from 'element-plus'
 
-import { defineComponent, ref, unref } from 'vue';
-import { ElButton } from 'element-plus';
+import { litdata } from './data'
+import { ScrollContainer } from '@/components/ScrollContainer'
 
-import { ScrollContainer } from '@/components/ScrollContainer';
-
-import { litdata } from './data';
+import type { ScrollActionType } from '@/components/ScrollContainer'
 
 export default defineComponent({
   components: { ElButton, ScrollContainer },
   setup() {
-    const scrollRef = ref<Nullable<ScrollActionType>>(null);
+    const scrollRef = ref<Nullable<ScrollActionType>>(null)
 
     const getScroll = () => {
-      const scroll = unref(scrollRef);
+      const scroll = unref(scrollRef)
       if (!scroll) {
-        throw new Error('scroll is Null');
+        throw new Error('scroll is Null')
       }
-      return scroll;
-    };
+      return scroll
+    }
 
     function scrollTo(top: number) {
-      getScroll().scrollTo(top);
+      getScroll().scrollTo(top)
     }
     function scrollBottom() {
-      getScroll().scrollBottom();
+      getScroll().scrollBottom()
     }
     return {
       litdata,
       scrollTo,
       scrollRef,
       scrollBottom,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

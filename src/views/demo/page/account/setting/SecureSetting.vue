@@ -1,11 +1,11 @@
 <template>
-  <CollapseContainer title="安全设置" :canExpan="false">
+  <CollapseContainer title="安全设置" :can-expan="false">
     <BasicList>
       <template v-for="item in list" :key="item.key">
         <BasicListItem>
           <template #title>
             {{ item.title }}
-            <div class="extra" v-if="item.extra">
+            <div v-if="item.extra" class="extra">
               {{ item.extra }}
             </div>
           </template>
@@ -19,11 +19,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { CollapseContainer } from '@/components/CollapseContainer';
-import { BasicList, BasicListItem } from '@/components/BasicList';
-
-import { secureSettingList } from './data';
+import { defineComponent } from 'vue'
+import { secureSettingList } from './data'
+import { CollapseContainer } from '@/components/CollapseContainer'
+import { BasicList, BasicListItem } from '@/components/BasicList'
 
 export default defineComponent({
   components: {
@@ -34,9 +33,9 @@ export default defineComponent({
   setup() {
     return {
       list: secureSettingList,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

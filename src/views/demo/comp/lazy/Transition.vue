@@ -3,7 +3,7 @@
     <div class="lazy-base-demo-wrap">
       <h1>向下滚动</h1>
       <div class="lazy-base-demo-box">
-        <LazyContainer transitionName="custom">
+        <LazyContainer transition-name="custom">
           <TargetContent />
         </LazyContainer>
       </div>
@@ -12,13 +12,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import TargetContent from './TargetContent.vue';
-import { LazyContainer } from '@/components/LazyContainer';
+import { defineComponent } from 'vue'
+import TargetContent from './TargetContent.vue'
+import { LazyContainer } from '@/components/LazyContainer'
 
 export default defineComponent({
   components: { LazyContainer, TargetContent },
-});
+})
 </script>
 
 <style lang="scss" scoped>

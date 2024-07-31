@@ -5,10 +5,12 @@ $layout-mix-sider: '#{$tonyname}-layout-mix-sider';
   color: var(--sider-text-hover-color);
   background: var(--sider-background-hover-color);
 }
+
 @mixin MixSiderActiveColor {
   color: var(--white-color);
   background-color: var(--primary-color);
 }
+
 @mixin MixSiderActiveHover {
   color: var(--white-color);
   background-color: var(--primary-color);
@@ -64,24 +66,22 @@ $layout-mix-sider: '#{$tonyname}-layout-mix-sider';
       transition: var(--t-base);
 
       &:hover {
-        @include MixSiderHover();
+        @include MixSiderHover;
       }
 
       &--active {
         font-weight: 700;
-        @include MixSiderActiveColor();
+
+        @include MixSiderActiveColor;
 
         &:hover {
-          @include MixSiderActiveHover();
+          @include MixSiderActiveHover;
         }
       }
 
       &-inner {
         position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
+        inset: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -125,7 +125,7 @@ $layout-mix-sider: '#{$tonyname}-layout-mix-sider';
     transition: var(--t-base);
 
     &:hover {
-      @include MixSiderHover();
+      @include MixSiderHover;
     }
 
     > svg {
@@ -190,11 +190,13 @@ $layout-mix-sider: '#{$tonyname}-layout-mix-sider';
       height: calc(100% - var(--header-height));
       overflow: visible;
 
+      /* stylelint-disable-next-line selector-class-pattern */
       .scrollbar__wrap {
         height: 100%;
         overflow-x: hidden;
       }
 
+      /* stylelint-disable-next-line selector-class-pattern */
       .scrollbar__bar.is-horizontal {
         display: none;
       }
@@ -209,7 +211,7 @@ $layout-mix-sider: '#{$tonyname}-layout-mix-sider';
     height: 100%;
     cursor: ew-resize;
     background-color: transparent;
-    box-shadow: 0 0 4px 0 rgba(28, 36, 56, 0.15);
+    box-shadow: 0 0 4px 0 rgb(28 36 56 / 15%);
 
     &:hover {
       background-color: var(--primary-color);

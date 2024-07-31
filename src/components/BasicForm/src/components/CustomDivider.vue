@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { computed, defineComponent } from 'vue'
 
-import { BasicDivider, basicDividerProps } from '@/components/Basic';
+import { BasicDivider, basicDividerProps } from '@/components/Basic'
 
 export default defineComponent({
   name: 'CustomDivider',
@@ -25,11 +25,11 @@ export default defineComponent({
       return {
         ...attrs,
         ...props,
-      };
-    });
+      }
+    })
     return {
       getProps,
-    };
+    }
   },
-});
+})
 </script>

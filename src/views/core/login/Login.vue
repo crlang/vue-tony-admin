@@ -12,38 +12,37 @@
 
       <div :class="`${prefixCls}-form`">
         <!-- 注册 -->
-        <RegisterForm v-if="getShowRegister" :prefixCls="`${prefixCls}-form`" />
+        <RegisterForm v-if="getShowRegister" :prefix-cls="`${prefixCls}-form`" />
 
         <!-- 忘记密码 -->
-        <ForgetPasswordForm v-else-if="getShowForget" :prefixCls="`${prefixCls}-form`" />
+        <ForgetPasswordForm v-else-if="getShowForget" :prefix-cls="`${prefixCls}-form`" />
 
-        <el-tabs v-else v-model:model-value="activeName">
-          <el-tab-pane label="账号登录" name="account">
-            <LoginForm :prefixCls="`${prefixCls}-form`" v-if="activeName === 'account'" />
-          </el-tab-pane>
+        <ElTabs v-else v-model:model-value="activeName">
+          <ElTabPane label="账号登录" name="account">
+            <LoginForm v-if="activeName === 'account'" :prefix-cls="`${prefixCls}-form`" />
+          </ElTabPane>
 
-          <el-tab-pane label="手机号登录" name="mobile">
-            <MobileForm :prefixCls="`${prefixCls}-form`" v-if="activeName === 'mobile'" />
-          </el-tab-pane>
-        </el-tabs>
+          <ElTabPane label="手机号登录" name="mobile">
+            <MobileForm v-if="activeName === 'mobile'" :prefix-cls="`${prefixCls}-form`" />
+          </ElTabPane>
+        </ElTabs>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, unref } from 'vue';
-import { ElTabs, ElTabPane } from 'element-plus';
+import { computed, defineComponent, ref, unref } from 'vue'
+import { ElTabPane, ElTabs } from 'element-plus'
 
-import { AppLogo, AppDarkModeToggle } from '@/components/Application';
-import { useDesign } from '@/hooks/web/useDesign';
-import { useGlobSetting } from '@/hooks/setting';
-
-import LoginForm from './LoginForm.vue';
-import ForgetPasswordForm from './ForgetPasswordForm.vue';
-import RegisterForm from './RegisterForm.vue';
-import MobileForm from './MobileForm.vue';
-import { useLoginState, LoginStateEnum } from './data';
+import LoginForm from './LoginForm.vue'
+import ForgetPasswordForm from './ForgetPasswordForm.vue'
+import RegisterForm from './RegisterForm.vue'
+import MobileForm from './MobileForm.vue'
+import { LoginStateEnum, useLoginState } from './data'
+import { useGlobSetting } from '@/hooks/setting'
+import { useDesign } from '@/hooks/web/useDesign'
+import { AppDarkModeToggle, AppLogo } from '@/components/Application'
 
 export default defineComponent({
   components: {
@@ -57,13 +56,13 @@ export default defineComponent({
     AppDarkModeToggle,
   },
   setup() {
-    const { prefixCls } = useDesign('login');
-    const { setLoginState, getLoginState } = useLoginState();
-    const { title } = useGlobSetting();
-    const activeName = ref('account');
+    const { prefixCls } = useDesign('login')
+    const { setLoginState, getLoginState } = useLoginState()
+    const { title } = useGlobSetting()
+    const activeName = ref('account')
 
-    const getShowRegister = computed(() => unref(getLoginState) === LoginStateEnum.REGISTER);
-    const getShowForget = computed(() => unref(getLoginState) === LoginStateEnum.RESET_PASSWORD);
+    const getShowRegister = computed(() => unref(getLoginState) === LoginStateEnum.REGISTER)
+    const getShowForget = computed(() => unref(getLoginState) === LoginStateEnum.RESET_PASSWORD)
 
     return {
       prefixCls,
@@ -73,15 +72,14 @@ export default defineComponent({
       setLoginState,
       LoginStateEnum,
       activeName,
-    };
+    }
   },
-});
+})
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $prefix-cls: '#{$tonyname}-login';
-
-.#{$prefix-cls} {
+.#{$prefix-cls} .#{$prefix-cls} {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -89,7 +87,7 @@ $prefix-cls: '#{$tonyname}-login';
   width: 100%;
   height: 100%;
 
-  // background-color: #e5edf4;
+  // background-color: #e5edf4;background-color
   background-image: url('@/assets/svg/login_bg.svg');
   background-repeat: repeat;
   background-position: center center;
@@ -130,23 +128,28 @@ $prefix-cls: '#{$tonyname}-login';
     }
   }
 
+  /* stylelint-disable-next-line selector-class-pattern */
   .el-form-item__label {
     display: none;
   }
 
+  /* stylelint-disable-next-line selector-class-pattern */
   .el-input__inner {
     width: 100%;
     height: 44px;
     line-height: 44px;
   }
 
+  /* stylelint-disable-next-line selector-class-pattern */
   .el-tabs__header {
     margin-bottom: 24px;
   }
 
+  /* stylelint-disable-next-line selector-class-pattern */
   .el-tabs__nav {
     width: 100%;
 
+    /* stylelint-disable-next-line selector-class-pattern */
     .el-tabs__item {
       width: 50%;
       text-align: center;
@@ -174,6 +177,7 @@ $prefix-cls: '#{$tonyname}-login';
     }
 
     &--verifyimg {
+      /* stylelint-disable-next-line selector-class-pattern */
       .el-input-group__append {
         padding: 0;
       }

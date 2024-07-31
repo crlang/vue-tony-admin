@@ -2,7 +2,9 @@
   <PageWrapper>
     <BasicTable @register="registerTable" @fetch-success="onFetchSuccess">
       <template #toolbar>
-        <el-button type="primary" @click="handleCreate">新增菜单</el-button>
+        <ElButton type="primary" @click="handleCreate">
+          新增菜单
+        </ElButton>
       </template>
     </BasicTable>
     <EditDrawer @register="registerDrawer" @success="handleSuccess" />
@@ -10,22 +12,22 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick } from 'vue';
-import { ElButton } from 'element-plus';
+import { defineComponent, nextTick } from 'vue'
+import { ElButton } from 'element-plus'
 
-import { BasicTable, useTable } from '@/components/BasicTable';
+import EditDrawer from './EditDrawer.vue'
+import { columns, searchFormSchema } from './data'
+import { BasicTable, useTable } from '@/components/BasicTable'
 
-import { useDrawer } from '@/components/BasicDrawer';
-import EditDrawer from './EditDrawer.vue';
+import { useDrawer } from '@/components/BasicDrawer'
 
-import { ApiMenuDel, ApiMenuPage } from '@/api/menu';
-import { columns, searchFormSchema } from './data';
+import { ApiMenuDel, ApiMenuPage } from '@/api/menu'
 
 export default defineComponent({
   name: 'MenuManagement',
   components: { ElButton, BasicTable, EditDrawer },
   setup() {
-    const [registerDrawer, { openDrawer }] = useDrawer();
+    const [registerDrawer, { openDrawer }] = useDrawer()
     const [registerTable, { reload, expandAll }] = useTable({
       api: ApiMenuPage,
       columns: [
@@ -62,44 +64,44 @@ export default defineComponent({
       },
       useSearchForm: true,
       border: true,
-    });
+    })
 
     function handleCreate() {
       openDrawer(true, {
         isUpdate: false,
-      });
+      })
     }
 
     function handleNew({ row }) {
       openDrawer(true, {
         parentId: Number(row.id),
         isUpdate: false,
-      });
+      })
     }
 
     function handleEdit({ row }) {
       openDrawer(true, {
         record: row,
         isUpdate: true,
-      });
+      })
     }
 
     function handleDelete({ row }, type) {
       if (type === 'confirm') {
         ApiMenuDel(row.id)
           .then(() => {
-            reload();
+            reload()
           })
-          .catch(() => {});
+          .catch(() => {})
       }
     }
 
     function handleSuccess() {
-      reload();
+      reload()
     }
 
     function onFetchSuccess() {
-      nextTick(expandAll);
+      nextTick(expandAll)
     }
 
     return {
@@ -110,7 +112,7 @@ export default defineComponent({
       handleDelete,
       handleSuccess,
       onFetchSuccess,
-    };
+    }
   },
-});
+})
 </script>

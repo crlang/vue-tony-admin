@@ -5,11 +5,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
-import { BasicForm, useForm } from '@/components/BasicForm';
-
-import { basicSchemas, exSchemas } from './AdvancedForm-data';
+import { basicSchemas, exSchemas } from './AdvancedForm-data'
+import { BasicForm, useForm } from '@/components/BasicForm'
 
 export default defineComponent({
   components: { BasicForm },
@@ -24,10 +23,10 @@ export default defineComponent({
       },
       showAdvancedButton: true,
       alwaysShowLines: 2,
-    });
+    })
     return {
       register,
-    };
+    }
   },
-});
+})
 </script>

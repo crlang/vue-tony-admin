@@ -11,7 +11,7 @@ $prefix-cls: '#{$tonyname}-basic-list';
     align-items: center;
     justify-content: space-between;
     padding: 12px 0;
-    color: rgba(0, 0, 0, 0.85);
+    color: rgb(0 0 0 / 85%);
     border-bottom: 1px solid var(--border-color-light);
 
     &--card {
@@ -36,14 +36,14 @@ $prefix-cls: '#{$tonyname}-basic-list';
       &-content {
         flex: 1 0;
         width: 0;
-        color: rgba(0, 0, 0, 0.85);
+        color: rgb(0 0 0 / 85%);
       }
 
       &-title {
         margin-bottom: 4px;
         font-size: 14px;
         line-height: 1.5  ;
-        color: rgba(0, 0, 0, 0.85);
+        color: rgb(0 0 0 / 85%);
 
         > a {
           color: inherit;
@@ -54,7 +54,7 @@ $prefix-cls: '#{$tonyname}-basic-list';
       &-description {
         font-size: 14px;
         line-height: 1.5;
-        color: rgba(0, 0, 0, 0.45);
+        color: rgb(0 0 0 / 45%);
       }
     }
   }

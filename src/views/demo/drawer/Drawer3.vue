@@ -3,49 +3,51 @@
     v-bind="$attrs"
     title="Modal Title"
     width="50%"
-    ref="basicDrawer"
-    showFooter
+    show-footer
     @register="register"
-    @confirm="handleConfirm">
+    @confirm="handleConfirm"
+  >
     <template #toolbar>
-      <el-button>btn</el-button>
-      <el-button>btn2</el-button>
+      <ElButton>btn</ElButton>
+      <ElButton>btn2</ElButton>
     </template>
-    <p class="p-20" v-for="index in 10" :key="index">根据屏幕高度自适应</p>
+    <p v-for="index in 10" :key="index" class="p-20">
+      根据屏幕高度自适应
+    </p>
     <template #prependFooter>
-      <el-button>left info</el-button>
+      <ElButton>left info</ElButton>
     </template>
     <template #centerFooter>
-      <el-button>center info</el-button>
+      <ElButton>center info</ElButton>
     </template>
     <template #appendFooter>
-      <el-button>right info</el-button>
+      <ElButton>right info</ElButton>
     </template>
   </BasicDrawer>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElButton } from 'element-plus';
+import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
 
-import { BasicDrawer, useDrawerInner } from '@/components/BasicDrawer';
-import { useMessage } from '@/hooks/web/useMessage';
+import { BasicDrawer, useDrawerInner } from '@/components/BasicDrawer'
+import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
   components: { ElButton, BasicDrawer },
   setup() {
-    const { createMessage } = useMessage();
-    const [register, { changeConfirmLoading }] = useDrawerInner();
+    const { createMessage } = useMessage()
+    const [register, { changeConfirmLoading }] = useDrawerInner()
 
     function handleConfirm() {
-      changeConfirmLoading(true);
+      changeConfirmLoading(true)
       setTimeout(() => {
-        changeConfirmLoading(false);
-        createMessage.success('点击了提交');
-      }, 3e3);
+        changeConfirmLoading(false)
+        createMessage.success('点击了提交')
+      }, 3e3)
     }
 
-    return { register, handleConfirm };
+    return { register, handleConfirm }
   },
-});
+})
 </script>

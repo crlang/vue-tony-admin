@@ -3,10 +3,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref, Ref, onMounted } from 'vue';
+import type { PropType, Ref } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 
-import { useECharts } from '@/hooks/web/useECharts';
-import { getLineData } from './data';
+import { getLineData } from './data'
+import { useECharts } from '@/hooks/web/useECharts'
 
 export default defineComponent({
   props: {
@@ -20,9 +21,9 @@ export default defineComponent({
     },
   },
   setup() {
-    const chartRef = ref<HTMLDivElement | null>(null);
-    const { setOptions, echarts } = useECharts(chartRef as Ref<HTMLDivElement>);
-    const { barData, lineData, category } = getLineData();
+    const chartRef = ref<HTMLDivElement | null>(null)
+    const { setOptions, echarts } = useECharts(chartRef as Ref<HTMLDivElement>)
+    const { barData, lineData, category } = getLineData()
     onMounted(() => {
       setOptions({
         backgroundColor: '#0f375f',
@@ -82,9 +83,9 @@ export default defineComponent({
             data: barData,
           },
         ],
-      });
-    });
-    return { chartRef };
+      })
+    })
+    return { chartRef }
   },
-});
+})
 </script>

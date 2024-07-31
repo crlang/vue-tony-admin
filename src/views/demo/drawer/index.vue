@@ -1,16 +1,16 @@
 <template>
   <PageWrapper title="抽屉组件使用示例">
-    <el-alert type="error" title="使用 useDrawer 进行抽屉操作" show-icon />
+    <ElAlert type="error" title="使用 useDrawer 进行抽屉操作" show-icon />
     <Drawer1 />
 
-    <el-alert title="内外同时控制显示隐藏" show-icon />
-    <el-button type="primary" class="my-4" @click="openDrawer2(true)">打开Drawer</el-button>
-    <el-alert title="自适应高度/显示footer" show-icon />
-    <el-button type="primary" class="my-4" @click="openDrawer3(true)">打开Drawer</el-button>
-    <el-alert title="内外数据交互" show-icon />
-    <el-button type="primary" class="my-4" @click="send">打开Drawer并传递数据</el-button>
-    <el-alert title="详情页模式" show-icon />
-    <el-button type="primary" class="my-4" @click="openDrawer5(true)">打开详情Drawer</el-button>
+    <ElAlert title="内外同时控制显示隐藏" show-icon />
+    <ElButton type="primary" class="my-4" @click="openDrawer2(true)">打开Drawer</ElButton>
+    <ElAlert title="自适应高度/显示footer" show-icon />
+    <ElButton type="primary" class="my-4" @click="openDrawer3(true)">打开Drawer</ElButton>
+    <ElAlert title="内外数据交互" show-icon />
+    <ElButton type="primary" class="my-4" @click="send">打开Drawer并传递数据</ElButton>
+    <ElAlert title="详情页模式" show-icon />
+    <ElButton type="primary" class="my-4" @click="openDrawer5(true)">打开详情Drawer</ElButton>
     <Drawer2 @register="register2" />
     <Drawer3 @register="register3" />
     <Drawer4 @register="register4" />
@@ -19,16 +19,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElAlert, ElButton } from 'element-plus';
+import { defineComponent } from 'vue'
+import { ElAlert, ElButton } from 'element-plus'
 
-import { useDrawer } from '@/components/BasicDrawer';
-
-import Drawer1 from './Drawer1.vue';
-import Drawer2 from './Drawer2.vue';
-import Drawer3 from './Drawer3.vue';
-import Drawer4 from './Drawer4.vue';
-import Drawer5 from './Drawer5.vue';
+import Drawer1 from './Drawer1.vue'
+import Drawer2 from './Drawer2.vue'
+import Drawer3 from './Drawer3.vue'
+import Drawer4 from './Drawer4.vue'
+import Drawer5 from './Drawer5.vue'
+import { useDrawer } from '@/components/BasicDrawer'
 
 export default defineComponent({
   components: {
@@ -41,16 +40,16 @@ export default defineComponent({
     Drawer5,
   },
   setup() {
-    const [register2, { openDrawer: openDrawer2 }] = useDrawer();
-    const [register3, { openDrawer: openDrawer3 }] = useDrawer();
-    const [register4, { openDrawer: openDrawer4 }] = useDrawer();
-    const [register5, { openDrawer: openDrawer5 }] = useDrawer();
+    const [register2, { openDrawer: openDrawer2 }] = useDrawer()
+    const [register3, { openDrawer: openDrawer3 }] = useDrawer()
+    const [register4, { openDrawer: openDrawer4 }] = useDrawer()
+    const [register5, { openDrawer: openDrawer5 }] = useDrawer()
 
     function send() {
       openDrawer4(true, {
         data: 'content',
         info: 'Info',
-      });
+      })
     }
 
     return {
@@ -62,7 +61,7 @@ export default defineComponent({
       register5,
       openDrawer5,
       send,
-    };
+    }
   },
-});
+})
 </script>

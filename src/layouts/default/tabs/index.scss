@@ -8,6 +8,7 @@ $prefix-cls: '#{$tonyname}-multiple-tabs';
   &-content {
     height: 100%;
 
+    /* stylelint-disable-next-line selector-class-pattern */
     .el-dropdown--default {
       height: 100%;
     }
@@ -16,6 +17,7 @@ $prefix-cls: '#{$tonyname}-multiple-tabs';
       white-space: nowrap;
     }
 
+    /* stylelint-disable-next-line selector-class-pattern */
     .el-dropdown-menu__item--divided::before {
       display: none;
     }
@@ -90,6 +92,7 @@ $prefix-cls: '#{$tonyname}-multiple-tabs';
   margin: 0;
   overflow: hidden;
 
+  /* stylelint-disable-next-line selector-class-pattern */
   .el-tabs__nav {
     &-wrap {
       padding-right: 142px;
@@ -130,6 +133,7 @@ $prefix-cls: '#{$tonyname}-multiple-tabs';
       right: 136px;
     }
 
+    /* stylelint-disable-next-line selector-class-pattern */
     .el-tabs__item {
       position: relative;
       display: inline-flex;

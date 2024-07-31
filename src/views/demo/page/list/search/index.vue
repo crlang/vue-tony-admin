@@ -1,7 +1,7 @@
 <template>
   <PageWrapper :class="prefixCls" title="搜索列表">
     <div :class="`${prefixCls}__container`">
-      <BasicList :dataSource="list">
+      <BasicList :data-source="list">
         <template #renderItem="{ item }">
           <BasicListItem>
             <template #title>
@@ -10,7 +10,7 @@
               </p>
               <div>
                 <template v-for="tag in item.description" :key="tag">
-                  <el-tag class="mb-2 mr-2" size="small" type="success">{{ tag }}</el-tag>
+                  <ElTag class="mb-2 mr-2" size="small" type="success">{{ tag }}</ElTag>
                 </template>
               </div>
             </template>
@@ -25,7 +25,8 @@
                       v-if="action.icon"
                       :class="`${prefixCls}__action-icon`"
                       :name="action.icon"
-                      :color="action.color" />
+                      :color="action.color"
+                    />
                     {{ action.text }}
                   </div>
                 </template>
@@ -40,12 +41,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElTag } from 'element-plus';
-import { SvgIcon } from '@/components/SvgIcon';
-import { searchList as list } from './data';
-import { BasicList, BasicListItem } from '@/components/BasicList';
-import { useMessage } from '@/hooks/web/useMessage';
+import { defineComponent } from 'vue'
+import { ElTag } from 'element-plus'
+import { searchList as list } from './data'
+import { SvgIcon } from '@/components/SvgIcon'
+import { BasicList, BasicListItem } from '@/components/BasicList'
+import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
   components: {
@@ -55,19 +56,20 @@ export default defineComponent({
     BasicListItem,
   },
   setup() {
-    const { createMessage } = useMessage();
+    const { createMessage } = useMessage()
 
     const metaActions = [
       { icon: 'demo_star', text: '156', color: '#018ffb' },
       { icon: 'demo_promotion', text: '156', color: '#459ae8' },
       { icon: 'demo_comment', text: '2', color: '#42d27d' },
-    ];
+    ]
 
     function handleSubmit(v: any) {
       if (!v.field1) {
-        createMessage.error(JSON.stringify(v));
-      } else {
-        createMessage.success(JSON.stringify(v));
+        createMessage.error(JSON.stringify(v))
+      }
+      else {
+        createMessage.success(JSON.stringify(v))
       }
     }
 
@@ -76,9 +78,9 @@ export default defineComponent({
       list,
       metaActions,
       handleSubmit,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>
@@ -132,7 +134,7 @@ export default defineComponent({
   &__time {
     position: absolute;
     right: 0;
-    color: rgba(0, 0, 0, 0.45);
+    color: rgb(0 0 0 / 45%);
   }
 }
 </style>

@@ -1,17 +1,17 @@
 <template>
   <div :class="getClass" :style="getStyle">
     <span :class="`${prefixCls}-before`"></span>
-    <span :class="`${prefixCls}-text`" v-if="text">{{ text }}</span>
-    <span :class="`${prefixCls}-text`" v-else><slot></slot></span>
+    <span v-if="text" :class="`${prefixCls}-text`">{{ text }}</span>
+    <span v-else :class="`${prefixCls}-text`"><slot></slot></span>
     <span :class="`${prefixCls}-after`"></span>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue'
 
-import { useDesign } from '@/hooks/web/useDesign';
-import { isDark } from '@/logics/theme';
+import { useDesign } from '@/hooks/web/useDesign'
+import { isDark } from '@/logics/theme'
 
 export const BasicDividerProps = {
   text: {
@@ -46,16 +46,16 @@ export const BasicDividerProps = {
     type: String as PropType<'left' | 'right' | 'center'>,
     default: 'center',
   },
-};
+}
 
 export default defineComponent({
   name: 'BasicDivider',
   components: {},
   props: BasicDividerProps,
   setup(props) {
-    const { prefixCls } = useDesign('basic-divider');
+    const { prefixCls } = useDesign('basic-divider')
 
-    const getClass = computed(() => [prefixCls, `${prefixCls}--${props.direction}`, `${prefixCls}--${props.contentPosition}`]);
+    const getClass = computed(() => [prefixCls, `${prefixCls}--${props.direction}`, `${prefixCls}--${props.contentPosition}`])
 
     const getStyle = computed(() => {
       return {
@@ -64,16 +64,16 @@ export default defineComponent({
         '--ty-text-style': props.textStyle || 'normal',
         '--ty-text-color': props.textColor || 'inherit',
         '--ty-text-size': `${props.textSize || 14}px`,
-      };
-    });
+      }
+    })
 
     return {
       prefixCls,
       getClass,
       getStyle,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">

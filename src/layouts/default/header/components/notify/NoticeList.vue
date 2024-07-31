@@ -1,14 +1,20 @@
 <template>
   <BasicList :class="prefixCls" :data-source="list">
     <template #renderItem="{ item }">
-      <BasicListItem :class="[prefixCls + '-item', { 'is-read': item.titleDelete }]" @click="handleTitleClick(item)">
-        <template #thumb v-if="vkey == '1'">
-          <ElAvatar style="--el-avatar-bg-color: #fff" class="avatar" :src="item.avatar" />
+      <BasicListItem :class="[`${prefixCls}-item`, { 'is-read': item.titleDelete }]" @click="handleTitleClick(item)">
+        <template v-if="vkey === '1'" #thumb>
+          <ElAvatar
+            style="
+
+          --el-avatar-bg-color: #fff;
+
+          " class="avatar" :src="item.avatar"
+          />
         </template>
         <template #title>
           <div class="title">
             <span>{{ item.title }}</span>
-            <div class="extra" v-if="vkey == '3'">
+            <div v-if="vkey === '3'" class="extra">
               <ElTag class="tag" size="small" :type="item.color">
                 {{ item.extra }}
               </ElTag>
@@ -17,8 +23,12 @@
         </template>
         <template #description>
           <div :class="`${prefixCls}--desc`">
-            <div class="description" v-if="vkey == '2'">{{ item.description }}</div>
-            <div class="datetime">{{ item.datetime }}</div>
+            <div v-if="vkey === '2'" class="description">
+              {{ item.description }}
+            </div>
+            <div class="datetime">
+              {{ item.datetime }}
+            </div>
           </div>
         </template>
       </BasicListItem>
@@ -27,13 +37,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElAvatar, ElTag } from 'element-plus';
+import { defineComponent } from 'vue'
+import { ElAvatar, ElTag } from 'element-plus'
 
-import { useDesign } from '@/hooks/web/useDesign';
-import { BasicList, BasicListItem } from '@/components/BasicList';
-
-import type { ListItem } from './data';
+import type { ListItem } from './data'
+import { useDesign } from '@/hooks/web/useDesign'
+import { BasicList, BasicListItem } from '@/components/BasicList'
 
 export default defineComponent({
   components: {
@@ -56,15 +65,17 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { prefixCls } = useDesign('header-notify-list');
+    const { prefixCls } = useDesign('header-notify-list')
 
     function handleTitleClick(item) {
-      props.onTitleClick && props.onTitleClick(item);
+      if (props.onTitleClick) {
+        props.onTitleClick(item)
+      }
     }
 
-    return { prefixCls, handleTitleClick };
+    return { prefixCls, handleTitleClick }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

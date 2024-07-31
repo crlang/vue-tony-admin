@@ -11,39 +11,39 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
-import { useRouter } from 'vue-router';
-import { ElTooltip, ElBadge } from 'element-plus';
+import { computed, defineComponent } from 'vue'
+import { useRouter } from 'vue-router'
+import { ElBadge, ElTooltip } from 'element-plus'
 
-import { SvgIcon } from '@/components/SvgIcon';
-import { useErrorLogStore } from '@/store/modules/errorLog';
-import { PageEnum } from '@/enums/pageEnum';
-import { useDesign } from '@/hooks/web/useDesign';
+import { SvgIcon } from '@/components/SvgIcon'
+import { useErrorLogStore } from '@/store/modules/errorLog'
+import { PageEnum } from '@/enums/pageEnum'
+import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'ErrorAction',
   components: { ElTooltip, ElBadge, SvgIcon },
 
   setup() {
-    const { push } = useRouter();
-    const errorLogStore = useErrorLogStore();
-    const { prefixCls } = useDesign('header-error-action');
+    const { push } = useRouter()
+    const errorLogStore = useErrorLogStore()
+    const { prefixCls } = useDesign('header-error-action')
 
-    const getCount = computed(() => errorLogStore.getErrorLogListCount);
+    const getCount = computed(() => errorLogStore.getErrorLogListCount)
 
     function handleToErrorList() {
       push(PageEnum.ERROR_LOG_PAGE).then(() => {
-        errorLogStore.setErrorLogListCount(0);
-      });
+        errorLogStore.setErrorLogListCount(0)
+      })
     }
 
     return {
       prefixCls,
       getCount,
       handleToErrorList,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">

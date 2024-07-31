@@ -7,18 +7,18 @@
   </ElTooltip>
 
   <ElTooltip v-if="fullscreen" placement="top" content="全屏">
-    <SvgIcon @click="toggle" :name="isFullscreen ? 'shrink' : 'arrowsalt'" />
+    <SvgIcon :name="isFullscreen ? 'shrink' : 'arrowsalt'" @click="toggle" />
   </ElTooltip>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import { ComponentSize, ElTooltip } from 'element-plus';
-import { useFullscreen } from '@vueuse/core';
+import { defineComponent, ref } from 'vue'
+import type { ComponentSize } from 'element-plus'
+import { ElTooltip } from 'element-plus'
+import { useFullscreen } from '@vueuse/core'
 
-import { SvgIcon } from '@/components/SvgIcon';
-
-import { useTableContext } from '../hooks/useTableContext';
+import { useTableContext } from '../hooks/useTableContext'
+import { SvgIcon } from '@/components/SvgIcon'
 
 export default defineComponent({
   name: 'TableSetting',
@@ -32,36 +32,34 @@ export default defineComponent({
     fullscreen: Boolean,
   },
   setup() {
-    const table = useTableContext();
-    const sizeRef = ref<ComponentSize>('default');
-    const { toggle, isFullscreen } = useFullscreen(table.wrapRef);
+    const table = useTableContext()
+    const sizeRef = ref<ComponentSize>('default')
+    const { toggle, isFullscreen } = useFullscreen(table.wrapRef)
 
     /**
      * 刷新当前页
-     *
-     * Redo table
      */
     function handleRedo() {
-      table.reload();
+      table.reload()
     }
 
     /**
      * 切换表格大小
-     *
-     * Toggle table size
      */
     function handleSize() {
       if (sizeRef.value === 'default') {
-        sizeRef.value = 'large';
-      } else if (sizeRef.value === 'large') {
-        sizeRef.value = 'small';
-      } else {
-        sizeRef.value = 'default';
+        sizeRef.value = 'large'
+      }
+      else if (sizeRef.value === 'large') {
+        sizeRef.value = 'small'
+      }
+      else {
+        sizeRef.value = 'default'
       }
 
       table.setTableProps({
         size: sizeRef.value,
-      });
+      })
     }
 
     return {
@@ -70,7 +68,7 @@ export default defineComponent({
       toggle,
       handleRedo,
       handleSize,
-    };
+    }
   },
-});
+})
 </script>

@@ -1,12 +1,16 @@
 <template>
-  <el-row class="ana-card" :gutter="32">
+  <ElRow class="ana-card" :gutter="32">
     <template v-for="item in datainfo" :key="item.title">
-      <el-col :span="8">
-        <el-card shadow="always">
+      <ElCol :span="8">
+        <ElCard shadow="always">
           <div class="ana-card--li">
             <div class="ana-card--left">
-              <div class="ana-card--title dashboard-analysis__title">{{ item.title }}</div>
-              <div class="ana-card--subject">{{ item.subject }}</div>
+              <div class="ana-card--title dashboard-analysis__title">
+                {{ item.title }}
+              </div>
+              <div class="ana-card--subject">
+                {{ item.subject }}
+              </div>
               <div class="ana-card--compare" :class="[{ 'is-down': item.scale < 0, 'is-up': item.scale > 0 }]">
                 <span class="t1">{{ item.value }}</span>
                 <SvgIcon class="t2" :name="item.scale > 0 ? 'rise' : item.scale < 0 ? 'fall' : 'minus'" />
@@ -14,14 +18,15 @@
               </div>
             </div>
             <div class="ana-card--chart">
-              <el-progress
+              <ElProgress
                 type="circle"
                 :percentage="item.mix"
                 :width="112"
-                :circlePathStyle="[{ color: '#f00' }]"
+                :circle-path-style="[{ color: '#f00' }]"
                 :stroke-width="5"
                 indeterminate
-                :color="getBarColor(item.mix)">
+                :color="getBarColor(item.mix)"
+              >
                 <template #default>
                   <div class="ana-card--chart-inner">
                     <div>
@@ -31,20 +36,20 @@
                     <span>{{ item.desc }}</span>
                   </div>
                 </template>
-              </el-progress>
+              </ElProgress>
             </div>
           </div>
-        </el-card>
-      </el-col>
+        </ElCard>
+      </ElCol>
     </template>
-  </el-row>
+  </ElRow>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElLoading, ElRow, ElCol, ElCard, ElProgress } from 'element-plus';
+import { defineComponent } from 'vue'
+import { ElCard, ElCol, ElLoading, ElProgress, ElRow } from 'element-plus'
 
-import { SvgIcon } from '@/components/SvgIcon';
+import { SvgIcon } from '@/components/SvgIcon'
 
 export default defineComponent({
   components: { ElRow, ElCol, ElCard, ElProgress, SvgIcon },
@@ -63,19 +68,20 @@ export default defineComponent({
   setup() {
     function getBarColor(v: number) {
       if (v < 30) {
-        return '#09B66D';
-      } else if (v < 70) {
-        return '#FDBF5E';
+        return '#09B66D'
+      }
+      else if (v < 70) {
+        return '#FDBF5E'
       }
 
-      return '#FF3D57';
+      return '#FF3D57'
     }
 
     return {
       getBarColor,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>
@@ -150,10 +156,7 @@ export default defineComponent({
 
     &-inner {
       position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
+      inset: 0;
       display: flex;
       flex-direction: column;
       align-items: center;

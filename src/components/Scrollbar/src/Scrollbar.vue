@@ -2,31 +2,34 @@
   <div class="scrollbar">
     <div
       ref="wrap"
-      :class="[wrapClass, 'scrollbar__wrap', native ? '' : 'scrollbar__wrap--hidden-default']"
+      class="scrollbar__wrap" :class="[wrapClass, native ? '' : 'scrollbar__wrap--hidden-default']"
       :style="style"
-      @scroll="handleScroll">
+      @scroll="handleScroll"
+    >
       <component
         :is="tag"
         ref="resize"
-        :class="['scrollbar__view', viewClass]"
-        :style="viewStyle">
+        class="scrollbar__view" :class="[viewClass]"
+        :style="viewStyle"
+      >
         <slot></slot>
       </component>
     </div>
     <template v-if="!native">
-      <bar :move="moveX" :size="sizeWidth" />
-      <bar vertical :move="moveY" :size="sizeHeight" />
+      <Bar :move="moveX" :size="sizeWidth" />
+      <Bar vertical :move="moveY" :size="sizeHeight" />
     </template>
   </div>
 </template>
 
 <script lang="ts">
-import { addResizeListener, removeResizeListener } from '@/utils/event';
-import componentSetting from '@/settings/componentSetting';
-const { scrollbar } = componentSetting;
-import { toObject } from './util';
-import { defineComponent, ref, onMounted, onBeforeUnmount, nextTick, provide, computed, unref } from 'vue';
-import Bar from './bar';
+import { computed, defineComponent, nextTick, onBeforeUnmount, onMounted, provide, ref, unref } from 'vue'
+import { toObject } from './util'
+import Bar from './bar'
+import { addResizeListener, removeResizeListener } from '@/utils/event'
+import componentSetting from '@/settings/componentSetting'
+
+const { scrollbar } = componentSetting
 
 export default defineComponent({
   name: 'Scrollbar',
@@ -60,57 +63,60 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const sizeWidth = ref('0');
-    const sizeHeight = ref('0');
-    const moveX = ref(0);
-    const moveY = ref(0);
-    const wrap = ref();
-    const resize = ref();
+    const sizeWidth = ref('0')
+    const sizeHeight = ref('0')
+    const moveX = ref(0)
+    const moveY = ref(0)
+    const wrap = ref()
+    const resize = ref()
 
-    provide('scroll-bar-wrap', wrap);
+    provide('scroll-bar-wrap', wrap)
 
     const style = computed(() => {
       if (Array.isArray(props.wrapStyle)) {
-        return toObject(props.wrapStyle);
+        return toObject(props.wrapStyle)
       }
-      return props.wrapStyle;
-    });
+      return props.wrapStyle
+    })
 
     const handleScroll = () => {
       if (!props.native) {
-        moveY.value = (unref(wrap).scrollTop * 100) / unref(wrap).clientHeight;
-        moveX.value = (unref(wrap).scrollLeft * 100) / unref(wrap).clientWidth;
+        moveY.value = (unref(wrap).scrollTop * 100) / unref(wrap).clientHeight
+        moveX.value = (unref(wrap).scrollLeft * 100) / unref(wrap).clientWidth
       }
-    };
+    }
 
     const update = () => {
-      if (!unref(wrap)) return;
+      if (!unref(wrap))
+        return
 
-      const heightPercentage = (unref(wrap).clientHeight * 100) / unref(wrap).scrollHeight;
-      const widthPercentage = (unref(wrap).clientWidth * 100) / unref(wrap).scrollWidth;
+      const heightPercentage = (unref(wrap).clientHeight * 100) / unref(wrap).scrollHeight
+      const widthPercentage = (unref(wrap).clientWidth * 100) / unref(wrap).scrollWidth
 
-      sizeHeight.value = heightPercentage < 100 ? `${heightPercentage}%` : '';
-      sizeWidth.value = widthPercentage < 100 ? `${widthPercentage}%` : '';
-    };
+      sizeHeight.value = heightPercentage < 100 ? `${heightPercentage}%` : ''
+      sizeWidth.value = widthPercentage < 100 ? `${widthPercentage}%` : ''
+    }
 
     onMounted(() => {
-      if (props.native) return;
-      nextTick(update);
+      if (props.native)
+        return
+      nextTick(update)
       if (!props.noresize) {
-        addResizeListener(unref(resize), update);
-        addResizeListener(unref(wrap), update);
-        addEventListener('resize', update);
+        addResizeListener(unref(resize), update)
+        addResizeListener(unref(wrap), update)
+        addEventListener('resize', update)
       }
-    });
+    })
 
     onBeforeUnmount(() => {
-      if (props.native) return;
+      if (props.native)
+        return
       if (!props.noresize) {
-        removeResizeListener(unref(resize), update);
-        removeResizeListener(unref(wrap), update);
-        removeEventListener('resize', update);
+        removeResizeListener(unref(resize), update)
+        removeResizeListener(unref(wrap), update)
+        removeEventListener('resize', update)
       }
-    });
+    })
 
     return {
       moveX,
@@ -122,9 +128,9 @@ export default defineComponent({
       resize,
       update,
       handleScroll,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">
@@ -155,12 +161,12 @@ export default defineComponent({
     width: 0;
     height: 0;
     cursor: pointer;
-    background-color: rgba(144, 147, 153, 0.3);
+    background-color: rgb(144 147 153 / 30%);
     border-radius: inherit;
     transition: 0.3s background-color;
 
     &:hover {
-      background-color: rgba(144, 147, 153, 0.5);
+      background-color: rgb(144 147 153 / 50%);
     }
   }
 
@@ -193,9 +199,8 @@ export default defineComponent({
   }
 }
 
-.scrollbar:active > .scrollbar__bar,
-.scrollbar:focus > .scrollbar__bar,
-.scrollbar:hover > .scrollbar__bar {
+/* stylelint-disable-next-line selector-class-pattern */
+.scrollbar:active > .scrollbar__bar,.scrollbar:focus > .scrollbar__bar,.scrollbar:hover > .scrollbar__bar {
   opacity: 1;
   transition: opacity 340ms ease-out;
 }

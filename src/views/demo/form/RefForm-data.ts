@@ -1,4 +1,4 @@
-import { BasicFormSchema } from '@/components/BasicForm';
+import type { BasicFormSchema } from '@/components/BasicForm'
 
 export const basicSchemas: BasicFormSchema[] = [
   {
@@ -75,4 +75,4 @@ export const basicSchemas: BasicFormSchema[] = [
       ],
     },
   },
-];
+]

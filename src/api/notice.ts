@@ -1,8 +1,8 @@
-import type { ParamsNoticeList, ResponseNoticeList } from './types';
+import type { ParamsNoticeList, ResponseNoticeList } from './types'
 
-import { defHttp } from '@/utils/http/axios';
+import { defHttp } from '@/utils/http/axios'
 
-const basicUri = '/v1/Notice/';
+const basicUri = '/v1/Notice/'
 enum Api {
   GetNoticeList = `${basicUri}list`,
 }
@@ -10,5 +10,5 @@ enum Api {
  * 列表-角色
  */
 export function ApiNoticeList(data: ParamsNoticeList = null) {
-  return defHttp.post<ResponseNoticeList>({ url: Api.GetNoticeList, data });
+  return defHttp.post<ResponseNoticeList>({ url: Api.GetNoticeList, data })
 }

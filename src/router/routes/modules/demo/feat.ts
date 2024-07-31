@@ -1,6 +1,6 @@
-import type { AppRouteModule } from '@/router/types';
+import type { AppRouteModule } from '@/router/types'
 
-import { getParentLayout, LAYOUT } from '@/router/constant';
+import { LAYOUT, getParentLayout } from '@/router/constant'
 
 const feat: AppRouteModule = {
   path: '/feat',
@@ -233,6 +233,6 @@ const feat: AppRouteModule = {
       ],
     },
   ],
-};
+}
 
-export default feat;
+export default feat

@@ -1,11 +1,11 @@
-import { h } from 'vue';
-import { ElTag } from 'element-plus';
+import { h } from 'vue'
+import { ElTag } from 'element-plus'
 
-import { SvgIcon } from '@/components/SvgIcon';
-import { BasicColumn } from '@/components/BasicTable';
-import { BasicFormSchema } from '@/components/BasicForm';
+import { SvgIcon } from '@/components/SvgIcon'
+import type { BasicColumn } from '@/components/BasicTable'
+import type { BasicFormSchema } from '@/components/BasicForm'
 
-import { ApiDepartmentTreeList } from '@/api/department';
+import { ApiDepartmentTreeList } from '@/api/department'
 
 export const columns: BasicColumn[] = [
   {
@@ -24,7 +24,7 @@ export const columns: BasicColumn[] = [
     label: '图标',
     prop: 'icon',
     customRender: ({ record }) => {
-      return h(SvgIcon, { name: record.icon });
+      return h(SvgIcon, { name: record.icon })
     },
   },
   {
@@ -39,11 +39,11 @@ export const columns: BasicColumn[] = [
     label: '状态',
     prop: 'status',
     customRender: ({ record }) => {
-      const status = record.status;
-      const enable = ~~status === 0;
-      const color = enable ? 'success' : 'danger';
-      const text = enable ? '启用' : '停用';
-      return h(ElTag, { type: color }, () => text);
+      const status = record.status
+      const enable = ~~status === 0
+      const color = enable ? 'success' : 'danger'
+      const text = enable ? '启用' : '停用'
+      return h(ElTag, { type: color }, () => text)
     },
   },
   {
@@ -54,7 +54,7 @@ export const columns: BasicColumn[] = [
     label: '创建时间',
     prop: 'createTime',
   },
-];
+]
 
 export const searchFormSchema: BasicFormSchema[] = [
   {
@@ -75,7 +75,7 @@ export const searchFormSchema: BasicFormSchema[] = [
     },
     colProps: { span: 8 },
   },
-];
+]
 
 export const formSchema: BasicFormSchema[] = [
   {
@@ -142,4 +142,4 @@ export const formSchema: BasicFormSchema[] = [
       rows: 6,
     },
   },
-];
+]

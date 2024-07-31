@@ -1,20 +1,19 @@
-export type { ContextMenuItem } from '@/components/ContextMenu';
+import { getCurrentInstance, onUnmounted } from 'vue'
 
-import { onUnmounted, getCurrentInstance } from 'vue';
+import { createContextMenu, destroyContextMenu } from '@/components/ContextMenu'
 
-import { createContextMenu, destroyContextMenu } from '@/components/ContextMenu';
+export type { ContextMenuItem } from '@/components/ContextMenu'
 
 /**
  * 处理右键菜单
  *
- * Handling right-click menus
  * @param autoRemove
  */
 export function useContextMenu(autoRemove = true) {
   if (getCurrentInstance() && autoRemove) {
     onUnmounted(() => {
-      destroyContextMenu();
-    });
+      destroyContextMenu()
+    })
   }
-  return [createContextMenu, destroyContextMenu];
+  return [createContextMenu, destroyContextMenu]
 }

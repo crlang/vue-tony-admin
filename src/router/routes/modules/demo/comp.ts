@@ -1,6 +1,6 @@
-import type { AppRouteModule } from '@/router/types';
+import type { AppRouteModule } from '@/router/types'
 
-import { getParentLayout, LAYOUT } from '@/router/constant';
+import { LAYOUT, getParentLayout } from '@/router/constant'
 
 const comp: AppRouteModule = {
   path: '/comp',
@@ -393,6 +393,6 @@ const comp: AppRouteModule = {
       },
     },
   ],
-};
+}
 
-export default comp;
+export default comp

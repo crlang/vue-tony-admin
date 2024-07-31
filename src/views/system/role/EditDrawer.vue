@@ -1,31 +1,32 @@
 <template>
   <BasicDrawer
     v-bind="$attrs"
-    @register="registerDrawer"
-    showFooter
+    show-footer
     :title="getTitle"
     width="500px"
-    @confirm="handleSubmit">
+    @register="registerDrawer"
+    @confirm="handleSubmit"
+  >
     <BasicForm @register="registerForm" />
   </BasicDrawer>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, unref } from 'vue';
+import { computed, defineComponent, ref, unref } from 'vue'
 
-import { BasicForm, useForm } from '@/components/BasicForm';
-import { BasicDrawer, useDrawerInner } from '@/components/BasicDrawer';
+import { formSchema } from './data'
+import { BasicForm, useForm } from '@/components/BasicForm'
+import { BasicDrawer, useDrawerInner } from '@/components/BasicDrawer'
 
-import { formSchema } from './data';
-import { ApiRoleAdd, ApiRoleEdit } from '@/api/role';
+import { ApiRoleAdd, ApiRoleEdit } from '@/api/role'
 
 export default defineComponent({
   name: 'RoleDrawer',
   components: { BasicDrawer, BasicForm },
   emits: ['success', 'register'],
   setup(_, { emit }) {
-    const isUpdate = ref(true);
-    const editId = ref('');
+    const isUpdate = ref(true)
+    const editId = ref('')
 
     const [registerForm, { resetFields, getFieldsValue, setFieldsValue, validate }] = useForm({
       labelWidth: 90,
@@ -37,41 +38,42 @@ export default defineComponent({
       actionColProps: {
         span: 24,
       },
-    });
+    })
 
-    const [registerDrawer, { closeDrawer, changeConfirmLoading }] = useDrawerInner(async(data) => {
-      resetFields();
-      changeConfirmLoading(false);
-      isUpdate.value = !!data?.isUpdate;
+    const [registerDrawer, { closeDrawer, changeConfirmLoading }] = useDrawerInner(async (data) => {
+      resetFields()
+      changeConfirmLoading(false)
+      isUpdate.value = !!data?.isUpdate
       if (unref(isUpdate)) {
-        editId.value = data.record.id;
+        editId.value = data.record.id
         setFieldsValue({
           ...data.record,
-        });
+        })
       }
-    });
+    })
 
-    const getTitle = computed(() => (!unref(isUpdate) ? '新增角色' : '编辑角色'));
+    const getTitle = computed(() => (!unref(isUpdate) ? '新增角色' : '编辑角色'))
 
     async function handleSubmit() {
       try {
-        await validate();
+        await validate()
 
-        const params = getFieldsValue() as any;
-        let apiFn: any = ApiRoleAdd;
+        const params = getFieldsValue() as any
+        let apiFn: any = ApiRoleAdd
 
         if (isUpdate.value) {
-          params.id = editId.value;
-          apiFn = ApiRoleEdit;
+          params.id = editId.value
+          apiFn = ApiRoleEdit
         }
 
-        await apiFn(params);
+        await apiFn(params)
 
-        changeConfirmLoading(true);
-        closeDrawer();
-        emit('success');
-      } finally {
-        changeConfirmLoading(false);
+        changeConfirmLoading(true)
+        closeDrawer()
+        emit('success')
+      }
+      finally {
+        changeConfirmLoading(false)
       }
     }
 
@@ -80,7 +82,7 @@ export default defineComponent({
       registerForm,
       getTitle,
       handleSubmit,
-    };
+    }
   },
-});
+})
 </script>

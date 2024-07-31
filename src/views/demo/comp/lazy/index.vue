@@ -6,7 +6,7 @@
         <LazyContainer>
           <TargetContent />
           <template #skeleton>
-            <el-skeleton :rows="10" />
+            <ElSkeleton :rows="10" />
           </template>
         </LazyContainer>
       </div>
@@ -15,14 +15,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElSkeleton } from 'element-plus';
-import TargetContent from './TargetContent.vue';
-import { LazyContainer } from '@/components/LazyContainer';
+import { defineComponent } from 'vue'
+import { ElSkeleton } from 'element-plus'
+import TargetContent from './TargetContent.vue'
+import { LazyContainer } from '@/components/LazyContainer'
 
 export default defineComponent({
   components: { ElSkeleton, LazyContainer, TargetContent },
-});
+})
 </script>
 
 <style lang="scss" scoped>

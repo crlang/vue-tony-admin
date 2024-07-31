@@ -11,7 +11,7 @@ export const provincesOptions = [
     value: '2',
     key: '2',
   },
-];
+]
 
 export const citiesOptionsData = {
   guangdong: [
@@ -48,7 +48,7 @@ export const citiesOptionsData = {
       key: '3',
     },
   ],
-};
+}
 
 export const optionListData = [
   { label: '选项1', value: '1' },
@@ -60,7 +60,7 @@ export const optionListData = [
   { label: '选项7', value: '7', disabled: true },
   { label: '选项8', value: '8' },
   { label: '选项9', value: '9' },
-];
+]
 
 export const ApiDirData = [
   {
@@ -109,7 +109,7 @@ export const ApiDirData = [
     value: '6',
     options: [{ label: '选项6-1', value: '6-1' }],
   },
-];
+]
 
 export const ApiTreeData = [
   {
@@ -134,7 +134,7 @@ export const ApiTreeData = [
       },
     ],
   },
-];
+]
 
 export const basicDividerProps = {
   component: 'CustomDivider',
@@ -149,4 +149,4 @@ export const basicDividerProps = {
     textColor: 'var(--primary-color)',
     textSize: 16,
   },
-};
+}

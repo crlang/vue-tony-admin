@@ -1,6 +1,6 @@
-import type { AppRouteModule } from '@/router/types';
+import type { AppRouteModule } from '@/router/types'
 
-import { getParentLayout, LAYOUT } from '@/router/constant';
+import { LAYOUT, getParentLayout } from '@/router/constant'
 
 const charts: AppRouteModule = {
   path: '/charts',
@@ -97,6 +97,6 @@ const charts: AppRouteModule = {
       ],
     },
   ],
-};
+}
 
-export default charts;
+export default charts

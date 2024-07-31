@@ -3,12 +3,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, watch, watchEffect, ref, unref } from 'vue';
-import { ElColorPicker } from 'element-plus';
+import { computed, defineComponent, ref, unref, watch, watchEffect } from 'vue'
+import { ElColorPicker } from 'element-plus'
 
-import { useRuleFormItem } from '@/hooks/component/useFormItem';
-import { isFunction, isObject } from '@/utils/is';
-import { get } from 'lodash-es';
+import { get } from 'lodash-es'
+import { useRuleFormItem } from '@/hooks/component/useFormItem'
+import { isFunction, isObject } from '@/utils/is'
 
 export default defineComponent({
   name: 'CustomColorPicker',
@@ -22,11 +22,11 @@ export default defineComponent({
       type: Function as PropType<(arg?: any) => Promise<string[]>>,
       default: null,
     },
-    // api params
+    // api 参数
     params: {
       type: [Object, String, Number],
     },
-    // support xxx.xxx.xx
+    // 支持 xxx.xxx.xx
     resultField: {
       type: String,
       default: '',
@@ -40,75 +40,80 @@ export default defineComponent({
       default: true,
     },
   },
-  emits: ['update:modelValue', 'change', 'options-change'],
+  emits: ['update:modelValue', 'change', 'optionsChange'],
   setup(props, { attrs, emit }) {
-    const optionsRef = ref<string[]>([]);
-    const isFirstLoad = ref(true);
+    const optionsRef = ref<string[]>([])
+    const isFirstLoad = ref(true)
 
-    const [state] = useRuleFormItem(props, 'modelValue', 'change');
+    const [state] = useRuleFormItem(props, 'modelValue', 'change')
 
     const getBindValues = computed(() => {
       const opts = {
         ...attrs,
         predefine: attrs?.predefine || optionsRef.value || undefined,
-      };
-
-      return opts;
-    });
-
-    async function fetchData() {
-      const { api, params = null, resultField } = props;
-      if (!isFunction(api)) return;
-
-      let apiParams: Object | String | undefined;
-      if (params) {
-        apiParams = isObject(params) ? { ...params } : params;
       }
 
-      optionsRef.value = [];
+      return opts
+    })
+
+    async function fetchData() {
+      const { api, params = null, resultField } = props
+      if (!isFunction(api))
+        return
+
+      let apiParams: object | string | undefined
+      if (params) {
+        apiParams = isObject(params) ? { ...params } : params
+      }
+
+      optionsRef.value = []
       try {
-        const res = await api(apiParams);
+        const res = await api(apiParams)
         if (Array.isArray(res)) {
-          optionsRef.value = res;
-          emitChange();
-          return;
+          optionsRef.value = res
+          emitChange()
+          return
         }
         if (resultField) {
-          optionsRef.value = get(res, resultField) || [];
+          optionsRef.value = get(res, resultField) || []
         }
-        emitChange();
-      } catch (error) {
-        optionsRef.value = [];
+        emitChange()
+      }
+      catch (error) {
+        optionsRef.value = []
+        console.error('error', error)
       }
     }
 
     function emitChange() {
-      emit('options-change', unref(optionsRef));
+      emit('optionsChange', unref(optionsRef))
     }
 
     watchEffect(() => {
-      optionsRef.value = props.options || [];
+      optionsRef.value = props.options || []
       if (props.immediate) {
-        fetchData();
+        fetchData()
       }
-    });
+    })
 
     watch(
       () => state.value,
       (v) => {
-        emit('update:modelValue', v);
+        emit('update:modelValue', v)
       },
-    );
+    )
 
     watch(
       () => props.params,
       () => {
-        !unref(isFirstLoad) && fetchData();
+        if (!unref(isFirstLoad)) {
+          fetchData()
+        }
       },
       { deep: true },
-    );
+    )
 
-    return { getBindValues, state };
+    return { getBindValues, state }
   },
-});
+})
 </script>

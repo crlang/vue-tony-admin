@@ -1,6 +1,7 @@
 // margin padding class
 // e.g. mb-1 mt-3 pr-5
 $spacer: 0.25rem !default;
+
 @each $prop, $abbrev in (margin: m, padding: p) {
   @for $size from 0 through 20 {
     // normal

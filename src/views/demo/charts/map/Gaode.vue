@@ -3,11 +3,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, nextTick, unref, onMounted } from 'vue';
+import { defineComponent, nextTick, onMounted, ref, unref } from 'vue'
 
-import { useScript } from '@/hooks/web/useScript';
+import { useScript } from '@/hooks/web/useScript'
 
-const A_MAP_URL = 'https://webapi.amap.com/maps?v=2.0&key=738ebb785e3983d30f4b1949e31b400a';
+const A_MAP_URL = 'https://webapi.amap.com/maps?v=2.0&key=738ebb785e3983d30f4b1949e31b400a'
 
 export default defineComponent({
   name: 'AMap',
@@ -22,27 +22,33 @@ export default defineComponent({
     },
   },
   setup() {
-    const wrapRef = ref<HTMLDivElement | null>(null);
-    const { toPromise } = useScript({ src: A_MAP_URL });
+    const wrapRef = ref<HTMLDivElement | null>(null)
+    const { toPromise } = useScript({ src: A_MAP_URL })
+    const aMap = ref()
 
     async function initMap() {
-      await toPromise();
-      await nextTick();
-      const wrapEl = unref(wrapRef);
-      if (!wrapEl) return;
-      const AMap = (window as any).AMap;
-      new AMap.Map(wrapEl, {
+      await toPromise()
+      await nextTick()
+      const wrapEl = unref(wrapRef)
+      if (!wrapEl) {
+        return
+      }
+
+      const AMap = (window as any).AMap
+      aMap.value = new AMap.Map(wrapEl, {
         zoom: 11,
         center: [116.404, 39.915],
         viewMode: '3D',
-      });
+      })
     }
 
     onMounted(() => {
-      initMap();
-    });
+      initMap()
+    })
 
-    return { wrapRef };
+    return {
+      wrapRef,
+    }
   },
-});
+})
 </script>

@@ -1,45 +1,46 @@
 <template>
   <BasicDrawer
     v-bind="$attrs"
-    @register="registerDrawer"
-    showFooter
+    show-footer
     :title="getTitle"
     width="500px"
-    @confirm="handleSubmit">
+    @register="registerDrawer"
+    @confirm="handleSubmit"
+  >
     <BasicForm @register="registerForm">
       <template #menu="{ model, field }">
-        <el-tree
+        <ElTree
           :default-checked-keys="model[field]"
           :data="treeData"
           node-key="id"
-          defaultExpandAll
+          default-expand-all
           :props="{ label: 'menuName' }"
           show-checkbox
-          title="菜单分配" />
+          title="菜单分配"
+        />
       </template>
     </BasicForm>
   </BasicDrawer>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, unref } from 'vue';
-import { ElTree } from 'element-plus';
+import { computed, defineComponent, ref, unref } from 'vue'
+import { ElTree } from 'element-plus'
 
-import { BasicForm, useForm } from '@/components/BasicForm';
-import { BasicDrawer, useDrawerInner } from '@/components/BasicDrawer';
-import { getMenuList } from '@/api/demo/system';
+import { formSchema } from './data'
+import { BasicForm, useForm } from '@/components/BasicForm'
+import { BasicDrawer, useDrawerInner } from '@/components/BasicDrawer'
+import { getMenuList } from '@/api/demo/system'
 
-import { formSchema } from './data';
-
-type ElTreeType = InstanceType<typeof ElTree>;
+type ElTreeType = InstanceType<typeof ElTree>
 
 export default defineComponent({
   name: 'RoleDrawer',
   components: { ElTree, BasicDrawer, BasicForm },
   emits: ['success', 'register'],
   setup(_, { emit }) {
-    const isUpdate = ref(true);
-    const treeData = ref<ElTreeType[]>([]);
+    const isUpdate = ref(true)
+    const treeData = ref<ElTreeType[]>([])
 
     const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
       labelWidth: 90,
@@ -51,33 +52,34 @@ export default defineComponent({
       actionColProps: {
         span: 24,
       },
-    });
+    })
 
-    const [registerDrawer, { closeDrawer, changeConfirmLoading }] = useDrawerInner(async(data) => {
-      resetFields();
-      changeConfirmLoading(false);
+    const [registerDrawer, { closeDrawer, changeConfirmLoading }] = useDrawerInner(async (data) => {
+      resetFields()
+      changeConfirmLoading(false)
       if (unref(treeData).length === 0) {
-        treeData.value = (await getMenuList()) as any as ElTreeType[];
+        treeData.value = (await getMenuList()) as any as ElTreeType[]
       }
-      isUpdate.value = !!data?.isUpdate;
+      isUpdate.value = !!data?.isUpdate
 
       if (unref(isUpdate)) {
         setFieldsValue({
           ...data.record,
-        });
+        })
       }
-    });
+    })
 
-    const getTitle = computed(() => (!unref(isUpdate) ? '新增角色' : '编辑角色'));
+    const getTitle = computed(() => (!unref(isUpdate) ? '新增角色' : '编辑角色'))
 
     async function handleSubmit() {
       try {
-        await validate();
-        changeConfirmLoading(true);
-        closeDrawer();
-        emit('success');
-      } finally {
-        changeConfirmLoading(false);
+        await validate()
+        changeConfirmLoading(true)
+        closeDrawer()
+        emit('success')
+      }
+      finally {
+        changeConfirmLoading(false)
       }
     }
 
@@ -87,7 +89,7 @@ export default defineComponent({
       getTitle,
       handleSubmit,
       treeData,
-    };
+    }
   },
-});
+})
 </script>

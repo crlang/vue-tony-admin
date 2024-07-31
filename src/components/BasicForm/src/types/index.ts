@@ -1,9 +1,7 @@
-import { FormActionMethods } from './formItem';
+import type { FormActionMethods } from './formItem'
 
 /**
  * 表单项支持的组件
- *
- * Components supported by form items
  */
 export type ComponentType =
   | 'ElInput'
@@ -21,18 +19,14 @@ export type ComponentType =
   | 'CustomTimePicker'
   | 'CustomTree'
   | 'CustomAutocomplete'
-  | 'CustomTreeSelect';
+  | 'CustomTreeSelect'
 
 /**
  * 注册实例方法
- *
- * Register instance function
  */
-export type RegisterFn = (formInstance: FormActionMethods) => void;
+export type RegisterFn = (formInstance: FormActionMethods) => void
 
 /**
  * 定义实例内容
- *
- * Define instance content
  */
-export type UseFormReturnType = [RegisterFn, FormActionMethods];
+export type UseFormReturnType = [RegisterFn, FormActionMethods]

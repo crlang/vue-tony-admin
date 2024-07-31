@@ -5,7 +5,8 @@
       :column="3"
       border
       :data="demoData"
-      :schema="schema">
+      :schema="schema"
+    >
       <template #phone="val">
         <div>
           Call:
@@ -18,25 +19,25 @@
       class="my-4"
       title="垂直示例"
       direction="vertical"
-      :collapseOptions="{
+      :collapse-options="{
         canExpand: true,
         helpMessage: 'hello msg',
       }"
       :column="2"
       border
       :data="demoData"
-      :schema="schema" />
+      :schema="schema"
+    />
 
     <BasicDescription @register="register" />
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
-import { BasicDescription, useDescription } from '@/components/BasicDescription';
-
-import { demoData, schema } from './data';
+import { demoData, schema } from './data'
+import { BasicDescription, useDescription } from '@/components/BasicDescription'
 
 export default defineComponent({
   components: { BasicDescription },
@@ -44,10 +45,10 @@ export default defineComponent({
     const [register] = useDescription({
       title: 'useDescription 方式',
       data: demoData,
-      schema: schema,
-    });
+      schema,
+    })
 
-    return { demoData, schema, register };
+    return { demoData, schema, register }
   },
-});
+})
 </script>

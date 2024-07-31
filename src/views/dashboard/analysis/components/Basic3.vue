@@ -3,11 +3,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, Ref, watch } from 'vue';
+import type { Ref } from 'vue'
+import { defineComponent, onMounted, ref, watch } from 'vue'
 
-import { useECharts } from '@/hooks/web/useECharts';
-
-import { DateBasicItem } from '../data';
+import type { DateBasicItem } from '../data'
+import { useECharts } from '@/hooks/web/useECharts'
 
 export default defineComponent({
   props: {
@@ -25,10 +25,10 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const chartRef = ref<HTMLDivElement | null>(null);
-    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
+    const chartRef = ref<HTMLDivElement | null>(null)
+    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>)
     const initChart = () => {
-      const piedata = props.datainfo || [];
+      const piedata = props.datainfo || []
 
       setOptions({
         tooltip: {
@@ -69,22 +69,22 @@ export default defineComponent({
             data: piedata,
           },
         ],
-      });
-    };
+      })
+    }
 
     watch(
       () => props.datainfo,
       () => {
-        initChart();
+        initChart()
       },
       { deep: true },
-    );
+    )
 
-    onMounted(initChart);
+    onMounted(initChart)
 
     return {
       chartRef,
-    };
+    }
   },
-});
+})
 </script>

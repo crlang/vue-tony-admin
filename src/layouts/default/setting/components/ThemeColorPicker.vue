@@ -1,7 +1,7 @@
 <template>
   <div :class="prefixCls">
     <template v-for="color in colorList || []" :key="color">
-      <span @click="handleClick(color)" :class="getItemCls(color)" :style="{ background: color }">
+      <span :class="getItemCls(color)" :style="{ background: color }" @click="handleClick(color)">
         <SvgIcon name="check" />
       </span>
     </template>
@@ -9,13 +9,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { SvgIcon } from '@/components/SvgIcon';
+import type { PropType } from 'vue'
+import { defineComponent } from 'vue'
+import { baseHandler } from '../handler'
+import type { HandlerEnum } from '../enum'
+import { SvgIcon } from '@/components/SvgIcon'
 
-import { useDesign } from '@/hooks/web/useDesign';
-
-import { baseHandler } from '../handler';
-import { HandlerEnum } from '../enum';
+import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'ThemeColorPicker',
@@ -33,10 +33,12 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { prefixCls } = useDesign('setting-theme-picker');
+    const { prefixCls } = useDesign('setting-theme-picker')
 
     function handleClick(color: string) {
-      props.event && baseHandler(props.event, color);
+      if (props.event) {
+        baseHandler(props.event, color)
+      }
     }
 
     const getItemCls = (color: string) => {
@@ -45,15 +47,15 @@ export default defineComponent({
         {
           [`${prefixCls}__item--active`]: props.def === color,
         },
-      ];
-    };
+      ]
+    }
     return {
       prefixCls,
       getItemCls,
       handleClick,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">

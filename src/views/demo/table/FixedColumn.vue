@@ -1,26 +1,28 @@
 <template>
-  <PageWrapper contentFullHeight>
+  <PageWrapper content-full-height>
     <BasicTable @register="registerTable">
       <template #imgs="{ label, width, prop }">
-        <el-table-column :label="label" :width="width" :prop="prop">
+        <ElTableColumn :label="label" :width="width" :prop="prop">
           <template #default="scope">
             <img
-              :src="item"
+              v-for="(item, index) in scope.row.imgs"
               :key="index"
+              :src="item"
               width="80"
-              v-for="(item, index) in scope.row.imgs" />
+            >
           </template>
-        </el-table-column>
+        </ElTableColumn>
       </template>
     </BasicTable>
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { BasicTable, useTable, BasicColumn } from '@/components/BasicTable';
-import { demoListApi } from '@/api/demo/table';
-import { ElTableColumn } from 'element-plus';
+import { defineComponent } from 'vue'
+import { ElTableColumn } from 'element-plus'
+import type { BasicColumn } from '@/components/BasicTable'
+import { BasicTable, useTable } from '@/components/BasicTable'
+import { demoListApi } from '@/api/demo/table'
 
 export default defineComponent({
   components: { ElTableColumn, BasicTable },
@@ -86,15 +88,15 @@ export default defineComponent({
           },
         ],
       },
-    ];
+    ]
     const [registerTable] = useTable({
       title: 'TableAction组件及固定列示例',
       api: demoListApi,
-      columns: columns,
+      columns,
       canResize: true,
       showCheckboxColumn: true,
       border: true,
-    });
+    })
     function handleDelete() {
       // do something
     }
@@ -106,7 +108,7 @@ export default defineComponent({
       registerTable,
       handleDelete,
       handleOpen,
-    };
+    }
   },
-});
+})
 </script>

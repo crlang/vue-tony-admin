@@ -1,15 +1,16 @@
 <template>
   <BasicModal
     v-bind="$attrs"
-    destroyOnClose
+    destroy-on-close
     draggable
-    @register="register"
     title="Modal Title"
-    :helpMessage="['提示1', '提示2']"
-    @visible-change="handleShow">
+    :help-message="['提示1', '提示2']"
+    @register="register"
+    @visible-change="handleShow"
+  >
     <template #title>Modal slot title</template>
     <template #prependFooter>
-      <el-button type="danger" @click="setLines" :disabled="loading">点我更新内容</el-button>
+      <ElButton type="danger" :disabled="loading" @click="setLines">点我更新内容</ElButton>
     </template>
     <template v-if="loading">
       <div class="empty-tips">加载中，稍等3秒……</div>
@@ -23,10 +24,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue';
-import { ElButton } from 'element-plus';
+import { defineComponent, ref, watch } from 'vue'
+import { ElButton } from 'element-plus'
 
-import { BasicModal, useModalInner } from '@/components/BasicModal';
+import { BasicModal, useModalInner } from '@/components/BasicModal'
 
 export default defineComponent({
   components: { ElButton, BasicModal },
@@ -34,34 +35,34 @@ export default defineComponent({
     modalValue: Boolean,
   },
   setup() {
-    const loading = ref(false);
-    const lines = ref(0);
-    const [register, { setModalProps, redoModalHeight }] = useModalInner();
+    const loading = ref(false)
+    const lines = ref(0)
+    const [register, { setModalProps, redoModalHeight }] = useModalInner()
 
     function handleShow(visible: boolean) {
       if (visible) {
-        setModalProps({ loading: true, confirmOptions: { loading: true } });
+        setModalProps({ loading: true, confirmOptions: { loading: true } })
         setTimeout(() => {
-          setLines();
-          setModalProps({ loading: false, confirmOptions: { loading: false } });
-        }, 3000);
+          setLines()
+          setModalProps({ loading: false, confirmOptions: { loading: false } })
+        }, 3000)
       }
     }
 
     function setLines() {
-      lines.value = Math.round(Math.random() * 10 + 10);
+      lines.value = Math.round(Math.random() * 10 + 10)
     }
 
     watch(
       () => lines.value,
       () => {
-        redoModalHeight();
+        redoModalHeight()
       },
-    );
+    )
 
-    return { register, loading, handleShow, lines, setLines };
+    return { register, loading, handleShow, lines, setLines }
   },
-});
+})
 </script>
 
 <style scoped>

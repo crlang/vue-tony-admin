@@ -1,22 +1,28 @@
 <template>
-  <el-card shadow="hover">
+  <ElCard shadow="hover">
     <template #header>
       <div class="dync-card-header">
-        <div class="el-card__header--title">项目动态</div>
-        <el-button text>更多</el-button>
+        <div class="el-card__header--title">
+          项目动态
+        </div>
+        <ElButton text>
+          更多
+        </ElButton>
       </div>
     </template>
     <BasicList>
       <template v-for="item in datainfo" :key="item.title">
         <BasicListItem>
           <template #title>
-            <div class="dync-title">{{ item.name }}</div>
+            <div class="dync-title">
+              {{ item.name }}
+            </div>
             <div class="dync-desc">
               <p>{{ item.desc }}</p>
             </div>
           </template>
           <template #thumb>
-            <img :src="item.avatar" :alt="item.name" width="32" />
+            <img :src="item.avatar" :alt="item.name" width="32">
           </template>
           <template #description>
             {{ item.date }}
@@ -24,16 +30,16 @@
         </BasicListItem>
       </template>
     </BasicList>
-  </el-card>
+  </ElCard>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElCard, ElButton } from 'element-plus';
+import { defineComponent } from 'vue'
+import { ElButton, ElCard } from 'element-plus'
 
-import { BasicList, BasicListItem } from '@/components/BasicList';
+import { BasicList, BasicListItem } from '@/components/BasicList'
 
-import { DashboardNewsInfo } from '@/api/types';
+import type { DashboardNewsInfo } from '@/api/types'
 
 export default defineComponent({
   components: { ElCard, ElButton, BasicList, BasicListItem },
@@ -44,9 +50,9 @@ export default defineComponent({
     },
   },
   setup() {
-    return {};
+    return {}
   },
-});
+})
 </script>
 
 <style scoped>

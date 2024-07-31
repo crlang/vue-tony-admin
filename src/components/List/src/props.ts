@@ -1,10 +1,8 @@
-export const basicProps = {};
+export const basicProps = {}
 
 export const itemProps = {
   /**
    * 缩略图
-   *
-   * Thumbnail url
    */
   thumb: {
     type: String,
@@ -12,8 +10,6 @@ export const itemProps = {
   },
   /**
    * 标题
-   *
-   * Title
    */
   title: {
     type: String,
@@ -21,11 +17,9 @@ export const itemProps = {
   },
   /**
    * 描述
-   *
-   * Description
    */
   description: {
     type: String,
     default: '',
   },
-};
+}

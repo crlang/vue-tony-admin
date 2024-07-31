@@ -1,17 +1,19 @@
 <template>
-  <ElSelect v-bind="getBindValues" @visible-change="handleFetch" v-model:model-value="state">
+  <ElSelect v-bind="getBindValues" v-model:model-value="state" @visible-change="handleFetch">
     <template v-if="groupOption">
       <ElOptionGroup
         v-for="(group, gindex) in getOptions"
+        :key="`group-${gindex}`"
         :label="group.label"
         :disabled="group.disabled"
-        :key="`group-${gindex}`">
+      >
         <ElOption
           v-for="(item, index) in group.options"
           :key="`option-${index}`"
           :label="item.label"
           :value="item.value"
-          :disabled="item.disabled" />
+          :disabled="item.disabled"
+        />
       </ElOptionGroup>
     </template>
     <template v-else>
@@ -20,26 +22,27 @@
         :key="`option-${index}`"
         :label="item.label"
         :value="item.value"
-        :disabled="item.disabled" />
+        :disabled="item.disabled"
+      />
     </template>
   </ElSelect>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref, watchEffect, computed, unref, watch } from 'vue';
-import { ElSelect, ElOption, ElOptionGroup } from 'element-plus';
-import { isFunction, isNumber, isObject, isString } from '@/utils/is';
-import { useRuleFormItem } from '@/hooks/component/useFormItem';
-import { get } from 'lodash-es';
-import { EleSelect } from '@/components/ElementPlus';
-import { logError } from '@/utils/log';
-// import { Loading } from '@element-plus/icons-vue';
+import type { PropType } from 'vue'
+import { computed, defineComponent, ref, unref, watch, watchEffect } from 'vue'
+import { ElOption, ElOptionGroup, ElSelect } from 'element-plus'
+import { get } from 'lodash-es'
+import { isFunction, isNumber, isObject, isString } from '@/utils/is'
+import { useRuleFormItem } from '@/hooks/component/useFormItem'
+import type { EleSelect } from '@/components/ElementPlus'
+import { logError } from '@/utils/log'
 
 interface OptionsItem {
-  label: string;
-  value: string | number | boolean | Record<string, any>;
-  disabled?: boolean;
-  options?: OptionsItem[];
+  label: string
+  value: string | number | boolean | Record<string, any>
+  disabled?: boolean
+  options?: OptionsItem[]
 }
 
 export default defineComponent({
@@ -48,7 +51,6 @@ export default defineComponent({
     ElSelect,
     ElOption,
     ElOptionGroup,
-    // Loading,
   },
   inheritAttrs: false,
   props: {
@@ -63,11 +65,11 @@ export default defineComponent({
       type: Function as PropType<(arg?: any) => Promise<OptionsItem[]>>,
       default: null,
     },
-    // api params
+    // api 参数
     params: {
       type: [Object, String, Number],
     },
-    // support xxx.xxx.xx
+    // 支持 xxx.xxx.xx
     resultField: {
       type: String,
       default: '',
@@ -109,17 +111,16 @@ export default defineComponent({
       default: () => [],
     },
   },
-  emits: ['options-change', 'change', 'update:modelValue'],
+  emits: ['optionsChange', 'change', 'update:modelValue'],
   setup(props, { emit, attrs }) {
-    const optionsRef = ref<OptionsItem[]>([]);
-    const loading = ref(false);
-    const isFirstLoad = ref(true);
-    const emitData = ref<any[]>([]);
-    const filterKeyword = ref('');
+    const optionsRef = ref<OptionsItem[]>([])
+    const loading = ref(false)
+    const isFirstLoad = ref(true)
+    const emitData = ref<any[]>([])
+    const filterKeyword = ref('')
 
     // 嵌入表单中，只需使用钩子绑定即可执行表单验证
-    // Embedded in the form, just use the hook binding to perform form verification
-    const [state] = useRuleFormItem(props, 'modelValue', 'change', emitData);
+    const [state] = useRuleFormItem(props, 'modelValue', 'change', emitData)
 
     const getBindValues = computed((): EleSelect => {
       const opts = {
@@ -127,30 +128,30 @@ export default defineComponent({
         filterable: !attrs?.remote,
         ...attrs,
         remoteMethod: getRemoteMethod,
-      };
+      }
 
-      return opts;
-    });
+      return opts
+    })
 
     const getOptions = computed(() => {
-      const { labelField = 'label', valueField = 'value', disabledField = 'disabled', childrenField = 'options', stringValue } = props;
+      const { labelField = 'label', valueField = 'value', disabledField = 'disabled', childrenField = 'options', stringValue } = props
 
-      const data: OptionsItem[] = [];
-      const list = unref(optionsRef);
+      const data: OptionsItem[] = []
+      const list = unref(optionsRef)
       if (list?.length) {
         for (let i = 0; i < list.length; i++) {
-          const item = list[i];
-          const value = isString(item) || isNumber(item) ? item : get(item, valueField);
-          const label = isString(item) || isNumber(item) ? item : get(item, labelField);
-          const disabled = get(item, disabledField);
-          const options: OptionsItem[] | undefined = get(item, childrenField);
+          const item = list[i]
+          const value = isString(item) || isNumber(item) ? item : get(item, valueField)
+          const label = isString(item) || isNumber(item) ? item : get(item, labelField)
+          const disabled = get(item, disabledField)
+          const options: OptionsItem[] | undefined = get(item, childrenField)
 
           if (options?.length) {
             options.forEach((k) => {
-              k.label = k[labelField];
-              k.value = stringValue ? `${k[valueField]}` : k[valueField];
-              k.disabled = k[disabledField];
-            });
+              k.label = k[labelField]
+              k.value = stringValue ? `${k[valueField]}` : k[valueField]
+              k.disabled = k[disabledField]
+            })
           }
 
           data.push({
@@ -158,103 +159,113 @@ export default defineComponent({
             disabled,
             options,
             value: stringValue ? `${value}` : value,
-          });
+          })
         }
       }
 
-      return data;
-    });
+      return data
+    })
 
     async function fetchData() {
-      const { api, params = null, remoteParamsKey, resultField } = props;
-      if (!isFunction(api)) return;
+      const { api, params = null, remoteParamsKey, resultField } = props
+      if (!isFunction(api))
+        return
 
-      let apiParams: Object | String | undefined;
+      let apiParams: object | string | undefined
       if (attrs?.remote) {
         if (remoteParamsKey) {
-          apiParams = (isObject(params) ? { ...params } : params) || {};
-          apiParams[remoteParamsKey] = filterKeyword.value;
-        } else {
-          apiParams = filterKeyword.value;
+          apiParams = (isObject(params) ? { ...params } : params) || {}
+          apiParams[remoteParamsKey] = filterKeyword.value
         }
-      } else {
+        else {
+          apiParams = filterKeyword.value
+        }
+      }
+      else {
         if (params) {
-          apiParams = isObject(params) ? { ...params } : params;
+          apiParams = isObject(params) ? { ...params } : params
         }
       }
 
-      optionsRef.value = [];
+      optionsRef.value = []
       try {
-        loading.value = true;
-        const res = await api(apiParams);
+        loading.value = true
+        const res = await api(apiParams)
         if (Array.isArray(res)) {
-          optionsRef.value = res;
-        } else {
+          optionsRef.value = res
+        }
+        else {
           if (resultField) {
-            optionsRef.value = get(res, resultField) || [];
+            optionsRef.value = get(res, resultField) || []
           }
         }
 
-        emitChange();
-      } catch (error) {
-        optionsRef.value = [];
-        logError(error);
-      } finally {
-        loading.value = false;
+        emitChange()
+      }
+      catch (error) {
+        optionsRef.value = []
+        logError(error)
+      }
+      finally {
+        loading.value = false
       }
     }
 
     async function handleFetch(visible) {
       if (visible) {
         if (props.alwaysLoad) {
-          await fetchData();
-        } else if (!props.immediate && unref(isFirstLoad)) {
-          await fetchData();
-          isFirstLoad.value = false;
+          await fetchData()
+        }
+        else if (!props.immediate && unref(isFirstLoad)) {
+          await fetchData()
+          isFirstLoad.value = false
         }
       }
     }
 
     function getRemoteMethod(query) {
-      const { remote } = unref(getBindValues);
-      if (!remote) return;
+      const { remote } = unref(getBindValues)
+      if (!remote)
+        return
 
       if (query === '') {
-        optionsRef.value = [];
-        return;
+        optionsRef.value = []
+        return
       }
 
-      filterKeyword.value = query;
+      filterKeyword.value = query
 
-      fetchData();
+      fetchData()
     }
 
     function emitChange() {
-      emit('options-change', unref(getOptions));
+      emit('optionsChange', unref(getOptions))
     }
 
     watchEffect(() => {
-      optionsRef.value = props.options || [];
+      optionsRef.value = props.options || []
       // todo 处理 alwaysLoad
       if (props.immediate && !props.alwaysLoad) {
-        fetchData();
+        fetchData()
       }
-    });
+    })
 
     watch(
       () => state.value,
       (v) => {
-        emit('update:modelValue', v);
+        emit('update:modelValue', v)
       },
-    );
+    )
 
     watch(
       () => props.params,
       () => {
-        !unref(isFirstLoad) && fetchData();
+        if (!unref(isFirstLoad)) {
+          fetchData()
+        }
       },
       { deep: true },
-    );
+    )
 
     return {
       state,
@@ -262,7 +273,7 @@ export default defineComponent({
       getOptions,
       loading,
       handleFetch,
-    };
+    }
   },
-});
+})
 </script>

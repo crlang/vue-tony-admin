@@ -1,10 +1,10 @@
 <template>
   <BasicList :class="prefixCls">
-    <el-row :gutter="16">
+    <ElRow :gutter="16">
       <template v-for="item in list" :key="item.title">
-        <el-col :span="6">
+        <ElCol :span="6">
           <BasicListItem :class="`${prefixCls}__item`">
-            <el-card :class="`${prefixCls}__card`" :bodyStyle="{ padding: 0 }">
+            <ElCard :class="`${prefixCls}__card`" :body-style="{ padding: 0 }">
               <div :class="`${prefixCls}__card-img`" :style="{ 'background-image': 'url()' }"></div>
 
               <div :class="`${prefixCls}__card-title`">
@@ -13,19 +13,19 @@
               <div :class="`${prefixCls}__card-content`">
                 {{ item.content }}
               </div>
-            </el-card>
+            </ElCard>
           </BasicListItem>
-        </el-col>
+        </ElCol>
       </template>
-    </el-row>
+    </ElRow>
   </BasicList>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElRow, ElCol, ElCard } from 'element-plus';
-import { projectList } from './data';
-import { BasicList, BasicListItem } from '@/components/BasicList';
+import { defineComponent } from 'vue'
+import { ElCard, ElCol, ElRow } from 'element-plus'
+import { projectList } from './data'
+import { BasicList, BasicListItem } from '@/components/BasicList'
 
 export default defineComponent({
   components: {
@@ -39,9 +39,9 @@ export default defineComponent({
     return {
       prefixCls: 'account-center-project',
       list: projectList,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">

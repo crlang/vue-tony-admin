@@ -4,10 +4,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
-import SiderTrigger from './SiderTrigger.vue';
-import HeaderTrigger from './HeaderTrigger.vue';
+import SiderTrigger from './SiderTrigger.vue'
+import HeaderTrigger from './HeaderTrigger.vue'
 
 export default defineComponent({
   name: 'LayoutTrigger',
@@ -19,5 +19,5 @@ export default defineComponent({
     },
   },
   setup() {},
-});
+})
 </script>

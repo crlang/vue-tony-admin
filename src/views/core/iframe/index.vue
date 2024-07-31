@@ -1,20 +1,21 @@
 <template>
-  <div :class="prefixCls" :style="getWrapStyle" v-loading="loading">
+  <div v-loading="loading" :class="prefixCls" :style="getWrapStyle">
     <iframe
+      ref="frameRef"
       :src="frameSrc"
       :class="`${prefixCls}__main`"
-      ref="frameRef"
-      @load="hideLoading"></iframe>
+      @load="hideLoading"
+    ></iframe>
   </div>
 </template>
 
 <script lang="ts">
-import type { CSSProperties } from 'vue';
+import type { CSSProperties } from 'vue'
 
-import { ref, unref, computed, defineComponent } from 'vue';
-import { ElLoading } from 'element-plus';
+import { computed, defineComponent, ref, unref } from 'vue'
+import { ElLoading } from 'element-plus'
 
-import { useDesign } from '@/hooks/web/useDesign';
+import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'FrameBlank',
@@ -25,20 +26,20 @@ export default defineComponent({
     frameSrc: String,
   },
   setup() {
-    const loading = ref(true);
-    const heightRef = ref(window.innerHeight);
-    const frameRef = ref<HTMLIFrameElement>();
+    const loading = ref(true)
+    const heightRef = ref(window.innerHeight)
+    const frameRef = ref<HTMLIFrameElement>()
 
-    const { prefixCls } = useDesign('iframe-page');
+    const { prefixCls } = useDesign('iframe-page')
 
     const getWrapStyle = computed((): CSSProperties => {
       return {
         height: `calc(${unref(heightRef)}px - var(--header-height,0px) - var(--tabs-height,0px))`,
-      };
-    });
+      }
+    })
 
     function hideLoading() {
-      loading.value = false;
+      loading.value = false
     }
     return {
       prefixCls,
@@ -46,9 +47,9 @@ export default defineComponent({
       getWrapStyle,
       loading,
       hideLoading,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

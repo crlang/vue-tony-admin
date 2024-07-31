@@ -6,7 +6,8 @@
     v-if="menuHasChildren(item) && getShowMenu"
     :key="`submenu-${item.path}`"
     :index="item.path"
-    popper-class="app-top-menu-popup">
+    popper-class="app-top-menu-popup"
+  >
     <template #title>
       <MenuItemContent :item="item" :class="`${prefixCls}-content`" />
     </template>
@@ -18,13 +19,12 @@
 </template>
 
 <script lang="ts">
-import type { Menu as MenuType } from '@/router/types';
+import { computed, defineComponent } from 'vue'
+import { ElMenuItem, ElSubMenu } from 'element-plus'
 
-import { defineComponent, computed } from 'vue';
-import { ElSubMenu, ElMenuItem } from 'element-plus';
-
-import { itemProps } from '../props';
-import MenuItemContent from './MenuItemContent.vue';
+import { itemProps } from '../props'
+import MenuItemContent from './MenuItemContent.vue'
+import type { Menu as MenuType } from '@/router/types'
 
 export default defineComponent({
   name: 'BasicSubMenuItem',
@@ -32,14 +32,14 @@ export default defineComponent({
   components: { ElSubMenu, ElMenuItem, MenuItemContent },
   props: itemProps,
   setup(props) {
-    const getShowMenu = computed(() => !props.item.meta?.hideMenu);
+    const getShowMenu = computed(() => !props.item.meta?.hideMenu)
     function menuHasChildren(menuTreeItem: MenuType): boolean {
-      return !menuTreeItem.meta?.hideChildrenInMenu && Reflect.has(menuTreeItem, 'children') && !!menuTreeItem.children && menuTreeItem.children.length > 0;
+      return !menuTreeItem.meta?.hideChildrenInMenu && Reflect.has(menuTreeItem, 'children') && !!menuTreeItem.children && menuTreeItem.children.length > 0
     }
     return {
       menuHasChildren,
       getShowMenu,
-    };
+    }
   },
-});
+})
 </script>

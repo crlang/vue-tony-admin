@@ -1,10 +1,11 @@
 <template>
   <BasicModal
     title="锁定屏幕"
-    @register="register"
     :width="600"
-    :showFooter="false"
-    :class="prefixCls">
+    :show-footer="false"
+    :class="prefixCls"
+    @register="register"
+  >
     <div :class="`${prefixCls}__entry`">
       <div :class="`${prefixCls}__header`">
         <ElImage :src="avatar" :class="`${prefixCls}__header-img`" />
@@ -16,21 +17,23 @@
       <BasicForm @register="registerForm" />
 
       <div :class="`${prefixCls}__footer`">
-        <ElButton type="primary" class="mt-2" @click="handleLock">锁定</ElButton>
+        <ElButton type="primary" class="mt-2" @click="handleLock">
+          锁定
+        </ElButton>
       </div>
     </div>
   </BasicModal>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
-import { ElButton, ElImage } from 'element-plus';
+import { computed, defineComponent } from 'vue'
+import { ElButton, ElImage } from 'element-plus'
 
-import { useDesign } from '@/hooks/web/useDesign';
-import { BasicModal, useModalInner } from '@/components/BasicModal';
-import { useUserStore } from '@/store/modules/user';
-import { useLockStore } from '@/store/modules/lock';
-import { BasicForm, useForm } from '@/components/BasicForm';
+import { useDesign } from '@/hooks/web/useDesign'
+import { BasicModal, useModalInner } from '@/components/BasicModal'
+import { useUserStore } from '@/store/modules/user'
+import { useLockStore } from '@/store/modules/lock'
+import { BasicForm, useForm } from '@/components/BasicForm'
 
 export default defineComponent({
   name: 'LockModal',
@@ -42,12 +45,12 @@ export default defineComponent({
     },
   },
   setup() {
-    const { prefixCls } = useDesign('header-lock-modal');
-    const userStore = useUserStore();
-    const lockStore = useLockStore();
+    const { prefixCls } = useDesign('header-lock-modal')
+    const userStore = useUserStore()
+    const lockStore = useLockStore()
 
-    const getRealName = computed(() => userStore.getUserInfo?.nickname);
-    const [register, { closeModal }] = useModalInner();
+    const getRealName = computed(() => userStore.getUserInfo?.nickname)
+    const [register, { closeModal }] = useModalInner()
 
     const [registerForm, { validateField, resetFields, getFieldsValue }] = useForm({
       showActionButtonGroup: false,
@@ -66,25 +69,25 @@ export default defineComponent({
           required: true,
         },
       ],
-    });
+    })
 
     async function handleLock() {
-      await validateField();
-      const values = getFieldsValue() as any;
-      const password: string | undefined = values.password;
-      closeModal();
+      await validateField()
+      const values = getFieldsValue() as any
+      const password: string | undefined = values.password
+      closeModal()
 
       lockStore.setLockInfo({
         isLock: true,
         pwd: password,
-      });
-      await resetFields();
+      })
+      await resetFields()
     }
 
     const avatar = computed(() => {
-      const { avatar } = userStore.getUserInfo;
-      return avatar;
-    });
+      const { avatar } = userStore.getUserInfo
+      return avatar
+    })
 
     return {
       prefixCls,
@@ -93,9 +96,9 @@ export default defineComponent({
       registerForm,
       avatar,
       handleLock,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">
@@ -109,6 +112,7 @@ $prefix-cls: '#{$tonyname}-header-lock-modal';
     margin: 0 auto;
     border-radius: 10px;
 
+    /* stylelint-disable-next-line selector-class-pattern */
     .el-form-item__label {
       display: none;
     }

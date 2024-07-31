@@ -3,6 +3,7 @@ $basic-menu-prefix-cls: '#{$tonyname}-basic-menu';
 .app-top-menu-popup {
   min-width: 150px;
 
+  /* stylelint-disable-next-line selector-class-pattern */
   &.el-menu--horizontal {
     .el-menu {
       .el-sub-menu,
@@ -13,6 +14,7 @@ $basic-menu-prefix-cls: '#{$tonyname}-basic-menu';
         line-height: 40px;
       }
 
+      /* stylelint-disable-next-line selector-class-pattern */
       .el-sub-menu__title {
         padding: 0;
       }

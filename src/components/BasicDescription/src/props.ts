@@ -1,12 +1,10 @@
-import { CollapseContainerProps } from '@/components/CollapseContainer';
-import { EleDescriptionsProps } from '@/components/ElementPlus';
-import { DescItem } from './typing';
+import type { DescItem } from './typing'
+import type { CollapseContainerProps } from '@/components/CollapseContainer'
+import { EleDescriptionsProps } from '@/components/ElementPlus'
 
 export const customProps = {
   /**
    * 描述的数据项集合
-   *
-   * Description configuration
    */
   schema: {
     type: Array as PropType<DescItem[]>,
@@ -14,16 +12,12 @@ export const customProps = {
   },
   /**
    * 描述数据
-   *
-   * Description data
    */
   data: {
     type: Object as PropType<Recordable>,
   },
   /**
    * 是否包含折叠组件
-   *
-   * Whether to include the collapse component
    */
   useCollapse: {
     type: Boolean,
@@ -31,16 +25,14 @@ export const customProps = {
   },
   /**
    * 折叠组件配置
-   *
-   * Collapse component configuration
    */
   collapseOptions: {
     type: Object as PropType<CollapseContainerProps>,
     default: null,
   },
-};
+}
 
 export const basicProps = {
   ...EleDescriptionsProps,
   ...customProps,
-};
+}

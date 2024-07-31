@@ -1,5 +1,5 @@
-import { RouterTransitionEnum } from '@/enums/appEnum';
-import { MenuModeEnum, MenuTypeEnum, TopMenuAlignEnum, TriggerEnum, MixSidebarTriggerEnum } from '@/enums/menuEnum';
+import { RouterTransitionEnum } from '@/enums/appEnum'
+import { MenuModeEnum, MenuTypeEnum, MixSidebarTriggerEnum, TopMenuAlignEnum, TriggerEnum } from '@/enums/menuEnum'
 
 export enum HandlerEnum {
   CHANGE_LAYOUT,
@@ -59,9 +59,9 @@ export const topMenuAlignOptions = [
     value: TopMenuAlignEnum.END,
     label: '居右',
   },
-];
+]
 
-export const getMenuTriggerOptions = (hideTop: boolean) => {
+export function getMenuTriggerOptions(hideTop: boolean) {
   return [
     {
       value: TriggerEnum.NONE,
@@ -74,13 +74,13 @@ export const getMenuTriggerOptions = (hideTop: boolean) => {
     ...(hideTop
       ? []
       : [
-        {
-          value: TriggerEnum.HEADER,
-          label: '顶部',
-        },
-      ]),
-  ];
-};
+          {
+            value: TriggerEnum.HEADER,
+            label: '顶部',
+          },
+        ]),
+  ]
+}
 
 export const routerTransitionOptions = [
   RouterTransitionEnum.NONE,
@@ -94,8 +94,8 @@ export const routerTransitionOptions = [
   return {
     label: item,
     value: item,
-  };
-});
+  }
+})
 
 export const menuTypeList = [
   {
@@ -118,7 +118,7 @@ export const menuTypeList = [
     mode: MenuModeEnum.INLINE,
     type: MenuTypeEnum.MIX_SIDEBAR,
   },
-];
+]
 
 export const mixSidebarTriggerOptions = [
   {
@@ -129,4 +129,4 @@ export const mixSidebarTriggerOptions = [
     value: MixSidebarTriggerEnum.CLICK,
     label: '点击',
   },
-];
+]

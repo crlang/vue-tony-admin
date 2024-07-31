@@ -56,12 +56,12 @@ B.parent-cat.pcc__title
 @use 'var.scss' as var;
 
 // Advanced
-@import 'basic.scss';
-@import 'transition.scss';
-@import 'public.scss';
+@import 'basic';
+@import 'transition';
+@import 'public';
 
 @font-face {
-  font-family: 'Urial';
+  font-family: Urial;
   font-style: normal;
   font-weight: normal;
   src:
@@ -102,22 +102,6 @@ B.parent-cat.pcc__title
   --radius-small: 4px;
   --radius-large: 12px;
 
-  @media only screen and (width <= 767px) {
-    // xs
-  }
-  @media only screen and (width >= 768px) {
-    // sm
-  }
-  @media only screen and (width >= 992px) {
-    // md
-  }
-  @media only screen and (width >= 1200px) {
-    // lg
-  }
-  @media only screen and (width >= 1920px) {
-    // xl
-  }
-
   /* Color */
   --success-color: #{var.$success-color}; /* dead color */
   --success-bg-color: #{var.$success-bg-color}; /* dead color */
@@ -147,8 +131,8 @@ B.parent-cat.pcc__title
   --background-secondary-color: #{var.$background-secondary};
 
   /* Shadow */
-  --card-shadow: 0 2px 4px rgba(169, 194, 209, 0.05), 0 12px 16px rgba(169, 194, 209, 0.1);
-  --card-shadow-shape: 0 32px 32px rgba(169, 194, 209, 0.1), 0 8px 16px rgba(169, 194, 209, 0.05);
+  --card-shadow: 0 2px 4px rgb(169 194 209 / 5%), 0 12px 16px rgb(169 194 209 / 10%);
+  --card-shadow-shape: 0 32px 32px rgb(169 194 209 / 10%), 0 8px 16px rgb(169 194 209 / 5%);
 }
 
 html {
@@ -160,7 +144,7 @@ html {
   color: var(--text-main-color);
   text-size-adjust: 100%;
   background: var(--background-main-color);
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
   -webkit-overflow-scrolling: touch;
 
   &.gray-mode {
@@ -193,8 +177,8 @@ html {
     --background-secondary-color: #434d59;
 
     /* Shadow */
-    --card-shadow: 0 2px 4px rgba(16, 19, 20, 0.05), 0 12px 16px rgba(16, 19, 20, 0.1);
-    --card-shadow-shape: 0 32px 32px rgba(16, 19, 20, 0.1), 0 8px 16px rgba(16, 19, 20, 0.05);
+    --card-shadow: 0 2px 4px rgb(16 19 20 / 5%), 0 12px 16px rgb(16 19 20 / 10%);
+    --card-shadow-shape: 0 32px 32px rgb(16 19 20 / 10%), 0 8px 16px rgb(16 19 20 / 5%);
 
     // ↓↓↓ Dark Exclusive ↓↓↓
     // ↑↑↑ Dark Exclusive ↑↑↑

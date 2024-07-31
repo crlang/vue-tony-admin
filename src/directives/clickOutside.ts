@@ -1,72 +1,71 @@
-import type { ComponentPublicInstance, DirectiveBinding, ObjectDirective } from 'vue';
+import type { ComponentPublicInstance, DirectiveBinding, ObjectDirective } from 'vue'
 
-type DocumentHandler = <T extends MouseEvent>(mouseup: T, mousedown: T) => void;
+type DocumentHandler = <T extends MouseEvent>(mouseup: T, mousedown: T) => void
 type FlushList = Map<
   HTMLElement,
   {
-    documentHandler: DocumentHandler;
-    bindingFn: (...args: unknown[]) => unknown;
+    documentHandler: DocumentHandler
+    bindingFn: (...args: unknown[]) => unknown
   }
->;
+>
 
-const nodeList: FlushList = new Map();
+const nodeList: FlushList = new Map()
 
-let startClick: MouseEvent;
+let startClick: MouseEvent
 
 if (typeof window !== 'undefined') {
-  document.addEventListener('mousedown', (e: MouseEvent) => (startClick = e), false);
+  document.addEventListener('mousedown', (e: MouseEvent) => (startClick = e), false)
   document.addEventListener(
     'mouseup',
     (e: MouseEvent) => {
       for (const { documentHandler } of nodeList.values()) {
-        documentHandler(e, startClick);
+        documentHandler(e, startClick)
       }
     },
     false,
-  );
+  )
 }
 
 /**
  * 创建监听器
  *
- * Create directive listener
  * @param el HTMLElement
  * @param binding DirectiveBinding
  */
 function createDocumentHandler(el: HTMLElement, binding: DirectiveBinding): DocumentHandler {
-  let excludes: HTMLElement[] = [];
+  let excludes: HTMLElement[] = []
   if (Array.isArray(binding.arg)) {
-    excludes = binding.arg;
-  } else {
-    // due to current implementation on binding type is wrong the type casting is necessary here
-    excludes.push(binding.arg as unknown as HTMLElement);
+    excludes = binding.arg
   }
-  return function(mouseup, mousedown) {
+  else {
+    // 由于当前绑定类型的实现是错误的，因此这里需要进行类型转换
+    excludes.push(binding.arg as unknown as HTMLElement)
+  }
+  return function (mouseup, mousedown) {
     const popperRef = (
       binding.instance as ComponentPublicInstance<{
-        popperRef: Nullable<HTMLElement>;
+        popperRef: Nullable<HTMLElement>
       }>
-    ).popperRef;
-    const mouseUpTarget = mouseup.target as Node;
-    const mouseDownTarget = mousedown.target as Node;
-    const isBound = !binding || !binding.instance;
-    const isTargetExists = !mouseUpTarget || !mouseDownTarget;
-    const isContainedByEl = el.contains(mouseUpTarget) || el.contains(mouseDownTarget);
-    const isSelf = el === mouseUpTarget;
+    ).popperRef
+    const mouseUpTarget = mouseup.target as Node
+    const mouseDownTarget = mousedown.target as Node
+    const isBound = !binding || !binding.instance
+    const isTargetExists = !mouseUpTarget || !mouseDownTarget
+    const isContainedByEl = el.contains(mouseUpTarget) || el.contains(mouseDownTarget)
+    const isSelf = el === mouseUpTarget
 
-    const isTargetExcluded = (excludes.length && excludes.some((item) => item?.contains(mouseUpTarget))) || (excludes.length && excludes.includes(mouseDownTarget as HTMLElement));
-    const isContainedByPopper = popperRef && (popperRef.contains(mouseUpTarget) || popperRef.contains(mouseDownTarget));
+    const isTargetExcluded = (excludes.length && excludes.some(item => item?.contains(mouseUpTarget))) || (excludes.length && excludes.includes(mouseDownTarget as HTMLElement))
+    const isContainedByPopper = popperRef && (popperRef.contains(mouseUpTarget) || popperRef.contains(mouseDownTarget))
     if (isBound || isTargetExists || isContainedByEl || isSelf || isTargetExcluded || isContainedByPopper) {
-      return;
+      return
     }
-    binding.value();
-  };
+    binding.value()
+  }
 }
 
 /**
  * 元素外部的点击
  *
- * Listen for clicks outside of an element
  * @example v-click-outside="Fn"
  */
 const ClickOutside: ObjectDirective = {
@@ -74,17 +73,17 @@ const ClickOutside: ObjectDirective = {
     nodeList.set(el, {
       documentHandler: createDocumentHandler(el, binding),
       bindingFn: binding.value,
-    });
+    })
   },
   updated(el, binding) {
     nodeList.set(el, {
       documentHandler: createDocumentHandler(el, binding),
       bindingFn: binding.value,
-    });
+    })
   },
   unmounted(el) {
-    nodeList.delete(el);
+    nodeList.delete(el)
   },
-};
+}
 
-export default ClickOutside;
+export default ClickOutside

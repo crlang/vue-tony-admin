@@ -1,18 +1,22 @@
 <template>
   <div class="main-out-box">
-    <div class="">位于主框架外的页面</div>
-    <el-button @click="$router.go(-1)" class="mt-10" type="primary">返回</el-button>
+    <div class="">
+      位于主框架外的页面
+    </div>
+    <ElButton class="mt-10" type="primary" @click="$router.go(-1)">
+      返回
+    </ElButton>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElButton } from 'element-plus';
+import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
 
 export default defineComponent({
   name: 'MainOut',
   components: { ElButton },
-});
+})
 </script>
 
 <style lang="scss" scoped>

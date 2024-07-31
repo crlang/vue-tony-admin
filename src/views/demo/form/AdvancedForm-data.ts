@@ -1,4 +1,4 @@
-import { BasicFormSchema } from '@/components/BasicForm';
+import type { BasicFormSchema } from '@/components/BasicForm'
 
 export const basicSchemas: BasicFormSchema[] = [
   {
@@ -26,14 +26,14 @@ export const basicSchemas: BasicFormSchema[] = [
     component: 'ElInput',
     label: '字段5',
   },
-];
+]
 
-export const exSchemas: BasicFormSchema[] = [];
+export const exSchemas: BasicFormSchema[] = []
 
 for (let i = 1; i < 30; i++) {
   exSchemas.push({
     field: `fieldx${i}`,
     component: 'ElInput',
     label: `更多字段${i}`,
-  });
+  })
 }

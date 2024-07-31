@@ -1,48 +1,49 @@
-import { getCurrentInstance, reactive, shallowRef, watchEffect } from 'vue';
+import { getCurrentInstance, reactive, shallowRef, watchEffect } from 'vue'
 
 interface UseAttrsOptions {
-  excludeListeners?: boolean;
-  excludeKeys?: string[];
-  excludeDefaultKeys?: boolean;
+  excludeListeners?: boolean
+  excludeKeys?: string[]
+  excludeDefaultKeys?: boolean
 }
 
-const DEFAULT_EXCLUDE_KEYS = ['class', 'style'];
-const LISTENER_PREFIX = /^on[A-Z]/;
+const DEFAULT_EXCLUDE_KEYS = ['class', 'style']
+const LISTENER_PREFIX = /^on[A-Z]/
 
 function entries<T>(obj: Recordable<T>): [string, T][] {
-  return Object.keys(obj).map((key: string) => [key, obj[key]]);
+  return Object.keys(obj).map((key: string) => [key, obj[key]])
 }
 
 /**
  * 获取实例属性
  *
- * Gets the instance properties
  * @param options
  */
 function useAttrs(options: UseAttrsOptions = {}): Recordable<any> {
-  const instance = getCurrentInstance();
-  if (!instance) return {};
+  const instance = getCurrentInstance()
+  if (!instance) {
+    return {}
+  }
 
-  const { excludeListeners = false, excludeKeys = [], excludeDefaultKeys = true } = options;
-  const attrs = shallowRef({});
-  const allExcludeKeys = excludeKeys.concat(excludeDefaultKeys ? DEFAULT_EXCLUDE_KEYS : []);
+  const { excludeListeners = false, excludeKeys = [], excludeDefaultKeys = true } = options
+  const attrs = shallowRef({})
+  const allExcludeKeys = excludeKeys.concat(excludeDefaultKeys ? DEFAULT_EXCLUDE_KEYS : [])
 
-  // Since attrs are not reactive, make it reactive instead of doing in `onUpdated` hook for better performance
-  instance.attrs = reactive(instance.attrs);
+  // 由于attrs不是响应式的，因此将其设置为响应式，而不是在“onUpdated”钩子中执行，从而达到更好的性能
+  instance.attrs = reactive(instance.attrs)
 
   watchEffect(() => {
     const res = entries(instance.attrs).reduce((acm, [key, val]) => {
       if (!allExcludeKeys.includes(key) && !(excludeListeners && LISTENER_PREFIX.test(key))) {
-        acm[key] = val;
+        acm[key] = val
       }
 
-      return acm;
-    }, {} as Recordable<any>);
+      return acm
+    }, {} as Recordable<any>)
 
-    attrs.value = res;
-  });
+    attrs.value = res
+  })
 
-  return attrs;
+  return attrs
 }
 
-export { useAttrs, type UseAttrsOptions };
+export { useAttrs, type UseAttrsOptions }

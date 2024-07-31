@@ -1,13 +1,13 @@
 <template>
   <div class="step2">
-    <el-alert type="error" title="确认转账后，资金将直接打入对方账户，无法退回。" show-icon />
+    <ElAlert type="error" title="确认转账后，资金将直接打入对方账户，无法退回。" show-icon />
     <div class="step2-msg">
-      <el-descriptions :column="1">
-        <el-descriptions-item label="付款账户">test@alipay.com</el-descriptions-item>
-        <el-descriptions-item label="收款账户">test@example.com</el-descriptions-item>
-        <el-descriptions-item label="收款人姓名">Tony</el-descriptions-item>
-        <el-descriptions-item label="转账金额">500元</el-descriptions-item>
-      </el-descriptions>
+      <ElDescriptions :column="1">
+        <ElDescriptionsItem label="付款账户">test@alipay.com</ElDescriptionsItem>
+        <ElDescriptionsItem label="收款账户">test@example.com</ElDescriptionsItem>
+        <ElDescriptionsItem label="收款人姓名">Tony</ElDescriptionsItem>
+        <ElDescriptionsItem label="转账金额">500元</ElDescriptionsItem>
+      </ElDescriptions>
     </div>
     <BasicDivider />
     <BasicForm @register="register" />
@@ -15,12 +15,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElAlert, ElDescriptions, ElDescriptionsItem } from 'element-plus';
+import { defineComponent } from 'vue'
+import { ElAlert, ElDescriptions, ElDescriptionsItem } from 'element-plus'
 
-import { BasicDivider } from '@/components/Basic';
-import { BasicForm, useForm } from '@/components/BasicForm';
-import { step2Schemas } from './data';
+import { step2Schemas } from './data'
+import { BasicDivider } from '@/components/Basic'
+import { BasicForm, useForm } from '@/components/BasicForm'
 
 export default defineComponent({
   components: {
@@ -49,38 +49,38 @@ export default defineComponent({
       },
       resetFn: customResetFunc,
       submitFn: customSubmitFunc,
-    });
+    })
 
     async function customResetFunc() {
-      emit('prev');
+      emit('prev')
     }
 
     async function customSubmitFunc() {
       try {
-        const values = await validate();
+        const values = await validate()
         setFormProps({
           submitButtonOptions: {
             loading: true,
             btnText: '提交',
           },
-        });
+        })
         setTimeout(() => {
           setFormProps({
             submitButtonOptions: {
               loading: false,
               btnText: '提交',
             },
-          });
-          emit('next', values);
-        }, 1500);
-      } catch (error) {
-        // continue regardless of error
+          })
+          emit('next', values)
+        }, 1500)
+      }
+      catch {
       }
     }
 
-    return { register };
+    return { register }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

@@ -1,32 +1,33 @@
 <template>
   <BasicDrawer
     v-bind="$attrs"
-    @register="registerDrawer"
-    showFooter
+    show-footer
     :title="getTitle"
     size="500px"
-    @confirm="handleSubmit">
+    @register="registerDrawer"
+    @confirm="handleSubmit"
+  >
     <BasicForm @register="registerForm" />
   </BasicDrawer>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, unref } from 'vue';
+import { computed, defineComponent, ref, unref } from 'vue'
 
-import { BasicForm, useForm } from '@/components/BasicForm';
-import { BasicDrawer, useDrawerInner } from '@/components/BasicDrawer';
+import { formSchema } from './data'
+import { BasicForm, useForm } from '@/components/BasicForm'
+import { BasicDrawer, useDrawerInner } from '@/components/BasicDrawer'
 
-import { formSchema } from './data';
-import { ApiMenuEdit, ApiMenuAdd, ApiMenuTreeList } from '@/api/menu';
+import { ApiMenuAdd, ApiMenuEdit, ApiMenuTreeList } from '@/api/menu'
 
 export default defineComponent({
   name: 'MenuDrawer',
   components: { BasicDrawer, BasicForm },
   emits: ['success', 'register'],
   setup(_, { emit }) {
-    const isUpdate = ref(true);
-    const editId = ref('');
-    const isFirstLoaded = ref(false);
+    const isUpdate = ref(true)
+    const editId = ref('')
+    const isFirstLoaded = ref(false)
 
     const [registerForm, { resetFields, setFieldsValue, updateSchema, validate, getFieldsValue }] = useForm({
       labelWidth: 100,
@@ -38,22 +39,23 @@ export default defineComponent({
       actionColProps: {
         span: 24,
       },
-    });
+    })
 
-    const [registerDrawer, { closeDrawer, changeConfirmLoading }] = useDrawerInner(async(data) => {
-      resetFields();
-      changeConfirmLoading(false);
-      isUpdate.value = !!data?.isUpdate;
+    const [registerDrawer, { closeDrawer, changeConfirmLoading }] = useDrawerInner(async (data) => {
+      resetFields()
+      changeConfirmLoading(false)
+      isUpdate.value = !!data?.isUpdate
       if (unref(isUpdate)) {
         setFieldsValue({
           ...data.record,
-        });
-        editId.value = data.record.id;
-      } else {
+        })
+        editId.value = data.record.id
+      }
+      else {
         if (data?.parentId) {
           setFieldsValue({
             parentId: data.parentId,
-          });
+          })
         }
       }
 
@@ -79,35 +81,36 @@ export default defineComponent({
             checkStrictly: true,
             defaultExpandAll: true,
           },
-        });
+        })
       }
-      isFirstLoaded.value = true;
-    });
+      isFirstLoaded.value = true
+    })
 
-    const getTitle = computed(() => (!unref(isUpdate) ? '新增菜单' : '编辑菜单'));
+    const getTitle = computed(() => (!unref(isUpdate) ? '新增菜单' : '编辑菜单'))
 
     async function handleSubmit() {
       try {
-        await validate();
+        await validate()
 
-        const params = getFieldsValue() as any;
-        let apiFn: any = ApiMenuAdd;
+        const params = getFieldsValue() as any
+        let apiFn: any = ApiMenuAdd
 
         if (isUpdate.value) {
-          params.id = editId.value;
-          apiFn = ApiMenuEdit;
+          params.id = editId.value
+          apiFn = ApiMenuEdit
         }
 
-        await apiFn(params);
-        changeConfirmLoading(true);
-        closeDrawer();
-        emit('success');
-      } finally {
-        changeConfirmLoading(false);
+        await apiFn(params)
+        changeConfirmLoading(true)
+        closeDrawer()
+        emit('success')
+      }
+      finally {
+        changeConfirmLoading(false)
       }
     }
 
-    return { registerDrawer, registerForm, getTitle, handleSubmit };
+    return { registerDrawer, registerForm, getTitle, handleSubmit }
   },
-});
+})
 </script>

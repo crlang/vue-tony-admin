@@ -8,27 +8,28 @@
       </span>
     </template>
     <BasicDescription @register="infoRegister" />
-    <BasicDescription @register="register" class="my-4" />
+    <BasicDescription class="my-4" @register="register" />
     <BasicDescription @register="registerDev" />
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
-import { BasicDescription, DescItem, useDescription } from '@/components/BasicDescription';
-import { GITHUB_URL, SITE_URL, DOC_URL } from '@/settings/siteSetting';
+import type { DescItem } from '@/components/BasicDescription'
+import { BasicDescription, useDescription } from '@/components/BasicDescription'
+import { DOC_URL, GITHUB_URL, SITE_URL } from '@/settings/siteSetting'
 
 export default defineComponent({
   name: 'About',
   components: { BasicDescription },
   setup() {
-    const { pkg, lastBuildTime } = __APP_INFO__;
+    const { pkg, lastBuildTime } = __APP_INFO__
 
-    const { dependencies, devDependencies, name, version } = pkg;
+    const { dependencies, devDependencies, name, version } = pkg
 
-    const schema: DescItem[] = [];
-    const devSchema: DescItem[] = [];
+    const schema: DescItem[] = []
+    const devSchema: DescItem[] = []
 
     const infoSchema: DescItem[] = [
       {
@@ -51,7 +52,7 @@ export default defineComponent({
         label: 'Github',
         field: 'github',
       },
-    ];
+    ]
 
     const infoData = {
       version,
@@ -59,23 +60,23 @@ export default defineComponent({
       doc: DOC_URL,
       preview: SITE_URL,
       github: GITHUB_URL,
-    };
+    }
 
     Object.keys(dependencies).forEach((key) => {
-      schema.push({ field: key, label: key });
-    });
+      schema.push({ field: key, label: key })
+    })
 
     Object.keys(devDependencies).forEach((key) => {
-      devSchema.push({ field: key, label: key });
-    });
+      devSchema.push({ field: key, label: key })
+    })
 
     const [register] = useDescription({
       title: '生产环境依赖',
       border: true,
       data: dependencies,
-      schema: schema,
+      schema,
       column: 3,
-    });
+    })
 
     const [registerDev] = useDescription({
       title: '开发环境依赖',
@@ -83,7 +84,7 @@ export default defineComponent({
       data: devDependencies,
       schema: devSchema,
       column: 3,
-    });
+    })
 
     const [infoRegister] = useDescription({
       title: '项目信息',
@@ -91,7 +92,7 @@ export default defineComponent({
       data: infoData,
       schema: infoSchema,
       column: 2,
-    });
+    })
 
     return {
       GITHUB_URL,
@@ -99,7 +100,7 @@ export default defineComponent({
       register,
       registerDev,
       infoRegister,
-    };
+    }
   },
-});
+})
 </script>

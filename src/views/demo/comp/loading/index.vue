@@ -3,30 +3,42 @@
     v-loading="loadingRef"
     loading-tip="加载中..."
     title="ElLoading 示例"
-    description="未做组件封装，仅是根据官方 ElLoading 组件进行示例">
+    description="未做组件封装，仅是根据官方 ElLoading 组件进行示例"
+  >
     <div ref="wrapEl" v-loading.lock="boxLoadingRef" element-loading-background="rgba(0, 0, 0, 0.7)">
-      <el-alert title="组件方式" />
-      <el-button
+      <ElAlert title="组件方式" />
+      <ElButton
+        v-loading.fullscreen.lock="fullscreenLoading"
         class="my-4 mr-4"
         type="primary"
-        v-loading.fullscreen.lock="fullscreenLoading"
-        @click="openCompFullLoading">全屏 Loading</el-button>
-      <el-button class="my-4" type="primary" @click="openCompAbsolute">容器内 Loading</el-button>
+        @click="openCompFullLoading"
+      >
+        全屏 Loading
+      </ElButton>
+      <ElButton class="my-4" type="primary" @click="openCompAbsolute">
+        容器内 Loading
+      </ElButton>
 
-      <el-alert title="函数方式" />
+      <ElAlert title="函数方式" />
 
-      <el-button class="my-4 mr-4" type="primary" @click="openFnFullLoading">全屏 Loading</el-button>
-      <el-button class="my-4" type="primary" @click="openFnWrapLoading">容器内 Loading</el-button>
+      <ElButton class="my-4 mr-4" type="primary" @click="openFnFullLoading">
+        全屏 Loading
+      </ElButton>
+      <ElButton class="my-4" type="primary" @click="openFnWrapLoading">
+        容器内 Loading
+      </ElButton>
 
-      <el-alert title="指令方式" />
-      <el-button class="my-4 mr-4" type="primary" @click="openDirectiveLoading">打开指令Loading</el-button>
+      <ElAlert title="指令方式" />
+      <ElButton class="my-4 mr-4" type="primary" @click="openDirectiveLoading">
+        打开指令Loading
+      </ElButton>
     </div>
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import { ElAlert, ElButton, ElLoading } from 'element-plus';
+import { defineComponent, ref } from 'vue'
+import { ElAlert, ElButton, ElLoading } from 'element-plus'
 
 export default defineComponent({
   components: { ElAlert, ElButton },
@@ -34,34 +46,34 @@ export default defineComponent({
     loading: ElLoading.directive,
   },
   setup() {
-    const wrapEl = ref<string | HTMLElement>();
+    const wrapEl = ref<string | HTMLElement>()
 
-    const loadingRef = ref(false);
-    const boxLoadingRef = ref(false);
-    const fullscreenLoading = ref(false);
+    const loadingRef = ref(false)
+    const boxLoadingRef = ref(false)
+    const fullscreenLoading = ref(false)
 
     function openCompFullLoading() {
-      fullscreenLoading.value = true;
+      fullscreenLoading.value = true
       setTimeout(() => {
-        fullscreenLoading.value = false;
-      }, 2000);
+        fullscreenLoading.value = false
+      }, 2000)
     }
 
     function openCompAbsolute() {
-      boxLoadingRef.value = true;
+      boxLoadingRef.value = true
       setTimeout(() => {
-        boxLoadingRef.value = false;
-      }, 2000);
+        boxLoadingRef.value = false
+      }, 2000)
     }
 
     function openFnFullLoading() {
       const loading = ElLoading.service({
         lock: true,
         text: 'Loading',
-      });
+      })
       setTimeout(() => {
-        loading.close();
-      }, 2000);
+        loading.close()
+      }, 2000)
     }
 
     function openFnWrapLoading() {
@@ -70,17 +82,17 @@ export default defineComponent({
         lock: true,
         text: 'Loading',
         background: 'rgba(0, 0, 0, 0.7)',
-      });
+      })
       setTimeout(() => {
-        loading.close();
-      }, 2000);
+        loading.close()
+      }, 2000)
     }
 
     function openDirectiveLoading() {
-      loadingRef.value = true;
+      loadingRef.value = true
       setTimeout(() => {
-        loadingRef.value = false;
-      }, 2000);
+        loadingRef.value = false
+      }, 2000)
     }
 
     return {
@@ -93,7 +105,7 @@ export default defineComponent({
       loadingRef,
       boxLoadingRef,
       openDirectiveLoading,
-    };
+    }
   },
-});
+})
 </script>

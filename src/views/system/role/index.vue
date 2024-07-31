@@ -2,7 +2,9 @@
   <PageWrapper>
     <BasicTable @register="registerTable">
       <template #toolbar>
-        <el-button type="primary" @click="handleCreate">新增角色</el-button>
+        <ElButton type="primary" @click="handleCreate">
+          新增角色
+        </ElButton>
       </template>
     </BasicTable>
     <EditDrawer @register="registerDrawer" @success="handleSuccess" />
@@ -10,21 +12,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElButton } from 'element-plus';
+import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
 
-import { BasicTable, useTable } from '@/components/BasicTable';
-import { ApiRolePage, ApiRoleDel } from '@/api/role';
+import EditDrawer from './EditDrawer.vue'
+import { columns, searchFormSchema } from './data'
+import { BasicTable, useTable } from '@/components/BasicTable'
+import { ApiRoleDel, ApiRolePage } from '@/api/role'
 
-import { useDrawer } from '@/components/BasicDrawer';
-import EditDrawer from './EditDrawer.vue';
-import { columns, searchFormSchema } from './data';
+import { useDrawer } from '@/components/BasicDrawer'
 
 export default defineComponent({
   name: 'RoleManagement',
   components: { ElButton, BasicTable, EditDrawer },
   setup() {
-    const [registerDrawer, { openDrawer }] = useDrawer();
+    const [registerDrawer, { openDrawer }] = useDrawer()
     const [registerTable, { reload }] = useTable({
       api: ApiRolePage,
       columns: [
@@ -55,33 +57,33 @@ export default defineComponent({
       },
       useSearchForm: true,
       border: true,
-    });
+    })
 
     function handleCreate() {
       openDrawer(true, {
         isUpdate: false,
-      });
+      })
     }
 
     function handleEdit({ row }) {
       openDrawer(true, {
         record: row,
         isUpdate: true,
-      });
+      })
     }
 
     function handleDelete({ row }, type) {
       if (type === 'confirm') {
         ApiRoleDel(row.id)
           .then(() => {
-            reload();
+            reload()
           })
-          .catch(() => {});
+          .catch(() => {})
       }
     }
 
     function handleSuccess() {
-      reload();
+      reload()
     }
 
     return {
@@ -91,7 +93,7 @@ export default defineComponent({
       handleEdit,
       handleDelete,
       handleSuccess,
-    };
+    }
   },
-});
+})
 </script>

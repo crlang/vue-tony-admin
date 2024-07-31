@@ -3,7 +3,9 @@
     <ElDropdown @command="handleMenuClick">
       <div :class="prefixCls">
         <ElImage :class="`${prefixCls}__avatar`" :src="getUserInfo.avatar">
-          <template #error>&nbsp;</template>
+          <template #error>
+&nbsp;
+          </template>
         </ElImage>
         <span :class="`${prefixCls}__name`">{{ getUserInfo.realName }}</span>
       </div>
@@ -14,7 +16,7 @@
             <SvgIcon class="mr-2" name="m_key" />
             <span>修改密码</span>
           </ElDropdownItem>
-          <ElDropdownItem command="doc" v-if="getShowDoc">
+          <ElDropdownItem v-if="getShowDoc" command="doc">
             <SvgIcon class="mr-2" name="filetext" />
             <span>开发文档</span>
           </ElDropdownItem>
@@ -34,18 +36,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
-import { ElDropdown, ElDropdownItem, ElDropdownMenu, ElImage } from 'element-plus';
+import { computed, defineComponent } from 'vue'
+import { ElDropdown, ElDropdownItem, ElDropdownMenu, ElImage } from 'element-plus'
 
-import { DOC_URL } from '@/settings/siteSetting';
-import { useUserStore } from '@/store/modules/user';
-import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
-import { useDesign } from '@/hooks/web/useDesign';
-import { useModal } from '@/components/BasicModal';
-import { openWindow } from '@/utils';
-import { SvgIcon } from '@/components/SvgIcon';
-import { createAsyncComponent } from '@/utils/factory/createAsyncComponent';
-import { useGo } from '@/hooks/web/usePage';
+import { DOC_URL } from '@/settings/siteSetting'
+import { useUserStore } from '@/store/modules/user'
+import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
+import { useDesign } from '@/hooks/web/useDesign'
+import { useModal } from '@/components/BasicModal'
+import { openWindow } from '@/utils'
+import { SvgIcon } from '@/components/SvgIcon'
+import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
+import { useGo } from '@/hooks/web/usePage'
 
 export default defineComponent({
   name: 'UserDropdown',
@@ -61,32 +63,32 @@ export default defineComponent({
     itemClass: String,
   },
   setup() {
-    const { prefixCls } = useDesign('header-user-dropdown');
-    const { getShowDoc, getUseLockPage } = useHeaderSetting();
-    const userStore = useUserStore();
-    const go = useGo();
+    const { prefixCls } = useDesign('header-user-dropdown')
+    const { getShowDoc, getUseLockPage } = useHeaderSetting()
+    const userStore = useUserStore()
+    const go = useGo()
 
     const getUserInfo = computed(() => {
-      const { nickname = '', avatar } = userStore.getUserInfo || {};
-      return { realName: nickname, avatar };
-    });
+      const { nickname = '', avatar } = userStore.getUserInfo || {}
+      return { realName: nickname, avatar }
+    })
 
-    const [register, { openModal }] = useModal();
+    const [register, { openModal }] = useModal()
 
     function handleMenuClick(e: 'logout' | 'doc' | 'lock' | 'cpw') {
       switch (e) {
         case 'logout':
-          userStore.confirmLoginOut();
-          break;
+          userStore.confirmLoginOut()
+          break
         case 'doc':
-          openWindow(DOC_URL);
-          break;
+          openWindow(DOC_URL)
+          break
         case 'lock':
-          openModal(true);
-          break;
+          openModal(true)
+          break
         case 'cpw':
-          go('/system/change_password');
-          break;
+          go('/system/change_password')
+          break
       }
     }
 
@@ -97,9 +99,9 @@ export default defineComponent({
       getShowDoc,
       register,
       getUseLockPage,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">

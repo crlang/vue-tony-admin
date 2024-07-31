@@ -5,12 +5,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
-import { BasicTable, useTable } from '@/components/BasicTable';
+import { columns, searchFormSchema } from './data'
+import { BasicTable, useTable } from '@/components/BasicTable'
 
-import { ApiLogsPage } from '@/api/logs';
-import { columns, searchFormSchema } from './data';
+import { ApiLogsPage } from '@/api/logs'
 
 export default defineComponent({
   name: 'Logs',
@@ -27,17 +27,17 @@ export default defineComponent({
       border: true,
       beforeFetchFn(data) {
         if (data?.rangeDate?.length) {
-          data.startDate = data.rangeDate[0];
-          data.endDate = data.rangeDate[1];
-          delete data.rangeDate;
+          data.startDate = data.rangeDate[0]
+          data.endDate = data.rangeDate[1]
+          delete data.rangeDate
         }
-        return data;
+        return data
       },
-    });
+    })
 
     return {
       registerTable,
-    };
+    }
   },
-});
+})
 </script>

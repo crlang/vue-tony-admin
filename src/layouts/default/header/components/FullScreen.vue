@@ -2,38 +2,38 @@
   <div>
     <ElTooltip :content="getTitle" placement="bottom">
       <span @click="toggle">
-        <SvgIcon name="arrowsalt" v-if="!isFullscreen" />
-        <SvgIcon name="shrink" v-else />
+        <SvgIcon v-if="!isFullscreen" name="arrowsalt" />
+        <SvgIcon v-else name="shrink" />
       </span>
     </ElTooltip>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, unref } from 'vue';
-import { ElTooltip } from 'element-plus';
-import { useFullscreen } from '@vueuse/core';
+import { computed, defineComponent, unref } from 'vue'
+import { ElTooltip } from 'element-plus'
+import { useFullscreen } from '@vueuse/core'
 
-import { SvgIcon } from '@/components/SvgIcon';
+import { SvgIcon } from '@/components/SvgIcon'
 
 export default defineComponent({
   name: 'FullScreen',
   components: { ElTooltip, SvgIcon },
   setup() {
-    const { toggle, isFullscreen } = useFullscreen();
+    const { toggle, isFullscreen } = useFullscreen()
 
     // 重新检查全屏状态
-    isFullscreen.value = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
+    isFullscreen.value = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement)
 
     const getTitle = computed(() => {
-      return unref(isFullscreen) ? '退出全屏' : '全屏';
-    });
+      return unref(isFullscreen) ? '退出全屏' : '全屏'
+    })
 
     return {
       getTitle,
       isFullscreen,
       toggle,
-    };
+    }
   },
-});
+})
 </script>

@@ -3,11 +3,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, Ref, watch } from 'vue';
+import type { Ref } from 'vue'
+import { defineComponent, onMounted, ref, watch } from 'vue'
 
-import { useECharts } from '@/hooks/web/useECharts';
-
-import { DateBasicItem } from '../data';
+import type { DateBasicItem } from '../data'
+import { useECharts } from '@/hooks/web/useECharts'
 
 export default defineComponent({
   props: {
@@ -25,18 +25,18 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const chartRef = ref<HTMLDivElement | null>(null);
-    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
+    const chartRef = ref<HTMLDivElement | null>(null)
+    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>)
     const initChart = () => {
-      const list = props.datainfo || [];
-      const xdata: string[] = [];
-      const ydata: number[] = [];
+      const list = props.datainfo || []
+      const xdata: string[] = []
+      const ydata: number[] = []
 
       if (list?.length) {
         list.forEach((k) => {
-          xdata.push(k.name);
-          ydata.push(k.value);
-        });
+          xdata.push(k.name)
+          ydata.push(k.value)
+        })
       }
 
       setOptions({
@@ -57,22 +57,22 @@ export default defineComponent({
             type: 'line',
           },
         ],
-      });
-    };
+      })
+    }
 
     watch(
       () => props.datainfo,
       () => {
-        initChart();
+        initChart()
       },
       { deep: true },
-    );
+    )
 
-    onMounted(initChart);
+    onMounted(initChart)
 
     return {
       chartRef,
-    };
+    }
   },
-});
+})
 </script>

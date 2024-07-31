@@ -1,22 +1,21 @@
-import type { AppRouteRecordRaw, AppRouteModule } from '@/router/types';
+import { mainOutRoutes } from './mainOut'
+import { PAGE_NOT_FOUND_ROUTE, REDIRECT_ROUTE } from './basic'
+import type { AppRouteModule, AppRouteRecordRaw } from '@/router/types'
 
-import { PageEnum } from '@/enums/pageEnum';
-
-import { mainOutRoutes } from './mainOut';
-import { PAGE_NOT_FOUND_ROUTE, REDIRECT_ROUTE } from './basic';
+import { PageEnum } from '@/enums/pageEnum'
 
 // import.meta.glob() 直接引入所有的模块 Vite 独有的功能
-const modules = import.meta.glob('./modules/**/*.ts', { eager: true });
-const routeModuleList: AppRouteModule[] = [];
+const modules = import.meta.glob('./modules/**/*.ts', { eager: true })
+const routeModuleList: AppRouteModule[] = []
 
 // 加入到路由集合中
 Object.keys(modules).forEach((key) => {
-  const mod = (modules as Recordable)[key].default || {};
-  const modList = Array.isArray(mod) ? [...mod] : [mod];
-  routeModuleList.push(...modList);
-});
+  const mod = (modules as Recordable)[key].default || {}
+  const modList = Array.isArray(mod) ? [...mod] : [mod]
+  routeModuleList.push(...modList)
+})
 
-export const asyncRoutes = [PAGE_NOT_FOUND_ROUTE, ...routeModuleList];
+export const asyncRoutes = [PAGE_NOT_FOUND_ROUTE, ...routeModuleList]
 
 // 根路由
 export const RootRoute: AppRouteRecordRaw = {
@@ -26,7 +25,7 @@ export const RootRoute: AppRouteRecordRaw = {
   meta: {
     title: 'Root',
   },
-};
+}
 
 export const LoginRoute: AppRouteRecordRaw = {
   path: '/login',
@@ -35,8 +34,7 @@ export const LoginRoute: AppRouteRecordRaw = {
   meta: {
     title: '登录',
   },
-};
+}
 
-// Basic route
 // 基本路由
-export const basicRoutes = [LoginRoute, RootRoute, ...mainOutRoutes, REDIRECT_ROUTE, PAGE_NOT_FOUND_ROUTE];
+export const basicRoutes = [LoginRoute, RootRoute, ...mainOutRoutes, REDIRECT_ROUTE, PAGE_NOT_FOUND_ROUTE]

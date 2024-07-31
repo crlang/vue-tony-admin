@@ -1,51 +1,51 @@
 <template>
   <PageWrapper title="上传组件示例">
     <BasicUpload
-      @change="handleChange"
       :api="ApiUpload"
-      showThumb
-      :modelValue="uploadList"
-      uploadName="file"
-      :maxSize="5"
-      :maxNumber="3"
+      show-thumb
+      :model-value="uploadList"
+      upload-name="file"
+      :max-size="5"
+      :max-number="3"
+      :accept="['png', 'jpg', 'jpeg', 'webp', 'svg']"
+      @change="handleChange"
       @delete="handleDelete"
-      :accept="['png', 'jpg', 'jpeg', 'webp', 'svg']" />
+    />
 
-    <el-alert type="error" class="my-4" title="如果需要演示上传功能,需要在test/server中运行test服务器" />
+    <ElAlert type="error" class="my-4" title="如果需要演示上传功能,需要在test/server中运行test服务器" />
 
     <BasicUpload
-      @change="handleChange"
       :api="ApiUpload"
-      :modelValue="uploadList"
-      uploadName="file"
-      :maxSize="5"
-      :maxNumber="3"
+      :model-value="uploadList"
+      upload-name="file"
+      :max-size="5"
+      :max-number="3"
+      :accept="['png', 'jpg', 'jpeg', 'webp', 'svg']"
+      @change="handleChange"
       @delete="handleDelete"
-      :accept="['png', 'jpg', 'jpeg', 'webp', 'svg']" />
+    />
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import { ElAlert } from 'element-plus';
+import { defineComponent, ref } from 'vue'
+import { ElAlert } from 'element-plus'
 
-import { BasicUpload } from '@/components/BasicUpload';
-import { useMessage } from '@/hooks/web/useMessage';
-import { ApiUpload } from '@/api/upload';
+import { BasicUpload } from '@/components/BasicUpload'
+import { useMessage } from '@/hooks/web/useMessage'
+import { ApiUpload } from '@/api/upload'
 
 export default defineComponent({
   components: { ElAlert, BasicUpload },
   setup() {
-    const { createMessage } = useMessage();
-    const uploadList = ref<string[]>();
+    const { createMessage } = useMessage()
+    const uploadList = ref<string[]>()
 
-    function handleDelete(record: Recordable) {
-      createMessage.info(`移除文件`);
-      console.info(record);
+    function handleDelete(_record: Recordable) {
+      createMessage.info(`移除文件`)
     }
-    function handleChange(list: Recordable) {
-      createMessage.info(`已上传文件`);
-      console.info(list);
+    function handleChange(_list: Recordable) {
+      createMessage.info(`已上传文件`)
     }
 
     return {
@@ -53,7 +53,7 @@ export default defineComponent({
       handleChange,
       handleDelete,
       ApiUpload,
-    };
+    }
   },
-});
+})
 </script>

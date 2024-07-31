@@ -1,30 +1,30 @@
-import { getStorageShortName } from '@/utils/env';
-import projectSetting from '@/settings/projectSetting';
+import type { CreateStorageParams } from './storageCache'
+import { createStorage as create } from './storageCache'
+import { getStorageShortName } from '@/utils/env'
+import projectSetting from '@/settings/projectSetting'
 
-import { createStorage as create, CreateStorageParams } from './storageCache';
+export type Options = Partial<CreateStorageParams>
 
-export type Options = Partial<CreateStorageParams>;
-
-const createOptions = (storage: Storage, options: Options = {}): Options => {
+function createOptions(storage: Storage, options: Options = {}): Options {
   return {
     storage,
     prefixKey: getStorageShortName(),
     ...options,
-  };
-};
+  }
+}
 
-export const WebStorage = create(createOptions(sessionStorage));
+export const WebStorage = create(createOptions(sessionStorage))
 
-export const createStorage = (storage: Storage = sessionStorage, options: Options = {}) => {
-  return create(createOptions(storage, options));
-};
+export function createStorage(storage: Storage = sessionStorage, options: Options = {}) {
+  return create(createOptions(storage, options))
+}
 
-export const createSessionStorage = (options: Options = {}) => {
-  return createStorage(sessionStorage, { ...options, timeout: projectSetting.cacheTime });
-};
+export function createSessionStorage(options: Options = {}) {
+  return createStorage(sessionStorage, { ...options, timeout: projectSetting.cacheTime })
+}
 
-export const createLocalStorage = (options: Options = {}) => {
-  return createStorage(localStorage, { ...options, timeout: projectSetting.cacheTime });
-};
+export function createLocalStorage(options: Options = {}) {
+  return createStorage(localStorage, { ...options, timeout: projectSetting.cacheTime })
+}
 
-export default WebStorage;
+export default WebStorage

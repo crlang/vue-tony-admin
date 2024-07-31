@@ -1,37 +1,43 @@
 <template>
   <Teleport to="body">
     <transition name="zoom-fade" mode="out-in">
-      <div :class="getClass" @click.stop v-if="visible">
-        <div :class="`${prefixCls}-content`" v-click-outside="handleClose">
+      <div v-if="visible" :class="getClass" @click.stop>
+        <div v-click-outside="handleClose" :class="`${prefixCls}-content`">
           <div :class="`${prefixCls}-input__wrapper`">
             <ElInput
+              ref="inputRef"
+              v-model="searchKey"
               :class="`${prefixCls}-input`"
               placeholder="搜索"
-              ref="inputRef"
               clearable
-              v-model="searchKey"
-              @input="handleSearch">
-              <template #prefix><SvgIcon name="search" /></template>
+              @input="handleSearch"
+            >
+              <template #prefix>
+                <SvgIcon name="search" />
+              </template>
             </ElInput>
             <span :class="`${prefixCls}-cancel`" @click="handleClose">取消</span>
           </div>
 
-          <div :class="`${prefixCls}-nodata`" v-show="getIsNotData">暂无搜索结果</div>
+          <div v-show="getIsNotData" :class="`${prefixCls}-nodata`">
+            暂无搜索结果
+          </div>
 
-          <ul :class="`${prefixCls}-list`" v-show="!getIsNotData" ref="scrollWrap">
+          <ul v-show="!getIsNotData" ref="scrollWrap" :class="`${prefixCls}-list`">
             <li
-              :ref="setRefs(index)"
               v-for="(item, index) in searchResult"
+              :ref="setRefs(index)"
               :key="item.path"
               :data-index="index"
-              @mouseenter="handleMouseenter"
-              @click="handleEnter"
               :class="[
                 `${prefixCls}-list__item`,
                 {
                   [`${prefixCls}-list__item--active`]: activeIndex === index,
                 },
-              ]">
+              ]"
+              @mouseenter="handleMouseenter"
+              @click="handleEnter"
+            >
               <div :class="`${prefixCls}-list__item-text`">
                 {{ item.name }}
               </div>
@@ -48,35 +54,34 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, unref, ref, watch, nextTick } from 'vue';
-import { ElInput } from 'element-plus';
+import { computed, nextTick, ref, unref, watch } from 'vue'
+import { ElInput } from 'element-plus'
 
-import { SvgIcon } from '@/components/SvgIcon';
-import vClickOutside from '@/directives/clickOutside';
-import { useDesign } from '@/hooks/web/useDesign';
-import { useRefs } from '@/hooks/core/useRefs';
-import { useAppInject } from '@/hooks/web/useAppInject';
-
-import { useMenuSearch } from './useMenuSearch';
-import AppSearchFooter from './AppSearchFooter.vue';
+import { useMenuSearch } from './useMenuSearch'
+import AppSearchFooter from './AppSearchFooter.vue'
+import { SvgIcon } from '@/components/SvgIcon'
+import vClickOutside from '@/directives/clickOutside'
+import { useDesign } from '@/hooks/web/useDesign'
+import { useRefs } from '@/hooks/core/useRefs'
+import { useAppInject } from '@/hooks/web/useAppInject'
 
 const props = defineProps({
   visible: { type: Boolean },
-});
+})
 
-const emit = defineEmits(['close']);
+const emit = defineEmits(['close'])
 
-const scrollWrap = ref(null);
-const inputRef = ref<Nullable<HTMLElement>>(null);
-const searchKey = ref('');
+const scrollWrap = ref(null)
+const inputRef = ref<Nullable<HTMLElement>>(null)
+const searchKey = ref('')
 
-const { prefixCls } = useDesign('header-search-modal');
-const [refs, setRefs] = useRefs();
-const { getIsMobile } = useAppInject();
+const { prefixCls } = useDesign('header-search-modal')
+const [refs, setRefs] = useRefs()
+const { getIsMobile } = useAppInject()
 
-const { handleSearch, searchResult, keyword, activeIndex, handleEnter, handleMouseenter } = useMenuSearch(refs, scrollWrap, emit);
+const { handleSearch, searchResult, keyword, activeIndex, handleEnter, handleMouseenter } = useMenuSearch(refs, scrollWrap, emit)
 
-const getIsNotData = computed(() => !keyword || unref(searchResult).length === 0);
+const getIsNotData = computed(() => !keyword || unref(searchResult).length === 0)
 
 const getClass = computed(() => {
   return [
@@ -84,23 +89,24 @@ const getClass = computed(() => {
     {
       [`${prefixCls}--mobile`]: unref(getIsMobile),
     },
-  ];
-});
+  ]
+})
 
 watch(
   () => props.visible,
   (visible: boolean) => {
-    visible &&
+    if (visible) {
       nextTick(() => {
-        searchKey.value = '';
-        unref(inputRef)?.focus();
-      });
+        searchKey.value = ''
+        unref(inputRef)?.focus()
+      })
+    }
   },
-);
+)
 
 function handleClose() {
-  searchResult.value = [];
-  emit('close');
+  searchResult.value = []
+  emit('close')
 }
 </script>
 
@@ -117,7 +123,7 @@ $prefix-cls: '#{$tonyname}-header-search-modal';
   width: 100%;
   height: 100%;
   padding-top: 3.25rem;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgb(0 0 0 / 30%);
 
   &--mobile {
     padding: 0;
@@ -160,7 +166,7 @@ $prefix-cls: '#{$tonyname}-header-search-modal';
     margin: 0 auto auto;
     background-color: var(--background-primary-color);
     border-radius: 1rem;
-    box-shadow: 0 1.5rem 3.25rem -0.5rem rgba(0, 0, 0, 0.25);
+    box-shadow: 0 1.5rem 3.25rem -0.5rem rgb(0 0 0 / 25%);
   }
 
   &-input__wrapper {
@@ -178,10 +184,12 @@ $prefix-cls: '#{$tonyname}-header-search-modal';
     border-radius: var(--radius-base);
   }
 
+  /* stylelint-disable-next-line selector-class-pattern */
   .el-input__inner {
     height: 100%;
   }
 
+  /* stylelint-disable-next-line selector-class-pattern */
   .el-input__prefix-inner {
     display: flex;
     align-items: center;
@@ -217,7 +225,7 @@ $prefix-cls: '#{$tonyname}-header-search-modal';
       cursor: pointer;
       background-color: var(--background-primary-color);
       border-radius: var(--radius-base);
-      box-shadow: 0 2px 4px rgba(169, 194, 209, 0.55);
+      box-shadow: 0 2px 4px rgb(169 194 209 / 55%);
 
       &--active {
         color: var(--text-primary-reverse);
@@ -251,7 +259,7 @@ $prefix-cls: '#{$tonyname}-header-search-modal';
         padding: 4px;
         margin-right: 8px;
         background-color: #dee4e7;
-        box-shadow: 0 2px 4px rgba(169, 194, 209, 0.55);
+        box-shadow: 0 2px 4px rgb(169 194 209 / 55%);
       }
     }
   }

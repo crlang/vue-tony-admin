@@ -6,11 +6,10 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue'
 
-import { SvgIcon } from '@/components/SvgIcon';
-
-import { contentProps } from '../props';
+import { contentProps } from '../props'
+import { SvgIcon } from '@/components/SvgIcon'
 
 export default defineComponent({
   name: 'MenuItemContent',
@@ -19,13 +18,13 @@ export default defineComponent({
   },
   props: contentProps,
   setup(props) {
-    const getName = computed(() => props.item?.name);
-    const getIcon = computed(() => props.item?.icon);
+    const getName = computed(() => props.item?.name)
+    const getIcon = computed(() => props.item?.icon)
 
     return {
       getName,
       getIcon,
-    };
+    }
   },
-});
+})
 </script>

@@ -3,27 +3,35 @@
     <div class="demo-verify-item">
       <BasicDragVerify
         ref="el1"
-        isSlot
-        :modelValue="verifyState"
-        @end="handleCustomSuccess" />
-      <el-button @click="handleBtnClick(el1, 'el1')">还原</el-button>
+        is-slot
+        :model-value="verifyState"
+        @end="handleCustomSuccess"
+      />
+      <ElButton @click="handleBtnClick(el1, 'el1')">
+        还原
+      </ElButton>
     </div>
 
     <div class="demo-verify-item">
-      <BasicDragVerify ref="el2" @success="handleSuccess" circle />
-      <el-button @click="handleBtnClick(el2)">还原</el-button>
+      <BasicDragVerify ref="el2" circle @success="handleSuccess" />
+      <ElButton @click="handleBtnClick(el2)">
+        还原
+      </ElButton>
     </div>
 
     <div class="demo-verify-item">
       <BasicDragVerify
         ref="el3"
-        @success="handleSuccess"
         text="拖动以进行校验"
-        successText="校验成功"
-        :barStyle="{
+        success-text="校验成功"
+        :bar-style="{
           backgroundColor: '#018ffb',
-        }" />
-      <el-button @click="handleBtnClick(el3)">还原</el-button>
+        }"
+        @success="handleSuccess"
+      />
+      <ElButton @click="handleBtnClick(el3)">
+        还原
+      </ElButton>
     </div>
 
     <div class="demo-verify-item">
@@ -32,7 +40,9 @@
           <SvgIcon :name="isPassing ? 'moon' : 'sun'" />
         </template>
       </BasicDragVerify>
-      <el-button @click="handleBtnClick(el4)">还原</el-button>
+      <ElButton @click="handleBtnClick(el4)">
+        还原
+      </ElButton>
     </div>
 
     <div class="demo-verify-item">
@@ -41,52 +51,53 @@
           <SvgIcon :name="isPassing ? 'moon' : 'sun'" class="mt-2" />
         </template>
       </BasicDragVerify>
-      <el-button @click="handleBtnClick(el5)">还原</el-button>
+      <ElButton @click="handleBtnClick(el5)">
+        还原
+      </ElButton>
     </div>
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import type { DragVerifyActionType, PassingData } from '@/components/DragVerify';
+import { defineComponent, ref } from 'vue'
+import { ElButton } from 'element-plus'
+import type { DragVerifyActionType, PassingData } from '@/components/DragVerify'
 
-import { defineComponent, ref } from 'vue';
-import { ElButton } from 'element-plus';
-
-import { BasicDragVerify } from '@/components/DragVerify';
-import { useMessage } from '@/hooks/web/useMessage';
-import { SvgIcon } from '@/components/SvgIcon';
+import { BasicDragVerify } from '@/components/DragVerify'
+import { useMessage } from '@/hooks/web/useMessage'
+import { SvgIcon } from '@/components/SvgIcon'
 
 export default defineComponent({
   components: { ElButton, BasicDragVerify, SvgIcon },
   setup() {
-    const verifyState = ref(false);
-    const el1 = ref<Nullable<DragVerifyActionType>>(null);
-    const el2 = ref<Nullable<DragVerifyActionType>>(null);
-    const el3 = ref<Nullable<DragVerifyActionType>>(null);
-    const el4 = ref<Nullable<DragVerifyActionType>>(null);
-    const el5 = ref<Nullable<DragVerifyActionType>>(null);
+    const verifyState = ref(false)
+    const el1 = ref<Nullable<DragVerifyActionType>>(null)
+    const el2 = ref<Nullable<DragVerifyActionType>>(null)
+    const el3 = ref<Nullable<DragVerifyActionType>>(null)
+    const el4 = ref<Nullable<DragVerifyActionType>>(null)
+    const el5 = ref<Nullable<DragVerifyActionType>>(null)
 
-    const { createMessage } = useMessage();
+    const { createMessage } = useMessage()
 
     function handleSuccess(data: PassingData) {
-      const { time } = data;
-      createMessage.success(`校验成功,耗时${time}秒`);
+      const { time } = data
+      createMessage.success(`校验成功,耗时${time}秒`)
     }
 
     function handleCustomSuccess(data: PassingData) {
-      const { time } = data;
-      verifyState.value = true;
-      createMessage.success(`自定义校验成功,耗时${time}秒`);
+      const { time } = data
+      verifyState.value = true
+      createMessage.success(`自定义校验成功,耗时${time}秒`)
     }
 
     function handleBtnClick(elRef: Nullable<DragVerifyActionType>, name = '') {
       if (!elRef) {
-        return;
+        return
       }
       if (name === 'el1') {
-        verifyState.value = false;
+        verifyState.value = false
       }
-      elRef.resume();
+      elRef.resume()
     }
 
     return {
@@ -99,9 +110,9 @@ export default defineComponent({
       handleCustomSuccess,
       handleSuccess,
       handleBtnClick,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

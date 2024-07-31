@@ -5,6 +5,7 @@ $simple-submenu: '#{$tonyname}-simple-submenu';
   color: var(--sider-text-color);
   background: var(--sider-background-color);
 }
+
 @mixin MixSiderHover {
   color: var(--sider-text-hover-color);
   background: var(--sider-background-hover-color);
@@ -19,11 +20,13 @@ $simple-submenu: '#{$tonyname}-simple-submenu';
   color: var(--white-color);
   background-color: var(--primary-color);
 }
+
 @mixin MixSiderActiveHover {
   color: var(--white-color);
   background-color: var(--primary-color);
   filter: brightness(1.1);
 }
+
 @mixin MenuBasicItem {
   .#{$simple-menu}-item,
   .#{$simple-submenu}-item-title {
@@ -38,10 +41,11 @@ $simple-submenu: '#{$tonyname}-simple-submenu';
     white-space: nowrap;
     cursor: pointer;
     user-select: none;
-    @include MixSiderBG();
+
+    @include MixSiderBG;
 
     &:hover {
-      @include MixSiderHover();
+      @include MixSiderHover;
     }
 
     // Popup -> Tooltip
@@ -63,18 +67,18 @@ $simple-submenu: '#{$tonyname}-simple-submenu';
     }
 
     .#{$simple-menu}-item {
-      @include MixSiderBG();
+      @include MixSiderBG;
 
       &:hover {
-        @include MixSiderHover();
+        @include MixSiderHover;
       }
     }
 
     &--active {
-      @include MixSiderActiveColor();
+      @include MixSiderActiveColor;
 
       &:hover {
-        @include MixSiderActiveHover();
+        @include MixSiderActiveHover;
       }
     }
 
@@ -84,13 +88,14 @@ $simple-submenu: '#{$tonyname}-simple-submenu';
     }
   }
 }
+
 @mixin MenuSimpleItem {
   .#{$simple-submenu}-item {
     transition: all var(--t-fast) var(--t-smooth);
 
     &--active {
       > .#{$simple-submenu}-item-title {
-        @include MixSiderHover();
+        @include MixSiderHover;
       }
     }
 
@@ -117,6 +122,7 @@ $simple-submenu: '#{$tonyname}-simple-submenu';
     background-color: var(--sider-background-color);
     border: none;
 
+    /* stylelint-disable-next-line selector-class-pattern */
     .el-popper__arrow::before {
       background: var(--sider-background-color, inherit);
       border-color: var(--sider-background-color, inherit);
@@ -126,8 +132,9 @@ $simple-submenu: '#{$tonyname}-simple-submenu';
   .#{$simple-submenu} {
     &-item {
       color: var(--sider-text-color);
-      @include MenuBasicItem();
-      @include MenuSimpleItem();
+
+      @include MenuBasicItem;
+      @include MenuSimpleItem;
       > .#{$simple-submenu}-item-title > .#{$simple-submenu}-item-title-icon {
         transition: all var(--t-fast) var(--t-smooth);
         transform: translateY(-50%) rotate(-90deg);
@@ -165,8 +172,8 @@ $simple-submenu: '#{$tonyname}-simple-submenu';
   }
 
   &-vertical {
-    @include MenuBasicItem();
-    @include MenuSimpleItem();
+    @include MenuBasicItem;
+    @include MenuSimpleItem;
   }
 
   &-collapse {

@@ -6,11 +6,11 @@ import type {
   ResponseDepartmentInfo,
   // ResponseDepartmentList,
   ResponseDepartmentPage,
-} from './types';
+} from './types'
 
-import { defHttp } from '@/utils/http/axios';
+import { defHttp } from '@/utils/http/axios'
 
-const basicUri = '/v1/department/';
+const basicUri = '/v1/department/'
 enum Api {
   GetDepartmentPage = `${basicUri}page`,
   // GetDepartmentList = `${basicUri}list`,
@@ -25,7 +25,7 @@ enum Api {
  * 分页列表-部门
  */
 export function ApiDepartmentPage(data: ParamsDepartmentPage) {
-  return defHttp.post<ResponseDepartmentPage>({ url: Api.GetDepartmentPage, data });
+  return defHttp.post<ResponseDepartmentPage>({ url: Api.GetDepartmentPage, data })
 }
 
 /**
@@ -39,33 +39,33 @@ export function ApiDepartmentPage(data: ParamsDepartmentPage) {
  * 详情-部门
  */
 export function ApiDepartmentInfo(id: string = '') {
-  return defHttp.post<ResponseDepartmentInfo>({ url: Api.GetDepartmentInfo, data: { id } });
+  return defHttp.post<ResponseDepartmentInfo>({ url: Api.GetDepartmentInfo, data: { id } })
 }
 
 /**
  * 新增-部门
  */
 export function ApiDepartmentAdd(data: ParamsDepartmentAdd) {
-  return defHttp.post<string>({ url: Api.GetDepartmentAdd, data }, { successMessageMode: 'message' });
+  return defHttp.post<string>({ url: Api.GetDepartmentAdd, data }, { successMessageMode: 'message' })
 }
 
 /**
  * 编辑-部门
  */
 export function ApiDepartmentEdit(data: ParamsDepartmentEdit) {
-  return defHttp.post<string>({ url: Api.GetDepartmentEdit, data }, { successMessageMode: 'message' });
+  return defHttp.post<string>({ url: Api.GetDepartmentEdit, data }, { successMessageMode: 'message' })
 }
 
 /**
  * 删除-部门
  */
 export function ApiDepartmentDel(id: string = '') {
-  return defHttp.post<string>({ url: Api.GetDepartmentDel, data: { id } }, { successMessageMode: 'message' });
+  return defHttp.post<string>({ url: Api.GetDepartmentDel, data: { id } }, { successMessageMode: 'message' })
 }
 
 /**
  * 树结构-部门
  */
 export function ApiDepartmentTreeList() {
-  return defHttp.post<string>({ url: Api.GetDepartmentTree });
+  return defHttp.post<string>({ url: Api.GetDepartmentTree })
 }

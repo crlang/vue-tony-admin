@@ -1,190 +1,300 @@
 <template>
   <PageWrapper title="基础组件" description="基础组件依赖于element-plus,组件库已有的基础组件,项目中不会再次进行demo展示（二次封装组件除外）">
-    <el-row :gutter="12">
-      <el-col :span="24">
-        <el-card class="box-card" shadow="hover">
+    <ElRow :gutter="12">
+      <ElCol :span="24">
+        <ElCard class="box-card" shadow="hover">
           <template #header>
-            <div class="card-header">basic button (custom components)</div>
+            <div class="card-header">
+              basic button (custom components)
+            </div>
           </template>
-          <BasicButton preIcon="moon">Default</BasicButton>
+          <BasicButton pre-icon="moon">
+            Default
+          </BasicButton>
           <BasicDivider direction="vertical" />
-          <BasicButton type="primary" preIcon="moon">Primary</BasicButton>
+          <BasicButton type="primary" pre-icon="moon">
+            Primary
+          </BasicButton>
           <BasicDivider direction="vertical" />
 
-          <BasicButton sufIcon="moon" type="success">Success</BasicButton>
+          <BasicButton suf-icon="moon" type="success">
+            Success
+          </BasicButton>
           <BasicDivider direction="vertical" />
-          <BasicButton sufIcon="moon" :iconSize="22" type="info">Large Icon</BasicButton>
+          <BasicButton suf-icon="moon" :icon-size="22" type="info">
+            Large Icon
+          </BasicButton>
 
           <BasicDivider direction="vertical" />
-          <BasicButton shadow>Shadow</BasicButton>
+          <BasicButton shadow>
+            Shadow
+          </BasicButton>
           <BasicDivider direction="vertical" />
-          <BasicButton shadow type="primary">Success</BasicButton>
-        </el-card>
-      </el-col>
-      <el-col :span="12">
-        <el-card class="box-card" shadow="hover">
+          <BasicButton shadow type="primary">
+            Success
+          </BasicButton>
+        </ElCard>
+      </ElCol>
+      <ElCol :span="12">
+        <ElCard class="box-card" shadow="hover">
           <template #header>
-            <div class="card-header">normal</div>
+            <div class="card-header">
+              normal
+            </div>
           </template>
-          <el-button>Default</el-button>
-          <el-button type="primary">Primary</el-button>
-          <el-button type="success">Success</el-button>
-          <el-button type="info">Info</el-button>
-          <el-button type="warning">Warning</el-button>
-          <el-button type="danger">Danger</el-button>
-          <el-button>中文</el-button>
-        </el-card>
-      </el-col>
-      <el-col :span="12">
-        <el-card class="box-card" shadow="hover">
+          <ElButton>Default</ElButton>
+          <ElButton type="primary">
+            Primary
+          </ElButton>
+          <ElButton type="success">
+            Success
+          </ElButton>
+          <ElButton type="info">
+            Info
+          </ElButton>
+          <ElButton type="warning">
+            Warning
+          </ElButton>
+          <ElButton type="danger">
+            Danger
+          </ElButton>
+          <ElButton>中文</ElButton>
+        </ElCard>
+      </ElCol>
+      <ElCol :span="12">
+        <ElCard class="box-card" shadow="hover">
           <template #header>
-            <div class="card-header">plain</div>
+            <div class="card-header">
+              plain
+            </div>
           </template>
-          <el-button plain>Default</el-button>
-          <el-button type="primary" plain>Primary</el-button>
-          <el-button type="success" plain>Success</el-button>
-          <el-button type="info" plain>Info</el-button>
-          <el-button type="warning" plain>Warning</el-button>
-          <el-button type="danger" plain>Danger</el-button>
-        </el-card>
-      </el-col>
-      <el-col :span="12">
-        <el-card class="box-card" shadow="hover">
+          <ElButton plain>
+            Default
+          </ElButton>
+          <ElButton type="primary" plain>
+            Primary
+          </ElButton>
+          <ElButton type="success" plain>
+            Success
+          </ElButton>
+          <ElButton type="info" plain>
+            Info
+          </ElButton>
+          <ElButton type="warning" plain>
+            Warning
+          </ElButton>
+          <ElButton type="danger" plain>
+            Danger
+          </ElButton>
+        </ElCard>
+      </ElCol>
+      <ElCol :span="12">
+        <ElCard class="box-card" shadow="hover">
           <template #header>
-            <div class="card-header">round</div>
-          </template>
-
-          <el-button round>Default</el-button>
-          <el-button type="primary" round>Primary</el-button>
-          <el-button type="success" round>Success</el-button>
-          <el-button type="info" round>Info</el-button>
-          <el-button type="warning" round>Warning</el-button>
-          <el-button type="danger" round>Danger</el-button>
-        </el-card>
-      </el-col>
-      <el-col :span="12">
-        <el-card class="box-card" shadow="hover">
-          <template #header>
-            <div class="card-header">text</div>
-          </template>
-
-          <el-button text>Text ElButton</el-button>
-          <el-button text disabled>Text ElButton</el-button>
-        </el-card>
-      </el-col>
-      <el-col :span="12">
-        <el-card class="box-card" shadow="hover">
-          <template #header>
-            <div class="card-header">icon</div>
-          </template>
-
-          <el-button :icon="Search" circle />
-          <el-button type="primary" :icon="Edit" circle />
-          <el-button type="success" :icon="Check" circle />
-          <el-button type="info" :icon="Message" circle />
-          <el-button type="warning" :icon="Star" circle />
-          <el-button type="danger" :icon="Delete" circle />
-          <el-button type="primary" :icon="Search">Search</el-button>
-        </el-card>
-      </el-col>
-      <el-col :span="12">
-        <el-card class="box-card" shadow="hover">
-          <template #header>
-            <div class="card-header">group</div>
+            <div class="card-header">
+              round
+            </div>
           </template>
 
-          <el-button-group>
-            <el-button type="primary" :icon="ArrowLeft">Previous Page</el-button>
-            <el-button type="primary" class="direction-rtl" :icon="ArrowRight">Next Page</el-button>
-          </el-button-group>
-
-          <el-button-group>
-            <el-button type="primary" :icon="Edit" />
-            <el-button type="primary" :icon="Share" />
-            <el-button type="primary" :icon="Delete" />
-          </el-button-group>
-        </el-card>
-      </el-col>
-    </el-row>
-    <el-row :gutter="12">
-      <el-col :span="12">
-        <el-card class="box-card" shadow="hover">
+          <ElButton round>
+            Default
+          </ElButton>
+          <ElButton type="primary" round>
+            Primary
+          </ElButton>
+          <ElButton type="success" round>
+            Success
+          </ElButton>
+          <ElButton type="info" round>
+            Info
+          </ElButton>
+          <ElButton type="warning" round>
+            Warning
+          </ElButton>
+          <ElButton type="danger" round>
+            Danger
+          </ElButton>
+        </ElCard>
+      </ElCol>
+      <ElCol :span="12">
+        <ElCard class="box-card" shadow="hover">
           <template #header>
-            <div class="card-header">disabled</div>
+            <div class="card-header">
+              text
+            </div>
           </template>
 
-          <el-button disabled>Default</el-button>
-          <el-button type="primary" disabled>Primary</el-button>
-          <el-button type="success" disabled>Success</el-button>
-          <el-button type="info" disabled>Info</el-button>
-          <el-button type="warning" disabled>Warning</el-button>
-          <el-button type="danger" disabled>Danger</el-button>
-        </el-card>
-      </el-col>
-      <el-col :span="12">
-        <el-card class="box-card" shadow="hover">
+          <ElButton text>
+            Text ElButton
+          </ElButton>
+          <ElButton text disabled>
+            Text ElButton
+          </ElButton>
+        </ElCard>
+      </ElCol>
+      <ElCol :span="12">
+        <ElCard class="box-card" shadow="hover">
           <template #header>
-            <div class="card-header">disabled plain</div>
+            <div class="card-header">
+              icon
+            </div>
           </template>
 
-          <el-button plain disabled>Default</el-button>
-          <el-button type="primary" plain disabled>Primary</el-button>
-          <el-button type="success" plain disabled>Success</el-button>
-          <el-button type="info" plain disabled>Info</el-button>
-          <el-button type="warning" plain disabled>Warning</el-button>
-          <el-button type="danger" plain disabled>Danger</el-button>
-        </el-card>
-      </el-col>
-    </el-row>
-    <el-row :gutter="12">
-      <el-col :span="12">
-        <el-card class="box-card" shadow="hover">
+          <ElButton :icon="Search" circle />
+          <ElButton type="primary" :icon="Edit" circle />
+          <ElButton type="success" :icon="Check" circle />
+          <ElButton type="info" :icon="Message" circle />
+          <ElButton type="warning" :icon="Star" circle />
+          <ElButton type="danger" :icon="Delete" circle />
+          <ElButton type="primary" :icon="Search">
+            Search
+          </ElButton>
+        </ElCard>
+      </ElCol>
+      <ElCol :span="12">
+        <ElCard class="box-card" shadow="hover">
           <template #header>
-            <div class="card-header">loading</div>
+            <div class="card-header">
+              group
+            </div>
+          </template>
+
+          <ElButtonGroup>
+            <ElButton type="primary" :icon="ArrowLeft">
+              Previous Page
+            </ElButton>
+            <ElButton type="primary" class="direction-rtl" :icon="ArrowRight">
+              Next Page
+            </ElButton>
+          </ElButtonGroup>
+
+          <ElButtonGroup>
+            <ElButton type="primary" :icon="Edit" />
+            <ElButton type="primary" :icon="Share" />
+            <ElButton type="primary" :icon="Delete" />
+          </ElButtonGroup>
+        </ElCard>
+      </ElCol>
+    </ElRow>
+    <ElRow :gutter="12">
+      <ElCol :span="12">
+        <ElCard class="box-card" shadow="hover">
+          <template #header>
+            <div class="card-header">
+              disabled
+            </div>
+          </template>
+
+          <ElButton disabled>
+            Default
+          </ElButton>
+          <ElButton type="primary" disabled>
+            Primary
+          </ElButton>
+          <ElButton type="success" disabled>
+            Success
+          </ElButton>
+          <ElButton type="info" disabled>
+            Info
+          </ElButton>
+          <ElButton type="warning" disabled>
+            Warning
+          </ElButton>
+          <ElButton type="danger" disabled>
+            Danger
+          </ElButton>
+        </ElCard>
+      </ElCol>
+      <ElCol :span="12">
+        <ElCard class="box-card" shadow="hover">
+          <template #header>
+            <div class="card-header">
+              disabled plain
+            </div>
+          </template>
+
+          <ElButton plain disabled>
+            Default
+          </ElButton>
+          <ElButton type="primary" plain disabled>
+            Primary
+          </ElButton>
+          <ElButton type="success" plain disabled>
+            Success
+          </ElButton>
+          <ElButton type="info" plain disabled>
+            Info
+          </ElButton>
+          <ElButton type="warning" plain disabled>
+            Warning
+          </ElButton>
+          <ElButton type="danger" plain disabled>
+            Danger
+          </ElButton>
+        </ElCard>
+      </ElCol>
+    </ElRow>
+    <ElRow :gutter="12">
+      <ElCol :span="12">
+        <ElCard class="box-card" shadow="hover">
+          <template #header>
+            <div class="card-header">
+              loading
+            </div>
           </template>
 
           <div class="flex">
-            <el-button type="primary" :loading="true">Loading</el-button>
-            <el-button type="primary" :loading="loading" @click="onLoading">Click Me</el-button>
+            <ElButton type="primary" :loading="true">
+              Loading
+            </ElButton>
+            <ElButton type="primary" :loading="loading" @click="onLoading">
+              Click Me
+            </ElButton>
           </div>
-        </el-card>
-      </el-col>
-      <el-col :span="12">
-        <el-card class="box-card" shadow="hover">
+        </ElCard>
+      </ElCol>
+      <ElCol :span="12">
+        <ElCard class="box-card" shadow="hover">
           <template #header>
-            <div class="card-header">sizes</div>
+            <div class="card-header">
+              sizes
+            </div>
           </template>
 
-          <el-button>Default</el-button>
-          <el-button size="large">Large</el-button>
-          <el-button size="small">Small</el-button>
-          <el-button :icon="Search" circle />
-          <el-button :icon="Search" size="large" circle />
-          <el-button :icon="Search" size="small" circle />
-        </el-card>
-      </el-col>
-    </el-row>
+          <ElButton>Default</ElButton>
+          <ElButton size="large">
+            Large
+          </ElButton>
+          <ElButton size="small">
+            Small
+          </ElButton>
+          <ElButton :icon="Search" circle />
+          <ElButton :icon="Search" size="large" circle />
+          <ElButton :icon="Search" size="small" circle />
+        </ElCard>
+      </ElCol>
+    </ElRow>
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import { ElRow, ElCol, ElCard, ElButton, ElButtonGroup } from 'element-plus';
-import { Search, Edit, Check, Message, Star, Delete, ArrowLeft, Share, ArrowRight } from '@element-plus/icons-vue';
+import { defineComponent, ref } from 'vue'
+import { ElButton, ElButtonGroup, ElCard, ElCol, ElRow } from 'element-plus'
+import { ArrowLeft, ArrowRight, Check, Delete, Edit, Message, Search, Share, Star } from '@element-plus/icons-vue'
 
-import { BasicButton } from '@/components/BasicButton';
-import { BasicDivider } from '@/components/Basic';
+import { BasicButton } from '@/components/BasicButton'
+import { BasicDivider } from '@/components/Basic'
 
 export default defineComponent({
   components: { ElRow, ElCol, ElCard, ElButton, ElButtonGroup, BasicButton, BasicDivider },
   setup() {
-    const loading = ref(false);
+    const loading = ref(false)
 
     function onLoading() {
-      loading.value = true;
+      loading.value = true
       setTimeout(() => {
-        loading.value = false;
-      }, 3e3);
+        loading.value = false
+      }, 3e3)
     }
     return {
       Search,
@@ -198,9 +308,9 @@ export default defineComponent({
       Share,
       loading,
       onLoading,
-    };
+    }
   },
-});
+})
 </script>
 
 <style scoped>

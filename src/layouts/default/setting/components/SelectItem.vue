@@ -4,26 +4,28 @@
     <ElSelect
       v-bind="getBindValue"
       :class="`${prefixCls}-select`"
-      @change="handleChange"
       :disabled="disabled"
-      size="small">
+      size="small"
+      @change="handleChange"
+    >
       <ElOption
+        v-for="(item, index) in options"
+        :key="index"
         :label="item.label"
         :value="item.value"
-        :key="index"
-        v-for="(item, index) in options" />
+      />
     </ElSelect>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, computed } from 'vue';
-import { ElSelect, ElOption } from 'element-plus';
+import type { PropType } from 'vue'
+import { computed, defineComponent } from 'vue'
+import { ElOption, ElSelect } from 'element-plus'
 
-import { useDesign } from '@/hooks/web/useDesign';
-
-import { baseHandler } from '../handler';
-import { HandlerEnum } from '../enum';
+import { baseHandler } from '../handler'
+import type { HandlerEnum } from '../enum'
+import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'SelectItem',
@@ -50,21 +52,23 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { prefixCls } = useDesign('setting-select-item');
+    const { prefixCls } = useDesign('setting-select-item')
     const getBindValue = computed(() => {
-      return props.def ? { modelValue: props.def, defaultValue: props.initValue || props.def } : {};
-    });
+      return props.def ? { modelValue: props.def, defaultValue: props.initValue || props.def } : {}
+    })
 
     function handleChange(v: any) {
-      props.event && baseHandler(props.event, v);
+      if (props.event) {
+        baseHandler(props.event, v)
+      }
     }
     return {
       prefixCls,
       handleChange,
       getBindValue,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

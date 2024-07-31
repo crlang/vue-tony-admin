@@ -3,14 +3,14 @@
     <div class="step1-form">
       <BasicForm @register="register">
         <template #fac="{ model, field }">
-          <el-input v-model="model[field]" class="pay-input">
+          <ElInput v-model="model[field]" class="pay-input">
             <template #prepend>
-              <el-select v-model="model['pay']" class="pay-select" style="width: 110px">
-                <el-option value="zfb">支付宝</el-option>
-                <el-option value="yl">银联</el-option>
-              </el-select>
+              <ElSelect v-model="model.pay" class="pay-select" style="width: 110px">
+                <ElOption value="zfb">支付宝</ElOption>
+                <ElOption value="yl">银联</ElOption>
+              </ElSelect>
             </template>
-          </el-input>
+          </ElInput>
         </template>
       </BasicForm>
     </div>
@@ -22,12 +22,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElInput, ElSelect, ElOption } from 'element-plus';
+import { defineComponent } from 'vue'
+import { ElInput, ElOption, ElSelect } from 'element-plus'
 
-import { BasicDivider } from '@/components/Basic';
-import { BasicForm, useForm } from '@/components/BasicForm';
-import { step1Schemas } from './data';
+import { step1Schemas } from './data'
+import { BasicDivider } from '@/components/Basic'
+import { BasicForm, useForm } from '@/components/BasicForm'
 
 export default defineComponent({
   components: {
@@ -53,20 +53,20 @@ export default defineComponent({
         btnText: '下一步',
       },
       submitFn: customSubmitFunc,
-    });
+    })
 
     async function customSubmitFunc() {
       try {
-        const values = await validate();
-        emit('next', values);
-      } catch (error) {
-        // continue regardless of error
+        const values = await validate()
+        emit('next', values)
+      }
+      catch {
       }
     }
 
-    return { register };
+    return { register }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

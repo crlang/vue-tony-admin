@@ -2,7 +2,7 @@
   <div>
     <BasicTable @register="registerTable" @fetch-success="onFetchSuccess">
       <template #toolbar>
-        <el-button type="primary" @click="handleCreate">新增菜单</el-button>
+        <ElButton type="primary" @click="handleCreate">新增菜单</ElButton>
       </template>
     </BasicTable>
     <MenuDrawer @register="registerDrawer" @success="handleSuccess" />
@@ -10,22 +10,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick } from 'vue';
-import { ElButton } from 'element-plus';
+import { defineComponent, nextTick } from 'vue'
+import { ElButton } from 'element-plus'
 
-import { BasicTable, useTable } from '@/components/BasicTable';
-import { getMenuList } from '@/api/demo/system';
+import MenuDrawer from './MenuDrawer.vue'
+import { columns, searchFormSchema } from './data'
+import { BasicTable, useTable } from '@/components/BasicTable'
+import { getMenuList } from '@/api/demo/system'
 
-import { useDrawer } from '@/components/BasicDrawer';
-import MenuDrawer from './MenuDrawer.vue';
-
-import { columns, searchFormSchema } from './data';
+import { useDrawer } from '@/components/BasicDrawer'
 
 export default defineComponent({
   name: 'MenuManagement',
   components: { ElButton, BasicTable, MenuDrawer },
   setup() {
-    const [registerDrawer, { openDrawer }] = useDrawer();
+    const [registerDrawer, { openDrawer }] = useDrawer()
     const [registerTable, { reload, expandAll }] = useTable({
       title: '菜单列表',
       api: getMenuList,
@@ -57,19 +56,19 @@ export default defineComponent({
       },
       useSearchForm: true,
       border: true,
-    });
+    })
 
     function handleCreate() {
       openDrawer(true, {
         isUpdate: false,
-      });
+      })
     }
 
     function handleEdit({ row }) {
       openDrawer(true, {
         record: row,
         isUpdate: true,
-      });
+      })
     }
 
     function handleDelete() {
@@ -77,12 +76,12 @@ export default defineComponent({
     }
 
     function handleSuccess() {
-      reload();
+      reload()
     }
 
     function onFetchSuccess() {
       // 演示默认展开所有表项
-      nextTick(expandAll);
+      nextTick(expandAll)
     }
 
     return {
@@ -93,7 +92,7 @@ export default defineComponent({
       handleDelete,
       handleSuccess,
       onFetchSuccess,
-    };
+    }
   },
-});
+})
 </script>

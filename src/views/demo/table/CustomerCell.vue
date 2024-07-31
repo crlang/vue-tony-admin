@@ -1,46 +1,46 @@
 <template>
-  <PageWrapper contentBackground>
+  <PageWrapper content-background>
     <BasicTable @register="registerTable">
       <template #id="{ label, prop }">
-        <el-table-column :label="label" :prop="prop">
+        <ElTableColumn :label="label" :prop="prop">
           <template #default="scope">ID: {{ scope.row.id }}</template>
-        </el-table-column>
+        </ElTableColumn>
       </template>
       <template #no="{ label, prop }">
-        <el-table-column :label="label" :prop="prop">
+        <ElTableColumn :label="label" :prop="prop">
           <template #default="scope">
-            <el-tag type="success">
+            <ElTag type="success">
               {{ scope.row.no }}
-            </el-tag>
+            </ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
       </template>
       <template #avatar="{ label, prop }">
-        <el-table-column :label="label" :prop="prop">
+        <ElTableColumn :label="label" :prop="prop">
           <template #default="scope">
-            <el-avatar :size="60" :src="scope.row.avatar" />
+            <ElAvatar :size="60" :src="scope.row.avatar" />
           </template>
-        </el-table-column>
+        </ElTableColumn>
       </template>
       <template #category="{ label, prop }">
-        <el-table-column :label="label" :prop="prop">
+        <ElTableColumn :label="label" :prop="prop">
           <template #default="scope">
-            <el-tag type="success">
+            <ElTag type="success">
               {{ scope.row.category }}
-            </el-tag>
+            </ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
       </template>
     </BasicTable>
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElTag, ElAvatar, ElTableColumn } from 'element-plus';
-import { BasicTable, useTable } from '@/components/BasicTable';
-import { demoListApi } from '@/api/demo/table';
-import { getCustomCellColumns } from './data';
+import { defineComponent } from 'vue'
+import { ElAvatar, ElTableColumn, ElTag } from 'element-plus'
+import { getCustomCellColumns } from './data'
+import { BasicTable, useTable } from '@/components/BasicTable'
+import { demoListApi } from '@/api/demo/table'
 
 export default defineComponent({
   components: { ElTag, ElAvatar, ElTableColumn, BasicTable },
@@ -51,11 +51,11 @@ export default defineComponent({
       columns: getCustomCellColumns(),
       border: true,
       showTableSetting: true,
-    });
+    })
 
     return {
       registerTable,
-    };
+    }
   },
-});
+})
 </script>

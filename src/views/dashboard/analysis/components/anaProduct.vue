@@ -1,39 +1,45 @@
 <template>
-  <el-row class="ana-product" :gutter="32" v-if="datainfo">
-    <el-col :span="8">
-      <el-card shadow="always">
+  <ElRow v-if="datainfo" class="ana-product" :gutter="32">
+    <ElCol :span="8">
+      <ElCard shadow="always">
         <template #header>
-          <div class="dashboard-analysis__title">转化率</div>
+          <div class="dashboard-analysis__title">
+            转化率
+          </div>
         </template>
         <Basic1 :datainfo="datainfo.productLine || []" />
-      </el-card>
-    </el-col>
-    <el-col :span="8">
-      <el-card shadow="always">
+      </ElCard>
+    </ElCol>
+    <ElCol :span="8">
+      <ElCard shadow="always">
         <template #header>
-          <div class="dashboard-analysis__title">访问来源</div>
+          <div class="dashboard-analysis__title">
+            访问来源
+          </div>
         </template>
         <Basic2 :datainfo="datainfo.productBar || []" />
-      </el-card>
-    </el-col>
-    <el-col :span="8">
-      <el-card shadow="always">
+      </ElCard>
+    </ElCol>
+    <ElCol :span="8">
+      <ElCard shadow="always">
         <template #header>
-          <div class="dashboard-analysis__title">成交占比</div>
+          <div class="dashboard-analysis__title">
+            成交占比
+          </div>
         </template>
         <Basic3 :datainfo="datainfo.productPie || []" />
-      </el-card>
-    </el-col>
-  </el-row>
+      </ElCard>
+    </ElCol>
+  </ElRow>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElLoading, ElRow, ElCol, ElCard } from 'element-plus';
+import { defineComponent } from 'vue'
+import { ElCard, ElCol, ElLoading, ElRow } from 'element-plus'
 
-import Basic1 from './Basic1.vue';
-import Basic2 from './Basic2.vue';
-import Basic3 from './Basic3.vue';
+import Basic1 from './Basic1.vue'
+import Basic2 from './Basic2.vue'
+import Basic3 from './Basic3.vue'
 
 export default defineComponent({
   components: { ElRow, ElCol, ElCard, Basic1, Basic2, Basic3 },
@@ -50,7 +56,7 @@ export default defineComponent({
     },
   },
   setup() {
-    return {};
+    return {}
   },
-});
+})
 </script>

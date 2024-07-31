@@ -1,36 +1,34 @@
-import type { BasicListProps } from '../typing';
-import type { ElePagination } from '@/components/ElementPlus';
+import type { ComputedRef } from 'vue'
+import { computed, ref, unref, watchEffect } from 'vue'
+import type { BasicListProps } from '../typing'
+import { PAGE_LAYOUT_OPTIONS, PAGE_SIZE, PAGE_SIZE_OPTIONS } from '../const'
+import type { ElePagination } from '@/components/ElementPlus'
 
-import { computed, unref, ref, ComputedRef, watchEffect } from 'vue';
-import { PAGE_SIZE, PAGE_SIZE_OPTIONS, PAGE_LAYOUT_OPTIONS } from '../const';
-import { isBoolean, isFunction } from '@/utils/is';
+import { isBoolean, isFunction } from '@/utils/is'
 
 /**
  * 处理列表分页
  *
- * Handling list pagination
  * @param propsRef
  */
 export function usePagination(propsRef: ComputedRef<BasicListProps>) {
-  const configRef = ref<ElePagination>({});
+  const configRef = ref<ElePagination>({})
 
   /**
    * 获取分页信息
-   *
-   * Get pagination info
    */
   const getListPagination = computed((): ElePagination | boolean => {
-    const { pagination, api, dataSource } = unref(propsRef);
+    const { pagination, api, dataSource } = unref(propsRef)
     if (!pagination && !isFunction(api)) {
-      return false;
+      return false
     }
 
     if (pagination?.show === false) {
-      return false;
+      return false
     }
 
     if (!isFunction(api)) {
-      pagination.total = dataSource?.length || 0;
+      pagination.total = dataSource?.length || 0
     }
 
     return {
@@ -46,40 +44,38 @@ export function usePagination(propsRef: ComputedRef<BasicListProps>) {
       ...pagination,
       // dync
       ...unref(configRef),
-    };
-  });
+    }
+  })
 
   /**
    * 更新分页信息
    *
-   * Set pagination
    * @param info ElePagination
    */
   function setPagination(info: Partial<ElePagination>) {
-    const paginationInfo = unref(getListPagination);
+    const paginationInfo = unref(getListPagination)
     configRef.value = {
       ...(paginationInfo || {}),
       ...(info || {}),
-    };
+    }
   }
   /**
    * 获取分页信息
    *
-   * Get pagination
    */
   function getPagination() {
-    return unref(getListPagination);
+    return unref(getListPagination)
   }
 
   watchEffect(() => {
-    const { pagination } = unref(propsRef);
+    const { pagination } = unref(propsRef)
     if (pagination && !isBoolean(pagination)) {
       configRef.value = {
         ...pagination,
         ...unref(configRef),
-      };
+      }
     }
-  });
+  })
 
-  return { getListPagination, getPagination, setPagination };
+  return { getListPagination, getPagination, setPagination }
 }

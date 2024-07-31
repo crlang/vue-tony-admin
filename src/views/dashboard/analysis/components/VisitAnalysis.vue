@@ -3,11 +3,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, Ref, watch } from 'vue';
+import type { Ref } from 'vue'
+import { defineComponent, onMounted, ref, watch } from 'vue'
 
-import { useECharts } from '@/hooks/web/useECharts';
-
-import { DateKLine, DateItem, DateModeType } from '../data';
+import type { DateItem, DateKLine, DateModeType } from '../data'
+import { useECharts } from '@/hooks/web/useECharts'
 
 export default defineComponent({
   props: {
@@ -29,24 +29,24 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const chartRef = ref<HTMLDivElement | null>(null);
-    const { setOptions, echarts } = useECharts(chartRef as Ref<HTMLDivElement>);
+    const chartRef = ref<HTMLDivElement | null>(null)
+    const { setOptions, echarts } = useECharts(chartRef as Ref<HTMLDivElement>)
 
     const initChart = () => {
-      const list = props.datainfo || [];
-      const xdata: string[] = [];
+      const list = props.datainfo || []
+      const xdata: string[] = []
       const kdata: DateKLine = {
         k1: [],
         k2: [],
         k3: [],
-      };
+      }
       if (list?.length) {
         list.forEach((k) => {
-          xdata.push(k.name);
-          kdata.k1.push(k.k1);
-          kdata.k2.push(k.k2);
-          kdata.k3.push(k.k3);
-        });
+          xdata.push(k.name)
+          kdata.k1.push(k.k1)
+          kdata.k2.push(k.k2)
+          kdata.k3.push(k.k3)
+        })
       }
       setOptions({
         legend: {
@@ -217,22 +217,22 @@ export default defineComponent({
             },
           },
         ],
-      });
-    };
+      })
+    }
 
     watch(
       () => props.datainfo,
       () => {
-        initChart();
+        initChart()
       },
       { deep: true },
-    );
+    )
 
-    onMounted(initChart);
+    onMounted(initChart)
 
     return {
       chartRef,
-    };
+    }
   },
-});
+})
 </script>

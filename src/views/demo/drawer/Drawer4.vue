@@ -1,9 +1,10 @@
 <template>
   <BasicDrawer
     v-bind="$attrs"
-    @register="register"
     title="Drawer Title"
-    width="50%">
+    width="50%"
+    @register="register"
+  >
     <div>
       <BasicForm @register="registerForm" />
     </div>
@@ -11,10 +12,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
-import { BasicDrawer, useDrawerInner } from '@/components/BasicDrawer';
-import { BasicForm, BasicFormSchema, useForm } from '@/components/BasicForm';
+import { BasicDrawer, useDrawerInner } from '@/components/BasicDrawer'
+import type { BasicFormSchema } from '@/components/BasicForm'
+import { BasicForm, useForm } from '@/components/BasicForm'
 
 export default defineComponent({
   components: { BasicDrawer, BasicForm },
@@ -37,23 +39,23 @@ export default defineComponent({
           span: 12,
         },
       },
-    ];
+    ]
     const [registerForm, { setFieldsValue }] = useForm({
       schemas,
       showActionButtonGroup: false,
       actionColProps: {
         span: 24,
       },
-    });
+    })
     const [register] = useDrawerInner((data) => {
       // 方式1
       setFieldsValue({
         field2: data.data,
         field1: data.info,
-      });
-    });
+      })
+    })
 
-    return { register, schemas, registerForm };
+    return { register, schemas, registerForm }
   },
-});
+})
 </script>

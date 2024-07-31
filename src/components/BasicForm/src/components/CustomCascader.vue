@@ -4,34 +4,37 @@
     v-bind="getPanelBindValues"
     v-model:model-value="state"
     :props="lazyProps"
-    :options="getOptions" />
+    :options="getOptions"
+  />
   <ElCascader
     v-else
     v-bind="getBindValues"
     v-model:model-value="state"
     :options="getOptions"
     :props="lazyProps"
-    @visible-change="handleVisibleChange" />
+    @visible-change="handleVisibleChange"
+  />
 </template>
 
 <script lang="ts">
-import type { CascaderOption } from 'element-plus';
+import type { CascaderOption } from 'element-plus'
+import type { PropType } from 'vue'
 
-import { defineComponent, PropType, ref, unref, watch, watchEffect, computed } from 'vue';
-import { ElCascader, ElCascaderPanel } from 'element-plus';
-import { isFunction, isObject } from '@/utils/is';
-import { get, omit } from 'lodash-es';
-import { useRuleFormItem } from '@/hooks/component/useFormItem';
-import { EleCascader, EleCascaderPanel } from '@/components/ElementPlus';
-import { logError } from '@/utils/log';
+import { computed, defineComponent, ref, unref, watch, watchEffect } from 'vue'
+import { ElCascader, ElCascaderPanel } from 'element-plus'
+import { get, omit } from 'lodash-es'
+import type { EleCascader, EleCascaderPanel } from '@/components/ElementPlus'
+import { isFunction, isObject } from '@/utils/is'
+import { useRuleFormItem } from '@/hooks/component/useFormItem'
+import { logError } from '@/utils/log'
 
 interface OptionsItem extends CascaderOption {
-  value: string;
-  label: string;
-  loading?: boolean;
-  leaf?: boolean;
-  disabled?: boolean;
-  children?: OptionsItem[];
+  value: string
+  label: string
+  loading?: boolean
+  leaf?: boolean
+  disabled?: boolean
+  children?: OptionsItem[]
 }
 
 export default defineComponent({
@@ -48,7 +51,7 @@ export default defineComponent({
       type: Function as PropType<(arg?: Recordable<any>) => Promise<OptionsItem[]>>,
       default: null,
     },
-    // api params
+    // api 参数
     params: {
       type: [Object, String, Number],
       default: null,
@@ -61,7 +64,7 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    // support xxx.xxx.xx
+    // 支持 xxx.xxx.xx
     resultField: {
       type: String,
       default: '',
@@ -111,18 +114,16 @@ export default defineComponent({
       type: Array,
     },
   },
-  emits: ['change', 'options-change', 'update:modelValue'],
+  emits: ['change', 'optionsChange', 'update:modelValue'],
   setup(props, { emit, attrs }) {
-    // const apiData = ref<any[]>([]);
-    const optionsRef = ref<OptionsItem[]>([]);
-    const loading = ref<boolean>(false);
-    const emitData = ref<any[]>([]);
-    const isFirstLoad = ref(true);
-    const isFirstShow = ref(false);
+    const optionsRef = ref<OptionsItem[]>([])
+    const loading = ref<boolean>(false)
+    const emitData = ref<any[]>([])
+    const isFirstLoad = ref(true)
+    const isFirstShow = ref(false)
 
     // 嵌入表单中，只需使用钩子绑定即可执行表单验证
-    // Embedded in the form, just use the hook binding to perform form verification
-    const [state] = useRuleFormItem(props, 'modelValue', 'change', emitData);
+    const [state] = useRuleFormItem(props, 'modelValue', 'change', emitData)
 
     const getBindValues = computed((): EleCascader => {
       const opts = {
@@ -130,167 +131,177 @@ export default defineComponent({
         ...attrs,
         options: [],
         props: undefined,
-      };
+      }
 
-      return opts;
-    });
+      return opts
+    })
 
     const getPanelBindValues = computed(() => {
       const opts = {
         ...attrs,
         props: unref(getBindValues),
-      };
+      }
 
-      return opts as EleCascaderPanel;
-    });
+      return opts as EleCascaderPanel
+    })
 
     const lazyProps = {
       lazy: true,
       lazyLoad(node, resolve) {
-        const { lazyValueKey } = props;
+        const { lazyValueKey } = props
         if (!lazyValueKey) {
-          logError('When remote of CustomCascader is true, lazyValueKey is required.');
+          logError('When remote of CustomCascader is true, lazyValueKey is required.')
         }
         loadApiData(node[lazyValueKey])
           .then((res) => {
-            resolve(res);
+            resolve(res)
           })
           .catch(() => {
-            resolve(undefined);
-          });
-        node.loading = false;
+            resolve(undefined)
+          })
+        node.loading = false
       },
-    };
+    }
 
     const getOptions = computed(() => {
-      let data: OptionsItem[] = [];
-      const list = unref(optionsRef);
+      let data: OptionsItem[] = []
+      const list = unref(optionsRef)
       if (list?.length) {
-        data = generatorOptions(list);
+        data = generatorOptions(list)
       }
 
-      return data;
-    });
+      return data
+    })
 
     function generatorOptions(options: any[]): OptionsItem[] {
-      const { labelField, valueField, stringValue, childrenField, disabledField, leafField, isLeaf } = props;
+      const { labelField, valueField, stringValue, childrenField, disabledField, leafField, isLeaf } = props
       return options.reduce((prev, next: Recordable<any>) => {
         if (next) {
-          const label = next[labelField];
-          const value = next[valueField];
-          const leaf = isFunction(isLeaf) ? isLeaf(next) : next[leafField] || false;
-          const disabled = next[disabledField];
+          const label = next[labelField]
+          const value = next[valueField]
+          const leaf = isFunction(isLeaf) ? isLeaf(next) : next[leafField] || false
+          const disabled = next[disabledField]
           const item = {
             ...omit(next, [labelField, valueField]),
             label,
             leaf,
             disabled,
             value: stringValue ? `${value}` : value,
-          };
-          const children = Reflect.get(next, childrenField);
-          if (children) {
-            Reflect.set(item, childrenField, generatorOptions(children));
           }
-          prev.push(item);
+          const children = Reflect.get(next, childrenField)
+          if (children) {
+            Reflect.set(item, childrenField, generatorOptions(children))
+          }
+          prev.push(item)
         }
-        return prev;
-      }, [] as OptionsItem[]);
+        return prev
+      }, [] as OptionsItem[])
     }
 
     async function fetchData() {
-      const { api, params = null, resultField } = props;
-      if (!isFunction(api)) return;
+      const { api, params = null, resultField } = props
+      if (!isFunction(api))
+        return
 
-      let apiParams: Object | String | undefined;
+      let apiParams: object | string | undefined
       if (params) {
-        apiParams = isObject(params) ? { ...params } : params;
+        apiParams = isObject(params) ? { ...params } : params
       }
 
-      optionsRef.value = [];
+      optionsRef.value = []
       try {
-        loading.value = true;
-        const res = await api(apiParams);
+        loading.value = true
+        const res = await api(apiParams)
 
         if (Array.isArray(res)) {
-          optionsRef.value = res;
-          emitChange();
-          return;
+          optionsRef.value = res
+          emitChange()
+          return
         }
         if (resultField) {
-          optionsRef.value = get(res, resultField) || [];
+          optionsRef.value = get(res, resultField) || []
         }
-        emitChange();
-      } catch (error) {
-        optionsRef.value = [];
-        logError(error);
-      } finally {
-        loading.value = false;
+        emitChange()
+      }
+      catch (error) {
+        optionsRef.value = []
+        logError(error)
+      }
+      finally {
+        loading.value = false
       }
     }
 
     async function loadApiData(lvk) {
-      const { api, params = null, resultField, lazyParamsKey } = props;
-      let nodes: OptionsItem[] | undefined;
+      const { api, params = null, resultField, lazyParamsKey } = props
+      let nodes: OptionsItem[] | undefined
 
-      if (!isFunction(api)) return nodes;
+      if (!isFunction(api)) {
+        return nodes
+      }
 
-      let apiParams: Object | String | undefined;
+      let apiParams: object | string | undefined
 
       if (lazyParamsKey) {
-        apiParams = (isObject(params) ? { ...params } : params) || {};
-        apiParams[lazyParamsKey] = lvk;
-      } else {
-        apiParams = lvk;
+        apiParams = (isObject(params) ? { ...params } : params) || {}
+        apiParams[lazyParamsKey] = lvk
+      }
+      else {
+        apiParams = lvk
       }
 
       try {
-        const res = await api(apiParams);
+        const res = await api(apiParams)
         if (Array.isArray(res)) {
-          nodes = generatorOptions(res);
-        } else {
+          nodes = generatorOptions(res)
+        }
+        else {
           if (resultField) {
-            nodes = generatorOptions(get(res, resultField) || []);
+            nodes = generatorOptions(get(res, resultField) || [])
           }
         }
-      } catch (e) {
-        nodes = [];
-        logError(e);
+      }
+      catch (e) {
+        nodes = []
+        logError(e)
       }
 
-      return nodes;
+      return nodes
     }
 
     function emitChange() {
-      emit('options-change', unref(getOptions));
+      emit('optionsChange', unref(getOptions))
     }
 
     function handleVisibleChange(v) {
       if (v) {
-        isFirstShow.value = true;
+        isFirstShow.value = true
       }
     }
 
     watchEffect(() => {
-      optionsRef.value = (attrs.options || []) as OptionsItem[];
+      optionsRef.value = (attrs.options || []) as OptionsItem[]
       if (props.remote && !props.lazy) {
-        fetchData();
+        fetchData()
       }
-    });
+    })
 
     watch(
       () => state.value,
       (v) => {
-        emit('update:modelValue', v);
+        emit('update:modelValue', v)
       },
-    );
+    )
 
     watch(
       () => props.params,
       () => {
-        !unref(isFirstLoad) && fetchData();
+        if (!unref(isFirstLoad)) {
+          fetchData()
+        }
       },
       { deep: true },
-    );
+    )
 
     return {
       state,
@@ -300,7 +311,7 @@ export default defineComponent({
       getOptions,
       loading,
       handleVisibleChange,
-    };
+    }
   },
-});
+})
 </script>

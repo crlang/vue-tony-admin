@@ -1,8 +1,6 @@
 export const basicProps = {
   /**
    * 折叠标题
-   *
-   * Collapse title
    */
   title: {
     type: String,
@@ -10,14 +8,10 @@ export const basicProps = {
   },
   /**
    * 是否显示加载状态
-   *
-   * Whether to show loading
    */
   loading: Boolean,
   /**
    * 是否能折叠，否则只是普通容器
-   *
-   * Can it be expanded, otherwise just normal container
    */
   canExpan: {
     type: Boolean,
@@ -25,11 +19,9 @@ export const basicProps = {
   },
   /**
    * 标题右侧提示内容
-   *
-   * Warm reminder on the right side of the title
    */
   helpMessage: {
     type: [Array, String] as PropType<string | string[]>,
     default: '',
   },
-};
+}

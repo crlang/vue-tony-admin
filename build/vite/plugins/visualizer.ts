@@ -1,9 +1,9 @@
 /**
  * 生成文件统计占比图
  */
-import type { PluginOption } from 'vite';
+import type { PluginOption } from 'vite'
 
-import visualizer from 'rollup-plugin-visualizer';
+import visualizer from 'rollup-plugin-visualizer'
 
 export function createVisualizerConfig() {
   return visualizer({
@@ -11,5 +11,5 @@ export function createVisualizerConfig() {
     open: true,
     gzipSize: true,
     brotliSize: true,
-  }) as PluginOption;
+  }) as PluginOption
 }

@@ -1,43 +1,48 @@
 <template>
   <ElInput
+    v-model="currentSelect"
     :style="{ width }"
     placeholder="点击选择图标"
     :class="prefixCls"
-    v-model="currentSelect">
+  >
     <template #append>
       <ElPopover :width="560" trigger="click" placement="bottom">
         <div :class="`${prefixCls}__search`">
           <ElInput
             v-model="searckKeyword"
             placeholder="搜索图标"
+            clearable
             @input="handleSearchChange"
-            clearable />
+          />
         </div>
-        <div :class="`${prefixCls}__list`" v-if="currentList.length">
+        <div v-if="currentList.length" :class="`${prefixCls}__list`">
           <ScrollContainer>
             <ul>
               <li
                 v-for="icon in currentList"
                 :key="icon"
                 :class="{ 'is-actived': currentSelect === icon }"
+                :title="icon"
                 @click="handleClick(icon)"
-                :title="icon">
+              >
                 <SvgIcon v-if="isSvgMode" :name="icon" />
-                <Icon :name="icon" v-else />
+                <Icon v-else :name="icon" />
                 <div>{{ icon }}</div>
               </li>
             </ul>
           </ScrollContainer>
         </div>
         <template v-else>
-          <div class="p-5"><ElEmpty /></div>
+          <div class="p-5">
+            <ElEmpty />
+          </div>
         </template>
 
         <template #reference>
-          <span :class="`${prefixCls}__icon`" v-if="isSvgMode && currentSelect">
+          <span v-if="isSvgMode && currentSelect" :class="`${prefixCls}__icon`">
             <SvgIcon :name="currentSelect" />
           </span>
-          <span :class="`${prefixCls}__search`" v-else>
+          <span v-else :class="`${prefixCls}__search`">
             <Icon :name="currentSelect || 'ion:apps-outline'" />
           </span>
         </template>
@@ -47,18 +52,17 @@
 </template>
 
 <script lang="ts">
-import { ref, watchEffect, watch, unref, defineComponent } from 'vue';
-import { ElInput, ElPopover, ElEmpty } from 'element-plus';
-import svgIcons from 'virtual:svg-icons-names';
+import { defineComponent, ref, unref, watch, watchEffect } from 'vue'
+import { ElEmpty, ElInput, ElPopover } from 'element-plus'
+import svgIcons from 'virtual:svg-icons-names'
 
-import { useDesign } from '@/hooks/web/useDesign';
-import { ScrollContainer } from '@/components/ScrollContainer';
-import Icon from '@/components/Icon';
-import { SvgIcon } from '@/components/SvgIcon';
-import { useCopyToClipboard } from '@/hooks/web/useCopyToClipboard';
-import { useMessage } from '@/hooks/web/useMessage';
-
-import iconsData from './data';
+import iconsData from './data'
+import { useDesign } from '@/hooks/web/useDesign'
+import { ScrollContainer } from '@/components/ScrollContainer'
+import Icon from '@/components/Icon'
+import { SvgIcon } from '@/components/SvgIcon'
+import { useCopyToClipboard } from '@/hooks/web/useCopyToClipboard'
+import { useMessage } from '@/hooks/web/useMessage'
 
 export default defineComponent({
   name: 'IconPicker',
@@ -67,8 +71,6 @@ export default defineComponent({
   props: {
     /**
      * 绑定的值
-     *
-     * Bind value
      */
     modelValue: {
       type: String,
@@ -76,8 +78,6 @@ export default defineComponent({
     },
     /**
      * 输入框宽度
-     *
-     * Input width
      */
     width: {
       type: String,
@@ -85,14 +85,10 @@ export default defineComponent({
     },
     /**
      * 是否点击图标就复制
-     *
-     * Whether to copy when clicked
      */
     copy: { type: Boolean },
     /**
      * 弹窗图标模式
-     *
-     * Icon mode
      */
     mode: {
       type: String as PropType<'svg' | 'iconify'>,
@@ -101,83 +97,76 @@ export default defineComponent({
   },
   emits: ['change', 'update:modelValue'],
   setup(props, { emit }) {
-    const isSvgMode = props.mode === 'svg';
-    const icons = isSvgMode ? getSvgIcons() : getIcons();
+    const isSvgMode = props.mode === 'svg'
+    const icons = isSvgMode ? getSvgIcons() : getIcons()
 
-    const currentSelect = ref('');
-    const currentList = ref(icons);
-    const searckKeyword = ref('');
+    const currentSelect = ref('')
+    const currentList = ref(icons)
+    const searckKeyword = ref('')
 
-    const { prefixCls } = useDesign('icon-picker');
+    const { prefixCls } = useDesign('icon-picker')
 
-    const { clipboardRef, isSuccessRef } = useCopyToClipboard(props.modelValue);
-    const { createMessage } = useMessage();
+    const { clipboardRef, isSuccessRef } = useCopyToClipboard(props.modelValue)
+    const { createMessage } = useMessage()
 
     /**
      * 获取本地定义的图标列表
-     *
-     * Get a list of locally defined icons
      */
     function getIcons() {
-      const data = iconsData as any;
-      const prefix: string = data?.prefix ?? '';
-      let result: string[] = [];
+      const data = iconsData as any
+      const prefix: string = data?.prefix ?? ''
+      let result: string[] = []
       if (prefix) {
-        result = (data?.icons ?? []).map((item) => `${prefix}:${item}`);
-      } else if (Array.isArray(iconsData)) {
-        result = iconsData as string[];
+        result = (data?.icons ?? []).map(item => `${prefix}:${item}`)
       }
-      return result;
+      else if (Array.isArray(iconsData)) {
+        result = iconsData as string[]
+      }
+      return result
     }
 
     /**
      * 获取本地Svg文件图标
-     *
-     * Get local Svg file icon
      */
     function getSvgIcons() {
-      return svgIcons.map((icon) => icon.replace('icon-', ''));
+      return svgIcons.map(icon => icon.replace('icon-', ''))
     }
 
     /**
      * 处理点击图标动作
-     *
-     * Handle click icon action
      */
     function handleClick(icon: string) {
-      currentSelect.value = icon;
+      currentSelect.value = icon
       if (props.copy) {
-        clipboardRef.value = icon;
+        clipboardRef.value = icon
         if (unref(isSuccessRef)) {
-          createMessage.success('复制图标成功!');
+          createMessage.success('复制图标成功!')
         }
       }
     }
 
     /**
      * 筛选图标
-     *
-     * Filter icon
      */
     function handleSearchChange(value: any) {
       if (!value) {
-        currentList.value = icons;
-        return;
+        currentList.value = icons
+        return
       }
-      currentList.value = icons.filter((item) => item.includes(value));
+      currentList.value = icons.filter(item => item.includes(value))
     }
 
     watchEffect(() => {
-      currentSelect.value = props.modelValue;
-    });
+      currentSelect.value = props.modelValue
+    })
 
     watch(
       () => currentSelect.value,
       (v) => {
-        emit('update:modelValue', v);
-        return emit('change', v);
+        emit('update:modelValue', v)
+        return emit('change', v)
       },
-    );
+    )
 
     return {
       prefixCls,
@@ -187,9 +176,9 @@ export default defineComponent({
       searckKeyword,
       handleClick,
       handleSearchChange,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">

@@ -2,9 +2,10 @@
   <ElDropdown
     ref="tabsDropdownRef"
     :trigger="getTrigger"
-    @visible-change="handleContext"
     :popper-class="`${prefixCls}__popper`"
-    @command="handleMenuEvent">
+    @visible-change="handleContext"
+    @command="handleMenuEvent"
+  >
     <span v-if="getIsTabs" :class="`${prefixCls}--text`">{{ getTitle }}</span>
     <SvgIcon v-else name="down" :class="`${prefixCls}--icon`" />
     <template #dropdown>
@@ -14,7 +15,8 @@
           :key="index"
           :command="item.command"
           :disabled="item.disabled"
-          :divided="item.divided">
+          :divided="item.divided"
+        >
           <SvgIcon :name="item.icon" class="mr-2" />
           <span>{{ item.text }}</span>
         </ElDropdownItem>
@@ -24,16 +26,15 @@
 </template>
 
 <script lang="ts">
-import type { RouteLocationNormalized } from 'vue-router';
-import type { TabContentProps } from '../types';
+import type { RouteLocationNormalized } from 'vue-router'
 
-import { defineComponent, computed, unref, ref } from 'vue';
-import { ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus';
+import { computed, defineComponent, ref, unref } from 'vue'
+import { ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus'
+import type { TabContentProps } from '../types'
 
-import { SvgIcon } from '@/components/SvgIcon';
-
-import { useTabDropdown } from '../useTabDropdown';
-import { TabContentEnum } from '../types';
+import { useTabDropdown } from '../useTabDropdown'
+import { TabContentEnum } from '../types'
+import { SvgIcon } from '@/components/SvgIcon'
 
 export default defineComponent({
   name: 'TabContent',
@@ -50,27 +51,27 @@ export default defineComponent({
     prefixCls: String,
   },
   setup(props) {
-    const tabsDropdownRef = ref();
+    const tabsDropdownRef = ref()
 
     const getTitle = computed(() => {
-      const { tabItem: { meta } = {} } = props;
-      return meta && meta.title;
-    });
+      const { tabItem: { meta } = {} } = props
+      return meta && meta.title
+    })
 
-    const getIsTabs = computed(() => props.type === TabContentEnum.TAB_TYPE);
+    const getIsTabs = computed(() => props.type === TabContentEnum.TAB_TYPE)
 
-    const getTrigger = computed((): 'contextmenu' | 'click' | 'hover' => (unref(getIsTabs) ? 'contextmenu' : 'hover'));
+    const getTrigger = computed((): 'contextmenu' | 'click' | 'hover' => (unref(getIsTabs) ? 'contextmenu' : 'hover'))
 
-    const { getDropMenuList, handleMenuEvent, handleContextMenu } = useTabDropdown(props as TabContentProps, getIsTabs);
+    const { getDropMenuList, handleMenuEvent, handleContextMenu } = useTabDropdown(props as TabContentProps, getIsTabs)
 
-    function handleContext(v: Boolean) {
+    function handleContext(v: boolean) {
       if (v === true && props.tabItem) {
-        handleContextMenu(props.tabItem);
+        handleContextMenu(props.tabItem)
       }
     }
 
     function handleOpenDropdown() {
-      tabsDropdownRef.value.handleOpen();
+      tabsDropdownRef.value.handleOpen()
     }
 
     return {
@@ -82,7 +83,7 @@ export default defineComponent({
       getTrigger,
       getIsTabs,
       getTitle,
-    };
+    }
   },
-});
+})
 </script>

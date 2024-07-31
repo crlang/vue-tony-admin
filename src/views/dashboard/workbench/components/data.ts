@@ -1,22 +1,22 @@
 interface GroupItem {
-  title: string;
-  icon: string;
-  desc: string;
-  date: string;
-  group: string;
+  title: string
+  icon: string
+  desc: string
+  date: string
+  group: string
 }
 
 interface NavItem {
-  title: string;
-  icon: string;
-  color: string;
+  title: string
+  icon: string
+  color: string
 }
 
 interface DynamicInfoItem {
-  avatar: string;
-  name: string;
-  date: string;
-  desc: string;
+  avatar: string
+  name: string
+  date: string
+  desc: string
 }
 
 export const navItems: NavItem[] = [
@@ -50,7 +50,7 @@ export const navItems: NavItem[] = [
     icon: 'm_pie-chart',
     color: '#00d8ff',
   },
-];
+]
 
 export const dynamicInfoItems: DynamicInfoItem[] = [
   {
@@ -101,7 +101,7 @@ export const dynamicInfoItems: DynamicInfoItem[] = [
     date: '2023-04-01 20:00',
     desc: `推送了代码到 <a href="#">Github</a>`,
   },
-];
+]
 
 export const groupItems: GroupItem[] = [
   {
@@ -146,4 +146,4 @@ export const groupItems: GroupItem[] = [
     group: '架构组',
     date: '2023-04-01',
   },
-];
+]

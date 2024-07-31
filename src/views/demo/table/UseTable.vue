@@ -1,35 +1,35 @@
 <template>
   <PageWrapper>
     <div class="mb-4">
-      <el-button @click="reloadTable">还原</el-button>
-      <el-button @click="changeLoading">开启loading</el-button>
-      <el-button @click="changeColumns">更改Columns</el-button>
-      <el-button @click="getColumn">获取Columns</el-button>
-      <el-button @click="getTableData">获取表格数据</el-button>
-      <el-button @click="getTableRawData">获取接口原始数据</el-button>
-      <el-button @click="setPaginationInfo">跳转到第2页</el-button>
+      <ElButton @click="reloadTable">还原</ElButton>
+      <ElButton @click="changeLoading">开启loading</ElButton>
+      <ElButton @click="changeColumns">更改Columns</ElButton>
+      <ElButton @click="getColumn">获取Columns</ElButton>
+      <ElButton @click="getTableData">获取表格数据</ElButton>
+      <ElButton @click="getTableRawData">获取接口原始数据</ElButton>
+      <ElButton @click="setPaginationInfo">跳转到第2页</ElButton>
     </div>
     <div class="mb-4">
-      <el-button @click="toggleSelectedRows">切换选中行</el-button>
-      <el-button @click="getPaginationInfo">获取分页信息</el-button>
+      <ElButton @click="toggleSelectedRows">切换选中行</ElButton>
+      <ElButton @click="getPaginationInfo">获取分页信息</ElButton>
     </div>
     <BasicTable @register="registerTable" />
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElButton } from 'element-plus';
-import { BasicTable, useTable } from '@/components/BasicTable';
-import { getBasicColumns, getBasicShortColumns } from './data';
-import { useMessage } from '@/hooks/web/useMessage';
-import { demoListApi } from '@/api/demo/table';
+import { defineComponent } from 'vue'
+import { ElButton } from 'element-plus'
+import { getBasicColumns, getBasicShortColumns } from './data'
+import { BasicTable, useTable } from '@/components/BasicTable'
+import { useMessage } from '@/hooks/web/useMessage'
+import { demoListApi } from '@/api/demo/table'
 
 export default defineComponent({
   components: { ElButton, BasicTable },
   setup() {
-    const { createMessage } = useMessage();
-    const columns = getBasicColumns();
+    const { createMessage } = useMessage()
+    const columns = getBasicColumns()
     const [registerTable, { setLoading, setColumns, getColumns, getDataSource, getRawDataSource, reload, getPagination, setPagination, toggleAllSelection }] = useTable({
       title: 'useTable示例',
       titleHelpMessage: '使用useTable调用表格内方法',
@@ -38,55 +38,59 @@ export default defineComponent({
       rowKey: 'id',
       showTableSetting: true,
       onSelectionChange: (selection) => {
-        // do something
-        console.info(selection);
+      // eslint-disable-next-line no-console
+        console.info(selection)
       },
       showCheckboxColumn: true,
-    });
+    })
     function changeLoading() {
-      setLoading(true);
+      setLoading(true)
       setTimeout(() => {
-        setLoading(false);
-      }, 1000);
+        setLoading(false)
+      }, 1000)
     }
     function changeColumns() {
       // setColumns(['id', 'name', 'address'])
-      setColumns(getBasicShortColumns());
+      setColumns(getBasicShortColumns())
     }
     function reloadTable() {
-      setColumns(getBasicColumns());
+      setColumns(getBasicColumns())
 
-      reload();
+      reload()
     }
     function getColumn() {
-      createMessage.info('请在控制台查看！');
-      console.info(getColumns());
+      createMessage.info('请在控制台查看！')
+      // eslint-disable-next-line no-console
+      console.info(getColumns())
     }
 
     function getTableData() {
-      createMessage.info('请在控制台查看！');
-      console.info(getDataSource());
+      createMessage.info('请在控制台查看！')
+      // eslint-disable-next-line no-console
+      console.info(getDataSource())
     }
 
     function getTableRawData() {
-      createMessage.info('请在控制台查看！');
-      console.info(getRawDataSource());
+      createMessage.info('请在控制台查看！')
+      // eslint-disable-next-line no-console
+      console.info(getRawDataSource())
     }
 
     function getPaginationInfo() {
-      createMessage.info('请在控制台查看！');
-      console.info(getPagination());
+      createMessage.info('请在控制台查看！')
+      // eslint-disable-next-line no-console
+      console.info(getPagination())
     }
 
     function setPaginationInfo() {
       setPagination({
         currentPage: 2,
-      });
-      reload();
+      })
+      reload()
     }
 
     function toggleSelectedRows() {
-      toggleAllSelection();
+      toggleAllSelection()
     }
 
     return {
@@ -100,7 +104,7 @@ export default defineComponent({
       getPaginationInfo,
       setPaginationInfo,
       toggleSelectedRows,
-    };
+    }
   },
-});
+})
 </script>

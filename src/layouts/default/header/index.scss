@@ -96,6 +96,7 @@ $prefix-cls: '#{$tonyname}-layout-header';
         background: var(--header-background-hover-color);
       }
 
+      /* stylelint-disable-next-line selector-class-pattern */
       > span.el-tooltip__trigger {
         display: flex;
         align-items: center;

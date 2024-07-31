@@ -7,25 +7,23 @@
 </template>
 
 <script lang="ts">
-import type { EleDrawer } from '@/components/ElementPlus';
+import { computed, defineComponent, unref } from 'vue'
+import { ElDrawer } from 'element-plus'
+import Sider from './LayoutSider.vue'
+import MixSider from './MixSider.vue'
+import type { EleDrawer } from '@/components/ElementPlus'
 
-import { defineComponent, unref, computed } from 'vue';
-import { ElDrawer } from 'element-plus';
-
-import { useAppInject } from '@/hooks/web/useAppInject';
-import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
-import { useDesign } from '@/hooks/web/useDesign';
-
-import Sider from './LayoutSider.vue';
-import MixSider from './MixSider.vue';
+import { useAppInject } from '@/hooks/web/useAppInject'
+import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'SiderWrapper',
   components: { ElDrawer, Sider, MixSider },
   setup() {
-    const { prefixCls } = useDesign('layout-sider-wrapper');
-    const { getIsMobile } = useAppInject();
-    const { setMenuSetting, getCollapsed, getMenuWidth, getIsMixSidebar } = useMenuSetting();
+    const { prefixCls } = useDesign('layout-sider-wrapper')
+    const { getIsMobile } = useAppInject()
+    const { setMenuSetting, getCollapsed, getMenuWidth, getIsMixSidebar } = useMenuSetting()
 
     const getBindValues = computed(() => {
       const opts = {
@@ -34,19 +32,19 @@ export default defineComponent({
         // customClass: prefixCls,
         size: unref(getMenuWidth),
         modelValue: !unref(getCollapsed),
-      };
-      return opts as EleDrawer;
-    });
+      }
+      return opts as EleDrawer
+    })
 
     function handleClose() {
       setMenuSetting({
         collapsed: true,
-      });
+      })
     }
 
-    return { prefixCls, getBindValues, getIsMobile, getCollapsed, handleClose, getMenuWidth, getIsMixSidebar };
+    return { prefixCls, getBindValues, getIsMobile, getCollapsed, handleClose, getMenuWidth, getIsMixSidebar }
   },
-});
+})
 </script>
 
 <style lang="scss">

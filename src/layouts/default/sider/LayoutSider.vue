@@ -3,8 +3,9 @@
     v-show="showClassSideBarRef"
     ref="sideRef"
     :class="prefixCls"
-    :width="getMenuWidthX">
-    <LayoutMenu :menuMode="getMode" :splitType="getSplitType" />
+    :width="getMenuWidthX"
+  >
+    <LayoutMenu :menu-mode="getMode" :split-type="getSplitType" />
     <DragBar ref="dragBarRef" />
     <template v-if="getShowTrigger">
       <LayoutTrigger :class="`${prefixCls}-trigger`" sider />
@@ -13,51 +14,50 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, unref } from 'vue';
-import { ElAside } from 'element-plus';
+import { computed, defineComponent, ref, unref } from 'vue'
+import { ElAside } from 'element-plus'
 
-import LayoutTrigger from '@/layouts/default/trigger/index.vue';
-import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum';
-import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
-import { useAppInject } from '@/hooks/web/useAppInject';
-import { useDesign } from '@/hooks/web/useDesign';
-
-import LayoutMenu from '../menu/index.vue';
-import { useTrigger, useDragLine } from './useLayoutSider';
-import DragBar from './DragBar.vue';
+import LayoutMenu from '../menu/index.vue'
+import { useDragLine, useTrigger } from './useLayoutSider'
+import DragBar from './DragBar.vue'
+import LayoutTrigger from '@/layouts/default/trigger/index.vue'
+import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum'
+import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+import { useAppInject } from '@/hooks/web/useAppInject'
+import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'LayoutSideBar',
   components: { ElAside, LayoutMenu, DragBar, LayoutTrigger },
   setup() {
-    const dragBarRef = ref<ElRef>(null);
-    const sideRef = ref<ElRef>(null);
+    const dragBarRef = ref<ElRef>(null)
+    const sideRef = ref<ElRef>(null)
 
-    const { getSplit, getRealWidth, getMenuHidden } = useMenuSetting();
+    const { getSplit, getRealWidth, getMenuHidden } = useMenuSetting()
 
-    const { prefixCls } = useDesign('layout-sideBar');
+    const { prefixCls } = useDesign('layout-sideBar')
 
-    const { getIsMobile } = useAppInject();
+    const { getIsMobile } = useAppInject()
 
-    const { getShowTrigger } = useTrigger(getIsMobile);
+    const { getShowTrigger } = useTrigger(getIsMobile)
 
-    useDragLine(sideRef, dragBarRef);
+    useDragLine(sideRef, dragBarRef)
 
     const getMode = computed(() => {
-      return unref(getSplit) ? MenuModeEnum.INLINE : null;
-    });
+      return unref(getSplit) ? MenuModeEnum.INLINE : null
+    })
 
     const getSplitType = computed(() => {
-      return unref(getSplit) ? MenuSplitTyeEnum.LEFT : MenuSplitTyeEnum.NONE;
-    });
+      return unref(getSplit) ? MenuSplitTyeEnum.LEFT : MenuSplitTyeEnum.NONE
+    })
 
     const showClassSideBarRef = computed(() => {
-      return unref(getSplit) ? !unref(getMenuHidden) : true;
-    });
+      return unref(getSplit) ? !unref(getMenuHidden) : true
+    })
 
     const getMenuWidthX = computed(() => {
-      return `${unref(getRealWidth)}px`;
-    });
+      return `${unref(getRealWidth)}px`
+    })
 
     return {
       prefixCls,
@@ -69,9 +69,9 @@ export default defineComponent({
       getMode,
       getSplitType,
       getShowTrigger,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">

@@ -3,9 +3,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref, Ref, onMounted } from 'vue';
-import { useECharts } from '@/hooks/web/useECharts';
-import { getNightingaleData } from './data';
+import type { PropType, Ref } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
+import { getNightingaleData } from './data'
+import { useECharts } from '@/hooks/web/useECharts'
 
 export default defineComponent({
   props: {
@@ -19,8 +20,8 @@ export default defineComponent({
     },
   },
   setup() {
-    const chartRef = ref<HTMLDivElement | null>(null);
-    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
+    const chartRef = ref<HTMLDivElement | null>(null)
+    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>)
     onMounted(() => {
       setOptions({
         legend: {
@@ -48,9 +49,9 @@ export default defineComponent({
             data: getNightingaleData(),
           },
         ],
-      });
-    });
-    return { chartRef };
+      })
+    })
+    return { chartRef }
   },
-});
+})
 </script>

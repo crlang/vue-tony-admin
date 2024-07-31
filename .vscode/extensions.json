@@ -1,12 +1,7 @@
 {
   "recommendations": [
     "Vue.volar",
-    "Vue.vscode-typescript-vue-plugin",
-    "sdras.vue-vscode-snippets",
     "dbaeumer.vscode-eslint",
-    "stylelint.vscode-stylelint",
-    "esbenp.prettier-vscode",
-    "antfu.iconify",
-    "mikestead.dotenv"
+    "esbenp.prettier-vscode"
   ]
 }

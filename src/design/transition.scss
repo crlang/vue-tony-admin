@@ -11,11 +11,11 @@
 
 /* expand */
 .tyani-expand {
-  @include transition-default();
+  @include transition-default;
 
   /* expand-x */
   &-x {
-    @include transition-default();
+    @include transition-default;
   }
 }
 
@@ -110,7 +110,7 @@
 
 /* scale */
 .tyani-scale {
-  @include transition-default();
+  @include transition-default;
 
   &-enter-from,
   &-leave,
@@ -121,7 +121,7 @@
 
   /* scale-rotate */
   &-rotate {
-    @include transition-default();
+    @include transition-default;
 
     &-enter-from,
     &-leave,
@@ -134,7 +134,7 @@
 
 /* scroll */
 .tyani-scroll {
-  @include transition-default();
+  @include transition-default;
 
   &-enter-from,
   &-leave-to {
@@ -151,7 +151,7 @@
 
   /* scroll-reverse */
   &-reverse {
-    @include transition-default();
+    @include transition-default;
 
     &-enter-from,
     &-leave-to {
@@ -169,7 +169,7 @@
 
   /* scroll-x */
   &-x {
-    @include transition-default();
+    @include transition-default;
 
     &-enter-from,
     &-leave-to {
@@ -186,7 +186,7 @@
 
     /* scroll-x-reverse */
     &-reverse {
-      @include transition-default();
+      @include transition-default;
 
       &-enter-from,
       &-leave-to {
@@ -206,7 +206,7 @@
 
 /* slide */
 .tyani-slide {
-  @include transition-default();
+  @include transition-default;
 
   &-enter-from,
   &-leave-to {
@@ -216,7 +216,7 @@
 
   /* slide-reverse */
   &-reverse {
-    @include transition-default();
+    @include transition-default;
 
     &-enter-from,
     &-leave-to {
@@ -227,7 +227,7 @@
 
   /* slide-x */
   &-x {
-    @include transition-default();
+    @include transition-default;
 
     &-enter-from,
     &-leave-to {
@@ -237,7 +237,7 @@
 
     /* slide-x-reverse */
     &-reverse {
-      @include transition-default();
+      @include transition-default;
 
       &-enter-from,
       &-leave-to {

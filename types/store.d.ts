@@ -1,33 +1,21 @@
-import { ParamsLogin, ResponseGetUserInfo } from '@/api/types';
-import { ErrorTypeEnum } from '@/enums/exceptionEnum';
-import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum';
+import type { ParamsLogin, ResponseGetUserInfo } from '@/api/types'
+import type { ErrorTypeEnum } from '@/enums/exceptionEnum'
+import type { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum'
 
-// Lock screen information
 export interface LockInfo {
-  // Password required
-  pwd?: string | undefined;
-  // Is it locked?
-  isLock?: boolean;
+  pwd?: string | undefined
+  isLock?: boolean
 }
 
-// Error-log information
 export interface ErrorLogInfo {
-  // Type of error
-  type: ErrorTypeEnum;
-  // Error file
-  file: string;
-  // Error name
-  name?: string;
-  // Error message
-  message: string;
-  // Error stack
-  stack?: string;
-  // Error detail
-  detail: string;
-  // Error url
-  url: string;
-  // Error time
-  time?: string;
+  type: ErrorTypeEnum
+  file: string
+  name?: string
+  message: string
+  stack?: string
+  detail: string
+  url: string
+  time?: string
 }
 
 /**
@@ -41,8 +29,8 @@ export interface LoginParams extends ParamsLogin {}
 export interface UserInfo extends ResponseGetUserInfo {}
 
 export interface BeforeMiniState {
-  menuCollapsed?: boolean;
-  menuSplit?: boolean;
-  menuMode?: MenuModeEnum;
-  menuType?: MenuTypeEnum;
+  menuCollapsed?: boolean
+  menuSplit?: boolean
+  menuMode?: MenuModeEnum
+  menuType?: MenuTypeEnum
 }

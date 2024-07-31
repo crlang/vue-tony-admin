@@ -21,11 +21,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ArrowDownBold, ArrowLeftBold, ArrowRightBold } from '@element-plus/icons-vue';
+import { defineComponent } from 'vue'
+import { ArrowDownBold, ArrowLeftBold, ArrowRightBold } from '@element-plus/icons-vue'
 
-import { CardGrid, CardGridItem } from '@/components/CardGrid';
-import { SvgIcon } from '@/components/SvgIcon';
+import { CardGrid, CardGridItem } from '@/components/CardGrid'
+import { SvgIcon } from '@/components/SvgIcon'
 
 export default defineComponent({
   components: {
@@ -37,7 +37,7 @@ export default defineComponent({
     SvgIcon,
   },
   setup() {
-    return {};
+    return {}
   },
-});
+})
 </script>

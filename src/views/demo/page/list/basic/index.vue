@@ -1,30 +1,30 @@
 <template>
   <PageWrapper :class="prefixCls" title="数据列表">
     <div :class="`${prefixCls}__top`">
-      <el-row :gutter="12">
-        <el-col :span="8" :class="`${prefixCls}__top-col`">
+      <ElRow :gutter="12">
+        <ElCol :span="8" :class="`${prefixCls}__top-col`">
           <div>我的待办</div>
           <p>8个任务</p>
-        </el-col>
-        <el-col :span="8" :class="`${prefixCls}__top-col`">
+        </ElCol>
+        <ElCol :span="8" :class="`${prefixCls}__top-col`">
           <div>本周任务平均处理时间</div>
           <p>32分钟</p>
-        </el-col>
-        <el-col :span="8" :class="`${prefixCls}__top-col`">
+        </ElCol>
+        <ElCol :span="8" :class="`${prefixCls}__top-col`">
           <div>本周完成任务数</div>
           <p>24个任务</p>
-        </el-col>
-      </el-row>
+        </ElCol>
+      </ElRow>
     </div>
 
     <CollapseContainer title="常规列表">
       <div :class="`${prefixCls}__content`">
-        <BasicList :dataSource="list" :pagination="pagination">
+        <BasicList :data-source="list" :pagination="pagination">
           <template #renderItem="{ item }">
             <BasicListItem class="list">
               <template #title>
                 <span>{{ item.title }}</span>
-                <div class="extra" v-if="item.extra">
+                <div v-if="item.extra" class="extra">
                   {{ item.extra }}
                 </div>
               </template>
@@ -43,7 +43,7 @@
                   </div>
                 </div>
                 <div class="progress">
-                  <el-progress :percentage="item.percent" />
+                  <ElProgress :percentage="item.percent" />
                 </div>
               </template>
             </BasicListItem>
@@ -67,25 +67,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElRow, ElCol, ElProgress } from 'element-plus';
-import { cardList } from './data';
-import { BasicList, BasicListItem } from '@/components/BasicList';
-import { CollapseContainer } from '@/components/CollapseContainer';
+import { defineComponent } from 'vue'
+import { ElCol, ElProgress, ElRow } from 'element-plus'
+import { cardList } from './data'
+import { BasicList, BasicListItem } from '@/components/BasicList'
+import { CollapseContainer } from '@/components/CollapseContainer'
 
 function mockApi({ page = 1, pageSize = 20 }) {
   return new Promise<any>((resolve, reject) => {
     if ((page - 0) * pageSize > cardList.length) {
-      return reject(null);
+      return reject(new Error('没有数据了'))
     }
     const res = {
-      page: page,
-      pageSize: pageSize,
+      page,
+      pageSize,
       items: cardList.slice((page - 1) * pageSize, page * pageSize),
       total: cardList.length,
-    };
-    return resolve(res);
-  });
+    }
+    return resolve(res)
+  })
 }
 
 export default defineComponent({
@@ -106,9 +106,9 @@ export default defineComponent({
         pageSize: 3,
       },
       mockApi,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

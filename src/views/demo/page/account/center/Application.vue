@@ -1,17 +1,18 @@
 <template>
   <BasicList :class="prefixCls">
-    <el-row :gutter="16">
+    <ElRow :gutter="16">
       <template v-for="item in list" :key="item.title">
-        <el-col :span="6">
+        <ElCol :span="6">
           <BasicListItem :class="`${prefixCls}__item`">
-            <el-card :class="`${prefixCls}__card`" :bodyStyle="{ padding: 0 }">
+            <ElCard :class="`${prefixCls}__card`" :body-style="{ padding: 0 }">
               <div :class="`${prefixCls}__card-title`">
                 <SvgIcon
-                  class="icon"
                   v-if="item.icon"
+                  class="icon"
                   :name="item.icon"
                   size="24"
-                  :color="item.color" />
+                  :color="item.color"
+                />
                 {{ item.title }}
               </div>
               <div :class="`${prefixCls}__card-num`">
@@ -24,24 +25,25 @@
                 <span>{{ item.new }}</span>
               </div>
               <SvgIcon
-                :class="`${prefixCls}__card-download`"
                 v-if="item.download"
+                :class="`${prefixCls}__card-download`"
                 size="20"
-                :name="item.download" />
-            </el-card>
+                :name="item.download"
+              />
+            </ElCard>
           </BasicListItem>
-        </el-col>
+        </ElCol>
       </template>
-    </el-row>
+    </ElRow>
   </BasicList>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElRow, ElCol, ElCard } from 'element-plus';
-import { SvgIcon } from '@/components/SvgIcon';
-import { applicationList } from './data';
-import { BasicList, BasicListItem } from '@/components/BasicList';
+import { defineComponent } from 'vue'
+import { ElCard, ElCol, ElRow } from 'element-plus'
+import { applicationList } from './data'
+import { SvgIcon } from '@/components/SvgIcon'
+import { BasicList, BasicListItem } from '@/components/BasicList'
 
 export default defineComponent({
   components: {
@@ -56,9 +58,9 @@ export default defineComponent({
     return {
       prefixCls: 'account-center',
       list: applicationList,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

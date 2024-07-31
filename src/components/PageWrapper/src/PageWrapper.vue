@@ -1,17 +1,21 @@
 <template>
-  <div :class="getClass" ref="wrapperRef">
+  <div ref="wrapperRef" :class="getClass">
     <div v-if="getShowheader" ref="headerRef" :class="getHeaderClass">
-      <div v-if="getTitle" :class="`${prefixCls}-header__title`">{{ getTitle }}</div>
+      <div v-if="getTitle" :class="`${prefixCls}-header__title`">
+        {{ getTitle }}
+      </div>
       <template v-else>
         <slot name="title"></slot>
       </template>
 
-      <div v-if="getDesc" :class="`${prefixCls}-header__description`">{{ getDesc }}</div>
+      <div v-if="getDesc" :class="`${prefixCls}-header__description`">
+        {{ getDesc }}
+      </div>
       <template v-else>
         <slot name="description"></slot>
       </template>
 
-      <div :class="`${prefixCls}-header__toolbar`" v-if="$slots.toolbar">
+      <div v-if="$slots.toolbar" :class="`${prefixCls}-header__toolbar`">
         <slot name="toolbar"></slot>
       </div>
 
@@ -20,7 +24,7 @@
       </template>
     </div>
 
-    <div :class="getContentClass" ref="contentRef">
+    <div ref="contentRef" :class="getContentClass">
       <slot></slot>
     </div>
 
@@ -33,32 +37,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref, provide } from 'vue';
-import { useRoute } from 'vue-router';
+import { computed, defineComponent, provide, ref } from 'vue'
+import { useRoute } from 'vue-router'
 
-import { useDesign } from '@/hooks/web/useDesign';
-
-import { PageWrapperFixedHeightKey } from './helper';
+import { PageWrapperFixedHeightKey } from './helper'
+import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'PageWrapper',
   props: {
     /**
      * 页面标题(slot)
-     *
-     * Page header title
      */
     title: String,
     /**
      * 页面描述(slot)
-     *
-     * Page header description
      */
     description: String,
     /**
      * 当title和description不存在的时候，是否继承路由
-     *
-     * Whether to inherit routing when title and description do not exist
      */
     inheritRouter: {
       type: Boolean,
@@ -66,92 +63,83 @@ export default defineComponent({
     },
     /**
      * 头部 class
-     *
-     * Header class
      */
     headerClass: String,
     /**
      * 内容区高度是否占满
-     *
-     * Whether the content is full
      */
     contentFullHeight: Boolean,
     /**
      * 内容区 class
-     *
-     * Content class
      */
     contentClass: String,
     /**
      * 内容区背景
-     *
-     * Content background
      */
     contentBackground: Boolean,
   },
   setup(props, { slots }) {
-    const wrapperRef = ref<HTMLDivElement | null>(null);
-    const headerRef = ref<HTMLDivElement | null>(null);
-    const contentRef = ref<HTMLDivElement | null>(null);
-    const footerRef = ref<HTMLDivElement | null>(null);
-    const { prefixCls } = useDesign('page-wrapper');
-    const route = useRoute();
+    const wrapperRef = ref<HTMLDivElement | null>(null)
+    const headerRef = ref<HTMLDivElement | null>(null)
+    const contentRef = ref<HTMLDivElement | null>(null)
+    const footerRef = ref<HTMLDivElement | null>(null)
+    const { prefixCls } = useDesign('page-wrapper')
+    const route = useRoute()
 
     // 根据提供的内容，自动判断是否高度占满
-    // According to the provided content, automatically determine whether the height is full
     provide(
       PageWrapperFixedHeightKey,
       computed(() => props.contentFullHeight),
-    );
+    )
 
     const getClass = computed(() => {
-      const { contentFullHeight } = props;
+      const { contentFullHeight } = props
 
       return [
         prefixCls,
         {
           [`${prefixCls}--full`]: contentFullHeight,
         },
-      ];
-    });
+      ]
+    })
 
     const getTitle = computed(() => {
-      const { title, inheritRouter } = props;
+      const { title, inheritRouter } = props
       if (inheritRouter) {
-        return title || route.meta.title || undefined;
+        return title || route.meta.title || undefined
       }
 
-      return title || undefined;
-    });
+      return title || undefined
+    })
 
     const getDesc = computed(() => {
-      const { description, inheritRouter } = props;
+      const { description, inheritRouter } = props
 
       if (inheritRouter) {
-        return description || route.meta.description || undefined;
+        return description || route.meta.description || undefined
       }
 
-      return description || undefined;
-    });
+      return description || undefined
+    })
     const getShowheader = computed(() => {
-      return !!(getTitle.value || slots?.title || getDesc.value || slots?.description || slots?.toolbar || slots?.extra);
-    });
+      return !!(getTitle.value || slots?.title || getDesc.value || slots?.description || slots?.toolbar || slots?.extra)
+    })
 
     const getHeaderClass = computed(() => {
-      const { headerClass } = props;
-      return [`${prefixCls}-header`, headerClass];
-    });
+      const { headerClass } = props
+      return [`${prefixCls}-header`, headerClass]
+    })
 
     const getContentClass = computed(() => {
-      const { contentBackground, contentClass } = props;
+      const { contentBackground, contentClass } = props
       return [
         `${prefixCls}-content`,
         contentClass,
         {
           [`${prefixCls}-content--background`]: contentBackground,
         },
-      ];
-    });
+      ]
+    })
 
     return {
       prefixCls,
@@ -165,9 +153,9 @@ export default defineComponent({
       getShowheader,
       getHeaderClass,
       getContentClass,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">
@@ -199,6 +187,7 @@ $prefix-cls: '#{$tonyname}-page-wrapper';
       right: 16px;
     }
 
+    /* stylelint-disable-next-line selector-class-pattern */
     .el-tabs__header {
       margin-bottom: 0;
     }
@@ -225,9 +214,9 @@ $prefix-cls: '#{$tonyname}-page-wrapper';
     background-color: var(--background-primary-color);
     border-top: 1px solid var(--border-color);
     box-shadow:
-      0 -6px 16px -8px rgba(0, 0, 0, 0.08),
-      0 -9px 28px 0 rgba(0, 0, 0, 0.05),
-      0 -12px 48px 16px rgba(0, 0, 0, 0.03);
+      0 -6px 16px -8px rgb(0 0 0 / 8%),
+      0 -9px 28px 0 rgb(0 0 0 / 5%),
+      0 -12px 48px 16px rgb(0 0 0 / 3%);
   }
 
   &--full {

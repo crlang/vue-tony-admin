@@ -1,14 +1,18 @@
 <template>
   <div :class="prefixCls">
-    <div :class="`${prefixCls}__header`" v-if="title || $slots.title || $slots.action">
-      <BasicTitle :helpMessage="helpMessage">
-        <template v-if="title">{{ title }}</template>
-        <template v-else><slot name="title"></slot></template>
+    <div v-if="title || $slots.title || $slots.action" :class="`${prefixCls}__header`">
+      <BasicTitle :help-message="helpMessage">
+        <template v-if="title">
+          {{ title }}
+        </template>
+        <template v-else>
+          <slot name="title"></slot>
+        </template>
       </BasicTitle>
       <div :class="`${prefixCls}__action`">
         <slot name="extra"></slot>
         <template v-if="canExpan">
-          <SvgIcon @click="handleExpand" :name="show ? 'up' : 'down'" />
+          <SvgIcon :name="show ? 'up' : 'down'" @click="handleExpand" />
         </template>
       </div>
     </div>
@@ -27,22 +31,21 @@
         </div>
       </template>
     </div>
-    <div :class="`${prefixCls}__footer`" v-if="$slots.footer">
+    <div v-if="$slots.footer" :class="`${prefixCls}__footer`">
       <slot name="footer"></slot>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue';
-import { ElSkeleton } from 'element-plus';
+import { defineComponent, ref } from 'vue'
+import { ElSkeleton } from 'element-plus'
 
-import { useDesign } from '@/hooks/web/useDesign';
-import { ExpandTransition } from '@/components/Transition';
-import { BasicTitle } from '@/components/Basic';
-import { SvgIcon } from '@/components/SvgIcon';
-
-import { basicProps } from './props';
+import { basicProps } from './props'
+import { useDesign } from '@/hooks/web/useDesign'
+import { ExpandTransition } from '@/components/Transition'
+import { BasicTitle } from '@/components/Basic'
+import { SvgIcon } from '@/components/SvgIcon'
 
 export default defineComponent({
   name: 'CollapseContainer',
@@ -50,22 +53,22 @@ export default defineComponent({
   props: basicProps,
   emits: ['expand'],
   setup(_, { emit }) {
-    const show = ref(true);
+    const show = ref(true)
 
-    const { prefixCls } = useDesign('collapse-container');
+    const { prefixCls } = useDesign('collapse-container')
 
     function handleExpand() {
-      show.value = !show.value;
-      emit('expand', show.value);
+      show.value = !show.value
+      emit('expand', show.value)
     }
 
     return {
       prefixCls,
       show,
       handleExpand,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">

@@ -1,16 +1,16 @@
 <template>
   <div :class="prefixCls">
-    <el-row :class="`${prefixCls}-top`">
-      <el-col :span="9" :class="`${prefixCls}-col`">
-        <el-row>
-          <el-col :span="8">
+    <ElRow :class="`${prefixCls}-top`">
+      <ElCol :span="9" :class="`${prefixCls}-col`">
+        <ElRow>
+          <ElCol :span="8">
             <div :class="`${prefixCls}-top__avatar`">
               <ElImage style="width: 70px" :src="avatar" />
               <span>Tony</span>
               <div>海纳百川，有容乃大</div>
             </div>
-          </el-col>
-          <el-col :span="16">
+          </ElCol>
+          <ElCol :span="16">
             <div :class="`${prefixCls}-top__detail`">
               <template v-for="detail in details" :key="detail.title">
                 <p class="mb-3">
@@ -19,50 +19,50 @@
                 </p>
               </template>
             </div>
-          </el-col>
-        </el-row>
-      </el-col>
-      <el-col :span="7" :class="`${prefixCls}-col`">
-        <CollapseContainer title="标签" :canExpan="false">
+          </ElCol>
+        </ElRow>
+      </ElCol>
+      <ElCol :span="7" :class="`${prefixCls}-col`">
+        <CollapseContainer title="标签" :can-expan="false">
           <template v-for="tag in tags" :key="tag">
-            <el-tag class="mb-2 mr-2" size="small">
+            <ElTag class="mb-2 mr-2" size="small">
               {{ tag }}
-            </el-tag>
+            </ElTag>
           </template>
         </CollapseContainer>
-      </el-col>
-      <el-col :span="8" :class="`${prefixCls}-col`">
-        <CollapseContainer :class="`${prefixCls}-top__team`" title="团队" :canExpan="false">
+      </ElCol>
+      <ElCol :span="8" :class="`${prefixCls}-col`">
+        <CollapseContainer :class="`${prefixCls}-top__team`" title="团队" :can-expan="false">
           <div v-for="(team, index) in teams" :key="index" :class="`${prefixCls}-top__team-item`">
             <SvgIcon :name="team.icon" :color="team.color" />
             <span>{{ team.title }}</span>
           </div>
         </CollapseContainer>
-      </el-col>
-    </el-row>
+      </ElCol>
+    </ElRow>
     <div :class="`${prefixCls}-bottom`">
-      <el-tabs>
+      <ElTabs>
         <template v-for="item in achieveList" :key="item.key">
-          <el-tab-pane :label="item.name">
+          <ElTabPane :label="item.name">
             <component :is="item.component" />
-          </el-tab-pane>
+          </ElTabPane>
         </template>
-      </el-tabs>
+      </ElTabs>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
-import { ElRow, ElCol, ElTabs, ElTabPane, ElTag, ElImage } from 'element-plus';
-import { CollapseContainer } from '@/components/CollapseContainer';
-import { SvgIcon } from '@/components/SvgIcon';
-import ArticleList from './ArticleList.vue';
-import Application from './Application.vue';
-import Project from './Project.vue';
+import { computed, defineComponent } from 'vue'
+import { ElCol, ElImage, ElRow, ElTabPane, ElTabs, ElTag } from 'element-plus'
+import ArticleList from './ArticleList.vue'
+import Application from './Application.vue'
+import Project from './Project.vue'
 
-import { tags, teams, details, achieveList } from './data';
-import { useUserStore } from '@/store/modules/user';
+import { achieveList, details, tags, teams } from './data'
+import { SvgIcon } from '@/components/SvgIcon'
+import { CollapseContainer } from '@/components/CollapseContainer'
+import { useUserStore } from '@/store/modules/user'
 
 export default defineComponent({
   components: {
@@ -79,8 +79,8 @@ export default defineComponent({
     ElImage,
   },
   setup() {
-    const userStore = useUserStore();
-    const avatar = computed(() => userStore.getUserInfo.avatar);
+    const userStore = useUserStore()
+    const avatar = computed(() => userStore.getUserInfo.avatar)
     return {
       prefixCls: 'account-center',
       avatar,
@@ -88,9 +88,9 @@ export default defineComponent({
       teams,
       details,
       achieveList,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>
@@ -99,7 +99,7 @@ export default defineComponent({
     padding: 0 10px;
 
     &:not(:last-child) {
-      border-right: 1px dashed rgba(206, 206, 206, 0.5);
+      border-right: 1px dashed rgb(206 206 206 / 50%);
     }
   }
 

@@ -1,13 +1,13 @@
-import { ref, computed } from 'vue';
-import { BasicFormSchema } from '@/components/BasicForm';
+import { computed, ref } from 'vue'
+import type { BasicFormSchema } from '@/components/BasicForm'
 
-const validateMobile = (_rule, value, callback) => {
-  const reg = /^1[3,4,5,6,7,8,9]\d{9}$/;
+function validateMobile(_rule, value, callback) {
+  const reg = /^1[3-9,]\d{9}$/
   if (!reg.test(value)) {
-    return callback(new Error('手机号码格式不正确'));
+    return callback(new Error('手机号码格式不正确'))
   }
-  return callback();
-};
+  return callback()
+}
 
 /**
  * 表单类型
@@ -19,23 +19,23 @@ export enum LoginStateEnum {
   MOBILE,
 }
 
-const currentState = ref(LoginStateEnum.LOGIN);
+const currentState = ref(LoginStateEnum.LOGIN)
 
 /**
  * 登录表单状态
  */
 export function useLoginState() {
   function setLoginState(state: LoginStateEnum) {
-    currentState.value = state;
+    currentState.value = state
   }
 
-  const getLoginState = computed(() => currentState.value);
+  const getLoginState = computed(() => currentState.value)
 
   function handleBackLogin() {
-    setLoginState(LoginStateEnum.LOGIN);
+    setLoginState(LoginStateEnum.LOGIN)
   }
 
-  return { setLoginState, getLoginState, handleBackLogin };
+  return { setLoginState, getLoginState, handleBackLogin }
 }
 
 export const loginFormSchema: BasicFormSchema[] = [
@@ -83,7 +83,7 @@ export const loginFormSchema: BasicFormSchema[] = [
       class: 'mb-3',
     },
   },
-];
+]
 
 export const mobileFormSchema: BasicFormSchema[] = [
   {
@@ -115,7 +115,7 @@ export const mobileFormSchema: BasicFormSchema[] = [
     slot: 'agreement',
     rules: [{ required: true, message: '请阅读并同意后勾选' }],
   },
-];
+]
 
 export const registerFormSchema: BasicFormSchema[] = [
   {
@@ -160,22 +160,7 @@ export const registerFormSchema: BasicFormSchema[] = [
     componentProps: {
       placeholder: '确认输入密码',
     },
-    dynamicRules: ({ values }) => {
-      return [
-        {
-          required: true,
-          validator: (_rule, value) => {
-            if (!value) {
-              return Promise.reject('请确认输入密码');
-            }
-            if (value !== values.password) {
-              return Promise.reject('两次输入的密码不一致!');
-            }
-            return Promise.resolve();
-          },
-        },
-      ];
-    },
+    dynamicRules: passwordCheck,
     itemProps: {
       class: 'mb-2',
     },
@@ -187,7 +172,7 @@ export const registerFormSchema: BasicFormSchema[] = [
     slot: 'agreement',
     rules: [{ required: true, message: '请阅读并同意后勾选' }],
   },
-];
+]
 
 export const forgetpwdFormSchema: BasicFormSchema[] = [
   {
@@ -232,21 +217,23 @@ export const forgetpwdFormSchema: BasicFormSchema[] = [
     componentProps: {
       placeholder: '确认输入密码',
     },
-    dynamicRules: ({ values }) => {
-      return [
-        {
-          required: true,
-          validator: (_rule, value) => {
-            if (!value) {
-              return Promise.reject('请确认输入密码');
-            }
-            if (value !== values.password) {
-              return Promise.reject('两次输入的密码不一致!');
-            }
-            return Promise.resolve();
-          },
-        },
-      ];
-    },
+    dynamicRules: passwordCheck,
   },
-];
+]
+
+function passwordCheck({ values }) {
+  return [
+    {
+      required: true,
+      validator: (_rule, value) => {
+        if (!value) {
+          return Promise.reject(new Error('请确认输入密码'))
+        }
+        if (value !== values.password) {
+          return Promise.reject(new Error('两次输入的密码不一致!'))
+        }
+        return Promise.resolve()
+      },
+    },
+  ]
+}

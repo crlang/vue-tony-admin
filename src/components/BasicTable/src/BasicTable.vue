@@ -1,43 +1,44 @@
 <template>
   <div ref="wrapRef" :class="getWrapperClass">
     <BasicForm
-      v-bind="getFormProps"
       v-if="getProps.useSearchForm"
-      :tableAction="tableMethods"
+      v-bind="getFormProps"
+      :table-action="tableMethods"
       @register="registerForm"
       @advanced-change="redoHeight"
-      @submit="handleSearchSubmit">
-      <template #[replaceFormSlotKey(item)]="data" v-for="item in getFormSlotKeys">
+      @submit="handleSearchSubmit"
+    >
+      <template v-for="item in getFormSlotKeys" #[replaceFormSlotKey(item)]="data">
         <slot :name="item" v-bind="data || {}"></slot>
       </template>
     </BasicForm>
     <TableHeader v-if="getHeaderProps" v-bind="getHeaderProps">
-      <template #toolbar v-if="$slots.toolbar">
+      <template v-if="$slots.toolbar" #toolbar>
         <slot name="toolbar"></slot>
       </template>
-      <template #title v-if="$slots.title">
+      <template v-if="$slots.title" #title>
         <slot name="title"></slot>
       </template>
-      <template #headerTop v-if="$slots.headerTop">
+      <template v-if="$slots.headerTop" #headerTop>
         <slot name="headerTop"></slot>
       </template>
-      <template #headerBottom v-if="$slots.headerBottom">
+      <template v-if="$slots.headerBottom" #headerBottom>
         <slot name="headerBottom"></slot>
       </template>
     </TableHeader>
     <ElTable ref="tableElRef" v-bind="getBindValues" v-loading="getLoading">
       <template v-for="column in columns" :key="column.prop">
         <template v-if="column.customRender">
-          <ElTableColumn v-bind="column" :customRender="null">
+          <ElTableColumn v-bind="column" :custom-render="null">
             <template #default="scope">
-              <TableRender :customRender="column.customRender" :scope="scope" :column="column" />
+              <TableRender :custom-render="column.customRender" :scope="scope" :column="column" />
             </template>
           </ElTableColumn>
         </template>
         <template v-else-if="column.type === 'action'">
           <ElTableColumn v-bind="column">
             <template #default="scope">
-              <TableAction :prefixCls="`${prefixCls}-action`" :column="column" :scopes="scope" />
+              <TableAction :prefix-cls="`${prefixCls}-action`" :column="column" :scopes="scope" />
             </template>
           </ElTableColumn>
         </template>
@@ -45,45 +46,44 @@
           <slot :name="column.prop" v-bind="column"></slot>
         </template>
 
-        <ElTableColumn v-bind="column" v-else />
+        <ElTableColumn v-else v-bind="column" />
       </template>
     </ElTable>
     <TablePagination
       v-if="getPaginationProps !== false"
-      :prefixCls="`${prefixCls}-pagination`"
+      :prefix-cls="`${prefixCls}-pagination`"
       v-bind="getPaginationProps"
       @page-change="handlePageChange"
-      @size-change="handlePageSizeChange" />
+      @size-change="handlePageSizeChange"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import type { ElePagination, EleTable } from '@/components/ElementPlus';
-import type { BasicTableProps, TableActionMethods } from './typing';
+import { computed, defineComponent, inject, ref, unref, watchEffect } from 'vue'
+import { ElLoading, ElTable, ElTableColumn } from 'element-plus'
+import { omit } from 'lodash-es'
+import type { BasicTableProps, TableActionMethods } from './typing'
 
-import { defineComponent, ref, computed, unref, watchEffect, inject } from 'vue';
-import { ElLoading, ElTable, ElTableColumn } from 'element-plus';
-import { omit } from 'lodash-es';
-
-import { BasicForm, useForm } from '@/components/BasicForm';
-import { PageWrapperFixedHeightKey } from '@/components/PageWrapper';
-import { useDesign } from '@/hooks/web/useDesign';
-import { warn } from '@/utils/log';
-
-import { usePagination } from './hooks/usePagination';
-import { useColumns } from './hooks/useColumns';
-import { useDataSource } from './hooks/useDataSource';
-import { useLoading } from './hooks/useLoading';
-import { useTableScroll } from './hooks/useTableScroll';
-import { useTableExpand } from './hooks/useTableExpand';
-import { createTableContext } from './hooks/useTableContext';
-import { useTableForm } from './hooks/useTableForm';
-import TableHeader from './components/TableHeader.vue';
-import TableRender from './components/TableRender';
-import TablePagination from './components/TablePagination.vue';
-import TableAction from './components/TableAction.vue';
-import { useBasicTableFn } from './hooks/useBasic';
-import { basicProps, customProps, ElTableBasicEmits } from './props';
+import { usePagination } from './hooks/usePagination'
+import { useColumns } from './hooks/useColumns'
+import { useDataSource } from './hooks/useDataSource'
+import { useLoading } from './hooks/useLoading'
+import { useTableScroll } from './hooks/useTableScroll'
+import { useTableExpand } from './hooks/useTableExpand'
+import { createTableContext } from './hooks/useTableContext'
+import { useTableForm } from './hooks/useTableForm'
+import TableHeader from './components/TableHeader.vue'
+import TableRender from './components/TableRender'
+import TablePagination from './components/TablePagination.vue'
+import TableAction from './components/TableAction.vue'
+import { useBasicTableFn } from './hooks/useBasic'
+import { ElTableBasicEmits, basicProps, customProps } from './props'
+import { warn } from '@/utils/log'
+import { useDesign } from '@/hooks/web/useDesign'
+import { PageWrapperFixedHeightKey } from '@/components/PageWrapper'
+import { BasicForm, useForm } from '@/components/BasicForm'
+import type { ElePagination, EleTable } from '@/components/ElementPlus'
 
 export default defineComponent({
   components: {
@@ -102,33 +102,31 @@ export default defineComponent({
   emits: [...ElTableBasicEmits, 'fetch-success', 'fetch-error', 'register', 'pagination'],
 
   setup(props, { attrs, emit, slots, expose }) {
-    const tableElRef = ref();
-    const tableData = ref<Recordable[]>([]);
+    const tableElRef = ref()
+    const tableData = ref<Recordable[]>([])
 
-    const wrapRef = ref(null);
-    const propsRef = ref<Partial<BasicTableProps>>({});
+    const wrapRef = ref(null)
+    const propsRef = ref<Partial<BasicTableProps>>({})
 
-    const { prefixCls } = useDesign('basic-table');
+    const { prefixCls } = useDesign('basic-table')
 
-    const isFixedHeightPage = inject(PageWrapperFixedHeightKey, false);
+    const isFixedHeightPage = inject(PageWrapperFixedHeightKey, false)
 
     /**
      * 获取 Props
-     *
-     * Get props
      */
     const getProps = computed(() => {
-      return { ...props, ...unref(propsRef) } as BasicTableProps;
-    });
+      return { ...props, ...unref(propsRef) } as BasicTableProps
+    })
 
-    const { getLoading, setLoading } = useLoading(getProps);
+    const { getLoading, setLoading } = useLoading(getProps)
 
-    const { getTablePagination, getPagination, setPagination } = usePagination(getProps);
+    const { getTablePagination, getPagination, setPagination } = usePagination(getProps)
 
     const [registerForm, formActions] = useForm({
       submitAfterReset: true,
       alwaysShowLines: 1,
-    });
+    })
 
     const {
       handleTableChange,
@@ -144,34 +142,32 @@ export default defineComponent({
       getRowKey,
       reload,
       updateTableData,
-    } = useDataSource(getProps, tableData, getTablePagination, setPagination, setLoading, formActions.getFieldsValue, emit);
+    } = useDataSource(getProps, tableData, getTablePagination, setPagination, setLoading, formActions.getFieldsValue, emit)
 
-    const { getBasicEmits, clearSelection, getSelectionRows, toggleRowSelection, toggleAllSelection, toggleRowExpansion, setCurrentRow, clearSort, clearFilter, doLayout, sort } =
-      useBasicTableFn(tableElRef, handleTableChange, emit);
+    const { getBasicEmits, clearSelection, getSelectionRows, toggleRowSelection, toggleAllSelection, toggleRowExpansion, setCurrentRow, clearSort, clearFilter, doLayout, sort }
+      = useBasicTableFn(tableElRef, handleTableChange, emit)
 
-    const { getViewColumns, getColumns, setColumns, getCacheColumns } = useColumns(getProps, getTablePagination);
+    const { getViewColumns, getColumns, setColumns, getCacheColumns } = useColumns(getProps, getTablePagination)
 
-    const { redoHeight } = useTableScroll(getProps, tableElRef, getDataSourceRef);
+    const { redoHeight } = useTableScroll(getProps, tableElRef, getDataSourceRef)
 
-    const { getExpandOptions, expandAll, collapseAll } = useTableExpand(getProps, getDataSourceRef, getRowKey);
+    const { getExpandOptions, expandAll, collapseAll } = useTableExpand(getProps, getDataSourceRef, getRowKey)
 
-    const { getFormProps, replaceFormSlotKey, getFormSlotKeys, handleSearchSubmit } = useTableForm(getProps, slots, fetch, getLoading);
+    const { getFormProps, replaceFormSlotKey, getFormSlotKeys, handleSearchSubmit } = useTableForm(getProps, slots, fetch, getLoading)
 
     /**
      * 获取头部 Props
-     *
-     * Get header props
      */
     const getHeaderProps = computed(() => {
-      const { title, showTableSetting, titleHelpMessage, tableSetting } = unref(getProps);
+      const { title, showTableSetting, titleHelpMessage, tableSetting } = unref(getProps)
 
-      const hideTitle = !slots.title && !title && !slots.toolbar && !showTableSetting;
+      const hideTitle = !slots.title && !title && !slots.toolbar && !showTableSetting
       if (hideTitle) {
-        return {};
+        return {}
       }
 
       if (typeof title !== 'string') {
-        warn('Table title must be a string');
+        warn('Table title must be a string')
       }
 
       return {
@@ -180,22 +176,18 @@ export default defineComponent({
         showTableSetting,
         tableSetting,
         titleHelpMessage,
-      };
-    });
+      }
+    })
 
     /**
      * 获取分页 Props
-     *
-     * Get pagination props
      */
     const getPaginationProps = computed((): ElePagination | boolean => {
-      return unref(getTablePagination);
-    });
+      return unref(getTablePagination)
+    })
 
     /**
      * 绑定表格Props
-     *
-     * Bind table props
      */
     const getBindValues = computed(() => {
       const opts = {
@@ -205,17 +197,14 @@ export default defineComponent({
         rowKey: unref(getRowKey),
         data: unref(getDataSourceRef),
         ...unref(getExpandOptions),
-      };
+      }
       // 绑定组件Porps前，移除自定义附加项
-      // Before binding component Porps, remove custom add-ons
-      const customOpts = Object.keys(customProps);
+      const customOpts = Object.keys(customProps)
 
-      return omit(opts, customOpts) as EleTable;
-    });
+      return omit(opts, customOpts) as EleTable
+    })
     /**
      * 获取表格外框类
-     *
-     * Get wrapper class
      */
     const getWrapperClass = computed(() => {
       return [
@@ -224,46 +213,41 @@ export default defineComponent({
           [`${prefixCls}--full`]: unref(getProps).canResize,
           [`is-shadow`]: unref(getProps).isShadow,
         },
-      ];
-    });
+      ]
+    })
 
     /**
      * 通过实例设置 Props
      *
-     * Setting Props by Instance
      * @param tableProps Table Props
      */
     function setTableProps(tableProps: Partial<BasicTableProps>): void {
-      propsRef.value = { ...(unref(propsRef) as Recordable), ...tableProps } as Recordable;
+      propsRef.value = { ...(unref(propsRef) as Recordable), ...tableProps } as Recordable
     }
 
     /**
      * 处理分页页码变化
-     *
-     * Handling pagination page changes
      */
     function handlePageChange(currentPage: number) {
-      const opts = unref(getTablePagination);
+      const opts = unref(getTablePagination)
 
       emit('pagination', {
         ...opts,
         currentPage: (opts.currentPage || 0) + currentPage,
-      });
-      handleTableChange({ currentPage });
+      })
+      handleTableChange({ currentPage })
     }
 
     /**
      * 处理分页大小变化
-     *
-     * Handling pagination size changes
      */
     function handlePageSizeChange(pageSize: number) {
-      const opts = unref(getTablePagination);
+      const opts = unref(getTablePagination)
       emit('pagination', {
         ...opts,
         pageSize: (opts.pageSize || 0) + pageSize,
-      });
-      handleTableChange({ pageSize });
+      })
+      handleTableChange({ pageSize })
     }
 
     const tableMethods: TableActionMethods = {
@@ -299,16 +283,18 @@ export default defineComponent({
       clearFilter,
       doLayout,
       sort,
-    };
-    createTableContext({ ...tableMethods, wrapRef, getBindValues });
+    }
+    createTableContext({ ...tableMethods, wrapRef, getBindValues })
 
-    expose(tableMethods);
+    expose(tableMethods)
 
-    emit('register', tableMethods, formActions);
+    emit('register', tableMethods, formActions)
 
     watchEffect(() => {
-      unref(isFixedHeightPage) && props.canResize && warn("'canResize' of BasicTable may not work in PageWrapper with 'contentFullHeight' (especially in hot updates)");
-    });
+      if (unref(isFixedHeightPage) && props.canResize) {
+        warn('"canResize" of BasicTable may not work in PageWrapper with "contentFullHeight" (especially in hot updates)')
+      }
+    })
 
     return {
       prefixCls,
@@ -330,9 +316,9 @@ export default defineComponent({
       getFormSlotKeys,
       getWrapperClass,
       columns: getViewColumns,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">
@@ -451,6 +437,7 @@ $prefix-cls: '#{$tonyname}-basic-table';
     }
   }
 
+  /* stylelint-disable-next-line selector-class-pattern */
   .tony-basic-form-submit-btns > .el-form-item__content {
     margin-left: 0 !important;
   }

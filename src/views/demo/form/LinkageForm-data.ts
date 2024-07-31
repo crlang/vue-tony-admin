@@ -1,5 +1,5 @@
-import { BasicFormSchema } from '@/components/BasicForm';
-import { citiesOptionsData, provincesOptions, basicDividerProps } from './formdata';
+import { basicDividerProps, citiesOptionsData, provincesOptions } from './formdata'
+import type { BasicFormSchema } from '@/components/BasicForm'
 
 export const basicSchemas: BasicFormSchema[] = [
   {
@@ -16,21 +16,20 @@ export const basicSchemas: BasicFormSchema[] = [
         options: provincesOptions,
         placeholder: '',
         onChange: (e: any) => {
-          let citiesOptions = [];
+          let citiesOptions = []
           if (e && e >= 1 && provincesOptions[e - 1]) {
-            citiesOptions = citiesOptionsData[provincesOptions[e - 1].id];
+            citiesOptions = citiesOptionsData[provincesOptions[e - 1].id]
           }
-          console.log('citiesOptions', citiesOptions);
-          formModel.city = undefined; //  reset city value
-          const { updateSchema } = formAction;
+          formModel.city = undefined //  reset city value
+          const { updateSchema } = formAction
           updateSchema({
             field: 'city01',
             componentProps: {
               options: citiesOptions,
             },
-          });
+          })
         },
-      };
+      }
     },
   },
   {
@@ -83,7 +82,7 @@ export const basicSchemas: BasicFormSchema[] = [
     // 隐藏了，仍会校验
     required: true,
     show: ({ values }) => {
-      return !!values.css01;
+      return !!values.css01
     },
   },
   {
@@ -105,7 +104,7 @@ export const basicSchemas: BasicFormSchema[] = [
     required: true,
     // 隐藏了，不会校验
     ifShow: ({ values }) => {
-      return !!values.dom01;
+      return !!values.dom01
     },
   },
   {
@@ -125,7 +124,7 @@ export const basicSchemas: BasicFormSchema[] = [
     component: 'CustomSelect',
     label: '喜好',
     dynamicRules: ({ values }) => {
-      return values.rule01 ? [{ required: true, message: '请选择喜好' }] : [];
+      return values.rule01 ? [{ required: true, message: '请选择喜好' }] : []
     },
     componentProps: {
       options: [
@@ -153,7 +152,7 @@ export const basicSchemas: BasicFormSchema[] = [
     component: 'CustomSelect',
     label: '爱好',
     required: ({ values }) => {
-      return values.required01 === true;
+      return values.required01 === true
     },
     componentProps: {
       options: [
@@ -186,7 +185,7 @@ export const basicSchemas: BasicFormSchema[] = [
     component: 'CustomDatePicker',
     label: '日期',
     dynamicDisabled: ({ values }) => {
-      return values.disabled01 === true;
+      return values.disabled01 === true
     },
   },
   {
@@ -202,9 +201,9 @@ export const basicSchemas: BasicFormSchema[] = [
     componentProps: ({ formModel }) => {
       return {
         onInput: (e: any) => {
-          formModel.input02 = e;
+          formModel.input02 = e
         },
-      };
+      }
     },
   },
   {
@@ -225,11 +224,11 @@ export const basicSchemas: BasicFormSchema[] = [
     label: '输入并校验',
     componentProps: ({ formAction }) => {
       return {
-        onChange: async() => {
-          const { validate } = formAction;
-          await validate();
+        onChange: async () => {
+          const { validate } = formAction
+          await validate()
         },
-      };
+      }
     },
   },
-];
+]

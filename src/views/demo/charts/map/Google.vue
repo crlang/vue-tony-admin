@@ -3,11 +3,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, nextTick, unref, onMounted } from 'vue';
+import { defineComponent, nextTick, onMounted, ref, unref } from 'vue'
 
-import { useScript } from '@/hooks/web/useScript';
+import { useScript } from '@/hooks/web/useScript'
 
-const MAP_URL = 'https://maps.googleapis.com/maps/api/js?key=yourkey&signed_in=true';
+const MAP_URL = 'https://maps.googleapis.com/maps/api/js?key=yourkey&signed_in=true'
 
 export default defineComponent({
   name: 'GoogleMap',
@@ -22,32 +22,35 @@ export default defineComponent({
     },
   },
   setup() {
-    const wrapRef = ref<HTMLDivElement | null>(null);
-    const { toPromise } = useScript({ src: MAP_URL });
+    const wrapRef = ref<HTMLDivElement | null>(null)
+    const { toPromise } = useScript({ src: MAP_URL })
+    const gMap = ref()
 
     async function initMap() {
-      await toPromise();
-      await nextTick();
-      const wrapEl = unref(wrapRef);
-      if (!wrapEl) return;
-      const google = (window as any).google;
-      const latLng = { lat: 116.404, lng: 39.915 };
+      await toPromise()
+      await nextTick()
+      const wrapEl = unref(wrapRef)
+      if (!wrapEl) {
+        return
+      }
+      const google = (window as any).google
+      const latLng = { lat: 116.404, lng: 39.915 }
       const map = new google.maps.Map(wrapEl, {
         zoom: 4,
         center: latLng,
-      });
-      new google.maps.Marker({
+      })
+      gMap.value = new google.maps.Marker({
         position: latLng,
-        map: map,
+        map,
         title: 'Hi Tony!',
-      });
+      })
     }
 
     onMounted(() => {
-      initMap();
-    });
+      initMap()
+    })
 
-    return { wrapRef };
+    return { wrapRef }
   },
-});
+})
 </script>

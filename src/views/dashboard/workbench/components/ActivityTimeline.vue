@@ -1,27 +1,36 @@
 <template>
-  <el-card shadow="hover">
-    <template #header><div class="el-card__header--title">项目进度</div></template>
-    <el-timeline>
-      <el-timeline-item
+  <ElCard shadow="hover">
+    <template #header>
+      <div class="el-card__header--title">
+        项目进度
+      </div>
+    </template>
+    <ElTimeline>
+      <ElTimelineItem
         v-for="(activity, index) in datainfo"
         :key="index"
         :type="activity.type"
         :color="activity.color"
         :size="activity.size"
         :hollow="activity.hollow"
-        :timestamp="activity.timestamp">
-        <h4 class="timeline-title">{{ activity.content }}</h4>
-        <p class="timeline-desc">{{ activity.desc }}</p>
-      </el-timeline-item>
-    </el-timeline>
-  </el-card>
+        :timestamp="activity.timestamp"
+      >
+        <h4 class="timeline-title">
+          {{ activity.content }}
+        </h4>
+        <p class="timeline-desc">
+          {{ activity.desc }}
+        </p>
+      </ElTimelineItem>
+    </ElTimeline>
+  </ElCard>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElCard, ElTimeline, ElTimelineItem } from 'element-plus';
+import { defineComponent } from 'vue'
+import { ElCard, ElTimeline, ElTimelineItem } from 'element-plus'
 
-import { DashboardProgressInfo } from '@/api/types';
+import type { DashboardProgressInfo } from '@/api/types'
 
 export default defineComponent({
   components: { ElCard, ElTimeline, ElTimelineItem },
@@ -32,9 +41,9 @@ export default defineComponent({
     },
   },
   setup() {
-    return {};
+    return {}
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

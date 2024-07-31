@@ -1,7 +1,6 @@
-import { BasicFormSchema } from '@/components/BasicForm';
-
-import { h } from 'vue';
-import { ElInput } from 'element-plus';
+import { h } from 'vue'
+import { ElInput } from 'element-plus'
+import type { BasicFormSchema } from '@/components/BasicForm'
 
 export const basicSchemas: BasicFormSchema[] = [
   {
@@ -17,9 +16,9 @@ export const basicSchemas: BasicFormSchema[] = [
         placeholder: '请输入',
         modelValue: model[field],
         onInput: (v: any) => {
-          model[field] = v;
+          model[field] = v
         },
-      });
+      })
     },
   },
   {
@@ -33,7 +32,7 @@ export const basicSchemas: BasicFormSchema[] = [
     renderComponentContent: () => {
       return {
         append: () => '自定义尾部',
-      };
+      }
     },
   },
   {
@@ -53,4 +52,4 @@ export const basicSchemas: BasicFormSchema[] = [
     },
     required: true,
   },
-];
+]

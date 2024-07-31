@@ -1,34 +1,33 @@
 <template>
   <PageWrapper title="Tree 操作示例">
-    <el-row :gutter="16">
-      <el-col :span="12">
-        <el-card header="右侧操作按钮/自定义图标">
-          <el-tree :data="treeData" :render-content="actionList" />
-        </el-card>
-      </el-col>
-      <el-col :span="12">
-        <el-card header="右键菜单">
-          <el-tree :data="treeData" @node-contextmenu="getRightMenuList" />
-        </el-card>
-      </el-col>
-    </el-row>
+    <ElRow :gutter="16">
+      <ElCol :span="12">
+        <ElCard header="右侧操作按钮/自定义图标">
+          <ElTree :data="treeData" :render-content="actionList" />
+        </ElCard>
+      </ElCol>
+      <ElCol :span="12">
+        <ElCard header="右键菜单">
+          <ElTree :data="treeData" @node-contextmenu="getRightMenuList" />
+        </ElCard>
+      </ElCol>
+    </ElRow>
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElCard, ElTree, ElRow, ElCol } from 'element-plus';
+import { defineComponent } from 'vue'
+import { ElCard, ElCol, ElRow, ElTree } from 'element-plus'
 
-import { useContextMenu } from '@/hooks/web/useContextMenu';
-import { CreateContextMenuOptions } from '@/components/ContextMenu';
-import { SvgIcon } from '@/components/SvgIcon';
-
-import { treeData } from './data';
+import { treeData } from './data'
+import { useContextMenu } from '@/hooks/web/useContextMenu'
+import type { CreateContextMenuOptions } from '@/components/ContextMenu'
+import { SvgIcon } from '@/components/SvgIcon'
 
 export default defineComponent({
   components: { ElCard, ElTree, ElRow, ElCol },
   setup() {
-    const [createContextMenu] = useContextMenu();
+    const [createContextMenu] = useContextMenu()
 
     function handleSend(_node, _data, _store) {
       // do something
@@ -50,13 +49,14 @@ export default defineComponent({
           },
           icon: 'ep:delete',
         },
-      ];
+      ]
 
-      const contextMenuOptions: CreateContextMenuOptions = { event, items: MenuItems };
+      const contextMenuOptions: CreateContextMenuOptions = { event, items: MenuItems }
 
-      if (!contextMenuOptions.items?.length) return;
+      if (!contextMenuOptions.items?.length)
+        return
 
-      createContextMenu(contextMenuOptions);
+      createContextMenu(contextMenuOptions)
     }
 
     function actionList(h, { node, data, store }) {
@@ -79,16 +79,16 @@ export default defineComponent({
             class: 'mr-2',
           }),
         ),
-      );
+      )
     }
 
     return {
       treeData,
       actionList,
       getRightMenuList,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">

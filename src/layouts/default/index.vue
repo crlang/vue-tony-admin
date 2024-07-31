@@ -11,20 +11,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, unref } from 'vue';
-import { ElContainer } from 'element-plus';
+import { computed, defineComponent, unref } from 'vue'
+import { ElContainer } from 'element-plus'
 
-import { createAsyncComponent } from '@/utils/factory/createAsyncComponent';
-import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
-import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
-import { useDesign } from '@/hooks/web/useDesign';
-import { useLockPage } from '@/hooks/web/useLockPage';
-import { useAppInject } from '@/hooks/web/useAppInject';
-
-import LayoutHeader from './header/index.vue';
-import LayoutContent from './content/index.vue';
-import LayoutSideBar from './sider/index.vue';
-import LayoutMultipleHeader from './header/MultipleHeader.vue';
+import LayoutHeader from './header/index.vue'
+import LayoutContent from './content/index.vue'
+import LayoutSideBar from './sider/index.vue'
+import LayoutMultipleHeader from './header/MultipleHeader.vue'
+import { createAsyncComponent } from '@/utils/factory/createAsyncComponent'
+import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
+import { useMenuSetting } from '@/hooks/setting/useMenuSetting'
+import { useDesign } from '@/hooks/web/useDesign'
+import { useLockPage } from '@/hooks/web/useLockPage'
+import { useAppInject } from '@/hooks/web/useAppInject'
 
 export default defineComponent({
   name: 'DefaultLayout',
@@ -37,35 +36,34 @@ export default defineComponent({
     LayoutMultipleHeader,
   },
   setup() {
-    const { prefixCls } = useDesign('default-layout');
-    const { getIsMobile } = useAppInject();
-    const { getShowFullHeaderRef, getFixed } = useHeaderSetting();
-    const { getShowSidebar, getRealWidth, getIsMixSidebar, getShowMenu } = useMenuSetting();
+    const { prefixCls } = useDesign('default-layout')
+    const { getIsMobile } = useAppInject()
+    const { getShowFullHeaderRef, getFixed } = useHeaderSetting()
+    const { getShowSidebar, getRealWidth, getIsMixSidebar, getShowMenu } = useMenuSetting()
 
-    // Create a lock screen monitor
-    const lockEvents = useLockPage();
+    const lockEvents = useLockPage()
 
     const layoutClass = computed(() => {
-      const cls: string[] = [prefixCls];
+      const cls: string[] = [prefixCls]
       if (unref(getIsMixSidebar) || unref(getShowMenu)) {
-        cls.push(`${prefixCls}-has-sider`);
+        cls.push(`${prefixCls}-has-sider`)
       }
-      return cls;
-    });
+      return cls
+    })
 
     const mainClass = computed(() => {
-      const cls: string[] = [`${prefixCls}-main`];
+      const cls: string[] = [`${prefixCls}-main`]
       if (unref(getFixed)) {
-        cls.push(`${prefixCls}-main-fixed-header`);
+        cls.push(`${prefixCls}-main-fixed-header`)
       }
-      return cls;
-    });
+      return cls
+    })
 
     const layoutStyle = computed(() => {
       return {
         '--ty-aside-width': `${unref(getRealWidth)}px`,
-      };
-    });
+      }
+    })
 
     return {
       getShowFullHeaderRef,
@@ -77,9 +75,9 @@ export default defineComponent({
       layoutStyle,
       mainClass,
       lockEvents,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">
@@ -96,8 +94,7 @@ $prefix-cls: '#{$tonyname}-default-layout';
     display: block;
     width: calc(100% - var(--ty-aside-width, 0px));
     height: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden auto;
     transition: all 0.2s ease 0s;
 
     &-fixed-header {

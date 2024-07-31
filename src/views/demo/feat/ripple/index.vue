@@ -1,19 +1,19 @@
 <template>
   <PageWrapper title="Ripple示例">
-    <div class="demo-box" v-ripple>content</div>
+    <div v-ripple class="demo-box">content</div>
   </PageWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import RippleDirective from '@/directives/ripple';
+import { defineComponent } from 'vue'
+import RippleDirective from '@/directives/ripple'
 
 export default defineComponent({
   components: {},
   directives: {
     Ripple: RippleDirective,
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

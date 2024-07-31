@@ -3,22 +3,23 @@
     <span>{{ title }}</span>
     <ElSwitch
       v-bind="getBindValue"
-      @change="handleChange"
       inline-prompt
       :disabled="disabled"
       active-text="开"
-      inactive-text="关" />
+      inactive-text="关"
+      @change="handleChange"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, computed } from 'vue';
-import { ElSwitch } from 'element-plus';
+import type { PropType } from 'vue'
+import { computed, defineComponent } from 'vue'
+import { ElSwitch } from 'element-plus'
 
-import { useDesign } from '@/hooks/web/useDesign';
-
-import { baseHandler } from '../handler';
-import { HandlerEnum } from '../enum';
+import { baseHandler } from '../handler'
+import type { HandlerEnum } from '../enum'
+import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'SwitchItem',
@@ -38,21 +39,23 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { prefixCls } = useDesign('setting-switch-item');
+    const { prefixCls } = useDesign('setting-switch-item')
 
     const getBindValue = computed(() => {
-      return props.def ? { modelValue: props.def } : {};
-    });
+      return props.def ? { modelValue: props.def } : {}
+    })
     function handleChange(v: string | number | boolean) {
-      props.event && baseHandler(props.event, v);
+      if (props.event) {
+        baseHandler(props.event, v)
+      }
     }
     return {
       prefixCls,
       handleChange,
       getBindValue,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

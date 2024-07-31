@@ -1,6 +1,6 @@
 <template>
   <div :class="prefixCls">
-    <div :class="`${prefixCls}__unlock`" @click="handleShowForm(false)" v-show="showDate">
+    <div v-show="showDate" :class="`${prefixCls}__unlock`" @click="handleShowForm(false)">
       <SvgIcon name="lock" :size="32" />
       <span>点击解锁</span>
     </div>
@@ -18,24 +18,27 @@
     </div>
 
     <transition name="fade-slide">
-      <div :class="`${prefixCls}-entry`" @click="handleShowForm(true)" v-show="!showDate">
+      <div v-show="!showDate" :class="`${prefixCls}-entry`" @click="handleShowForm(true)">
         <div :class="`${prefixCls}-entry-content`" @click.stop="">
           <div :class="`${prefixCls}-entry__header`">
             <ElImage :class="`${prefixCls}-entry__header-img`" :src="userinfo.avatar" />
-            <div :class="`${prefixCls}-entry__header-desc`">{{ userinfo.nickname }}</div>
+            <div :class="`${prefixCls}-entry__header-desc`">
+              {{ userinfo.nickname }}
+            </div>
           </div>
           <div :class="`${prefixCls}-entry__input`">
-            <el-input
+            <ElInput
               v-model="password"
               type="password"
               placeholder="请输入锁屏密码或者用户密码"
-              @keypress.enter="unLock()" />
+              @keypress.enter="unLock()"
+            />
             <SvgIcon :name="loading ? 'loading' : 'right'" :spin="loading" />
           </div>
           <div :class="`${prefixCls}-entry__extra`" @click="goLogin">
-            <el-tooltip content="返回登录">
+            <ElTooltip content="返回登录">
               <SvgIcon :size="32" name="poweroff" />
-            </el-tooltip>
+            </ElTooltip>
           </div>
         </div>
       </div>
@@ -52,56 +55,58 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue';
-import { ElInput, ElTooltip, ElImage } from 'element-plus';
+import { computed, defineComponent, ref } from 'vue'
+import { ElImage, ElInput, ElTooltip } from 'element-plus'
 
-import { useUserStore } from '@/store/modules/user';
-import { useLockStore } from '@/store/modules/lock';
-import { useDesign } from '@/hooks/web/useDesign';
-import { useMessage } from '@/hooks/web/useMessage';
-import { SvgIcon } from '@/components/SvgIcon';
-
-import { useNow } from './useNow';
+import { useNow } from './useNow'
+import { useUserStore } from '@/store/modules/user'
+import { useLockStore } from '@/store/modules/lock'
+import { useDesign } from '@/hooks/web/useDesign'
+import { useMessage } from '@/hooks/web/useMessage'
+import { SvgIcon } from '@/components/SvgIcon'
 
 export default defineComponent({
   components: { ElInput, ElTooltip, ElImage, SvgIcon },
   setup() {
-    const password = ref('');
-    const loading = ref(false);
-    const showDate = ref(true);
+    const password = ref('')
+    const loading = ref(false)
+    const showDate = ref(true)
 
-    const { prefixCls } = useDesign('lock-page');
-    const lockStore = useLockStore();
-    const userStore = useUserStore();
-    const { createMessage } = useMessage();
+    const { prefixCls } = useDesign('lock-page')
+    const lockStore = useLockStore()
+    const userStore = useUserStore()
+    const { createMessage } = useMessage()
 
-    const { hour, month, minute, meridiem, year, day, week } = useNow(true);
+    const { hour, month, minute, meridiem, year, day, week } = useNow(true)
 
     const userinfo = computed(() => {
-      return userStore.getUserInfo || {};
-    });
+      return userStore.getUserInfo || {}
+    })
 
     async function unLock() {
       if (!password.value) {
-        return;
+        return
       }
-      const pwd = password.value;
+      const pwd = password.value
       try {
-        loading.value = true;
-        const res = await lockStore.unLock(pwd);
-        !res && createMessage.error('锁屏密码错误');
-      } finally {
-        loading.value = false;
+        loading.value = true
+        const res = await lockStore.unLock(pwd)
+        if (!res) {
+          createMessage.error('锁屏密码错误')
+        }
+      }
+      finally {
+        loading.value = false
       }
     }
 
     function goLogin() {
-      userStore.logout(true);
-      lockStore.resetLockInfo();
+      userStore.logout(true)
+      lockStore.resetLockInfo()
     }
 
     function handleShowForm(show = false) {
-      showDate.value = show;
+      showDate.value = show
     }
 
     return {
@@ -120,9 +125,9 @@ export default defineComponent({
       goLogin,
       unLock,
       handleShowForm,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>
@@ -130,10 +135,7 @@ $prefix-cls: '#{$tonyname}-lock-page';
 
 .#{$prefix-cls} {
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  inset: 0;
   z-index: 1001;
   display: flex;
   align-items: center;
@@ -148,14 +150,14 @@ $prefix-cls: '#{$tonyname}-lock-page';
     flex-direction: column;
     align-items: center;
     padding: 12px;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgb(255 255 255 / 85%);
     text-align: center;
     cursor: pointer;
     transition: all 0.5s linear;
     animation: sectimer 1s ease-in infinite;
 
     &:hover {
-      color: rgba(255, 255, 255, 0.95);
+      color: rgb(255 255 255 / 95%);
       animation: none;
     }
   }
@@ -174,8 +176,8 @@ $prefix-cls: '#{$tonyname}-lock-page';
     justify-content: center;
     width: 48%;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.65);
-    background-color: rgba(255, 255, 255, 0.1);
+    color: rgb(255 255 255 / 65%);
+    background-color: rgb(255 255 255 / 10%);
     border-radius: 30px;
 
     @media only screen and (width <= 767px) {
@@ -183,21 +185,25 @@ $prefix-cls: '#{$tonyname}-lock-page';
         font-size: 160px;
       }
     }
+
     @media only screen and (width >= 768px) {
       span:not(.meridiem) {
         font-size: 160px;
       }
     }
+
     @media only screen and (width >= 992px) {
       span:not(.meridiem) {
         font-size: 220px;
       }
     }
+
     @media only screen and (width >= 1200px) {
       span:not(.meridiem) {
         font-size: 260px;
       }
     }
+
     @media only screen and (width >= 1920px) {
       span:not(.meridiem) {
         font-size: 320px;
@@ -215,7 +221,7 @@ $prefix-cls: '#{$tonyname}-lock-page';
     position: absolute;
     bottom: 12px;
     font-size: 24px;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgb(255 255 255 / 85%);
     text-align: center;
 
     > div:first-child {
@@ -232,7 +238,7 @@ $prefix-cls: '#{$tonyname}-lock-page';
     justify-content: center;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgb(0 0 0 / 50%);
     backdrop-filter: blur(8px);
 
     &-content {
@@ -253,7 +259,7 @@ $prefix-cls: '#{$tonyname}-lock-page';
         margin: 8px 0 12px;
         font-size: 18px;
         font-weight: 500;
-        color: rgba(255, 255, 255, 0.65);
+        color: rgb(255 255 255 / 65%);
       }
     }
 
@@ -267,20 +273,22 @@ $prefix-cls: '#{$tonyname}-lock-page';
         right: 16px;
         z-index: -1;
         width: 16px;
-        color: rgba(255, 255, 255, 0.75);
+        color: rgb(255 255 255 / 75%);
       }
 
       .el-input {
         --el-input-height: 48px;
       }
 
+      /* stylelint-disable-next-line selector-class-pattern */
       :deep(.el-input__wrapper) {
         --el-input-bg-color: transparent;
         --el-input-border-color: #888;
       }
 
+      /* stylelint-disable-next-line selector-class-pattern */
       :deep(.el-input__inner) {
-        --el-input-text-color: rgba(255, 255, 255, 1);
+        --el-input-text-color: rgb(255 255 255 / 100%);
       }
     }
 
@@ -288,15 +296,16 @@ $prefix-cls: '#{$tonyname}-lock-page';
       position: absolute;
       top: 30px;
       right: 30px;
-      color: rgba(255, 255, 255, 0.55);
+      color: rgb(255 255 255 / 55%);
       cursor: pointer;
 
       &:hover {
-        color: rgba(255, 255, 255, 0.95);
+        color: rgb(255 255 255 / 95%);
       }
     }
   }
 }
+
 @keyframes sectimer {
   from {
     opacity: 1;

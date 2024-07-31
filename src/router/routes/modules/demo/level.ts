@@ -1,6 +1,6 @@
-import type { AppRouteModule } from '@/router/types';
+import type { AppRouteModule } from '@/router/types'
 
-import { getParentLayout, LAYOUT } from '@/router/constant';
+import { LAYOUT, getParentLayout } from '@/router/constant'
 
 const level: AppRouteModule = {
   path: '/level',
@@ -62,6 +62,6 @@ const level: AppRouteModule = {
       },
     },
   ],
-};
+}
 
-export default level;
+export default level

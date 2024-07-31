@@ -2,19 +2,25 @@
   <ElRadioGroup v-if="group" v-bind="groupProps" v-model:modelValue="state">
     <template v-if="type === 'button'">
       <ElRadioButton
-        v-bind="buttonProps"
         v-for="(item, index) in getOptions"
+        v-bind="buttonProps"
         :key="index"
         :disabled="item.disabled"
-        :label="item.value">{{ item.label }}</ElRadioButton>
+        :label="item.value"
+      >
+        {{ item.label }}
+      </ElRadioButton>
     </template>
     <template v-else>
       <ElRadio
-        v-bind="radioProps"
         v-for="(item, index) in getOptions"
+        v-bind="radioProps"
         :key="index"
         :disabled="item.disabled"
-        :label="item.value">{{ item.label }}</ElRadio>
+        :label="item.value"
+      >
+        {{ item.label }}
+      </ElRadio>
     </template>
   </ElRadioGroup>
   <template v-else>
@@ -22,28 +28,34 @@
       v-if="type === 'button'"
       v-bind="buttonProps"
       v-model:modelValue="state"
-      :disabled="disabled">{{ label }}</ElRadioButton>
+      :disabled="disabled"
+    >
+      {{ label }}
+    </ElRadioButton>
     <ElRadio
       v-else
       v-bind="radioProps"
       v-model:modelValue="state"
-      :disabled="disabled">{{ label }}</ElRadio>
+      :disabled="disabled"
+    >
+      {{ label }}
+    </ElRadio>
   </template>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watchEffect, computed, unref, watch } from 'vue';
-import { ElRadio, ElRadioButton, ElRadioGroup } from 'element-plus';
-import { get, omit } from 'lodash-es';
+import { computed, defineComponent, ref, unref, watch, watchEffect } from 'vue'
+import { ElRadio, ElRadioButton, ElRadioGroup } from 'element-plus'
+import { get, omit } from 'lodash-es'
 
-import { isFunction } from '@/utils/is';
-import { useRuleFormItem } from '@/hooks/component/useFormItem';
-import { logError } from '@/utils/log';
+import { isFunction } from '@/utils/is'
+import { useRuleFormItem } from '@/hooks/component/useFormItem'
+import { logError } from '@/utils/log'
 
 interface OptionsItem {
-  label: string;
-  value: string;
-  disabled?: boolean;
+  label: string
+  value: string
+  disabled?: boolean
 }
 
 export default defineComponent({
@@ -88,12 +100,12 @@ export default defineComponent({
       type: Function as PropType<(arg?: any) => Promise<OptionsItem[]>>,
       default: null,
     },
-    // api params
+    // api 参数
     params: {
       type: Object,
       default: () => {},
     },
-    // support xxx.xxx.xx
+    // 支持 xxx.xxx.xx
     resultField: {
       type: String,
       default: '',
@@ -127,89 +139,93 @@ export default defineComponent({
       default: () => {},
     },
   },
-  emits: ['options-change', 'change', 'update:modelValue'],
+  emits: ['optionsChange', 'change', 'update:modelValue'],
   setup(props, { emit }) {
-    const optionsRef = ref<OptionsItem[]>([]);
-    const loading = ref(false);
-    const isFirstLoad = ref(true);
-    const emitData = ref<any[]>([]);
+    const optionsRef = ref<OptionsItem[]>([])
+    const loading = ref(false)
+    const isFirstLoad = ref(true)
+    const emitData = ref<any[]>([])
 
     // 嵌入表单中，只需使用钩子绑定即可执行表单验证
-    // Embedded in the form, just use the hook binding to perform form verification
-    const [state] = useRuleFormItem(props, 'modelValue', 'change', emitData);
+    const [state] = useRuleFormItem(props, 'modelValue', 'change', emitData)
 
     const getOptions = computed(() => {
-      const { labelField, valueField, disabledField, stringValue } = props;
+      const { labelField, valueField, disabledField, stringValue } = props
 
       const data = unref(optionsRef).reduce((prev, next: any) => {
         if (next) {
-          const label = get(next, labelField);
-          const value = get(next, valueField);
-          const disabled = get(next, disabledField);
+          const label = get(next, labelField)
+          const value = get(next, valueField)
+          const disabled = get(next, disabledField)
           prev.push({
             ...omit(next, [labelField, valueField, disabledField]),
             label,
             disabled,
             value: stringValue ? `${value}` : value,
-          });
+          })
         }
-        return prev;
-      }, [] as OptionsItem[]);
-      return data.length > 0 ? data : props.options;
-    });
+        return prev
+      }, [] as OptionsItem[])
+      return data.length > 0 ? data : props.options
+    })
 
     async function fetchData() {
-      const { api } = props;
-      if (!isFunction(api)) return;
+      const { api } = props
+      if (!isFunction(api))
+        return
 
-      optionsRef.value = [];
+      optionsRef.value = []
       try {
-        loading.value = true;
-        const res = await api(props.params);
+        loading.value = true
+        const res = await api(props.params)
         if (Array.isArray(res)) {
-          optionsRef.value = res;
-          emitChange();
-          return;
+          optionsRef.value = res
+          emitChange()
+          return
         }
         if (props.resultField) {
-          optionsRef.value = get(res, props.resultField) || [];
+          optionsRef.value = get(res, props.resultField) || []
         }
-        emitChange();
-      } catch (error) {
-        logError(error);
-      } finally {
-        loading.value = false;
+        emitChange()
+      }
+      catch (error) {
+        logError(error)
+      }
+      finally {
+        loading.value = false
       }
     }
 
     function emitChange() {
-      emit('options-change', unref(getOptions));
+      emit('optionsChange', unref(getOptions))
     }
 
     watchEffect(() => {
-      fetchData();
-    });
+      fetchData()
+    })
 
     watch(
       () => state.value,
       (v) => {
-        emit('update:modelValue', v);
+        emit('update:modelValue', v)
       },
-    );
+    )
 
     watch(
       () => props.params,
       () => {
-        !unref(isFirstLoad) && fetchData();
+        if (!unref(isFirstLoad)) {
+          fetchData()
+        }
       },
       { deep: true },
-    );
+    )
 
     return {
       state,
       getOptions,
       loading,
-    };
+    }
   },
-});
+})
 </script>

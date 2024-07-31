@@ -1,7 +1,7 @@
-import { ApiDemoColorList, ApiDemoDataList, ApiDemoDataMpList, ApiDemoTreeDataList, ApiDemoTreeDataMpList } from '@/api/demo';
-import { BasicFormSchema } from '@/components/BasicForm';
-import { getRangeDate } from '@/utils/dateUtil';
-import { ApiDirData, ApiTreeData, basicDividerProps, optionListData } from './formdata';
+import { ApiDirData, ApiTreeData, basicDividerProps, optionListData } from './formdata'
+import { ApiDemoColorList, ApiDemoDataList, ApiDemoDataMpList, ApiDemoTreeDataList, ApiDemoTreeDataMpList } from '@/api/demo'
+import type { BasicFormSchema } from '@/components/BasicForm'
+import { getRangeDate } from '@/utils/dateUtil'
 
 export const basicSchemas: BasicFormSchema[] = [
   {
@@ -22,7 +22,7 @@ export const basicSchemas: BasicFormSchema[] = [
         onChange: () => {
           // do something
         },
-      };
+      }
     },
   },
   {
@@ -38,7 +38,7 @@ export const basicSchemas: BasicFormSchema[] = [
       return {
         prefix: () => '第',
         suffix: () => '天',
-      };
+      }
     },
   },
   {
@@ -54,7 +54,7 @@ export const basicSchemas: BasicFormSchema[] = [
       return {
         prepend: () => '第',
         append: () => '天',
-      };
+      }
     },
   },
   {
@@ -568,7 +568,7 @@ export const basicSchemas: BasicFormSchema[] = [
     componentProps: {
       valueFormat: 'YYYY-MM-DD',
       disabledDate: (time: Date) => {
-        return time.getTime() > Date.now();
+        return time.getTime() > Date.now()
       },
       shortcuts: [
         {
@@ -578,17 +578,17 @@ export const basicSchemas: BasicFormSchema[] = [
         {
           text: '昨日',
           value: () => {
-            const date = new Date();
-            date.setTime(date.getTime() - 3600 * 1000 * 24);
-            return date;
+            const date = new Date()
+            date.setTime(date.getTime() - 3600 * 1000 * 24)
+            return date
           },
         },
         {
           text: '一周前',
           value: () => {
-            const date = new Date();
-            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-            return date;
+            const date = new Date()
+            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+            return date
           },
         },
       ],
@@ -635,92 +635,92 @@ export const basicSchemas: BasicFormSchema[] = [
         {
           text: '昨日',
           value: () => {
-            const { start, end } = getRangeDate('yesterday');
-            return [start, end];
+            const { start, end } = getRangeDate('yesterday')
+            return [start, end]
           },
         },
         {
           text: '本周',
           value: () => {
-            const { start, end } = getRangeDate('week');
-            return [start, end];
+            const { start, end } = getRangeDate('week')
+            return [start, end]
           },
         },
         {
           text: '上周',
           value: () => {
-            const { start, end } = getRangeDate('lastweek');
-            return [start, end];
+            const { start, end } = getRangeDate('lastweek')
+            return [start, end]
           },
         },
         {
           text: '本月',
           value: () => {
-            const { start, end } = getRangeDate('month');
-            return [start, end];
+            const { start, end } = getRangeDate('month')
+            return [start, end]
           },
         },
         {
           text: '上月',
           value: () => {
-            const { start, end } = getRangeDate('lastmonth');
-            return [start, end];
+            const { start, end } = getRangeDate('lastmonth')
+            return [start, end]
           },
         },
         {
           text: '近3天',
           value: () => {
-            const { start, end } = getRangeDate(3);
-            return [start, end];
+            const { start, end } = getRangeDate(3)
+            return [start, end]
           },
         },
         {
           text: '近7天',
           value: () => {
-            const { start, end } = getRangeDate(7);
-            return [start, end];
+            const { start, end } = getRangeDate(7)
+            return [start, end]
           },
         },
         {
           text: '近30天',
           value: () => {
-            const { start, end } = getRangeDate(30);
-            return [start, end];
+            const { start, end } = getRangeDate(30)
+            return [start, end]
           },
         },
         {
           text: '近90天',
           value: () => {
-            const { start, end } = getRangeDate(90);
-            return [start, end];
+            const { start, end } = getRangeDate(90)
+            return [start, end]
           },
         },
         {
           text: '本季度',
           value: () => {
-            const { start, end } = getRangeDate('quarter');
-            return [start, end];
+            const { start, end } = getRangeDate('quarter')
+            return [start, end]
           },
         },
         {
           text: '上季度',
           value: () => {
-            const { start, end } = getRangeDate('lastquarter');
-            return [start, end];
+            const { start, end } = getRangeDate('lastquarter')
+            return [start, end]
           },
         },
         {
           text: '今年',
           value: () => {
-            const { start, end } = getRangeDate('year');
-            return [start, end];
+            const { start, end } = getRangeDate('year')
+            return [start, end]
           },
         },
         {
           text: '上年',
           value: () => {
-            const { start, end } = getRangeDate('lastyear');
-            return [start, end];
+            const { start, end } = getRangeDate('lastyear')
+            return [start, end]
           },
         },
       ],
@@ -834,15 +834,15 @@ export const basicSchemas: BasicFormSchema[] = [
           { value: 'vuex', link: 'vuejs/vuex' },
           { value: 'vue-router', link: 'vuejs/vue-router' },
           { value: 'babel', link: 'babel/babel' },
-        ];
+        ]
         const createFilter = (queryString: string) => {
           return (restaurant) => {
-            return restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0;
-          };
-        };
+            return restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
+          }
+        }
 
-        const results = queryString ? restaurants.filter(createFilter(queryString)) : restaurants;
-        cb(results);
+        const results = queryString ? restaurants.filter(createFilter(queryString)) : restaurants
+        cb(results)
       },
       triggerOnFocus: false,
       clearable: true,
@@ -904,4 +904,4 @@ export const basicSchemas: BasicFormSchema[] = [
   //     defaultExpandAll: true,
   //   },
   // },
-];
+]

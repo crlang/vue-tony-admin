@@ -6,11 +6,11 @@ import type {
   ResponseMenuInfo,
   // ResponseMenuList,
   ResponseMenuPage,
-} from './types';
+} from './types'
 
-import { defHttp } from '@/utils/http/axios';
+import { defHttp } from '@/utils/http/axios'
 
-const basicUri = '/v1/menu/';
+const basicUri = '/v1/menu/'
 enum Api {
   GetMenuPage = `${basicUri}page`,
   GetMenuList = `${basicUri}list`,
@@ -25,7 +25,7 @@ enum Api {
  * 分页列表-菜单
  */
 export function ApiMenuPage(data: ParamsMenuPage) {
-  return defHttp.post<ResponseMenuPage>({ url: Api.GetMenuPage, data });
+  return defHttp.post<ResponseMenuPage>({ url: Api.GetMenuPage, data })
 }
 
 /**
@@ -39,33 +39,33 @@ export function ApiMenuPage(data: ParamsMenuPage) {
  * 详情-菜单
  */
 export function ApiMenuInfo(id: string = '') {
-  return defHttp.post<ResponseMenuInfo>({ url: Api.GetMenuInfo, data: { id } });
+  return defHttp.post<ResponseMenuInfo>({ url: Api.GetMenuInfo, data: { id } })
 }
 
 /**
  * 新增-菜单
  */
 export function ApiMenuAdd(data: ParamsMenuAdd) {
-  return defHttp.post<string>({ url: Api.GetMenuAdd, data }, { successMessageMode: 'message' });
+  return defHttp.post<string>({ url: Api.GetMenuAdd, data }, { successMessageMode: 'message' })
 }
 
 /**
  * 编辑-菜单
  */
 export function ApiMenuEdit(data: ParamsMenuEdit) {
-  return defHttp.post<string>({ url: Api.GetMenuEdit, data }, { successMessageMode: 'message' });
+  return defHttp.post<string>({ url: Api.GetMenuEdit, data }, { successMessageMode: 'message' })
 }
 
 /**
  * 删除-菜单
  */
 export function ApiMenuDel(id: string = '') {
-  return defHttp.post<string>({ url: Api.GetMenuDel, data: { id } }, { successMessageMode: 'message' });
+  return defHttp.post<string>({ url: Api.GetMenuDel, data: { id } }, { successMessageMode: 'message' })
 }
 
 /**
  * 树结构-菜单
  */
 export function ApiMenuTreeList() {
-  return defHttp.post<string>({ url: Api.GetMenuTreeList });
+  return defHttp.post<string>({ url: Api.GetMenuTreeList })
 }

@@ -1,6 +1,6 @@
 <template>
-  <li :class="getClass" @click.stop="handleClickItem" :style="getCollapse ? {} : getItemStyle">
-    <ElTooltip placement="right" v-if="showTooptip">
+  <li :class="getClass" :style="getCollapse ? {} : getItemStyle" @click.stop="handleClickItem">
+    <ElTooltip v-if="showTooptip" placement="right">
       <div :class="`${prefixCls}--tooltip`">
         <slot></slot>
       </div>
@@ -17,13 +17,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, unref, getCurrentInstance, watch } from 'vue';
-import { ElTooltip } from 'element-plus';
+import { computed, defineComponent, getCurrentInstance, ref, unref, watch } from 'vue'
+import { ElTooltip } from 'element-plus'
 
-import { useDesign } from '@/hooks/web/useDesign';
-
-import { useMenuItem } from './useMenu';
-import { useSimpleRootMenuContext } from './useSimpleMenuContext';
+import { useMenuItem } from './useMenu'
+import { useSimpleRootMenuContext } from './useSimpleMenuContext'
+import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'MenuItem',
@@ -36,15 +35,15 @@ export default defineComponent({
     disabled: Boolean,
   },
   setup(props, { slots }) {
-    const instance = getCurrentInstance();
+    const instance = getCurrentInstance()
 
-    const active = ref(false);
+    const active = ref(false)
 
-    const { getItemStyle, getParentList, getParentMenu, getParentRootMenu } = useMenuItem(instance);
+    const { getItemStyle, getParentList, getParentMenu, getParentRootMenu } = useMenuItem(instance)
 
-    const { prefixCls } = useDesign('simple-menu-item');
+    const { prefixCls } = useDesign('simple-menu-item')
 
-    const { rootMenuEmitter, activeName } = useSimpleRootMenuContext();
+    const { rootMenuEmitter, activeName } = useSimpleRootMenuContext()
 
     const getClass = computed(() => {
       return [
@@ -54,52 +53,54 @@ export default defineComponent({
           [`${prefixCls}--selected`]: unref(active),
           [`${prefixCls}--disabled`]: !!props.disabled,
         },
-      ];
-    });
+      ]
+    })
 
-    const getCollapse = computed(() => unref(getParentRootMenu)?.props.collapse);
+    const getCollapse = computed(() => unref(getParentRootMenu)?.props.collapse)
 
     const showTooptip = computed(() => {
-      return unref(getParentMenu)?.type.name === 'MenuList' && unref(getCollapse) && slots.title;
-    });
+      return unref(getParentMenu)?.type.name === 'MenuList' && unref(getCollapse) && slots.title
+    })
 
     function handleClickItem() {
-      const { disabled } = props;
-      if (disabled) return;
+      const { disabled } = props
+      if (disabled)
+        return
 
-      rootMenuEmitter.emit('on-menu-item-select', props.name);
-      if (unref(getCollapse)) return;
+      rootMenuEmitter.emit('on-menu-item-select', props.name)
+      if (unref(getCollapse))
+        return
 
-      const { uidList } = getParentList();
+      const { uidList } = getParentList()
 
       rootMenuEmitter.emit('on-update-opened', {
         opend: false,
         parent: instance?.parent,
-        uidList: uidList,
-      });
+        uidList,
+      })
     }
     watch(
       () => unref(activeName),
       (name: string) => {
         if (name === props.name) {
-          const { list, uidList } = getParentList();
-          active.value = true;
+          const { list, uidList } = getParentList()
+          active.value = true
           list?.forEach((item) => {
             if (item.proxy) {
-              // eslint-disable-next-line prettier/prettier
-              (item.proxy as any).active = true;
+              (item.proxy as any).active = true
             }
-          });
+          })
 
-          rootMenuEmitter.emit('on-update-active-name:submenu', uidList);
-        } else {
-          active.value = false;
+          rootMenuEmitter.emit('on-update-active-name:submenu', uidList)
+        }
+        else {
+          active.value = false
         }
       },
       { immediate: true },
-    );
+    )
 
-    return { getClass, prefixCls, getItemStyle, getCollapse, handleClickItem, showTooptip };
+    return { getClass, prefixCls, getItemStyle, getCollapse, handleClickItem, showTooptip }
   },
-});
+})
 </script>

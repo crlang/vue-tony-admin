@@ -1,7 +1,7 @@
 <template>
   <PageWrapper title="点内外部触发事件">
-    <ClickOutside @click-outside="handleClickOutside" class="flex justify-center">
-      <div @click="innerClick" class="demo-box">
+    <ClickOutside class="flex justify-center" @click-outside="handleClickOutside">
+      <div class="demo-box" @click="innerClick">
         {{ text }}
       </div>
     </ClickOutside>
@@ -9,25 +9,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref } from 'vue'
 
-import { ClickOutside } from '@/components/ClickOutside';
+import { ClickOutside } from '@/components/ClickOutside'
 
 export default defineComponent({
   components: { ClickOutside },
   setup() {
-    const text = ref('Click');
+    const text = ref('Click')
 
     function handleClickOutside() {
-      text.value = 'Click Out Side';
+      text.value = 'Click Out Side'
     }
 
     function innerClick() {
-      text.value = 'Click Inner';
+      text.value = 'Click Inner'
     }
-    return { innerClick, handleClickOutside, text };
+    return { innerClick, handleClickOutside, text }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>

@@ -3,10 +3,11 @@
     <ElInput
       v-if="showInput"
       v-bind="$attrs"
+      v-model:modelValue="innerValueRef"
       clearable
       show-password
-      v-model:modelValue="innerValueRef"
-      :disabled="disabled" />
+      :disabled="disabled"
+    />
     <div :class="`${prefixCls}-bar`">
       <div :class="`${prefixCls}-bar--fill`" :data-score="getPasswordStrength"></div>
     </div>
@@ -14,13 +15,13 @@
 </template>
 
 <script lang="ts">
-import type { ZxcvbnResult } from '@zxcvbn-ts/core';
+import type { ZxcvbnResult } from '@zxcvbn-ts/core'
 
-import { defineComponent, computed, ref, watch, unref, watchEffect } from 'vue';
-import { ElInput } from 'element-plus';
-import { zxcvbn } from '@zxcvbn-ts/core';
+import { computed, defineComponent, ref, unref, watch, watchEffect } from 'vue'
+import { ElInput } from 'element-plus'
+import { zxcvbn } from '@zxcvbn-ts/core'
 
-import { useDesign } from '@/hooks/web/useDesign';
+import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'StrengthMeter',
@@ -29,14 +30,10 @@ export default defineComponent({
   props: {
     /**
      * 绑定的值(密码)
-     *
-     * Bind value
      */
     modelValue: String,
     /**
      * 是否显示输入框
-     *
-     * Whether to display the input box
      */
     showInput: {
       type: Boolean,
@@ -44,50 +41,48 @@ export default defineComponent({
     },
     /**
      * 是否禁用
-     *
-     * Whether to disable
      */
     disabled: Boolean,
   },
-  emits: ['score-change', 'change', 'update:modelValue'],
+  emits: ['scoreChange', 'change', 'update:modelValue'],
   setup(props, { emit }) {
-    const innerValueRef = ref<string>('');
-    const { prefixCls } = useDesign('strength-meter');
+    const innerValueRef = ref<string>('')
+    const { prefixCls } = useDesign('strength-meter')
 
     /**
      * 监听复杂度变化
-     *
-     * Monitor complexity changes
      */
     const getPasswordStrength = computed(() => {
-      const { disabled } = props;
-      if (disabled) return -1;
-      const innerValue = unref(innerValueRef);
-      const zxc = zxcvbn(unref(innerValueRef)) as ZxcvbnResult;
-      const score = innerValue ? zxc.score : -1;
-      emit('score-change', score);
-      return score;
-    });
+      const { disabled } = props
+      if (disabled) {
+        return -1
+      }
+      const innerValue = unref(innerValueRef)
+      const zxc = zxcvbn(unref(innerValueRef)) as ZxcvbnResult
+      const score = innerValue ? zxc.score : -1
+      emit('scoreChange', score)
+      return score
+    })
 
     watchEffect(() => {
-      innerValueRef.value = props.modelValue || '';
-    });
+      innerValueRef.value = props.modelValue || ''
+    })
 
     watch(
       () => unref(innerValueRef),
       (val) => {
-        emit('update:modelValue', val);
-        emit('change', val);
+        emit('update:modelValue', val)
+        emit('change', val)
       },
-    );
+    )
 
     return {
       getPasswordStrength,
       prefixCls,
       innerValueRef,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">

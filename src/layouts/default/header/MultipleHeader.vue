@@ -6,41 +6,40 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, unref, computed } from 'vue';
+import { computed, defineComponent, unref } from 'vue'
 
-import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
-import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting';
-import { useDesign } from '@/hooks/web/useDesign';
-
-import MultipleTabs from '../tabs/index.vue';
-import LayoutHeader from './index.vue';
+import MultipleTabs from '../tabs/index.vue'
+import LayoutHeader from './index.vue'
+import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting'
+import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting'
+import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'LayoutMultipleHeader',
   components: { LayoutHeader, MultipleTabs },
   setup() {
-    const { prefixCls } = useDesign('layout-multiple-header');
+    const { prefixCls } = useDesign('layout-multiple-header')
 
-    const { getFixed, getShowInsetHeaderRef, getShowFullHeaderRef } = useHeaderSetting();
+    const { getFixed, getShowInsetHeaderRef, getShowFullHeaderRef } = useHeaderSetting()
 
-    const { getShowMultipleTab } = useMultipleTabSetting();
+    const { getShowMultipleTab } = useMultipleTabSetting()
 
     const getShowTabs = computed(() => {
-      return unref(getShowMultipleTab);
-    });
+      return unref(getShowMultipleTab)
+    })
 
     const getIsFixed = computed(() => {
-      return unref(getFixed) || unref(getShowFullHeaderRef);
-    });
+      return unref(getFixed) || unref(getShowFullHeaderRef)
+    })
 
     return {
       prefixCls,
       getIsFixed,
       getShowTabs,
       getShowInsetHeaderRef,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss">

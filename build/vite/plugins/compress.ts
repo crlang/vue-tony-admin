@@ -1,14 +1,14 @@
 /**
  * 支持输出 gzip 等多种压缩方式
  */
-import type { PluginOption } from 'vite';
+import type { PluginOption } from 'vite'
 
-import compressPlugin from 'vite-plugin-compression';
+import compressPlugin from 'vite-plugin-compression'
 
-export function createCompressConfig({ compress, deleteOriginFile = false }: { compress: string; deleteOriginFile?: boolean }): PluginOption[] {
-  const compressList = compress.split(',');
+export function createCompressConfig({ compress, deleteOriginFile = false }: { compress: string, deleteOriginFile?: boolean }): PluginOption[] {
+  const compressList = compress.split(',')
 
-  const plugins: PluginOption[] = [];
+  const plugins: PluginOption[] = []
 
   if (compressList.includes('gzip')) {
     plugins.push(
@@ -16,7 +16,7 @@ export function createCompressConfig({ compress, deleteOriginFile = false }: { c
         ext: '.gz',
         deleteOriginFile,
       }),
-    );
+    )
   }
 
   if (compressList.includes('brotli')) {
@@ -26,7 +26,7 @@ export function createCompressConfig({ compress, deleteOriginFile = false }: { c
         algorithm: 'brotliCompress',
         deleteOriginFile,
       }),
-    );
+    )
   }
-  return plugins;
+  return plugins
 }

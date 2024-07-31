@@ -4,12 +4,13 @@
     :src="url"
     fit="cover"
     :preview-src-list="[url]"
-    style="width: 100px; height: 100px" />
+    style="width: 100px; height: 100px"
+  />
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElImage } from 'element-plus';
+import { defineComponent } from 'vue'
+import { ElImage } from 'element-plus'
 
 export default defineComponent({
   name: 'UploadThumb',
@@ -17,5 +18,5 @@ export default defineComponent({
   props: {
     url: String,
   },
-});
+})
 </script>

@@ -2,7 +2,7 @@
   <div :class="prefixCls">
     <template v-for="item in menuTypeList || []" :key="item.title">
       <ElTooltip :content="item.title" placement="bottom">
-        <div @click="handler(item)" :class="getItemCls(item.type)">
+        <div :class="getItemCls(item.type)" @click="handler(item)">
           <div class="mix-sidebar"></div>
         </div>
       </ElTooltip>
@@ -11,12 +11,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { ElTooltip } from 'element-plus';
+import type { PropType } from 'vue'
+import { defineComponent } from 'vue'
+import { ElTooltip } from 'element-plus'
 
-import { useDesign } from '@/hooks/web/useDesign';
-
-import { menuTypeList } from '../enum';
+import type { menuTypeList } from '../enum'
+import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'MenuTypePicker',
@@ -36,7 +36,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { prefixCls } = useDesign('setting-menu-type-picker');
+    const { prefixCls } = useDesign('setting-menu-type-picker')
     const getItemCls = (type: string) => {
       return [
         `${prefixCls}__item`,
@@ -44,15 +44,15 @@ export default defineComponent({
         {
           [`${prefixCls}__item--active`]: props.def === type,
         },
-      ];
-    };
+      ]
+    }
 
     return {
       prefixCls,
       getItemCls,
-    };
+    }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>
@@ -71,7 +71,7 @@ $prefix-cls: '#{$tonyname}-setting-menu-type-picker';
     cursor: pointer;
     background-color: #f0f2f5;
     border-radius: 4px;
-    box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.18);
+    box-shadow: 0 1px 2.5px 0 rgb(0 0 0 / 18%);
 
     &::before,
     &::after {

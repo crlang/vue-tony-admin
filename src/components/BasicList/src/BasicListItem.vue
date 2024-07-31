@@ -2,7 +2,7 @@
   <div :class="prefixCls">
     <slot></slot>
     <BasicListItemMeta :thumb="thumb" :title="title" :description="description">
-      <template #[item]="data" v-for="item in Object.keys($slots)">
+      <template v-for="item in Object.keys($slots)" #[item]="data">
         <slot :name="item" v-bind="data || {}"></slot>
       </template>
     </BasicListItemMeta>
@@ -10,32 +10,31 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
-import { useDesign } from '@/hooks/web/useDesign';
-
-import BasicListItemMeta from './BasicListItemMeta.vue';
+import BasicListItemMeta from './BasicListItemMeta.vue'
+import { useDesign } from '@/hooks/web/useDesign'
 
 export default defineComponent({
   name: 'ListItem',
   components: { BasicListItemMeta },
   props: {
     /**
-     * Thumbnail address
+     * 缩略图
      */
     thumb: {
       type: String,
       default: '',
     },
     /**
-     * List title
+     * 标题
      */
     title: {
       type: String,
       default: '',
     },
     /**
-     * List description
+     * 描述
      */
     description: {
       type: String,
@@ -43,11 +42,11 @@ export default defineComponent({
     },
   },
   setup() {
-    const { prefixCls } = useDesign('basic-list-item');
+    const { prefixCls } = useDesign('basic-list-item')
 
     return {
       prefixCls,
-    };
+    }
   },
-});
+})
 </script>

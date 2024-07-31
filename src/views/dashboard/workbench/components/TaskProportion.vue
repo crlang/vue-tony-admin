@@ -1,17 +1,22 @@
 <template>
-  <el-card shadow="hover">
-    <template #header><div class="el-card__header--title">进展统计</div></template>
+  <ElCard shadow="hover">
+    <template #header>
+      <div class="el-card__header--title">
+        进展统计
+      </div>
+    </template>
     <div ref="chartRef" :style="{ width, height }"></div>
-  </el-card>
+  </ElCard>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, Ref, ref } from 'vue';
-import { ElCard } from 'element-plus';
+import type { Ref } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
+import { ElCard } from 'element-plus'
 
-import { useECharts } from '@/hooks/web/useECharts';
+import { useECharts } from '@/hooks/web/useECharts'
 
-import { DashboardNewsInfo } from '@/api/types';
+import type { DashboardNewsInfo } from '@/api/types'
 
 export default defineComponent({
   components: { ElCard },
@@ -30,11 +35,11 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const chartRef = ref<HTMLDivElement | null>(null);
-    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
+    const chartRef = ref<HTMLDivElement | null>(null)
+    const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>)
 
     function initChart() {
-      const piedata = props.datainfo || [];
+      const piedata = props.datainfo || []
 
       setOptions({
         legend: {
@@ -60,12 +65,12 @@ export default defineComponent({
             data: piedata,
           },
         ],
-      });
+      })
     }
 
-    onMounted(initChart);
+    onMounted(initChart)
 
-    return { chartRef };
+    return { chartRef }
   },
-});
+})
 </script>
